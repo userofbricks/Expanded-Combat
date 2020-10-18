@@ -32,6 +32,8 @@ out
 hs_err_pid*
 
 # other
+.gradle
+logs
 build
 run
 */.DS_Store
