@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="952ff1a4-1d42-49da-8e92-92706b2d0703" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="fg_runs" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="ide" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="runtimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="testCompileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="testRuntimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1iFkSGXVEfDOlMGCw5BSegOtvLh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expandedcombat.events" />
+      <recent name="com.userofbricks.expandedcombat.item.recipes" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.client.renderer" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/entity/projectiles" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat" />
+      <recent name="$PROJECT_DIR$/src/main/resources/data/curios/tags/items" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.enchentments" />
+      <recent name="com.userofbricks.expandedcombat.item" />
+      <recent name="com.userofbricks.expandedcombat.client.renderer" />
+      <recent name="com.userofbricks.reimaginedquiver.gui" />
+      <recent name="com.userofbricks.reimaginedquiver.capability" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/reimaginedquiver/gui" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.runClient">
+    <configuration name="reimagined_quiver [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="reimagined_quiver [genIntellijRuns]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genIntellijRuns" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="reimagined_quiver [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="init" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="reimagined_quiver [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
+        <item itemvalue="Gradle.reimagined_quiver [init]" />
+        <item itemvalue="Gradle.reimagined_quiver [wrapper]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="952ff1a4-1d42-49da-8e92-92706b2d0703" name="Default Changelist" comment="" />
+      <created>1601510725611</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601510725611</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="753" y="404" key="#Images" timestamp="1602266151477">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="753" y="404" key="#Images/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602266151477" />
+    <state x="848" y="503" key="#VCS_History_Cache_Settings" timestamp="1601660002395">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="848" y="503" key="#VCS_History_Cache_Settings/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601660002395" />
+    <state x="743" y="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601521777593">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="743" y="396" key="#com.intellij.fileTypes.FileTypeChooser/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601521777593" />
+    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser" timestamp="1602966608498">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602966608498" />
+    <state x="605" y="269" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1601511898516">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="605" y="269" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601511898516" />
+    <state x="712" y="330" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1601659726292">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="712" y="330" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601659726292" />
+    <state x="717" y="463" width="943" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1602341471397">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="717" y="463" width="943" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602341471397" />
+    <state x="89" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602261240280">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="89" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602261240280" />
+    <state x="762" y="341" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602261993429">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="762" y="341" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602261993429" />
+    <state x="723" y="451" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1601780760947">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="723" y="451" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601780760947" />
+    <state x="575" y="409" key="GradleDaemons" timestamp="1601612040491">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="575" y="409" key="GradleDaemons/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601612040491" />
+    <state width="2006" height="293" key="GridCell.Tab.0.bottom" timestamp="1602982390946">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="2006" height="293" key="GridCell.Tab.0.bottom/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602982390946" />
+    <state width="2006" height="293" key="GridCell.Tab.0.center" timestamp="1602982390946">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="2006" height="293" key="GridCell.Tab.0.center/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602982390946" />
+    <state width="2006" height="293" key="GridCell.Tab.0.left" timestamp="1602982390945">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="2006" height="293" key="GridCell.Tab.0.left/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602982390945" />
+    <state width="2006" height="293" key="GridCell.Tab.0.right" timestamp="1602982390946">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="2006" height="293" key="GridCell.Tab.0.right/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602982390946" />
+    <state x="612" y="337" key="IDE.errors.dialog" timestamp="1602124944519">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="612" y="337" key="IDE.errors.dialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602124944519" />
+    <state x="525" y="226" key="SettingsEditor" timestamp="1601659955153">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="525" y="226" key="SettingsEditor/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601659955153" />
+    <state x="533" y="330" width="981" height="617" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602265209277">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="533" y="330" width="981" height="617" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602265209277" />
+    <state x="586" y="23" width="1462" height="1110" key="dock-window-1" timestamp="1601750455139">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="586" y="23" width="1462" height="1110" key="dock-window-1/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601750455139" />
+    <state x="722" y="176" width="604" height="822" key="find.popup" timestamp="1601516181865">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="722" y="176" width="604" height="822" key="find.popup/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601516181865" />
+    <state x="800" y="360" key="refactoring.ChangeSignatureDialog" timestamp="1602364008494">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="800" y="360" key="refactoring.ChangeSignatureDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602364008494" />
+    <state x="689" y="274" width="670" height="675" key="run.anything.popup" timestamp="1601612211825">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="689" y="274" width="670" height="675" key="run.anything.popup/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601612211825" />
+    <state x="689" y="276" width="670" height="676" key="search.everywhere.popup" timestamp="1602397782414">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="689" y="276" width="670" height="676" key="search.everywhere.popup/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602397782414" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="net.minecraft.crash.ReportedException" package="net.minecraft.crash" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.UnknownHostException" package="java.net" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "com/userofbricks/expandedcombat/mixin/ContainerAccessor": {
+      "addSlot": "func_75146_a(Lnet/minecraft/inventory/container/Slot;)Lnet/minecraft/inventory/container/Slot;"
+    },
+    "com/userofbricks/expandedcombat/mixin/PlayerEntityMixin": {
+      "findAmmo": "Lnet/minecraft/entity/player/PlayerEntity;func_213356_f(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;"
+    }
+  },
+  "data": {
+    "searge": {
+      "com/userofbricks/expandedcombat/mixin/ContainerAccessor": {
+        "addSlot": "func_75146_a(Lnet/minecraft/inventory/container/Slot;)Lnet/minecraft/inventory/container/Slot;"
+      },
+      "com/userofbricks/expandedcombat/mixin/PlayerEntityMixin": {
+        "findAmmo": "Lnet/minecraft/entity/player/PlayerEntity;func_213356_f(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;"
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer1": "expanded_combat:item/tipped_arrow_head",
+    "layer0": "expanded_combat:item/iron_arrow"
+  }
+}

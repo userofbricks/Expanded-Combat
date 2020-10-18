@@ -1,0 +1,5 @@
+Args: "--inJar", "/Users/jonathandillon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.15.2-31.2.45/forge-1.15.2-31.2.45-injected.jar", "--outJar", "/Users/jonathandillon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.15.2-31.2.45_mapped_snapshot_20200514-1.15.1/forge-1.15.2-31.2.45_mapped_snapshot_20200514-1.15.1.jar", "--logFile", "accesstransform.log", "--atFile", "/Volumes/blurb drive/02_minecraft/01_mod_stuff/code/reimagined_quiver/build/_atJar_5/parent_at.cfg"
+Classpath: /Users/jonathandillon/.gradle/caches/forge_gradle/maven_downloader/net/minecraftforge/accesstransformers/1.0.5/accesstransformers-1.0.5-fatjar.jar
+WorkDir: /Volumes/blurb drive/02_minecraft/01_mod_stuff/code/reimagined_quiver/build/_atJar_5
+Main: net.minecraftforge.accesstransformer.TransformerProcessor
+====================================

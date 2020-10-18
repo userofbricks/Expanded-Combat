@@ -1,0 +1,12 @@
+Args: "--task", "SRG_TO_MCP", "--input", "/Users/jonathandillon/.gradle/caches/modules-2/files-2.1/top.theillusivec4.curios/curios/FORGE-1.15.2-2.0.2.6/b5b750692606786ce2a0f941eefcfd002d7ae154/curios-FORGE-1.15.2-2.0.2.6.jar", "--output", "/Users/jonathandillon/.gradle/caches/forge_gradle/deobf_dependencies/top/theillusivec4/curios/curios/FORGE-1.15.2-2.0.2.6_mapped_snapshot_20200514-1.15.1/curios-FORGE-1.15.2-2.0.2.6_mapped_snapshot_20200514-1.15.1.jar", "--mcp", "/Users/jonathandillon/.gradle/caches/forge_gradle/maven_downloader/de/oceanlabs/mcp/mcp_snapshot/20200514-1.15.1/mcp_snapshot-20200514-1.15.1.zip", "--strip-signatures"
+Classpath: /Users/jonathandillon/.gradle/caches/forge_gradle/maven_downloader/net/minecraftforge/installertools/1.1.10/installertools-1.1.10-fatjar.jar
+WorkDir: /Volumes/blurb drive/02_minecraft/01_mod_stuff/code/reimagined_quiver/build/_RenameSrg2Mcp_-704456036
+Main: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  /Users/jonathandillon/.gradle/caches/modules-2/files-2.1/top.theillusivec4.curios/curios/FORGE-1.15.2-2.0.2.6/b5b750692606786ce2a0f941eefcfd002d7ae154/curios-FORGE-1.15.2-2.0.2.6.jar
+Output: /Users/jonathandillon/.gradle/caches/forge_gradle/deobf_dependencies/top/theillusivec4/curios/curios/FORGE-1.15.2-2.0.2.6_mapped_snapshot_20200514-1.15.1/curios-FORGE-1.15.2-2.0.2.6_mapped_snapshot_20200514-1.15.1.jar
+MCP:    /Users/jonathandillon/.gradle/caches/forge_gradle/maven_downloader/de/oceanlabs/mcp/mcp_snapshot/20200514-1.15.1/mcp_snapshot-20200514-1.15.1.zip
+Loading MCP Data
+Stripped Manifest of sha digests
+Process complete
