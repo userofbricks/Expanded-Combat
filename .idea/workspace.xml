@@ -3,23 +3,33 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="952ff1a4-1d42-49da-8e92-92706b2d0703" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/QuiverArrowsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/QuiverArrowsModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/ArrowCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/ArrowCurio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/GauntletCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/GauntletCurio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/QuiverCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/QuiverCurio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/enchentments/ECEnchantments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/enchentments/ECEnchantments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/entity/ECEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/entity/ECEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/MixinEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/MixinEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECTippedArrowRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECTippedArrowRecipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/CurioContainerMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/CurioContainerMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/PlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/netherite_arrow.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/netherite_arrow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +63,31 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="fg_runs" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -88,25 +122,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.userofbricks.expandedcombat.events" />
-      <recent name="com.userofbricks.expandedcombat.item.recipes" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/reimaginedquiver/gui" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/entity/projectiles" />
       <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat" />
-      <recent name="$PROJECT_DIR$/src/main/resources/data/curios/tags/items" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expandedcombat.enchentments" />
@@ -115,13 +150,12 @@
       <recent name="com.userofbricks.reimaginedquiver.gui" />
       <recent name="com.userofbricks.reimaginedquiver.capability" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/reimaginedquiver/gui" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expandedcombat.events" />
+      <recent name="com.userofbricks.expandedcombat.item.recipes" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [genIntellijRuns]">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="reimagined_quiver [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -200,10 +234,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.reimagined_quiver [wrapper]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.reimagined_quiver [init]" />
-        <item itemvalue="Gradle.reimagined_quiver [wrapper]" />
       </list>
     </recent_temporary>
   </component>
@@ -217,6 +251,17 @@
       <updated>1601510725611</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="753" y="404" key="#Images" timestamp="1602266151477">
@@ -263,22 +308,22 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="575" y="409" key="GradleDaemons/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601612040491" />
-    <state width="2006" height="320" key="GridCell.Tab.0.bottom" timestamp="1603002452086">
+    <state width="2006" height="320" key="GridCell.Tab.0.bottom" timestamp="1603061457883">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.bottom/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603002452086" />
-    <state width="2006" height="320" key="GridCell.Tab.0.center" timestamp="1603002452085">
+    <state width="2006" height="320" key="GridCell.Tab.0.bottom/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
+    <state width="2006" height="320" key="GridCell.Tab.0.center" timestamp="1603061457883">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.center/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603002452085" />
-    <state width="2006" height="320" key="GridCell.Tab.0.left" timestamp="1603002452083">
+    <state width="2006" height="320" key="GridCell.Tab.0.center/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
+    <state width="2006" height="320" key="GridCell.Tab.0.left" timestamp="1603061457882">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.left/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603002452083" />
-    <state width="2006" height="320" key="GridCell.Tab.0.right" timestamp="1603002452086">
+    <state width="2006" height="320" key="GridCell.Tab.0.left/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457882" />
+    <state width="2006" height="320" key="GridCell.Tab.0.right" timestamp="1603061457883">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.right/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603002452086" />
+    <state width="2006" height="320" key="GridCell.Tab.0.right/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
     <state x="612" y="337" key="IDE.errors.dialog" timestamp="1602124944519">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>

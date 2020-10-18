@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "expanded_combat.refmap.json",
   "mixins": [
+    "ContainerAccessor",
     "CurioContainerMixin",
-    "PlayerEntityMixin",
-    "ContainerAccessor"
+    "PlayerEntityMixin"
   ],
   "client": [
   ],

@@ -139,7 +139,7 @@ public class ExpandedCombat {
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("arrows")
 				.hide()
 				.icon(new ResourceLocation(MODID,"item/empty_arrows_slot")).build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("hands"));
+		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("hands").build());
 	}
 
 	private void drawSlotBack(GuiContainerEvent.DrawBackground e) {
