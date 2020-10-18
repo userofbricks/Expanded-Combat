@@ -15,11 +15,6 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: 'org.spongepowered.mixin'
-
-mixin {
-    add sourceSets.main, "expanded_combat.refmap.json"
-}
 
 version = "${mod_version}-${mc_version}"
 group = "com.userofbricks.${modid}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -43,7 +38,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            //arg "-mixin.config="+archivesBaseName+".mixins.json"
+            arg "-mixin.config="+archivesBaseName+".mixins.json"
 
 
             // Recommended logging level for the console
@@ -58,7 +53,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            //arg "-mixin.config="+archivesBaseName+".mixins.json"
+            arg "-mixin.config="+archivesBaseName+".mixins.json"
 
 
             // Recommended logging level for the console
@@ -85,6 +80,8 @@ repositories{
         url = "https://modmaven.k-4u.nl"
     }
 
+    maven {url='https://dist.creeper.host/Sponge/maven'}
+
     jcenter()
     mavenCentral()
     maven { url = "https://maven.theillusivec4.top/" }
@@ -99,7 +96,7 @@ dependencies {
 
     compile 'org.spongepowered:mixin:0.8'
 
-    compile fg.deobf("top.theillusivec4.curios:curios:${curios_version}")
+    compile fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     //compileOnly fg.deobf("top.theillusivec4.curios:curios:${curios_version}:api")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -132,7 +129,7 @@ jar {
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor" :group,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "expanded_combat.mixins.json"
+                "MixinConfigs": "${modid}.mixins.json"
         ])
     }
 }

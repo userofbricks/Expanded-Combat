@@ -18,12 +18,12 @@ public class MixinEvents {
                 if (identifier.equals("quiver")) {
                     CurioStackHandler stackHandler = curioMap.get(identifier);
                     //IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-                    ((ContainerAccessor) curiosContainer).$addSlot(new SlotCurio(player, stackHandler, 0, identifier, 78, 20));
+                    ((ContainerAccessor) curiosContainer).$addSlot(new SlotCurio(player, stackHandler, 0, identifier, 78, 18));
                 }
                 if (identifier.equals("arrows")) {
                     CurioStackHandler stackHandler = curioMap.get(identifier);
                     //IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-                    ((ContainerAccessor) curiosContainer).$addSlot(new SlotCurio(player, stackHandler, 0, identifier, 78, 38));
+                    ((ContainerAccessor) curiosContainer).$addSlot(new SlotCurio(player, stackHandler, 0, identifier, 78, 36));
                 }
             }
         });

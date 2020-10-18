@@ -7,7 +7,7 @@ loaderVersion="[31,)" #mandatory
 
 [[mods]] #mandatory
 modId="expanded_combat" #mandatory
-version="${version}" #mandatory
+version="2.0.0" #mandatory
 displayName="Expanded Combat" #mandatory
 #displayURL="http://example.com/" #optional
 #logoFile="examplemod.png" #optional
