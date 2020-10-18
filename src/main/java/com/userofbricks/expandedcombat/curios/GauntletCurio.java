@@ -14,13 +14,15 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.capability.ICurio;
+import net.minecraft.util.math.BlockPos;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import java.util.UUID;
 
@@ -41,37 +43,33 @@ public class GauntletCurio implements ICurio {
     }
 
     @Override
-    public void playEquipSound(LivingEntity livingEntity) {
-        livingEntity.world
-                .playSound(null, livingEntity.getPosition(), ((GauntletItem)stack.getItem()).getMaterial().getSoundEvent(),
-                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+    public void playRightClickEquipSound(LivingEntity livingEntity) {
+        livingEntity.world.playSound(null, new BlockPos(livingEntity.getPositionVec()), ((GauntletItem)stack.getItem()).getMaterial().getSoundEvent(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
     }
 
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(String identifier) {
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(String identifier) {
 
-        Multimap<String, AttributeModifier> atts = HashMultimap.create();
+        Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
 
-        if (CuriosAPI.getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof GauntletItem) {
+        if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof GauntletItem) {
             float attackDamage = ((GauntletItem)stack.getItem()).getAttackDamage();
             int armorAmount = ((GauntletItem)stack.getItem()).getArmorAmount();
-            atts.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_UUID, "Attack damage bonus", attackDamage + Math.round((attackDamage / 2) * EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack)), AttributeModifier.Operation.ADDITION));
-            atts.put(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
-            atts.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", EnchantmentHelper.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack), AttributeModifier.Operation.ADDITION));
-            atts.put(SharedMonsterAttributes.ATTACK_KNOCKBACK.getName(), new AttributeModifier(KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.field_233823_f_, new AttributeModifier(ATTACK_UUID, "Attack damage bonus", attackDamage + Math.round((attackDamage / 2) * EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack)), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.field_233826_i_, new AttributeModifier(ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.field_233820_c_, new AttributeModifier(KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", EnchantmentHelper.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.field_233824_g_, new AttributeModifier(KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }
 
     @Override
-    public boolean hasRender(String identifier, LivingEntity livingEntity) {
+    public boolean canRender(String identifier, int index, LivingEntity livingEntity) {
         return true;
     }
 
     @Override
-    public void render(String identifier, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light,
-                       LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks,
-                       float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
         if (!(this.model instanceof GauntletModel)) {
             model = new GauntletModel();
@@ -83,50 +81,7 @@ public class GauntletCurio implements ICurio {
         gauntlet.setRotationAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         IVertexBuilder vertexBuilder = ItemRenderer.getBuffer(renderTypeBuffer, gauntlet.getRenderType(GAUNTLET_TEXTURE), false, stack.hasEffect());
         gauntlet.render(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
-/*
-        if (stack.hasEffect()) {
-            func_215338_a(Minecraft.getInstance().getTextureManager()::bindTexture, livingEntity, gauntlet, limbSwing,
-                    limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
-        } */
     }
-/*
-    public <T extends Entity> void func_215338_a(Consumer<ResourceLocation> p_215338_0_, T p_215338_1_,
-                                                 EntityModel<T> p_215338_2_, float p_215338_3_, float p_215338_4_,
-                                                 float p_215338_5_, float p_215338_6_, float p_215338_7_,
-                                                 float p_215338_8_) {
-        float f = (float)p_215338_1_.ticksExisted + p_215338_5_;
-        p_215338_0_.accept(ENCHANTED_ITEM_GLINT_RES);
-        GameRenderer gamerenderer = Minecraft.getInstance().gameRenderer;
-        gamerenderer.setupFogColor(true);
-        GlStateManager.enableBlend();
-        GlStateManager.depthFunc(514);
-        GlStateManager.depthMask(false);
-        GlStateManager.color4f(0.5F, 0.5F, 0.5F, 1.0F);
-
-        for(int i = 0; i < 2; ++i) {
-            GlStateManager.disableLighting();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
-            GlStateManager.color4f(0.38F, 0.19F, 0.608F, 1.0F);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.loadIdentity();
-            float f3 = 0.33333334F;
-            GlStateManager.scalef(f3, f3, f3);
-            GlStateManager.rotatef(30.0F - (float)i * 60.0F, 0.0F, 0.0F, 1.0F);
-            GlStateManager.translatef(0.0F, f * (0.001F + (float)i * 0.003F) * 20.0F, 0.0F);
-            GlStateManager.matrixMode(5888);
-            p_215338_2_.render(p_215338_1_, p_215338_3_, p_215338_4_, p_215338_6_, p_215338_7_, p_215338_8_);
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        }
-
-        GlStateManager.matrixMode(5890);
-        GlStateManager.loadIdentity();
-        GlStateManager.matrixMode(5888);
-        GlStateManager.enableLighting();
-        GlStateManager.depthMask(true);
-        GlStateManager.depthFunc(515);
-        GlStateManager.disableBlend();
-        gamerenderer.setupFogColor(false);
-    } */
 
     @Override
     public boolean canRightClickEquip() {

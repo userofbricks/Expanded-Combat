@@ -14,7 +14,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = ExpandedCombat.MODID)
 public class ECEnchantments
 {
-	public static final DeferredRegister<Enchantment> ENCHANTMENTS = new DeferredRegister<>(ForgeRegistries.ENCHANTMENTS, ExpandedCombat.MODID);
+	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ExpandedCombat.MODID);
 
 	public static final RegistryObject<Enchantment> KNOCKBACK_RESISTANCE = ENCHANTMENTS.register("knockback_resistance", () -> new KnockbackResistanceEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.CHEST));
 }

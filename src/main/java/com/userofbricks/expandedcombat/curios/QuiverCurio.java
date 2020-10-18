@@ -8,11 +8,14 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import net.minecraft.util.ResourceLocation;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.capability.ICurio;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 public class QuiverCurio implements ICurio {
 
@@ -25,22 +28,26 @@ public class QuiverCurio implements ICurio {
 	}
 
 	@Override
-	public void onUnequipped(String identifier, LivingEntity livingEntity) {
-		ItemStack stack = CuriosAPI.getCurioEquipped(ExpandedCombat.arrow_predicate,livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+	public void onUnequip(String identifier, int index, LivingEntity livingEntity) {
+		ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate,livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
 		if (livingEntity instanceof PlayerEntity) {
-			((PlayerEntity) livingEntity).addItemStackToInventory(stack);
+			if (!((PlayerEntity) livingEntity).addItemStackToInventory(stack)) {
+				InventoryHelper.spawnItemStack(livingEntity.world,livingEntity.getPosX(),livingEntity.getPosY(),livingEntity.getPosZ(),stack);
+			}
 		}
-		CuriosAPI.getCuriosHandler(livingEntity).map(iCurioItemHandler -> iCurioItemHandler.getStackHandler("arrows"))
-						.ifPresent(curioStackHandler -> curioStackHandler.setStackInSlot(0, ItemStack.EMPTY));
+		CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios)
+				.map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows"))
+				.map(ICurioStacksHandler::getStacks)
+				.ifPresent(curioStackHandler -> curioStackHandler.setStackInSlot(0, ItemStack.EMPTY));
 	}
 
 	@Override
-	public boolean hasRender(String identifier, LivingEntity livingEntity) {
+	public boolean canRender(String identifier, int index, LivingEntity livingEntity) {
 		return true;
 	}
 
 	@Override
-	public void render(String identifier, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		ICurio.RenderHelper.translateIfSneaking(matrixStack, livingEntity);
 		ICurio.RenderHelper.rotateIfSneaking(matrixStack, livingEntity);
 

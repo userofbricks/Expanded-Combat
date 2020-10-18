@@ -9,7 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ECEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, ExpandedCombat.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ExpandedCombat.MODID);
     private static final String arrowLocation = "ec_arrow_entity";
     public static final RegistryObject<EntityType<ECArrowEntity>> EC_ARROW_ENTITY = ENTITIES.register(arrowLocation,
             () -> EntityType.Builder.<ECArrowEntity>create(ECArrowEntity::new, EntityClassification.MISC).size(0.5f, 0.5f).build(arrowLocation));

@@ -12,8 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ECItems {
     private static final ItemGroup EC_GROUP = ExpandedCombat.EC_GROUP;
 
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<Item>(ForgeRegistries.ITEMS,
-            ExpandedCombat.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExpandedCombat.MODID);
 
     public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", () -> new QuiverItem(new Item.Properties().group(EC_GROUP).maxStackSize(1)));
 

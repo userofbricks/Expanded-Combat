@@ -9,7 +9,8 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosAPI;
+import net.minecraft.util.math.vector.Vector3f;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class QuiverArrowsModel<T extends LivingEntity> extends EntityModel<T> {
 
@@ -25,7 +26,7 @@ public class QuiverArrowsModel<T extends LivingEntity> extends EntityModel<T> {
     }
 
     public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, LivingEntity entity) {
-        ItemStack itemstack = CuriosAPI.getCurioEquipped(ExpandedCombat.arrow_predicate, entity)
+        ItemStack itemstack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, entity)
                 .map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         if (!itemstack.isEmpty()) {
             matrixStackIn.push();

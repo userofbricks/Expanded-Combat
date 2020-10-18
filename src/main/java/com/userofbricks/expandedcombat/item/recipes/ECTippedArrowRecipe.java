@@ -2,18 +2,14 @@ package com.userofbricks.expandedcombat.item.recipes;
 
 import com.userofbricks.expandedcombat.item.ECArrowItem;
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class ECTippedArrowRecipe extends SpecialRecipe{
 
