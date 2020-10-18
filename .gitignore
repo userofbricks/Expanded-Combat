@@ -32,6 +32,7 @@ out
 hs_err_pid*
 
 # other
+build
 run
 */.DS_Store
 .DS_Store
