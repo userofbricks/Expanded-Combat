@@ -8,19 +8,19 @@ import net.minecraft.util.SoundEvents;
 
 public enum GauntletMaterials implements IGauntletMaterial
 {
-	tutorial("tutorial", 400, 25, 7, 10.0f, Items.COAL, SoundEvents.ITEM_ARMOR_EQUIP_IRON),
-	diamond("diamond", 1561, 10, 3, 4.0f, Items.DIAMOND, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND),
-	gold("gold", 59, 25, 1, 2.0f, Items.GOLD_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_GOLD),
-	iron("iron", 131, 9, 2, 3.0f, Items.IRON_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_IRON),
-	leather("leather", 250, 15, 1, 1.0f, Items.LEATHER, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+	netherite("diamond", 2031, 15, 3, 4.0f, Items.DIAMOND, SoundEvents.field_232681_Q_, 3f, 0.1f),
+	diamond("diamond", 1561, 10, 3, 3.0f, Items.DIAMOND, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2f, 0f),
+	gold("gold", 60, 25, 1, 1.0f, Items.GOLD_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0f, 0f),
+	iron("iron", 250, 9, 2, 2.0f, Items.IRON_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0f, 0f),
+	leather("leather", 131, 15, 1, 1.0f, Items.LEATHER, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0f, 0f);
 
 	private String textureName;
 	private int durability, enchantability, armorAmount;
 	private Item repairItem;
 	private SoundEvent equipSound;
-	private float attackDamage;
+	private float attackDamage, toughness, knockback_resistance;
 	
-	private GauntletMaterials(String textureName, int durability, int enchantability, int armorAmount, float attackDamage, Item repairItem, SoundEvent equipSound)
+	GauntletMaterials(String textureName, int durability, int enchantability, int armorAmount, float attackDamage, Item repairItem, SoundEvent equipSound, float toughness, float knockback_resistance)
 	{
 		this.textureName = textureName;
 		this.durability = durability;
@@ -29,6 +29,8 @@ public enum GauntletMaterials implements IGauntletMaterial
 		this.attackDamage = attackDamage;
 		this.repairItem = repairItem;
 		this.equipSound = equipSound;
+		this.toughness = toughness;
+		this.knockback_resistance = knockback_resistance;
 	}
 	
 	@Override
@@ -71,6 +73,14 @@ public enum GauntletMaterials implements IGauntletMaterial
 	public Ingredient getRepairMaterial() 
 	{
 		return Ingredient.fromItems(this.repairItem);
+	}
+
+	public float getToughness() {
+		return this.toughness;
+	}
+
+	public float getKnockback_resistance() {
+		return this.knockback_resistance;
 	}
 	
 }

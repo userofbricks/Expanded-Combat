@@ -18,4 +18,8 @@ public interface IGauntletMaterial
 	Ingredient getRepairMaterial();//
 	
 	float getAttackDamage();//
+
+    float getKnockback_resistance();
+
+	float getToughness();
 }

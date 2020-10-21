@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BranchesTreeState">
+    <expand>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
@@ -23,13 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="952ff1a4-1d42-49da-8e92-92706b2d0703" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/netherite_arrow.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/netherite_arrow.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/GauntletCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/GauntletCurio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/GauntletMaterials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/GauntletMaterials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/IGauntletMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/IGauntletMaterial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,10 +273,10 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="743" y="396" key="#com.intellij.fileTypes.FileTypeChooser/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601521777593" />
-    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser" timestamp="1602966608498">
+    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser" timestamp="1603244899910">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602966608498" />
+    <state x="837" y="301" key="#com.intellij.ide.util.MemberChooser/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603244899910" />
     <state x="605" y="269" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1601511898516">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -308,22 +305,22 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="575" y="409" key="GradleDaemons/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601612040491" />
-    <state width="2006" height="320" key="GridCell.Tab.0.bottom" timestamp="1603061457883">
+    <state width="2006" height="320" key="GridCell.Tab.0.bottom" timestamp="1603061727874">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.bottom/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
-    <state width="2006" height="320" key="GridCell.Tab.0.center" timestamp="1603061457883">
+    <state width="2006" height="320" key="GridCell.Tab.0.bottom/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061727874" />
+    <state width="2006" height="320" key="GridCell.Tab.0.center" timestamp="1603061727873">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.center/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
-    <state width="2006" height="320" key="GridCell.Tab.0.left" timestamp="1603061457882">
+    <state width="2006" height="320" key="GridCell.Tab.0.center/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061727873" />
+    <state width="2006" height="320" key="GridCell.Tab.0.left" timestamp="1603061727873">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.left/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457882" />
-    <state width="2006" height="320" key="GridCell.Tab.0.right" timestamp="1603061457883">
+    <state width="2006" height="320" key="GridCell.Tab.0.left/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061727873" />
+    <state width="2006" height="320" key="GridCell.Tab.0.right" timestamp="1603061727874">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state width="2006" height="320" key="GridCell.Tab.0.right/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061457883" />
+    <state width="2006" height="320" key="GridCell.Tab.0.right/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603061727874" />
     <state x="612" y="337" key="IDE.errors.dialog" timestamp="1602124944519">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -344,10 +341,10 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="722" y="176" width="604" height="822" key="find.popup/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1601516181865" />
-    <state x="800" y="360" key="refactoring.ChangeSignatureDialog" timestamp="1602364008494">
+    <state x="800" y="360" key="refactoring.ChangeSignatureDialog" timestamp="1603244910517">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="800" y="360" key="refactoring.ChangeSignatureDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1602364008494" />
+    <state x="800" y="360" key="refactoring.ChangeSignatureDialog/2048.95.1920.1057/0.23.2048.1129@0.23.2048.1129" timestamp="1603244910517" />
     <state x="689" y="274" width="670" height="675" key="run.anything.popup" timestamp="1601612211825">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
