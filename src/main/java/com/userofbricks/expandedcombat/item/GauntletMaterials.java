@@ -1,6 +1,8 @@
 package com.userofbricks.expandedcombat.item;
 
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
@@ -8,11 +10,11 @@ import net.minecraft.util.SoundEvents;
 
 public enum GauntletMaterials implements IGauntletMaterial
 {
-	netherite("diamond", 2031, 15, 3, 4.0f, Items.DIAMOND, SoundEvents.field_232681_Q_, 3f, 0.1f),
-	diamond("diamond", 1561, 10, 3, 3.0f, Items.DIAMOND, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2f, 0f),
-	gold("gold", 60, 25, 1, 1.0f, Items.GOLD_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0f, 0f),
-	iron("iron", 250, 9, 2, 2.0f, Items.IRON_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0f, 0f),
-	leather("leather", 131, 15, 1, 1.0f, Items.LEATHER, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0f, 0f);
+	netherite("netherite", ItemTier.NETHERITE.getMaxUses(), ArmorMaterial.NETHERITE.getEnchantability(), 3, ItemTier.NETHERITE.getAttackDamage(), Items.DIAMOND, SoundEvents.field_232681_Q_, ArmorMaterial.NETHERITE.getToughness(), ArmorMaterial.NETHERITE.func_230304_f_()),
+	diamond("diamond", ItemTier.DIAMOND.getMaxUses(), ArmorMaterial.DIAMOND.getEnchantability(), 3, ItemTier.DIAMOND.getAttackDamage(), Items.DIAMOND, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, ArmorMaterial.DIAMOND.getToughness(), ArmorMaterial.DIAMOND.func_230304_f_()),
+	gold("gold", ItemTier.WOOD.getMaxUses(), ArmorMaterial.GOLD.getEnchantability(), 1, ItemTier.GOLD.getAttackDamage(), Items.GOLD_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, ArmorMaterial.GOLD.getToughness(), ArmorMaterial.GOLD.func_230304_f_()),
+	iron("iron", ItemTier.IRON.getMaxUses(), ArmorMaterial.IRON.getEnchantability(), 2, ItemTier.IRON.getAttackDamage(), Items.IRON_INGOT, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ArmorMaterial.IRON.getToughness(), ArmorMaterial.IRON.func_230304_f_()),
+	leather("leather", ItemTier.STONE.getMaxUses(), ArmorMaterial.LEATHER.getEnchantability(), 1, ItemTier.STONE.getAttackDamage(), Items.LEATHER, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, ArmorMaterial.LEATHER.getToughness(), ArmorMaterial.LEATHER.func_230304_f_());
 
 	private String textureName;
 	private int durability, enchantability, armorAmount;

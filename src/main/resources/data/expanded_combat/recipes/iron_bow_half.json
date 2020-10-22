@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "minecraft:bow"
+	},
+	"addition": {
+		"item": "minecraft:iron_ingot"
+	},
+	
+	"result": { "item": "expanded_combat:iron_bow_half" }
+}

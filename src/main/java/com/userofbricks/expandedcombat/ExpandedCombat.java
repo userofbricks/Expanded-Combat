@@ -4,6 +4,7 @@ import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRende
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.ECEntities;
+import com.userofbricks.expandedcombat.item.ECItemModelsProperties;
 import com.userofbricks.expandedcombat.item.ECItemGroup;
 import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.GauntletItem;
@@ -20,11 +21,11 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -190,6 +191,7 @@ public class ExpandedCombat {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
 		registerEtityModels(event.getMinecraftSupplier());
 	}
 

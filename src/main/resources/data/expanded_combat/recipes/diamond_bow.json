@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "expanded_combat:diamond_bow_half"
+	},
+	"addition": {
+		"item": "minecraft:diamond"
+	},
+	
+	"result": { "item": "expanded_combat:diamond_bow" }
+}

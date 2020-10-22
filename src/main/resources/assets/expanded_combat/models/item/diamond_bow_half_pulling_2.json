@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "expanded_combat:item/diamond_bow_half_pulling_2"
+    }
+}
