@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
+import com.userofbricks.expandedcombat.client.renderer.model.ECModelBakery;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.ECEntities;
@@ -11,6 +12,8 @@ import com.userofbricks.expandedcombat.item.GauntletItem;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.renderer.model.RenderMaterial;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.item.Item;
@@ -25,6 +28,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -41,6 +45,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -153,13 +158,21 @@ public class ExpandedCombat {
 		}
 	}
 
-	public void stitchTextures(TextureStitchEvent.Pre evt) {
-		if (evt.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
+	public void stitchTextures(TextureStitchEvent.Pre event) {
+		if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
 			String[] icons = new String[]{"arrows","quiver"};
 			for (String icon : icons) {
-				evt.addSprite(new ResourceLocation(MODID, "item/empty_" + icon + "_slot"));
+				event.addSprite(new ResourceLocation(MODID, "item/empty_" + icon + "_slot"));
 			}
-		}
+		}/* else if (event.getMap().getTextureLocation().equals(AtlasTexture.LOCATION_BLOCKS_TEXTURE)) {
+			for (RenderMaterial textures : new RenderMaterial[] {
+					ECModelBakery.LOCATION_IRON_SHIELD_BASE, ECModelBakery.LOCATION_IRON_SHIELD_BASE_NOPATTERN,
+					ECModelBakery.LOCATION_GOLD_SHIELD_BASE, ECModelBakery.LOCATION_GOLD_SHIELD_BASE_NOPATTERN,
+					ECModelBakery.LOCATION_DIAMOND_SHIELD_BASE, ECModelBakery.LOCATION_DIAMOND_SHIELD_BASE_NOPATTERN,
+					ECModelBakery.LOCATION_NETHERITE_SHIELD_BASE, ECModelBakery.LOCATION_NETHERITE_SHIELD_BASE_NOPATTERN }) {
+				event.addSprite(textures.getTextureLocation());
+			}
+		}*/
 	}
 
 	public void itemColors(ColorHandlerEvent.Item event) {

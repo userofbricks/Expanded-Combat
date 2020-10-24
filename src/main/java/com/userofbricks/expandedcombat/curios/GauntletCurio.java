@@ -4,7 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.userofbricks.expandedcombat.client.renderer.GauntletModel;
+import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.item.GauntletItem;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

@@ -11,4 +11,5 @@ public class RecipeSerializerInit {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(
             ForgeRegistries.RECIPE_SERIALIZERS, ExpandedCombat.MODID);
     public static final RegistryObject<IRecipeSerializer<?>> EC_TIPPED_ARROW_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_arrow", () -> new SpecialRecipeSerializer<>(ECTippedArrowRecipe::new));
+    //public static final RegistryObject<IRecipeSerializer<?>> EC_CRAFTING_SPECIAL_SHIELD = RECIPE_SERIALIZERS.register("crafting_ec_shields", () -> new SpecialRecipeSerializer<>(ECShieldRecipe::new));
 }

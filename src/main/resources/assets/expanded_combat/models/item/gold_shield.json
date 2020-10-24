@@ -1,0 +1,16 @@
+{
+    "parent": "expanded_combat:item/shield",
+    "gui_light": "front",
+    "textures": {
+        "base": "expanded_combat:entity/shields/gold_shield_base_nopattern",
+        "particle": "block/gold_block"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "expanded_combat:item/gold_shield_blocking"
+        }
+    ]
+}

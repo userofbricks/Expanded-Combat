@@ -1,4 +1,4 @@
-package com.userofbricks.expandedcombat.client.renderer;
+package com.userofbricks.expandedcombat.client.renderer.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

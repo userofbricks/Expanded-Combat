@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.curios;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.userofbricks.expandedcombat.client.renderer.QuiverModel;
+import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;

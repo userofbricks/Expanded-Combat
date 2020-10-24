@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.curios;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.userofbricks.expandedcombat.ExpandedCombat;
-import com.userofbricks.expandedcombat.client.renderer.QuiverArrowsModel;
+import com.userofbricks.expandedcombat.client.renderer.model.QuiverArrowsModel;
 import com.userofbricks.expandedcombat.item.ECItems;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;

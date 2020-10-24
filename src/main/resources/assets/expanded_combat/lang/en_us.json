@@ -104,9 +104,21 @@
 
   "attribute.name.generic.attackKnockback": "Attack Knockback",
 
+  "item.expanded_combat.netherite_gauntlet": "Netherite Gauntlet",
   "item.expanded_combat.diamond_gauntlet": "Diamond Gauntlet",
   "item.expanded_combat.gold_gauntlet": "Gold Gauntlet",
   "item.expanded_combat.iron_gauntlet": "Iron Gauntlet",
   "item.expanded_combat.leather_gauntlet": "Leather Gauntlet",
-  "enchantment.expanded_combat.knockback_resistance": "Knockback Resistance"
+  "enchantment.expanded_combat.knockback_resistance": "Knockback Resistance",
+
+  "item.expanded_combat.iron_bow": "Iron Bow",
+  "item.expanded_combat.iron_bow_half": "Half Iron Bow",
+  "item.expanded_combat.diamond_bow": "Diamond Bow",
+  "item.expanded_combat.diamond_bow_half": "Half Diamond Bow",
+  "item.expanded_combat.netherite_bow": "Netherite Bow",
+
+  "item.expanded_combat.netherite_shield": "Netherite Shield",
+  "item.expanded_combat.diamond_shield": "Diamond Shield",
+  "item.expanded_combat.gold_shield": "Gold Shield",
+  "item.expanded_combat.iron_shield": "Iron Shield"
 }
