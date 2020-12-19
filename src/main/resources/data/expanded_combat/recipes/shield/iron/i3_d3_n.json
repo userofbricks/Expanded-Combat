@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "expanded_combat:shield_i3_d3"
+	},
+	"addition": {
+		"item": "minecraft:netherite_ingot"
+	},
+	
+	"result": { "item": "expanded_combat:shield_i3_d3_n" }
+}

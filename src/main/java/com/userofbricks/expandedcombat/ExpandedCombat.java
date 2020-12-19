@@ -154,7 +154,7 @@ public class ExpandedCombat {
 			CuriosScreen curiosScreen = (CuriosScreen) e.getGuiContainer();
 			int i = curiosScreen.getGuiLeft();
 			int j = curiosScreen.getGuiTop();
-			curiosScreen.func_238474_b_(e.getMatrixStack(),i + 77, j + 19, 7, 7, 18, 36);
+			curiosScreen.blit(e.getMatrixStack(),i + 77, j + 19, 7, 7, 18, 36);
 		}
 	}
 
@@ -184,7 +184,7 @@ public class ExpandedCombat {
 	private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
 		ItemStack stack = e.getObject();
 		if (ItemTags.getCollection().get(new ResourceLocation("curios","arrows")) != null
-				&& arrow_curios.func_230235_a_(stack.getItem())) {
+				&& arrow_curios.contains(stack.getItem())) {
 			ArrowCurio arrowCurio = new ArrowCurio();
 			e.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
 				final LazyOptional<ICurio> curio = LazyOptional.of(() -> arrowCurio);

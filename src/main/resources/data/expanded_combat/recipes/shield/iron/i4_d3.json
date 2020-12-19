@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "expanded_combat:shield_i4_d2"
+	},
+	"addition": {
+		"item": "minecraft:diamond"
+	},
+	
+	"result": { "item": "expanded_combat:shield_i4_d3" }
+}

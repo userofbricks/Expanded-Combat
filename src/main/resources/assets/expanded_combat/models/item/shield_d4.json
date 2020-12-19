@@ -1,0 +1,16 @@
+{
+    "parent": "expanded_combat:item/shield",
+    "gui_light": "front",
+    "textures": {
+        "base": "expanded_combat:entity/shields/d4",
+        "particle": "block/diamond_block"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "expanded_combat:item/shield_blocking_d4"
+        }
+    ]
+}

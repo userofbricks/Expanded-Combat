@@ -57,11 +57,11 @@ public class GauntletCurio implements ICurio {
             int armorAmount = ((GauntletItem)stack.getItem()).getArmorAmount();
             float knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().getKnockback_resistance();
             float toughness = ((GauntletItem)stack.getItem()).getMaterial().getToughness();
-            atts.put(Attributes.field_233823_f_, new AttributeModifier(ATTACK_UUID, "Attack damage bonus", attackDamage + Math.round((attackDamage / 2) * EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack)), AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.field_233826_i_, new AttributeModifier(ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.field_233827_j_, new AttributeModifier(ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.field_233820_c_, new AttributeModifier(KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + ((float)EnchantmentHelper.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack))/5.0f, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.field_233824_g_, new AttributeModifier(KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_UUID, "Attack damage bonus", attackDamage + Math.round((attackDamage / 2) * EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack)), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ARMOR, new AttributeModifier(ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + ((float)EnchantmentHelper.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack))/5.0f, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }

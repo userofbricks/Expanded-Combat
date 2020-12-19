@@ -1,8 +1,0 @@
-{
-    "parent": "expanded_combat:item/shield_blocking",
-    "gui_light": "front",
-    "textures": {
-        "base": "expanded_combat:entity/shields/gold_shield_base_nopattern",
-        "particle": "block/gold_block"
-    }
-}

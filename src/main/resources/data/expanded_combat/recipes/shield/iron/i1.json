@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "minecraft:shield"
+	},
+	"addition": {
+		"item": "minecraft:iron_ingot"
+	},
+	
+	"result": { "item": "expanded_combat:shield_i1" }
+}
