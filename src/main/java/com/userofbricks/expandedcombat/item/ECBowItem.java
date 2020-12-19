@@ -17,20 +17,33 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 public class ECBowItem extends BowItem {
     private int multishotLevel;
+    private int bowPower;
     private final float velocityMultiplyer;
     public ECBowItem(float velocityMultiplyer, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = 0;
+        this.bowPower = 0;
     }
-    public ECBowItem(float velocityMultiplyer, int multishotLevelIn, Properties builder) {
+    public ECBowItem(float velocityMultiplyer, int bowPower, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
-        this.multishotLevel = multishotLevelIn;
+        this.multishotLevel = 0;
+        this.bowPower = bowPower;
+    }
+    public ECBowItem(float velocityMultiplyer, int bowPower, int multishotLevel, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = multishotLevel;
+        this.bowPower = bowPower;
     }
 
     public int getMultishotLevel(){
         return this.multishotLevel;
+    }
+
+    private int getBowPower() {
+        return bowPower;
     }
 
     @Override
@@ -49,14 +62,14 @@ public class ECBowItem extends BowItem {
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float arrowVelocity = getArrowVelocity(charge);
+                float arrowVelocity = this.getBowArrowVelocity(stack, charge);
                 this.fireArrows(stack, worldIn, playerentity, itemstack, arrowVelocity);
             }
         }
     }
 
     public void fireArrows(ItemStack stack, World worldIn, PlayerEntity playerentity, ItemStack itemstack, float arrowVelocity) {
-        int multishotLevel = this.getMultishotLevel();
+        int multishotLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.MULTISHOT, stack) + this.getMultishotLevel();
         int arrowsToFire = 1 + (multishotLevel * 2);
 
         for(int arrowNumber = 0; arrowNumber < arrowsToFire; arrowNumber++){
@@ -89,7 +102,7 @@ public class ECBowItem extends BowItem {
             abstractarrowentity.setIsCritical(true);
         }
 
-        int powerLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+        int powerLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack) + this.getBowPower();
         if (powerLevel > 0) {
             abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)powerLevel * 0.5D + 0.5D);
         }
@@ -109,17 +122,39 @@ public class ECBowItem extends BowItem {
         if (hasInfiniteAmmo || playerentity.abilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
             abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
         }
+        if(isAdditionalShot){
+            abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+        }
 
         worldIn.addEntity(abstractarrowentity);
     }
 
     public void setArrowTrajectory(PlayerEntity playerentity, float arrowVelocity, int i, AbstractArrowEntity abstractarrowentity) {
-        if(i == 0) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 1) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 10.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 2) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 10.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 3) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 20.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 4) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 20.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 5) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 30.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
-        if(i == 6) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 30.0F, 0.0F, arrowVelocity * 3.0F, 1.0F);
+        if(i == 0) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 00.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 1) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 10.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 2) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 10.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 3) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 20.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 4) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 20.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 5) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 30.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+        if(i == 6) abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw - 30.0F, 0.0F, arrowVelocity * velocityMultiplyer, 1.0F);
+    }
+
+    public float getBowArrowVelocity(ItemStack stack, int charge) {
+        float bowChargeTime = getBowChargeTime(stack);
+        if(bowChargeTime <= 0){
+            bowChargeTime = 1;
+        }
+        float arrowVelocity = (float)charge / bowChargeTime;
+        arrowVelocity = (arrowVelocity * arrowVelocity + arrowVelocity * 2.0F) / 3.0F;
+        if (arrowVelocity > 1.0F) {
+            arrowVelocity = 1.0F;
+        }
+
+        return arrowVelocity;
+    }
+
+    public float getBowChargeTime(ItemStack stack){
+        int quickChargeLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
+        return Math.max(20 - 5 * quickChargeLevel, 0);
     }
 }
