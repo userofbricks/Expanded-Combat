@@ -1,5 +1,6 @@
 package com.userofbricks.expandedcombat.item;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -12,30 +13,65 @@ import net.minecraft.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 public class ECBowItem extends BowItem {
     private int multishotLevel;
     private int bowPower;
     private final float velocityMultiplyer;
+    float mendingBonus;
+    public ECBowItem(float mendingBonus, float velocityMultiplyer, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = 0;
+        this.bowPower = 0;
+        this.mendingBonus = mendingBonus;
+    }
+    public ECBowItem(float mendingBonus, float velocityMultiplyer, int bowPower, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = 0;
+        this.bowPower = bowPower;
+        this.mendingBonus = mendingBonus;
+    }
+    public ECBowItem(float mendingBonus, float velocityMultiplyer, int bowPower, int multishotLevel, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = multishotLevel;
+        this.bowPower = bowPower;
+        this.mendingBonus = mendingBonus;
+    }
+
     public ECBowItem(float velocityMultiplyer, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = 0;
         this.bowPower = 0;
+        this.mendingBonus = 0;
     }
     public ECBowItem(float velocityMultiplyer, int bowPower, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = 0;
         this.bowPower = bowPower;
+        this.mendingBonus = 0;
     }
     public ECBowItem(float velocityMultiplyer, int bowPower, int multishotLevel, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = multishotLevel;
         this.bowPower = bowPower;
+        this.mendingBonus = 0;
     }
 
     public int getMultishotLevel(){
@@ -156,5 +192,24 @@ public class ECBowItem extends BowItem {
     public float getBowChargeTime(ItemStack stack){
         int quickChargeLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         return Math.max(20 - 5 * quickChargeLevel, 0);
+    }
+
+    @Override
+    public float getXpRepairRatio(ItemStack stack) {
+        return 2 + mendingBonus;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @ParametersAreNonnullByDefault
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag)
+    {
+        if (mendingBonus != 0) {
+            if(mendingBonus > 0){
+                list.add(new StringTextComponent(TextFormatting.GREEN + ("Mending Bonus +" + ItemStack.DECIMALFORMAT.format(mendingBonus))));
+            }else if (mendingBonus < 0) {
+                list.add(new StringTextComponent(TextFormatting.RED + ("Mending Bonus " + ItemStack.DECIMALFORMAT.format(mendingBonus))));
+            }
+        }
     }
 }

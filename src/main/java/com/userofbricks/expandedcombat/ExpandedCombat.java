@@ -22,6 +22,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -203,6 +204,7 @@ public class ExpandedCombat {
 		registerEtityModels(event.getMinecraftSupplier());
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	private void registerEtityModels (Supplier<Minecraft> minecraft) {
 		RenderingRegistry.registerEntityRenderingHandler(ECEntities.EC_ARROW_ENTITY.get(), renderManager -> new ECArrowEntityRenderer(renderManager));
 	}

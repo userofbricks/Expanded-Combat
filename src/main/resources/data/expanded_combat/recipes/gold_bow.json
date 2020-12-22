@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"item": "expanded_combat:gold_bow_half"
+	},
+	"addition": {
+		"item": "minecraft:gold_ingot"
+	},
+	
+	"result": { "item": "expanded_combat:gold_bow" }
+}

@@ -2,6 +2,7 @@ package com.userofbricks.expandedcombat.item;
 
 import com.google.common.collect.Lists;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ICrossbowUser;
@@ -19,8 +20,15 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -29,27 +37,53 @@ public class ECCrossBowItem extends CrossbowItem {
     private int multishotLevel;
     private int bowPower;
     private final float velocityMultiplyer;
+    float mendingBonus;
 
     public boolean isLoadingStart = false;
     public boolean isLoadingMiddle = false;
+
+    public ECCrossBowItem(float mendingBonus, float velocityMultiplyer, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = 0;
+        this.bowPower = 0;
+        this.mendingBonus = mendingBonus;
+    }
+    public ECCrossBowItem(float mendingBonus, float velocityMultiplyer, int bowPower, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = 0;
+        this.bowPower = bowPower;
+        this.mendingBonus = mendingBonus;
+    }
+    public ECCrossBowItem(float mendingBonus, float velocityMultiplyer, int bowPower, int multishotLevel, Properties builder) {
+        super(builder);
+        this.velocityMultiplyer = velocityMultiplyer;
+        this.multishotLevel = multishotLevel;
+        this.bowPower = bowPower;
+        this.mendingBonus = mendingBonus;
+    }
 
     public ECCrossBowItem(float velocityMultiplyer, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = 0;
         this.bowPower = 0;
+        this.mendingBonus = 0;
     }
     public ECCrossBowItem(float velocityMultiplyer, int bowPower, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = 0;
         this.bowPower = bowPower;
+        this.mendingBonus = 0;
     }
     public ECCrossBowItem(float velocityMultiplyer, int bowPower, int multishotLevel, Properties builder) {
         super(builder);
         this.velocityMultiplyer = velocityMultiplyer;
         this.multishotLevel = multishotLevel;
         this.bowPower = bowPower;
+        this.mendingBonus = 0;
     }
 
     @Override
@@ -354,5 +388,24 @@ public class ECCrossBowItem extends CrossbowItem {
         projectile.write(compoundnbt1);
         listnbt.add(compoundnbt1);
         compoundnbt.put("ChargedProjectiles", listnbt);
+    }
+
+    @Override
+    public float getXpRepairRatio(ItemStack stack) {
+        return 2 + mendingBonus;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @ParametersAreNonnullByDefault
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag)
+    {
+        if (mendingBonus != 0) {
+            if(mendingBonus > 0){
+                list.add(new StringTextComponent(TextFormatting.GREEN + ("Mending Bonus +" + ItemStack.DECIMALFORMAT.format(mendingBonus))));
+            }else if (mendingBonus < 0) {
+                list.add(new StringTextComponent(TextFormatting.RED + ("Mending Bonus " + ItemStack.DECIMALFORMAT.format(mendingBonus))));
+            }
+        }
     }
 }

@@ -32,9 +32,12 @@ public class ECItems {
 
     public static final RegistryObject<Item> IRON_BOW_HALF = ITEMS.register("iron_bow_half", () -> new ECBowItem(2f, (new Item.Properties()).maxDamage(414).group(EC_GROUP)));
     public static final RegistryObject<Item> IRON_BOW = ITEMS.register("iron_bow", () -> new ECBowItem(3.5f, 1, (new Item.Properties()).maxDamage(480).group(EC_GROUP)));
+    public static final RegistryObject<Item> GOLD_BOW_HALF = ITEMS.register("gold_bow_half", () -> new ECBowItem(1f, 2f, (new Item.Properties()).maxDamage(390).group(EC_GROUP)));
+    public static final RegistryObject<Item> GOLD_BOW = ITEMS.register("gold_bow", () -> new ECBowItem(2f, 3.5f, 1, (new Item.Properties()).maxDamage(395).group(EC_GROUP)));
     public static final RegistryObject<Item> DIAMOND_BOW_HALF = ITEMS.register("diamond_bow_half", () -> new ECBowItem(2.5f, 1, (new Item.Properties()).maxDamage(576).group(EC_GROUP)));
     public static final RegistryObject<Item> DIAMOND_BOW = ITEMS.register("diamond_bow", () -> new ECBowItem(4f, 2, (new Item.Properties()).maxDamage(672).group(EC_GROUP)));
     public static final RegistryObject<Item> NETHERITE_BOW = ITEMS.register("netherite_bow", () -> new ECBowItem(4.5f, 3, (new Item.Properties()).maxDamage(768).group(EC_GROUP).isImmuneToFire()));
+
 
     public static final RegistryObject<Item> IRON_SHIELD = ITEMS.register("shield_i4", () -> new ECShieldItem(Tags.Items.INGOTS_IRON, (new Item.Properties()).maxDamage(736).group(EC_GROUP)/*.setISTER(() -> ShieldTileEntityRenderer::new)*/));
     public static final RegistryObject<Item> GOLD_SHIELD = ITEMS.register("shield_g2", () -> new ECShieldItem(2f, Tags.Items.INGOTS_GOLD, (new Item.Properties()).maxDamage(386).group(EC_GROUP)/*.setISTER(() -> ShieldTileEntityRenderer::new)*/));
