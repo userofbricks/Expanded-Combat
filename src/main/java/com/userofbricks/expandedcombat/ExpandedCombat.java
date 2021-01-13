@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
+import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.ECEntities;
@@ -13,10 +14,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.resources.ResourcePackType;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
@@ -25,6 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.GuiContainerEvent;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -34,6 +35,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +44,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.packs.ModFileResourcePack;
+import net.minecraftforge.fml.packs.ResourcePackLoader;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -89,6 +93,7 @@ public class ExpandedCombat {
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			EVENT_BUS.addListener(this::drawSlotBack);
 			bus.addListener(this::stitchTextures);
+			bus.addListener(this::onModelBake);
 			bus.addListener(this::itemColors);
 		}
 		EVENT_BUS.register(this);
@@ -171,10 +176,23 @@ public class ExpandedCombat {
 		}*/
 	}
 
+	/** the class that declares the vanilla item colors: {@link ItemColors}*/
 	public void itemColors(ColorHandlerEvent.Item event) {
 		ItemColors itemcolors = event.getItemColors();
 
-		itemcolors.register((itemStack, itemLayer) -> itemLayer == 1 ? PotionUtils.getColor(itemStack) : -1, ECItems.IRON_TIPPED_ARROW.get(), ECItems.DIAMOND_TIPPED_ARROW.get(), ECItems.NETHERITE_TIPPED_ARROW.get());
+		itemcolors.register((itemStack, itemLayer) -> itemLayer == 1 ? PotionUtils.getColor(itemStack) : -1,
+				ECItems.IRON_TIPPED_ARROW.get(), ECItems.DIAMOND_TIPPED_ARROW.get(), ECItems.NETHERITE_TIPPED_ARROW.get());
+		itemcolors.register((stack, color) -> color > 0 ? -1 : ((IDyeableArmorItem)stack.getItem()).getColor(stack),
+				ECItems.BATTLESTAFF_WOOD.get(), ECItems.BATTLESTAFF_DIAMOND.get(), ECItems.BATTLESTAFF_IRON.get(),
+				ECItems.BATTLESTAFF_GOLD.get(), ECItems.BATTLESTAFF_STONE.get(), ECItems.BATTLESTAFF_NETHERITE.get(),
+				ECItems.BROADSWORD_WOOD.get(), ECItems.BROADSWORD_DIAMOND.get(), ECItems.BROADSWORD_IRON.get(),
+				ECItems.BROADSWORD_GOLD.get(), ECItems.BROADSWORD_STONE.get(), ECItems.BROADSWORD_NETHERITE.get(),
+				ECItems.CLAYMORE_WOOD.get(), ECItems.CLAYMORE_DIAMOND.get(), ECItems.CLAYMORE_IRON.get(),
+				ECItems.CLAYMORE_GOLD.get(), ECItems.CLAYMORE_STONE.get(), ECItems.CLAYMORE_NETHERITE.get(),
+				ECItems.DANCERS_SWORD_WOOD.get(), ECItems.DANCERS_SWORD_DIAMOND.get(), ECItems.DANCERS_SWORD_IRON.get(),
+				ECItems.DANCERS_SWORD_GOLD.get(), ECItems.DANCERS_SWORD_STONE.get(), ECItems.DANCERS_SWORD_NETHERITE.get(),
+				ECItems.GLAIVE_WOOD.get(), ECItems.GLAIVE_DIAMOND.get(), ECItems.GLAIVE_IRON.get(),
+				ECItems.GLAIVE_GOLD.get(), ECItems.GLAIVE_STONE.get(), ECItems.GLAIVE_NETHERITE.get());
 	}
 
 	private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
@@ -200,6 +218,7 @@ public class ExpandedCombat {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
+		SpecialItemModels.detectSpecials();
 		MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
 		registerEtityModels(event.getMinecraftSupplier());
 	}
@@ -207,6 +226,10 @@ public class ExpandedCombat {
 	@OnlyIn(Dist.CLIENT)
 	private void registerEtityModels (Supplier<Minecraft> minecraft) {
 		RenderingRegistry.registerEntityRenderingHandler(ECEntities.EC_ARROW_ENTITY.get(), renderManager -> new ECArrowEntityRenderer(renderManager));
+	}
+
+	public void onModelBake(final ModelBakeEvent event) {
+		SpecialItemModels.onModelBake(event);
 	}
 
 	public static ICapabilityProvider createProvider(ICurio curio) {
@@ -224,6 +247,11 @@ public class ExpandedCombat {
 		public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 			return CuriosCapability.ITEM.orEmpty(cap, this.capability);
 		}
+	}
+
+	public static boolean modResourceExists(final ResourcePackType type, final ResourceLocation res) {
+		final ModFileResourcePack ecAsPack = ResourcePackLoader.getResourcePackFor("expanded_combat").get();
+		return ecAsPack.resourceExists(type, res);
 	}
 
 }

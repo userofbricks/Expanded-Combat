@@ -168,5 +168,19 @@
   "item.expanded_combat.shield_i4_d1": "Iron Shield",
   "item.expanded_combat.shield_i4_d2": "Diamond Shield",
   "item.expanded_combat.shield_i4_d3_n": "Netherite Shield",
-  "item.expanded_combat.shield_i4_d3": "Diamond Shield"
+  "item.expanded_combat.shield_i4_d3": "Diamond Shield",
+
+  "item.expanded_combat.battlestaff_wood": "Wood Battlestaff",
+  "item.expanded_combat.battlestaff_stone": "Stone Battlestaff",
+  "item.expanded_combat.battlestaff_iron": "Iron Battlestaff",
+  "item.expanded_combat.battlestaff_gold": "Gold Battlestaff",
+  "item.expanded_combat.battlestaff_diamond": "Diamond Battlestaff",
+  "item.expanded_combat.battlestaff_netherite": "Netherite Battlestaff",
+
+  "item.expanded_combat.browadsword_wood": "Wood Browad Sword",
+  "item.expanded_combat.browadsword_stone": "Stone Browad Sword",
+  "item.expanded_combat.browadsword_iron": "Iron Browad Sword",
+  "item.expanded_combat.browadsword_gold": "Gold Browad Sword",
+  "item.expanded_combat.browadsword_diamond": "Diamond Browad Sword",
+  "item.expanded_combat.browadsword_netherite": "Netherite Browad Sword"
 }
