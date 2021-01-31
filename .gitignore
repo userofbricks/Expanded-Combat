@@ -42,3 +42,4 @@ run
 # Files from Forge MDK
 forge*changelog.txt
 /Users/
+/src/main/resources/assets/expanded_combat/models/item/01_temp/
