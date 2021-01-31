@@ -1,7 +1,7 @@
 {
 	"credit": "Made by Userofbricks",
 	"textures": {
-		"head": "expanded_combat:item/great_hammer_wood",
+		"head": "expanded_combat:item/great_hammer_diamond",
 		"particle": "#head"
 	},
 	"elements": [
@@ -154,12 +154,12 @@
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 45],
 			"translation": [1, 5.75, 2.75],
-			"scale": [2, 2, 2]
+			"scale": [1.75, 1.75, 1.75]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, -45],
 			"translation": [-2, 5.75, 2.75],
-			"scale": [2, 2, 2]
+			"scale": [1.75, 1.75, 1.75]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 90, 35],
@@ -171,11 +171,16 @@
 			"translation": [2, 2, -0.5],
 			"scale": [1.5, 1.5, 1.5]
 		},
+		"ground": {
+			"scale": [0.68, 0.68, 0.68]
+		},
 		"gui": {
-			"scale": [1.5, 1.5, 1.5]
+			"scale": [1.25, 1.25, 1.25]
 		},
 		"fixed": {
-			"scale": [1.5, 1.5, 1.5]
+			"rotation": [0, 0, 90],
+			"translation": [-1, 0, 1],
+			"scale": [1.25, 1.25, 1.25]
 		}
 	}
 }
