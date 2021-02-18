@@ -10,7 +10,7 @@
 <p>Version 1.0.1 works with forge 31.2.45 and above</p>
 <p>&nbsp;</p>
 <p>Here is a video about my process of making the mod!:</p>
-<p><iframe allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/l5xrhWNCOXQ?wmode=transparent" height="358" width="638"></iframe></p>
+<p><iframe src="https://www.youtube.com/embed/l5xrhWNCOXQ?wmode=transparent" height="358" width="638"></iframe></p>
 <p>&nbsp;</p>
 <p>Possible Updates:</p>
 <p>&nbsp;</p>
