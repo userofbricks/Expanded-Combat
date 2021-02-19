@@ -38,7 +38,7 @@ Here is a video about my process of making the mod!:
 
 <iframe allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/l5xrhWNCOXQ?wmode=transparent" height="358" width="638"></iframe>
 
-###Possible Updates:
+### Possible Updates:
 - weapons update adding MC Dungeons styled weapons (will come with copatability for [Dungeons Gear](https://www.curseforge.com/minecraft/mc-mods/dungeons-gear))
 - armor update adding a mix and match system simmilar to shields
 - mod compatability (mods still to be decided)
