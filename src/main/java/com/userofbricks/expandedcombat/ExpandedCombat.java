@@ -4,12 +4,14 @@ import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRende
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
+import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.item.ECItemGroup;
 import com.userofbricks.expandedcombat.item.ECItemModelsProperties;
 import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.GauntletItem;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
+import com.userofbricks.expandedcombat.util.NetworkHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +37,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -68,7 +70,6 @@ import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ExpandedCombat.MODID)
 public class ExpandedCombat {
-	// Directly reference a log4j logger.
 
 	public static final String MODID = "expanded_combat";
 	public static final ITag<Item> arrow_curios = ItemTags.makeWrapperTag(new ResourceLocation("curios", "arrows").toString());
@@ -78,9 +79,10 @@ public class ExpandedCombat {
 	public static final ItemGroup EC_GROUP = new ECItemGroup();
 
 	public ExpandedCombat() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::setup);
 		bus.addListener(this::clientSetup);
+		AttributeRegistry.ATTRIBUTES.register(bus);
 		ECEnchantments.ENCHANTMENTS.register(bus);
 		ECItems.ITEMS.register(bus);
 		RecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
@@ -193,6 +195,9 @@ public class ExpandedCombat {
 				ECItems.DANCERS_SWORD_GOLD.get(), ECItems.DANCERS_SWORD_STONE.get(), ECItems.DANCERS_SWORD_NETHERITE.get(),
 				ECItems.GLAIVE_WOOD.get(), ECItems.GLAIVE_DIAMOND.get(), ECItems.GLAIVE_IRON.get(),
 				ECItems.GLAIVE_GOLD.get(), ECItems.GLAIVE_STONE.get(), ECItems.GLAIVE_NETHERITE.get());
+		itemcolors.register((stack, color) -> color > 0 ? -1 : PotionUtils.getColor(stack),
+				ECItems.SCYTHE_STONE.get(), ECItems.SCYTHE_DIAMOND.get(), ECItems.SCYTHE_GOLD.get(),
+				ECItems.SCYTHE_IRON.get(), ECItems.SCYTHE_WOOD.get(), ECItems.SCYTHE_NETHERITE.get());
 	}
 
 	private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
@@ -215,6 +220,10 @@ public class ExpandedCombat {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
+		DeferredWorkQueue.runLater(
+				NetworkHandler::init
+		);
+		ECItems.setAtributeModifiers();
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
@@ -225,28 +234,11 @@ public class ExpandedCombat {
 
 	@OnlyIn(Dist.CLIENT)
 	private void registerEtityModels (Supplier<Minecraft> minecraft) {
-		RenderingRegistry.registerEntityRenderingHandler(ECEntities.EC_ARROW_ENTITY.get(), renderManager -> new ECArrowEntityRenderer(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);
 	}
 
 	public void onModelBake(final ModelBakeEvent event) {
 		SpecialItemModels.onModelBake(event);
-	}
-
-	public static ICapabilityProvider createProvider(ICurio curio) {
-		return new Provider(curio);
-	}
-
-	public static class Provider implements ICapabilityProvider {
-		final LazyOptional<ICurio> capability;
-
-		Provider(ICurio curio) {
-			this.capability = LazyOptional.of(() -> curio);
-		}
-
-		@Nonnull
-		public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-			return CuriosCapability.ITEM.orEmpty(cap, this.capability);
-		}
 	}
 
 	public static boolean modResourceExists(final ResourcePackType type, final ResourceLocation res) {

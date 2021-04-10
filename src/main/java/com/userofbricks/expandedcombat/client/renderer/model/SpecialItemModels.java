@@ -21,10 +21,8 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import javax.annotation.Nonnull;
+import java.util.*;
 
 public class SpecialItemModels
 {
@@ -32,9 +30,10 @@ public class SpecialItemModels
     private static List<Item> specialHandheldItems;
     
     public static void detectSpecials() {
+        specialHandheldItems.clear();
         for (final RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
             final Item item = (Item)ro.get();
-            final ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + item.getRegistryName().getPath() + "_handheld" + ".json");
+            final ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + Objects.requireNonNull(item.getRegistryName()).getPath() + "_handheld" + ".json");
             if (ExpandedCombat.modResourceExists(ResourcePackType.CLIENT_RESOURCES, handheldModel)) {
                 addSpecialHandheld(item);
             }
@@ -55,6 +54,7 @@ public class SpecialItemModels
             final IBakedModel defaultModel = map.get(modelName);
             final IBakedModel handheldModel = map.get(handheldModelName);
             final IBakedModel wrapperModel = (IBakedModel)new IBakedModel() {
+
                 public List<BakedQuad> getQuads(final BlockState state, final Direction side, final Random rand) {
                     return (List<BakedQuad>)defaultModel.getQuads(state, side, rand);
                 }
@@ -74,11 +74,11 @@ public class SpecialItemModels
                 public boolean isBuiltInRenderer() {
                     return defaultModel.isBuiltInRenderer();
                 }
-                
+
                 public TextureAtlasSprite getParticleTexture() {
                     return defaultModel.getParticleTexture();
                 }
-                
+
                 public ItemOverrideList getOverrides() {
                     return handheldModel.getOverrides();
                 }

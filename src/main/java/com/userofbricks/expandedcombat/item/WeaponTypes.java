@@ -1,42 +1,36 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-
 public enum WeaponTypes implements IWeaponType
 {
-	battlestaff(-2, -1.4f, 4.0d, 1f, 0.1f),
-	broadsword(3, -3.2f, 3.0d, 0f, 0.0f),
-	claymore(2, -3.0f,3.5d, 0f, 0.0f),
-	cutlass(0, -2.2f,3.0d, 0f, 0.0f),
-	dagger(-1, -1.2f,3.0d, 0f, 0.1f),
-	dancers_sword(2, -1.8f,3.0d, 0f, 0.0f),
-	flail(4, -3.4f,3.5d, 0.5f, 0.0f),
-	glaive(3, -3.2f,4.0d, 0.5f, 0.1f),
-	great_hammer(5, -1.2f,3.0d, 1f, 0.0f),
-	katana(2, -2.4f,3.0d, 0f, -0.2f),
-	mace(4, -3.2f,3.0d, 0.5f, 0.0f),
-	rapier(1, -2.2f,3.0d, 0f, 0.0f),
-	scythe(4, -3.4f,4.0d, 1f, 0.1f),
-	sickle(0, -1.8f,3.0d, 0f, 0.0f),
-	spear(3, -3.4f,4.0d, 0.5f, 0.1f);
+	battlestaff(-2, -1.4f, 1.5d, 1f, 0.1f, WieldingType.TWOHANDED),
+	broadsword(3, -3.0f, 0.5d, 0f, 0.0f, WieldingType.ONEHANDED),
+	claymore(2, -3.0f,1.0d, 0f, 0.0f, WieldingType.TWOHANDED),
+	cutlass(0, -2.2f,0.0d, 0f, 0.0f, WieldingType.ONEHANDED),
+	dagger(-1, -1.2f,0.0d, 0f, 0.1f, WieldingType.DUALWIELD),
+	dancers_sword(2, -1.8f,0.0d, 0f, 0.0f, WieldingType.ONEHANDED),
+	flail(4, -3.4f,1.0d, 0.5f, 0.0f, WieldingType.ONEHANDED),
+	glaive(3, -3.2f,2.0d, 0.5f, 0.1f, WieldingType.TWOHANDED),
+	great_hammer(5, -1.2f,0.0d, 1f, 0.0f, WieldingType.ONEHANDED),
+	katana(2, -2.4f,0.5d, 0f, -0.2f, WieldingType.ONEHANDED),
+	mace(4, -3.2f,0.0d, 0.5f, 0.0f, WieldingType.ONEHANDED),
+	rapier(1, -2.2f,0.0d, 0f, 0.0f, WieldingType.ONEHANDED),
+	scythe(4, -3.4f,2.0d, 1f, 0.1f, WieldingType.TWOHANDED),
+	sickle(0, -1.8f,0.0d, 0f, 0.0f, WieldingType.DUALWIELD),
+	spear(3, -3.4f,2.0d, 0.5f, 0.1f, WieldingType.TWOHANDED);
 
-	private int attackDamage;
-	private float attackSpeed, mendingBonus, knockback;
-	private double attackRange;
+	private final int attackDamage;
+	private final float attackSpeed, mendingBonus, knockback;
+	private final double attackRange;
+	private final WieldingType wieldType;
 
-	WeaponTypes(int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus)
+	WeaponTypes(int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType)
 	{
 		this.attackDamage = attackDamage;
 		this.attackSpeed = attackSpeed;
 		this.attackRange = attackRange;
 		this.mendingBonus = mendingBonus;
 		this.knockback = knockback;
+		this.wieldType = wieldType;
 	}
 
 	@Override
@@ -62,5 +56,16 @@ public enum WeaponTypes implements IWeaponType
 	@Override
 	public float getKnockback() {
 		return knockback;
+	}
+
+	@Override
+	public WieldingType getWieldingType() {
+		return wieldType;
+	}
+
+	public enum WieldingType{
+		ONEHANDED,
+		TWOHANDED,
+		DUALWIELD,
 	}
 }

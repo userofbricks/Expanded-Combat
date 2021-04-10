@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import top.theillusivec4.curios.common.capability.CurioItemCapability;
 
 public class GauntletItem extends Item
 {
@@ -27,7 +28,7 @@ public class GauntletItem extends Item
 	@Override
 	  public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT unused) {
 		
-		return ExpandedCombat.createProvider(new GauntletCurio(stack, ((GauntletItem)stack.getItem()).getGAUNTLET_TEXTURE()));
+		return CurioItemCapability.createProvider(new GauntletCurio(stack, ((GauntletItem)stack.getItem()).getGAUNTLET_TEXTURE()));
 	}
 	
 	public IGauntletMaterial getMaterial() {

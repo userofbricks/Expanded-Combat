@@ -7,4 +7,5 @@ public interface IWeaponType {
     double getBaseAttackRange();
     float getTypeMendingBonus();
     float getKnockback();
+    WeaponTypes.WieldingType getWieldingType();
 }

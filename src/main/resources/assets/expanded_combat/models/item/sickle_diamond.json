@@ -1,0 +1,7 @@
+{
+	"credit": "Made by Userofbricks",
+	"parent": "expanded_combat:item/bases/sickle",
+	"textures": {
+		"layer1": "expanded_combat:item/sickle_diamond"
+	}
+}

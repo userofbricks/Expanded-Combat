@@ -92,7 +92,7 @@ public class ECItems {
     public static final RegistryObject<Item> SHIELD_47 = ITEMS.register("shield_i4_d3_n", () -> new ECShieldItem(Tags.Items.INGOTS_IRON, (new Item.Properties()).maxDamage(2836).group(EC_GROUP).isImmuneToFire()));
     public static final RegistryObject<Item> SHIELD_48 = ITEMS.register("shield_i4_d3", () -> new ECShieldItem(-0.75f, Tags.Items.INGOTS_IRON, (new Item.Properties()).maxDamage(1636).group(EC_GROUP)));
 
-/*
+
     public static final RegistryObject<Item> BATTLESTAFF_WOOD = ITEMS.register("battlestaff_wood", () -> new ECWeaponItem.Dyeable(WeaponTier.WOOD, WeaponTypes.battlestaff, (new Item.Properties()).group(EC_GROUP)));
     public static final RegistryObject<Item> BATTLESTAFF_STONE = ITEMS.register("battlestaff_stone", () -> new ECWeaponItem.Dyeable(WeaponTier.STONE, WeaponTypes.battlestaff, (new Item.Properties()).group(EC_GROUP)));
     public static final RegistryObject<Item> BATTLESTAFF_IRON = ITEMS.register("battlestaff_iron", () -> new ECWeaponItem.Dyeable(WeaponTier.IRON, WeaponTypes.battlestaff, (new Item.Properties()).group(EC_GROUP)));
@@ -142,15 +142,120 @@ public class ECItems {
     public static final RegistryObject<Item> GLAIVE_DIAMOND = ITEMS.register("glaive_diamond", () -> new ECWeaponItem.Dyeable(WeaponTier.DIAMOND, WeaponTypes.glaive, (new Item.Properties()).group(EC_GROUP)));
     public static final RegistryObject<Item> GLAIVE_NETHERITE = ITEMS.register("glaive_netherite", () -> new ECWeaponItem.Dyeable(WeaponTier.NETHERITE, WeaponTypes.glaive, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
 
+    public static final RegistryObject<Item> KATANA_WOOD = ITEMS.register("katana_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> KATANA_STONE = ITEMS.register("katana_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> KATANA_IRON = ITEMS.register("katana_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> KATANA_GOLD = ITEMS.register("katana_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> KATANA_DIAMOND = ITEMS.register("katana_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> KATANA_NETHERITE = ITEMS.register("katana_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.katana, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static final RegistryObject<Item> SCYTHE_WOOD = ITEMS.register("scythe_wood", () -> new ECWeaponItem.HasPotion(WeaponTier.WOOD, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SCYTHE_STONE = ITEMS.register("scythe_stone", () -> new ECWeaponItem.HasPotion(WeaponTier.STONE, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SCYTHE_IRON = ITEMS.register("scythe_iron", () -> new ECWeaponItem.HasPotion(WeaponTier.IRON, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SCYTHE_GOLD = ITEMS.register("scythe_gold", () -> new ECWeaponItem.HasPotion(WeaponTier.GOLD, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SCYTHE_DIAMOND = ITEMS.register("scythe_diamond", () -> new ECWeaponItem.HasPotion(WeaponTier.DIAMOND, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SCYTHE_NETHERITE = ITEMS.register("scythe_netherite", () -> new ECWeaponItem.HasPotion(WeaponTier.NETHERITE, WeaponTypes.scythe, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static final RegistryObject<Item> SICKLE_WOOD = ITEMS.register("sickle_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SICKLE_STONE = ITEMS.register("sickle_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SICKLE_IRON = ITEMS.register("sickle_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SICKLE_GOLD = ITEMS.register("sickle_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SICKLE_DIAMOND = ITEMS.register("sickle_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SICKLE_NETHERITE = ITEMS.register("sickle_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.sickle, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static final RegistryObject<Item> SPEAR_WOOD = ITEMS.register("spear_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SPEAR_STONE = ITEMS.register("spear_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SPEAR_IRON = ITEMS.register("spear_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SPEAR_GOLD = ITEMS.register("spear_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SPEAR_DIAMOND = ITEMS.register("spear_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> SPEAR_NETHERITE = ITEMS.register("spear_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.spear, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
 
 
-    public static final RegistryObject<Item> FLAIL_OAK_WOOD = ITEMS.register("flail_oak_wood", () -> new ECWeaponItem.Dyeable(WeaponTier.WOOD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_OAK_PLANKS = ITEMS.register("flail_oak_planks", () -> new ECWeaponItem.Dyeable(WeaponTier.WOOD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_STONE = ITEMS.register("flail_stone", () -> new ECWeaponItem.Dyeable(WeaponTier.STONE, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_IRON = ITEMS.register("flail_iron", () -> new ECWeaponItem.Dyeable(WeaponTier.IRON, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_GOLD = ITEMS.register("flail_gold", () -> new ECWeaponItem.Dyeable(WeaponTier.GOLD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_SWORD_EMERALD = ITEMS.register("flail_emerald", () -> new ECWeaponItem.Dyeable(WeaponTier.EMERALD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_DIAMOND = ITEMS.register("flail_diamond", () -> new ECWeaponItem.Dyeable(WeaponTier.DIAMOND, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
-    public static final RegistryObject<Item> FLAIL_NETHERITE = ITEMS.register("flail_netherite", () -> new ECWeaponItem.Dyeable(WeaponTier.NETHERITE, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
-    */
+
+    public static final RegistryObject<Item> FLAIL_OAK_WOOD = ITEMS.register("flail_oak_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_OAK_PLANKS = ITEMS.register("flail_oak_planks", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_STONE = ITEMS.register("flail_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_IRON = ITEMS.register("flail_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_GOLD = ITEMS.register("flail_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_EMERALD = ITEMS.register("flail_emerald", () -> new ECWeaponItem(WeaponTier.EMERALD, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_DIAMOND = ITEMS.register("flail_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> FLAIL_NETHERITE = ITEMS.register("flail_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.flail, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static final RegistryObject<Item> GREAT_HAMMER_OAK_WOOD = ITEMS.register("great_hammer_oak_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_OAK_PLANKS = ITEMS.register("great_hammer_oak_planks", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_STONE = ITEMS.register("great_hammer_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_IRON = ITEMS.register("great_hammer_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_GOLD = ITEMS.register("great_hammer_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_SWORD_EMERALD = ITEMS.register("great_hammer_emerald", () -> new ECWeaponItem(WeaponTier.EMERALD, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_DIAMOND = ITEMS.register("great_hammer_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> GREAT_HAMMER_NETHERITE = ITEMS.register("great_hammer_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.great_hammer, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static final RegistryObject<Item> MACE_OAK_WOOD = ITEMS.register("mace_oak_wood", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_OAK_PLANKS = ITEMS.register("mace_oak_planks", () -> new ECWeaponItem(WeaponTier.WOOD, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_STONE = ITEMS.register("mace_stone", () -> new ECWeaponItem(WeaponTier.STONE, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_IRON = ITEMS.register("mace_iron", () -> new ECWeaponItem(WeaponTier.IRON, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_GOLD = ITEMS.register("mace_gold", () -> new ECWeaponItem(WeaponTier.GOLD, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_SWORD_EMERALD = ITEMS.register("mace_emerald", () -> new ECWeaponItem(WeaponTier.EMERALD, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_DIAMOND = ITEMS.register("mace_diamond", () -> new ECWeaponItem(WeaponTier.DIAMOND, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP)));
+    public static final RegistryObject<Item> MACE_NETHERITE = ITEMS.register("mace_netherite", () -> new ECWeaponItem(WeaponTier.NETHERITE, WeaponTypes.mace, (new Item.Properties()).group(EC_GROUP).isImmuneToFire()));
+
+    public static void setAtributeModifiers(){
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BATTLESTAFF_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) BROADSWORD_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) CLAYMORE_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_EMERALD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_OAK_WOOD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) FLAIL_OAK_PLANKS.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) GLAIVE_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) KATANA_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SCYTHE_WOOD.get());
+
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_DIAMOND.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_GOLD.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_IRON.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_NETHERITE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_STONE.get());
+        ECWeaponItem.setAtributeModifierMultimap((ECWeaponItem) SPEAR_WOOD.get());
+    }
 }

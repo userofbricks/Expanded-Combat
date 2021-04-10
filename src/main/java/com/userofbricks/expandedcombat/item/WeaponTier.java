@@ -1,5 +1,6 @@
 package com.userofbricks.expandedcombat.item;
 
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
@@ -7,7 +8,7 @@ import net.minecraft.util.LazyValue;
 
 import java.util.function.Supplier;
 
-public enum WeaponTier implements IWeaponTier{
+public enum WeaponTier implements IWeaponTier {
     WOOD(59, 3.0F, 15, 0.0F, () -> {
         return Ingredient.fromTag(ItemTags.PLANKS);
     }),

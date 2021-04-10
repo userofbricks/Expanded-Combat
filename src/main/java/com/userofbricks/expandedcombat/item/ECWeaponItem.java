@@ -2,6 +2,8 @@ package com.userofbricks.expandedcombat.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.userofbricks.expandedcombat.entity.AttributeRegistry;
+import com.userofbricks.expandedcombat.util.CombatEventHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -13,13 +15,14 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IDyeableArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -28,7 +31,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -38,9 +40,9 @@ import java.util.UUID;
 public class ECWeaponItem extends Item implements IVanishable {
     private final IWeaponTier tier;
     private final IWeaponType type;
-    private final float attackDamage;
+    private final float AttackDamage;
     /** Modifiers applied when the item is in the mainhand of a user. */
-    private final Multimap<Attribute, AttributeModifier> attributeModifiers;
+    private Multimap<Attribute, AttributeModifier> attributeModifiers;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
 
@@ -48,15 +50,25 @@ public class ECWeaponItem extends Item implements IVanishable {
         super(builderIn.defaultMaxDamage(tierIn.getMaxUses()));
         this.tier = tierIn;
         this.type = typeIn;
-        this.attackDamage = type.getBaseAttackDamage() + tier.getAttackDamage();
+        this.AttackDamage = type.getBaseAttackDamage() + tier.getAttackDamage();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.AttackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", type.getBaseAttackSpead(), AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", type.getKnockback(), AttributeModifier.Operation.ADDITION));
-        if (ForgeRegistries.ATTRIBUTES.containsKey(new ResourceLocation("dungeons_gear:attack_reach"))) {
-            builder.put(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", type.getBaseAttackRange() - 3.0d, AttributeModifier.Operation.ADDITION));
-        }
         this.attributeModifiers = builder.build();
+    }
+
+    public static void setAtributeModifierMultimap(ECWeaponItem weaponItem) {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", weaponItem.getAttackDamage(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", weaponItem.getType().getBaseAttackSpead(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", weaponItem.getType().getKnockback(), AttributeModifier.Operation.ADDITION));
+        if (ForgeRegistries.ATTRIBUTES.containsKey(new ResourceLocation("dungeons_gear:attack_reach"))) {
+            builder.put(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", weaponItem.getAttackRange(), AttributeModifier.Operation.ADDITION));
+        } else {
+            builder.put(AttributeRegistry.ATTACK_REACH.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", weaponItem.getAttackRange(), AttributeModifier.Operation.ADDITION));
+        }
+        weaponItem.attributeModifiers = builder.build();
     }
 
     public IWeaponTier getTier() {
@@ -67,7 +79,7 @@ public class ECWeaponItem extends Item implements IVanishable {
     }
 
     public float getAttackDamage() {
-        return this.attackDamage;
+        return this.AttackDamage;
     }
 
     public double getAttackRange() {
@@ -123,8 +135,8 @@ public class ECWeaponItem extends Item implements IVanishable {
      * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
      */
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND || (this.getType().getWieldingType() == WeaponTypes.WieldingType.DUALWIELD && equipmentSlot == EquipmentSlotType.OFFHAND) ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot, stack);
     }
 
     /**
@@ -157,6 +169,17 @@ public class ECWeaponItem extends Item implements IVanishable {
             }else if (shieldMendingBonus < 0.0f) {
                 list.add(new StringTextComponent(TextFormatting.RED + ("Mending Bonus " + ItemStack.DECIMALFORMAT.format(shieldMendingBonus))));
             }
+        }
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        if (handIn == Hand.OFF_HAND && worldIn.isRemote) {
+            CombatEventHandler.checkForOffhandAttack();
+            ItemStack offhand = playerIn.getHeldItem(handIn);
+            return new ActionResult<>(ActionResultType.SUCCESS, offhand);
+        } else {
+            return new ActionResult<>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
         }
     }
 
