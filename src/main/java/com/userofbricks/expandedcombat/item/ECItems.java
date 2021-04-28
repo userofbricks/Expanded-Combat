@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat.item;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.tags.ItemTags;

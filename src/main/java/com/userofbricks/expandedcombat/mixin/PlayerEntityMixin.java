@@ -30,11 +30,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	@Inject(method = "findAmmo",at = @At("HEAD"),cancellable = true)
 	private void checkQuiver(ItemStack shootable, CallbackInfoReturnable<ItemStack> cir) {
-		if (!(shootable.getItem() instanceof ShootableItem)) {
-			return;
-		}
+		//if (!(shootable.getItem() instanceof ShootableItem)) { return; }
 		ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate,(PlayerEntity)(Object)this)
-				.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+				.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right)
+				.orElse(ItemStack.EMPTY);
 		if (!stack.isEmpty())cir.setReturnValue(stack);
 	}
 

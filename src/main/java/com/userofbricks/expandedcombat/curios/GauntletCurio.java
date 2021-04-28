@@ -81,7 +81,7 @@ public class GauntletCurio implements ICurio {
         GauntletModel gauntlet = (GauntletModel) this.model;
         gauntlet.setLivingAnimations(livingEntity, limbSwing, limbSwingAmount, partialTicks);
         gauntlet.setRotationAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ICurio.RenderHelper.followBodyRotations(livingEntity, new BipedModel[]{gauntlet});
+        ICurio.RenderHelper.followBodyRotations(livingEntity, gauntlet);
         IVertexBuilder vertexBuilder = ItemRenderer.getBuffer(renderTypeBuffer, gauntlet.getRenderType(GAUNTLET_TEXTURE), false, stack.hasEffect());
         gauntlet.render(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
     }

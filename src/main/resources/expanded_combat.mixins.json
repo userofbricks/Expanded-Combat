@@ -3,14 +3,17 @@
   "package": "com.userofbricks.expandedcombat.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "expanded_combat.refmap.json",
+  "priority": 0,
   "mixins": [
     "ContainerAccessor",
     "CurioContainerMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ServerPlayNetHandlerMixin"
   ],
   "client": [
   "GameRendererMixin"
   ],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   },

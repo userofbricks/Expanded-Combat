@@ -2,6 +2,7 @@ package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
+import com.userofbricks.expandedcombat.common.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
@@ -91,6 +92,7 @@ public class ExpandedCombat {
 		EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
 		EVENT_BUS.addListener(this::arrowPickup);
 		EVENT_BUS.addListener(this::DamageGauntletEvent);
+
 
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			EVENT_BUS.addListener(this::drawSlotBack);

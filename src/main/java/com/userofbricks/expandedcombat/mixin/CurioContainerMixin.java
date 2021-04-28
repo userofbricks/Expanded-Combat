@@ -24,7 +24,7 @@ import java.util.Map;
 @Mixin(CuriosContainer.class)
 abstract class CurioContainerMixin extends Container {
 	@Shadow @Final private PlayerEntity player;
-	@Shadow @Final LazyOptional<ICuriosItemHandler> curiosHandler;
+	//@Shadow @Final public LazyOptional<ICuriosItemHandler> curiosHandler;
 
 	protected CurioContainerMixin(@Nullable ContainerType<?> type, int id) {
 		super(type, id);
@@ -32,22 +32,23 @@ abstract class CurioContainerMixin extends Container {
 
 	@Inject(at = @At("RETURN"), method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;)V",remap = false)
 	private void init(int windowId, PlayerInventory playerInventory, CallbackInfo ci) {
-		//MixinEvents.onCurioContainerCreated((CuriosContainer)(Object)this,player);
-		this.curiosHandler.ifPresent((iCuriosItemHandler) -> {
+		MixinEvents.onCurioContainerCreated((CuriosContainer)(Object)this,player);
+		/*this.curiosHandler.ifPresent((iCuriosItemHandler) -> {
 			Map<String, ICurioStacksHandler> curioMap = iCuriosItemHandler.getCurios();
 
 			for (String identifier : curioMap.keySet()) {
 				if (identifier.equals("quiver")) {
 					ICurioStacksHandler stackHandler = curioMap.get(identifier);
 					IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-					((ContainerAccessor) this).$addSlot(new CurioSlot(player, iDynamicStackHandler, 20, identifier, 78, 20, stackHandler.getRenders()));
+					((ContainerAccessor) this).$addSlot(new CurioSlot(playerInventory.player, iDynamicStackHandler, 20, identifier, 78, 20, stackHandler.getRenders()));
 				}
 				if (identifier.equals("arrows")) {
 					ICurioStacksHandler stackHandler = curioMap.get(identifier);
 					IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-					((ContainerAccessor) this).$addSlot(new CurioSlot(player, iDynamicStackHandler, 21, identifier, 78, 38, stackHandler.getRenders()));
+					((ContainerAccessor) this).$addSlot(new CurioSlot(playerInventory.player, iDynamicStackHandler, 21, identifier, 78, 38, stackHandler.getRenders()));
 				}
 			}
 		});
+		 */
 	}
 }

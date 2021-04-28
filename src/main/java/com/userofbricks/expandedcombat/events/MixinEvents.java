@@ -17,14 +17,13 @@ public class MixinEvents {
             Map<String, ICurioStacksHandler> curioMap = iCuriosItemHandler.getCurios();
 
             for (String identifier : curioMap.keySet()) {
+                ICurioStacksHandler stackHandler = curioMap.get(identifier);
+                IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
+
                 if (identifier.equals("quiver")) {
-                    ICurioStacksHandler stackHandler = curioMap.get(identifier);
-                    IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
                     ((ContainerAccessor) curiosContainer).$addSlot(new CurioSlot(player, iDynamicStackHandler, 20, identifier, 78, 20, stackHandler.getRenders()));
                 }
                 if (identifier.equals("arrows")) {
-                    ICurioStacksHandler stackHandler = curioMap.get(identifier);
-                    IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
                     ((ContainerAccessor) curiosContainer).$addSlot(new CurioSlot(player, iDynamicStackHandler, 21, identifier, 78, 38, stackHandler.getRenders()));
                 }
             }
