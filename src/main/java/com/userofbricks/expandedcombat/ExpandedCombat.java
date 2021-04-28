@@ -64,7 +64,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static net.minecraft.client.gui.screen.inventory.ContainerScreen.INVENTORY_BACKGROUND;
+import static net.minecraft.client.gui.screen.inventory.ContainerScreen.INVENTORY_LOCATION;
 import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -72,10 +72,10 @@ import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 public class ExpandedCombat {
 
 	public static final String MODID = "expanded_combat";
-	public static final ITag<Item> arrow_curios = ItemTags.makeWrapperTag(new ResourceLocation("curios", "arrows").toString());
-	public static final Predicate<ItemStack> arrow_predicate = stack -> stack.getItem().isIn(arrow_curios);
-	public static final ITag<Item> hands_curios = ItemTags.makeWrapperTag(new ResourceLocation("curios", "hands").toString());
-	public static final Predicate<ItemStack> hands_predicate = stack -> stack.getItem().isIn(hands_curios);
+	public static final ITag<Item> arrow_curios = ItemTags.bind(new ResourceLocation("curios", "arrows").toString());
+	public static final Predicate<ItemStack> arrow_predicate = stack -> stack.getItem().is(arrow_curios);
+	public static final ITag<Item> hands_curios = ItemTags.bind(new ResourceLocation("curios", "hands").toString());
+	public static final Predicate<ItemStack> hands_predicate = stack -> stack.getItem().is(hands_curios);
 	public static final ItemGroup EC_GROUP = new ECItemGroup();
 
 	public ExpandedCombat() {
@@ -108,7 +108,7 @@ public class ExpandedCombat {
 
 		CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
 			if (!player.isCreative() && stack.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
-				stack.damageItem(1, player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(optionalImmutableTriple.get().getLeft(), optionalImmutableTriple.get().getMiddle(), damager));
+				stack.hurtAndBreak(1, player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(optionalImmutableTriple.get().getLeft(), optionalImmutableTriple.get().getMiddle(), damager));
 			}
 		});
 	}
@@ -125,7 +125,7 @@ public class ExpandedCombat {
 
 	private void drawSlotBack(GuiContainerEvent.DrawBackground e) {
 		if (e.getGuiContainer() instanceof CuriosScreen) {
-			Minecraft.getInstance().getTextureManager().bindTexture(INVENTORY_BACKGROUND);
+			Minecraft.getInstance().getTextureManager().bind(INVENTORY_LOCATION);
 			CuriosScreen curiosScreen = (CuriosScreen) e.getGuiContainer();
 			int i = curiosScreen.getGuiLeft();
 			int j = curiosScreen.getGuiTop();
@@ -134,7 +134,7 @@ public class ExpandedCombat {
 	}
 
 	public void stitchTextures(TextureStitchEvent.Pre event) {
-		if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
+		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
 			String[] icons = new String[]{"arrows","quiver"};
 			for (String icon : icons) {
 				event.addSprite(new ResourceLocation(MODID, "item/empty_" + icon + "_slot"));
@@ -174,7 +174,7 @@ public class ExpandedCombat {
 
 	private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
 		ItemStack stack = e.getObject();
-		if (ItemTags.getCollection().get(new ResourceLocation("curios","arrows")) != null
+		if (ItemTags.getAllTags().getTag(new ResourceLocation("curios","arrows")) != null
 				&& arrow_curios.contains(stack.getItem())) {
 			ArrowCurio arrowCurio = new ArrowCurio();
 			e.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
@@ -215,7 +215,7 @@ public class ExpandedCombat {
 
 	public static boolean modResourceExists(final ResourcePackType type, final ResourceLocation res) {
 		final ModFileResourcePack ecAsPack = ResourcePackLoader.getResourcePackFor("expanded_combat").get();
-		return ecAsPack.resourceExists(type, res);
+		return ecAsPack.hasResource(type, res);
 	}
 
 }

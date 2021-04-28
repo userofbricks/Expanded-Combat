@@ -18,7 +18,7 @@ public class ECArrowEntityRenderer extends ArrowRenderer<ECArrowEntity> {
         super(manager);
     }
 
-    public ResourceLocation getEntityTexture(ECArrowEntity entity) {
+    public ResourceLocation getTextureLocation(ECArrowEntity entity) {
         switch (entity.getArrowType()) {
             case IRON:
             default:

@@ -24,6 +24,6 @@ public class ECModelBakery {
     @SuppressWarnings("deprecation")
     private static RenderMaterial material(String path) {
         return new RenderMaterial(
-                AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(ExpandedCombat.MODID, path));
+                AtlasTexture.LOCATION_BLOCKS, new ResourceLocation(ExpandedCombat.MODID, path));
     }
 }
