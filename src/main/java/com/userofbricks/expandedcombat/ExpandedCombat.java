@@ -2,7 +2,6 @@ package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
-import com.userofbricks.expandedcombat.common.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
@@ -90,7 +89,6 @@ public class ExpandedCombat {
 		ECEntities.ENTITIES.register(bus);
 		bus.addListener(this::comms);
 		EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
-		EVENT_BUS.addListener(this::arrowPickup);
 		EVENT_BUS.addListener(this::DamageGauntletEvent);
 
 
@@ -101,35 +99,6 @@ public class ExpandedCombat {
 			bus.addListener(this::itemColors);
 		}
 		EVENT_BUS.register(this);
-	}
-
-	private void arrowPickup(final EntityItemPickupEvent e) {
-		ItemStack toPickup = e.getItem().getItem();
-		PlayerEntity player = e.getPlayer();
-		if (player.openContainer instanceof CuriosContainer) {
-			return;
-		}
-
-		if (!CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, player).
-				map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY).isEmpty()) {
-			CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
-				ItemStack rem = toPickup.copy();
-				ICurioStacksHandler iCurioStacksHandler = iCurioItemHandler.getCurios().get("arrows");
-
-				IDynamicStackHandler iDynamicStackHandler = iCurioStacksHandler.getStacks();
-
-				rem = iDynamicStackHandler.insertItem(0, rem, true);
-				if (toPickup.getCount() > rem.getCount()) {
-					if (rem.isEmpty()) {
-						iDynamicStackHandler.insertItem(0, toPickup, false);
-						toPickup.setCount(0);
-						e.setCanceled(true);
-					} else {
-						toPickup.setCount(rem.getCount());
-					}
-				}
-			});
-		}
 	}
 
 	private void DamageGauntletEvent(AttackEntityEvent event) {
@@ -144,9 +113,10 @@ public class ExpandedCombat {
 		});
 	}
 
-	private void comms(final InterModEnqueueEvent event) {InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("quiver")
-			.hide()
-			.icon(new ResourceLocation(MODID,"item/empty_quiver_slot")).build());
+	private void comms(final InterModEnqueueEvent event) {
+		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("quiver")
+				.hide()
+				.icon(new ResourceLocation(MODID,"item/empty_quiver_slot")).build());
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("arrows")
 				.hide()
 				.icon(new ResourceLocation(MODID,"item/empty_arrows_slot")).build());
