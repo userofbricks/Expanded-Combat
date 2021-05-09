@@ -120,6 +120,7 @@ public class GauntletItem extends Item implements ICurioItem
         gauntlet.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
     }
 
+    /*
     public void renderRightHand(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int light, AbstractClientPlayerEntity abstractClientPlayerEntity, ResourceLocation gauntlet_texture) {
         if (!(this.model instanceof GauntletModel)) {
             this.model = new GauntletModel();
@@ -144,6 +145,7 @@ public class GauntletItem extends Item implements ICurioItem
         modelRenderer.xRot = 0.0F;
         modelRenderer.render(matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entitySolid(gauntlet_texture)), p_229145_3_, OverlayTexture.NO_OVERLAY);
     }
+     */
 
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;

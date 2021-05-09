@@ -174,8 +174,8 @@ public class GauntletEvents
 
     private Object model;
 
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
+    //TODO:does not work and needs its own class
+    /*
     public void FirstPersonGuantlets(RenderHandEvent event) {
         AbstractClientPlayerEntity abstractclientplayerentity = Minecraft.getInstance().player;
         CuriosApi.getCuriosHelper().getCuriosHandler(abstractclientplayerentity).ifPresent(curios -> {
@@ -225,4 +225,5 @@ public class GauntletEvents
         }
 
     }
+     */
 }
