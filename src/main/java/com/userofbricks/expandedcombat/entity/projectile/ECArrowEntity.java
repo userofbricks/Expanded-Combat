@@ -40,19 +40,19 @@ public class ECArrowEntity extends AbstractArrowEntity
     private ArrowType arrowType;
     
     public ECArrowEntity(final EntityType<? extends ECArrowEntity> p_i50172_1_, final World p_i50172_2_) {
-        super((EntityType)p_i50172_1_, p_i50172_2_);
+        super(p_i50172_1_, p_i50172_2_);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
     
     public ECArrowEntity(final World worldIn, final double x, final double y, final double z) {
-        super((EntityType)ECEntities.EC_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(ECEntities.EC_ARROW_ENTITY.get(), x, y, z, worldIn);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
     
     public ECArrowEntity(final World worldIn, final LivingEntity shooter) {
-        super((EntityType)ECEntities.EC_ARROW_ENTITY.get(), shooter, worldIn);
+        super(ECEntities.EC_ARROW_ENTITY.get(), shooter, worldIn);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
