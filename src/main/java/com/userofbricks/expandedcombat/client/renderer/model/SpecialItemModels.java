@@ -1,89 +1,90 @@
-//Deobfuscated with https://github.com/PetoPetko/Minecraft-Deobfuscator3000 using mappings "conf"!
-
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package com.userofbricks.expandedcombat.client.renderer.model;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.userofbricks.expandedcombat.ExpandedCombat;
-import com.userofbricks.expandedcombat.item.ECItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.model.*;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.Item;
-import net.minecraft.resources.ResourcePackType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import java.util.ArrayList;
+import java.util.Map;
 import net.minecraftforge.client.ForgeHooksClient;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.model.ItemOverrideList;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.model.BakedQuad;
+import java.util.Random;
+import net.minecraft.util.Direction;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
+import java.util.Iterator;
+import com.userofbricks.expandedcombat.ExpandedCombat;
+import net.minecraft.resources.ResourcePackType;
+import java.util.Objects;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
-
-import javax.annotation.Nonnull;
-import java.util.*;
+import com.userofbricks.expandedcombat.item.ECItems;
+import net.minecraft.item.Item;
+import java.util.List;
 
 public class SpecialItemModels
 {
     private static final String HANDHELD = "_handheld";
-    private static List<Item> specialHandheldItems;
+    private static List<Item> specialHandheldItems= new ArrayList<>();
     
     public static void detectSpecials() {
-        specialHandheldItems.clear();
-        for (final RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
-            final Item item = (Item)ro.get();
-            final ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + Objects.requireNonNull(item.getRegistryName()).getPath() + "_handheld" + ".json");
+        SpecialItemModels.specialHandheldItems.clear();
+        for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
+             Item item = ro.get();
+             ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + Objects.requireNonNull(item.getRegistryName()).getPath() + "_handheld.json");
             if (ExpandedCombat.modResourceExists(ResourcePackType.CLIENT_RESOURCES, handheldModel)) {
                 addSpecialHandheld(item);
             }
         }
     }
     
-    public static void addSpecialHandheld(final Item item) {
+    public static void addSpecialHandheld( Item item) {
         SpecialItemModels.specialHandheldItems.add(item);
-        ModelLoader.addSpecialModel((ResourceLocation)new ModelResourceLocation(item.getRegistryName() + "_handheld", "inventory"));
+        ModelLoader.addSpecialModel(new ModelResourceLocation(item.getRegistryName() + "_handheld", "inventory"));
     }
     
-    public static void onModelBake(final ModelBakeEvent event) {
-        final Map<ResourceLocation, IBakedModel> map = (Map<ResourceLocation, IBakedModel>)event.getModelRegistry();
-        for (final Item item : SpecialItemModels.specialHandheldItems) {
-            final ResourceLocation itemRes = item.getRegistryName();
-            final ResourceLocation modelName = (ResourceLocation)new ModelResourceLocation(itemRes, "inventory");
-            final ResourceLocation handheldModelName = (ResourceLocation)new ModelResourceLocation(itemRes + "_handheld", "inventory");
-            final IBakedModel defaultModel = map.get(modelName);
-            final IBakedModel handheldModel = map.get(handheldModelName);
-            final IBakedModel wrapperModel = (IBakedModel)new IBakedModel() {
+    public static void onModelBake( ModelBakeEvent event) {
+         Map<ResourceLocation, IBakedModel> map = event.getModelRegistry();
+        for ( Item item : SpecialItemModels.specialHandheldItems) {
+             ResourceLocation itemRes = item.getRegistryName();
+             ResourceLocation modelName = new ModelResourceLocation(itemRes, "inventory");
+             ResourceLocation handheldModelName = new ModelResourceLocation(itemRes + "_handheld", "inventory");
+             IBakedModel defaultModel = map.get(modelName);
+             IBakedModel handheldModel = map.get(handheldModelName);
+             IBakedModel wrapperModel = new IBakedModel() {
 
-                public List<BakedQuad> getQuads(final BlockState state, final Direction side, final Random rand) {
-                    return (List<BakedQuad>)defaultModel.getQuads(state, side, rand);
+                public List<BakedQuad> getQuads( BlockState state,  Direction side,  Random rand) {
+                    return defaultModel.getQuads(state, side, rand);
                 }
                 
-                public boolean isAmbientOcclusion() {
-                    return defaultModel.isAmbientOcclusion();
+                public boolean useAmbientOcclusion() {
+                    return defaultModel.useAmbientOcclusion();
                 }
                 
                 public boolean isGui3d() {
                     return defaultModel.isGui3d();
                 }
-
-                public boolean isSideLit() {
-                    return defaultModel.isSideLit();
+                
+                public boolean usesBlockLight() {
+                    return defaultModel.usesBlockLight();
                 }
                 
-                public boolean isBuiltInRenderer() {
-                    return defaultModel.isBuiltInRenderer();
+                public boolean isCustomRenderer() {
+                    return defaultModel.isCustomRenderer();
                 }
-
-                public TextureAtlasSprite getParticleTexture() {
-                    return defaultModel.getParticleTexture();
+                
+                public TextureAtlasSprite getParticleIcon() {
+                    return defaultModel.getParticleIcon();
                 }
-
+                
                 public ItemOverrideList getOverrides() {
                     return handheldModel.getOverrides();
                 }
                 
-                public IBakedModel handlePerspective(final ItemCameraTransforms.TransformType transformType, final MatrixStack mat) {
+                public IBakedModel handlePerspective( ItemCameraTransforms.TransformType transformType,  MatrixStack mat) {
                     IBakedModel modelToUse = defaultModel;
                     if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
                         modelToUse = handheldModel;
@@ -93,9 +94,5 @@ public class SpecialItemModels
             };
             map.put(modelName, wrapperModel);
         }
-    }
-    
-    static {
-        SpecialItemModels.specialHandheldItems = new ArrayList<Item>();
     }
 }

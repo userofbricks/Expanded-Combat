@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"PA ",
+		" S "
+	],
+	
+	"key":
+	{
+		"P": { "tag": "minecraft:stone_crafting_materials" },
+		"A": { "item": "minecraft:stone_sword" },
+		"S": { "item": "expanded_combat:battlestaff_wood" }
+	},
+	
+	"result": { "item": "expanded_combat:scythe_stone" }
+}

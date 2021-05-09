@@ -1,265 +1,247 @@
 package com.userofbricks.expandedcombat.entity.projectile;
 
-import com.google.common.collect.Sets;
-import com.userofbricks.expandedcombat.entity.ECEntities;
-import com.userofbricks.expandedcombat.item.ArrowType;
-import com.userofbricks.expandedcombat.item.ECItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.IPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
-
+import net.minecraft.util.IItemProvider;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.CompoundNBT;
+import java.util.Iterator;
 import java.util.Collection;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.item.ItemStack;
+import net.minecraft.entity.LivingEntity;
+import com.userofbricks.expandedcombat.entity.ECEntities;
+import com.google.common.collect.Sets;
+import net.minecraft.potion.Potions;
+import net.minecraft.world.World;
+import net.minecraft.entity.EntityType;
+import com.userofbricks.expandedcombat.item.ArrowType;
+import net.minecraft.potion.EffectInstance;
 import java.util.Set;
+import net.minecraft.potion.Potion;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 
-public class ECArrowEntity extends AbstractArrowEntity {
-    private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(ECArrowEntity.class, DataSerializers.VARINT);
-    private Potion potion = Potions.EMPTY;
+public class ECArrowEntity extends AbstractArrowEntity
+{
+    private static final DataParameter<Integer> COLOR;
+    private Potion potion;
     private final Set<EffectInstance> customPotionEffects = Sets.newHashSet();
     private boolean fixedColor;
-    private ArrowType arrowType = ArrowType.IRON;
-
-    public ECArrowEntity(EntityType<? extends ECArrowEntity> p_i50172_1_, World p_i50172_2_) {
-        super(p_i50172_1_, p_i50172_2_);
+    private ArrowType arrowType;
+    
+    public ECArrowEntity(final EntityType<? extends ECArrowEntity> p_i50172_1_, final World p_i50172_2_) {
+        super((EntityType)p_i50172_1_, p_i50172_2_);
+        this.potion = Potions.EMPTY;
+        this.arrowType = ArrowType.IRON;
     }
-
-    public ECArrowEntity(World worldIn, double x, double y, double z) {
-        super(ECEntities.EC_ARROW_ENTITY.get(), x, y, z, worldIn);
+    
+    public ECArrowEntity(final World worldIn, final double x, final double y, final double z) {
+        super((EntityType)ECEntities.EC_ARROW_ENTITY.get(), x, y, z, worldIn);
+        this.potion = Potions.EMPTY;
+        this.arrowType = ArrowType.IRON;
     }
-
-    public ECArrowEntity(World worldIn, LivingEntity shooter) {
-        super(ECEntities.EC_ARROW_ENTITY.get(), shooter, worldIn);
+    
+    public ECArrowEntity(final World worldIn, final LivingEntity shooter) {
+        super((EntityType)ECEntities.EC_ARROW_ENTITY.get(), shooter, worldIn);
+        this.potion = Potions.EMPTY;
+        this.arrowType = ArrowType.IRON;
     }
-
-    public void setPotionEffect(ItemStack stack) {
-        if (stack.getItem() == arrowType.getTippedArrow()) {
-            this.potion = PotionUtils.getPotionFromItem(stack);
-            Collection<EffectInstance> collection = PotionUtils.getFullEffectsFromItem(stack);
+    
+    public void setPotionEffect(final ItemStack stack) {
+        if (stack.getItem() == this.arrowType.getTippedArrow()) {
+            this.potion = PotionUtils.getPotion(stack);
+            final Collection<EffectInstance> collection = (Collection<EffectInstance>)PotionUtils.getCustomEffects(stack);
             if (!collection.isEmpty()) {
-                for(EffectInstance effectinstance : collection) {
+                for (final EffectInstance effectinstance : collection) {
                     this.customPotionEffects.add(new EffectInstance(effectinstance));
                 }
             }
-
-            int i = getCustomColor(stack);
+            final int i = getCustomColor(stack);
             if (i == -1) {
                 this.refreshColor();
-            } else {
+            }
+            else {
                 this.setFixedColor(i);
             }
-        } else if (stack.getItem() == arrowType.getArrow()) {
+        }
+        else if (stack.getItem() == this.arrowType.getArrow()) {
             this.potion = Potions.EMPTY;
             this.customPotionEffects.clear();
-            this.dataManager.set(COLOR, -1);
+            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
         }
-
     }
-
-    public static int getCustomColor(ItemStack itemStack) {
-        CompoundNBT compoundnbt = itemStack.getTag();
-        return compoundnbt != null && compoundnbt.contains("CustomPotionColor", 99) ? compoundnbt.getInt("CustomPotionColor") : -1;
+    
+    public static int getCustomColor(final ItemStack itemStack) {
+        final CompoundNBT compoundnbt = itemStack.getTag();
+        return (compoundnbt != null && compoundnbt.contains("CustomPotionColor", 99)) ? compoundnbt.getInt("CustomPotionColor") : -1;
     }
-
+    
     private void refreshColor() {
         this.fixedColor = false;
         if (this.potion == Potions.EMPTY && this.customPotionEffects.isEmpty()) {
-            this.dataManager.set(COLOR, -1);
-        } else {
-            this.dataManager.set(COLOR, PotionUtils.getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects)));
+            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
         }
-
+        else {
+            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)PotionUtils.getColor((Collection)PotionUtils.getAllEffects(this.potion, (Collection)this.customPotionEffects)));
+        }
     }
-
-    public void addEffect(EffectInstance effect) {
+    
+    public void addEffect(final EffectInstance effect) {
         this.customPotionEffects.add(effect);
-        this.getDataManager().set(COLOR, PotionUtils.getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects)));
+        this.getEntityData().set((DataParameter)ECArrowEntity.COLOR, (Object)PotionUtils.getColor((Collection)PotionUtils.getAllEffects(this.potion, (Collection)this.customPotionEffects)));
     }
-
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(COLOR, -1);
+    
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
     }
-
-    /**
-     * Called to update the entity's position/logic.
-     */
+    
     public void tick() {
         super.tick();
-        if (this.world.isRemote) {
+        if (this.level.isClientSide) {
             if (this.inGround) {
-                if (this.timeInGround % 5 == 0) {
+                if (this.inGroundTime % 5 == 0) {
                     this.spawnPotionParticles(1);
                 }
-            } else {
+            }
+            else {
                 this.spawnPotionParticles(2);
             }
-        } else if (this.inGround && this.timeInGround != 0 && !this.customPotionEffects.isEmpty() && this.timeInGround >= 600) {
-            this.world.setEntityState(this, (byte)0);
+        }
+        else if (this.inGround && this.inGroundTime != 0 && !this.customPotionEffects.isEmpty() && this.inGroundTime >= 600) {
+            this.level.broadcastEntityEvent((Entity)this, (byte)0);
             this.potion = Potions.EMPTY;
             this.customPotionEffects.clear();
-            this.dataManager.set(COLOR, -1);
+            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
         }
-
     }
-
-    private void spawnPotionParticles(int particleCount) {
-        int i = this.getColor();
+    
+    private void spawnPotionParticles(final int particleCount) {
+        final int i = this.getColor();
         if (i != -1 && particleCount > 0) {
-            double d0 = (double)(i >> 16 & 255) / 255.0D;
-            double d1 = (double)(i >> 8 & 255) / 255.0D;
-            double d2 = (double)(i & 255) / 255.0D;
-
-            for(int j = 0; j < particleCount; ++j) {
-                this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), d0, d1, d2);
+            final double d0 = (i >> 16 & 0xFF) / 255.0;
+            final double d2 = (i >> 8 & 0xFF) / 255.0;
+            final double d3 = (i & 0xFF) / 255.0;
+            for (int j = 0; j < particleCount; ++j) {
+                this.level.addParticle((IParticleData)ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
             }
-
         }
     }
-
+    
     public int getColor() {
-        return this.dataManager.get(COLOR);
+        return (int)this.entityData.get((DataParameter)ECArrowEntity.COLOR);
     }
-
-    private void setFixedColor(int p_191507_1_) {
+    
+    private void setFixedColor(final int p_191507_1_) {
         this.fixedColor = true;
-        this.dataManager.set(COLOR, p_191507_1_);
+        this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)p_191507_1_);
     }
-
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    
+    public void addAdditionalSaveData(final CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         if (this.potion != Potions.EMPTY && this.potion != null) {
             compound.putString("Potion", Registry.POTION.getKey(this.potion).toString());
         }
-
         if (this.fixedColor) {
             compound.putInt("Color", this.getColor());
         }
-
         if (!this.customPotionEffects.isEmpty()) {
-            ListNBT listnbt = new ListNBT();
-
+            final ListNBT listnbt = new ListNBT();
             for(EffectInstance effectinstance : this.customPotionEffects) {
-                listnbt.add(effectinstance.write(new CompoundNBT()));
+                listnbt.add(effectinstance.save(new CompoundNBT()));
             }
-
-            compound.put("CustomPotionEffects", listnbt);
+            compound.put("CustomPotionEffects", (INBT)listnbt);
         }
-
-        if (true) {
-            CompoundNBT arrowTypenbt = new CompoundNBT();
-            compound.putString("ArrowType", arrowType.name());
-        }
+        final CompoundNBT arrowTypenbt = new CompoundNBT();
+        compound.putString("ArrowType", this.arrowType.name());
     }
-
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    
+    public void readAdditionalSaveData(final CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         if (compound.contains("Potion", 8)) {
-            this.potion = PotionUtils.getPotionTypeFromNBT(compound);
+            this.potion = PotionUtils.getPotion(compound);
         }
-
-        for(EffectInstance effectinstance : PotionUtils.getFullEffectsFromTag(compound)) {
+        for (final EffectInstance effectinstance : PotionUtils.getCustomEffects(compound)) {
             this.addEffect(effectinstance);
         }
-
         if (compound.contains("Color", 99)) {
             this.setFixedColor(compound.getInt("Color"));
-        } else {
+        }
+        else {
             this.refreshColor();
         }
-
         if (compound.contains("ArrowType")) {
-            String type = compound.getString("ArrowType");
+            final String type = compound.getString("ArrowType");
             this.arrowType = ArrowType.valueOf(type);
         }
     }
-
-    @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
-
-        for(EffectInstance effectinstance : this.potion.getEffects()) {
-            living.addPotionEffect(new EffectInstance(effectinstance.getPotion(), Math.max(effectinstance.getDuration() / 8, 1), effectinstance.getAmplifier(), effectinstance.isAmbient(), effectinstance.doesShowParticles()));
+    
+    protected void doPostHurtEffects(final LivingEntity living) {
+        super.doPostHurtEffects(living);
+        for (final EffectInstance effectinstance : this.potion.getEffects()) {
+            living.addEffect(new EffectInstance(effectinstance.getEffect(), Math.max(effectinstance.getDuration() / 8, 1), effectinstance.getAmplifier(), effectinstance.isAmbient(), effectinstance.isVisible()));
         }
-
         if (!this.customPotionEffects.isEmpty()) {
-            for(EffectInstance effectinstance1 : this.customPotionEffects) {
-                living.addPotionEffect(effectinstance1);
+            for (final EffectInstance effectinstance2 : this.customPotionEffects) {
+                living.addEffect(effectinstance2);
             }
         }
-
     }
-
-    @Override
-    protected ItemStack getArrowStack() {
+    
+    protected ItemStack getPickupItem() {
         if (this.customPotionEffects.isEmpty() && this.potion == Potions.EMPTY) {
-            return new ItemStack(arrowType.getArrow());
-        } else {
-            ItemStack itemstack = new ItemStack(arrowType.getTippedArrow());
-            PotionUtils.addPotionToItemStack(itemstack, this.potion);
-            PotionUtils.appendEffects(itemstack, this.customPotionEffects);
-            if (this.fixedColor) {
-                itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
-            }
-
-            return itemstack;
+            return new ItemStack((IItemProvider)this.arrowType.getArrow());
         }
+        final ItemStack itemstack = new ItemStack((IItemProvider)this.arrowType.getTippedArrow());
+        PotionUtils.setPotion(itemstack, this.potion);
+        PotionUtils.setCustomEffects(itemstack, (Collection)this.customPotionEffects);
+        if (this.fixedColor) {
+            itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
+        }
+        return itemstack;
     }
-
-    /**
-     * Handler for {@link World#setEntityState}
-     */
+    
     @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id) {
+    public void handleEntityEvent(final byte id) {
         if (id == 0) {
-            int i = this.getColor();
+            final int i = this.getColor();
             if (i != -1) {
-                double d0 = (double)(i >> 16 & 255) / 255.0D;
-                double d1 = (double)(i >> 8 & 255) / 255.0D;
-                double d2 = (double)(i & 255) / 255.0D;
-
-                for(int j = 0; j < 20; ++j) {
-                    this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), d0, d1, d2);
+                final double d0 = (i >> 16 & 0xFF) / 255.0;
+                final double d2 = (i >> 8 & 0xFF) / 255.0;
+                final double d3 = (i & 0xFF) / 255.0;
+                for (int j = 0; j < 20; ++j) {
+                    this.level.addParticle((IParticleData)ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
                 }
             }
-        } else {
-            super.handleStatusUpdate(id);
         }
-
+        else {
+            super.handleEntityEvent(id);
+        }
     }
-
+    
     public ArrowType getArrowType() {
-        return arrowType;
+        return this.arrowType;
     }
-
-    public void setArrowType(ArrowType arrowType) {
+    
+    public void setArrowType(final ArrowType arrowType) {
         this.arrowType = arrowType;
     }
-
-    @Override
-    public IPacket<?> createSpawnPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+    
+    public IPacket<?> getAddEntityPacket() {
+        return (IPacket<?>)NetworkHooks.getEntitySpawningPacket((Entity)this);
+    }
+    
+    static {
+        COLOR = EntityDataManager.defineId((Class)ECArrowEntity.class, DataSerializers.INT);
     }
 }

@@ -1,19 +1,16 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.item.ECItems;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemGroup;
 
 public class ECItemGroup extends ItemGroup
 {
-    public ECItemGroup()
-    {
+    public ECItemGroup() {
         super("ec_group");
     }
-
-    @Override
-    public ItemStack createIcon()
-    {
-        return new ItemStack(ECItems.QUIVER.get());
+    
+    public ItemStack makeIcon() {
+        return new ItemStack((IItemProvider)ECItems.QUIVER.get());
     }
 }

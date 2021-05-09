@@ -47,16 +47,16 @@ public class QuiverEvents {
     }
 
     @SubscribeEvent
-    public void arrowPickup(final EntityItemPickupEvent e) {
-        final ItemStack[] pickedUpStack = {e.getItem().getItem().copy()};
+    public void arrowPickup( EntityItemPickupEvent e) {
+         ItemStack[] pickedUpStack = {e.getItem().getItem().copy()};
         int afterCount;
-        final int beforeCount = afterCount = pickedUpStack[0].getCount();
+         int beforeCount = afterCount = pickedUpStack[0].getCount();
         PlayerEntity player = e.getPlayer();
-        if (player.openContainer instanceof CuriosContainer) {
+        if (player.containerMenu instanceof CuriosContainer) {
             return;
         }
-        final Optional<ImmutableTriple<String, Integer, ItemStack>> quiver = (Optional<ImmutableTriple<String, Integer, ItemStack>>)CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof QuiverItem, (LivingEntity)player);
-        final boolean hasQuiver = quiver.isPresent();
+         Optional<ImmutableTriple<String, Integer, ItemStack>> quiver = CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof QuiverItem, (LivingEntity)player);
+         boolean hasQuiver = quiver.isPresent();
         if (!pickedUpStack[0].isEmpty() && hasQuiver) {
             CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
                 IDynamicStackHandler quiverHandler = iCurioItemHandler.getCurios().get("arrows").getStacks();
@@ -70,9 +70,9 @@ public class QuiverEvents {
         }
         afterCount = pickedUpStack[0].getCount();
         if (afterCount < beforeCount) {
-            player.onItemPickup((Entity) e.getItem(), beforeCount - afterCount);
+            //player.onItemPickup(e.getItem(), beforeCount - afterCount);
             e.getItem().getItem().setCount(afterCount);
-            player.world.playSound((PlayerEntity) null, e.getItem().getPosX(), e.getItem().getPosY(), e.getItem().getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2f, (QuiverEvents.rand.nextFloat() - QuiverEvents.rand.nextFloat()) * 0.7f + 0.0f);
+            player.level.playSound((PlayerEntity) null, e.getItem().getX(), e.getItem().getY(), e.getItem().getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2f, (QuiverEvents.rand.nextFloat() - QuiverEvents.rand.nextFloat()) * 0.7f + 0.0f);
         }
     }
 }

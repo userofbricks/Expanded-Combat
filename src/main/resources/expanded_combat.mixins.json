@@ -7,11 +7,12 @@
   "mixins": [
     "ContainerAccessor",
     "CurioContainerMixin",
+    "PiglinTasksMixin",
     "PlayerEntityMixin",
     "ServerPlayNetHandlerMixin"
   ],
   "client": [
-  "GameRendererMixin"
+    "GameRendererMixin"
   ],
   "server": [],
   "injectors": {

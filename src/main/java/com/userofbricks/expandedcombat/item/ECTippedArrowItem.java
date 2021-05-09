@@ -1,58 +1,50 @@
 package com.userofbricks.expandedcombat.item;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import java.util.List;
+import javax.annotation.Nullable;
 import net.minecraft.world.World;
+import java.util.Iterator;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.potion.Potion;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.NonNullList;
+import net.minecraft.item.ItemGroup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-public class ECTippedArrowItem extends ECArrowItem{
-    public ECTippedArrowItem(int damageIn, ArrowType arrowModel, Properties builder) {
+public class ECTippedArrowItem extends ECArrowItem
+{
+    public ECTippedArrowItem(final int damageIn, final ArrowType arrowModel, final Item.Properties builder) {
         super(damageIn, arrowModel, builder);
     }
-
+    
     @OnlyIn(Dist.CLIENT)
     public ItemStack getDefaultInstance() {
-        return PotionUtils.addPotionToItemStack(super.getDefaultInstance(), Potions.POISON);
+        return PotionUtils.setPotion(super.getDefaultInstance(), Potions.POISON);
     }
-
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group)) {
-            for(Potion potion : ForgeRegistries.POTION_TYPES) {
+    
+    public void fillItemCategory(final ItemGroup group, final NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group)) {
+            for (final Potion potion : ForgeRegistries.POTION_TYPES) {
                 if (!potion.getEffects().isEmpty()) {
-                    items.add(PotionUtils.addPotionToItemStack(new ItemStack(this), potion));
+                    items.add(PotionUtils.setPotion(new ItemStack(this), potion));
                 }
             }
         }
-
     }
-
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     */
+    
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        PotionUtils.addPotionTooltip(stack, tooltip, 0.125F);
+    public void appendHoverText(final ItemStack stack, @Nullable final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+        PotionUtils.addPotionTooltip(stack, (List)tooltip, 0.125f);
     }
-
-    /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
-     * different names based on their damage or NBT.
-     */
-    public String getTranslationKey(ItemStack stack) {
-        return PotionUtils.getPotionFromItem(stack).getNamePrefixed(this.getTranslationKey() + ".effect.");
+    
+    public String getDescriptionId(final ItemStack stack) {
+        return PotionUtils.getPotion(stack).getName(this.getDescriptionId() + ".effect.");
     }
 }

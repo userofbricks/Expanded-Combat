@@ -1,35 +1,34 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 
-public enum ArrowType {
-    IRON(3, new ResourceLocation(ExpandedCombat.MODID, "iron_arrow"), new ResourceLocation(ExpandedCombat.MODID, "iron_tipped_arrow")),
-    DIAMOND(5, new ResourceLocation(ExpandedCombat.MODID, "diamond_arrow"), new ResourceLocation(ExpandedCombat.MODID, "diamond_tipped_arrow")),
-    NETHERITE(7, new ResourceLocation(ExpandedCombat.MODID, "netherite_arrow"), new ResourceLocation(ExpandedCombat.MODID, "netherite_tipped_arrow"));
-
+public enum ArrowType
+{
+    IRON(3, new ResourceLocation("expanded_combat", "iron_arrow"), new ResourceLocation("expanded_combat", "iron_tipped_arrow")), 
+    DIAMOND(5, new ResourceLocation("expanded_combat", "diamond_arrow"), new ResourceLocation("expanded_combat", "diamond_tipped_arrow")), 
+    NETHERITE(7, new ResourceLocation("expanded_combat", "netherite_arrow"), new ResourceLocation("expanded_combat", "netherite_tipped_arrow"));
+    
     private final int damage;
     private final ResourceLocation arrow;
     private final ResourceLocation tippedArrow;
-    private ArrowType(int damage, ResourceLocation arrow, ResourceLocation tippedArrow) {
-
+    
+    private ArrowType(final int damage, final ResourceLocation arrow, final ResourceLocation tippedArrow) {
         this.damage = damage;
         this.arrow = arrow;
         this.tippedArrow = tippedArrow;
     }
-
+    
     public int getDamage() {
-        return damage;
+        return this.damage;
     }
-
+    
     public Item getArrow() {
-        return ForgeRegistries.ITEMS.getValue(arrow);
+        return (Item)ForgeRegistries.ITEMS.getValue(this.arrow);
     }
-
+    
     public Item getTippedArrow() {
-        return ForgeRegistries.ITEMS.getValue(tippedArrow);
+        return (Item)ForgeRegistries.ITEMS.getValue(this.tippedArrow);
     }
 }

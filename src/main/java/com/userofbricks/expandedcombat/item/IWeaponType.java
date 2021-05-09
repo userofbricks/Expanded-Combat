@@ -1,11 +1,16 @@
 package com.userofbricks.expandedcombat.item;
 
-public interface IWeaponType {
-
+public interface IWeaponType
+{
     int getBaseAttackDamage();
+    
     float getBaseAttackSpead();
+    
     double getBaseAttackRange();
+    
     float getTypeMendingBonus();
+    
     float getKnockback();
+    
     WeaponTypes.WieldingType getWieldingType();
 }

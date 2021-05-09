@@ -1,87 +1,86 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import com.userofbricks.expandedcombat.item.ECArrowItem;
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import java.util.Collection;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import com.userofbricks.expandedcombat.item.ECArrowItem;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.crafting.SpecialRecipe;
 
-public class ECTippedArrowRecipe extends SpecialRecipe{
-
-    public ECTippedArrowRecipe (ResourceLocation id){
+public class ECTippedArrowRecipe extends SpecialRecipe
+{
+    public ECTippedArrowRecipe(final ResourceLocation id) {
         super(id);
     }
-
-    @Override
-    public boolean matches(CraftingInventory inv, World worldIn) {
+    
+    public boolean matches(final CraftingInventory inv, final World worldIn) {
         if (inv.getWidth() == 3 && inv.getHeight() == 3) {
-            Boolean equalArrows = areArrowTypesEqual(inv);
-            for(int i = 0; i < inv.getWidth(); ++i) {
-                for(int j = 0; j < inv.getHeight(); ++j) {
-                    ItemStack itemstack = inv.getStackInSlot(i + j * inv.getWidth());
+            final Boolean equalArrows = this.areArrowTypesEqual(inv);
+            for (int i = 0; i < inv.getWidth(); ++i) {
+                for (int j = 0; j < inv.getHeight(); ++j) {
+                    final ItemStack itemstack = inv.getItem(i + j * inv.getWidth());
                     if (itemstack.isEmpty()) {
                         return false;
                     }
-
-                    Item item = itemstack.getItem();
+                    final Item item = itemstack.getItem();
                     if (i == 1 && j == 1) {
                         if (item != Items.LINGERING_POTION) {
                             return false;
                         }
-                    } else if (!(item instanceof ECArrowItem)) {
-                        return false;
-                    } else if (!equalArrows){
-                        return false;
+                    }
+                    else {
+                        if (!(item instanceof ECArrowItem)) {
+                            return false;
+                        }
+                        if (!equalArrows) {
+                            return false;
+                        }
                     }
                 }
             }
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
-
-    @Override
-    public ItemStack getCraftingResult(CraftingInventory inv) {
-        ItemStack itemstack = inv.getStackInSlot(1 + inv.getWidth());
+    
+    public ItemStack assemble(final CraftingInventory inv) {
+        final ItemStack itemstack = inv.getItem(1 + inv.getWidth());
         if (itemstack.getItem() != Items.LINGERING_POTION) {
             return ItemStack.EMPTY;
-        } else if (!areArrowTypesEqual(inv)) {
-            return ItemStack.EMPTY;
-        } else {
-            ItemStack itemstack1 = new ItemStack(((ECArrowItem)inv.getStackInSlot(0).getItem()).getArrowType().getTippedArrow(), 8);
-            PotionUtils.addPotionToItemStack(itemstack1, PotionUtils.getPotionFromItem(itemstack));
-            PotionUtils.appendEffects(itemstack1, PotionUtils.getFullEffectsFromItem(itemstack));
-            return itemstack1;
         }
+        if (!this.areArrowTypesEqual(inv)) {
+            return ItemStack.EMPTY;
+        }
+        final ItemStack itemstack2 = new ItemStack((IItemProvider)((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow(), 8);
+        PotionUtils.setPotion(itemstack2, PotionUtils.getPotion(itemstack));
+        PotionUtils.setCustomEffects(itemstack2, (Collection)PotionUtils.getCustomEffects(itemstack));
+        return itemstack2;
     }
-
-    private boolean areArrowTypesEqual(CraftingInventory inv) {
-        Item firstArrow = inv.getStackInSlot(0).getItem();
-        for(int i = 0; i < inv.getWidth(); ++i) {
+    
+    private boolean areArrowTypesEqual(final CraftingInventory inv) {
+        final Item firstArrow = inv.getItem(0).getItem();
+        for (int i = 0; i < inv.getWidth(); ++i) {
             for (int j = 0; j < inv.getHeight(); ++j) {
-                if (i != 1 || j != 1)  {
-                    if (firstArrow != inv.getStackInSlot(i + j * inv.getWidth()).getItem()) {
-                        return false;
-                    }
+                if ((i != 1 || j != 1) && firstArrow != inv.getItem(i + j * inv.getWidth()).getItem()) {
+                    return false;
                 }
             }
         }
         return true;
     }
-
-    @Override
-    public boolean canFit(int width, int height) {
+    
+    public boolean canCraftInDimensions(final int width, final int height) {
         return width >= 2 && height >= 2;
     }
-
-    @Override
+    
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
+        return (IRecipeSerializer<?>)RecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
     }
 }

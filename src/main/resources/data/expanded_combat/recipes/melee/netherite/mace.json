@@ -1,0 +1,8 @@
+{
+	"type": "minecraft:smithing",
+	"base": { "item": "expanded_combat:mace_diamond" },
+	"addition": {
+		"item": "minecraft:netherite_ingot"
+	},
+	"result": { "item": "expanded_combat:mace_netherite" }
+}

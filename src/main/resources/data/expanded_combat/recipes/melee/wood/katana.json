@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"A",
+		"S"
+	],
+	
+	"key":
+	{
+		"A": { "tag": "minecraft:planks" },
+		"S": { "item": "expanded_combat:cutlass_wood" }
+	},
+	
+	"result": { "item": "expanded_combat:katana_wood" }
+}

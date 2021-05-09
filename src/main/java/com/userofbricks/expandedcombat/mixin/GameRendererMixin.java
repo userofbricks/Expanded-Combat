@@ -1,57 +1,50 @@
 package com.userofbricks.expandedcombat.mixin;
 
-import com.userofbricks.expandedcombat.entity.AttributeRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-
+import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import java.util.Objects;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.spongepowered.asm.mixin.Shadow;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
+import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(GameRenderer.class)
-public abstract class GameRendererMixin {
+@Mixin({ GameRenderer.class })
+public abstract class GameRendererMixin
+{
     @Shadow
-    private Minecraft mc;
-
-    @ModifyConstant(
-            method = "getMouseOver",
-            constant = @Constant(doubleValue = 6.0D)
-    )
-    private double getExtendedAttackReach(double value) {
-        assert mc.player != null;
+    private Minecraft minecraft;
+    
+    @ModifyConstant(method = { "pick" }, constant = { @Constant(doubleValue = 6.0) })
+    private double getExtendedAttackReach(final double value) {
+        assert this.minecraft.player != null;
         if (ForgeRegistries.ATTRIBUTES.containsKey(new ResourceLocation("dungeons_gear:attack_reach"))) {
-            return mc.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach")))) * 2.0D;
+            return this.minecraft.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach")))) * 2.0;
         }
-        return mc.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get()) * 2.0D;
+        return this.minecraft.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get()) * 2.0;
     }
-
-    @ModifyConstant(
-            method = "getMouseOver",
-            constant = @Constant(doubleValue = 3.0D)
-    )
-    private double getAttackReach(double value) {
-        assert mc.player != null;
+    
+    @ModifyConstant(method = { "pick" }, constant = { @Constant(doubleValue = 3.0) })
+    private double getAttackReach(final double value) {
+        assert this.minecraft.player != null;
         if (ForgeRegistries.ATTRIBUTES.containsKey(new ResourceLocation("dungeons_gear:attack_reach"))) {
-            return mc.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))));
+            return this.minecraft.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))));
         }
-        return mc.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get());
+        return this.minecraft.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get());
     }
-
-    @ModifyConstant(
-            method = "getMouseOver",
-            constant = @Constant(doubleValue = 9.0D)
-    )
-    private double getAttackReachSquared(double value) {
-        assert mc.player != null;
-        double attackReachValue = 3.0D;
+    
+    @ModifyConstant(method = { "pick" }, constant = { @Constant(doubleValue = 9.0) })
+    private double getAttackReachSquared(final double value) {
+        assert this.minecraft.player != null;
+        double attackReachValue = 3.0;
         if (ForgeRegistries.ATTRIBUTES.containsKey(new ResourceLocation("dungeons_gear:attack_reach"))) {
-            attackReachValue = mc.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))));
-        } else {
-            attackReachValue = mc.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get());
+            attackReachValue = this.minecraft.player.getAttributeValue(Objects.requireNonNull(ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("dungeons_gear:attack_reach"))));
+        }
+        else {
+            attackReachValue = this.minecraft.player.getAttributeValue(AttributeRegistry.ATTACK_REACH.get());
         }
         return attackReachValue * attackReachValue;
     }
