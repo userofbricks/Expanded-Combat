@@ -1,7 +1,7 @@
 # Expanded Combat
 
 This Mod Adds A few things to expand the resources you have for combat. Things like a quiver, arrows, shields, 
-gauntlets, more bows, and more to come.
+gauntlets, more bows, weapons, and more to come.
 ### IMPORTANT:
 All versions of this mod rely on the [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios)
 
@@ -33,6 +33,9 @@ till at least one gold or iron ingot has been applied.
 The Bow progression for this mod is very similar to the shield progression though it oly has 2 slots. 
 As the bow progresses it gets a longer range though you want to be careful as having the bow unbalaced with different 
 materials in each slot causes the bow to shoot poorly.
+
+### Meele Weapons
+There are a vast number of weapons in this mod reanging from swords and scythes to hammers and maces. All the different types have varying stregths and weeknesses that are all(with one exception) viewable in the tooltips of the items. There are many atributes to each including damage range, enhanced damage, slow/fast, and rate of repair for mending. The one weapon whos greatest strength is not shown in a tool tip is the Scythe wich similarly to arrows you can craft with potions and it will deal out that potion on hit.
 
 Here is a video about my process of making the mod!:
 
