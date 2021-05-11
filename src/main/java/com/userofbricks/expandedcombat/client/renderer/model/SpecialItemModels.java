@@ -28,7 +28,7 @@ import java.util.List;
 public class SpecialItemModels
 {
     private static final String HANDHELD = "_handheld";
-    private static List<Item> specialHandheldItems= new ArrayList<>();
+    private static final List<Item> specialHandheldItems= new ArrayList<>();
     
     public static void detectSpecials() {
         SpecialItemModels.specialHandheldItems.clear();
@@ -81,7 +81,7 @@ public class SpecialItemModels
                 }
                 
                 public ItemOverrideList getOverrides() {
-                    return handheldModel.getOverrides();
+                    return defaultModel.getOverrides();
                 }
                 
                 public IBakedModel handlePerspective( ItemCameraTransforms.TransformType transformType,  MatrixStack mat) {
