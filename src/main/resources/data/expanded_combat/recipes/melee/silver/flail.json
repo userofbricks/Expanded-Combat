@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"P",
+		"A",
+		"S"
+	],
+	
+	"key":
+	{
+		"P": { "tag": "forge:blocks/silver" },
+		"A": { "item": "minecraft:chain" },
+		"S": { "item": "minecraft:stick" }
+	},
+	
+	"result": { "item": "expanded_combat:flail_silver" }
+}

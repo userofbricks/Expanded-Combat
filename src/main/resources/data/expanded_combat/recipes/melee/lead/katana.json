@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"A",
+		"S"
+	],
+	
+	"key":
+	{
+		"A": { "tag": "forge:ingots/lead" },
+		"S": { "item": "expanded_combat:cutlass_lead" }
+	},
+	
+	"result": { "item": "expanded_combat:katana_lead" }
+}

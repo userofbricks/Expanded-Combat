@@ -1,37 +1,51 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.item.Items;
-import net.minecraft.util.IItemProvider;
+
 import java.util.function.Supplier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public enum WeaponTier implements IWeaponTier
 {
-    WOOD(59, 3.0f, 15, 0.0f, () -> Ingredient.of(ItemTags.PLANKS)),
-    STONE(131, 4.0f, 5, 0.0f, () -> Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)),
-    IRON(250, 5.0f, 14, 0.0f, () -> Ingredient.of(Items.IRON_INGOT)),
-    EMERALD(2000, 5.0f, 10, 0.1f, () -> Ingredient.of(ItemTags.PLANKS)),
-    DIAMOND(1561, 6.0f, 10, -0.1f, () -> Ingredient.of(Items.DIAMOND)),
-    GOLD(32, 3.0f, 22, 2.0f, () -> Ingredient.of(Items.GOLD_INGOT)),
-    NETHERITE(2031, 7.0f, 15, 0.2f, () -> Ingredient.of(Items.NETHERITE_INGOT));
+    WOOD("wood", 59, 3.0f, 15, 0.0f, () -> Ingredient.of(ItemTags.PLANKS)),
+    OAK_WOOD("oak_wood", 59, 3.0f, 15, 0.0f, () -> Ingredient.of(ItemTags.PLANKS)),
+    OAK_PLANK("oak_plank", 59, 3.0f, 15, 0.0f, () -> Ingredient.of(ItemTags.PLANKS)),
+    STONE("stone", 131, 4.0f, 5, 0.0f, () -> Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)),
+    IRON("iron", 250, 5.0f, 14, 0.0f, () -> Ingredient.of(Items.IRON_INGOT)),
+    EMERALD("emerald", 2000, 5.0f, 10, 0.1f, () -> Ingredient.of(ItemTags.PLANKS)),
+    DIAMOND("diamond", 1561, 6.0f, 10, -0.1f, () -> Ingredient.of(Items.DIAMOND)),
+    GOLD("gold", 32, 3.0f, 22, 2.0f, () -> Ingredient.of(Items.GOLD_INGOT)),
+    NETHERITE("netherite", 2031, 7.0f, 15, 0.2f, () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    STEEL("steel", 482, 5.5f, 10, 0.0f, GauntletMaterials.steel::getRepairMaterial),
+    BRONZE("bronze", 225, 4.5f, 10, 0.1f, GauntletMaterials.bronze::getRepairMaterial),
+    SILVER("silver", 325, 5.0f, 23, 1.0f, GauntletMaterials.silver::getRepairMaterial),
+    LEAD("lead", 1761, 6.5f, 10, 0.1f, GauntletMaterials.lead::getRepairMaterial)
+    ;
     
     private final int maxUses;
     private final float attackDamage;
     private final float mendingBonus;
     private final int enchantability;
     private final LazyValue<Ingredient> repairMaterial;
-    
-    WeaponTier(final int maxUsesIn, final float attackDamageIn, final int enchantabilityIn, final float mendingBonus, final Supplier<Ingredient> repairMaterialIn) {
+    private final String translationName;
+
+    WeaponTier(String translationName, final int maxUsesIn, final float attackDamageIn, final int enchantabilityIn, final float mendingBonus, final Supplier<Ingredient> repairMaterialIn) {
         this.maxUses = maxUsesIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
         this.mendingBonus = mendingBonus;
         this.repairMaterial = new LazyValue<>(repairMaterialIn);
+        this.translationName = translationName;
     }
-    
+
+    @Override
+    public String getTierName() {
+        return "weapon_tier.expanded_combat." + this.translationName;
+    }
+
     @Override
     public int getMaxUses() {
         return this.maxUses;

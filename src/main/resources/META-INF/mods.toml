@@ -9,7 +9,7 @@ license="All rights reserved"
 
 [[mods]] #mandatory
 modId="expanded_combat" #mandatory
-version="2.1.0" #mandatory
+version="2.2.0-alpha_0" #mandatory
 displayName="Expanded Combat" #mandatory
 #displayURL="http://example.com/" #optional
 #logoFile="examplemod.png" #optional
@@ -19,16 +19,23 @@ description='''
 An Expansion of Minecraft's combat equipment which includes a reimagining of dinnerbone's quiver.
 '''
 
-[[dependencies.examplemod]] #optional
+[[dependencies.expanded_combat]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[36,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.expanded_combat]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17]"
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.expanded_combat]]
+    modId="curios"
+    mandatory=true
+    versionRange="[1.16.5-4.0.5.1, )"
     ordering="NONE"
     side="BOTH"

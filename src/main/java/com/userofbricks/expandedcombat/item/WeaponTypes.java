@@ -1,23 +1,26 @@
 package com.userofbricks.expandedcombat.item;
 
+import net.minecraft.util.text.TranslationTextComponent;
+
 public enum WeaponTypes implements IWeaponType
 {
-    battlestaff(-2, -1.4f, 1.5, 1.0f, 0.1f, WieldingType.TWOHANDED), 
-    broadsword(3, -3.0f, 0.5, 0.0f, 0.0f, WieldingType.ONEHANDED), 
-    claymore(2, -3.0f, 1.0, 0.0f, 0.0f, WieldingType.TWOHANDED), 
-    cutlass(0, -2.2f, 0.0, 0.0f, 0.2f, WieldingType.ONEHANDED),
-    dagger(-1, -1.2f, 0.0, 0.0f, 0.1f, WieldingType.DUALWIELD), 
-    dancers_sword(2, -1.8f, 0.0, 0.0f, 0.2f, WieldingType.ONEHANDED),
-    flail(4, -3.4f, 1.0, 0.5f, 0.0f, WieldingType.ONEHANDED), 
-    glaive(3, -3.2f, 2.0, 0.5f, 0.1f, WieldingType.TWOHANDED), 
-    great_hammer(5, -1.2f, 0.0, 1.0f, 0.0f, WieldingType.ONEHANDED), 
-    katana(2, -2.4f, 0.5, 0.0f, 0.0f, WieldingType.ONEHANDED),
-    mace(4, -3.2f, 0.0, 0.5f, 0.0f, WieldingType.ONEHANDED), 
-    rapier(1, -2.2f, 0.0, 0.0f, 0.0f, WieldingType.ONEHANDED), 
-    scythe(4, -3.4f, 2.0, 1.0f, 0.1f, WieldingType.TWOHANDED), 
-    sickle(0, -1.8f, 0.0, 0.0f, 0.2f, WieldingType.DUALWIELD),
-    spear(3, -3.4f, 2.0, 0.5f, 0.1f, WieldingType.TWOHANDED);
-    
+    battlestaff("battlestaff", -2, -1.4f, 1.5, 1.0f, 0.1f, WieldingType.TWOHANDED),
+    broadsword("broadsword", 3, -3.0f, 0.5, 0.0f, 0.0f, WieldingType.ONEHANDED),
+    claymore("claymore", 2, -3.0f, 1.0, 0.0f, 0.0f, WieldingType.TWOHANDED),
+    cutlass("cutlass", 0, -2.2f, 0.0, 0.0f, 0.2f, WieldingType.ONEHANDED),
+    dagger("dagger", -1, -1.2f, 0.0, 0.0f, 0.1f, WieldingType.DUALWIELD),
+    dancers_sword("dancers_sword", 2, -1.8f, 0.0, 0.0f, 0.2f, WieldingType.ONEHANDED),
+    flail("flail", 4, -3.4f, 1.0, 0.5f, 0.0f, WieldingType.ONEHANDED),
+    glaive("glaive", 3, -3.2f, 2.0, 0.5f, 0.1f, WieldingType.TWOHANDED),
+    great_hammer("great_hammer", 5, -1.2f, 0.0, 1.0f, 0.0f, WieldingType.ONEHANDED),
+    katana("katana", 2, -2.4f, 0.5, 0.0f, 0.0f, WieldingType.ONEHANDED),
+    mace("mace", 4, -3.2f, 0.0, 0.5f, 0.0f, WieldingType.ONEHANDED),
+    rapier("rapier", 1, -2.2f, 0.0, 0.0f, 0.0f, WieldingType.ONEHANDED),
+    scythe("scythe", 4, -3.4f, 2.0, 1.0f, 0.1f, WieldingType.TWOHANDED),
+    sickle("sickle", 0, -1.8f, 0.0, 0.0f, 0.2f, WieldingType.DUALWIELD),
+    spear("spear", 3, -3.4f, 2.0, 0.5f, 0.1f, WieldingType.TWOHANDED);
+
+    private final String translationName;
     private final int attackDamage;
     private final float attackSpeed;
     private final float mendingBonus;
@@ -25,7 +28,8 @@ public enum WeaponTypes implements IWeaponType
     private final double attackRange;
     private final WieldingType wieldType;
     
-    private WeaponTypes( int attackDamage,  float attackSpeed,  double attackRange,  float knockback,  float mendingBonus,  WieldingType wieldType) {
+    private WeaponTypes(String translationName, int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType) {
+        this.translationName = translationName;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.attackRange = attackRange;
@@ -33,7 +37,12 @@ public enum WeaponTypes implements IWeaponType
         this.knockback = knockback;
         this.wieldType = wieldType;
     }
-    
+
+    @Override
+    public TranslationTextComponent getTypeName() {
+        return new TranslationTextComponent("weapon_type.expanded_combat." + this.translationName);
+    }
+
     @Override
     public int getBaseAttackDamage() {
         return this.attackDamage;

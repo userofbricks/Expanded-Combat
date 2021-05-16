@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A ",
+		"ASA"
+	],
+	
+	"key":
+	{
+		"A": { "tag": "forge:ingots/silver" },
+		"S": { "tag": "forge:swords/silver" }
+	},
+	
+	"result": { "item": "expanded_combat:broadsword_silver" }
+}

@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"PA ",
+		" S "
+	],
+	
+	"key":
+	{
+		"P": { "tag": "forge:ingots/lead" },
+		"A": { "tag": "forge:swords/lead" },
+		"S": { "item": "expanded_combat:battlestaff_wood" }
+	},
+	
+	"result": { "item": "expanded_combat:scythe_lead" }
+}

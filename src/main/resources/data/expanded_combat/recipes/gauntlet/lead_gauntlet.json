@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"SS",
+		"S "
+	],
+	
+	"key":
+	{
+		"S": { "tag": "forge:ingots/lead" }
+	},
+	
+	"result": { "item": "expanded_combat:lead_gauntlet" }
+}

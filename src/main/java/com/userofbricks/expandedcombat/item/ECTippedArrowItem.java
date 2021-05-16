@@ -4,6 +4,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.text.ITextComponent;
 import java.util.List;
 import javax.annotation.Nullable;
+
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import java.util.Iterator;
 import net.minecraft.util.IItemProvider;
@@ -43,8 +45,12 @@ public class ECTippedArrowItem extends ECArrowItem
     public void appendHoverText(final ItemStack stack, @Nullable final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
         PotionUtils.addPotionTooltip(stack, (List)tooltip, 0.125f);
     }
+
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ").append(new TranslationTextComponent(this.getPotionId(stack)));
+    }
     
-    public String getDescriptionId(final ItemStack stack) {
-        return PotionUtils.getPotion(stack).getName(this.getDescriptionId() + ".effect.");
+    public String getPotionId(final ItemStack stack) {
+        return PotionUtils.getPotion(stack).getName("arrow.expanded_combat.effect.");
     }
 }

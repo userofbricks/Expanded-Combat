@@ -9,6 +9,7 @@ import net.minecraft.util.ActionResultType;
 import com.userofbricks.expandedcombat.util.CombatEventHandler;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.util.text.StringTextComponent;
@@ -45,8 +46,8 @@ public class ECWeaponItem extends SwordItem
     private final IWeaponType type;
     private final float AttackDamage;
     private Multimap<Attribute, AttributeModifier> attributeModifiers;
-    protected static final UUID ATTACK_KNOCKBACK_MODIFIER;
-    protected static final UUID ATTACK_REACH_MODIFIER;
+    protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
+    protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
     
     public ECWeaponItem( IWeaponTier tierIn,  IWeaponType typeIn,  Item.Properties builderIn) {
         super(new IItemTier() {
@@ -185,6 +186,11 @@ public class ECWeaponItem extends SwordItem
             }
         }
     }
+
+    public ITextComponent getName(ItemStack stack) {
+        ECWeaponItem weapon = (ECWeaponItem) stack.getItem();
+        return new TranslationTextComponent(this.getWeaponTier().getTierName()).append(" ").append(this.getWeaponType().getTypeName());
+    }
     
     public ActionResult<ItemStack> use( World worldIn,  PlayerEntity playerIn,  Hand handIn) {
         if (handIn == Hand.OFF_HAND && worldIn.isClientSide) {
@@ -193,11 +199,6 @@ public class ECWeaponItem extends SwordItem
             return new ActionResult<>(ActionResultType.SUCCESS, offhand);
         }
         return new ActionResult<>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
-    }
-    
-    static {
-        ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
-        ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
     }
     
     public static class Dyeable extends ECWeaponItem implements IDyeableArmorItem

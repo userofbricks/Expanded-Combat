@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A ",
+		"ASA"
+	],
+	
+	"key":
+	{
+		"A": { "tag": "forge:ingots/lead" },
+		"S": { "tag": "forge:swords/lead" }
+	},
+	
+	"result": { "item": "expanded_combat:broadsword_lead" }
+}

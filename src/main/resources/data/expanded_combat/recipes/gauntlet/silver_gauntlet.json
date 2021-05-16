@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"SS",
+		"S "
+	],
+	
+	"key":
+	{
+		"S": { "tag": "forge:ingots/silver" }
+	},
+	
+	"result": { "item": "expanded_combat:silver_gauntlet" }
+}

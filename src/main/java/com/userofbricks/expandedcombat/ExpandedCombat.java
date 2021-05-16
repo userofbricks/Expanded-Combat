@@ -6,11 +6,11 @@
 
 package com.userofbricks.expandedcombat;
 
-import com.userofbricks.expandedcombat.item.ECItemGroup;
+import com.userofbricks.expandedcombat.item.*;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.fml.RegistryObject;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
-import com.userofbricks.expandedcombat.item.GauntletItem;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.potion.PotionUtils;
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import net.minecraft.entity.EntityType;
 import java.util.function.Supplier;
-import com.userofbricks.expandedcombat.item.ECItemModelsProperties;
+
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -67,7 +67,6 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.common.MinecraftForge;
 import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
-import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import java.util.function.Consumer;
@@ -149,9 +148,20 @@ public class ExpandedCombat
     
     public void itemColors(ColorHandlerEvent.Item event) {
          ItemColors itemcolors = event.getItemColors();
-        itemcolors.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, new IItemProvider[] { (IItemProvider)ECItems.IRON_TIPPED_ARROW.get(), (IItemProvider)ECItems.DIAMOND_TIPPED_ARROW.get(), (IItemProvider)ECItems.NETHERITE_TIPPED_ARROW.get() });
-        itemcolors.register((stack, color) -> (color > 0) ? -1 : ((IDyeableArmorItem)stack.getItem()).getColor(stack), new IItemProvider[] { (IItemProvider)ECItems.BATTLESTAFF_WOOD.get(), (IItemProvider)ECItems.BATTLESTAFF_DIAMOND.get(), (IItemProvider)ECItems.BATTLESTAFF_IRON.get(), (IItemProvider)ECItems.BATTLESTAFF_GOLD.get(), (IItemProvider)ECItems.BATTLESTAFF_STONE.get(), (IItemProvider)ECItems.BATTLESTAFF_NETHERITE.get(), (IItemProvider)ECItems.BROADSWORD_WOOD.get(), (IItemProvider)ECItems.BROADSWORD_DIAMOND.get(), (IItemProvider)ECItems.BROADSWORD_IRON.get(), (IItemProvider)ECItems.BROADSWORD_GOLD.get(), (IItemProvider)ECItems.BROADSWORD_STONE.get(), (IItemProvider)ECItems.BROADSWORD_NETHERITE.get(), (IItemProvider)ECItems.CLAYMORE_WOOD.get(), (IItemProvider)ECItems.CLAYMORE_DIAMOND.get(), (IItemProvider)ECItems.CLAYMORE_IRON.get(), (IItemProvider)ECItems.CLAYMORE_GOLD.get(), (IItemProvider)ECItems.CLAYMORE_STONE.get(), (IItemProvider)ECItems.CLAYMORE_NETHERITE.get(), (IItemProvider)ECItems.DANCERS_SWORD_WOOD.get(), (IItemProvider)ECItems.DANCERS_SWORD_DIAMOND.get(), (IItemProvider)ECItems.DANCERS_SWORD_IRON.get(), (IItemProvider)ECItems.DANCERS_SWORD_GOLD.get(), (IItemProvider)ECItems.DANCERS_SWORD_STONE.get(), (IItemProvider)ECItems.DANCERS_SWORD_NETHERITE.get(), (IItemProvider)ECItems.GLAIVE_WOOD.get(), (IItemProvider)ECItems.GLAIVE_DIAMOND.get(), (IItemProvider)ECItems.GLAIVE_IRON.get(), (IItemProvider)ECItems.GLAIVE_GOLD.get(), (IItemProvider)ECItems.GLAIVE_STONE.get(), (IItemProvider)ECItems.GLAIVE_NETHERITE.get() });
-        itemcolors.register((stack, color) -> (color > 0) ? -1 : PotionUtils.getColor(stack), new IItemProvider[] { (IItemProvider)ECItems.SCYTHE_STONE.get(), (IItemProvider)ECItems.SCYTHE_DIAMOND.get(), (IItemProvider)ECItems.SCYTHE_GOLD.get(), (IItemProvider)ECItems.SCYTHE_IRON.get(), (IItemProvider)ECItems.SCYTHE_WOOD.get(), (IItemProvider)ECItems.SCYTHE_NETHERITE.get() });
+        itemcolors.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, ECItems.IRON_TIPPED_ARROW.get(), ECItems.DIAMOND_TIPPED_ARROW.get(), ECItems.NETHERITE_TIPPED_ARROW.get());
+
+        for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
+            Item item = ro.get();
+            if (item instanceof ECWeaponItem.HasPotion) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack), item);
+            }
+            if (item instanceof ECWeaponItem.HasPotionAndIsDyeable) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer == 1) ? ((IDyeableArmorItem)stack.getItem()).getColor(stack): -1, item);
+            }
+            if (item instanceof ECWeaponItem.Dyeable) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : ((IDyeableArmorItem)stack.getItem()).getColor(stack), item);
+            }
+        }
     }
     
     private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
@@ -175,8 +185,8 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        SpecialItemModels.detectSpecials();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
+        SpecialItemModels.detectSpecials();
         this.registerEtityModels(event.getMinecraftSupplier());
     }
     

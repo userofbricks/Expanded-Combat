@@ -30,7 +30,7 @@ public class GoldMending
     public void MendingBonus( PlayerXpEvent.PickupXp event) {
          PlayerEntity entityIn = event.getPlayer();
          ExperienceOrbEntity thisxp = event.getOrb();
-         Map.Entry<EquipmentSlotType, ItemStack> entry = (Map.Entry<EquipmentSlotType, ItemStack>)EnchantmentHelper.getRandomItemWith(Enchantments.MENDING, (LivingEntity)entityIn, ItemStack::isDamaged);
+         Map.Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.MENDING, entityIn, ItemStack::isDamaged);
         if (entry != null) {
              ItemStack itemstack = entry.getValue();
             if (doesGoldMendingContainItem(itemstack)) {
@@ -55,8 +55,8 @@ public class GoldMending
     public static void handleToolTip( ItemTooltipEvent event) {
          ItemStack itemStack = event.getItemStack();
         if (doesGoldMendingContainItem(itemStack)) {
-             List<ITextComponent> list = (List<ITextComponent>)event.getToolTip();
-            list.add((ITextComponent)new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L)));
+             List<ITextComponent> list = event.getToolTip();
+            list.add(new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L)));
         }
     }
     

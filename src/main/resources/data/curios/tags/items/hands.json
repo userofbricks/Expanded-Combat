@@ -5,6 +5,10 @@
 	  "expanded_combat:diamond_gauntlet",
 	  "expanded_combat:gold_gauntlet",
 	  "expanded_combat:iron_gauntlet",
-	  "expanded_combat:leather_gauntlet"
+	  "expanded_combat:leather_gauntlet",
+	  "expanded_combat:steel_gauntlet",
+	  "expanded_combat:bronze_gauntlet",
+	  "expanded_combat:silver_gauntlet",
+	  "expanded_combat:lead_gauntlet"
 	]
 }

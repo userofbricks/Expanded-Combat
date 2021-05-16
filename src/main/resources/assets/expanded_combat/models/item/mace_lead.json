@@ -1,0 +1,7 @@
+{
+	"credit": "Made by Userofbricks",
+	"parent": "expanded_combat:item/bases/mace",
+	"textures": {
+		"head": "expanded_combat:item/mace_lead"
+	}
+}

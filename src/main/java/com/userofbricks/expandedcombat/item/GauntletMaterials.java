@@ -1,6 +1,10 @@
 package com.userofbricks.expandedcombat.item;
 
 import net.minecraft.item.*;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,7 +16,13 @@ public enum GauntletMaterials implements IGauntletMaterial
     diamond("diamond", 3, ItemTier.DIAMOND, ArmorMaterial.DIAMOND),
     gold("gold", ItemTier.WOOD.getUses(), 1, ItemTier.GOLD.getAttackDamageBonus(), ArmorMaterial.GOLD),
     iron("iron", 2, ItemTier.IRON, ArmorMaterial.IRON),
-    leather("leather", ItemTier.STONE.getUses(), 1, ItemTier.STONE.getAttackDamageBonus(), ArmorMaterial.LEATHER);
+    leather("leather", ItemTier.STONE.getUses(), 1, ItemTier.STONE.getAttackDamageBonus(), ArmorMaterial.LEATHER),
+    steel("steel", 482, 10, 2, 2.5f, getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), 1f, 0f),
+    bronze("bronze", 225, 12, 2, 2f, getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), 0.5f, 0f),
+    silver("silver", 325, 23, 2, 1f, getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), 0f, 0f),
+    lead("lead", 1761, 10, 3, 3f, getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterial.IRON.getEquipSound(), 1f, 0.5f),
+    ;
+
     
     private final String textureName;
     private final int durability;
@@ -24,13 +34,13 @@ public enum GauntletMaterials implements IGauntletMaterial
     private final float toughness;
     private final float knockback_resistance;
 
-    GauntletMaterials( String textureName,  int durability,  int enchantability,  int armorAmount,  float attackDamage,  Item repairItem,  SoundEvent equipSound,  float toughness,  float knockback_resistance) {
+    GauntletMaterials( String textureName,  int durability,  int enchantability,  int armorAmount,  float attackDamage,  Ingredient repairItem,  SoundEvent equipSound,  float toughness,  float knockback_resistance) {
         this.textureName = textureName;
         this.durability = durability;
         this.enchantability = enchantability;
         this.armorAmount = armorAmount;
         this.attackDamage = attackDamage;
-        this.repairItem = Ingredient.of(repairItem);
+        this.repairItem = repairItem;
         this.equipSound = equipSound;
         this.toughness = toughness;
         this.knockback_resistance = knockback_resistance;
@@ -101,5 +111,17 @@ public enum GauntletMaterials implements IGauntletMaterial
     @Override
     public float getKnockback_resistance() {
         return this.knockback_resistance;
+    }
+
+    public static boolean doesTagExist(String modid, String tagName) {
+        ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(modid, tagName));
+        return tag != null;
+    }
+
+    public static Ingredient getTagedIngredientOrEmpty(String modid, String tagName) {
+        if (doesTagExist(modid, tagName)) {
+            return Ingredient.of(ItemTags.getAllTags().getTagOrEmpty(new ResourceLocation(modid, tagName)));
+        }
+        return Ingredient.EMPTY;
     }
 }

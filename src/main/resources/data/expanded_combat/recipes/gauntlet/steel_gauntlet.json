@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"SS",
+		"S "
+	],
+	
+	"key":
+	{
+		"S": { "tag": "forge:ingots/steel" }
+	},
+	
+	"result": { "item": "expanded_combat:steel_gauntlet" }
+}
