@@ -3,6 +3,7 @@ package com.userofbricks.expandedcombat.events;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.item.Item;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
@@ -56,7 +57,7 @@ public class GoldMending
          ItemStack itemStack = event.getItemStack();
         if (doesGoldMendingContainItem(itemStack)) {
              List<ITextComponent> list = event.getToolTip();
-            list.add(new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L)));
+            list.add(0, new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
     }
     

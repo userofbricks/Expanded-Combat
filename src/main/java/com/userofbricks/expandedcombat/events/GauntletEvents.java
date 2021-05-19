@@ -1,33 +1,26 @@
 package com.userofbricks.expandedcombat.events;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.userofbricks.expandedcombat.ExpandedCombat;
-import com.userofbricks.expandedcombat.curios.GauntletCurio_Unused;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.Hand;
-import net.minecraft.util.HandSide;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Map;
+import java.util.Optional;
 
 import net.minecraft.util.text.StringTextComponent;
 import org.apache.commons.lang3.StringUtils;
-import net.minecraft.item.ItemStack;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Items;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.EnchantedBookItem;
 import com.userofbricks.expandedcombat.item.GauntletItem;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -169,6 +162,35 @@ public class GauntletEvents
     
     public static int getNewRepairCost(int oldRepairCost) {
         return oldRepairCost * 2 + 1;
+    }
+
+    @SubscribeEvent
+    public static void onEquipmentChange(final LivingEquipmentChangeEvent ev) {
+        if ((ev.getSlot() == EquipmentSlotType.MAINHAND || ev.getSlot() == EquipmentSlotType.OFFHAND) && ev.getEntityLiving() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity)ev.getEntityLiving();
+            ItemStack toStack = ev.getTo();
+            Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
+            ItemStack gauntlet = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+            if (gauntlet.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
+                if ((toStack.getItem() instanceof SwordItem || toStack.getItem() instanceof AxeItem)) {
+                    ((GauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
+                } else {
+                    ((GauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
+                }
+            }
+        }
+    }
+
+    //@SubscribeEvent
+    public static void DamageGauntletEvent(AttackEntityEvent event) {
+        PlayerEntity player = event.getPlayer();
+        Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
+        ItemStack stack = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+        CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
+            if (!player.isCreative() && stack.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
+                stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio((String)optionalImmutableTriple.get().getLeft(), (int)optionalImmutableTriple.get().getMiddle(), damager));
+            }
+        });
     }
 
 

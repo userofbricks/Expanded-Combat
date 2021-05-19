@@ -22,7 +22,12 @@ public enum WeaponTier implements IWeaponTier
     STEEL("steel", 482, 5.5f, 10, 0.0f, GauntletMaterials.steel::getRepairMaterial),
     BRONZE("bronze", 225, 4.5f, 10, 0.1f, GauntletMaterials.bronze::getRepairMaterial),
     SILVER("silver", 325, 5.0f, 23, 1.0f, GauntletMaterials.silver::getRepairMaterial),
-    LEAD("lead", 1761, 6.5f, 10, 0.1f, GauntletMaterials.lead::getRepairMaterial)
+    LEAD("lead", 1761, 6.5f, 10, 0.1f, GauntletMaterials.lead::getRepairMaterial),
+    //Twilight forest
+    IRONWOOD("ironwood", 512, 5f, 25, 1.5f, GauntletMaterials.ironwood::getRepairMaterial),
+    FIERY("fiery", 1024, 7f, 10, 0f, GauntletMaterials.fiery::getRepairMaterial),
+    STEELEAF("steeleaf", 131, 6f, 9, 0f, GauntletMaterials.steeleaf::getRepairMaterial),
+    KNIGHTLY("knightly", 512, 6f, 8, 0f, GauntletMaterials.knightly::getRepairMaterial)
     ;
     
     private final int maxUses;

@@ -49,12 +49,12 @@ abstract class CurioContainerMixin extends Container
                 if (identifier.equals("quiver")) {
                     final ICurioStacksHandler stackHandler = curioMap.get(identifier);
                     final IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-                    ((ContainerAccessor)this).$addSlot(new CurioSlot(this.player, iDynamicStackHandler, 0, identifier, 77, 20, stackHandler.getRenders()));
+                    ((ContainerAccessor)this).$addSlot(new CurioSlot(this.player, iDynamicStackHandler, 0, identifier, 77, 18, stackHandler.getRenders()));
                 }
                 if (identifier.equals("arrows")) {
                     final ICurioStacksHandler stackHandler = curioMap.get(identifier);
                     final IDynamicStackHandler iDynamicStackHandler = stackHandler.getStacks();
-                    ((ContainerAccessor)this).$addSlot(new CurioSlot(this.player, iDynamicStackHandler, 0, identifier, 77, 38, stackHandler.getRenders()));
+                    ((ContainerAccessor)this).$addSlot(new CurioSlot(this.player, iDynamicStackHandler, 0, identifier, 77, 36, stackHandler.getRenders()));
                 }
             }
         });

@@ -1,12 +1,8 @@
 package com.userofbricks.expandedcombat.item;
 
+import com.userofbricks.expandedcombat.util.ItemAndTagsUtil;
 import net.minecraft.item.*;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 
@@ -17,10 +13,18 @@ public enum GauntletMaterials implements IGauntletMaterial
     gold("gold", ItemTier.WOOD.getUses(), 1, ItemTier.GOLD.getAttackDamageBonus(), ArmorMaterial.GOLD),
     iron("iron", 2, ItemTier.IRON, ArmorMaterial.IRON),
     leather("leather", ItemTier.STONE.getUses(), 1, ItemTier.STONE.getAttackDamageBonus(), ArmorMaterial.LEATHER),
-    steel("steel", 482, 10, 2, 2.5f, getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), 1f, 0f),
-    bronze("bronze", 225, 12, 2, 2f, getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), 0.5f, 0f),
-    silver("silver", 325, 23, 2, 1f, getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), 0f, 0f),
-    lead("lead", 1761, 10, 3, 3f, getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterial.IRON.getEquipSound(), 1f, 0.5f),
+    steel("steel", 482, 10, 2, 2.5f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), 1f, 0f),
+    bronze("bronze", 225, 12, 2, 2f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), 0.5f, 0f),
+    silver("silver", 325, 23, 2, 1f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), 0f, 0f),
+    lead("lead", 1761, 10, 3, 3f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterial.IRON.getEquipSound(), 1f, 0.5f),
+    //twilight forest
+    naga("naga", 945, 15, 3, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "naga_scale"), SoundEvents.ARMOR_EQUIP_GENERIC, 0.5f, 0f),
+    ironwood("ironwood", 712, 20, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "ironwood_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 0f, 1f),
+    fiery("fiery", 1124, 10, 4, 4f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "fiery_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 1.5f, 0f),
+    steeleaf("steeleaf", 351, 9, 3, 4f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "steeleaf_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 0f, 0f),
+    knightly("knightly", 712, 8, 3, 3f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "knightmetal_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 1.0f, 0f),
+    yeti("yeti", 712, 15, 3, 2.5f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "alpha_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f),
+    artic("artic", 352, 8, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "arctic_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f)
     ;
 
     
@@ -47,7 +51,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     GauntletMaterials(String textureName, int armorAmount, IItemTier itemTier, IArmorMaterial armorMaterial) {
         this.textureName = textureName;
-        this.durability = itemTier.getUses();
+        this.durability = (int)(itemTier.getUses() * 1.5);
         this.enchantability = armorMaterial.getEnchantmentValue();
         this.armorAmount = armorAmount;
         this.attackDamage = itemTier.getAttackDamageBonus();
@@ -111,17 +115,5 @@ public enum GauntletMaterials implements IGauntletMaterial
     @Override
     public float getKnockback_resistance() {
         return this.knockback_resistance;
-    }
-
-    public static boolean doesTagExist(String modid, String tagName) {
-        ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(modid, tagName));
-        return tag != null;
-    }
-
-    public static Ingredient getTagedIngredientOrEmpty(String modid, String tagName) {
-        if (doesTagExist(modid, tagName)) {
-            return Ingredient.of(ItemTags.getAllTags().getTagOrEmpty(new ResourceLocation(modid, tagName)));
-        }
-        return Ingredient.EMPTY;
     }
 }

@@ -70,6 +70,13 @@
   "item.expanded_combat.bronze_gauntlet": "Bronze Gauntlet",
   "item.expanded_combat.silver_gauntlet": "Silver Gauntlet",
   "item.expanded_combat.lead_gauntlet": "Lead Gauntlet",
+  "item.expanded_combat.naga_gauntlet": "Naga Scale Gauntlet",
+  "item.expanded_combat.ironwood_gauntlet": "Ironwood Gauntlet",
+  "item.expanded_combat.fiery_gauntlet": "Fiery Gauntlet",
+  "item.expanded_combat.steeleaf_gauntlet": "Steeleaf Gauntlet",
+  "item.expanded_combat.knightly_gauntlet": "Knightmetal Gauntlet",
+  "item.expanded_combat.yeti_gauntlet": "Yeti Gauntlet",
+  "item.expanded_combat.artic_gauntlet": "Arctic Gauntlet",
   "enchantment.expanded_combat.knockback_resistance": "Knockback Resistance",
 
   "item.expanded_combat.iron_bow": "Iron Bow",
@@ -161,6 +168,10 @@
   "weapon_type.expanded_combat.scythe": "Scythe",
   "weapon_type.expanded_combat.sickle": "Sickle",
   "weapon_type.expanded_combat.spear": "Spear",
+
+  "tooltip.expanded_combat.fiery.weapon": "Burns targets",
+  "tooltip.expanded_combat.knightly.weapon": "Extra damage to armored targets",
+  "tooltip.expanded_combat.mending_bonus": "Mending Bonus",
 
   "item.expanded_combat.leather_stick": "Leather Stick",
   "item.expanded_combat.iron_stick": "Iron Stick",

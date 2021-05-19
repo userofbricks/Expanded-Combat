@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -12,6 +13,7 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -19,16 +21,28 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.Item;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class GauntletItem extends Item implements ICurioItem
@@ -43,8 +57,9 @@ public class GauntletItem extends Item implements ICurioItem
     private static final UUID ARMOR_UUID;
     private static final UUID KNOCKBACK_RESISTANCE_UUID;
     private static final UUID KNOCKBACK_UUID;
+    public Boolean hasWeaponInHand = false;
     
-    public GauntletItem(final IGauntletMaterial materialIn, final Item.Properties properties) {
+    public GauntletItem(IGauntletMaterial materialIn, Item.Properties properties) {
         super(properties.defaultDurability(materialIn.getDurability()));
         this.material = materialIn;
         this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getTextureName() + ".png");
@@ -63,6 +78,16 @@ public class GauntletItem extends Item implements ICurioItem
     public boolean isValidRepairItem(final ItemStack toRepair, final ItemStack repair) {
         return this.material.getRepairMaterial().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
+
+    public float getXpRepairRatio( ItemStack stack) {
+        return this.material == GauntletMaterials.gold ? 4.0f : 2.0f;
+    }
+
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
+        if (this.material == GauntletMaterials.gold) {
+            list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+        }
+    }
     
     public int getArmorAmount() {
         return this.armorAmount;
@@ -77,9 +102,19 @@ public class GauntletItem extends Item implements ICurioItem
     }
 
     @Override
-    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer)
-    {
+    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
         return stack.getItem() instanceof GauntletItem && ((GauntletItem) stack.getItem()).getMaterial() == GauntletMaterials.gold;
+    }
+
+    @Override
+    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
+        if (this.allowdedIn(tab)) {
+            ItemStack istack = new ItemStack(this);
+            if (this.getMaterial() == GauntletMaterials.steeleaf) {
+                istack.enchant(Enchantments.ALL_DAMAGE_PROTECTION, 2);
+            }
+            list.add(istack);
+        }
     }
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
@@ -92,14 +127,20 @@ public class GauntletItem extends Item implements ICurioItem
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof GauntletItem) {
             float attackDamage = ((GauntletItem)stack.getItem()).getAttackDamage();
+            float nagaDamage = ((GauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.naga ? (attackDamage/2.0f*3) : 0;
+            float yetiDamage = ((GauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.yeti ? (attackDamage/2.0f) : 0;
             int armorAmount = ((GauntletItem)stack.getItem()).getArmorAmount();
             float knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().getKnockback_resistance();
             float toughness = ((GauntletItem)stack.getItem()).getMaterial().getToughness();
-            atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(GauntletItem.ATTACK_UUID, "Attack damage bonus", (double)(attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack))), AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ARMOR, new AttributeModifier(GauntletItem.ARMOR_UUID, "Armor bonus", (double)armorAmount, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(GauntletItem.ARMOR_UUID, "Armor Toughness bonus", (double)toughness, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(GauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", (double)(knockbackResistance + EnchantmentHelper.getItemEnchantmentLevel((Enchantment) ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack) / 5.0f), AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(GauntletItem.KNOCKBACK_UUID, "Knockback bonus", (double)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
+            if (((GauntletItem) stack.getItem()).hasWeaponInHand) {
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(GauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
+            } else {
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(GauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage), AttributeModifier.Operation.ADDITION));
+            }
+            atts.put(Attributes.ARMOR, new AttributeModifier(GauntletItem.ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(GauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(GauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", (knockbackResistance + EnchantmentHelper.getItemEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack) / 5.0f), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(GauntletItem.KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }

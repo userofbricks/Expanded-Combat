@@ -6,12 +6,12 @@
 
 package com.userofbricks.expandedcombat;
 
+import com.userofbricks.expandedcombat.events.GauntletEvents;
 import com.userofbricks.expandedcombat.item.*;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.*;
 import net.minecraftforge.fml.RegistryObject;
-import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
-import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.fml.packs.ResourcePackLoader;
@@ -21,7 +21,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
-import net.minecraft.entity.EntityType;
+
 import java.util.function.Supplier;
 
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
@@ -41,7 +41,6 @@ import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.util.IItemProvider;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -53,14 +52,6 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraft.util.ResourceLocation;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import java.util.Optional;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -69,7 +60,6 @@ import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
-import java.util.function.Consumer;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -99,7 +89,7 @@ public class ExpandedCombat
         ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
-        MinecraftForge.EVENT_BUS.addListener(this::DamageGauntletEvent);
+        MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MinecraftForge.EVENT_BUS.addListener(this::drawSlotBack);
             bus.addListener(this::stitchTextures);
@@ -107,17 +97,6 @@ public class ExpandedCombat
             bus.addListener(this::itemColors);
         }
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    private void DamageGauntletEvent( AttackEntityEvent event) {
-         PlayerEntity player = event.getPlayer();
-         Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = (Optional<ImmutableTriple<String, Integer, ItemStack>>)CuriosApi.getCuriosHelper().findEquippedCurio((Predicate)ExpandedCombat.hands_predicate, (LivingEntity)player);
-         ItemStack stack = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> (ItemStack)stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-        CuriosApi.getCuriosHelper().getCuriosHandler((LivingEntity)player).ifPresent(iCurioItemHandler -> {
-            if (!player.isCreative() && stack.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
-                stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio((String)optionalImmutableTriple.get().getLeft(), (int)optionalImmutableTriple.get().getMiddle(), damager));
-            }
-        });
     }
     
     private void comms(InterModEnqueueEvent event) {
@@ -132,7 +111,7 @@ public class ExpandedCombat
              CuriosScreen curiosScreen = (CuriosScreen)e.getGuiContainer();
              int i = curiosScreen.getGuiLeft();
              int j = curiosScreen.getGuiTop();
-            curiosScreen.blit(e.getMatrixStack(), i + 77, j + 19, 7, 7, 18, 36);
+            curiosScreen.blit(e.getMatrixStack(), i + 76, j + 17, 7, 7, 18, 36);
         }
     }
     

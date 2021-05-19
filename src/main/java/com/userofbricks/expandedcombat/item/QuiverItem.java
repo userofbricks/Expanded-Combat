@@ -17,6 +17,6 @@ public class QuiverItem extends Item
     
     @Nullable
     public ICapabilityProvider initCapabilities(final ItemStack stack, @Nullable final CompoundNBT nbt) {
-        return CurioItemCapability.createProvider((ICurio)new QuiverCurio());
+        return CurioItemCapability.createProvider(new QuiverCurio());
     }
 }

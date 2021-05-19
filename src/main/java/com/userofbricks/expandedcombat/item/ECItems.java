@@ -63,6 +63,14 @@ public class ECItems
     public static final RegistryObject<Item> BRONZE_GAUNTLET = ITEMS.register("bronze_gauntlet", () -> new GauntletItem(GauntletMaterials.bronze, new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> SILVER_GAUNTLET = ITEMS.register("silver_gauntlet", () -> new GauntletItem(GauntletMaterials.silver, new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> LEAD_GAUNTLET = ITEMS.register("lead_gauntlet", () -> new GauntletItem(GauntletMaterials.lead, new Item.Properties().tab(EC_GROUP)));
+    //Twilight Forest
+    public static final RegistryObject<Item> NAGA_GAUNTLET = ITEMS.register("naga_gauntlet", () -> new GauntletItem(GauntletMaterials.naga, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> IRONWOOD_GAUNTLET = ITEMS.register("ironwood_gauntlet", () -> new GauntletItem(GauntletMaterials.ironwood, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> FIERY_GAUNTLET = ITEMS.register("fiery_gauntlet", () -> new GauntletItem(GauntletMaterials.fiery, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> STEELEAF_GAUNTLET = ITEMS.register("steeleaf_gauntlet", () -> new GauntletItem(GauntletMaterials.steeleaf, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> KNIGHTLY_GAUNTLET = ITEMS.register("knightly_gauntlet", () -> new GauntletItem(GauntletMaterials.knightly, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> YETI_GAUNTLET = ITEMS.register("yeti_gauntlet", () -> new GauntletItem(GauntletMaterials.yeti, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> ARTIC_GAUNTLET = ITEMS.register("artic_gauntlet", () -> new GauntletItem(GauntletMaterials.artic, new Item.Properties().tab(EC_GROUP)));
 
 
 

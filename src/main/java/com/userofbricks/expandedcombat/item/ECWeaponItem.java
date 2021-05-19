@@ -1,21 +1,22 @@
 package com.userofbricks.expandedcombat.item;
 
+import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.play.server.SAnimateHandPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Potions;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.util.*;
 import com.userofbricks.expandedcombat.util.CombatEventHandler;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.ITextComponent;
+
 import java.util.List;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -30,7 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.block.BlockState;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import java.util.Objects;
-import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.entity.ai.attributes.Attributes;
 import com.google.common.collect.ImmutableMultimap;
@@ -84,10 +85,11 @@ public class ECWeaponItem extends SwordItem
         this.weaponTier = tierIn;
         this.type = typeIn;
         this.AttackDamage = this.type.getBaseAttackDamage() + this.weaponTier.getAttackDamage();
+        float steeleafKnockback = this.weaponTier == WeaponTier.IRONWOOD ? 1f/5f : 0f;
          ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECWeaponItem.BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.AttackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ECWeaponItem.BASE_ATTACK_SPEED_UUID, "Weapon modifier", this.type.getBaseAttackSpead(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECWeaponItem.ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", this.type.getKnockback(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECWeaponItem.ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", this.type.getKnockback() + steeleafKnockback, AttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
     
@@ -133,18 +135,37 @@ public class ECWeaponItem extends SwordItem
             return 15.0f;
         }
          Material material = state.getMaterial();
-        return (material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.CORAL && !state.is((ITag)BlockTags.LEAVES) && material != Material.VEGETABLE) ? 1.0f : 1.5f;
+        return (material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.CORAL && !state.is(BlockTags.LEAVES) && material != Material.VEGETABLE) ? 1.0f : 1.5f;
     }
 
     @Override
-    public boolean hurtEnemy( ItemStack stack,  LivingEntity target,  LivingEntity attacker) {
-        stack.hurtAndBreak(1, attacker, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
-        return true;
+    public boolean hurtEnemy( ItemStack weapon,  LivingEntity target,  LivingEntity attacker) {
+        boolean result = super.hurtEnemy(weapon, target, attacker);
+        if (this.getWeaponTier() == WeaponTier.FIERY) {
+            if (result && !target.level.isClientSide && !target.fireImmune()) {
+                target.setRemainingFireTicks(15);
+            } else {
+                for (int var1 = 0; var1 < 20; ++var1) {
+                    double px = target.getX() + random.nextFloat() * target.getBbWidth() * 2.0F - target.getBbWidth();
+                    double py = target.getY() + random.nextFloat() * target.getBbHeight();
+                    double pz = target.getZ() + random.nextFloat() * target.getBbWidth() * 2.0F - target.getBbWidth();
+                    target.level.addParticle(ParticleTypes.FLAME, px, py, pz, 0.02, 0.02, 0.02);
+                }
+            }
+        } else if (this.getWeaponTier() == WeaponTier.KNIGHTLY && target.getArmorValue() > 0) {
+            // TODO scale bonus dmg with the amount of armor?
+            target.hurt(DamageSource.MAGIC, 2);
+            // don't prevent main damage from applying
+            target.hurtTime = 0;
+            // enchantment attack sparkles
+            ((ServerWorld) target.level).getChunkSource().broadcastAndSend(target, new SAnimateHandPacket(target, 5));
+        }
+        return result;
     }
 
     @Override
     public boolean mineBlock( ItemStack stack,  World worldIn,  BlockState state,  BlockPos pos,  LivingEntity entityLiving) {
-        if (state.getDestroySpeed((IBlockReader)worldIn, pos) != 0.0f) {
+        if (state.getDestroySpeed(worldIn, pos) != 0.0f) {
             stack.hurtAndBreak(2, entityLiving, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
         return true;
@@ -176,19 +197,23 @@ public class ECWeaponItem extends SwordItem
     
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText( ItemStack stack,  World world,  List<ITextComponent> list,  ITooltipFlag flag) {
-         float shieldMendingBonus = this.type.getTypeMendingBonus() + this.weaponTier.getMendingBonus();
-        if (shieldMendingBonus != 0.0f) {
-            if (shieldMendingBonus > 0.0f) {
-                list.add(new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(shieldMendingBonus)));
+        if (this.getWeaponTier() == WeaponTier.FIERY) {
+            list.add(new TranslationTextComponent("tooltip.expanded_combat.fiery.weapon"));
+        } else if (this.getWeaponTier() == WeaponTier.KNIGHTLY) {
+            list.add(new TranslationTextComponent("tooltip.expanded_combat.knightly.weapon"));
+        }
+        float mendingBonus = this.type.getTypeMendingBonus() + this.weaponTier.getMendingBonus();
+        if (mendingBonus != 0.0f) {
+            if (mendingBonus > 0.0f) {
+                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
             }
-            else if (shieldMendingBonus < 0.0f) {
-                list.add(new StringTextComponent(TextFormatting.RED + "Mending Bonus " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(shieldMendingBonus)));
+            else if (mendingBonus < 0.0f) {
+                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.RED).append(new StringTextComponent(TextFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
             }
         }
     }
 
     public ITextComponent getName(ItemStack stack) {
-        ECWeaponItem weapon = (ECWeaponItem) stack.getItem();
         return new TranslationTextComponent(this.getWeaponTier().getTierName()).append(" ").append(this.getWeaponType().getTypeName());
     }
     
@@ -200,6 +225,17 @@ public class ECWeaponItem extends SwordItem
         }
         return new ActionResult<>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
     }
+
+    @Override
+    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
+        if (allowdedIn(tab)) {
+            ItemStack istack = new ItemStack(this);
+            if (this.getWeaponTier() == WeaponTier.STEELEAF) {
+                istack.enchant(Enchantments.MOB_LOOTING, 2);
+            }
+            list.add(istack);
+        }
+    }
     
     public static class Dyeable extends ECWeaponItem implements IDyeableArmorItem
     {
@@ -207,22 +243,22 @@ public class ECWeaponItem extends SwordItem
             super(tierIn, typeIn, builderIn);
         }
     }
-    
+
     public static class HasPotion extends ECWeaponItem
     {
         public HasPotion( IWeaponTier tierIn,  IWeaponType typeIn,  Item.Properties builderIn) {
             super(tierIn, typeIn, builderIn);
         }
-        
+
         @Override
-        public boolean hurtEnemy( ItemStack stack,  LivingEntity target,  LivingEntity attacker) {
-            if (PotionUtils.getPotion(stack) != Potions.EMPTY) {
-                for ( EffectInstance effectInstance : PotionUtils.getPotion(stack).getEffects()) {
+        public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
+            if (PotionUtils.getPotion(weapon) != Potions.EMPTY) {
+                for ( EffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
                      EffectInstance potionEffect = new EffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2);
                     target.addEffect(potionEffect);
                 }
             }
-            return super.hurtEnemy(stack, target, attacker);
+            return super.hurtEnemy(weapon, target, attacker);
         }
     }
     
