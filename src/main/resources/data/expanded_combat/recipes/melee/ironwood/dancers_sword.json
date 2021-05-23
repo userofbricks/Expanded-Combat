@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"  A",
+		" S ",
+		"A  "
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:ironwood_sword" },
+		"S": { "item": "expanded_combat:gold_stick" }
+	},
+	
+	"result": { "item": "expanded_combat:dancers_sword_ironwood" }
+}

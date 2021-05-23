@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"  P",
+		" S "
+	],
+	
+	"key":
+	{
+		"P": { "item": "twilightforest:fiery_block" },
+		"S": { "item": "minecraft:stick" }
+	},
+	
+	"result": { "item": "expanded_combat:mace_fiery" }
+}

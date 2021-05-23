@@ -1,0 +1,12 @@
+{
+	"type": "expanded_combat:ec_fletching",
+	"base": {
+		"item": "expanded_combat:diamond_arrow"
+	},
+	"addition": {
+		"item": "minecraft:netherite_ingot"
+	},
+	"result": {
+		"item": "expanded_combat:netherite_arrow"
+	}
+}

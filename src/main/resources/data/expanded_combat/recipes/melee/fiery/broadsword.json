@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A ",
+		"ASA"
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:fiery_ingot" },
+		"S": { "item": "twilightforest:fiery_sword" }
+	},
+	
+	"result": { "item": "expanded_combat:broadsword_fiery" }
+}

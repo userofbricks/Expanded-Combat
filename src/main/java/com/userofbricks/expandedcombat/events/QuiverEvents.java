@@ -1,17 +1,32 @@
 package com.userofbricks.expandedcombat.events;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.inventory.container.FlechingTableContainer;
 import com.userofbricks.expandedcombat.item.QuiverItem;
 import com.userofbricks.expandedcombat.mixin.ContainerAccessor;
-import net.minecraft.entity.Entity;
+import io.netty.buffer.Unpooled;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.NetworkHooks;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -73,6 +88,38 @@ public class QuiverEvents {
             //player.onItemPickup(e.getItem(), beforeCount - afterCount);
             e.getItem().getItem().setCount(afterCount);
             player.level.playSound((PlayerEntity) null, e.getItem().getX(), e.getItem().getY(), e.getItem().getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2f, (QuiverEvents.rand.nextFloat() - QuiverEvents.rand.nextFloat()) * 0.7f + 0.0f);
+        }
+    }
+
+
+    private static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container." + ExpandedCombat.MODID + ".fletching");
+
+    @SubscribeEvent
+    public void onRightClickBlock(final PlayerInteractEvent.RightClickBlock event) {
+        final World world = event.getWorld();
+        final BlockPos pos = event.getPos();
+        if (world.getBlockState(pos).getBlock() == Blocks.FLETCHING_TABLE) {
+            //if (world.isClientSide) {
+                //event.setCancellationResult(ActionResultType.SUCCESS);
+                //event.setCanceled(true);
+            //} else {
+                final PlayerEntity player = event.getPlayer();
+                player.swing(Hand.MAIN_HAND, true);
+                if (player instanceof ServerPlayerEntity) {
+                    NetworkHooks.openGui((ServerPlayerEntity) player, new INamedContainerProvider() {
+                        public ITextComponent getDisplayName() {
+                            return CONTAINER_TITLE;
+                        }
+
+                        public Container createMenu(final int id, final PlayerInventory inventory, final PlayerEntity player) {
+                            return new FlechingTableContainer(id, inventory, new PacketBuffer(Unpooled.buffer()).writeBlockPos(pos));
+                        }
+                    }, pos);
+                    //player.openMenu(new SimpleNamedContainerProvider((i, playerInventory, playerEntity) -> new FlechingTableContainer(i, playerInventory, IWorldPosCallable.create(world, pos)), CONTAINER_TITLE));
+                    //event.setCancellationResult(ActionResultType.CONSUME);
+                    //event.setCanceled(true);
+                }
+            //}
         }
     }
 }

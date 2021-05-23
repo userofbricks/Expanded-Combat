@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"  S",
+		" A ",
+		"S  "
+	],
+	
+	"key":
+	{
+		"A": { "item": "minecraft:leather" },
+		"S": { "item": "twilightforest:steeleaf_ingot" }
+	},
+	
+	"result": { "item": "expanded_combat:battlestaff_steeleaf" }
+}

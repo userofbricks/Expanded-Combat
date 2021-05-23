@@ -1,36 +1,32 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item/sickle_wood"
+		"layer0": "expanded_combat:item/sickle_ironwood"
 	},
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 45],
-			"translation": [0, 4.5, 1.5],
-			"scale": [2, 2, 1]
+			"translation": [0, 4.5, 1.5]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, -45],
-			"translation": [0, 4.5, 1.5],
-			"scale": [2, 2, 1]
+			"translation": [0, 4.5, 1.5]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 90, 45],
-			"translation": [0, 3.5, 0],
-			"scale": [2, 2, 1]
+			"translation": [0, 3.5, 0]
 		},
 		"firstperson_lefthand": {
 			"rotation": [0, -90, -45],
-			"translation": [0, 3.5, 0],
-			"scale": [2, 2, 1]
+			"translation": [0, 3.5, 0]
 		},
-		"gui": {
-			"scale": [1.5, 1.5, 1.5]
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"fixed": {
-			"scale": [1.5, 1.5, 1.5]
+			"scale": [0.75, 0.75, 0.75]
 		}
 	}
 }

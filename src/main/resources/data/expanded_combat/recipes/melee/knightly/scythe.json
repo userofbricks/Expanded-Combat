@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"PA ",
+		" S "
+	],
+	
+	"key":
+	{
+		"P": { "item": "twilightforest:knightmetal_ingot" },
+		"A": { "item": "twilightforest:knightmetal_sword" },
+		"S": { "item": "expanded_combat:battlestaff_wood" }
+	},
+	
+	"result": { "item": "expanded_combat:scythe_knightmetal" }
+}

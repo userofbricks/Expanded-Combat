@@ -6,8 +6,11 @@
 
 package com.userofbricks.expandedcombat;
 
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
+import com.userofbricks.expandedcombat.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.item.*;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.*;
 import net.minecraftforge.fml.RegistryObject;
@@ -86,6 +89,7 @@ public class ExpandedCombat
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECItems.ITEMS.register(bus);
         RecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
+        ECContainers.CONTAINER_TYPES.register(bus);
         ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
@@ -164,6 +168,7 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
+        ScreenManager.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();
         this.registerEtityModels(event.getMinecraftSupplier());

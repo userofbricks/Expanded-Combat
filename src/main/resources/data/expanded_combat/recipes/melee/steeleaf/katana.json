@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"A",
+		"S"
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:steeleaf_ingot" },
+		"S": { "item": "expanded_combat:cutlass_steeleaf" }
+	},
+	
+	"result": { "item": "expanded_combat:katana_steeleaf" }
+}

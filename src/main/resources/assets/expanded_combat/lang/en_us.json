@@ -153,6 +153,10 @@
   "weapon_tier.expanded_combat.bronze": "Bronze",
   "weapon_tier.expanded_combat.silver": "Silver",
   "weapon_tier.expanded_combat.lead": "Lead",
+  "weapon_tier.expanded_combat.ironwood": "Ironwood",
+  "weapon_tier.expanded_combat.fiery": "Fiery",
+  "weapon_tier.expanded_combat.steeleaf": "Steeleaf",
+  "weapon_tier.expanded_combat.knightly": "Knightmetal",
 
   "weapon_type.expanded_combat.battlestaff": "Battlestaff",
   "weapon_type.expanded_combat.broadsword": "Broad Sword",
@@ -175,5 +179,12 @@
 
   "item.expanded_combat.leather_stick": "Leather Stick",
   "item.expanded_combat.iron_stick": "Iron Stick",
-  "item.expanded_combat.gold_stick": "Gold Stick"
+  "item.expanded_combat.gold_stick": "Gold Stick",
+
+  "advancements.expanded_combat.root.title": "Expanded Combat",
+  "advancements.expanded_combat.root.description": "",
+  "advancements.expanded_combat.gold_gauntlet.title": "The Power Glove",
+  "advancements.expanded_combat.gold_gauntlet.description": "Snap",
+  "advancements.expanded_combat.punch_and_sharpness.title": "Punch it!",
+  "advancements.expanded_combat.punch_and_sharpness.description": "Punch 2 Gauntlet"
 }

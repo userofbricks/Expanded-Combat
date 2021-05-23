@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A",
+		"S "
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:fiery_sword" },
+		"S": { "item": "expanded_combat:battlestaff_wood" }
+	},
+	
+	"result": { "item": "expanded_combat:glaive_fiery" }
+}

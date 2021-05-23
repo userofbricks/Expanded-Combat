@@ -1,0 +1,44 @@
+{
+  "parent": "expanded_combat:root",
+  "display": {
+    "icon": {
+      "item": "expanded_combat:netherite_gauntlet",
+      "nbt": "{StoredEnchantments:[{id:punch,lvl:2}]}"
+    },
+    "title": {
+      "translate": "advancements.expanded_combat.punch_and_sharpness.title"
+    },
+    "description": {
+      "translate": "advancements.expanded_combat.punch_and_sharpness.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gauntlet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "expanded_combat:gauntlets",
+            "enchantments": [
+              {
+                "enchantment": "minecraft:punch",
+                "levels": {
+                  "min": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gauntlet"
+    ]
+  ]
+}

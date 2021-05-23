@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A ",
+		"ASA"
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:ironwood_ingot" },
+		"S": { "item": "twilightforest:ironwood_sword" }
+	},
+	
+	"result": { "item": "expanded_combat:broadsword_ironwood" }
+}

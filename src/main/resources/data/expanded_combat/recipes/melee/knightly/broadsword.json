@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		" A ",
+		"ASA"
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:knightmetal_ingot" },
+		"S": { "item": "twilightforest:knightmetal_sword" }
+	},
+	
+	"result": { "item": "expanded_combat:broadsword_knightmetal" }
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"A",
+		"S"
+	],
+	
+	"key":
+	{
+		"A": { "item": "twilightforest:knightmetal_ingot" },
+		"S": { "item": "expanded_combat:iron_stick" }
+	},
+	
+	"result": { "item": "expanded_combat:dagger_knightmetal" }
+}

@@ -1,7 +1,8 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/flail",
+	"parent": "expanded_combat:item/bases/flail_external_material",
 	"textures": {
-		"head": "expanded_combat:item/flail_oak_wood"
+		"head": "expanded_combat:item/flail",
+		"particle": "block/oak_log"
 	}
 }
