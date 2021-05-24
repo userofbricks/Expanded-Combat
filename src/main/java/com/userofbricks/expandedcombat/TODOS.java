@@ -10,4 +10,13 @@ public class TODOS {
         this will allow acsess to far more powerfull enchantment capabilities but at a much higher cost (lapis Blocks instead of the item)
         the upgraded bookshelves will be togleable to allow acces to normal enchantments
      */
+    /* TODO
+        Create a wiki:
+        1. a page for weapons and there abilities
+        2. a page for bows, arrows, and quivers
+        3. a page for Shields with examples as to how to get to certain types of shields
+        4. a page containing Compatibility
+            4.1 list all the different types of Item tags itroduced with this mod
+            4.2 fletching recipies
+     */
 }

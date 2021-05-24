@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"SS",
+		"S "
+	],
+	
+	"key":
+	{
+		"S": { "item": "twilightforest:alpha_fur" }
+	},
+	
+	"result": { "item": "expanded_combat:yeti_gauntlet" }
+}
