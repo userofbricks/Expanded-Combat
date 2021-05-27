@@ -188,7 +188,7 @@ public class ECWeaponItem extends SwordItem
 
     @Override
     public boolean isValidRepairItem( ItemStack toRepair,  ItemStack repair) {
-        return this.weaponTier.getRepairMaterial().test(repair) || super.isValidRepairItem(toRepair, repair);
+        return this.weaponTier.getRepairMaterial().test(repair);
     }
     
     public float getXpRepairRatio( ItemStack stack) {
