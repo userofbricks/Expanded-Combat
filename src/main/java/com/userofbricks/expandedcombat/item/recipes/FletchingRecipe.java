@@ -56,8 +56,13 @@ public class FletchingRecipe implements IFletchingRecipe {
    }
 
    @Override
-   public Ingredient getInput() {
+   public Ingredient getBase() {
       return this.base;
+   }
+
+   @Override
+   public Ingredient getAddition() {
+      return this.addition;
    }
 
    public boolean isAdditionIngredient(ItemStack p_241456_1_) {

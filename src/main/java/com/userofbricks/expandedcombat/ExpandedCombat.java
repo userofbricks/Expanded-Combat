@@ -8,6 +8,7 @@ package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
+import com.userofbricks.expandedcombat.events.QuiverEvents;
 import com.userofbricks.expandedcombat.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.item.*;
 import net.minecraft.client.gui.ScreenManager;
@@ -70,6 +71,7 @@ import java.util.function.Predicate;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraftforge.fml.common.Mod;
+import top.theillusivec4.curios.common.event.CuriosEventHandler;
 
 @Mod("expanded_combat")
 public class ExpandedCombat
@@ -94,6 +96,7 @@ public class ExpandedCombat
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
+        MinecraftForge.EVENT_BUS.register(new QuiverEvents());
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MinecraftForge.EVENT_BUS.addListener(this::drawSlotBack);
             bus.addListener(this::stitchTextures);

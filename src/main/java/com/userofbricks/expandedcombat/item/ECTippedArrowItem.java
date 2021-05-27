@@ -43,7 +43,7 @@ public class ECTippedArrowItem extends ECArrowItem
     
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(final ItemStack stack, @Nullable final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
-        PotionUtils.addPotionTooltip(stack, (List)tooltip, 0.125f);
+        PotionUtils.addPotionTooltip(stack, tooltip, 0.125f);
     }
 
     public ITextComponent getName(ItemStack stack) {

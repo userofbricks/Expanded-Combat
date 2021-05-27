@@ -19,6 +19,7 @@ public class RecipeSerializerInit
     public static final RegistryObject<IRecipeSerializer<?>> EC_TIPPED_ARROW_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_arrow", () -> new SpecialRecipeSerializer<>(ECTippedArrowRecipe::new));
     public static final RegistryObject<IRecipeSerializer<?>> EC_POTION_WEAPON_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_potion_weapon", () -> new SpecialRecipeSerializer<>(ECScytheRecipe::new));
     public static final RegistryObject<IRecipeSerializer<?>> EC_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching", FletchingRecipe.Serializer::new);
+    public static final RegistryObject<IRecipeSerializer<?>> EC_SPECIAL_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_fletching", () -> new SpecialFletchingRecipe.SpecialFletchingRecipeSerializer<>(TippedArrowFletchingRecipe::new));
 
 
     static <T extends IRecipe<?>> IRecipeType<T> register(final String p_222147_0_) {

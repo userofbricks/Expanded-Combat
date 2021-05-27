@@ -27,7 +27,9 @@ public interface IFletchingRecipe extends IRecipe<IInventory> {
         return width * height >= 2;
     }
 
-    Ingredient getInput();
+    Ingredient getBase();
+
+    Ingredient getAddition();
 
     boolean isAdditionIngredient(ItemStack p_241456_1_);
 }

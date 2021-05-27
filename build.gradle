@@ -131,12 +131,6 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories{
 
-    /*maven {
-        name = "CurseForge"
-        url = "https://www.cursemaven.com"
-    }
-     */
-
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
@@ -148,23 +142,21 @@ repositories{
         url = "https://modmaven.k-4u.nl"
     }
 
-    maven { url = "https://repo.spongepowered.org/maven" }
-
-    //maven { url 'https://repo.repsy.io/mvn/gandiber/geckolib' }
-
     jcenter()
     mavenCentral()
     maven { url = "https://maven.theillusivec4.top/" }
 
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${forge_version}" //21
-
-    //compile 'org.spongepowered:mixin:0.8.2'
-
-    //compile fg.deobf('curse.maven:obfuscate-289380:3169370')
-    //implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.13')
+    minecraft "net.minecraftforge:forge:${forge_version}"
 
     compile fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
@@ -172,7 +164,6 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
-
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

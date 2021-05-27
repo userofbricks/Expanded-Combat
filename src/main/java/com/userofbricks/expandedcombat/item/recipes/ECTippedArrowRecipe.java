@@ -58,9 +58,9 @@ public class ECTippedArrowRecipe extends SpecialRecipe
         if (!this.areArrowTypesEqual(inv)) {
             return ItemStack.EMPTY;
         }
-        final ItemStack itemstack2 = new ItemStack((IItemProvider)((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow(), 8);
+        final ItemStack itemstack2 = new ItemStack(((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow(), 8);
         PotionUtils.setPotion(itemstack2, PotionUtils.getPotion(itemstack));
-        PotionUtils.setCustomEffects(itemstack2, (Collection)PotionUtils.getCustomEffects(itemstack));
+        PotionUtils.setCustomEffects(itemstack2, PotionUtils.getCustomEffects(itemstack));
         return itemstack2;
     }
     

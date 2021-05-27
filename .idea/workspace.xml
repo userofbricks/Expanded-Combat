@@ -5,15 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="finished the twilight forest compat. working on adding some fletching table functionality.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/artic_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/fiery_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/ironwood_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/knightly_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/naga_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/steeleaf_gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/yeti_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/SpecialFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/TippedArrowFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/BaseFletchingRecipeCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/CategoryRecipeValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/ECFletchingTippedArrowRecipeMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/ECRecipes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/ECScytheRecipeMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/ECTippedArrowRecipeMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/ExpandedCombatJEIPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/GauntletAnvilRecipeMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/jei/PotionSubtypeInterpreter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/FletchingTableBlockMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/fletching.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/fletching.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/fletching.xcf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows/tipped_arrows_fletching.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/TODOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/TODOS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/ArrowCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/ArrowCurio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/QuiverEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/FlechingTableContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/FlechingTableContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECTippedArrowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECTippedArrowItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECTippedArrowRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECTippedArrowRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows/diamond_arrow.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows/diamond_arrow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows/netherite_arrow.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +138,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -118,11 +146,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container" />
+      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/melee" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item" />
@@ -131,6 +159,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.jei" />
       <recent name="com.userofbricks.expandedcombat.item.recipes" />
       <recent name="com.userofbricks.expandedcombat.util" />
       <recent name="com.userofbricks.expandedcombat" />
@@ -259,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621808933385</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished the twilight forest compat. working on adding some fletching table functionality.">
+      <created>1621816795933</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621816795933</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

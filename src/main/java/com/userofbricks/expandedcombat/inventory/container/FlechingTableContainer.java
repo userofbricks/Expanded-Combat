@@ -12,6 +12,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -33,7 +34,7 @@ public class FlechingTableContainer extends AbstractRepairContainer {
     }
 
     public FlechingTableContainer(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
-       this(i, playerInventory, (IWorldPosCallable) (Minecraft.getInstance().level != null ? Minecraft.getInstance().level : IWorldPosCallable.NULL));
+       this(i, playerInventory, IWorldPosCallable.NULL);
     }
 
     @Override
