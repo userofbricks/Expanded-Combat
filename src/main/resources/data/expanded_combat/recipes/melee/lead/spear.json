@@ -1,5 +1,18 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:not",
+					"value": {
+						"type": "forge:tag_empty",
+						"tag": "forge:ingots/lead"
+					}
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
 	
 	"pattern":
 	[
@@ -14,4 +27,7 @@
 	},
 	
 	"result": { "item": "expanded_combat:spear_lead" }
+			}
+		}
+	]
 }

@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat.mixin;
 
-import com.userofbricks.expandedcombat.item.QuiverItem;
+import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ArrowItem;
@@ -29,12 +30,11 @@ public abstract class AbstractArrowEntityMixin {
 	public void playerTouch(PlayerEntity p_70100_1_) {
 		if (!((AbstractArrowEntity)(Object)this).level.isClientSide && (this.inGround || ((AbstractArrowEntity)(Object)this).isNoPhysics()) && ((AbstractArrowEntity)(Object)this).shakeTime <= 0) {
 			boolean flag;
-			ItemStack arrowStack = CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof ArrowItem,p_70100_1_)
+			ItemStack arrowStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate,p_70100_1_)
 					.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-			ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof QuiverItem,p_70100_1_)
+			ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate,p_70100_1_)
 					.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
 			if(arrowStack.getItem() == this.getPickupItem().getItem() && arrowStack.getCount() < 64 && !quiverStack.isEmpty()) {
-				//TODO add multislot support possibly change the arrow stack to a stack list and search the stacks
 				arrowStack.setCount(arrowStack.getCount()+ 1);
 				((AbstractArrowEntity)(Object)this).remove();
 				return;

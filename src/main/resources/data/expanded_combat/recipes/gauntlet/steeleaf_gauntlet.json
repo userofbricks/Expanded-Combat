@@ -1,16 +1,28 @@
 {
-	"type": "minecraft:crafting_shaped",
-	
-	"pattern":
-	[
-		"SS",
-		"S "
-	],
-	
-	"key":
-	{
-		"S": { "item": "twilightforest:steeleaf_ingot" }
-	},
-	
-	"result": { "item": "expanded_combat:steeleaf_gauntlet" }
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "twilightforest"
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
+				"pattern": [
+					"SS",
+					"S "
+				],
+				"key": {
+					"S": {
+						"item": "twilightforest:steeleaf_ingot"
+					}
+				},
+				"result": {
+					"item": "expanded_combat:steeleaf_gauntlet"
+				}
+			}
+		}
+	]
 }

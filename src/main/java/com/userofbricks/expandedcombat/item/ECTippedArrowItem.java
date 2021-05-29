@@ -7,8 +7,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import java.util.Iterator;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.util.NonNullList;
@@ -22,8 +20,8 @@ import net.minecraft.item.Item;
 
 public class ECTippedArrowItem extends ECArrowItem
 {
-    public ECTippedArrowItem(final int damageIn, final ArrowType arrowModel, final Item.Properties builder) {
-        super(damageIn, arrowModel, builder);
+    public ECTippedArrowItem(final ArrowType arrowModel, final Item.Properties builder) {
+        super(arrowModel, builder);
     }
     
     @OnlyIn(Dist.CLIENT)

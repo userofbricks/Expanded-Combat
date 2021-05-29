@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import com.userofbricks.expandedcombat.item.GauntletItem;
+import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -31,7 +31,7 @@ public class GauntletEvents
         final ItemStack left = event.getLeft();
         final ItemStack right = event.getRight();
         final ItemStack output = left;
-        if (left.getItem() instanceof GauntletItem && (right.getItem() instanceof EnchantedBookItem || left.getItem() == right.getItem())) {
+        if (left.getItem() instanceof ECGauntletItem && (right.getItem() instanceof EnchantedBookItem || left.getItem() == right.getItem())) {
             int xpCost = 0;
             int nameCost = 0;
             int maximumCost = event.getCost();
@@ -171,11 +171,11 @@ public class GauntletEvents
             ItemStack toStack = ev.getTo();
             Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
             ItemStack gauntlet = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-            if (gauntlet.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
+            if (gauntlet.getItem() instanceof ECGauntletItem && optionalImmutableTriple.isPresent()) {
                 if ((toStack.getItem() instanceof SwordItem || toStack.getItem() instanceof AxeItem)) {
-                    ((GauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
+                    ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
                 } else {
-                    ((GauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
+                    ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
                 }
             }
         }
@@ -187,7 +187,7 @@ public class GauntletEvents
         Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
         ItemStack stack = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
-            if (!player.isCreative() && stack.getItem() instanceof GauntletItem && optionalImmutableTriple.isPresent()) {
+            if (!player.isCreative() && stack.getItem() instanceof ECGauntletItem && optionalImmutableTriple.isPresent()) {
                 stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio((String)optionalImmutableTriple.get().getLeft(), (int)optionalImmutableTriple.get().getMiddle(), damager));
             }
         });

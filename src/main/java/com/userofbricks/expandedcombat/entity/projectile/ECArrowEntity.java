@@ -31,6 +31,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 
+import javax.annotation.Nonnull;
+
 public class ECArrowEntity extends AbstractArrowEntity
 {
     private static final DataParameter<Integer> COLOR;
@@ -39,34 +41,34 @@ public class ECArrowEntity extends AbstractArrowEntity
     private boolean fixedColor;
     private ArrowType arrowType;
     
-    public ECArrowEntity(final EntityType<? extends ECArrowEntity> p_i50172_1_, final World p_i50172_2_) {
+    public ECArrowEntity(EntityType<? extends ECArrowEntity> p_i50172_1_, World p_i50172_2_) {
         super(p_i50172_1_, p_i50172_2_);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
     
-    public ECArrowEntity(final World worldIn, final double x, final double y, final double z) {
+    public ECArrowEntity(World worldIn, double x, double y, double z) {
         super(ECEntities.EC_ARROW_ENTITY.get(), x, y, z, worldIn);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
     
-    public ECArrowEntity(final World worldIn, final LivingEntity shooter) {
+    public ECArrowEntity(World worldIn, LivingEntity shooter) {
         super(ECEntities.EC_ARROW_ENTITY.get(), shooter, worldIn);
         this.potion = Potions.EMPTY;
         this.arrowType = ArrowType.IRON;
     }
     
-    public void setPotionEffect(final ItemStack stack) {
+    public void setPotionEffect(ItemStack stack) {
         if (stack.getItem() == this.arrowType.getTippedArrow()) {
             this.potion = PotionUtils.getPotion(stack);
-            final Collection<EffectInstance> collection = (Collection<EffectInstance>)PotionUtils.getCustomEffects(stack);
+            Collection<EffectInstance> collection = PotionUtils.getCustomEffects(stack);
             if (!collection.isEmpty()) {
-                for (final EffectInstance effectinstance : collection) {
+                for (EffectInstance effectinstance : collection) {
                     this.customPotionEffects.add(new EffectInstance(effectinstance));
                 }
             }
-            final int i = getCustomColor(stack);
+            int i = getCustomColor(stack);
             if (i == -1) {
                 this.refreshColor();
             }
@@ -77,33 +79,33 @@ public class ECArrowEntity extends AbstractArrowEntity
         else if (stack.getItem() == this.arrowType.getArrow()) {
             this.potion = Potions.EMPTY;
             this.customPotionEffects.clear();
-            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
+            this.entityData.set(ECArrowEntity.COLOR, -1);
         }
     }
     
-    public static int getCustomColor(final ItemStack itemStack) {
-        final CompoundNBT compoundnbt = itemStack.getTag();
+    public static int getCustomColor(ItemStack itemStack) {
+        CompoundNBT compoundnbt = itemStack.getTag();
         return (compoundnbt != null && compoundnbt.contains("CustomPotionColor", 99)) ? compoundnbt.getInt("CustomPotionColor") : -1;
     }
     
     private void refreshColor() {
         this.fixedColor = false;
         if (this.potion == Potions.EMPTY && this.customPotionEffects.isEmpty()) {
-            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
+            this.entityData.set(ECArrowEntity.COLOR, -1);
         }
         else {
-            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)PotionUtils.getColor((Collection)PotionUtils.getAllEffects(this.potion, (Collection)this.customPotionEffects)));
+            this.entityData.set(ECArrowEntity.COLOR, PotionUtils.getColor(PotionUtils.getAllEffects(this.potion, this.customPotionEffects)));
         }
     }
     
-    public void addEffect(final EffectInstance effect) {
+    public void addEffect(EffectInstance effect) {
         this.customPotionEffects.add(effect);
-        this.getEntityData().set((DataParameter)ECArrowEntity.COLOR, (Object)PotionUtils.getColor((Collection)PotionUtils.getAllEffects(this.potion, (Collection)this.customPotionEffects)));
+        this.getEntityData().set(ECArrowEntity.COLOR, PotionUtils.getColor(PotionUtils.getAllEffects(this.potion, this.customPotionEffects)));
     }
     
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
+        this.entityData.define(ECArrowEntity.COLOR, (-1));
     }
     
     public void tick() {
@@ -122,32 +124,32 @@ public class ECArrowEntity extends AbstractArrowEntity
             this.level.broadcastEntityEvent((Entity)this, (byte)0);
             this.potion = Potions.EMPTY;
             this.customPotionEffects.clear();
-            this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)(-1));
+            this.entityData.set(ECArrowEntity.COLOR, (-1));
         }
     }
     
-    private void spawnPotionParticles(final int particleCount) {
-        final int i = this.getColor();
+    private void spawnPotionParticles(int particleCount) {
+        int i = this.getColor();
         if (i != -1 && particleCount > 0) {
-            final double d0 = (i >> 16 & 0xFF) / 255.0;
-            final double d2 = (i >> 8 & 0xFF) / 255.0;
-            final double d3 = (i & 0xFF) / 255.0;
+            double d0 = (i >> 16 & 0xFF) / 255.0;
+            double d2 = (i >> 8 & 0xFF) / 255.0;
+            double d3 = (i & 0xFF) / 255.0;
             for (int j = 0; j < particleCount; ++j) {
-                this.level.addParticle((IParticleData)ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
+                this.level.addParticle(ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
             }
         }
     }
     
     public int getColor() {
-        return (int)this.entityData.get((DataParameter)ECArrowEntity.COLOR);
+        return this.entityData.get(ECArrowEntity.COLOR);
     }
     
-    private void setFixedColor(final int p_191507_1_) {
+    private void setFixedColor(int p_191507_1_) {
         this.fixedColor = true;
-        this.entityData.set((DataParameter)ECArrowEntity.COLOR, (Object)p_191507_1_);
+        this.entityData.set(ECArrowEntity.COLOR, p_191507_1_);
     }
     
-    public void addAdditionalSaveData(final CompoundNBT compound) {
+    public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         if (this.potion != Potions.EMPTY && this.potion != null) {
             compound.putString("Potion", Registry.POTION.getKey(this.potion).toString());
@@ -156,22 +158,22 @@ public class ECArrowEntity extends AbstractArrowEntity
             compound.putInt("Color", this.getColor());
         }
         if (!this.customPotionEffects.isEmpty()) {
-            final ListNBT listnbt = new ListNBT();
+            ListNBT listnbt = new ListNBT();
             for(EffectInstance effectinstance : this.customPotionEffects) {
                 listnbt.add(effectinstance.save(new CompoundNBT()));
             }
-            compound.put("CustomPotionEffects", (INBT)listnbt);
+            compound.put("CustomPotionEffects", listnbt);
         }
-        final CompoundNBT arrowTypenbt = new CompoundNBT();
+        CompoundNBT arrowTypenbt = new CompoundNBT();
         compound.putString("ArrowType", this.arrowType.name());
     }
     
-    public void readAdditionalSaveData(final CompoundNBT compound) {
+    public void readAdditionalSaveData(@Nonnull CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Potion", 8)) {
             this.potion = PotionUtils.getPotion(compound);
         }
-        for (final EffectInstance effectinstance : PotionUtils.getCustomEffects(compound)) {
+        for (EffectInstance effectinstance : PotionUtils.getCustomEffects(compound)) {
             this.addEffect(effectinstance);
         }
         if (compound.contains("Color", 99)) {
@@ -181,30 +183,31 @@ public class ECArrowEntity extends AbstractArrowEntity
             this.refreshColor();
         }
         if (compound.contains("ArrowType")) {
-            final String type = compound.getString("ArrowType");
+            String type = compound.getString("ArrowType");
             this.arrowType = ArrowType.valueOf(type);
         }
     }
     
-    protected void doPostHurtEffects(final LivingEntity living) {
+    protected void doPostHurtEffects(@Nonnull LivingEntity living) {
         super.doPostHurtEffects(living);
-        for (final EffectInstance effectinstance : this.potion.getEffects()) {
+        for (EffectInstance effectinstance : this.potion.getEffects()) {
             living.addEffect(new EffectInstance(effectinstance.getEffect(), Math.max(effectinstance.getDuration() / 8, 1), effectinstance.getAmplifier(), effectinstance.isAmbient(), effectinstance.isVisible()));
         }
         if (!this.customPotionEffects.isEmpty()) {
-            for (final EffectInstance effectinstance2 : this.customPotionEffects) {
+            for (EffectInstance effectinstance2 : this.customPotionEffects) {
                 living.addEffect(effectinstance2);
             }
         }
     }
     
+    @Nonnull
     protected ItemStack getPickupItem() {
         if (this.customPotionEffects.isEmpty() && this.potion == Potions.EMPTY) {
-            return new ItemStack((IItemProvider)this.arrowType.getArrow());
+            return new ItemStack(this.arrowType.getArrow());
         }
-        final ItemStack itemstack = new ItemStack((IItemProvider)this.arrowType.getTippedArrow());
+        ItemStack itemstack = new ItemStack(this.arrowType.getTippedArrow());
         PotionUtils.setPotion(itemstack, this.potion);
-        PotionUtils.setCustomEffects(itemstack, (Collection)this.customPotionEffects);
+        PotionUtils.setCustomEffects(itemstack, this.customPotionEffects);
         if (this.fixedColor) {
             itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
         }
@@ -212,15 +215,15 @@ public class ECArrowEntity extends AbstractArrowEntity
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void handleEntityEvent(final byte id) {
+    public void handleEntityEvent(byte id) {
         if (id == 0) {
-            final int i = this.getColor();
+            int i = this.getColor();
             if (i != -1) {
-                final double d0 = (i >> 16 & 0xFF) / 255.0;
-                final double d2 = (i >> 8 & 0xFF) / 255.0;
-                final double d3 = (i & 0xFF) / 255.0;
+                double d0 = (i >> 16 & 0xFF) / 255.0;
+                double d2 = (i >> 8 & 0xFF) / 255.0;
+                double d3 = (i & 0xFF) / 255.0;
                 for (int j = 0; j < 20; ++j) {
-                    this.level.addParticle((IParticleData)ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
+                    this.level.addParticle(ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), d0, d2, d3);
                 }
             }
         }
@@ -233,15 +236,16 @@ public class ECArrowEntity extends AbstractArrowEntity
         return this.arrowType;
     }
     
-    public void setArrowType(final ArrowType arrowType) {
+    public void setArrowType(ArrowType arrowType) {
         this.arrowType = arrowType;
     }
     
+    @Nonnull
     public IPacket<?> getAddEntityPacket() {
-        return (IPacket<?>)NetworkHooks.getEntitySpawningPacket((Entity)this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
     
     static {
-        COLOR = EntityDataManager.defineId((Class)ECArrowEntity.class, DataSerializers.INT);
+        COLOR = EntityDataManager.defineId(ECArrowEntity.class, DataSerializers.INT);
     }
 }

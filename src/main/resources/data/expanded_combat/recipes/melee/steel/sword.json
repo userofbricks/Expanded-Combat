@@ -1,0 +1,33 @@
+{
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:not",
+					"value": {
+						"type": "forge:tag_empty",
+						"tag": "forge:ingots/steel"
+					}
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
+				"pattern": [
+					"S",
+					"S",
+					"A"
+				],
+				"key": {
+					"A": {
+						"item": "minecraft:stick"
+					},
+					"S": {
+						"tag": "forge:ingots/steel"
+					}
+				},
+				"result": {
+					"item": "expanded_combat:sword_steel"
+				}
+			}
+		}]}

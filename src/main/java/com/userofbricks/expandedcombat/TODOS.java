@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat;
 
 public class TODOS {
     /* TODO
-        anchantment idea:
+        enchantment idea:
         ad an upgraded form of enchanting space.
         don't change the enchanting block
         add instead bookshelf replacements
@@ -32,8 +32,6 @@ public class TODOS {
         add a button keybind that changes the current slot from which arrows will be used first
      */
     /* TODO
-        add quiver container (bag) capabilities.
-        when a quiver with arrows in it is clicked without sneaking it will transfer all its arrows into the arrows slots and itself into the quiver slot if no quiver exists.
-        if the player sneaks and clicks it will open a gui for the quiver into which arrows can be transfered.
+        ther is a crash on load bug on GitHub
      */
 }

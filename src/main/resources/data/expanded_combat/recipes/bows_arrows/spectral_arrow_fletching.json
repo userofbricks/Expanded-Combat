@@ -1,0 +1,12 @@
+{
+	"type": "expanded_combat:ec_fletching",
+	"base": {
+		"item": "minecraft:arrow"
+	},
+	"addition": {
+		"item": "minecraft:glowstone"
+	},
+	"result": {
+		"item": "minecraft:spectral_arrow"
+	}
+}

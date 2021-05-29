@@ -1,5 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "twilightforest"
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
 	
 	"pattern":
 	[
@@ -13,5 +23,8 @@
 		"S": { "item": "twilightforest:knightmetal_sword" }
 	},
 	
-	"result": { "item": "expanded_combat:broadsword_knightmetal" }
+	"result": { "item": "expanded_combat:broadsword_knightly" }
+			}
+		}
+	]
 }

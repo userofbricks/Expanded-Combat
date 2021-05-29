@@ -13,6 +13,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     gold("gold", ItemTier.WOOD.getUses(), 1, ItemTier.GOLD.getAttackDamageBonus(), ArmorMaterial.GOLD),
     iron("iron", 2, ItemTier.IRON, ArmorMaterial.IRON),
     leather("leather", ItemTier.STONE.getUses(), 1, ItemTier.STONE.getAttackDamageBonus(), ArmorMaterial.LEATHER),
+    //mod compat
     steel("steel", 482, 10, 2, 2.5f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), 1f, 0f),
     bronze("bronze", 225, 12, 2, 2f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), 0.5f, 0f),
     silver("silver", 325, 23, 2, 1f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), 0f, 0f),
@@ -24,7 +25,9 @@ public enum GauntletMaterials implements IGauntletMaterial
     steeleaf("steeleaf", 351, 9, 3, 4f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "steeleaf_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 0f, 0f),
     knightly("knightly", 712, 8, 3, 3f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "knightmetal_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 1.0f, 0f),
     yeti("yeti", 712, 15, 3, 2.5f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "alpha_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f),
-    artic("artic", 352, 8, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "arctic_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f)
+    artic("artic", 352, 8, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "arctic_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f),
+    //enderite plus
+    enderite("enderite", 3000, 15, 4, 5f, ItemAndTagsUtil.getItemOrEmpty("enderiteplus", "enderite_ingot"), SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0f, 2.5f),
     ;
 
     
@@ -51,7 +54,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     GauntletMaterials(String textureName, int armorAmount, IItemTier itemTier, IArmorMaterial armorMaterial) {
         this.textureName = textureName;
-        this.durability = (int)(itemTier.getUses() * 1.5);
+        this.durability = itemTier.getUses();
         this.enchantability = armorMaterial.getEnchantmentValue();
         this.armorAmount = armorAmount;
         this.attackDamage = itemTier.getAttackDamageBonus();

@@ -35,6 +35,21 @@ public final class ECFletchingTippedArrowRecipeMaker {
 		}
 		return recipes;
 	}
+	public static List<IFletchingRecipe> createVanillaTippedArrowRecipes() {
+		List<IFletchingRecipe> recipes = new ArrayList<>();
+		for (Potion potionType : ForgeRegistries.POTION_TYPES.getValues()) {
+			ItemStack arrowStack = new ItemStack(Items.ARROW);
+			ItemStack lingeringPotion = PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), potionType);
+			Ingredient arrowIngredient = Ingredient.of(arrowStack);
+			Ingredient potionIngredient = Ingredient.of(lingeringPotion);
+			ItemStack output = new ItemStack(Items.TIPPED_ARROW, 1);
+			PotionUtils.setPotion(output, potionType);
+			ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.tipped.arrow.fletching." + PotionUtils.getPotion(output).getName(output.getItem().getDescriptionId() + ".effect."));
+			FletchingRecipe recipe = new FletchingRecipe(id, arrowIngredient, potionIngredient, output);
+			recipes.add(recipe);
+		}
+		return recipes;
+	}
 
 	private ECFletchingTippedArrowRecipeMaker() {
 

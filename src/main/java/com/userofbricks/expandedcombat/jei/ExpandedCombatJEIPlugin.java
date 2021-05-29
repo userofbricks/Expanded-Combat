@@ -82,6 +82,7 @@ public class ExpandedCombatJEIPlugin implements IModPlugin {
         registration.addRecipes(ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes((ECArrowItem) ECItems.IRON_ARROW.get()), FLETCHING);
         registration.addRecipes(ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes((ECArrowItem) ECItems.DIAMOND_ARROW.get()), FLETCHING);
         registration.addRecipes(ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes((ECArrowItem) ECItems.NETHERITE_ARROW.get()), FLETCHING);
+        registration.addRecipes(ECFletchingTippedArrowRecipeMaker.createVanillaTippedArrowRecipes(), FLETCHING);
     }
 
     @Override

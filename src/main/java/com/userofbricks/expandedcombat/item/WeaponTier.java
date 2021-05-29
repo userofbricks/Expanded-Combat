@@ -19,6 +19,7 @@ public enum WeaponTier implements IWeaponTier
     DIAMOND("diamond", 1561, 6.0f, 10, -0.1f, () -> Ingredient.of(Items.DIAMOND)),
     GOLD("gold", 32, 3.0f, 22, 2.0f, () -> Ingredient.of(Items.GOLD_INGOT)),
     NETHERITE("netherite", 2031, 7.0f, 15, 0.2f, () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    //Mod Compatibility
     STEEL("steel", 482, 5.5f, 10, 0.0f, GauntletMaterials.steel::getRepairMaterial),
     BRONZE("bronze", 225, 4.5f, 10, 0.1f, GauntletMaterials.bronze::getRepairMaterial),
     SILVER("silver", 325, 5.0f, 23, 1.0f, GauntletMaterials.silver::getRepairMaterial),
@@ -27,7 +28,9 @@ public enum WeaponTier implements IWeaponTier
     IRONWOOD("ironwood", 512, 5f, 25, 1.5f, GauntletMaterials.ironwood::getRepairMaterial),
     FIERY("fiery", 1024, 7f, 10, 0f, GauntletMaterials.fiery::getRepairMaterial),
     STEELEAF("steeleaf", 131, 6f, 9, 0f, GauntletMaterials.steeleaf::getRepairMaterial),
-    KNIGHTLY("knightly", 512, 6f, 8, 0f, GauntletMaterials.knightly::getRepairMaterial)
+    KNIGHTLY("knightly", 512, 6f, 8, 0f, GauntletMaterials.knightly::getRepairMaterial),
+    //enderite plus
+    ENDERITE("enderite", 3000, 9.0f, 15, 0.1f, GauntletMaterials.enderite::getRepairMaterial)
     ;
     
     private final int maxUses;

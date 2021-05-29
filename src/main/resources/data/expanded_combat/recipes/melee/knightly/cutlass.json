@@ -1,5 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "twilightforest"
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
 	
 	"pattern":
 	[
@@ -14,5 +24,8 @@
 		"S": { "item": "expanded_combat:gold_stick" }
 	},
 	
-	"result": { "item": "expanded_combat:cutlass_knightmetal" }
+	"result": { "item": "expanded_combat:cutlass_knightly" }
+			}
+		}
+	]
 }

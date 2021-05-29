@@ -10,12 +10,10 @@ import net.minecraft.item.ArrowItem;
 
 public class ECArrowItem extends ArrowItem
 {
-    protected final int damage;
     protected final ArrowType arrowType;
     
-    public ECArrowItem(final int damageIn, final ArrowType arrowType, final Item.Properties builder) {
+    public ECArrowItem(final ArrowType arrowType, final Item.Properties builder) {
         super(builder);
-        this.damage = damageIn;
         this.arrowType = arrowType;
     }
     

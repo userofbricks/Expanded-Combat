@@ -1,5 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "twilightforest"
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
 	
 	"pattern":
 	[
@@ -15,4 +25,7 @@
 	},
 	
 	"result": { "item": "expanded_combat:dancers_sword_fiery" }
+			}
+		}
+	]
 }

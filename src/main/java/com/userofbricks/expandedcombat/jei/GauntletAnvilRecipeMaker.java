@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.jei;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
-import com.userofbricks.expandedcombat.item.GauntletItem;
+import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.runtime.IIngredientManager;
@@ -42,7 +42,7 @@ public final class GauntletAnvilRecipeMaker {
 		Collection<ItemStack> ingredients = ingredientManager.getAllIngredients(VanillaTypes.ITEM);
 		Collection<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS.getValues();
 		for (ItemStack ingredient : ingredients) {
-			if (ingredient.isEnchantable() && ingredient.getItem() instanceof GauntletItem) {
+			if (ingredient.isEnchantable() && ingredient.getItem() instanceof ECGauntletItem) {
 				for (Enchantment enchantment : enchantments) {
 					if (enchantment == Enchantments.PUNCH_ARROWS || enchantment == Enchantments.KNOCKBACK) {
 						try {

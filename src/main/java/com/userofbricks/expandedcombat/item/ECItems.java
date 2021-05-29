@@ -6,6 +6,7 @@
 
 package com.userofbricks.expandedcombat.item;
 
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import com.userofbricks.expandedcombat.ExpandedCombat;
@@ -19,10 +20,6 @@ import net.minecraft.item.ItemGroup;
 
 public class ECItems
 {
-    public static final ITag<Item> steel_tag = ItemTags.bind(new ResourceLocation("forge", "ingots/steel").toString());
-    public static final ITag<Item> bronze_tag = ItemTags.bind(new ResourceLocation("forge", "ingots/bronze").toString());
-    public static final ITag<Item> silver_tag = ItemTags.bind(new ResourceLocation("forge", "ingots/silver").toString());
-    public static final ITag<Item> lead_tag = ItemTags.bind(new ResourceLocation("forge", "ingots/lead").toString());
     private static final ItemGroup EC_GROUP = ExpandedCombat.EC_GROUP;
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExpandedCombat.MODID);
@@ -30,7 +27,11 @@ public class ECItems
     public static final RegistryObject<Item> LEATHER_STICK = ITEMS.register("leather_stick", () -> new Item(new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> GOLD_STICK = ITEMS.register("gold_stick", () -> new Item(new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> IRON_STICK = ITEMS.register("iron_stick", () -> new Item(new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", () -> new QuiverItem(new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", () -> new ECQuiverItem("quiver", ExpandedCombat.isSpartanWeponryLoaded ? 2:1, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER_IRON = ITEMS.register("quiver_iron", () -> new ECQuiverItem("quiver_iron", ExpandedCombat.isSpartanWeponryLoaded ? 4:3, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER_GOLD = ITEMS.register("quiver_gold", () -> new ECQuiverItem("quiver_gold", ExpandedCombat.isSpartanWeponryLoaded ? 6:5, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER_DIAMOND = ITEMS.register("quiver_diamond", () -> new ECQuiverItem("quiver_diamond", ExpandedCombat.isSpartanWeponryLoaded ? 9:7, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER_NETHERITE = ITEMS.register("quiver_netherite", () -> new ECQuiverItem("quiver_netherite", ExpandedCombat.isSpartanWeponryLoaded ? 12:10, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
 
 
     public static final RegistryObject<Item> IRON_BOW_HALF = ITEMS.register("iron_bow_half", () -> new ECBowItem(2f, (new Item.Properties()).durability(414).tab(EC_GROUP)));
@@ -46,31 +47,33 @@ public class ECItems
     public static final RegistryObject<Item> DIAMOND_CROSSBOW = ITEMS.register("crossbow_diamond", () -> new ECCrossBowItem(4f,2, (new Item.Properties()).durability(672)));
     public static final RegistryObject<Item> NETHERITE_CROSSBOW = ITEMS.register("crossbow_netherite", () -> new ECCrossBowItem(4.5f,3, (new Item.Properties()).durability(768)));
 
-    public static final RegistryObject<Item> IRON_ARROW = ITEMS.register("iron_arrow", () -> new ECArrowItem(3, ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> IRON_TIPPED_ARROW = ITEMS.register("iron_tipped_arrow", () -> new ECTippedArrowItem(3, ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> DIAMOND_ARROW = ITEMS.register("diamond_arrow", () -> new ECArrowItem(4, ArrowType.DIAMOND, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> DIAMOND_TIPPED_ARROW = ITEMS.register("diamond_tipped_arrow", () -> new ECTippedArrowItem(4, ArrowType.DIAMOND, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> NETHERITE_ARROW = ITEMS.register("netherite_arrow", () -> new ECArrowItem(5, ArrowType.NETHERITE, new Item.Properties().tab(EC_GROUP).fireResistant()));
-    public static final RegistryObject<Item> NETHERITE_TIPPED_ARROW = ITEMS.register("netherite_tipped_arrow", () -> new ECTippedArrowItem(5, ArrowType.NETHERITE, new Item.Properties().tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> IRON_ARROW = ITEMS.register("iron_arrow", () -> new ECArrowItem(ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> IRON_TIPPED_ARROW = ITEMS.register("iron_tipped_arrow", () -> new ECTippedArrowItem(ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_ARROW = ITEMS.register("diamond_arrow", () -> new ECArrowItem(ArrowType.DIAMOND, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_TIPPED_ARROW = ITEMS.register("diamond_tipped_arrow", () -> new ECTippedArrowItem(ArrowType.DIAMOND, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> NETHERITE_ARROW = ITEMS.register("netherite_arrow", () -> new ECArrowItem(ArrowType.NETHERITE, new Item.Properties().tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> NETHERITE_TIPPED_ARROW = ITEMS.register("netherite_tipped_arrow", () -> new ECTippedArrowItem(ArrowType.NETHERITE, new Item.Properties().tab(EC_GROUP).fireResistant()));
 
-    public static final RegistryObject<Item> NETHERITE_GAUNTLET = ITEMS.register("netherite_gauntlet", () -> new GauntletItem(GauntletMaterials.netherite, new Item.Properties().tab(EC_GROUP).fireResistant()));
-    public static final RegistryObject<Item> DIAMOND_GAUNTLET = ITEMS.register("diamond_gauntlet", () -> new GauntletItem(GauntletMaterials.diamond, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> GOLD_GAUNTLET = ITEMS.register("gold_gauntlet", () -> new GauntletItem(GauntletMaterials.gold, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> IRON_GAUNTLET = ITEMS.register("iron_gauntlet", () -> new GauntletItem(GauntletMaterials.iron, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> LEATHER_GAUNTLET = ITEMS.register("leather_gauntlet", () -> new GauntletItem(GauntletMaterials.leather, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> NETHERITE_GAUNTLET = ITEMS.register("netherite_gauntlet", () -> new ECGauntletItem(GauntletMaterials.netherite, new Item.Properties().tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> DIAMOND_GAUNTLET = ITEMS.register("diamond_gauntlet", () -> new ECGauntletItem(GauntletMaterials.diamond, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> GOLD_GAUNTLET = ITEMS.register("gold_gauntlet", () -> new ECGauntletItem(GauntletMaterials.gold, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> IRON_GAUNTLET = ITEMS.register("iron_gauntlet", () -> new ECGauntletItem(GauntletMaterials.iron, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> LEATHER_GAUNTLET = ITEMS.register("leather_gauntlet", () -> new ECGauntletItem(GauntletMaterials.leather, new Item.Properties().tab(EC_GROUP)));
 
-    public static final RegistryObject<Item> STEEL_GAUNTLET = ITEMS.register("steel_gauntlet", () -> new GauntletItem(GauntletMaterials.steel, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> BRONZE_GAUNTLET = ITEMS.register("bronze_gauntlet", () -> new GauntletItem(GauntletMaterials.bronze, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> SILVER_GAUNTLET = ITEMS.register("silver_gauntlet", () -> new GauntletItem(GauntletMaterials.silver, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> LEAD_GAUNTLET = ITEMS.register("lead_gauntlet", () -> new GauntletItem(GauntletMaterials.lead, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> STEEL_GAUNTLET = ITEMS.register("steel_gauntlet", () -> new ECGauntletItem(GauntletMaterials.steel, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> BRONZE_GAUNTLET = ITEMS.register("bronze_gauntlet", () -> new ECGauntletItem(GauntletMaterials.bronze, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> SILVER_GAUNTLET = ITEMS.register("silver_gauntlet", () -> new ECGauntletItem(GauntletMaterials.silver, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> LEAD_GAUNTLET = ITEMS.register("lead_gauntlet", () -> new ECGauntletItem(GauntletMaterials.lead, new Item.Properties().tab(EC_GROUP)));
     //Twilight Forest
-    public static final RegistryObject<Item> NAGA_GAUNTLET = ITEMS.register("naga_gauntlet", () -> new GauntletItem(GauntletMaterials.naga, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> IRONWOOD_GAUNTLET = ITEMS.register("ironwood_gauntlet", () -> new GauntletItem(GauntletMaterials.ironwood, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> FIERY_GAUNTLET = ITEMS.register("fiery_gauntlet", () -> new GauntletItem(GauntletMaterials.fiery, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> STEELEAF_GAUNTLET = ITEMS.register("steeleaf_gauntlet", () -> new GauntletItem(GauntletMaterials.steeleaf, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> KNIGHTLY_GAUNTLET = ITEMS.register("knightly_gauntlet", () -> new GauntletItem(GauntletMaterials.knightly, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> YETI_GAUNTLET = ITEMS.register("yeti_gauntlet", () -> new GauntletItem(GauntletMaterials.yeti, new Item.Properties().tab(EC_GROUP)));
-    public static final RegistryObject<Item> ARTIC_GAUNTLET = ITEMS.register("artic_gauntlet", () -> new GauntletItem(GauntletMaterials.artic, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> NAGA_GAUNTLET = ITEMS.register("naga_gauntlet", () -> new ECGauntletItem(GauntletMaterials.naga, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> IRONWOOD_GAUNTLET = ITEMS.register("ironwood_gauntlet", () -> new ECGauntletItem(GauntletMaterials.ironwood, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> FIERY_GAUNTLET = ITEMS.register("fiery_gauntlet", () -> new ECGauntletItem(GauntletMaterials.fiery, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> STEELEAF_GAUNTLET = ITEMS.register("steeleaf_gauntlet", () -> new ECGauntletItem(GauntletMaterials.steeleaf, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> KNIGHTLY_GAUNTLET = ITEMS.register("knightly_gauntlet", () -> new ECGauntletItem(GauntletMaterials.knightly, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> YETI_GAUNTLET = ITEMS.register("yeti_gauntlet", () -> new ECGauntletItem(GauntletMaterials.yeti, new Item.Properties().tab(EC_GROUP)));
+    public static final RegistryObject<Item> ARTIC_GAUNTLET = ITEMS.register("artic_gauntlet", () -> new ECGauntletItem(GauntletMaterials.artic, new Item.Properties().tab(EC_GROUP)));
+    //enderite
+    public static final RegistryObject<Item> ENDERITE_GAUNTLET = ITEMS.register("enderite_gauntlet", () -> new ECGauntletItem(GauntletMaterials.enderite, new Item.Properties().tab(EC_GROUP).fireResistant()));
 
 
 
@@ -249,6 +252,7 @@ public class ECItems
     public static final RegistryObject<Item> FLAIL_STEEL = ITEMS.register("flail_steel", () -> new ECWeaponItem(WeaponTier.STEEL, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> GREAT_HAMMER_STEEL = ITEMS.register("great_hammer_steel", () -> new ECWeaponItem(WeaponTier.STEEL, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> MACE_STEEL = ITEMS.register("mace_steel", () -> new ECWeaponItem(WeaponTier.STEEL, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP)));
+    public static final RegistryObject<Item> SWORD_STEEL = ITEMS.register("sword_steel", () -> new SwordItem(ECSwordTier.STEEL, 3, -2.4F, (new Item.Properties()).tab(EC_GROUP)));
 
     public static final RegistryObject<Item> BATTLESTAFF_BRONZE = ITEMS.register("battlestaff_bronze", () -> new ECWeaponItem.Dyeable(WeaponTier.BRONZE, WeaponTypes.battlestaff, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> BROADSWORD_BRONZE = ITEMS.register("broadsword_bronze", () -> new ECWeaponItem.Dyeable(WeaponTier.BRONZE, WeaponTypes.broadsword, (new Item.Properties()).tab(EC_GROUP)));
@@ -264,6 +268,7 @@ public class ECItems
     public static final RegistryObject<Item> FLAIL_BRONZE = ITEMS.register("flail_bronze", () -> new ECWeaponItem(WeaponTier.BRONZE, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> GREAT_HAMMER_BRONZE = ITEMS.register("great_hammer_bronze", () -> new ECWeaponItem(WeaponTier.BRONZE, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> MACE_BRONZE = ITEMS.register("mace_bronze", () -> new ECWeaponItem(WeaponTier.BRONZE, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP)));
+    public static final RegistryObject<Item> SWORD_BRONZE = ITEMS.register("sword_bronze", () -> new SwordItem(ECSwordTier.BRONZE, 3, -2.4F, (new Item.Properties()).tab(EC_GROUP)));
 
     public static final RegistryObject<Item> BATTLESTAFF_SILVER = ITEMS.register("battlestaff_silver", () -> new ECWeaponItem.Dyeable(WeaponTier.SILVER, WeaponTypes.battlestaff, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> BROADSWORD_SILVER = ITEMS.register("broadsword_silver", () -> new ECWeaponItem.Dyeable(WeaponTier.SILVER, WeaponTypes.broadsword, (new Item.Properties()).tab(EC_GROUP)));
@@ -279,6 +284,7 @@ public class ECItems
     public static final RegistryObject<Item> FLAIL_SILVER = ITEMS.register("flail_silver", () -> new ECWeaponItem(WeaponTier.SILVER, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> GREAT_HAMMER_SILVER = ITEMS.register("great_hammer_silver", () -> new ECWeaponItem(WeaponTier.SILVER, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> MACE_SILVER = ITEMS.register("mace_silver", () -> new ECWeaponItem(WeaponTier.SILVER, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP)));
+    public static final RegistryObject<Item> SWORD_SILVER = ITEMS.register("sword_silver", () -> new SwordItem(ECSwordTier.SILVER, 3, -2.4F, (new Item.Properties()).tab(EC_GROUP)));
 
     public static final RegistryObject<Item> BATTLESTAFF_LEAD = ITEMS.register("battlestaff_lead", () -> new ECWeaponItem.Dyeable(WeaponTier.LEAD, WeaponTypes.battlestaff, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> BROADSWORD_LEAD = ITEMS.register("broadsword_lead", () -> new ECWeaponItem.Dyeable(WeaponTier.LEAD, WeaponTypes.broadsword, (new Item.Properties()).tab(EC_GROUP)));
@@ -294,6 +300,7 @@ public class ECItems
     public static final RegistryObject<Item> FLAIL_LEAD = ITEMS.register("flail_lead", () -> new ECWeaponItem(WeaponTier.LEAD, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> GREAT_HAMMER_LEAD = ITEMS.register("great_hammer_lead", () -> new ECWeaponItem(WeaponTier.LEAD, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> MACE_LEAD = ITEMS.register("mace_lead", () -> new ECWeaponItem(WeaponTier.LEAD, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP)));
+    public static final RegistryObject<Item> SWORD_LEAD = ITEMS.register("sword_lead", () -> new SwordItem(ECSwordTier.LEAD, 3, -2.4F, (new Item.Properties()).tab(EC_GROUP)));
 
     //Twilight Forest
     public static final RegistryObject<Item> BATTLESTAFF_FIERY = ITEMS.register("battlestaff_fiery", () -> new ECWeaponItem.Dyeable(WeaponTier.FIERY, WeaponTypes.battlestaff, (new Item.Properties()).tab(EC_GROUP)));
@@ -355,6 +362,21 @@ public class ECItems
     public static final RegistryObject<Item> FLAIL_STEELEAF = ITEMS.register("flail_steeleaf", () -> new ECWeaponItem(WeaponTier.STEELEAF, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> GREAT_HAMMER_STEELEAF = ITEMS.register("great_hammer_steeleaf", () -> new ECWeaponItem(WeaponTier.STEELEAF, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP)));
     public static final RegistryObject<Item> MACE_STEELEAF = ITEMS.register("mace_steeleaf", () -> new ECWeaponItem(WeaponTier.STEELEAF, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP)));
+
+    public static final RegistryObject<Item> BATTLESTAFF_ENDERITE = ITEMS.register("battlestaff_enderite", () -> new ECWeaponItem.Dyeable(WeaponTier.ENDERITE, WeaponTypes.battlestaff, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> BROADSWORD_ENDERITE = ITEMS.register("broadsword_enderite", () -> new ECWeaponItem.Dyeable(WeaponTier.ENDERITE, WeaponTypes.broadsword, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> CLAYMORE_ENDERITE = ITEMS.register("claymore_enderite", () -> new ECWeaponItem.Dyeable(WeaponTier.ENDERITE, WeaponTypes.claymore, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> CUTLASS_ENDERITE = ITEMS.register("cutlass_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.cutlass, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> DAGGER_ENDERITE = ITEMS.register("dagger_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.dagger, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> DANCERS_SWORD_ENDERITE = ITEMS.register("dancers_sword_enderite", () -> new ECWeaponItem.Dyeable(WeaponTier.ENDERITE, WeaponTypes.dancers_sword, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> GLAIVE_ENDERITE = ITEMS.register("glaive_enderite", () -> new ECWeaponItem.Dyeable(WeaponTier.ENDERITE, WeaponTypes.glaive, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> KATANA_ENDERITE = ITEMS.register("katana_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.katana, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> SCYTHE_ENDERITE = ITEMS.register("scythe_enderite", () -> new ECWeaponItem.HasPotion(WeaponTier.ENDERITE, WeaponTypes.scythe, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> SICKLE_ENDERITE = ITEMS.register("sickle_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.sickle, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> SPEAR_ENDERITE = ITEMS.register("spear_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.spear, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> FLAIL_ENDERITE = ITEMS.register("flail_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.flail, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> GREAT_HAMMER_ENDERITE = ITEMS.register("great_hammer_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.great_hammer, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> MACE_ENDERITE = ITEMS.register("mace_enderite", () -> new ECWeaponItem(WeaponTier.ENDERITE, WeaponTypes.mace, (new Item.Properties()).tab(EC_GROUP).fireResistant()));
 
 
     public static void setAtributeModifiers(){

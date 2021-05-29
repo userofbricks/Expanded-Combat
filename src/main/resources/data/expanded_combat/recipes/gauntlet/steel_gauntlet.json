@@ -1,16 +1,31 @@
 {
-	"type": "minecraft:crafting_shaped",
-	
-	"pattern":
-	[
-		"SS",
-		"S "
-	],
-	
-	"key":
-	{
-		"S": { "tag": "forge:ingots/steel" }
-	},
-	
-	"result": { "item": "expanded_combat:steel_gauntlet" }
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:not",
+					"value": {
+						"type": "forge:tag_empty",
+						"tag": "forge:ingots/steel"
+					}
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
+				"pattern": [
+					"SS",
+					"S "
+				],
+				"key": {
+					"S": {
+						"tag": "forge:ingots/steel"
+					}
+				},
+				"result": {
+					"item": "expanded_combat:steel_gauntlet"
+				}
+			}
+		}
+	]
 }

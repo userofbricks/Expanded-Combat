@@ -1,5 +1,7 @@
 package com.userofbricks.expandedcombat.curios;
 
+import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverArrowsModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -19,7 +21,7 @@ public class ArrowCurio implements ICurio
     private Object model;
     
     public boolean canEquip( String identifier,  LivingEntity livingEntity) {
-        return CuriosApi.getCuriosHelper().findEquippedCurio(ECItems.QUIVER.get(), livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(item -> item == ECItems.QUIVER.get()).orElse(false);
+        return CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(stack -> stack.is(ExpandedCombat.quiver_curios)).orElse(false);
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.userofbricks.expandedcombat.item.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.*;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraft.item.IDyeableArmorItem;
@@ -79,11 +80,16 @@ public class ExpandedCombat
     public static final String MODID = "expanded_combat";
     public static final ITag<Item> arrow_curios = ItemTags.bind(new ResourceLocation("curios", "arrows").toString());
     public static final Predicate<ItemStack> arrow_predicate = stack -> stack.getItem().is(arrow_curios);
+    public static final ITag<Item> quiver_curios = ItemTags.bind(new ResourceLocation("curios", "quiver").toString());
+    public static final Predicate<ItemStack> quiver_predicate = stack -> stack.getItem().is(quiver_curios);
     public static final ITag<Item> hands_curios = ItemTags.bind(new ResourceLocation("curios", "hands").toString());
     public static final Predicate<ItemStack> hands_predicate = stack -> stack.getItem().is(hands_curios);
     public static final ItemGroup EC_GROUP = new ECItemGroup();
+    public static boolean isSpartanWeponryLoaded = false;
     
     public ExpandedCombat() {
+        isSpartanWeponryLoaded = ModList.get().isLoaded("spartanweaponry");
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);

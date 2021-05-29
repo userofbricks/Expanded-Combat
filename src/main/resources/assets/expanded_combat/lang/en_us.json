@@ -78,6 +78,7 @@
   "item.expanded_combat.knightly_gauntlet": "Knightmetal Gauntlet",
   "item.expanded_combat.yeti_gauntlet": "Yeti Gauntlet",
   "item.expanded_combat.artic_gauntlet": "Arctic Gauntlet",
+  "item.expanded_combat.enderite_gauntlet": "Enderite Gauntlet",
   "enchantment.expanded_combat.knockback_resistance": "Knockback Resistance",
 
   "item.expanded_combat.iron_bow": "Iron Bow",
@@ -158,6 +159,7 @@
   "weapon_tier.expanded_combat.fiery": "Fiery",
   "weapon_tier.expanded_combat.steeleaf": "Steeleaf",
   "weapon_tier.expanded_combat.knightly": "Knightmetal",
+  "weapon_tier.expanded_combat.enderite": "Enderite",
 
   "weapon_type.expanded_combat.battlestaff": "Battlestaff",
   "weapon_type.expanded_combat.broadsword": "Broad Sword",

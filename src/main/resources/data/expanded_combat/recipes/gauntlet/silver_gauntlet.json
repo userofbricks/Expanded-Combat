@@ -1,16 +1,32 @@
 {
-	"type": "minecraft:crafting_shaped",
-	
-	"pattern":
-	[
-		"SS",
-		"S "
-	],
-	
-	"key":
-	{
-		"S": { "tag": "forge:ingots/silver" }
-	},
-	
-	"result": { "item": "expanded_combat:silver_gauntlet" }
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:not",
+					"value": {
+						"type": "forge:tag_empty",
+						"tag": "forge:ingots/silver"
+					}
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
+
+				"pattern":
+				[
+					"SS",
+					"S "
+				],
+
+				"key":
+				{
+					"S": { "tag": "forge:ingots/silver" }
+				},
+
+				"result": { "item": "expanded_combat:silver_gauntlet" }
+			}
+		}
+	]
 }

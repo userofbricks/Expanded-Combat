@@ -1,5 +1,18 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:not",
+					"value": {
+						"type": "forge:tag_empty",
+						"tag": "forge:blocks/lead"
+					}
+				}
+			],
+			"recipe": {
+				"type": "minecraft:crafting_shaped",
 	
 	"pattern":
 	[
@@ -16,4 +29,7 @@
 	},
 	
 	"result": { "item": "expanded_combat:flail_lead" }
+			}
+		}
+	]
 }

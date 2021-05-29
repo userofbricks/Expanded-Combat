@@ -7,6 +7,7 @@ import com.userofbricks.expandedcombat.item.ECTippedArrowItem;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.TippedArrowItem;
@@ -36,7 +37,9 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
 
    public ItemStack assemble(IInventory inv) {
       final ItemStack itemstack = inv.getItem(1);
-      final ItemStack itemstack2 = new ItemStack(((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow(), inv.getItem(0).getCount());
+      Item baseItem = inv.getItem(0).getItem();
+      Item resultItem = baseItem == Items.ARROW ? Items.TIPPED_ARROW : ((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow();
+      final ItemStack itemstack2 = new ItemStack(resultItem, inv.getItem(0).getCount());
       PotionUtils.setPotion(itemstack2, PotionUtils.getPotion(itemstack));
       PotionUtils.setCustomEffects(itemstack2, PotionUtils.getCustomEffects(itemstack));
 

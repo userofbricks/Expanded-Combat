@@ -1,0 +1,16 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [{ "type": "forge:mod_loaded", "modid": "enderiteplus"}],
+      "recipe": {
+        "type": "minecraft:smithing",
+	"base": { "item": "expanded_combat:dagger_netherite" },
+	"addition": {
+		"item": "enderiteplus:enderite_ingot"
+	},
+	"result": { "item": "expanded_combat:dagger_enderite" }
+			}
+		}
+	]
+}
