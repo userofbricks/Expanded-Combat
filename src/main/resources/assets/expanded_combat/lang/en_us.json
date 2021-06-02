@@ -25,6 +25,10 @@
   "item.minecraft.tipped_arrow.effect.turtle_master": "Flint Arrow of the Turtle Master",
   "item.minecraft.tipped_arrow.effect.slow_falling": "Flint Arrow of Slow Falling",
   "item.expanded_combat.quiver" : "Quiver",
+  "item.expanded_combat.quiver_iron" : "Iron Quiver",
+  "item.expanded_combat.quiver_gold" : "Gold Quiver",
+  "item.expanded_combat.quiver_diamond" : "Diamond Quiver",
+  "item.expanded_combat.quiver_netherite" : "Netherite Quiver",
   "item.expanded_combat.iron_arrow" : "Iron Arrow",
   "item.expanded_combat.iron_tipped_arrow" : "Tipped Iron Arrow",
   "item.expanded_combat.diamond_arrow" : "Diamond Arrow",
@@ -56,6 +60,7 @@
   "curios.identifier.arrows" :"Arrows",
   "curios.identifier.quiver" :"Quiver",
   "container.expanded_combat.fletching" :"Fletching Table",
+  "container.quiver": "Quiver",
 
   "itemGroup.ec_group": "Expanded Combat",
 
@@ -183,6 +188,10 @@
   "item.expanded_combat.leather_stick": "Leather Stick",
   "item.expanded_combat.iron_stick": "Iron Stick",
   "item.expanded_combat.gold_stick": "Gold Stick",
+  "item.expanded_combat.sword_bronze": "Bronze Sword",
+  "item.expanded_combat.sword_lead": "Lead Sword",
+  "item.expanded_combat.sword_silver": "Silver Sword",
+  "item.expanded_combat.sword_steel": "Steel Sword",
 
   "advancements.expanded_combat.root.title": "Expanded Combat",
   "advancements.expanded_combat.root.description": "",

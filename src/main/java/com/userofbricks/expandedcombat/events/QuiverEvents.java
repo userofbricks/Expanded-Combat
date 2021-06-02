@@ -1,19 +1,33 @@
 package com.userofbricks.expandedcombat.events;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.client.KeyRegistry;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.QuiverButton;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
+import com.userofbricks.expandedcombat.network.NetworkHandler;
+import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Tuple;
+import net.minecraftforge.client.event.GuiContainerEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.util.NonNullSupplier;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -25,6 +39,7 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.api.type.util.ICuriosHelper;
+import top.theillusivec4.curios.client.gui.CuriosScreen;
 
 import java.util.Map;
 
@@ -77,7 +92,7 @@ public class QuiverEvents {
         PlayerEntity player = evt.getPlayer();
         ItemStack stack = evt.getItemStack();
         ICuriosHelper curiosHelper = CuriosApi.getCuriosHelper();
-        if (stack.getItem() instanceof ArrowItem) {
+        if (ExpandedCombat.quiver_predicate.test(stack) && stack.getMaxStackSize() > 1) {
             curiosHelper.getCurio(stack).ifPresent(
                 curio -> curiosHelper.getCuriosHandler(player).ifPresent(handler -> {
                     if (!player.level.isClientSide) {
@@ -96,7 +111,7 @@ public class QuiverEvents {
                                         curio.canEquipFromUse(slotContext)) {
                                     ItemStack present = stackHandler.getStackInSlot(i);
 
-                                    if (!present.isEmpty() && stack.getItem() == present.getItem()) {
+                                    if (!present.isEmpty() && stack.getItem() == present.getItem() && ItemStack.tagMatches(stack, present)) {
                                         ItemStack newStack = stack.copy();
                                         newStack.setCount(remainingItems + present.getCount());
                                         int itemLimit = Math.min(stack.getMaxStackSize(), stackHandler.getSlotLimit(i));
@@ -127,6 +142,50 @@ public class QuiverEvents {
                         }
                     }
                 }));
+        }
+    }
+
+    public static void drawSlotBack(GuiContainerEvent.DrawBackground e) {
+        if (e.getGuiContainer() instanceof CuriosScreen) {
+            Minecraft.getInstance().getTextureManager().bind(ContainerScreen.INVENTORY_LOCATION);
+            CuriosScreen curiosScreen = (CuriosScreen)e.getGuiContainer();
+            int left = curiosScreen.getGuiLeft();
+            int top = curiosScreen.getGuiTop();
+            curiosScreen.blit(e.getMatrixStack(), left + 76, top + 17, 7, 7, 18, 36);
+        }
+    }
+
+    @SubscribeEvent
+    public void onKeyInput(TickEvent.ClientTickEvent evt) {
+
+        if (evt.phase != TickEvent.Phase.END) {
+            return;
+        }
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.isWindowActive() && mc.screen == null) {
+            if (KeyRegistry.openQuiver.isDown()) {
+                NetworkHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(), new CPacketOpenCuriosQuiver());
+            }
+        }
+    }
+
+    public static void onInventoryGuiInit(GuiScreenEvent.InitGuiEvent.Post evt) {
+        Screen screen = evt.getGui();
+        if (screen instanceof CuriosScreen) {
+            ContainerScreen<?> gui = (ContainerScreen<?>) screen;
+            CuriosApi.getCuriosHelper().getCuriosHandler(gui.getMinecraft().player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).ifPresent(curioStacksHandler -> {
+                int slotCount = curioStacksHandler.getSlots();
+                if (slotCount > 1) {
+                    Tuple<Integer, Integer> offsets = ECCuriosQuiverScreen.getButtonOffset(false);
+                    int x = offsets.getA();
+                    int y = offsets.getB();
+                    int size = 14;
+                    int textureOffsetX = 194;
+                    int yOffset = 83;
+                    evt.addWidget(new QuiverButton(gui, gui.getGuiLeft() + x, gui.getGuiTop() + y + yOffset, size,
+                            size, textureOffsetX, 0, size, ECCuriosQuiverScreen.QUIVER_INVENTORY));
+                }
+            });
         }
     }
 

@@ -1,24 +1,22 @@
 package com.userofbricks.expandedcombat.util;
 
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.Direction;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.EntityRayTraceResult;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
-import java.util.Objects;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
-import com.userofbricks.expandedcombat.item.WeaponTypes;
 import com.userofbricks.expandedcombat.item.ECWeaponItem;
+import com.userofbricks.expandedcombat.item.WeaponTypes;
+import com.userofbricks.expandedcombat.network.client.PacketOffhandAttack;
+import com.userofbricks.expandedcombat.network.NetworkHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Objects;
 
 public class CombatEventHandler
 {

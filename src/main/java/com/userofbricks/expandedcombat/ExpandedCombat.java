@@ -6,73 +6,69 @@
 
 package com.userofbricks.expandedcombat;
 
+import com.userofbricks.expandedcombat.client.KeyRegistry;
+import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
+import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
+import com.userofbricks.expandedcombat.curios.ArrowCurio;
+import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
+import com.userofbricks.expandedcombat.entity.AttributeRegistry;
+import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
 import com.userofbricks.expandedcombat.events.QuiverEvents;
 import com.userofbricks.expandedcombat.inventory.container.ECContainers;
-import com.userofbricks.expandedcombat.item.*;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.*;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import net.minecraft.item.IDyeableArmorItem;
-import net.minecraft.potion.PotionUtils;
-import net.minecraftforge.fml.packs.ResourcePackLoader;
-import net.minecraftforge.fml.packs.ModFileResourcePack;
-import net.minecraft.resources.ResourcePackType;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
-
-import java.util.function.Supplier;
-
-import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import com.userofbricks.expandedcombat.util.NetworkHandler;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import javax.annotation.Nullable;
-import net.minecraft.util.Direction;
-import javax.annotation.Nonnull;
-import net.minecraftforge.common.capabilities.Capability;
-import top.theillusivec4.curios.api.type.capability.ICurio;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import top.theillusivec4.curios.api.CuriosCapability;
-import com.userofbricks.expandedcombat.curios.ArrowCurio;
-import net.minecraft.tags.ItemTags;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.Minecraft;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
-import net.minecraftforge.client.event.GuiContainerEvent;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraft.util.ResourceLocation;
-import top.theillusivec4.curios.api.SlotTypeMessage;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.common.MinecraftForge;
-import com.userofbricks.expandedcombat.entity.ECEntities;
+import com.userofbricks.expandedcombat.item.ECItemGroup;
+import com.userofbricks.expandedcombat.item.ECItemModelsProperties;
+import com.userofbricks.expandedcombat.item.ECItems;
+import com.userofbricks.expandedcombat.item.ECWeaponItem;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
-import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
-import com.userofbricks.expandedcombat.entity.AttributeRegistry;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import com.userofbricks.expandedcombat.network.NetworkHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.item.IDyeableArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import java.util.function.Predicate;
-import net.minecraft.item.Item;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.resources.ResourcePackType;
 import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import top.theillusivec4.curios.common.event.CuriosEventHandler;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.packs.ModFileResourcePack;
+import net.minecraftforge.fml.packs.ResourcePackLoader;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.type.capability.ICurio;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 @Mod("expanded_combat")
 public class ExpandedCombat
@@ -104,7 +100,8 @@ public class ExpandedCombat
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(new QuiverEvents());
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            MinecraftForge.EVENT_BUS.addListener(this::drawSlotBack);
+            MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);
+            MinecraftForge.EVENT_BUS.addListener(QuiverEvents::onInventoryGuiInit);
             bus.addListener(this::stitchTextures);
             bus.addListener(this::onModelBake);
             bus.addListener(this::itemColors);
@@ -116,16 +113,6 @@ public class ExpandedCombat
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("quiver").icon(new ResourceLocation("expanded_combat", "item/empty_quiver_slot")).hide().build());
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("arrows").icon(new ResourceLocation("expanded_combat", "item/empty_arrows_slot")).hide().build());
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
-    }
-    
-    private void drawSlotBack(GuiContainerEvent.DrawBackground e) {
-        if (e.getGuiContainer() instanceof CuriosScreen) {
-            Minecraft.getInstance().getTextureManager().bind(ContainerScreen.INVENTORY_LOCATION);
-             CuriosScreen curiosScreen = (CuriosScreen)e.getGuiContainer();
-             int i = curiosScreen.getGuiLeft();
-             int j = curiosScreen.getGuiTop();
-            curiosScreen.blit(e.getMatrixStack(), i + 76, j + 17, 7, 7, 18, 36);
-        }
     }
     
     public void stitchTextures(TextureStitchEvent.Pre event) {
@@ -172,12 +159,14 @@ public class ExpandedCombat
     }
     
     private void setup(FMLCommonSetupEvent event) {
-        DeferredWorkQueue.runLater(NetworkHandler::init);
+        NetworkHandler.register();
         ECItems.setAtributeModifiers();
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
         ScreenManager.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
+        ScreenManager.register(ECContainers.EC_QUIVER_CURIOS.get(), ECCuriosQuiverScreen::new);
+        KeyRegistry.registerKeys();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();
         this.registerEtityModels(event.getMinecraftSupplier());

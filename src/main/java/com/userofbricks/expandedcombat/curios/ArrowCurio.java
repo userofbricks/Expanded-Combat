@@ -1,7 +1,11 @@
 package com.userofbricks.expandedcombat.curios;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraftforge.items.ItemHandlerHelper;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverArrowsModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -15,6 +19,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
 
 public class ArrowCurio implements ICurio
 {
@@ -43,5 +50,24 @@ public class ArrowCurio implements ICurio
         }
          QuiverArrowsModel quiverModel = (QuiverArrowsModel)this.model;
         quiverModel.render(matrixStack, renderTypeBuffer, light, livingEntity);
+    }
+
+    public void onUnequip(SlotContext slotContext, ItemStack newStack) {
+        LivingEntity livingEntity = slotContext.getWearer();
+        if (newStack.isEmpty() && livingEntity instanceof PlayerEntity && !(((PlayerEntity) livingEntity).containerMenu instanceof CuriosContainer || ((PlayerEntity) livingEntity).containerMenu instanceof ECCuriosQuiverContainer)) {
+            int sackIndex = slotContext.getIndex();
+            CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
+                Item stack = curioStackHandler.getPreviousStackInSlot(sackIndex).getItem();
+                for (int i = 0; i < curioStackHandler.getSlots(); i++) {
+                    ItemStack arrowstack = curioStackHandler.getStackInSlot(i);
+                    if(arrowstack != ItemStack.EMPTY && arrowstack.getItem() == stack && i != sackIndex) {
+                        curioStackHandler.setStackInSlot(sackIndex, arrowstack);
+                        curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
+                        curioStackHandler.setPreviousStackInSlot(i, ItemStack.EMPTY);
+                        break;
+                    }
+                }
+            });
+        }
     }
 }

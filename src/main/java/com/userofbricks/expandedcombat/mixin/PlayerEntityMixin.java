@@ -22,8 +22,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.entity.LivingEntity;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
-@Mixin({ PlayerEntity.class })
+@Mixin(value = { PlayerEntity.class }, priority = 1100)
 public abstract class PlayerEntityMixin extends LivingEntity
 {
     protected PlayerEntityMixin( EntityType<? extends LivingEntity> entityType_1,  World world_1) {
@@ -35,9 +37,14 @@ public abstract class PlayerEntityMixin extends LivingEntity
         if (!(shootable.getItem() instanceof ShootableItem)) {
             return;
         }
-         ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, this).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-        if (!stack.isEmpty()) {
-            cir.setReturnValue(stack);
+        ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, this).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+        if (!quiverStack.isEmpty()) {
+            CuriosApi.getCuriosHelper().getCuriosHandler(this).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(arrowHandler -> {
+                ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, this).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+                if (!stack.isEmpty()) {
+                    cir.setReturnValue(stack);
+                }
+            });
         }
     }
     

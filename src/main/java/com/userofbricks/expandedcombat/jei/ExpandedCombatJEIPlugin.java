@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat.jei;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expandedcombat.inventory.container.FlechingTableContainer;
 import com.userofbricks.expandedcombat.item.ECArrowItem;
@@ -18,8 +19,6 @@ import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.gui.screen.inventory.SmithingTableScreen;
-import net.minecraft.inventory.container.SmithingTableContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -97,5 +96,6 @@ public class ExpandedCombatJEIPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(FletchingTableScreen.class, 102, 48, 22, 15, FLETCHING);
+        registration.addGuiContainerHandler(ECCuriosQuiverScreen.class, new CuriosQuiverContainerHandler());
     }
 }
