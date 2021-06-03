@@ -24,14 +24,4 @@ public class TODOS {
         2 tabs one will be the vanilla one which adds one material the other will be a multi material one.
         each "tab" is signified with iether one or four ingots/gems
      */
-    /* TODO
-        add an arrow ticker to hud
-        a box or some other signifier will be around/next to the stack that will be used first: posibly simillar looking to the ofhand slot
-     */
-    /* TODO
-        add a button keybind that changes the current slot from which arrows will be used first
-     */
-    /* TODO
-        ther is a crash on load bug on GitHub
-     */
 }

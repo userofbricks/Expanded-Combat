@@ -45,15 +45,7 @@ public class CPacketOpenCuriosQuiver {
       ServerPlayerEntity sender = ctx.get().getSender();
 
       if (sender != null) {
-        ItemStack stack = sender.inventory.getSelected();
-        sender.inventory.setPickedItem(ItemStack.EMPTY);
         NetworkHooks.openGui(sender, new CuriosQuiverContainerProvider());
-
-        if (!stack.isEmpty()) {
-          sender.inventory.setPickedItem(stack);
-          NetworkHandler.INSTANCE
-              .send(PacketDistributor.PLAYER.with(() -> sender), new SPacketGrabbedItem(stack));
-        }
       }
     });
     ctx.get().setPacketHandled(true);

@@ -3,6 +3,7 @@ package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
+import com.userofbricks.expandedcombat.config.ECClientConfig;
 import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -56,13 +57,22 @@ public class ECCuriosQuiverScreen  extends ContainerScreen<ECCuriosQuiverContain
             x = x + corner.getXoffset() + client.buttonXOffset.get();
             y = y + corner.getYoffset() + client.buttonYOffset.get();
         } else {
-            //TODO add Configs
-            if (CuriosClientConfig.CLIENT.buttonCorner.get() == CuriosClientConfig.Client.ButtonCorner.TOP_RIGHT) {
-                x = x + 61;
-                y = y + -61;
-            } else {
-                x = x + 61;
-                y = y + -75;
+            ECClientConfig.Client client = ECClientConfig.CLIENT;
+            CuriosClientConfig.Client.ButtonCorner corner = client.buttonCorner.get();
+            x = x + corner.getXoffset() + client.buttonXOffset.get();
+            y = y + corner.getYoffset() + client.buttonYOffset.get();
+
+            if (CuriosClientConfig.CLIENT.buttonCorner.get() == corner) {
+                switch (CuriosClientConfig.CLIENT.buttonCorner.get()) {
+                    case TOP_LEFT:
+                    case TOP_RIGHT:
+                        y = y + 14;
+                        break;
+                    case BOTTOM_LEFT:
+                    case BOTTOM_RIGHT:
+                        y = y - 14;
+                        break;
+                }
             }
         }
 

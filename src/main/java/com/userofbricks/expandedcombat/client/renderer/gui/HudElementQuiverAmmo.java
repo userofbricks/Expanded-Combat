@@ -9,6 +9,7 @@ package com.userofbricks.expandedcombat.client.renderer.gui;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
+import com.userofbricks.expandedcombat.config.ECClientConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -70,9 +71,8 @@ public class HudElementQuiverAmmo extends HudElement
         currentAmmoStr = Integer.toString(currentArrow.getCount());
         beforeAmmoStr = Integer.toString(beforeArrow.getCount());
         nextAmmoStr = Integer.toString(nextArrow.getCount());
-        //TODO add config for alignment
-        int offsetX = this.getAlignedX(AlignmentHelper.Alignment.BOTTOM_CENTER, -139);
-        int offsetY = this.getAlignedY(AlignmentHelper.Alignment.BOTTOM_CENTER, 63);
+        int offsetX = this.getAlignedX(ECClientConfig.CLIENT.quiverHudAnchor.get(), ECClientConfig.CLIENT.quiverHudOffsetX.get());
+        int offsetY = this.getAlignedY(ECClientConfig.CLIENT.quiverHudAnchor.get(), ECClientConfig.CLIENT.quiverHudOffsetY.get());
         if (nextIndex != currentIndex) {
             offsetX -= 10;
         }
