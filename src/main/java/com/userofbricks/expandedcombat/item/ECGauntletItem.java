@@ -31,6 +31,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,11 +48,12 @@ public class ECGauntletItem extends Item implements ICurioItem
     private static final UUID KNOCKBACK_RESISTANCE_UUID;
     private static final UUID KNOCKBACK_UUID;
     public Boolean hasWeaponInHand = false;
-    
+
+    @ParametersAreNonnullByDefault
     public ECGauntletItem(IGauntletMaterial materialIn, Item.Properties properties) {
         super(properties.defaultDurability(materialIn.getDurability()));
         this.material = materialIn;
-        this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getTextureName() + ".png");
+        this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getName() + ".png");
         this.attackDamage = materialIn.getAttackDamage();
         this.armorAmount = materialIn.getArmorAmount();
     }
@@ -64,7 +66,7 @@ public class ECGauntletItem extends Item implements ICurioItem
         return this.material.getEnchantability();
     }
     
-    public boolean isValidRepairItem(final ItemStack toRepair, final ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         return this.material.getRepairMaterial().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
@@ -119,7 +121,7 @@ public class ECGauntletItem extends Item implements ICurioItem
             float nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.naga ? (attackDamage/2.0f*3) : 0;
             float yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.yeti ? (attackDamage/2.0f) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
-            float knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockback_resistance();
+            float knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
             float toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getToughness();
             if (((ECGauntletItem) stack.getItem()).hasWeaponInHand) {
                 atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));

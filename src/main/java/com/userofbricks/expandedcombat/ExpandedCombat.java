@@ -17,6 +17,7 @@ import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
 import com.userofbricks.expandedcombat.events.QuiverEvents;
+import com.userofbricks.expandedcombat.events.ShieldEvents;
 import com.userofbricks.expandedcombat.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.item.ECItemGroup;
 import com.userofbricks.expandedcombat.item.ECItemModelsProperties;
@@ -104,6 +105,8 @@ public class ExpandedCombat
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(new QuiverEvents());
+        MinecraftForge.EVENT_BUS.register(new ShieldEvents());
+        MinecraftForge.EVENT_BUS.addListener(ShieldEvents::ShieldBlockEvent);
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::onInventoryGuiInit);

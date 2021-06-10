@@ -96,7 +96,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     
     @Override
-    public String getTextureName() {
+    public String getName() {
         return this.textureName;
     }
     
@@ -116,7 +116,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     
     @Override
-    public float getKnockback_resistance() {
+    public float getKnockbackResistance() {
         return this.knockback_resistance;
     }
 }

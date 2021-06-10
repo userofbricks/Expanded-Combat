@@ -1,0 +1,13 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iqi",
+    " i "
+  ],
+  "key": {
+    "q": { "item": "expanded_combat:quiver" },
+    "i": { "tag": "forge:ingots/iron"}
+  },
+  "result": { "item": "expanded_combat:quiver_iron" }
+}

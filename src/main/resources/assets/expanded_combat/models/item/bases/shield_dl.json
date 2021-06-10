@@ -1,0 +1,25 @@
+{
+	"credit": "Made by Userofbricks",
+	"parent": "expanded_combat:item/bases/shield",
+	"ambientocclusion": false,
+	"texture_size": [64, 32],
+	"textures": {
+		"particle": "expanded_combat:entity/shields/netherite",
+		"base": "expanded_combat:entity/shields/netherite"
+	},
+	"elements": [
+		{
+			"from": [8, -7, 0],
+			"to": [13, 3, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 0, 8]},
+			"faces": {
+				"north": {"uv": [0.5, 6, 1.75, 11], "texture": "#base"},
+				"east": {"uv": [0.5, 6, 0.75, 11], "texture": "#base"},
+				"south": {"uv": [5, 6, 6.25, 11], "texture": "#base"},
+				"west": {"uv": [1.5, 6, 1.75, 11], "texture": "#base"},
+				"up": {"uv": [1.75, 6.5, 0.5, 6], "texture": "#base"},
+				"down": {"uv": [1.75, 10.5, 0.5, 11], "texture": "#base"}
+			}
+		}
+	]
+}

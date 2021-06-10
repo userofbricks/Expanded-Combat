@@ -1,8 +1,0 @@
-{
-    "parent": "expanded_combat:item/shield_blocking",
-    "gui_light": "front",
-    "textures": {
-        "base": "expanded_combat:entity/shields/n",
-        "particle": "block/netherite_block"
-    }
-}

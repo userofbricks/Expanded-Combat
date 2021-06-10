@@ -1,8 +1,0 @@
-{
-    "parent": "expanded_combat:item/shield_blocking",
-    "gui_light": "front",
-    "textures": {
-        "base": "expanded_combat:entity/shields/i1_g1_d3",
-        "particle": "block/diamond_block"
-    }
-}

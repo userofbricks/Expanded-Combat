@@ -11,7 +11,7 @@ public interface IGauntletMaterial
     
     int getArmorAmount();
     
-    String getTextureName();
+    String getName();
     
     SoundEvent getSoundEvent();
     
@@ -19,7 +19,7 @@ public interface IGauntletMaterial
     
     float getAttackDamage();
     
-    float getKnockback_resistance();
+    float getKnockbackResistance();
     
     float getToughness();
 }

@@ -24,4 +24,5 @@ public class TODOS {
         2 tabs one will be the vanilla one which adds one material the other will be a multi material one.
         each "tab" is signified with iether one or four ingots/gems
      */
+    //TODO FIX THAT ENDERITE TEXTURE BUG!!!!!!!
 }

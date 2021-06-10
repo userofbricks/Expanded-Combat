@@ -3,6 +3,7 @@ package com.userofbricks.expandedcombat.item;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.text.ITextComponent;
 import java.util.List;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.util.text.TranslationTextComponent;
@@ -20,18 +21,19 @@ import net.minecraft.item.Item;
 
 public class ECTippedArrowItem extends ECArrowItem
 {
-    public ECTippedArrowItem(final ArrowType arrowModel, final Item.Properties builder) {
+    public ECTippedArrowItem(ArrowType arrowModel, Item.Properties builder) {
         super(arrowModel, builder);
     }
     
+    @Nonnull
     @OnlyIn(Dist.CLIENT)
     public ItemStack getDefaultInstance() {
         return PotionUtils.setPotion(super.getDefaultInstance(), Potions.POISON);
     }
     
-    public void fillItemCategory(final ItemGroup group, final NonNullList<ItemStack> items) {
+    public void fillItemCategory(@Nonnull ItemGroup group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
-            for (final Potion potion : ForgeRegistries.POTION_TYPES) {
+            for (Potion potion : ForgeRegistries.POTION_TYPES) {
                 if (!potion.getEffects().isEmpty()) {
                     items.add(PotionUtils.setPotion(new ItemStack(this), potion));
                 }
@@ -40,7 +42,7 @@ public class ECTippedArrowItem extends ECArrowItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(final ItemStack stack, @Nullable final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         PotionUtils.addPotionTooltip(stack, tooltip, 0.125f);
     }
 
@@ -48,7 +50,7 @@ public class ECTippedArrowItem extends ECArrowItem
         return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ").append(new TranslationTextComponent(this.getPotionId(stack)));
     }
     
-    public String getPotionId(final ItemStack stack) {
+    public String getPotionId(ItemStack stack) {
         return PotionUtils.getPotion(stack).getName("arrow.expanded_combat.effect.");
     }
 }

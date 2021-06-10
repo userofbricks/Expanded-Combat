@@ -1,0 +1,13 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iqi",
+    " i "
+  ],
+  "key": {
+    "q": { "item": "expanded_combat:quiver_gold" },
+    "i": { "item": "minecraft:diamond"}
+  },
+  "result": { "item": "expanded_combat:quiver_diamond" }
+}

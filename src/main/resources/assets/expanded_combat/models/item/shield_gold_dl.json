@@ -1,0 +1,9 @@
+{
+	"credit": "Made by Userofbricks",
+	"parent": "expanded_combat:item/bases/shield_dl",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "expanded_combat:entity/shields/gold",
+		"base": "expanded_combat:entity/shields/gold"
+	}
+}
