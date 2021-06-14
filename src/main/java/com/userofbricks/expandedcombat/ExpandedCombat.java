@@ -10,6 +10,7 @@ import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
@@ -110,6 +111,8 @@ public class ExpandedCombat
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::onInventoryGuiInit);
+            MinecraftForge.EVENT_BUS.addListener(ShieldEvents::drawTabs);
+            MinecraftForge.EVENT_BUS.addListener(ShieldEvents::onInventoryGuiInit);
             bus.addListener(this::stitchTextures);
             bus.addListener(this::onModelBake);
             bus.addListener(this::itemColors);
@@ -174,6 +177,7 @@ public class ExpandedCombat
     private void clientSetup(FMLClientSetupEvent event) {
         ScreenManager.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         ScreenManager.register(ECContainers.EC_QUIVER_CURIOS.get(), ECCuriosQuiverScreen::new);
+        ScreenManager.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         KeyRegistry.registerKeys();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();

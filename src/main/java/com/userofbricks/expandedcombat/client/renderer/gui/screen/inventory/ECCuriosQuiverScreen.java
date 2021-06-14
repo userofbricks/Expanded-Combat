@@ -20,6 +20,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
@@ -31,6 +33,7 @@ import top.theillusivec4.curios.common.network.client.CPacketToggleRender;
 
 import javax.annotation.Nonnull;
 
+@OnlyIn(Dist.CLIENT)
 public class ECCuriosQuiverScreen  extends ContainerScreen<ECCuriosQuiverContainer> {
     public static final ResourceLocation CURIO_INVENTORY = new ResourceLocation("curios", "textures/gui/inventory.png");
     public static final ResourceLocation QUIVER_INVENTORY = new ResourceLocation("expanded_combat", "textures/gui/container/quiver.png");

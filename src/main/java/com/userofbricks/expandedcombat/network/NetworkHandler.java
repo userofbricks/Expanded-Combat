@@ -2,6 +2,8 @@ package com.userofbricks.expandedcombat.network;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
+import com.userofbricks.expandedcombat.network.client.CPacketOpenShieldSmithing;
+import com.userofbricks.expandedcombat.network.client.CPacketOpenSmithing;
 import com.userofbricks.expandedcombat.network.client.PacketOffhandAttack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -32,6 +34,10 @@ public class NetworkHandler {
                 CPacketOpenCuriosQuiver::handle);
         register(PacketOffhandAttack.class, PacketOffhandAttack::encode, PacketOffhandAttack::decode,
                 PacketOffhandAttack.OffhandHandler::handle);
+        register(CPacketOpenSmithing.class, CPacketOpenSmithing::encode, CPacketOpenSmithing::decode,
+                 CPacketOpenSmithing::handle);
+        register(CPacketOpenShieldSmithing.class, CPacketOpenShieldSmithing::encode, CPacketOpenShieldSmithing::decode,
+                 CPacketOpenShieldSmithing::handle);
     }
 
     private static <M> void register(Class<M> messageType, BiConsumer<M, PacketBuffer> encoder,

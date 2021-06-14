@@ -1,7 +1,15 @@
 package com.userofbricks.expandedcombat.events;
 
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.QuiverButton;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldButton;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.screen.inventory.SmithingTableScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +24,12 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.client.event.GuiContainerEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.client.gui.CuriosScreen;
 
 public class ShieldEvents {
     public static void ShieldBlockEvent(LivingAttackEvent event) {
@@ -250,6 +263,50 @@ public class ShieldEvents {
                 }
 
             }
+        }
+    }
+
+
+
+    public static void onInventoryGuiInit(GuiScreenEvent.InitGuiEvent.Post evt) {
+        Screen screen = evt.getGui();
+        if (screen instanceof SmithingTableScreen) {
+            ContainerScreen<?> gui = (ContainerScreen<?>) screen;
+            int sizeX = 20;
+            int sizeY = 20;
+            int textureOffsetX = 204;
+            int textureOffsetY = 0;
+            int yOffset = 36;
+            int xOffset = -21;
+            evt.addWidget(new ShieldButton(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, textureOffsetX, textureOffsetY, 0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION));
+        } else if (screen instanceof ShieldSmithingTableScreen) {
+            ContainerScreen<?> gui = (ContainerScreen<?>) screen;
+            int sizeX = 20;
+            int sizeY = 20;
+            int textureOffsetX = 224;
+            int textureOffsetY = 0;
+            int yOffset = 8;
+            int xOffset = -21;
+            evt.addWidget(new ShieldButton(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, textureOffsetX, textureOffsetY, 0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION));
+        }
+    }
+
+    public static void drawTabs(GuiContainerEvent.DrawBackground e) {
+        if (e.getGuiContainer() instanceof SmithingTableScreen) {
+            Minecraft.getInstance().getTextureManager().bind(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION);
+            SmithingTableScreen smithingTableScreen = (SmithingTableScreen)e.getGuiContainer();
+            int left = smithingTableScreen.getGuiLeft();
+            int top = smithingTableScreen.getGuiTop();
+            smithingTableScreen.blit(e.getMatrixStack(), left -28, top + 4, 0, 194, 32, 28);
+            smithingTableScreen.blit(e.getMatrixStack(), left -28, top + 32, 0, 166, 32, 28);
+            smithingTableScreen.blit(e.getMatrixStack(), left -23, top + 8, 204, 0, 20, 20);
+        } else if (e.getGuiContainer() instanceof ShieldSmithingTableScreen) {
+            Minecraft.getInstance().getTextureManager().bind(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION);
+            ShieldSmithingTableScreen smithingTableScreen = (ShieldSmithingTableScreen)e.getGuiContainer();
+            int left = smithingTableScreen.getGuiLeft();
+            int top = smithingTableScreen.getGuiTop();
+            smithingTableScreen.blit(e.getMatrixStack(), left -28, top + 4, 0, 166, 32, 56);
+            smithingTableScreen.blit(e.getMatrixStack(), left -23, top + 36, 224, 0, 20, 20);
         }
     }
 }

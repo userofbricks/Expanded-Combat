@@ -51,11 +51,6 @@ public class FletchingRecipe implements IFletchingRecipe {
    }
 
    @Override
-   public NonNullList<ItemStack> getRemainingItems(IInventory p_179532_1_) {
-      return IFletchingRecipe.super.getRemainingItems(p_179532_1_);
-   }
-
-   @Override
    public Ingredient getBase() {
       return this.base;
    }

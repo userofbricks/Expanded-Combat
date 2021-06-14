@@ -20,13 +20,13 @@ public enum ShieldMaterial
     silver("silver", 1, WeaponTier.SILVER.getMendingBonus(), 2.5f, 0.4f, GauntletMaterials.silver.getRepairMaterial(), 175),
     lead("lead", 2, WeaponTier.LEAD.getMendingBonus(), 5f, 0.6f, GauntletMaterials.lead.getRepairMaterial(), 350),
     //twilight forest
-    //naga("naga", 1, 0, 4f, 0.65f, GauntletMaterials.naga.getRepairMaterial(), 260),
-    //ironwood("ironwood", 1, WeaponTier.IRONWOOD.getMendingBonus(), 3.5f, 0.6f, GauntletMaterials.ironwood.getRepairMaterial(), 250),
-    //fiery("fiery", 1, WeaponTier.FIERY.getMendingBonus(), 4.5f, 0.7f, GauntletMaterials.fiery.getRepairMaterial(), 275),
-    //steeleaf("steeleaf", 1, WeaponTier.STEELEAF.getMendingBonus(), 3.5f, 0.6f, GauntletMaterials.steeleaf.getRepairMaterial(), 180),
-    //knightly("knightly", 1, WeaponTier.KNIGHTLY.getMendingBonus(), 4f, 0.6f, GauntletMaterials.knightly.getRepairMaterial(), 250),
+    naga("naga", 1, 0, 4f, 0.65f, GauntletMaterials.naga.getRepairMaterial(), 260),
+    ironwood("ironwood", 1, WeaponTier.IRONWOOD.getMendingBonus(), 3.5f, 0.6f, GauntletMaterials.ironwood.getRepairMaterial(), 250),
+    fiery("fiery", 1, WeaponTier.FIERY.getMendingBonus(), 4.5f, 0.7f, GauntletMaterials.fiery.getRepairMaterial(), 275),
+    steeleaf("steeleaf", 1, WeaponTier.STEELEAF.getMendingBonus(), 3.5f, 0.6f, GauntletMaterials.steeleaf.getRepairMaterial(), 180),
+    knightly("knightly", 1, WeaponTier.KNIGHTLY.getMendingBonus(), 4f, 0.6f, GauntletMaterials.knightly.getRepairMaterial(), 250),
     //enderite plus
-    //enderite("enderite", 4, WeaponTier.ENDERITE.getMendingBonus(), 8, 0.9f, GauntletMaterials.enderite.getRepairMaterial(), 450)
+    enderite("enderite", 4, WeaponTier.ENDERITE.getMendingBonus(), 8, 0.9f, GauntletMaterials.enderite.getRepairMaterial(), 450)
     ;
 
 
@@ -85,7 +85,7 @@ public enum ShieldMaterial
         }
         return ShieldMaterial.empty;
     }
-    public ShieldMaterial getFromItemStack(ItemStack stack) {
+    public static ShieldMaterial getFromItemStack(ItemStack stack) {
     for (ShieldMaterial material : ShieldMaterial.values()) {
         if (material.getIngotOrMaterial().test(stack)) {
             return material;
@@ -93,4 +93,12 @@ public enum ShieldMaterial
     }
     return ShieldMaterial.empty;
 }
+
+    public boolean isEmpty(ShieldMaterial material) {
+        return material == empty;
+    }
+
+    public boolean isSingleAddition(ShieldMaterial material) {
+        return material == netherite || material == enderite;
+    }
 }

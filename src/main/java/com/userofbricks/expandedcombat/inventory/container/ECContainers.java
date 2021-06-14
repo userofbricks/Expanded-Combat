@@ -13,4 +13,5 @@ public class ECContainers {
 
     public static final RegistryObject<ContainerType<FlechingTableContainer>> FLETCHING = CONTAINER_TYPES.register("ec_fletching", () -> IForgeContainerType.create(FlechingTableContainer::new));
     public static final RegistryObject<ContainerType<ECCuriosQuiverContainer>> EC_QUIVER_CURIOS = CONTAINER_TYPES.register("quiver_curios", () -> IForgeContainerType.create(ECCuriosQuiverContainer::new));
+    public static final RegistryObject<ContainerType<ShieldSmithingTableContainer>> SHIELD_SMITHING = CONTAINER_TYPES.register("shield_smithing", () -> IForgeContainerType.create(ShieldSmithingTableContainer::new));
 }

@@ -25,10 +25,13 @@ import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
 import top.theillusivec4.curios.common.network.NetworkHandler;
 import top.theillusivec4.curios.common.network.client.CPacketOpenVanilla;
 
+@OnlyIn(Dist.CLIENT)
 public class CuriosButton extends ImageButton {
 
   CuriosButton(ContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,

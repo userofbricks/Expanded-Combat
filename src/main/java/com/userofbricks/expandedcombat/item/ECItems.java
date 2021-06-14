@@ -80,7 +80,7 @@ public class ECItems
     public static final RegistryObject<Item> SHIELD_TIER_1= ITEMS.register("shield_1", () -> new ECShieldItem(1, (new Item.Properties()).tab(EC_GROUP).setISTER(() -> ECShieldItemStackTileEntityRenderer::new)));
     public static final RegistryObject<Item> SHIELD_TIER_2 = ITEMS.register("shield_2", () -> new ECShieldItem(2, (new Item.Properties()).tab(EC_GROUP).setISTER(() -> ECShieldItemStackTileEntityRenderer::new)));
     public static final RegistryObject<Item> SHIELD_TIER_3 = ITEMS.register("shield_3", () -> new ECShieldItem(3, (new Item.Properties()).tab(EC_GROUP).fireResistant().setISTER(() -> ECShieldItemStackTileEntityRenderer::new)));
-    public static final RegistryObject<Item> SHIELD_TIER_4 = ITEMS.register("shield_4", () -> new ECShieldItem(4, (new Item.Properties()).durability(3336).tab(EC_GROUP).fireResistant().setISTER(() -> ECShieldItemStackTileEntityRenderer::new)));
+    public static final RegistryObject<Item> SHIELD_TIER_4 = ITEMS.register("shield_4", () -> new ECShieldItem(4, (new Item.Properties()).tab(EC_GROUP).fireResistant().setISTER(() -> ECShieldItemStackTileEntityRenderer::new)));
     public static final RegistryObject<Item> SHIELD_IRON_UL = ITEMS.register("shield_iron_ul", () -> new ECShieldItem(0, (new Item.Properties())));
     public static final RegistryObject<Item> SHIELD_IRON_UR = ITEMS.register("shield_iron_ur", () -> new ECShieldItem(0, (new Item.Properties())));
     public static final RegistryObject<Item> SHIELD_IRON_DL = ITEMS.register("shield_iron_dl", () -> new ECShieldItem(0, (new Item.Properties())));

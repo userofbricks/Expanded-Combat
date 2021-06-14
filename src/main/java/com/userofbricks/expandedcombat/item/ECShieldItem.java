@@ -167,4 +167,8 @@ public class ECShieldItem extends ShieldItem
         float m = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("M_Material")).getAfterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
+
+    public int getTier() {
+        return this.tier;
+    }
 }
