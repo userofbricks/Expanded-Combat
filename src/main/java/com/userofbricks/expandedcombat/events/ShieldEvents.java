@@ -1,7 +1,5 @@
 package com.userofbricks.expandedcombat.events;
 
-import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
-import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.QuiverButton;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldButton;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
@@ -18,18 +16,16 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
 
 public class ShieldEvents {
     public static void ShieldBlockEvent(LivingAttackEvent event) {
@@ -268,13 +264,14 @@ public class ShieldEvents {
 
 
 
+    @OnlyIn(Dist.CLIENT)
     public static void onInventoryGuiInit(GuiScreenEvent.InitGuiEvent.Post evt) {
         Screen screen = evt.getGui();
         if (screen instanceof SmithingTableScreen) {
             ContainerScreen<?> gui = (ContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
-            int textureOffsetX = 204;
+            int textureOffsetX = 224;
             int textureOffsetY = 0;
             int yOffset = 36;
             int xOffset = -21;
@@ -283,7 +280,7 @@ public class ShieldEvents {
             ContainerScreen<?> gui = (ContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
-            int textureOffsetX = 224;
+            int textureOffsetX = 204;
             int textureOffsetY = 0;
             int yOffset = 8;
             int xOffset = -21;
@@ -291,6 +288,7 @@ public class ShieldEvents {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void drawTabs(GuiContainerEvent.DrawBackground e) {
         if (e.getGuiContainer() instanceof SmithingTableScreen) {
             Minecraft.getInstance().getTextureManager().bind(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION);

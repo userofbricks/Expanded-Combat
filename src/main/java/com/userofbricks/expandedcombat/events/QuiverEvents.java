@@ -19,6 +19,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.util.NonNullSupplier;
@@ -169,6 +171,7 @@ public class QuiverEvents {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void onInventoryGuiInit(GuiScreenEvent.InitGuiEvent.Post evt) {
         Screen screen = evt.getGui();
         if (screen instanceof CuriosScreen) {

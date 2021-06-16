@@ -94,11 +94,17 @@ public enum ShieldMaterial
     return ShieldMaterial.empty;
 }
 
-    public boolean isEmpty(ShieldMaterial material) {
-        return material == empty;
+    public boolean isEmpty() {
+        return this == empty;
     }
 
-    public boolean isSingleAddition(ShieldMaterial material) {
-        return material == netherite || material == enderite;
+    public boolean isSingleAddition() {
+        return this == netherite || this == enderite;
+    }
+
+    public ShieldMaterial getMaterialToUpgrade() {
+        if (this == netherite) return diamond;
+        if (this == enderite) return netherite;
+        return null;
     }
 }

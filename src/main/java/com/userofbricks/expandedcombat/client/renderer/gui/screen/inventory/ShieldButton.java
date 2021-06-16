@@ -19,6 +19,7 @@
 
 package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
+import com.userofbricks.expandedcombat.network.NetworkHandler;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenShieldSmithing;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenSmithing;
@@ -43,12 +44,12 @@ public class ShieldButton extends ImageButton {
     super(xIn, yIn, widthIn, heightIn, textureOffsetX, textureOffsetY, yDiffText, resource, (button) -> {
       Minecraft mc = Minecraft.getInstance();
 
-      if (parentGui instanceof SmithingTableScreen && mc.player != null) {
-        com.userofbricks.expandedcombat.network.NetworkHandler.INSTANCE
+      if ((parentGui instanceof SmithingTableScreen) && mc.player != null) {
+        NetworkHandler.INSTANCE
                 .send(PacketDistributor.SERVER.noArg(), new CPacketOpenShieldSmithing());
       } else {
         if (parentGui instanceof ShieldSmithingTableScreen) {
-          top.theillusivec4.curios.common.network.NetworkHandler.INSTANCE
+          NetworkHandler.INSTANCE
                   .send(PacketDistributor.SERVER.noArg(), new CPacketOpenSmithing());
         }
       }

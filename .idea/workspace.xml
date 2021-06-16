@@ -4,107 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="completly overhalled how shields where set up.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldSmithingTableScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingContainerProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingTableContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/SmithingContainerProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ShieldSmithingRecipie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenShieldSmithing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenSmithing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/enderite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/ironwood.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/knightly.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/naga.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/steeleaf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/shield_smithing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/shield_smithing.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shields.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/CuriosButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/CuriosButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ECCuriosQuiverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ECCuriosQuiverScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/QuiverButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/QuiverButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECContainers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECContainers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECShieldItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ShieldMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ShieldMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/NetworkHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/NetworkHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/shield_m.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/shield_m.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/shield_base_nopattern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/shields/shield_base_nopattern.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_5.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_6.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/d4_7.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d1_i1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d2_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d2_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d2_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d2_3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_i1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_i1_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_i2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g1_i2_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g2_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g2_d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g2_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/gold/g2_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d1_g1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d1_i1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d1_i1_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d1_i2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_d1_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_d1_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i1_g1_i1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1_d2_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1_d2_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i2_g1_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3_d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3_d3_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3_d3_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i3_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4_d1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4_d2_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4_d2_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4_d3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/iron/i4_d3_n.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/shield/n.json" beforeDir="false" />
-    </list>
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="finished shield recipes and models" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -219,11 +119,11 @@
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.item.recipes" />
       <recent name="com.userofbricks.expandedcombat.inventory.container" />
       <recent name="com.userofbricks.expandedcombat.network.client" />
       <recent name="com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory" />
       <recent name="com.userofbricks.expandedcombat.item" />
-      <recent name="com.userofbricks.expandedcombat.client.renderer.gui" />
     </key>
   </component>
   <component name="RunManager" selected="Application.runClient">
@@ -398,7 +298,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623299587561</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="started on shield recipe stuff">
+      <created>1623703450491</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1623703450491</updated>
+    </task>
+    <task id="LOCAL-00015" summary="finished shield recipes and models">
+      <created>1623831081529</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1623831081529</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +343,9 @@
     <MESSAGE value="loads of stuff&#10;added quiver gui, hud, and arrow swaping" />
     <MESSAGE value="loads of stuff&#10;added client Config" />
     <MESSAGE value="completly overhalled how shields where set up." />
-    <option name="LAST_COMMIT_MESSAGE" value="completly overhalled how shields where set up." />
+    <MESSAGE value="started on shield recipe stuff" />
+    <MESSAGE value="finished shield recipes and models" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished shield recipes and models" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

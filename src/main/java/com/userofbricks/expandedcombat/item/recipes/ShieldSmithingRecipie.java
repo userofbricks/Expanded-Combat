@@ -34,7 +34,7 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
     @Override
     public boolean matches(IInventory inventory, @Nonnull World world) {
         ItemStack base = inventory.getItem(0);
-        if (!(base.getItem() instanceof ECShieldItem) || !(base.getItem() == Items.SHIELD)) return false;
+        if (!(base.getItem() instanceof ECShieldItem) && !(base.getItem() == Items.SHIELD)) return false;
         ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
         ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
         ShieldMaterial dl_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("DL_Material"));
@@ -45,8 +45,8 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
         ShieldMaterial addition_dl_material = ShieldMaterial.getFromItemStack(inventory.getItem(4));
         ShieldMaterial addition_dr_material = ShieldMaterial.getFromItemStack(inventory.getItem(5));
         ShieldMaterial addition_m_material = ShieldMaterial.getFromItemStack(inventory.getItem(3));
-        if (addition_ul_material.isSingleAddition(addition_ul_material) || addition_ur_material.isSingleAddition(addition_ur_material) || addition_dl_material.isSingleAddition(addition_dl_material)
-                || addition_dr_material.isSingleAddition(addition_dr_material) || addition_m_material.isSingleAddition(addition_m_material)) return false;
+        if (addition_ul_material.isSingleAddition() || addition_ur_material.isSingleAddition() || addition_dl_material.isSingleAddition()
+                || addition_dr_material.isSingleAddition() || addition_m_material.isSingleAddition()) return false;
         int highestTier = Math.max(Math.max(Math.max(addition_dr_material.getTier(), addition_dl_material.getTier()), Math.max(addition_ul_material.getTier(), addition_ur_material.getTier())), addition_m_material.getTier());
         int shieldTier = base.getItem() instanceof ECShieldItem ? ((ECShieldItem)base.getItem()).getTier() : 0;
         if (highestTier > shieldTier + 1 || highestTier == 0) return  false;
@@ -55,11 +55,11 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
         Ingredient dl = addition_dl_material.getIngotOrMaterial();
         Ingredient dr = addition_dr_material.getIngotOrMaterial();
         Ingredient m = addition_m_material.getIngotOrMaterial();
-        boolean is_ul = (ul.test(inventory.getItem(1)) && ul_material != addition_ul_material && ul_material.getTier() <= addition_ul_material.getTier());
-        boolean is_ur = (ur.test(inventory.getItem(2)) && ur_material != addition_ur_material && ur_material.getTier() <= addition_ur_material.getTier());
-        boolean is_dl = (dl.test(inventory.getItem(4)) && dl_material != addition_dl_material && dl_material.getTier() <= addition_dl_material.getTier());
-        boolean is_dr = (dr.test(inventory.getItem(5)) && dr_material != addition_dr_material && dr_material.getTier() <= addition_dr_material.getTier());
-        boolean is_m = (m.test(inventory.getItem(3)) && m_material != addition_m_material && m_material.getTier() <= addition_m_material.getTier());
+        boolean is_ul = (ul.test(inventory.getItem(1)) && ul_material != addition_ul_material && ul_material.getTier() <= addition_ul_material.getTier()) || addition_ul_material.isEmpty();
+        boolean is_ur = (ur.test(inventory.getItem(2)) && ur_material != addition_ur_material && ur_material.getTier() <= addition_ur_material.getTier()) || addition_ur_material.isEmpty();
+        boolean is_dl = (dl.test(inventory.getItem(4)) && dl_material != addition_dl_material && dl_material.getTier() <= addition_dl_material.getTier()) || addition_dl_material.isEmpty();
+        boolean is_dr = (dr.test(inventory.getItem(5)) && dr_material != addition_dr_material && dr_material.getTier() <= addition_dr_material.getTier()) || addition_dr_material.isEmpty();
+        boolean is_m = (m.test(inventory.getItem(3)) && m_material != addition_m_material && m_material.getTier() <= addition_m_material.getTier()) || addition_m_material.isEmpty();
         return is_ul && is_ur && is_dl && is_dr && is_m;
     }
 
@@ -77,11 +77,11 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
         ShieldMaterial addition_dr_material = ShieldMaterial.getFromItemStack(inventory.getItem(5));
         ShieldMaterial addition_m_material = ShieldMaterial.getFromItemStack(inventory.getItem(3));
         int highestTier = Math.max(Math.max(Math.max(addition_dr_material.getTier(), addition_dl_material.getTier()), Math.max(addition_ul_material.getTier(), addition_ur_material.getTier())), Math.max(addition_m_material.getTier(), base.getItem() instanceof ECShieldItem ? ((ECShieldItem)base.getItem()).getTier() : 0));
-        ShieldMaterial result_ul_material = addition_ul_material.isEmpty(addition_ul_material) ? ul_material: addition_ul_material;
-        ShieldMaterial result_ur_material = addition_ur_material.isEmpty(addition_ur_material) ? ur_material: addition_ur_material;
-        ShieldMaterial result_dl_material = addition_dl_material.isEmpty(addition_dl_material) ? dl_material: addition_dl_material;
-        ShieldMaterial result_dr_material = addition_dr_material.isEmpty(addition_dr_material) ? dr_material: addition_dr_material;
-        ShieldMaterial result_m_material = addition_m_material.isEmpty(addition_m_material) ? m_material: addition_m_material;
+        ShieldMaterial result_ul_material = addition_ul_material.isEmpty() ? ul_material: addition_ul_material;
+        ShieldMaterial result_ur_material = addition_ur_material.isEmpty() ? ur_material: addition_ur_material;
+        ShieldMaterial result_dl_material = addition_dl_material.isEmpty() ? dl_material: addition_dl_material;
+        ShieldMaterial result_dr_material = addition_dr_material.isEmpty() ? dr_material: addition_dr_material;
+        ShieldMaterial result_m_material = addition_m_material.isEmpty() ? m_material: addition_m_material;
         ItemStack result = new ItemStack(Items.SHIELD);
         if (highestTier == 1 ) {
             result = new ItemStack(ECItems.SHIELD_TIER_1.get());
@@ -132,7 +132,7 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
 
     public boolean isAdditionIngredient(ItemStack stack) {
         for (ShieldMaterial material : ShieldMaterial.values()) {
-            if (material.getIngotOrMaterial().test(stack) && !material.isSingleAddition(material)) {
+            if (material.getIngotOrMaterial().test(stack) && !material.isSingleAddition()) {
                 return true;
             }
         }

@@ -124,11 +124,11 @@ public class ECShieldItem extends ShieldItem
         String dl = stack.getOrCreateTag().getString("DL_Material");
         String dr = stack.getOrCreateTag().getString("DR_Material");
         String m = stack.getOrCreateTag().getString("M_Material");
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material" + ul).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material" + ur).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.pegs_trim").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material" + m).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material" + dl).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material" + dr).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + ul).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + ur).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.pegs_trim").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + m).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + dl).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + dr).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
 
         if (getMendingBonus(stack) != 0.0f) {
             if (getMendingBonus(stack) > 0.0f) {

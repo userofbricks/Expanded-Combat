@@ -35,7 +35,7 @@ public class ShieldSmithingContainerProvider implements INamedContainerProvider 
   @Nonnull
   @Override
   public ITextComponent getDisplayName() {
-    return new TranslationTextComponent("container.shield");
+    return new TranslationTextComponent("container.upgrade_shield");
   }
 
   @Nullable

@@ -19,7 +19,6 @@
 
 package com.userofbricks.expandedcombat.inventory.container;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -30,16 +29,16 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class SmithingContainerProvider implements INamedContainerProvider {
 
   @Nonnull
   @Override
   public ITextComponent getDisplayName() {
-    return new TranslationTextComponent("container.smithing");
+    return new TranslationTextComponent("container.upgrade");
   }
 
+  @Nonnull
   @Override
   public Container createMenu(int i, @Nonnull PlayerInventory playerInventory,
                               @Nonnull PlayerEntity playerEntity) {
