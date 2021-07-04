@@ -32,7 +32,7 @@ public class ECItems
     public static final RegistryObject<Item> QUIVER_IRON = ITEMS.register("quiver_iron", () -> new ECQuiverItem("quiver_iron", ExpandedCombat.isSpartanWeponryLoaded ? 4:3, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
     public static final RegistryObject<Item> QUIVER_GOLD = ITEMS.register("quiver_gold", () -> new ECQuiverItem("quiver_gold", ExpandedCombat.isSpartanWeponryLoaded ? 6:5, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
     public static final RegistryObject<Item> QUIVER_DIAMOND = ITEMS.register("quiver_diamond", () -> new ECQuiverItem("quiver_diamond", ExpandedCombat.isSpartanWeponryLoaded ? 9:7, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
-    public static final RegistryObject<Item> QUIVER_NETHERITE = ITEMS.register("quiver_netherite", () -> new ECQuiverItem("quiver_netherite", ExpandedCombat.isSpartanWeponryLoaded ? 12:10, new Item.Properties().tab(EC_GROUP).stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER_NETHERITE = ITEMS.register("quiver_netherite", () -> new ECQuiverItem("quiver_netherite", ExpandedCombat.isSpartanWeponryLoaded ? 12:10, new Item.Properties().tab(EC_GROUP).stacksTo(1).fireResistant()));
 
 
     public static final RegistryObject<Item> IRON_BOW_HALF = ITEMS.register("iron_bow_half", () -> new ECBowItem(2f, (new Item.Properties()).durability(414).tab(EC_GROUP)));
@@ -48,6 +48,7 @@ public class ECItems
     public static final RegistryObject<Item> DIAMOND_CROSSBOW = ITEMS.register("crossbow_diamond", () -> new ECCrossBowItem(4f,2, (new Item.Properties()).durability(672)));
     public static final RegistryObject<Item> NETHERITE_CROSSBOW = ITEMS.register("crossbow_netherite", () -> new ECCrossBowItem(4.5f,3, (new Item.Properties()).durability(768)));
 
+    public static final RegistryObject<Item> FLETCHED_STICK = ITEMS.register("fletched_sticks", () -> new Item(new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> IRON_ARROW = ITEMS.register("iron_arrow", () -> new ECArrowItem(ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> IRON_TIPPED_ARROW = ITEMS.register("iron_tipped_arrow", () -> new ECTippedArrowItem(ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> DIAMOND_ARROW = ITEMS.register("diamond_arrow", () -> new ECArrowItem(ArrowType.DIAMOND, new Item.Properties().tab(EC_GROUP)));

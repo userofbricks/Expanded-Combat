@@ -2,7 +2,6 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = "https://repo.spongepowered.org/maven" }
-        jcenter()
         mavenCentral()
 
     }
@@ -142,18 +141,15 @@ repositories{
         url = "https://modmaven.k-4u.nl"
     }
 
-    jcenter()
     mavenCentral()
     maven { url = "https://maven.theillusivec4.top/" }
 
     maven {
         url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
+        content {includeGroup "curse.maven"}
     }
 
-    //flatDir {dirs 'externalmods'}
+    flatDir {dirs 'externalmods'}
 }
 
 dependencies {
@@ -166,7 +162,8 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
-    //implementation fg.deobf("ignore:spartanweaponry:${spartain_weponry_version}")
+    //implementation fg.deobf("ignore:spartanweaponry:1.16.4-2.1.0-beta-4")
+    //compile fg.deobf("curse.maven:spartan-weaponry:3291850")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

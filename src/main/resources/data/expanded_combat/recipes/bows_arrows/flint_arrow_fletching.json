@@ -1,0 +1,13 @@
+{
+	"type": "expanded_combat:ec_fletching_single",
+	"base": {
+		"item": "expanded_combat:fletched_sticks"
+	},
+	"addition": {
+		"item": "minecraft:flint"
+	},
+	"result": {
+		"item": "minecraft:arrow",
+		"count": 6
+	}
+}

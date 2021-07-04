@@ -1,0 +1,12 @@
+{
+	"type": "expanded_combat:ec_fletching_single",
+	"base": {
+		"item": "minecraft:stick"
+	},
+	"addition": {
+		"item": "minecraft:feather"
+	},
+	"result": {
+		"item": "expanded_combat:fletched_sticks"
+	}
+}

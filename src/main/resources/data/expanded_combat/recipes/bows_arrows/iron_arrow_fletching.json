@@ -1,0 +1,13 @@
+{
+	"type": "expanded_combat:ec_fletching_single",
+	"base": {
+		"item": "expanded_combat:fletched_sticks"
+	},
+	"addition": {
+		"item": "minecraft:iron_ingot"
+	},
+	"result": {
+		"item": "expanded_combat:iron_arrow",
+		"count": 6
+	}
+}

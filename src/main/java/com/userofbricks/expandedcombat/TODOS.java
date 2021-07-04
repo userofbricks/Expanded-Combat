@@ -19,10 +19,10 @@ public class TODOS {
             4.1 list all the different types of Item tags itroduced with this mod
             4.2 fletching recipies
      */
-    /* TODO
-        Change the smithing table gui to include tabs with which you can enhance different sorts of weapons, armor, and tools (eventually)
-        2 tabs one will be the vanilla one which adds one material the other will be a multi material one.
-        each "tab" is signified with iether one or four ingots/gems
+    /* TODO:
+        Use the back slot as a weapon switcher
      */
-    //TODO FIX THAT ENDERITE TEXTURE BUG!!!!!!!
+    /* TODO:
+        Bugfix: vanilla enchantments for gauntlets need a mixin to work
+     */
 }

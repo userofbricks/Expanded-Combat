@@ -1,0 +1,19 @@
+{
+	"type": "forge:conditional",
+	"recipes": [
+		{
+			"conditions": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "spartanweaponry"
+				}
+			],
+			"recipe": {
+				"type": "minecraft:smithing",
+				"base": { "item": "expanded_combat:quiver_gold" },
+				"addition": {"item": "spartanweaponry:quiver_upgrade_kit_large"},
+				"result": { "item": "expanded_combat:quiver_diamond" }
+			}
+		}
+	]
+}
