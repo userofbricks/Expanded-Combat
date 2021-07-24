@@ -62,6 +62,11 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
       return stack.getItem() == Items.LINGERING_POTION;
    }
 
+   @Override
+   public int getMaxCraftingAmount() {
+      return 64;
+   }
+
    public IRecipeSerializer<?> getSerializer() {
       return RecipeSerializerInit.EC_SPECIAL_FLETCHING_SERIALIZER.get();
    }

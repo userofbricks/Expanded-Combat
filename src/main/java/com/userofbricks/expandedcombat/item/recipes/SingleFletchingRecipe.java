@@ -61,6 +61,11 @@ public class SingleFletchingRecipe implements IFletchingRecipe {
       return this.addition.test(p_241456_1_);
    }
 
+   @Override
+   public int getMaxCraftingAmount() {
+      return 1;
+   }
+
    public ItemStack getResultItem() {
       return this.result;
    }

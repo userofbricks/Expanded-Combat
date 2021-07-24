@@ -31,4 +31,6 @@ public interface IFletchingRecipe extends IRecipe<IInventory> {
     Ingredient getAddition();
 
     boolean isAdditionIngredient(ItemStack p_241456_1_);
+
+    int getMaxCraftingAmount();
 }

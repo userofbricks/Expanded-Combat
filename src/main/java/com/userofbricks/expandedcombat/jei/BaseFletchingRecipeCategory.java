@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.item.recipes.FletchingRecipe;
 import com.userofbricks.expandedcombat.item.recipes.IFletchingRecipe;
+import mezz.jei.api.MethodsReturnNonnullByDefault;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -25,8 +26,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 
+@MethodsReturnNonnullByDefault
 public class BaseFletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe> {
 
 	private final IDrawable background;
@@ -46,8 +49,8 @@ public class BaseFletchingRecipeCategory implements IRecipeCategory<IFletchingRe
 	}
 
 	@Override
-	public Class<? extends FletchingRecipe> getRecipeClass() {
-		return FletchingRecipe.class;
+	public Class<? extends IFletchingRecipe> getRecipeClass() {
+		return IFletchingRecipe.class;
 	}
 
 	@Override
@@ -85,8 +88,8 @@ public class BaseFletchingRecipeCategory implements IRecipeCategory<IFletchingRe
 	}
 
 	@Override
-	public void draw(IFletchingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-		if (tickTimer.getValue() != 0 || tickTimer.getValue() != 1) {
+	public void draw(@Nonnull IFletchingRecipe recipe, @Nonnull MatrixStack ms, double mouseX, double mouseY) {
+		if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.getMaxCraftingAmount() == 64) {
 			RenderSystem.enableAlphaTest();
 			RenderSystem.enableBlend();
 			drawAcendingNumbers(ms, 5, 9);
@@ -128,7 +131,7 @@ public class BaseFletchingRecipeCategory implements IRecipeCategory<IFletchingRe
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, IFletchingRecipe recipe, IIngredients ingredients) {
+	public void setRecipe(IRecipeLayout recipeLayout, @Nonnull IFletchingRecipe recipe, @Nonnull IIngredients ingredients) {
 		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
 		guiItemStacks.init(0, true, 0, 0);

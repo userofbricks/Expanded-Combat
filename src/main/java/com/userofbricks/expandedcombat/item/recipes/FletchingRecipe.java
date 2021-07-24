@@ -22,7 +22,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class FletchingRecipe implements IFletchingRecipe {
-   ResourceLocation FLETCHING_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "fletching");
    private final Ingredient base;
    private final Ingredient addition;
    private final ItemStack result;
@@ -62,6 +61,11 @@ public class FletchingRecipe implements IFletchingRecipe {
 
    public boolean isAdditionIngredient(ItemStack p_241456_1_) {
       return this.addition.test(p_241456_1_);
+   }
+
+   @Override
+   public int getMaxCraftingAmount() {
+      return 64;
    }
 
    public ItemStack getResultItem() {

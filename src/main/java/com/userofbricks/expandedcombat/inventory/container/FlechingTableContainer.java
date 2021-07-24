@@ -1,7 +1,10 @@
 package com.userofbricks.expandedcombat.inventory.container;
 
+import com.userofbricks.expandedcombat.item.ECItems;
+import com.userofbricks.expandedcombat.item.ECTippedArrowItem;
 import com.userofbricks.expandedcombat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
+import com.userofbricks.expandedcombat.item.recipes.SingleFletchingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -10,6 +13,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.AbstractRepairContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -52,18 +56,22 @@ public class FlechingTableContainer extends AbstractRepairContainer {
     protected ItemStack onTake(PlayerEntity p_230301_1_, ItemStack p_230301_2_) {
         p_230301_2_.onCraftedBy(p_230301_1_.level, p_230301_1_, p_230301_2_.getCount());
         this.resultSlots.awardUsedRecipes(p_230301_1_);
-        this.inputSlots.setItem(0, ItemStack.EMPTY);
-        this.shrinkStackInSlot();
+        if (!(selectedRecipe instanceof SingleFletchingRecipe)) {
+            this.inputSlots.setItem(0, ItemStack.EMPTY);
+        } else {
+            this.shrinkStackInSlot(0);
+        }
+        this.shrinkStackInSlot(1);
         this.access.execute((p_234653_0_, p_234653_1_) -> {
             p_234653_0_.levelEvent(1044, p_234653_1_, 0);
         });
         return p_230301_2_;
     }
 
-    private void shrinkStackInSlot() {
-        ItemStack itemstack = this.inputSlots.getItem(1);
+    private void shrinkStackInSlot(int slot) {
+        ItemStack itemstack = this.inputSlots.getItem(slot);
         itemstack.shrink(1);
-        this.inputSlots.setItem(1, itemstack);
+        this.inputSlots.setItem(slot, itemstack);
     }
 
     @Override
