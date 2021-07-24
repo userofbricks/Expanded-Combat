@@ -12,6 +12,8 @@ import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCu
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
+import com.userofbricks.expandedcombat.config.ECClientConfig;
+import com.userofbricks.expandedcombat.config.ECConfig;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
@@ -69,6 +71,7 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.client.CuriosClientConfig;
+import top.theillusivec4.curios.common.CuriosConfig;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -94,7 +97,8 @@ public class ExpandedCombat
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CuriosClientConfig.CLIENT_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ECClientConfig.CLIENT_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
         AttributeRegistry.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECItems.ITEMS.register(bus);

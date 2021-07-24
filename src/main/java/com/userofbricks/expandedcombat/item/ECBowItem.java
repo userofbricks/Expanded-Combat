@@ -29,8 +29,8 @@ import net.minecraft.item.BowItem;
 
 public class ECBowItem extends BowItem
 {
-    private int multishotLevel;
-    private int bowPower;
+    private final int multishotLevel;
+    private final int bowPower;
     private final float velocityMultiplyer;
     float mendingBonus;
     

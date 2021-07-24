@@ -7,6 +7,7 @@
 package com.userofbricks.expandedcombat.item;
 
 import com.userofbricks.expandedcombat.client.renderer.model.ECShieldItemStackTileEntityRenderer;
+import com.userofbricks.expandedcombat.config.ECConfig;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,13 +36,13 @@ public class ECItems
     public static final RegistryObject<Item> QUIVER_NETHERITE = ITEMS.register("quiver_netherite", () -> new ECQuiverItem("quiver_netherite", ExpandedCombat.isSpartanWeponryLoaded ? 12:10, new Item.Properties().tab(EC_GROUP).stacksTo(1).fireResistant()));
 
 
-    public static final RegistryObject<Item> IRON_BOW_HALF = ITEMS.register("iron_bow_half", () -> new ECBowItem(2f, (new Item.Properties()).durability(414).tab(EC_GROUP)));
-    public static final RegistryObject<Item> IRON_BOW = ITEMS.register("iron_bow", () -> new ECBowItem(3.5f, 1, (new Item.Properties()).durability(480).tab(EC_GROUP)));
-    public static final RegistryObject<Item> GOLD_BOW_HALF = ITEMS.register("gold_bow_half", () -> new ECBowItem(1f, 2f, (new Item.Properties()).durability(390).tab(EC_GROUP)));
-    public static final RegistryObject<Item> GOLD_BOW = ITEMS.register("gold_bow", () -> new ECBowItem(2f, 3f, 1, (new Item.Properties()).durability(395).tab(EC_GROUP)));
-    public static final RegistryObject<Item> DIAMOND_BOW_HALF = ITEMS.register("diamond_bow_half", () -> new ECBowItem(2.5f, 1, (new Item.Properties()).durability(576).tab(EC_GROUP)));
-    public static final RegistryObject<Item> DIAMOND_BOW = ITEMS.register("diamond_bow", () -> new ECBowItem(4f, 2, (new Item.Properties()).durability(672).tab(EC_GROUP)));
-    public static final RegistryObject<Item> NETHERITE_BOW = ITEMS.register("netherite_bow", () -> new ECBowItem(4.5f, 3, (new Item.Properties()).durability(768).tab(EC_GROUP).fireResistant()));
+    public static final RegistryObject<Item> IRON_BOW_HALF = ITEMS.register("iron_bow_half", () -> new ECBowItem(1.5f, ECConfig.SERVER.halfIronBowPower.get(), (new Item.Properties()).durability(414).tab(EC_GROUP)));
+    public static final RegistryObject<Item> IRON_BOW = ITEMS.register("iron_bow", () -> new ECBowItem(3f, ECConfig.SERVER.ironBowPower.get(), (new Item.Properties()).durability(480).tab(EC_GROUP)));
+    public static final RegistryObject<Item> GOLD_BOW_HALF = ITEMS.register("gold_bow_half", () -> new ECBowItem(1f, 1.5f, ECConfig.SERVER.halfGoldBowPower.get(), (new Item.Properties()).durability(390).tab(EC_GROUP)));
+    public static final RegistryObject<Item> GOLD_BOW = ITEMS.register("gold_bow", () -> new ECBowItem(2f, 2.5f, ECConfig.SERVER.goldBowPower.get(), (new Item.Properties()).durability(395).tab(EC_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_BOW_HALF = ITEMS.register("diamond_bow_half", () -> new ECBowItem(2f, ECConfig.SERVER.halfDiamondBowPower.get(), (new Item.Properties()).durability(576).tab(EC_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_BOW = ITEMS.register("diamond_bow", () -> new ECBowItem(3.5f, ECConfig.SERVER.diamondBowPower.get(), (new Item.Properties()).durability(672).tab(EC_GROUP)));
+    public static final RegistryObject<Item> NETHERITE_BOW = ITEMS.register("netherite_bow", () -> new ECBowItem(4f, ECConfig.SERVER.netheriteBowPower.get(), (new Item.Properties()).durability(768).tab(EC_GROUP).fireResistant()));
 
     public static final RegistryObject<Item> IRON_CROSSBOW = ITEMS.register("crossbow_iron", () -> new ECCrossBowItem(3.5f, 1, (new Item.Properties()).durability(480)));
     public static final RegistryObject<Item> GOLD_CROSSBOW = ITEMS.register("crossbow_gold", () -> new ECCrossBowItem(2f,3f,1, (new Item.Properties()).durability(395)));

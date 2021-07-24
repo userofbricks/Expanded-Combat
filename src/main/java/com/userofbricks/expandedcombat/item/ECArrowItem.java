@@ -8,19 +8,22 @@ import net.minecraft.world.World;
 import net.minecraft.item.Item;
 import net.minecraft.item.ArrowItem;
 
+import javax.annotation.Nonnull;
+
 public class ECArrowItem extends ArrowItem
 {
     protected final ArrowType arrowType;
     
-    public ECArrowItem(final ArrowType arrowType, final Item.Properties builder) {
+    public ECArrowItem(ArrowType arrowType, Item.Properties builder) {
         super(builder);
         this.arrowType = arrowType;
     }
     
-    public AbstractArrowEntity createArrow(final World worldIn, final ItemStack stack, final LivingEntity shooter) {
-        final ECArrowEntity arrowentity = new ECArrowEntity(worldIn, shooter);
+    @Nonnull
+    public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
+        ECArrowEntity arrowentity = new ECArrowEntity(worldIn, shooter);
         arrowentity.setPotionEffect(stack);
-        arrowentity.setBaseDamage((double)this.arrowType.getDamage());
+        arrowentity.setBaseDamage(this.arrowType.getDamage());
         arrowentity.setArrowType(this.arrowType);
         return arrowentity;
     }
