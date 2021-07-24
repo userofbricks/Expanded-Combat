@@ -42,6 +42,6 @@ public class ShieldSmithingContainerProvider implements INamedContainerProvider 
   @Override
   public Container createMenu(int i, @Nonnull PlayerInventory playerInventory,
                               @Nonnull PlayerEntity playerEntity) {
-    return new ShieldSmithingTableContainer(i, playerInventory, IWorldPosCallable.NULL);
+    return new ShieldSmithingContainer(i, playerInventory, IWorldPosCallable.NULL);
   }
 }

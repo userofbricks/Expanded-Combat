@@ -19,15 +19,11 @@
 
 package com.userofbricks.expandedcombat.network.client;
 
-import com.userofbricks.expandedcombat.inventory.container.CuriosQuiverContainerProvider;
-import com.userofbricks.expandedcombat.network.NetworkHandler;
+import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainerProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.fml.network.PacketDistributor;
-import top.theillusivec4.curios.common.network.server.SPacketGrabbedItem;
 
 import java.util.function.Supplier;
 
@@ -45,7 +41,7 @@ public class CPacketOpenCuriosQuiver {
       ServerPlayerEntity sender = ctx.get().getSender();
 
       if (sender != null) {
-        NetworkHooks.openGui(sender, new CuriosQuiverContainerProvider());
+        NetworkHooks.openGui(sender, new ECCuriosQuiverContainerProvider());
       }
     });
     ctx.get().setPacketHandled(true);

@@ -19,12 +19,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public class ShieldSmithingTableContainer extends Container {
+public class ShieldSmithingContainer extends Container {
     protected final CraftResultInventory resultSlots = new CraftResultInventory();
     protected final IInventory inputSlots = new Inventory(6) {
         public void setChanged() {
             super.setChanged();
-            ShieldSmithingTableContainer.this.slotsChanged(this);
+            ShieldSmithingContainer.this.slotsChanged(this);
         }
     };
 
@@ -35,7 +35,7 @@ public class ShieldSmithingTableContainer extends Container {
     private ShieldSmithingRecipie selectedRecipe;
     private final List<ShieldSmithingRecipie> recipes;
 
-    public ShieldSmithingTableContainer(int id, PlayerInventory playerInventory, IWorldPosCallable iWorldPosCallable) {
+    public ShieldSmithingContainer(int id, PlayerInventory playerInventory, IWorldPosCallable iWorldPosCallable) {
         super(ECContainers.SHIELD_SMITHING.get(), id);
         this.slots.clear();
         this.lastSlots.clear();
@@ -60,12 +60,12 @@ public class ShieldSmithingTableContainer extends Container {
             }
 
             public boolean mayPickup(PlayerEntity p_82869_1_) {
-                return ShieldSmithingTableContainer.this.mayPickup();
+                return ShieldSmithingContainer.this.mayPickup();
             }
 
             @Nonnull
             public ItemStack onTake(PlayerEntity p_190901_1_, ItemStack p_190901_2_) {
-                return ShieldSmithingTableContainer.this.onTake(p_190901_1_, p_190901_2_);
+                return ShieldSmithingContainer.this.onTake(p_190901_1_, p_190901_2_);
             }
         });
 
@@ -80,7 +80,7 @@ public class ShieldSmithingTableContainer extends Container {
         }
     }
 
-    public ShieldSmithingTableContainer(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
+    public ShieldSmithingContainer(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
        this(i, playerInventory, IWorldPosCallable.NULL);
     }
 
@@ -137,7 +137,6 @@ public class ShieldSmithingTableContainer extends Container {
     @Override
     protected void clearContainer(PlayerEntity p_193327_1_, World p_193327_2_, IInventory p_193327_3_) {
         super.clearContainer(p_193327_1_, p_193327_2_, p_193327_3_);
-
     }
 
     public boolean stillValid(PlayerEntity p_75145_1_) {

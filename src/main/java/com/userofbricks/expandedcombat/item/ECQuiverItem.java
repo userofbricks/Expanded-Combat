@@ -30,6 +30,7 @@ public class ECQuiverItem extends Item implements ICurioItem
     private Object model;
     private final ResourceLocation QUIVER_TEXTURE;
     public final int providedSlots;
+    private int slotsChecked = 0;
     public ECQuiverItem(String textureName, int providedSlots, Properties properties) {
         super(properties);
         this.QUIVER_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/" + textureName + ".png");
@@ -126,6 +127,11 @@ public class ECQuiverItem extends Item implements ICurioItem
             }
             curioStackHandler.setStackInSlot(i, stacks.getOrDefault(stackIndex, ItemStack.EMPTY));
         }
-        if (curioStackHandler.getStackInSlot(0).isEmpty()) sycleArrows(curioStackHandler, forward);
+        if (curioStackHandler.getStackInSlot(0).isEmpty() && slotsChecked <= providedSlots) {
+            slotsChecked++;
+            sycleArrows(curioStackHandler, forward);
+        } else {
+            slotsChecked = 0;
+        }
     }
 }

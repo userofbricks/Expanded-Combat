@@ -30,7 +30,7 @@ import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CuriosQuiverContainerProvider implements INamedContainerProvider {
+public class ECCuriosQuiverContainerProvider implements INamedContainerProvider {
 
   @Nonnull
   @Override

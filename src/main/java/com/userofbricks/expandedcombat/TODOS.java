@@ -23,6 +23,7 @@ public class TODOS {
         Use the back slot as a weapon switcher
      */
     /* TODO:
-        Bugfix: vanilla enchantments for gauntlets need a mixin to work
+        BUGFIX:
+            items in the shield smithing screen get deleted on exit.
      */
 }

@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.userofbricks.expandedcombat.inventory.container.ShieldSmithingTableContainer;
+import com.userofbricks.expandedcombat.inventory.container.ShieldSmithingContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -18,10 +18,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @OnlyIn(Dist.CLIENT)
 @ParametersAreNonnullByDefault
-public class ShieldSmithingTableScreen extends ContainerScreen<ShieldSmithingTableContainer> implements IContainerListener {
+public class ShieldSmithingTableScreen extends ContainerScreen<ShieldSmithingContainer> implements IContainerListener {
     public static final ResourceLocation SHIELD_SMITHING_LOCATION = new ResourceLocation("expanded_combat", "textures/gui/container/shield_smithing.png");
 
-    public ShieldSmithingTableScreen(ShieldSmithingTableContainer p_i232291_1_, PlayerInventory p_i232291_2_, ITextComponent p_i232291_3_) {
+    public ShieldSmithingTableScreen(ShieldSmithingContainer p_i232291_1_, PlayerInventory p_i232291_2_, ITextComponent p_i232291_3_) {
         super(p_i232291_1_, p_i232291_2_, p_i232291_3_);
         this.titleLabelX = 60;
         this.titleLabelY = 18;
