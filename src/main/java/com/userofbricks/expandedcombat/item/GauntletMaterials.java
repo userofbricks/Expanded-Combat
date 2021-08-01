@@ -1,5 +1,6 @@
 package com.userofbricks.expandedcombat.item;
 
+import com.userofbricks.expandedcombat.config.ECConfig;
 import com.userofbricks.expandedcombat.util.ItemAndTagsUtil;
 import net.minecraft.item.*;
 import net.minecraft.util.SoundEvents;
@@ -8,26 +9,26 @@ import net.minecraft.util.SoundEvent;
 
 public enum GauntletMaterials implements IGauntletMaterial
 {
-    netherite("netherite", 3, ItemTier.NETHERITE, ArmorMaterial.NETHERITE),
-    diamond("diamond", 3, ItemTier.DIAMOND, ArmorMaterial.DIAMOND),
-    gold("gold", ItemTier.WOOD.getUses(), 1, ItemTier.GOLD.getAttackDamageBonus(), ArmorMaterial.GOLD),
-    iron("iron", 2, ItemTier.IRON, ArmorMaterial.IRON),
-    leather("leather", ItemTier.STONE.getUses(), 1, ItemTier.STONE.getAttackDamageBonus(), ArmorMaterial.LEATHER),
+    netherite("netherite", ItemTier.NETHERITE.getUses(), ECConfig.SERVER.netheriteGauntletArmorAmount.get(), ECConfig.SERVER.netheriteGauntletDamage.get(), ArmorMaterial.NETHERITE, ECConfig.SERVER.netheriteGauntletArmorToughness.get(), ECConfig.SERVER.netheriteGauntletKnockBackResistance.get()),
+    diamond("diamond", ItemTier.DIAMOND.getUses(), ECConfig.SERVER.diamondGauntletArmorAmount.get(), ECConfig.SERVER.diamondGauntletDamage.get(), ArmorMaterial.DIAMOND, ECConfig.SERVER.diamondGauntletArmorToughness.get(), ECConfig.SERVER.diamondGauntletKnockBackResistance.get()),
+    gold("gold", ItemTier.WOOD.getUses(), ECConfig.SERVER.goldGauntletArmorAmount.get(), ECConfig.SERVER.goldGauntletDamage.get(), ArmorMaterial.GOLD, ECConfig.SERVER.goldGauntletArmorToughness.get(), ECConfig.SERVER.goldGauntletKnockBackResistance.get()),
+    iron("iron", ItemTier.IRON.getUses(), ECConfig.SERVER.ironGauntletArmorAmount.get(), ECConfig.SERVER.ironGauntletDamage.get(), ArmorMaterial.IRON, ECConfig.SERVER.ironGauntletArmorToughness.get(), ECConfig.SERVER.ironGauntletKnockBackResistance.get()),
+    leather("leather", ItemTier.STONE.getUses(), ECConfig.SERVER.leatherGauntletArmorAmount.get(), ECConfig.SERVER.leatherGauntletDamage.get(), ArmorMaterial.LEATHER, ECConfig.SERVER.leatherGauntletArmorToughness.get(), ECConfig.SERVER.leatherGauntletKnockBackResistance.get()),
     //mod compat
-    steel("steel", 482, 10, 2, 2.5f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), 1f, 0f),
-    bronze("bronze", 225, 12, 2, 2f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), 0.5f, 0f),
-    silver("silver", 325, 23, 2, 1f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), 0f, 0f),
-    lead("lead", 1761, 10, 3, 3f, ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterial.IRON.getEquipSound(), 1f, 0.5f),
+    steel   ("steel", 482, 10, ECConfig.SERVER.steelGauntletArmorAmount.get(), ECConfig.SERVER.steelGauntletDamage.get(), ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterial.IRON.getEquipSound(), ECConfig.SERVER.steelGauntletArmorToughness.get(), ECConfig.SERVER.steelGauntletKnockBackResistance.get()),
+    bronze  ("bronze", 225, 12, ECConfig.SERVER.bronzeGauntletArmorAmount.get(), ECConfig.SERVER.bronzeGauntletDamage.get(), ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterial.IRON.getEquipSound(), ECConfig.SERVER.bronzeGauntletArmorToughness.get(), ECConfig.SERVER.bronzeGauntletKnockBackResistance.get()),
+    silver  ("silver", 325, 23, ECConfig.SERVER.silverGauntletArmorAmount.get(), ECConfig.SERVER.silverGauntletDamage.get(), ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterial.IRON.getEquipSound(), ECConfig.SERVER.silverGauntletArmorToughness.get(), ECConfig.SERVER.silverGauntletKnockBackResistance.get()),
+    lead    ("lead", 1761, 10, ECConfig.SERVER.leadGauntletArmorAmount.get(), ECConfig.SERVER.leadGauntletDamage.get(), ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterial.IRON.getEquipSound(), ECConfig.SERVER.leadGauntletArmorToughness.get(), ECConfig.SERVER.leadGauntletKnockBackResistance.get()),
     //twilight forest
-    naga("naga", 945, 15, 3, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "naga_scale"), SoundEvents.ARMOR_EQUIP_GENERIC, 0.5f, 0f),
-    ironwood("ironwood", 712, 20, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "ironwood_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 0f, 1f),
-    fiery("fiery", 1124, 10, 4, 4f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "fiery_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 1.5f, 0f),
-    steeleaf("steeleaf", 351, 9, 3, 4f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "steeleaf_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 0f, 0f),
-    knightly("knightly", 712, 8, 3, 3f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "knightmetal_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, 1.0f, 0f),
-    yeti("yeti", 712, 15, 3, 2.5f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "alpha_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f),
-    artic("artic", 352, 8, 2, 2f, ItemAndTagsUtil.getItemOrEmpty("twilightforest", "arctic_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, 3.0f, 0f),
+    naga    ("naga", 945, 15, ECConfig.SERVER.nagaGauntletArmorAmount.get(), ECConfig.SERVER.nagaGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "naga_scale"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.nagaGauntletArmorToughness.get(), ECConfig.SERVER.nagaGauntletKnockBackResistance.get()),
+    ironwood("ironwood", 712, 20, ECConfig.SERVER.ironwoodGauntletArmorAmount.get(), ECConfig.SERVER.ironwoodGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "ironwood_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.ironwoodGauntletArmorToughness.get(), ECConfig.SERVER.ironwoodGauntletKnockBackResistance.get()),
+    fiery   ("fiery", 1124, 10, ECConfig.SERVER.fieryGauntletArmorAmount.get(), ECConfig.SERVER.fieryGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "fiery_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.fieryGauntletArmorToughness.get(), ECConfig.SERVER.fieryGauntletKnockBackResistance.get()),
+    steeleaf("steeleaf", 351, 9, ECConfig.SERVER.steeleafGauntletArmorAmount.get(), ECConfig.SERVER.steeleafGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "steeleaf_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.steeleafGauntletArmorToughness.get(), ECConfig.SERVER.steeleafGauntletKnockBackResistance.get()),
+    knightly("knightly", 712, 8, ECConfig.SERVER.knightlyGauntletArmorAmount.get(), ECConfig.SERVER.knightlyGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "knightmetal_ingot"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.knightlyGauntletArmorToughness.get(), ECConfig.SERVER.knightlyGauntletKnockBackResistance.get()),
+    yeti    ("yeti", 712, 15, ECConfig.SERVER.yetiGauntletArmorAmount.get(), ECConfig.SERVER.yetiGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "alpha_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.yetiGauntletArmorToughness.get(), ECConfig.SERVER.yetiGauntletKnockBackResistance.get()),
+    artic   ("artic", 352, 8, ECConfig.SERVER.articGauntletArmorAmount.get(), ECConfig.SERVER.articGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("twilightforest", "arctic_fur"), SoundEvents.ARMOR_EQUIP_GENERIC, ECConfig.SERVER.articGauntletArmorToughness.get(), ECConfig.SERVER.articGauntletKnockBackResistance.get()),
     //enderite plus
-    enderite("enderite", 3000, 15, 4, 5f, ItemAndTagsUtil.getItemOrEmpty("enderiteplus", "enderite_ingot"), SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0f, 2.5f),
+    enderite("enderite", 3000, 15, ECConfig.SERVER.enderiteGauntletArmorAmount.get(), ECConfig.SERVER.enderiteGauntletDamage.get(), ItemAndTagsUtil.getItemOrEmpty("enderiteplus", "enderite_ingot"), SoundEvents.ARMOR_EQUIP_NETHERITE, ECConfig.SERVER.enderiteGauntletArmorToughness.get(), ECConfig.SERVER.enderiteGauntletKnockBackResistance.get()),
     ;
 
     
@@ -37,11 +38,11 @@ public enum GauntletMaterials implements IGauntletMaterial
     private final int armorAmount;
     private final Ingredient repairItem;
     private final SoundEvent equipSound;
-    private final float attackDamage;
-    private final float toughness;
-    private final float knockback_resistance;
+    private final double attackDamage;
+    private final double toughness;
+    private final double knockback_resistance;
 
-    GauntletMaterials( String textureName,  int durability,  int enchantability,  int armorAmount,  float attackDamage,  Ingredient repairItem,  SoundEvent equipSound,  float toughness,  float knockback_resistance) {
+    GauntletMaterials( String textureName,  int durability,  int enchantability,  int armorAmount,  double attackDamage,  Ingredient repairItem,  SoundEvent equipSound,  double toughness,  double knockback_resistance) {
         this.textureName = textureName;
         this.durability = durability;
         this.enchantability = enchantability;
@@ -52,18 +53,7 @@ public enum GauntletMaterials implements IGauntletMaterial
         this.toughness = toughness;
         this.knockback_resistance = knockback_resistance;
     }
-    GauntletMaterials(String textureName, int armorAmount, IItemTier itemTier, IArmorMaterial armorMaterial) {
-        this.textureName = textureName;
-        this.durability = itemTier.getUses();
-        this.enchantability = armorMaterial.getEnchantmentValue();
-        this.armorAmount = armorAmount;
-        this.attackDamage = itemTier.getAttackDamageBonus();
-        this.repairItem = armorMaterial.getRepairIngredient();
-        this.equipSound = armorMaterial.getEquipSound();
-        this.toughness = armorMaterial.getToughness();
-        this.knockback_resistance = armorMaterial.getKnockbackResistance();
-    }
-    GauntletMaterials(String textureName,  int durability, int armorAmount,  float attackDamage, IArmorMaterial armorMaterial) {
+    GauntletMaterials(String textureName,  int durability, int armorAmount, double attackDamage, IArmorMaterial armorMaterial,  double toughness, double knockback_resistance) {
         this.textureName = textureName;
         this.durability = durability;
         this.enchantability = armorMaterial.getEnchantmentValue();
@@ -71,8 +61,8 @@ public enum GauntletMaterials implements IGauntletMaterial
         this.attackDamage = attackDamage;
         this.repairItem = armorMaterial.getRepairIngredient();
         this.equipSound = armorMaterial.getEquipSound();
-        this.toughness = armorMaterial.getToughness();
-        this.knockback_resistance = armorMaterial.getKnockbackResistance();
+        this.toughness = toughness;
+        this.knockback_resistance = knockback_resistance;
     }
     
     @Override
@@ -86,7 +76,7 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     
     @Override
-    public float getAttackDamage() {
+    public double getAttackDamage() {
         return this.attackDamage;
     }
     
@@ -111,12 +101,12 @@ public enum GauntletMaterials implements IGauntletMaterial
     }
     
     @Override
-    public float getToughness() {
+    public double getToughness() {
         return this.toughness;
     }
     
     @Override
-    public float getKnockbackResistance() {
+    public double getKnockbackResistance() {
         return this.knockback_resistance;
     }
 }

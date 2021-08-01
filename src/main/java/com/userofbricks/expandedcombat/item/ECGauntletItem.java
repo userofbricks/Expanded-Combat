@@ -40,7 +40,7 @@ public class ECGauntletItem extends Item implements ICurioItem
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final IGauntletMaterial material;
-    private final float attackDamage;
+    private final double attackDamage;
     protected final int armorAmount;
     private Object model;
     protected static final ResourceLocation ENCHANTED_ITEM_GLINT_RES = new ResourceLocation("textures/misc/enchanted_item_glint.png");
@@ -85,7 +85,7 @@ public class ECGauntletItem extends Item implements ICurioItem
         return this.armorAmount;
     }
     
-    public float getAttackDamage() {
+    public double getAttackDamage() {
         return this.attackDamage;
     }
     
@@ -118,16 +118,16 @@ public class ECGauntletItem extends Item implements ICurioItem
         String identifier = slotContext.getIdentifier();
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
-            float attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();
-            float nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.naga ? (attackDamage/2.0f*3) : 0;
-            float yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.yeti ? (attackDamage/2.0f) : 0;
+            double attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();
+            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.naga ? (attackDamage/2.0d*3) : 0;
+            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == GauntletMaterials.yeti ? (attackDamage/2.0d) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
-            float knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
-            float toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getToughness();
+            double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
+            double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getToughness();
             if (((ECGauntletItem) stack.getItem()).hasWeaponInHand) {
-                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
             } else {
-                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0f * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage), AttributeModifier.Operation.ADDITION));
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage), AttributeModifier.Operation.ADDITION));
             }
             atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
             atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));

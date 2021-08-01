@@ -47,7 +47,7 @@ public class ECItems
     public static final RegistryObject<Item> IRON_CROSSBOW = ITEMS.register("crossbow_iron", () -> new ECCrossBowItem(3.5f, 1, (new Item.Properties()).durability(480)));
     public static final RegistryObject<Item> GOLD_CROSSBOW = ITEMS.register("crossbow_gold", () -> new ECCrossBowItem(2f,3f,1, (new Item.Properties()).durability(395)));
     public static final RegistryObject<Item> DIAMOND_CROSSBOW = ITEMS.register("crossbow_diamond", () -> new ECCrossBowItem(4f,2, (new Item.Properties()).durability(672)));
-    public static final RegistryObject<Item> NETHERITE_CROSSBOW = ITEMS.register("crossbow_netherite", () -> new ECCrossBowItem(4.5f,3, (new Item.Properties()).durability(768)));
+    public static final RegistryObject<Item> NETHERITE_CROSSBOW = ITEMS.register("crossbow_netherite", () -> new ECCrossBowItem(4.5f,2, (new Item.Properties()).durability(768)));
 
     public static final RegistryObject<Item> FLETCHED_STICK = ITEMS.register("fletched_sticks", () -> new Item(new Item.Properties().tab(EC_GROUP)));
     public static final RegistryObject<Item> IRON_ARROW = ITEMS.register("iron_arrow", () -> new ECArrowItem(ArrowType.IRON, new Item.Properties().tab(EC_GROUP)));
