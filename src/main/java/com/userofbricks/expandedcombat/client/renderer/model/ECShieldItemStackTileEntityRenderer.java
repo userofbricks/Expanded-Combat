@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
@@ -30,6 +31,13 @@ public class ECShieldItemStackTileEntityRenderer extends ItemStackTileEntityRend
                 ItemStack dl = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdl + "_dl")));
                 ItemStack dr = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdr + "_dr")));
                 ItemStack m =  new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sm  + "_m" )));
+                if (stack.hasFoil()) {
+                    ul.enchant(Enchantments.VANISHING_CURSE, 0);
+                    ur.enchant(Enchantments.VANISHING_CURSE, 0);
+                    dl.enchant(Enchantments.VANISHING_CURSE, 0);
+                    dr.enchant(Enchantments.VANISHING_CURSE, 0);
+                    m.enchant(Enchantments.VANISHING_CURSE, 0);
+                }
                 matrixStack.pushPose();
                 matrixStack.translate(0.49, 0.51, 0.5);
                 if (mc.player.isUsingItem() && mc.player.getUseItem() == stack) {
