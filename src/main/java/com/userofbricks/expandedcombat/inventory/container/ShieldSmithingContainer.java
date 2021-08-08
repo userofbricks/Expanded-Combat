@@ -2,40 +2,40 @@ package com.userofbricks.expandedcombat.inventory.container;
 
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.item.recipes.ShieldSmithingRecipie;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftResultInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public class ShieldSmithingContainer extends Container {
-    protected final CraftResultInventory resultSlots = new CraftResultInventory();
-    protected final IInventory inputSlots = new Inventory(6) {
+public class ShieldSmithingContainer extends AbstractContainerMenu {
+    protected final ResultContainer resultSlots = new ResultContainer();
+    protected final Container inputSlots = new SimpleContainer(6) {
         public void setChanged() {
             super.setChanged();
             ShieldSmithingContainer.this.slotsChanged(this);
         }
     };
 
-    public final IWorldPosCallable access;
-    protected final PlayerEntity player;
-    private final World level;
+    public final ContainerLevelAccess access;
+    protected final Player player;
+    private final Level level;
 
     private ShieldSmithingRecipie selectedRecipe;
     private final List<ShieldSmithingRecipie> recipes;
 
-    public ShieldSmithingContainer(int id, PlayerInventory playerInventory, IWorldPosCallable iWorldPosCallable) {
+    public ShieldSmithingContainer(int id, Inventory playerInventory, ContainerLevelAccess iWorldPosCallable) {
         super(ECContainers.SHIELD_SMITHING.get(), id);
         this.slots.clear();
         this.lastSlots.clear();
@@ -59,13 +59,13 @@ public class ShieldSmithingContainer extends Container {
                 return false;
             }
 
-            public boolean mayPickup(PlayerEntity p_82869_1_) {
+            public boolean mayPickup(Player p_82869_1_) {
                 return ShieldSmithingContainer.this.mayPickup();
             }
 
             @Nonnull
-            public ItemStack onTake(PlayerEntity p_190901_1_, ItemStack p_190901_2_) {
-                return ShieldSmithingContainer.this.onTake(p_190901_1_, p_190901_2_);
+            public void onTake(Player p_190901_1_, ItemStack p_190901_2_) {
+                ShieldSmithingContainer.this.onTake(p_190901_1_, p_190901_2_);
             }
         });
 
@@ -80,8 +80,8 @@ public class ShieldSmithingContainer extends Container {
         }
     }
 
-    public ShieldSmithingContainer(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
-       this(i, playerInventory, IWorldPosCallable.NULL);
+    public ShieldSmithingContainer(int i, Inventory playerInventory, FriendlyByteBuf packetBuffer) {
+       this(i, playerInventory, ContainerLevelAccess.NULL);
     }
 
     protected boolean mayPickup() {
@@ -89,7 +89,7 @@ public class ShieldSmithingContainer extends Container {
     }
 
     @Nonnull
-    protected ItemStack onTake(PlayerEntity p_230301_1_, ItemStack p_230301_2_) {
+    protected ItemStack onTake(Player p_230301_1_, ItemStack p_230301_2_) {
         p_230301_2_.onCraftedBy(p_230301_1_.level, p_230301_1_, p_230301_2_.getCount());
         this.resultSlots.awardUsedRecipes(p_230301_1_);
         this.inputSlots.setItem(0, ItemStack.EMPTY);
@@ -120,7 +120,7 @@ public class ShieldSmithingContainer extends Container {
         }
     }
 
-    public void slotsChanged(IInventory p_75130_1_) {
+    public void slotsChanged(Container p_75130_1_) {
         super.slotsChanged(p_75130_1_);
         if (p_75130_1_ == this.inputSlots) {
             this.createResult();
@@ -129,17 +129,12 @@ public class ShieldSmithingContainer extends Container {
     }
 
     @Override
-    public void removed(PlayerEntity p_75134_1_) {
+    public void removed(Player p_75134_1_) {
         super.removed(p_75134_1_);
-        this.access.execute((p_234647_2_, p_234647_3_) -> this.clearContainer(p_75134_1_, p_234647_2_, this.inputSlots));
+        this.access.execute((p_234647_2_, p_234647_3_) -> this.clearContainer(p_75134_1_, this.inputSlots));
     }
 
-    @Override
-    protected void clearContainer(PlayerEntity p_193327_1_, World p_193327_2_, IInventory p_193327_3_) {
-        super.clearContainer(p_193327_1_, p_193327_2_, p_193327_3_);
-    }
-
-    public boolean stillValid(PlayerEntity p_75145_1_) {
+    public boolean stillValid(Player p_75145_1_) {
         return this.access.evaluate((p_234646_2_, p_234646_3_) -> p_75145_1_.distanceToSqr((double)p_234646_3_.getX() + 0.5D, (double)p_234646_3_.getY() + 0.5D, (double)p_234646_3_.getZ() + 0.5D) <= 64.0D, true);
     }
 
@@ -153,7 +148,7 @@ public class ShieldSmithingContainer extends Container {
     }
 
     @Nonnull
-    public ItemStack quickMoveStack(PlayerEntity p_82846_1_, int p_82846_2_) {
+    public ItemStack quickMoveStack(Player p_82846_1_, int p_82846_2_) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(p_82846_2_);
         if (slot != null && slot.hasItem()) {

@@ -1,23 +1,18 @@
 package com.userofbricks.expandedcombat.inventory.container;
 
-import com.userofbricks.expandedcombat.item.ECItems;
-import com.userofbricks.expandedcombat.item.ECTippedArrowItem;
 import com.userofbricks.expandedcombat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.item.recipes.SingleFletchingRecipe;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.AbstractRepairContainer;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ItemCombinerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,20 +20,20 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public class FlechingTableContainer extends AbstractRepairContainer {
-    private final World level;
+public class FlechingTableContainer extends ItemCombinerMenu {
+    private final Level level;
     @Nullable
     private IFletchingRecipe selectedRecipe;
     private final List<IFletchingRecipe> recipes;
 
-    public FlechingTableContainer(int p_i231591_1_, PlayerInventory p_i231591_2_, IWorldPosCallable p_i231591_3_) {
+    public FlechingTableContainer(int p_i231591_1_, Inventory p_i231591_2_, ContainerLevelAccess p_i231591_3_) {
         super(ECContainers.FLETCHING.get(), p_i231591_1_, p_i231591_2_, p_i231591_3_);
         this.level = p_i231591_2_.player.level;
         this.recipes = this.level.getRecipeManager().getAllRecipesFor(RecipeSerializerInit.FLETCHING_TYPE);
     }
 
-    public FlechingTableContainer(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
-       this(i, playerInventory, IWorldPosCallable.NULL);
+    public FlechingTableContainer(int i, Inventory playerInventory, FriendlyByteBuf packetBuffer) {
+       this(i, playerInventory, ContainerLevelAccess.NULL);
     }
 
     @Override
@@ -47,13 +42,13 @@ public class FlechingTableContainer extends AbstractRepairContainer {
     }
 
     @Override
-    protected boolean mayPickup(PlayerEntity p_230303_1_, boolean p_230303_2_) {
+    protected boolean mayPickup(Player p_230303_1_, boolean p_230303_2_) {
         return this.selectedRecipe != null && this.selectedRecipe.matches(this.inputSlots, this.level);
     }
 
     @Nonnull
     @Override
-    protected ItemStack onTake(PlayerEntity p_230301_1_, ItemStack p_230301_2_) {
+    protected void onTake(Player p_230301_1_, ItemStack p_230301_2_) {
         p_230301_2_.onCraftedBy(p_230301_1_.level, p_230301_1_, p_230301_2_.getCount());
         this.resultSlots.awardUsedRecipes(p_230301_1_);
         if (!(selectedRecipe instanceof SingleFletchingRecipe)) {
@@ -65,7 +60,6 @@ public class FlechingTableContainer extends AbstractRepairContainer {
         this.access.execute((p_234653_0_, p_234653_1_) -> {
             p_234653_0_.levelEvent(1044, p_234653_1_, 0);
         });
-        return p_230301_2_;
     }
 
     private void shrinkStackInSlot(int slot) {

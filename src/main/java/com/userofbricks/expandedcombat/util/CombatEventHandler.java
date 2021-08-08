@@ -3,26 +3,27 @@ package com.userofbricks.expandedcombat.util;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.item.ECWeaponItem;
 import com.userofbricks.expandedcombat.item.WeaponTypes;
-import com.userofbricks.expandedcombat.network.client.PacketOffhandAttack;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
+import com.userofbricks.expandedcombat.network.client.PacketOffhandAttack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
 public class CombatEventHandler
 {
+    /* todo
     public static void checkForOffhandAttack() {
         final Minecraft mc = Minecraft.getInstance();
-        final PlayerEntity player = mc.player;
+        final Player player = mc.player;
         if (Minecraft.getInstance().level != null && Minecraft.getInstance().screen == null && !Minecraft.getInstance().isPaused() && player != null && !player.isBlocking()) {
             final ItemStack offhand = player.getOffhandItem();
             if (offhand.getItem() instanceof ECWeaponItem && ((ECWeaponItem)offhand.getItem()).getWeaponType().getWieldingType() == WeaponTypes.WieldingType.DUALWIELD) {
@@ -38,9 +39,9 @@ public class CombatEventHandler
                 if (player.isCreative()) {
                     reach += 2.0;
                 }
-                final RayTraceResult rayTrace = getEntityMouseOverExtended(reach);
-                if (rayTrace instanceof EntityRayTraceResult) {
-                    final EntityRayTraceResult entityRayTrace = (EntityRayTraceResult)rayTrace;
+                final HitResult rayTrace = getEntityMouseOverExtended(reach);
+                if (rayTrace instanceof EntityHitResult) {
+                    final EntityHitResult entityRayTrace = (EntityHitResult)rayTrace;
                     final Entity entityHit = entityRayTrace.getEntity();
                     if (entityHit != player && entityHit != player.getVehicle()) {
                         NetworkHandler.sendPacketToServer(new PacketOffhandAttack(entityHit.getId()));
@@ -49,15 +50,17 @@ public class CombatEventHandler
             }
         }
     }
+
+     */
     
-    private static RayTraceResult getEntityMouseOverExtended(final float reach) {
-        RayTraceResult result = null;
+    private static HitResult getEntityMouseOverExtended(final float reach) {
+        HitResult result = null;
         final Minecraft mc = Minecraft.getInstance();
         final Entity viewEntity = mc.cameraEntity;
         if (viewEntity != null && mc.level != null) {
             double reachDistance = reach;
-            final RayTraceResult rayTrace = viewEntity.pick(reachDistance, 0.0f, false);
-            final Vector3d eyePos = viewEntity.getEyePosition(0.0f);
+            final HitResult rayTrace = viewEntity.pick(reachDistance, 0.0f, false);
+            final Vec3 eyePos = viewEntity.getEyePosition(0.0f);
             boolean hasExtendedReach = false;
             double attackReach = reachDistance;
             if (mc.gameMode != null) {
@@ -69,22 +72,22 @@ public class CombatEventHandler
                 }
             }
             attackReach = rayTrace.getLocation().distanceToSqr(eyePos);
-            final Vector3d lookVec = viewEntity.getViewVector(1.0f);
-            final Vector3d attackVec = eyePos.add(lookVec.x * reachDistance, lookVec.y * reachDistance, lookVec.z * reachDistance);
-            final AxisAlignedBB axisAlignedBB = viewEntity.getBoundingBox().expandTowards(lookVec.scale(reachDistance)).inflate(1.0, 1.0, 1.0);
-            final EntityRayTraceResult entityRayTrace = ProjectileHelper.getEntityHitResult(viewEntity, eyePos, attackVec, axisAlignedBB, entity -> !entity.isSpectator() && entity.isPickable(), attackReach);
+            final Vec3 lookVec = viewEntity.getViewVector(1.0f);
+            final Vec3 attackVec = eyePos.add(lookVec.x * reachDistance, lookVec.y * reachDistance, lookVec.z * reachDistance);
+            final AABB axisAlignedBB = viewEntity.getBoundingBox().expandTowards(lookVec.scale(reachDistance)).inflate(1.0, 1.0, 1.0);
+            final EntityHitResult entityRayTrace = ProjectileUtil.getEntityHitResult(viewEntity, eyePos, attackVec, axisAlignedBB, entity -> !entity.isSpectator() && entity.isPickable(), attackReach);
             if (entityRayTrace != null) {
-                final Vector3d hitVec = entityRayTrace.getLocation();
+                final Vec3 hitVec = entityRayTrace.getLocation();
                 final double squareDistanceTo = eyePos.distanceToSqr(hitVec);
                 if (hasExtendedReach && squareDistanceTo > reach * reach) {
-                    result = (RayTraceResult)BlockRayTraceResult.miss(hitVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(hitVec));
+                    result = BlockHitResult.miss(hitVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(hitVec));
                 }
                 else if (squareDistanceTo < attackReach) {
-                    result = (RayTraceResult)entityRayTrace;
+                    result = entityRayTrace;
                 }
             }
             else {
-                result = (RayTraceResult)BlockRayTraceResult.miss(attackVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(attackVec));
+                result = BlockHitResult.miss(attackVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(attackVec));
             }
         }
         return result;

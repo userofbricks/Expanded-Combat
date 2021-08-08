@@ -1,7 +1,7 @@
 package com.userofbricks.expandedcombat;
 
 public class TODOS {
-    /* TODO
+    /*
         enchantment idea:
         ad an upgraded form of enchanting space.
         don't change the enchanting block
@@ -25,5 +25,8 @@ public class TODOS {
     /* TODO:
         BUGFIX:
             items in the shield smithing screen get deleted on exit.
+     */
+    /* TODO
+        re-add all mixin stuff from 1.16.5 version
      */
 }

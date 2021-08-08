@@ -1,10 +1,10 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public interface IWeaponType
 {
-    TranslationTextComponent getTypeName();
+    TranslatableComponent getTypeName();
 
     int getBaseAttackDamage();
     

@@ -1,16 +1,16 @@
 package com.userofbricks.expandedcombat.enchentments;
 
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
-import net.minecraft.enchantment.EnchantmentType;
 import com.userofbricks.expandedcombat.item.ECGauntletItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 public class KnockbackResistanceEnchantment extends Enchantment
 {
-    public KnockbackResistanceEnchantment(final Enchantment.Rarity rarityIn, final EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.create("gauntlet", item -> item instanceof ECGauntletItem), slots);
+    public KnockbackResistanceEnchantment(final Enchantment.Rarity rarityIn, final EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.create("gauntlet", item -> item instanceof ECGauntletItem), slots);
     }
     
     public int getMinCost(final int enchantmentLevel) {

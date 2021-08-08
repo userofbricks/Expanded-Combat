@@ -1,37 +1,50 @@
 package com.userofbricks.expandedcombat.client.renderer.model;
 
-import net.minecraft.entity.Entity;
-import javax.annotation.Nonnull;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.LivingEntity;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.world.entity.LivingEntity;
 
-public class QuiverModel<T extends LivingEntity> extends EntityModel<T>
+import javax.annotation.Nonnull;
+
+public class QuiverModel<T extends LivingEntity> extends AgeableListModel<T>
 {
-    private final ModelRenderer bone;
-    
-    public QuiverModel() {
-        this.texWidth = 32;
-        this.texHeight = 32;
-        (this.bone = new ModelRenderer((Model)this)).setPos(0.0f, 24.0f, 0.0f);
-        this.setRotationAngle(this.bone, 0.0f, 0.0f, -0.6981f);
-        this.bone.texOffs(10, 0).addBox(10.0f, -20.0f, 2.0f, 4.0f, 12.0f, 3.0f, 0.0f, false);
-        this.bone.texOffs(0, 0).addBox(11.5f, -20.75f, -2.0f, 1.0f, 13.0f, 4.0f, 0.1f, false);
+    public ModelPart quiver;
+    public ModelPart quiverStrap;
+    public QuiverModel(ModelPart part) {
+        this.quiver = part.getChild("quiver");
+        this.quiverStrap = part.getChild("quiver_strap");
     }
-    
-    public void setupAnim(final T entityIn, final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch) {
+
+    public static LayerDefinition createLayer() {
+        MeshDefinition mesh = new MeshDefinition();
+        PartDefinition part = mesh.getRoot();
+        CubeDeformation cube = CubeDeformation.NONE;
+        part.addOrReplaceChild("quiver",
+                               CubeListBuilder.create().texOffs(10, 0).addBox(10.0F, -20.0F, 2.0F, 4, 12, 3, cube),
+                               PartPose.offsetAndRotation(0.0F, 0.0F, -0.6981f, 0.0F, 0.0F, 0.0F));
+        CubeDeformation cube2 = new CubeDeformation(0.1f);
+        part.addOrReplaceChild("quiver_strap",
+                               CubeListBuilder.create().texOffs(0, 0).addBox(11.5F, -20.75F, -2.0F, 1, 13, 4, cube2),
+                               PartPose.offsetAndRotation(0.0F, 0.0F, -0.6981f, 0.0F, 0.0F, 0.0F));
+        return LayerDefinition.create(mesh, 32, 32);
     }
-    
-    public void renderToBuffer(final MatrixStack matrixStack, @Nonnull final IVertexBuilder buffer, final int packedLight, final int packedOverlay, final float red, final float green, final float blue, final float alpha) {
-        this.bone.render(matrixStack, buffer, packedLight, packedOverlay);
+
+    @Override
+    @Nonnull
+    protected Iterable<ModelPart> headParts() {
+        return ImmutableList.of();
     }
-    
-    public void setRotationAngle(final ModelRenderer modelRenderer, final float x, final float y, final float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+
+    @Override
+    @Nonnull
+    protected Iterable<ModelPart> bodyParts() {
+        return ImmutableList.of(this.quiver);
+    }
+
+    @Override
+    public void setupAnim(@Nonnull T t, float v, float v1, float v2, float v3, float v4) {
     }
 }

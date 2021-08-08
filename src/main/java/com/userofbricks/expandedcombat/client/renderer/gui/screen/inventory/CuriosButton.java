@@ -19,22 +19,22 @@
 
 package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
+import com.userofbricks.expandedcombat.network.NetworkHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.screen.inventory.InventoryScreen;
-import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.PacketDistributor;
-import top.theillusivec4.curios.common.network.NetworkHandler;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import top.theillusivec4.curios.common.network.client.CPacketOpenVanilla;
 
 @OnlyIn(Dist.CLIENT)
 public class CuriosButton extends ImageButton {
 
-  CuriosButton(ContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
+  CuriosButton(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
                int textureOffsetX, int textureOffsetY, int yDiffText, ResourceLocation resource) {
 
     super(xIn, yIn, widthIn, heightIn, textureOffsetX, textureOffsetY, yDiffText, resource,
@@ -43,10 +43,10 @@ public class CuriosButton extends ImageButton {
 
           if (parentGui instanceof ECCuriosQuiverScreen && mc.player != null) {
             InventoryScreen inventory = new InventoryScreen(mc.player);
-            ItemStack stack = mc.player.inventory.getSelected();
-            mc.player.inventory.setPickedItem(ItemStack.EMPTY);
+            ItemStack stack = mc.player.inventoryMenu.getCarried();
+            mc.player.inventoryMenu.setCarried(ItemStack.EMPTY);
             mc.setScreen(inventory);
-            mc.player.inventory.setPickedItem(stack);
+            mc.player.inventoryMenu.setCarried(stack);
             NetworkHandler.INSTANCE
                 .send(PacketDistributor.SERVER.noArg(), new CPacketOpenVanilla());
           }

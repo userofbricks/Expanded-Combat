@@ -1,32 +1,27 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import com.userofbricks.expandedcombat.item.ECArrowItem;
 import com.userofbricks.expandedcombat.item.ECWeaponItem;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PotionItem;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 
-import java.util.Collection;
-
-public class ECScytheRecipe extends SpecialRecipe
+public class ECScytheRecipe extends CustomRecipe
 {
     public ECScytheRecipe(final ResourceLocation id) {
         super(id);
     }
 
     @Override
-    public boolean matches(final CraftingInventory inv, final World worldIn) {
+    public boolean matches(final CraftingContainer inv, final Level worldIn) {
         int numPotionWeapons = 0;
         int numPotions = 0;
 
@@ -44,8 +39,8 @@ public class ECScytheRecipe extends SpecialRecipe
                 if(numPotions > 0)
                     return false;
                 Potion potion = PotionUtils.getPotion(itemStack);
-                for(EffectInstance e:potion.getEffects())
-                    if(e.getEffect().equals(Effects.HARM))
+                for(MobEffectInstance e:potion.getEffects())
+                    if(e.getEffect().equals(MobEffects.HARM))
                         return false;
                 numPotions++;
             }
@@ -54,7 +49,7 @@ public class ECScytheRecipe extends SpecialRecipe
     }
 
     @Override
-    public ItemStack assemble(final CraftingInventory inv) {
+    public ItemStack assemble(final CraftingContainer inv) {
 
 
         Potion potionEffect = null;
@@ -83,7 +78,7 @@ public class ECScytheRecipe extends SpecialRecipe
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return RecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get();
     }
 }

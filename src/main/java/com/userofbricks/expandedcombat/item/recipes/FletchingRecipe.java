@@ -1,22 +1,20 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
 import com.google.gson.JsonObject;
-import com.userofbricks.expandedcombat.ExpandedCombat;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -34,13 +32,13 @@ public class FletchingRecipe implements IFletchingRecipe {
       this.result = resultIn;
    }
 
-   public boolean matches(IInventory iInventory, World world) {
+   public boolean matches(Container iInventory, Level world) {
       return this.base.test(iInventory.getItem(0)) && this.addition.test(iInventory.getItem(1));
    }
 
-   public ItemStack assemble(IInventory iInventory) {
+   public ItemStack assemble(Container iInventory) {
       ItemStack itemstack = this.result.copy();
-      CompoundNBT compoundnbt = iInventory.getItem(0).getTag();
+      CompoundTag compoundnbt = iInventory.getItem(0).getTag();
       if (compoundnbt != null) {
          itemstack.setTag(compoundnbt.copy());
       }
@@ -80,7 +78,7 @@ public class FletchingRecipe implements IFletchingRecipe {
       return this.id;
    }
 
-   public IRecipeSerializer<?> getSerializer() {
+   public RecipeSerializer<?> getSerializer() {
       return RecipeSerializerInit.EC_FLETCHING_SERIALIZER.get();
    }
 
@@ -89,23 +87,23 @@ public class FletchingRecipe implements IFletchingRecipe {
       return NonNullList.of(Ingredient.EMPTY, this.base, this.addition);
    }
 
-   public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<FletchingRecipe> {
+   public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<FletchingRecipe> {
 
       public FletchingRecipe fromJson(ResourceLocation location, JsonObject jsonObject) {
-         Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(jsonObject, "base"));
-         Ingredient ingredient1 = Ingredient.fromJson(JSONUtils.getAsJsonObject(jsonObject, "addition"));
-         ItemStack itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(jsonObject, "result"));
+         Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(jsonObject, "base"));
+         Ingredient ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(jsonObject, "addition"));
+         ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(jsonObject, "result"));
          return new FletchingRecipe(location, ingredient, ingredient1, itemstack);
       }
 
-      public FletchingRecipe fromNetwork(ResourceLocation location, PacketBuffer packetBuffer) {
+      public FletchingRecipe fromNetwork(ResourceLocation location, FriendlyByteBuf packetBuffer) {
          Ingredient ingredient = Ingredient.fromNetwork(packetBuffer);
          Ingredient ingredient1 = Ingredient.fromNetwork(packetBuffer);
          ItemStack itemstack = packetBuffer.readItem();
          return new FletchingRecipe(location, ingredient, ingredient1, itemstack);
       }
 
-      public void toNetwork(PacketBuffer packetBuffer, FletchingRecipe fletchingRecipe) {
+      public void toNetwork(FriendlyByteBuf packetBuffer, FletchingRecipe fletchingRecipe) {
          fletchingRecipe.base.toNetwork(packetBuffer);
          fletchingRecipe.addition.toNetwork(packetBuffer);
          packetBuffer.writeItem(fletchingRecipe.result);

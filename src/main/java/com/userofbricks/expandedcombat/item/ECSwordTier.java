@@ -1,11 +1,11 @@
 package com.userofbricks.expandedcombat.item;
 
 import com.userofbricks.expandedcombat.util.ItemAndTagsUtil;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public enum ECSwordTier implements IItemTier {
+public enum ECSwordTier implements Tier {
     STEEL(2, 482, 7F, 2.5f, 10, "ingots/steel"),
     SILVER(1, 325, 6F, 1F, 22, "ingots/silver"),
     LEAD(2, 1761, 8F, 3F, 10, "ingots/lead"),
@@ -16,7 +16,7 @@ public enum ECSwordTier implements IItemTier {
     private final float speed;
     private final float damage;
     private final int enchantmentValue;
-    private final LazyValue<Ingredient> repairIngredient;
+    private final LazyLoadedValue<Ingredient> repairIngredient;
 
     ECSwordTier(int level, int durability, float attackSpeed, float attackDamage, int enchantability, String itemTag) {
         this.level = level;
@@ -24,7 +24,7 @@ public enum ECSwordTier implements IItemTier {
         this.speed = attackSpeed;
         this.damage = attackDamage;
         this.enchantmentValue = enchantability;
-        this.repairIngredient = new LazyValue<>(() -> ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", itemTag));
+        this.repairIngredient = new LazyLoadedValue<>(() -> ItemAndTagsUtil.getTagedIngredientOrEmpty("forge", itemTag));
     }
 
     public int getUses() {

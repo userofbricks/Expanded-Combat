@@ -2,35 +2,30 @@ package com.userofbricks.expandedcombat.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.item.*;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -42,8 +37,6 @@ public class ECGauntletItem extends Item implements ICurioItem
     private final IGauntletMaterial material;
     private final double attackDamage;
     protected final int armorAmount;
-    private Object model;
-    protected static final ResourceLocation ENCHANTED_ITEM_GLINT_RES = new ResourceLocation("textures/misc/enchanted_item_glint.png");
     private static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
     private static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
     private static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
@@ -75,9 +68,9 @@ public class ECGauntletItem extends Item implements ICurioItem
         return this.material == GauntletMaterials.gold ? 4.0f : 2.0f;
     }
 
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> list, TooltipFlag flag) {
         if (this.material == GauntletMaterials.gold) {
-            list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+            list.add(new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
     }
     
@@ -99,7 +92,7 @@ public class ECGauntletItem extends Item implements ICurioItem
     }
 
     @Override
-    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
+    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> list) {
         if (this.allowdedIn(tab)) {
             ItemStack istack = new ItemStack(this);
             if (this.getMaterial() == GauntletMaterials.steeleaf) {
@@ -111,7 +104,7 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.getWearer();
-        livingEntity.level.playSound(null, new BlockPos(livingEntity.position()), this.material.getSoundEvent(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+        livingEntity.level.playSound(null, new BlockPos(livingEntity.position()), this.material.getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
@@ -137,54 +130,11 @@ public class ECGauntletItem extends Item implements ICurioItem
         return atts;
     }
 
-    public boolean canRender( String identifier,  int index,  LivingEntity livingEntity, ItemStack stack) {
-        return true;
-    }
-
-    public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, ItemStack stack) {
-        if (!(this.model instanceof GauntletModel)) {
-            this.model = new GauntletModel();
-        }
-        GauntletModel gauntlet = (GauntletModel)this.model;
-        gauntlet.prepareMobModel(livingEntity, limbSwing, limbSwingAmount, partialTicks);
-        gauntlet.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ICurio.RenderHelper.followBodyRotations(livingEntity, gauntlet);
-        IVertexBuilder vertexBuilder = ItemRenderer.getFoilBuffer(renderTypeBuffer, gauntlet.renderType(this.GAUNTLET_TEXTURE), false, stack.hasFoil());
-        gauntlet.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
-    }
-
-    /*
-    public void renderRightHand(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int light, AbstractClientPlayerEntity abstractClientPlayerEntity, ResourceLocation gauntlet_texture) {
-        if (!(this.model instanceof GauntletModel)) {
-            this.model = new GauntletModel();
-        }
-        GauntletModel gauntlet = (GauntletModel)this.model;
-        renderHand(matrixStack, iRenderTypeBuffer, light, abstractClientPlayerEntity, gauntlet.rightArm, gauntlet_texture, gauntlet);
-    }
-
-    public void renderLeftHand(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int light, AbstractClientPlayerEntity abstractClientPlayerEntity, ResourceLocation gauntlet_texture) {
-        if (!(this.model instanceof GauntletModel)) {
-            this.model = new GauntletModel();
-        }
-        GauntletModel gauntlet = (GauntletModel)this.model;
-        renderHand(matrixStack, iRenderTypeBuffer, light, abstractClientPlayerEntity, gauntlet.leftArm, gauntlet_texture, gauntlet);
-    }
-
-    private void renderHand(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int p_229145_3_, AbstractClientPlayerEntity abstractClientPlayerEntity, ModelRenderer modelRenderer, ResourceLocation gauntlet_texture, GauntletModel gauntletModel) {
-        gauntletModel.attackTime = 0.0F;
-        gauntletModel.crouching = false;
-        gauntletModel.swimAmount = 0.0F;
-        gauntletModel.setupAnim(abstractClientPlayerEntity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-        modelRenderer.xRot = 0.0F;
-        modelRenderer.render(matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entitySolid(gauntlet_texture)), p_229145_3_, OverlayTexture.NO_OVERLAY);
-    }
-     */
-
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
     }
 
-    public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
     {
         if (enchantment == Enchantments.KNOCKBACK || enchantment == Enchantments.PUNCH_ARROWS) {
             return true;

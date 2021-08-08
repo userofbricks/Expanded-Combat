@@ -6,16 +6,16 @@
 
 package com.userofbricks.expandedcombat.client.renderer.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.config.ECClientConfig;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 public class HudElementQuiverAmmo extends HudElement
@@ -32,13 +32,13 @@ public class HudElementQuiverAmmo extends HudElement
     }
     
     @Override
-    public void render(MatrixStack matrixStack, float partialTicks) {
+    public void render(PoseStack matrixStack, float partialTicks) {
         RenderSystem.assertThread(RenderSystem::isOnRenderThread);
         if (this.quiver.isEmpty()) {
             return;
         }
         Minecraft mc = Minecraft.getInstance();
-        FontRenderer font = mc.font;
+        Font font = mc.font;
         int quiverSize = this.arrowHandler.getSlots();
         String currentAmmoStr = "";
         String beforeAmmoStr = "";
@@ -78,8 +78,8 @@ public class HudElementQuiverAmmo extends HudElement
         }
         matrixStack.pushPose();
         matrixStack.translate(0.0, 0.0, mc.getItemRenderer().blitOffset + 200.0f);
-        IRenderTypeBuffer.Impl renderBuffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
-        mc.getTextureManager().bind(HudElementQuiverAmmo.WIDGETS);
+        MultiBufferSource.BufferSource renderBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+        RenderSystem.setShaderTexture(0, HudElementQuiverAmmo.WIDGETS);
         mc.gui.blit(matrixStack, offsetX, offsetY, 24, 23, 22, 22);
         mc.getItemRenderer().renderAndDecorateItem(currentArrow, offsetX + 3, offsetY + 3);
         font.drawInBatch(currentAmmoStr, (float)(offsetX + 20 - font.width(currentAmmoStr)), (float)(offsetY + 13), 16777215, true, matrixStack.last().pose(), renderBuffer, false, 0, 15728880);
@@ -97,7 +97,6 @@ public class HudElementQuiverAmmo extends HudElement
             String inventoryKey1 = "[" + KeyRegistry.cycleQuiverRight.getTranslatedKeyMessage().getString().toUpperCase() + "]";
             font.drawInBatch(inventoryKey1, offsetX + 31 - font.width(inventoryKey1) / 2.0f, (float)(offsetY - 5), 16777215, true, matrixStack.last().pose(), renderBuffer, false, 0, 15728880);
         }
-        renderBuffer.endBatch();
         matrixStack.popPose();
     }
 

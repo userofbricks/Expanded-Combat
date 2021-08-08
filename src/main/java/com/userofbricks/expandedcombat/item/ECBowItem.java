@@ -1,31 +1,26 @@
 package com.userofbricks.expandedcombat.item;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.ITextComponent;
-import java.util.List;
-import javax.annotation.Nullable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.item.Items;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.item.BowItem;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 public class ECBowItem extends BowItem
 {
@@ -90,10 +85,10 @@ public class ECBowItem extends BowItem
         return this.bowPower;
     }
     
-    public void releaseUsing( ItemStack stack,  World worldIn,  LivingEntity entityLiving,  int timeLeft) {
-        if (entityLiving instanceof PlayerEntity) {
-             PlayerEntity playerentity = (PlayerEntity)entityLiving;
-             boolean useInfiniteAmmo = playerentity.abilities.instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
+    public void releaseUsing(ItemStack stack, Level worldIn, LivingEntity entityLiving, int timeLeft) {
+        if (entityLiving instanceof Player) {
+             Player playerentity = (Player)entityLiving;
+             boolean useInfiniteAmmo = playerentity.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
             ItemStack itemstack = playerentity.getProjectile(stack);
             int charge = this.getUseDuration(stack) - timeLeft;
             charge = ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, charge, !itemstack.isEmpty() || useInfiniteAmmo);
@@ -110,20 +105,20 @@ public class ECBowItem extends BowItem
         }
     }
     
-    public void fireArrows( ItemStack stack,  World worldIn,  PlayerEntity playerentity,  ItemStack itemstack,  float arrowVelocity) {
+    public void fireArrows( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity) {
          int multishotLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, stack) + this.getMultishotLevel();
         for (int arrowsToFire = 1 + multishotLevel * 2, arrowNumber = 0; arrowNumber < arrowsToFire; ++arrowNumber) {
             if (arrowVelocity >= 0.1) {
-                 boolean hasInfiniteAmmo = playerentity.abilities.instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
+                 boolean hasInfiniteAmmo = playerentity.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
                  boolean isAdditionalShot = arrowNumber > 0;
                 if (!worldIn.isClientSide) {
                     this.createBowArrow(stack, worldIn, playerentity, itemstack, arrowVelocity, arrowNumber, hasInfiniteAmmo, isAdditionalShot);
                 }
-                worldIn.playSound((PlayerEntity)null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0f, 1.0f / (ECBowItem.random.nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
-                if (!hasInfiniteAmmo && !playerentity.abilities.instabuild && !isAdditionalShot) {
+                worldIn.playSound((Player)null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
+                if (!hasInfiniteAmmo && !playerentity.getAbilities().instabuild && !isAdditionalShot) {
                     itemstack.shrink(1);
                     if (itemstack.isEmpty()) {
-                        playerentity.inventory.removeItem(itemstack);
+                        playerentity.getInventory().removeItem(itemstack);
                     }
                 }
                 playerentity.awardStat(Stats.ITEM_USED.get(this));
@@ -131,9 +126,9 @@ public class ECBowItem extends BowItem
         }
     }
     
-    public void createBowArrow( ItemStack stack,  World worldIn,  PlayerEntity playerentity,  ItemStack itemstack,  float arrowVelocity,  int i,  boolean hasInfiniteAmmo,  boolean isAdditionalShot) {
+    public void createBowArrow( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity,  int i,  boolean hasInfiniteAmmo,  boolean isAdditionalShot) {
          ArrowItem arrowitem = (ArrowItem)((itemstack.getItem() instanceof ArrowItem) ? itemstack.getItem() : Items.ARROW);
-        AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, (LivingEntity)playerentity);
+        AbstractArrow abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, (LivingEntity)playerentity);
         abstractarrowentity = this.customArrow(abstractarrowentity);
         this.setArrowTrajectory(playerentity, arrowVelocity, i, abstractarrowentity);
         if (arrowVelocity == 1.0f) {
@@ -151,36 +146,36 @@ public class ECBowItem extends BowItem
             abstractarrowentity.setSecondsOnFire(100);
         }
         stack.hurtAndBreak(1, (LivingEntity)playerentity, p_220009_1_ -> p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand()));
-        if (hasInfiniteAmmo || (playerentity.abilities.instabuild && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))) {
-            abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+        if (hasInfiniteAmmo || (playerentity.getAbilities().instabuild && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))) {
+            abstractarrowentity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
         }
         if (isAdditionalShot) {
-            abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+            abstractarrowentity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
         }
-        worldIn.addFreshEntity((Entity)abstractarrowentity);
+        worldIn.addFreshEntity(abstractarrowentity);
     }
     
-    public void setArrowTrajectory( PlayerEntity playerentity,  float arrowVelocity,  int i,  AbstractArrowEntity abstractarrowentity) {
+    public void setArrowTrajectory(Player playerentity, float arrowVelocity, int i, AbstractArrow abstractarrowentity) {
         if (i == 0) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot + 0.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 0.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 1) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot + 10.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 10.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 2) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot - 10.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 10.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 3) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot + 20.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 20.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 4) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot - 20.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 20.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 5) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot + 30.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 30.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
         if (i == 6) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot - 30.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 30.0f, 0.0f, arrowVelocity * this.velocityMultiplyer, 1.0f);
         }
     }
     
@@ -208,13 +203,13 @@ public class ECBowItem extends BowItem
     
     @OnlyIn(Dist.CLIENT)
     @ParametersAreNonnullByDefault
-    public void appendHoverText( ItemStack stack, @Nullable  World world,  List<ITextComponent> list,  ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
         if (this.mendingBonus != 0.0f) {
             if (this.mendingBonus > 0.0f) {
-                list.add(new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus)));
+                list.add(0, new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus))));
             }
             else if (this.mendingBonus < 0.0f) {
-                list.add(new StringTextComponent(TextFormatting.RED + "Mending Bonus " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus)));
+                list.add(0, new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(new TextComponent(ChatFormatting.RED + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus))));
             }
         }
     }

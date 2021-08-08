@@ -1,30 +1,26 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TranslationTextComponent;
+import com.userofbricks.expandedcombat.client.renderer.model.ECShieldBlockEntityWithoutLevelRenderer;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.client.IItemRenderProperties;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import net.minecraft.world.World;
-import net.minecraft.entity.LivingEntity;
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import net.minecraft.block.DispenserBlock;
-
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ECShieldItem extends ShieldItem
 {
@@ -49,7 +45,7 @@ public class ECShieldItem extends ShieldItem
     }
 
     @Override
-    public void fillItemCategory(@Nonnull ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
             for (ShieldMaterial material : ShieldMaterial.values()) {
                 if (material.getTier() == this.tier && material != ShieldMaterial.empty) {
@@ -118,24 +114,24 @@ public class ECShieldItem extends ShieldItem
     
     @OnlyIn(Dist.CLIENT)
     @ParametersAreNonnullByDefault
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
         String ul = stack.getOrCreateTag().getString("UL_Material");
         String ur = stack.getOrCreateTag().getString("UR_Material");
         String dl = stack.getOrCreateTag().getString("DL_Material");
         String dr = stack.getOrCreateTag().getString("DR_Material");
         String m = stack.getOrCreateTag().getString("M_Material");
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + ul).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.upper_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + ur).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.pegs_trim").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + m).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_left").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + dl).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
-        list.add(new TranslationTextComponent("tooltip.expanded_combat.shield_material.lower_right").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC).append(new TranslationTextComponent("tooltip.expanded_combat.shield_material." + dr).withStyle(TextFormatting.GRAY, TextFormatting.ITALIC)));
+        list.add(new TranslatableComponent("tooltip.expanded_combat.shield_material.upper_left").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(new TranslatableComponent("tooltip.expanded_combat.shield_material." + ul).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(new TranslatableComponent("tooltip.expanded_combat.shield_material.upper_right").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(new TranslatableComponent("tooltip.expanded_combat.shield_material." + ur).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(new TranslatableComponent("tooltip.expanded_combat.shield_material.pegs_trim").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(new TranslatableComponent("tooltip.expanded_combat.shield_material." + m).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(new TranslatableComponent("tooltip.expanded_combat.shield_material.lower_left").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(new TranslatableComponent("tooltip.expanded_combat.shield_material." + dl).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(new TranslatableComponent("tooltip.expanded_combat.shield_material.lower_right").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(new TranslatableComponent("tooltip.expanded_combat.shield_material." + dr).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
 
         if (getMendingBonus(stack) != 0.0f) {
             if (getMendingBonus(stack) > 0.0f) {
-                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
             else if (getMendingBonus(stack) < 0.0f) {
-                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.RED).append(new StringTextComponent(TextFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(new TextComponent(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
         }
         super.appendHoverText(stack, world, list, flag);
@@ -166,6 +162,14 @@ public class ECShieldItem extends ShieldItem
         float dr = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("DR_Material")).getAfterBasePercentReduction() /5;
         float m = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("M_Material")).getAfterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
+    }
+    public void initializeClient(@Nonnull java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
+        consumer.accept(new IItemRenderProperties() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+                return new ECShieldBlockEntityWithoutLevelRenderer();
+            }
+        });
     }
 
     public int getTier() {

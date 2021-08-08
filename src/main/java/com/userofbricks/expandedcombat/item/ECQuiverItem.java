@@ -1,22 +1,15 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
-import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Containers;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -37,23 +30,12 @@ public class ECQuiverItem extends Item implements ICurioItem
         this.providedSlots = providedSlots;
     }
 
+    public ResourceLocation getQUIVER_TEXTURE() {
+        return this.QUIVER_TEXTURE;
+    }
+
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
-    }
-
-    public boolean canRender( String identifier,  int index,  LivingEntity livingEntity, ItemStack stack) {
-        return true;
-    }
-
-    public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, ItemStack stack) {
-        ICurio.RenderHelper.translateIfSneaking(matrixStack, livingEntity);
-        ICurio.RenderHelper.rotateIfSneaking(matrixStack, livingEntity);
-        if (!(this.model instanceof QuiverModel)) {
-            this.model = new QuiverModel();
-        }
-        QuiverModel<?> quiverModel = (QuiverModel<?>)this.model;
-        IVertexBuilder vertexBuilder = ItemRenderer.getFoilBuffer(renderTypeBuffer, quiverModel.renderType(QUIVER_TEXTURE), false, false);
-        quiverModel.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
@@ -63,11 +45,11 @@ public class ECQuiverItem extends Item implements ICurioItem
                 for (int i = 0; i < curioStackHandler.getSlots(); i++) {
                     ItemStack arrowstack = curioStackHandler.getStackInSlot(i);
                     if (arrowstack != ItemStack.EMPTY) {
-                        if (livingEntity instanceof PlayerEntity) {
-                            ItemHandlerHelper.giveItemToPlayer((PlayerEntity) livingEntity, arrowstack);
+                        if (livingEntity instanceof Player) {
+                            ItemHandlerHelper.giveItemToPlayer((Player) livingEntity, arrowstack);
                             curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
                         } else {
-                            InventoryHelper.dropItemStack(livingEntity.level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), arrowstack);
+                            Containers.dropItemStack(livingEntity.level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), arrowstack);
                             curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
                         }
                     }

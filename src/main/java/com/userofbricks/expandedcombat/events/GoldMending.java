@@ -1,37 +1,37 @@
 package com.userofbricks.expandedcombat.events;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.item.Item;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import java.util.List;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraft.inventory.EquipmentSlotType;
-import java.util.Map;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.List;
+import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GoldMending
 {
     @SubscribeEvent
     public void MendingBonus( PlayerXpEvent.PickupXp event) {
-         PlayerEntity entityIn = event.getPlayer();
-         ExperienceOrbEntity thisxp = event.getOrb();
-         Map.Entry<EquipmentSlotType, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.MENDING, entityIn, ItemStack::isDamaged);
+         Player entityIn = event.getPlayer();
+        ExperienceOrb thisxp = event.getOrb();
+         Map.Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.MENDING, entityIn, ItemStack::isDamaged);
         if (entry != null) {
              ItemStack itemstack = entry.getValue();
             if (doesGoldMendingContainItem(itemstack)) {
@@ -39,16 +39,20 @@ public class GoldMending
                 entityIn.take((Entity)thisxp, 1);
                 if (!itemstack.isEmpty() && itemstack.isDamaged()) {
                      int repairedDamage = Math.min(thisxp.value * 4, itemstack.getDamageValue());
-                     ExperienceOrbEntity experienceOrbEntity = thisxp;
-                    experienceOrbEntity.value -= thisxp.durabilityToXp(repairedDamage);
+                     ExperienceOrb experienceOrbEntity = thisxp;
+                    experienceOrbEntity.value -= durabilityToXp(repairedDamage);
                     itemstack.setDamageValue(itemstack.getDamageValue() - repairedDamage);
                 }
                 if (thisxp.value > 0) {
                     entityIn.giveExperiencePoints(thisxp.value);
                 }
-                thisxp.remove();
+                thisxp.kill();
             }
         }
+    }
+
+    private int durabilityToXp(int p_20794_) {
+        return p_20794_ / 2;
     }
     
     @SubscribeEvent
@@ -56,8 +60,8 @@ public class GoldMending
     public static void handleToolTip( ItemTooltipEvent event) {
          ItemStack itemStack = event.getItemStack();
         if (doesGoldMendingContainItem(itemStack)) {
-             List<ITextComponent> list = event.getToolTip();
-            list.add(0, new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+             List<Component> list = event.getToolTip();
+            list.add(0, new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
     }
     

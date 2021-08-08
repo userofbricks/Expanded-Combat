@@ -1,33 +1,32 @@
 package com.userofbricks.expandedcombat.inventory.container;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.RecipeBookCategory;
-import net.minecraft.item.crafting.RecipeItemHelper;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.inventory.RecipeBookType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.common.inventory.CosmeticCurioSlot;
 import top.theillusivec4.curios.common.inventory.CurioSlot;
-import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
 import top.theillusivec4.curios.common.network.NetworkHandler;
 import top.theillusivec4.curios.common.network.client.CPacketScroll;
 import top.theillusivec4.curios.common.network.server.SPacketScroll;
@@ -36,28 +35,28 @@ import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ECCuriosQuiverContainer extends PlayerContainer {
+public class ECCuriosQuiverContainer extends InventoryMenu {
 
     private static final ResourceLocation[] ARMOR_SLOT_TEXTURES = new ResourceLocation[] {
-            PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS,
-            PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET};
-    private static final EquipmentSlotType[] VALID_EQUIPMENT_SLOTS = new EquipmentSlotType[] {
-            EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS,
-            EquipmentSlotType.FEET};
+            InventoryMenu.EMPTY_ARMOR_SLOT_BOOTS, InventoryMenu.EMPTY_ARMOR_SLOT_LEGGINGS,
+            InventoryMenu.EMPTY_ARMOR_SLOT_CHESTPLATE, InventoryMenu.EMPTY_ARMOR_SLOT_HELMET};
+    private static final EquipmentSlot[] VALID_EQUIPMENT_SLOTS = new EquipmentSlot[] {
+            EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS,
+            EquipmentSlot.FEET};
 
     public final LazyOptional<ICuriosItemHandler> curiosHandler;
 
-    private final PlayerEntity player;
+    private final Player player;
     private final boolean isLocalWorld;
 
     private int lastScrollIndex;
     private boolean cosmeticColumn;
 
-    public ECCuriosQuiverContainer(int windowId, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
+    public ECCuriosQuiverContainer(int windowId, Inventory playerInventory, FriendlyByteBuf packetBuffer) {
         this(windowId, playerInventory);
     }
 
-    public ECCuriosQuiverContainer(int windowId, PlayerInventory playerInventory) {
+    public ECCuriosQuiverContainer(int windowId, Inventory playerInventory) {
         super(playerInventory, playerInventory.player.level.isClientSide, playerInventory.player);
         this.menuType = ECContainers.EC_QUIVER_CURIOS.get();
         this.containerId = windowId;
@@ -69,7 +68,7 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
 
         //armor slots
         for(int i = 0; i < 4; ++i) {
-            final EquipmentSlotType equipmentslottype = VALID_EQUIPMENT_SLOTS[i];
+            final EquipmentSlot equipmentslottype = VALID_EQUIPMENT_SLOTS[i];
             this.addSlot(new Slot(playerInventory, 36 + (3 - i), 8, 8 + i * 18) {
                 public int getMaxStackSize() {
                     return 1;
@@ -79,14 +78,14 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
                     return stack.canEquip(equipmentslottype, ECCuriosQuiverContainer.this.player);
                 }
 
-                public boolean mayPickup(@Nonnull PlayerEntity playerIn) {
+                public boolean mayPickup(@Nonnull Player playerIn) {
                     ItemStack itemstack = this.getItem();
                     return (itemstack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(playerIn);
                 }
 
                 @OnlyIn(Dist.CLIENT)
                 public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                    return Pair.of(PlayerContainer.BLOCK_ATLAS, ECCuriosQuiverContainer.ARMOR_SLOT_TEXTURES[equipmentslottype.getIndex()]);
+                    return Pair.of(InventoryMenu.BLOCK_ATLAS, ECCuriosQuiverContainer.ARMOR_SLOT_TEXTURES[equipmentslottype.getIndex()]);
                 }
             });
         }
@@ -108,7 +107,7 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
         this.addSlot(new Slot(playerInventory, 40, 77, 62) {
             @OnlyIn(Dist.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                return Pair.of(PlayerContainer.BLOCK_ATLAS, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD);
+                return Pair.of(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);
             }
         });
 
@@ -124,7 +123,7 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
 
                 if (identifier.equals("quiver") && stacksHandler.getSlots() > 0) {
                     this.addSlot(new CurioSlot(this.player, stackHandler, 0, identifier, 77, 18, stacksHandler.getRenders()) {
-                        public boolean mayPickup(@Nonnull PlayerEntity playerIn) {
+                        public boolean mayPickup(@Nonnull Player playerIn) {
                             return false;
                         }
                         public boolean mayPlace(@Nonnull ItemStack stack) {
@@ -197,7 +196,7 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
                     if (!var7.hasNext()) {
                         if (!this.isLocalWorld) {
                             NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> {
-                                return (ServerPlayerEntity)this.player;
+                                return (ServerPlayer)this.player;
                             }), new SPacketScroll(this.containerId, indexIn));
                         }
 
@@ -246,32 +245,32 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
         });
     }
 
-    public void slotsChanged(@Nonnull IInventory inventoryIn) {}
+    public void slotsChanged(@Nonnull Container inventoryIn) {}
 
 
-    public void removed(@Nonnull PlayerEntity p_75134_1_) {}
+    public void removed(@Nonnull Player p_75134_1_) {}
 
     public boolean canScroll() {
         return this.curiosHandler.map((curios) -> curios.getVisibleSlots() > 8 ? 1 : 0).orElse(0) == 1;
     }
 
-    public boolean stillValid(@Nonnull PlayerEntity playerIn) {
+    public boolean stillValid(@Nonnull Player playerIn) {
         return true;
     }
 
     @Nonnull
-    public ItemStack quickMoveStack(@Nonnull PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(@Nonnull Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            EquipmentSlotType entityequipmentslot = MobEntity.getEquipmentSlotForItem(itemstack);
+            EquipmentSlot entityequipmentslot = Mob.getEquipmentSlotForItem(itemstack);
             if (index < 4) {
                 if (!this.moveItemStackTo(itemstack1, 4, 40, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (entityequipmentslot.getType() == EquipmentSlotType.Group.ARMOR && !this.slots.get(3 - entityequipmentslot.getIndex()).hasItem()) {
+            } else if (entityequipmentslot.getType() == EquipmentSlot.Type.ARMOR && !this.slots.get(3 - entityequipmentslot.getIndex()).hasItem()) {
                 int i = 3 - entityequipmentslot.getIndex();
                 if (!this.moveItemStackTo(itemstack1, i, i + 1, false)) {
                     return ItemStack.EMPTY;
@@ -280,7 +279,7 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
                 if (!this.moveItemStackTo(itemstack1, 41, this.slots.size(), false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (entityequipmentslot == EquipmentSlotType.OFFHAND && !this.slots.get(41).hasItem()) {
+            } else if (entityequipmentslot == EquipmentSlot.OFFHAND && !this.slots.get(41).hasItem()) {
                 if (!this.moveItemStackTo(itemstack1, 40, 41, false)) {
                     return ItemStack.EMPTY;
                 }
@@ -311,15 +310,15 @@ public class ECCuriosQuiverContainer extends PlayerContainer {
     }
 
     @Nonnull
-    public RecipeBookCategory getRecipeBookType() {
-        return RecipeBookCategory.CRAFTING;
+    public RecipeBookType getRecipeBookType() {
+        return RecipeBookType.CRAFTING;
     }
 
-    public void fillCraftSlotsStackedContents(@Nonnull RecipeItemHelper itemHelperIn) {}
+    public void fillCraftSlotsStackedContents(@Nonnull StackedContents itemHelperIn) {}
 
     public void clearCraftingContent() {}
 
-    public boolean recipeMatches(IRecipe<? super CraftingInventory> recipeIn) { return false; }
+    public boolean recipeMatches(Recipe<? super CraftingContainer> recipeIn) { return false; }
 
     public int getResultSlotIndex() {
         return -1;

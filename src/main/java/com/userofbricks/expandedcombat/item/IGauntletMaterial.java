@@ -1,7 +1,7 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public interface IGauntletMaterial
 {

@@ -1,10 +1,9 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.config.ECClientConfig;
 import com.userofbricks.expandedcombat.config.ECConfig;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 
 public enum ArrowType
 {

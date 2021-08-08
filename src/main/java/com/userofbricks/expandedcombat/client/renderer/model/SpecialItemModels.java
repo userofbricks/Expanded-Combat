@@ -1,26 +1,28 @@
 package com.userofbricks.expandedcombat.client.renderer.model;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import net.minecraft.client.renderer.model.*;
-import net.minecraftforge.client.ForgeHooksClient;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.item.ECItems;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-
-import java.util.Random;
-import net.minecraft.util.Direction;
-import net.minecraft.block.BlockState;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
-import net.minecraft.resources.ResourcePackType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
-import com.userofbricks.expandedcombat.item.ECItems;
-import net.minecraft.item.Item;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class SpecialItemModels
 {
@@ -32,7 +34,7 @@ public class SpecialItemModels
         for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
              Item item = ro.get();
              ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + item.getRegistryName().getPath() + "_handheld.json");
-            if (ExpandedCombat.modResourceExists(ResourcePackType.CLIENT_RESOURCES, handheldModel)) {
+            if (ExpandedCombat.modResourceExists(PackType.CLIENT_RESOURCES, handheldModel)) {
                 addSpecialHandheld(item);
             }
         }
@@ -45,17 +47,17 @@ public class SpecialItemModels
     }
     
     public static void onModelBake( ModelBakeEvent event) {
-         Map<ResourceLocation, IBakedModel> map = event.getModelRegistry();
+         Map<ResourceLocation, BakedModel> map = event.getModelRegistry();
         for ( Item item : SpecialItemModels.specialHandheldItems) {
              ResourceLocation itemRes = item.getRegistryName();
             ResourceLocation modelName = new ModelResourceLocation(itemRes, "inventory");
              ResourceLocation handheldModelName = new ModelResourceLocation(itemRes + "_handheld", "inventory");
-             IBakedModel defaultModel = map.get(modelName);
-            IBakedModel handheldModel = map.get(handheldModelName);
+             BakedModel defaultModel = map.get(modelName);
+            BakedModel handheldModel = map.get(handheldModelName);
             if (defaultModel != null && handheldModel != null) {
-                IBakedModel wrapperModel = new IBakedModel() {
+                BakedModel wrapperModel = new BakedModel() {
 
-                    public List<BakedQuad> getQuads( BlockState state,  Direction side,  Random rand) {
+                    public List<BakedQuad> getQuads(BlockState state, Direction side, Random rand) {
                         return defaultModel.getQuads(state, side, rand);
                     }
 
@@ -79,13 +81,13 @@ public class SpecialItemModels
                         return defaultModel.getParticleIcon();
                     }
 
-                    public ItemOverrideList getOverrides() {
+                    public ItemOverrides getOverrides() {
                         return handheldModel.getOverrides();
                     }
 
-                    public IBakedModel handlePerspective( ItemCameraTransforms.TransformType transformType,  MatrixStack mat) {
-                        IBakedModel modelToUse = defaultModel;
-                        if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+                    public BakedModel handlePerspective( ItemTransforms.TransformType transformType,  PoseStack mat) {
+                        BakedModel modelToUse = defaultModel;
+                        if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
                             modelToUse = handheldModel;
                         }
                         return ForgeHooksClient.handlePerspective(modelToUse, transformType, mat);

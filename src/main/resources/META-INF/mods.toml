@@ -1,7 +1,7 @@
 
 modLoader="javafml" #mandatory
 
-loaderVersion="[36,)" #mandatory
+loaderVersion="[37,)" #mandatory
 
 license="All rights reserved"
 
@@ -9,7 +9,7 @@ license="All rights reserved"
 
 [[mods]] #mandatory
 modId="expanded_combat" #mandatory
-version="2.3.0-beta_0" #mandatory
+version="2.3.0" #mandatory
 displayName="Expanded Combat" #mandatory
 #displayURL="http://example.com/" #optional
 #logoFile="examplemod.png" #optional
@@ -22,20 +22,20 @@ An Expansion of Minecraft's combat equipment which includes a reimagining of din
 [[dependencies.expanded_combat]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[36,)" #mandatory
+    versionRange="[37,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.expanded_combat]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.17.1,1.18)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.expanded_combat]]
     modId="curios"
     mandatory=true
-    versionRange="[1.16.5-4.0.5.1, )"
+    versionRange="[1.17.1-5.0.0.0, )"
     ordering="NONE"
     side="BOTH"

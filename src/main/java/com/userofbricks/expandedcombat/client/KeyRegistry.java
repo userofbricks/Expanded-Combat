@@ -19,25 +19,23 @@
 
 package com.userofbricks.expandedcombat.client;
 
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.client.util.InputMappings;
-import net.minecraftforge.client.settings.KeyConflictContext;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraft.client.KeyMapping;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyRegistry {
 
-  public static KeyBinding openQuiver;
-  public static KeyBinding cycleQuiverRight;
-  public static KeyBinding cycleQuiverLeft;
+  public static KeyMapping openQuiver;
+  public static KeyMapping cycleQuiverRight;
+  public static KeyMapping cycleQuiverLeft;
 
   public static void registerKeys() {
-    openQuiver = registerKeybinding(new KeyBinding("key.expanded_combat.open_quiver", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM, 86, "key.expanded_combat.category"));
-    cycleQuiverRight = registerKeybinding(new KeyBinding("key.expanded_combat.cycle_quiver_right", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM, 88, "key.expanded_combat.category"));
-    cycleQuiverLeft = registerKeybinding(new KeyBinding("key.expanded_combat.cycle_quiver_left", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM, 90, "key.expanded_combat.category"));
+    openQuiver = registerKeybinding(new KeyMapping("key.expanded_combat.open_quiver", GLFW.GLFW_KEY_V, "key.expanded_combat.category"));
+    cycleQuiverRight = registerKeybinding(new KeyMapping("key.expanded_combat.cycle_quiver_right", GLFW.GLFW_KEY_X, "key.expanded_combat.category"));
+    cycleQuiverLeft = registerKeybinding(new KeyMapping("key.expanded_combat.cycle_quiver_left", GLFW.GLFW_KEY_Z, "key.expanded_combat.category"));
   }
 
-  private static KeyBinding registerKeybinding(KeyBinding key) {
+  private static KeyMapping registerKeybinding(KeyMapping key) {
     ClientRegistry.registerKeyBinding(key);
     return key;
   }

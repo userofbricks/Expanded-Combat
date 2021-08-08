@@ -1,19 +1,19 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public enum ShieldMaterial
 {
 
     empty("empty", 0, 0, 0, 0, Ingredient.of(Items.AIR), 0),
     //overall it is a / by 5 type of thing for durability
-    netherite("netherite", 3, WeaponTier.NETHERITE.getMendingBonus(), 6.5f, 0.85f, ItemTier.NETHERITE.getRepairIngredient(), 375),
-    diamond("diamond", 2, WeaponTier.DIAMOND.getMendingBonus(), 5f, 0.75f, ItemTier.DIAMOND.getRepairIngredient(), 300),
-    gold("gold", 1, WeaponTier.GOLD.getMendingBonus(), 3f, 0.4f, ItemTier.GOLD.getRepairIngredient(), 40),
-    iron("iron", 1, WeaponTier.IRON.getMendingBonus(), 3f, 0.6f, ItemTier.IRON.getRepairIngredient(), 150),
+    netherite("netherite", 3, WeaponTier.NETHERITE.getMendingBonus(), 6.5f, 0.85f, Tiers.NETHERITE.getRepairIngredient(), 375),
+    diamond("diamond", 2, WeaponTier.DIAMOND.getMendingBonus(), 5f, 0.75f, Tiers.DIAMOND.getRepairIngredient(), 300),
+    gold("gold", 1, WeaponTier.GOLD.getMendingBonus(), 3f, 0.4f, Tiers.GOLD.getRepairIngredient(), 40),
+    iron("iron", 1, WeaponTier.IRON.getMendingBonus(), 3f, 0.6f, Tiers.IRON.getRepairIngredient(), 150),
     //mod compat
     steel("steel", 1, WeaponTier.STEEL.getMendingBonus(), 3.5f, 0.65f, GauntletMaterials.steel.getRepairMaterial(), 200),
     bronze("bronze", 1, WeaponTier.BRONZE.getMendingBonus(), 2.75f, 0.5f, GauntletMaterials.bronze.getRepairMaterial(), 125),

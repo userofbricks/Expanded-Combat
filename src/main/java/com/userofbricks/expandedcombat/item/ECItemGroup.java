@@ -1,16 +1,15 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.util.IItemProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
-public class ECItemGroup extends ItemGroup
+public class ECItemGroup extends CreativeModeTab
 {
     public ECItemGroup() {
         super("ec_group");
     }
     
     public ItemStack makeIcon() {
-        return new ItemStack((IItemProvider)ECItems.QUIVER.get());
+        return new ItemStack(ECItems.QUIVER.get());
     }
 }

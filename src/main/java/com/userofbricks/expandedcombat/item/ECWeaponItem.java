@@ -1,45 +1,45 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.play.server.SAnimateHandPacket;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potions;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.*;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.util.CombatEventHandler;
-import net.minecraft.util.text.*;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.block.BlockState;
-import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import java.util.Objects;
-
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.entity.ai.attributes.Attributes;
-import com.google.common.collect.ImmutableMultimap;
+import java.util.Random;
 import java.util.UUID;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attribute;
-import com.google.common.collect.Multimap;
-import net.minecraft.enchantment.IVanishable;
 
 public class ECWeaponItem extends SwordItem
 {
@@ -51,7 +51,7 @@ public class ECWeaponItem extends SwordItem
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
     
     public ECWeaponItem( IWeaponTier tierIn,  IWeaponType typeIn,  Item.Properties builderIn) {
-        super(new IItemTier() {
+        super(new Tier() {
             @Override
             public int getUses() {
                 return 0;
@@ -125,26 +125,27 @@ public class ECWeaponItem extends SwordItem
     }
 
     @Override
-    public boolean canAttackBlock( BlockState state,  World worldIn,  BlockPos pos,  PlayerEntity player) {
+    public boolean canAttackBlock(BlockState state, Level worldIn, BlockPos pos, Player player) {
         return !player.isCreative();
     }
 
     @Override
-    public float getDestroySpeed( ItemStack stack,  BlockState state) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (state.is(Blocks.COBWEB)) {
             return 15.0f;
         }
          Material material = state.getMaterial();
-        return (material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.CORAL && !state.is(BlockTags.LEAVES) && material != Material.VEGETABLE) ? 1.0f : 1.5f;
+        return (material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.WATER_PLANT && !state.is(BlockTags.LEAVES) && material != Material.VEGETABLE) ? 1.0f : 1.5f;
     }
 
     @Override
-    public boolean hurtEnemy( ItemStack weapon,  LivingEntity target,  LivingEntity attacker) {
+    public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
         boolean result = super.hurtEnemy(weapon, target, attacker);
         if (this.getWeaponTier() == WeaponTier.FIERY) {
             if (result && !target.level.isClientSide && !target.fireImmune()) {
                 target.setRemainingFireTicks(15);
             } else {
+                Random random = new Random();
                 for (int var1 = 0; var1 < 20; ++var1) {
                     double px = target.getX() + random.nextFloat() * target.getBbWidth() * 2.0F - target.getBbWidth();
                     double py = target.getY() + random.nextFloat() * target.getBbHeight();
@@ -158,15 +159,15 @@ public class ECWeaponItem extends SwordItem
             // don't prevent main damage from applying
             target.hurtTime = 0;
             // enchantment attack sparkles
-            ((ServerWorld) target.level).getChunkSource().broadcastAndSend(target, new SAnimateHandPacket(target, 5));
+            //((ServerLevel) target.level).getChunkSource().broadcastAndSend(target, new SAnimateHandPacket(target, 5));
         }
         return result;
     }
 
     @Override
-    public boolean mineBlock( ItemStack stack,  World worldIn,  BlockState state,  BlockPos pos,  LivingEntity entityLiving) {
+    public boolean mineBlock( ItemStack stack,  Level worldIn,  BlockState state,  BlockPos pos,  LivingEntity entityLiving) {
         if (state.getDestroySpeed(worldIn, pos) != 0.0f) {
-            stack.hurtAndBreak(2, entityLiving, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(2, entityLiving, entity -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         return true;
     }
@@ -177,8 +178,8 @@ public class ECWeaponItem extends SwordItem
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers( EquipmentSlotType equipmentSlot,  ItemStack stack) {
-        return ((equipmentSlot == EquipmentSlotType.MAINHAND || (this.getWeaponType().getWieldingType() == WeaponTypes.WieldingType.DUALWIELD && equipmentSlot == EquipmentSlotType.OFFHAND)) ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot, stack));
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers( EquipmentSlot equipmentSlot,  ItemStack stack) {
+        return ((equipmentSlot == EquipmentSlot.MAINHAND || (this.getWeaponType().getWieldingType() == WeaponTypes.WieldingType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND)) ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot, stack));
     }
 
     @Override
@@ -196,38 +197,38 @@ public class ECWeaponItem extends SwordItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText( ItemStack stack,  World world,  List<ITextComponent> list,  ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> list, TooltipFlag flag) {
         if (this.getWeaponTier() == WeaponTier.FIERY) {
-            list.add(new TranslationTextComponent("tooltip.expanded_combat.fiery.weapon"));
+            list.add(new TranslatableComponent("tooltip.expanded_combat.fiery.weapon"));
         } else if (this.getWeaponTier() == WeaponTier.KNIGHTLY) {
-            list.add(new TranslationTextComponent("tooltip.expanded_combat.knightly.weapon"));
+            list.add(new TranslatableComponent("tooltip.expanded_combat.knightly.weapon"));
         }
         float mendingBonus = this.type.getTypeMendingBonus() + this.weaponTier.getMendingBonus();
         if (mendingBonus != 0.0f) {
             if (mendingBonus > 0.0f) {
-                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.GREEN).append(new StringTextComponent(TextFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
+                list.add(new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
             }
             else if (mendingBonus < 0.0f) {
-                list.add(new TranslationTextComponent("tooltip.expanded_combat.mending_bonus").withStyle(TextFormatting.RED).append(new StringTextComponent(TextFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
+                list.add(new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(new TextComponent(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
             }
         }
     }
 
-    public ITextComponent getName(ItemStack stack) {
-        return new TranslationTextComponent(this.getWeaponTier().getTierName()).append(" ").append(this.getWeaponType().getTypeName());
+    public Component getName(ItemStack stack) {
+        return new TranslatableComponent(this.getWeaponTier().getTierName()).append(" ").append(this.getWeaponType().getTypeName());
     }
     
-    public ActionResult<ItemStack> use( World worldIn,  PlayerEntity playerIn,  Hand handIn) {
-        if (handIn == Hand.OFF_HAND && worldIn.isClientSide) {
-            CombatEventHandler.checkForOffhandAttack();
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+        if (handIn == InteractionHand.OFF_HAND && worldIn.isClientSide) {
+            //todo CombatEventHandler.checkForOffhandAttack();
              ItemStack offhand = playerIn.getItemInHand(handIn);
-            return new ActionResult<>(ActionResultType.SUCCESS, offhand);
+            return InteractionResultHolder.consume(offhand);
         }
-        return new ActionResult<>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
+        return InteractionResultHolder.pass(playerIn.getItemInHand(handIn));
     }
 
     @Override
-    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
+    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> list) {
         if (allowdedIn(tab)) {
             ItemStack istack = new ItemStack(this);
             if (this.getWeaponTier() == WeaponTier.STEELEAF) {
@@ -237,7 +238,7 @@ public class ECWeaponItem extends SwordItem
         }
     }
     
-    public static class Dyeable extends ECWeaponItem implements IDyeableArmorItem
+    public static class Dyeable extends ECWeaponItem implements DyeableLeatherItem
     {
         public Dyeable( IWeaponTier tierIn,  IWeaponType typeIn,  Item.Properties builderIn) {
             super(tierIn, typeIn, builderIn);
@@ -253,8 +254,8 @@ public class ECWeaponItem extends SwordItem
         @Override
         public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
             if (PotionUtils.getPotion(weapon) != Potions.EMPTY) {
-                for ( EffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
-                     EffectInstance potionEffect = new EffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2);
+                for ( MobEffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
+                    MobEffectInstance potionEffect = new MobEffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2);
                     target.addEffect(potionEffect);
                 }
             }
@@ -262,7 +263,7 @@ public class ECWeaponItem extends SwordItem
         }
     }
     
-    public static class HasPotionAndIsDyeable extends HasPotion implements IDyeableArmorItem
+    public static class HasPotionAndIsDyeable extends HasPotion implements DyeableLeatherItem
     {
         public HasPotionAndIsDyeable( IWeaponTier tierIn,  IWeaponType typeIn,  Item.Properties builderIn) {
             super(tierIn, typeIn, builderIn);

@@ -1,7 +1,6 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public interface IWeaponTier
 {

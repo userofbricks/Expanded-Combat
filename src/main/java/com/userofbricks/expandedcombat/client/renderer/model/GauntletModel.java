@@ -1,30 +1,43 @@
 package com.userofbricks.expandedcombat.client.renderer.model;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import javax.annotation.Nonnull;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 
-public class GauntletModel extends BipedModel<LivingEntity>
+import com.google.common.collect.ImmutableList;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.world.entity.LivingEntity;
+
+public class GauntletModel extends HumanoidModel<LivingEntity>
 {
-    public GauntletModel() {
-        super(1.0f);
-        this.texWidth = 32;
-        this.texHeight = 16;
-        this.rightArm = new ModelRenderer(this, 0, 0);
-        this.rightArm.setPos(-5.0f, 2.0f, 0.0f);
-        this.rightArm.addBox(-3.0f, -2.0f, -2.0f, 4.0f, 12.0f, 4.0f, 0.5f);
-        this.leftArm = new ModelRenderer(this, 16, 0);
-        this.leftArm.mirror = true;
-        this.leftArm.setPos(5.0f, 2.0f, 0.0f);
-        this.leftArm.addBox(-1.0f, -2.0f, -2.0f, 4.0f, 12.0f, 4.0f, 0.5f);
+    public GauntletModel(ModelPart part) {
+        super(part);
     }
-    
-    public void renderToBuffer(@Nonnull final MatrixStack matrixStack, @Nonnull final IVertexBuilder vertexBuilder, final int light, final int overlay, final float red, final float green, final float blue, final float alpha) {
-        this.rightArm.render(matrixStack, vertexBuilder, light, overlay);
-        this.leftArm.render(matrixStack, vertexBuilder, light, overlay);
+
+    public static LayerDefinition createLayer() {
+        CubeDeformation cube = new CubeDeformation(0.5F);
+        MeshDefinition mesh = HumanoidModel.createMesh(cube, 0.0F);
+        PartDefinition part = mesh.getRoot();
+        part.addOrReplaceChild("right_arm",
+                               CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, cube),
+                               PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -5.0F, 2.0F, 0.0F));
+        part.addOrReplaceChild("left_arm",
+                               CubeListBuilder.create().mirror().texOffs(16, 0).addBox(5.0F, 2.0F, 0.0F, 4, 12, 4, cube),
+                               PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 5.0F, 2.0F, 0.0F));
+        return LayerDefinition.create(mesh, 32, 16);
+    }
+
+    @Override
+    @Nonnull
+    protected Iterable<ModelPart> headParts() {
+        return ImmutableList.of(this.head);
+    }
+
+    @Override
+    @Nonnull
+    protected Iterable<ModelPart> bodyParts() {
+        return ImmutableList
+                .of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg, this.hat);
     }
 }

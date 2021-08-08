@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public enum WeaponTypes implements IWeaponType
 {
@@ -28,7 +28,7 @@ public enum WeaponTypes implements IWeaponType
     private final double attackRange;
     private final WieldingType wieldType;
     
-    private WeaponTypes(String translationName, int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType) {
+    WeaponTypes(String translationName, int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType) {
         this.translationName = translationName;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
@@ -39,8 +39,8 @@ public enum WeaponTypes implements IWeaponType
     }
 
     @Override
-    public TranslationTextComponent getTypeName() {
-        return new TranslationTextComponent("weapon_type.expanded_combat." + this.translationName);
+    public TranslatableComponent getTypeName() {
+        return new TranslatableComponent("weapon_type.expanded_combat." + this.translationName);
     }
 
     @Override

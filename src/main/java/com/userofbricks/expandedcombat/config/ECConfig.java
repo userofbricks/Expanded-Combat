@@ -1,8 +1,8 @@
 package com.userofbricks.expandedcombat.config;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemTier;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -152,21 +152,21 @@ public class ECConfig {
             builder.push("Gauntlet");
             builder.push("Damgage");
             {
-                netheriteGauntletDamage = builder.comment("Default value: " + ItemTier.NETHERITE.getAttackDamageBonus())
+                netheriteGauntletDamage = builder.comment("Default value: " + Tiers.NETHERITE.getAttackDamageBonus())
                         .translation(CONFIG_PREFIX + "netheriteGauntletDamage")
-                        .defineInRange("netheriteGauntletDamage", ItemTier.NETHERITE.getAttackDamageBonus(), 0d, 100d);
-                diamondGauntletDamage = builder.comment("Default value: " + ItemTier.DIAMOND.getAttackDamageBonus())
+                        .defineInRange("netheriteGauntletDamage", Tiers.NETHERITE.getAttackDamageBonus(), 0d, 100d);
+                diamondGauntletDamage = builder.comment("Default value: " + Tiers.DIAMOND.getAttackDamageBonus())
                         .translation(CONFIG_PREFIX + "diamondGauntletDamage")
-                        .defineInRange("diamondGauntletDamage", ItemTier.DIAMOND.getAttackDamageBonus(), 0d, 100d);
-                goldGauntletDamage = builder.comment("Default value: " + ItemTier.GOLD.getAttackDamageBonus())
+                        .defineInRange("diamondGauntletDamage", Tiers.DIAMOND.getAttackDamageBonus(), 0d, 100d);
+                goldGauntletDamage = builder.comment("Default value: " + Tiers.GOLD.getAttackDamageBonus())
                         .translation(CONFIG_PREFIX + "goldGauntletDamage")
-                        .defineInRange("goldGauntletDamage", ItemTier.GOLD.getAttackDamageBonus(), 0d, 100d);
-                ironGauntletDamage = builder.comment("Default value: " + ItemTier.IRON.getAttackDamageBonus())
+                        .defineInRange("goldGauntletDamage", Tiers.GOLD.getAttackDamageBonus(), 0d, 100d);
+                ironGauntletDamage = builder.comment("Default value: " + Tiers.IRON.getAttackDamageBonus())
                         .translation(CONFIG_PREFIX + "ironGauntletDamage")
-                        .defineInRange("ironGauntletDamage", ItemTier.IRON.getAttackDamageBonus(), 0d, 100d);
-                leatherGauntletDamage = builder.comment("Default value: " + ItemTier.STONE.getAttackDamageBonus())
+                        .defineInRange("ironGauntletDamage", Tiers.IRON.getAttackDamageBonus(), 0d, 100d);
+                leatherGauntletDamage = builder.comment("Default value: " + Tiers.STONE.getAttackDamageBonus())
                         .translation(CONFIG_PREFIX + "leatherGauntletDamage")
-                        .defineInRange("leatherGauntletDamage", ItemTier.STONE.getAttackDamageBonus(), 0d, 100d);
+                        .defineInRange("leatherGauntletDamage", Tiers.STONE.getAttackDamageBonus(), 0d, 100d);
                 steelGauntletDamage = builder.comment("Default value: 2.5")
                         .translation(CONFIG_PREFIX + "steelGauntletDamage")
                         .defineInRange("steelGauntletDamage", 2.5d, 0d, 100d);
@@ -264,21 +264,21 @@ public class ECConfig {
             builder.pop(1);
             builder.push("ArmorToughness");
             {
-                netheriteGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterial.NETHERITE.getToughness())
+                netheriteGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterials.NETHERITE.getToughness())
                         .translation(CONFIG_PREFIX + "netheriteGauntletArmorToughness")
-                        .defineInRange("netheriteGauntletArmorToughness", ArmorMaterial.NETHERITE.getToughness(), 0d, 100d);
-                diamondGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterial.DIAMOND.getToughness())
+                        .defineInRange("netheriteGauntletArmorToughness", ArmorMaterials.NETHERITE.getToughness(), 0d, 100d);
+                diamondGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterials.DIAMOND.getToughness())
                         .translation(CONFIG_PREFIX + "diamondGauntletArmorToughness")
-                        .defineInRange("diamondGauntletArmorToughness", ArmorMaterial.DIAMOND.getToughness(), 0d, 100d);
-                goldGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterial.GOLD.getToughness())
+                        .defineInRange("diamondGauntletArmorToughness", ArmorMaterials.DIAMOND.getToughness(), 0d, 100d);
+                goldGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterials.GOLD.getToughness())
                         .translation(CONFIG_PREFIX + "goldGauntletArmorToughness")
-                        .defineInRange("goldGauntletArmorToughness", ArmorMaterial.GOLD.getToughness(), 0d, 100d);
-                ironGauntletArmorToughness = builder.comment("Default value: " +ArmorMaterial.IRON.getToughness())
+                        .defineInRange("goldGauntletArmorToughness", ArmorMaterials.GOLD.getToughness(), 0d, 100d);
+                ironGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterials.IRON.getToughness())
                         .translation(CONFIG_PREFIX + "ironGauntletArmorToughness")
-                        .defineInRange("ironGauntletArmorToughness", ArmorMaterial.IRON.getToughness(), 0d, 100d);
-                leatherGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterial.LEATHER.getToughness())
+                        .defineInRange("ironGauntletArmorToughness", ArmorMaterials.IRON.getToughness(), 0d, 100d);
+                leatherGauntletArmorToughness = builder.comment("Default value: " + ArmorMaterials.LEATHER.getToughness())
                         .translation(CONFIG_PREFIX + "leatherGauntletArmorToughness")
-                        .defineInRange("leatherGauntletArmorToughness", ArmorMaterial.LEATHER.getToughness(), 0d, 100d);
+                        .defineInRange("leatherGauntletArmorToughness", ArmorMaterials.LEATHER.getToughness(), 0d, 100d);
                 steelGauntletArmorToughness = builder.comment("Default value: 1.0")
                         .translation(CONFIG_PREFIX + "steelGauntletArmorToughness")
                         .defineInRange("steelGauntletArmorToughness", 1.0d, 0d, 100d);
@@ -320,21 +320,21 @@ public class ECConfig {
             builder.pop(1);
             builder.push("KnockBackResistance");
             {
-                netheriteGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterial.NETHERITE.getKnockbackResistance())
+                netheriteGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterials.NETHERITE.getKnockbackResistance())
                         .translation(CONFIG_PREFIX + "netheriteGauntletKnockBackResistance")
-                        .defineInRange("netheriteGauntletKnockBackResistance", ArmorMaterial.NETHERITE.getKnockbackResistance(), 0d, 10d);
-                diamondGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterial.DIAMOND.getKnockbackResistance())
+                        .defineInRange("netheriteGauntletKnockBackResistance", ArmorMaterials.NETHERITE.getKnockbackResistance(), 0d, 10d);
+                diamondGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterials.DIAMOND.getKnockbackResistance())
                         .translation(CONFIG_PREFIX + "diamondGauntletKnockBackResistance")
-                        .defineInRange("diamondGauntletKnockBackResistance", ArmorMaterial.DIAMOND.getKnockbackResistance(), 0d, 10d);
-                goldGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterial.GOLD.getKnockbackResistance())
+                        .defineInRange("diamondGauntletKnockBackResistance", ArmorMaterials.DIAMOND.getKnockbackResistance(), 0d, 10d);
+                goldGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterials.GOLD.getKnockbackResistance())
                         .translation(CONFIG_PREFIX + "goldGauntletKnockBackResistance")
-                        .defineInRange("goldGauntletKnockBackResistance", ArmorMaterial.GOLD.getKnockbackResistance(), 0d, 10d);
-                ironGauntletKnockBackResistance = builder.comment("Default value: " +ArmorMaterial.IRON.getKnockbackResistance())
+                        .defineInRange("goldGauntletKnockBackResistance", ArmorMaterials.GOLD.getKnockbackResistance(), 0d, 10d);
+                ironGauntletKnockBackResistance = builder.comment("Default value: " +ArmorMaterials.IRON.getKnockbackResistance())
                         .translation(CONFIG_PREFIX + "ironGauntletKnockBackResistance")
-                        .defineInRange("ironGauntletKnockBackResistance", ArmorMaterial.IRON.getKnockbackResistance(), 0d, 10d);
-                leatherGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterial.LEATHER.getKnockbackResistance())
+                        .defineInRange("ironGauntletKnockBackResistance", ArmorMaterials.IRON.getKnockbackResistance(), 0d, 10d);
+                leatherGauntletKnockBackResistance = builder.comment("Default value: " + ArmorMaterials.LEATHER.getKnockbackResistance())
                         .translation(CONFIG_PREFIX + "leatherGauntletKnockBackResistance")
-                        .defineInRange("leatherGauntletKnockBackResistance", ArmorMaterial.LEATHER.getKnockbackResistance(), 0d, 10d);
+                        .defineInRange("leatherGauntletKnockBackResistance", ArmorMaterials.LEATHER.getKnockbackResistance(), 0d, 10d);
                 steelGauntletKnockBackResistance = builder.comment("Default value: 0.0")
                         .translation(CONFIG_PREFIX + "steelGauntletKnockBackResistance")
                         .defineInRange("steelGauntletKnockBackResistance", 0.0d, 0d, 10d);

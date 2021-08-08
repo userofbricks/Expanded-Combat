@@ -2,21 +2,11 @@ package com.userofbricks.expandedcombat.curios;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
-import com.userofbricks.expandedcombat.item.ECQuiverItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraftforge.items.ItemHandlerHelper;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import com.userofbricks.expandedcombat.client.renderer.model.QuiverArrowsModel;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import java.util.function.Function;
-import net.minecraft.item.ItemStack;
-import com.userofbricks.expandedcombat.item.ECItems;
-import net.minecraft.item.Item;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
@@ -28,7 +18,7 @@ public class ArrowCurio implements ICurio
     private Object model;
     
     public boolean canEquip( String identifier,  LivingEntity livingEntity) {
-        return CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(stack -> stack.is(ExpandedCombat.quiver_curios)).orElse(false);
+        return CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(ExpandedCombat.quiver_curios::contains).orElse(false);
     }
 
     @Override
@@ -37,24 +27,13 @@ public class ArrowCurio implements ICurio
     }
 
     @Override
-    public boolean canRender( String identifier,  int index,  LivingEntity livingEntity) {
-        return true;
-    }
-
-    @Override
-    public void render( String identifier,  int index,  MatrixStack matrixStack,  IRenderTypeBuffer renderTypeBuffer,  int light,  LivingEntity livingEntity,  float limbSwing,  float limbSwingAmount,  float partialTicks,  float ageInTicks,  float netHeadYaw,  float headPitch) {
-        ICurio.RenderHelper.translateIfSneaking(matrixStack, livingEntity);
-        ICurio.RenderHelper.rotateIfSneaking(matrixStack, livingEntity);
-        if (!(this.model instanceof QuiverArrowsModel)) {
-            this.model = new QuiverArrowsModel();
-        }
-         QuiverArrowsModel quiverModel = (QuiverArrowsModel)this.model;
-        quiverModel.render(matrixStack, renderTypeBuffer, light, livingEntity);
+    public ItemStack getStack() {
+        return null;
     }
 
     public void onUnequip(SlotContext slotContext, ItemStack newStack) {
         LivingEntity livingEntity = slotContext.getWearer();
-        if (newStack.isEmpty() && livingEntity instanceof PlayerEntity && !(((PlayerEntity) livingEntity).containerMenu instanceof CuriosContainer || ((PlayerEntity) livingEntity).containerMenu instanceof ECCuriosQuiverContainer)) {
+        if (newStack.isEmpty() && livingEntity instanceof Player && !(((Player) livingEntity).containerMenu instanceof CuriosContainer || ((Player) livingEntity).containerMenu instanceof ECCuriosQuiverContainer)) {
             int sackIndex = slotContext.getIndex();
             CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
                 Item stack = curioStackHandler.getPreviousStackInSlot(sackIndex).getItem();

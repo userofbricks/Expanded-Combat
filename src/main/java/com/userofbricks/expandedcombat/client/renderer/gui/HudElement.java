@@ -6,7 +6,7 @@
 
 package com.userofbricks.expandedcombat.client.renderer.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -78,5 +78,5 @@ public abstract class HudElement
         return this.height;
     }
     
-    public abstract void render(final MatrixStack p0, final float p1);
+    public abstract void render(final PoseStack p0, final float p1);
 }

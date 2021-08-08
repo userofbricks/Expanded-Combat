@@ -1,47 +1,42 @@
 package com.userofbricks.expandedcombat.item;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import com.google.common.collect.Lists;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.CrossbowAttackMob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.ITextComponent;
+
 import javax.annotation.Nullable;
-import net.minecraft.util.IItemProvider;
-import java.util.Random;
-import com.google.common.collect.Lists;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.stats.Stats;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3f;
-import java.util.Objects;
-import net.minecraft.entity.ICrossbowUser;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
-import net.minecraft.item.Item;
-import net.minecraft.item.CrossbowItem;
+import java.util.Objects;
+import java.util.Random;
 
 public class ECCrossBowItem extends CrossbowItem
 {
@@ -112,12 +107,12 @@ public class ECCrossBowItem extends CrossbowItem
         this.mendingBonus = 0.0f;
     }
     
-    public ActionResult<ItemStack> use( World worldIn,  PlayerEntity playerIn,  Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
          ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (isCharged(itemstack)) {
             this.fireCrossbowProjectiles(worldIn, playerIn, handIn, itemstack, this.getProjectileVelocity(itemstack), 1.0f);
             CrossbowItem.setCharged(itemstack, false);
-            return ActionResult.consume(itemstack);
+            return InteractionResultHolder.consume(itemstack);
         }
         if (!playerIn.getProjectile(itemstack).isEmpty()) {
             if (!isCharged(itemstack)) {
@@ -125,12 +120,12 @@ public class ECCrossBowItem extends CrossbowItem
                 this.midLoadSoundPlayed = false;
                 playerIn.startUsingItem(handIn);
             }
-            return ActionResult.consume(itemstack);
+            return InteractionResultHolder.consume(itemstack);
         }
-        return ActionResult.fail(itemstack);
+        return InteractionResultHolder.fail(itemstack);
     }
     
-    public void onUseTick( World world,  LivingEntity livingEntity,  ItemStack stack,  int timeLeft) {
+    public void onUseTick(Level world, LivingEntity livingEntity, ItemStack stack, int timeLeft) {
         if (!world.isClientSide) {
              int quickChargeLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
              SoundEvent quickChargeSoundEvent = this.getCrossbowSoundEvent(quickChargeLevel);
@@ -142,22 +137,22 @@ public class ECCrossBowItem extends CrossbowItem
             }
             if (chargeTime >= 0.2f && !this.startSoundPlayed && chargeTime < 1.0f) {
                 this.startSoundPlayed = true;
-                world.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), quickChargeSoundEvent, SoundCategory.PLAYERS, 0.5f, 1.0f);
+                world.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), quickChargeSoundEvent, SoundSource.PLAYERS, 0.5f, 1.0f);
             }
             if (chargeTime >= 0.5f && loadingMiddleSoundEvent != null && !this.midLoadSoundPlayed && chargeTime < 1.0f) {
                 this.midLoadSoundPlayed = true;
-                world.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), loadingMiddleSoundEvent, SoundCategory.PLAYERS, 0.5f, 1.0f);
+                world.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), loadingMiddleSoundEvent, SoundSource.PLAYERS, 0.5f, 1.0f);
             }
         }
     }
     
-    public void releaseUsing( ItemStack stack,  World worldIn,  LivingEntity entityLiving,  int timeLeft) {
+    public void releaseUsing( ItemStack stack,  Level worldIn,  LivingEntity entityLiving,  int timeLeft) {
          int i = this.getUseDuration(stack) - timeLeft;
          float f = this.getCrossbowCharge(i, stack);
         if (f >= 1.0f && !isCharged(stack) && this.tryLoadProjectiles(entityLiving, stack)) {
             setCharged(stack, true);
-             SoundCategory soundcategory = (entityLiving instanceof PlayerEntity) ? SoundCategory.PLAYERS : SoundCategory.HOSTILE;
-            worldIn.playSound(null, entityLiving.getX(), entityLiving.getY(), entityLiving.getZ(), SoundEvents.CROSSBOW_LOADING_END, soundcategory, 1.0f, 1.0f / (ECCrossBowItem.random.nextFloat() * 0.5f + 1.0f) + 0.2f);
+            SoundSource soundcategory = (entityLiving instanceof Player) ? SoundSource.PLAYERS : SoundSource.HOSTILE;
+            worldIn.playSound(null, entityLiving.getX(), entityLiving.getY(), entityLiving.getZ(), SoundEvents.CROSSBOW_LOADING_END, soundcategory, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.5f + 1.0f) + 0.2f);
         }
     }
     
@@ -191,12 +186,12 @@ public class ECCrossBowItem extends CrossbowItem
         }
     }
     
-    public void fireCrossbowProjectiles( World world,  LivingEntity livingEntity,  Hand hand,  ItemStack stack,  float velocityIn,  float inaccuracyIn) {
+    public void fireCrossbowProjectiles( Level world,  LivingEntity livingEntity,  InteractionHand hand,  ItemStack stack,  float velocityIn,  float inaccuracyIn) {
          List<ItemStack> list = getChargedProjectiles(stack);
          float[] randomSoundPitches = getRandomSoundPitches(livingEntity.getRandom());
         for (int i = 0; i < list.size(); ++i) {
              ItemStack currentProjectile = list.get(i);
-             boolean playerInCreativeMode = livingEntity instanceof PlayerEntity && ((PlayerEntity)livingEntity).abilities.instabuild;
+             boolean playerInCreativeMode = livingEntity instanceof Player && ((Player)livingEntity).getAbilities().instabuild;
             if (!currentProjectile.isEmpty()) {
                 if (i == 0) {
                     this.shootProjectile(world, livingEntity, hand, stack, currentProjectile, randomSoundPitches[i], playerInCreativeMode, velocityIn, inaccuracyIn, 0.0f);
@@ -224,10 +219,10 @@ public class ECCrossBowItem extends CrossbowItem
         fireProjectilesAfter(world, livingEntity, stack);
     }
     
-    private AbstractArrowEntity createCrossbowArrow( World world,  LivingEntity livingEntity,  ItemStack stack,  ItemStack stack1) {
+    private AbstractArrow createCrossbowArrow( Level world,  LivingEntity livingEntity,  ItemStack stack,  ItemStack stack1) {
          ArrowItem arrowItem = (ArrowItem)((stack1.getItem() instanceof ArrowItem) ? stack1.getItem() : Items.ARROW);
-         AbstractArrowEntity abstractArrowEntity = arrowItem.createArrow(world, stack1, livingEntity);
-        if (livingEntity instanceof PlayerEntity) {
+         AbstractArrow abstractArrowEntity = arrowItem.createArrow(world, stack1, livingEntity);
+        if (livingEntity instanceof Player) {
             abstractArrowEntity.setCritArrow(true);
         }
         abstractArrowEntity.setSoundEvent(SoundEvents.CROSSBOW_HIT);
@@ -262,40 +257,40 @@ public class ECCrossBowItem extends CrossbowItem
         return true;
     }
     
-    void shootProjectile( World worldIn,  LivingEntity shooter,  Hand handIn,  ItemStack crossbow,  ItemStack projectile,  float soundPitch,  boolean isCreativeMode,  float velocity,  float inaccuracy,  float projectileAngle) {
+    void shootProjectile( Level worldIn,  LivingEntity shooter,  InteractionHand handIn,  ItemStack crossbow,  ItemStack projectile,  float soundPitch,  boolean isCreativeMode,  float velocity,  float inaccuracy,  float projectileAngle) {
         if (!worldIn.isClientSide) {
              boolean flag = projectile.getItem() == Items.FIREWORK_ROCKET;
-            ProjectileEntity projectileentity;
+            Projectile projectileentity;
             if (flag) {
-                projectileentity = (ProjectileEntity)new FireworkRocketEntity(worldIn, projectile, (Entity)shooter, shooter.getX(), shooter.getEyeY() - 0.15000000596046448, shooter.getZ(), true);
+                projectileentity = (Projectile)new FireworkRocketEntity(worldIn, projectile, shooter, shooter.getX(), shooter.getEyeY() - 0.15000000596046448, shooter.getZ(), true);
             }
             else {
-                projectileentity = (ProjectileEntity)this.createCrossbowArrow(worldIn, shooter, crossbow, projectile);
+                projectileentity = this.createCrossbowArrow(worldIn, shooter, crossbow, projectile);
                 if (isCreativeMode || projectileAngle != 0.0f) {
-                    ((AbstractArrowEntity)projectileentity).pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                    ((AbstractArrow)projectileentity).pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 }
             }
-            if (shooter instanceof ICrossbowUser) {
-                 ICrossbowUser icrossbowuser = (ICrossbowUser)shooter;
+            if (shooter instanceof CrossbowAttackMob) {
+                 CrossbowAttackMob icrossbowuser = (CrossbowAttackMob)shooter;
                 icrossbowuser.shootCrossbowProjectile((LivingEntity)Objects.requireNonNull(icrossbowuser.getTarget()), crossbow, projectileentity, projectileAngle);
             }
             else {
-                 Vector3d vector3d1 = shooter.getUpVector(1.0f);
+                 Vec3 vector3d1 = shooter.getUpVector(1.0f);
                  Quaternion quaternion = new Quaternion(new Vector3f(vector3d1), projectileAngle, true);
-                 Vector3d vector3d2 = shooter.getViewVector(1.0f);
+                 Vec3 vector3d2 = shooter.getViewVector(1.0f);
                  Vector3f vector3f = new Vector3f(vector3d2);
                 vector3f.transform(quaternion);
                 projectileentity.shoot((double)vector3f.x(), (double)vector3f.y(), (double)vector3f.z(), velocity, inaccuracy);
             }
             crossbow.hurtAndBreak(flag ? 3 : 1, shooter, p_220017_1_ -> p_220017_1_.broadcastBreakEvent(handIn));
             worldIn.addFreshEntity((Entity)projectileentity);
-            worldIn.playSound((PlayerEntity)null, shooter.getX(), shooter.getY(), shooter.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0f, soundPitch);
+            worldIn.playSound((Player)null, shooter.getX(), shooter.getY(), shooter.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0f, soundPitch);
         }
     }
     
-    static void fireProjectilesAfter( World worldIn,  LivingEntity shooter,  ItemStack stack) {
-        if (shooter instanceof ServerPlayerEntity) {
-             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)shooter;
+    static void fireProjectilesAfter( Level worldIn,  LivingEntity shooter,  ItemStack stack) {
+        if (shooter instanceof ServerPlayer) {
+             ServerPlayer serverplayerentity = (ServerPlayer)shooter;
             if (!worldIn.isClientSide) {
                 CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayerentity, stack);
             }
@@ -305,21 +300,21 @@ public class ECCrossBowItem extends CrossbowItem
     }
     
     private static void clearProjectiles( ItemStack stack) {
-         CompoundNBT compoundnbt = stack.getTag();
+         CompoundTag compoundnbt = stack.getTag();
         if (compoundnbt != null) {
-             ListNBT listnbt = compoundnbt.getList("ChargedProjectiles", 9);
+             ListTag listnbt = compoundnbt.getList("ChargedProjectiles", 9);
             listnbt.clear();
-            compoundnbt.put("ChargedProjectiles", (INBT)listnbt);
+            compoundnbt.put("ChargedProjectiles", listnbt);
         }
     }
     
     static List<ItemStack> getChargedProjectiles( ItemStack stack) {
          List<ItemStack> list = Lists.newArrayList();
-         CompoundNBT compoundnbt = stack.getTag();
+         CompoundTag compoundnbt = stack.getTag();
         if (compoundnbt != null && compoundnbt.contains("ChargedProjectiles", 9)) {
-             ListNBT listnbt = compoundnbt.getList("ChargedProjectiles", 10);
+             ListTag listnbt = compoundnbt.getList("ChargedProjectiles", 10);
             for (int i = 0; i < listnbt.size(); ++i) {
-                 CompoundNBT compoundnbt2 = listnbt.getCompound(i);
+                 CompoundTag compoundnbt2 = listnbt.getCompound(i);
                 list.add(ItemStack.of(compoundnbt2));
             }
         }
@@ -333,13 +328,13 @@ public class ECCrossBowItem extends CrossbowItem
     
     private static float getRandomSoundPitch( boolean flagIn) {
          float f = flagIn ? 0.63f : 0.43f;
-        return 1.0f / (ECCrossBowItem.random.nextFloat() * 0.5f + 1.8f) + f;
+        return 1.0f / (new Random().nextFloat() * 0.5f + 1.8f) + f;
     }
     
     public boolean tryLoadProjectiles( LivingEntity entityIn,  ItemStack stack) {
          int multishotLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, stack) + this.multishotLevel;
          int arrowsToFire = (multishotLevel == 0) ? 1 : (1 + multishotLevel * 2);
-         boolean flag = entityIn instanceof PlayerEntity && ((PlayerEntity)entityIn).abilities.instabuild;
+         boolean flag = entityIn instanceof Player && ((Player)entityIn).getAbilities().instabuild;
         ItemStack itemstack = entityIn.getProjectile(stack);
         ItemStack itemstack2 = itemstack.copy();
         for (int i = 0; i < arrowsToFire; ++i) {
@@ -365,8 +360,8 @@ public class ECCrossBowItem extends CrossbowItem
         ItemStack itemstack;
         if (!flag && !b1 && !b) {
             itemstack = stack1.split(1);
-            if (stack1.isEmpty() && livingEntity instanceof PlayerEntity) {
-                ((PlayerEntity)livingEntity).inventory.removeItem(stack1);
+            if (stack1.isEmpty() && livingEntity instanceof Player) {
+                ((Player)livingEntity).getInventory().removeItem(stack1);
             }
         }
         else {
@@ -377,33 +372,33 @@ public class ECCrossBowItem extends CrossbowItem
     }
     
     private static void addChargedProjectile( ItemStack crossbow,  ItemStack projectile) {
-         CompoundNBT compoundnbt = crossbow.getOrCreateTag();
-        ListNBT listnbt;
+         CompoundTag compoundnbt = crossbow.getOrCreateTag();
+        ListTag listnbt;
         if (compoundnbt.contains("ChargedProjectiles", 9)) {
             listnbt = compoundnbt.getList("ChargedProjectiles", 10);
         }
         else {
-            listnbt = new ListNBT();
+            listnbt = new ListTag();
         }
-         CompoundNBT compoundnbt2 = new CompoundNBT();
+         CompoundTag compoundnbt2 = new CompoundTag();
         projectile.save(compoundnbt2);
         listnbt.add(compoundnbt2);
-        compoundnbt.put("ChargedProjectiles", (INBT)listnbt);
+        compoundnbt.put("ChargedProjectiles", listnbt);
     }
     
     public float getXpRepairRatio( ItemStack stack) {
         return 2.0f + this.mendingBonus;
     }
-    
+
     @OnlyIn(Dist.CLIENT)
     @ParametersAreNonnullByDefault
-    public void appendHoverText( ItemStack stack, @Nullable  World world,  List<ITextComponent> list,  ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
         if (this.mendingBonus != 0.0f) {
             if (this.mendingBonus > 0.0f) {
-                list.add((ITextComponent)new StringTextComponent(TextFormatting.GREEN + "Mending Bonus +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus)));
+                list.add(0, new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(new TextComponent(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus))));
             }
             else if (this.mendingBonus < 0.0f) {
-                list.add((ITextComponent)new StringTextComponent(TextFormatting.RED + "Mending Bonus " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus)));
+                list.add(0, new TranslatableComponent("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(new TextComponent(ChatFormatting.RED + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.mendingBonus))));
             }
         }
     }

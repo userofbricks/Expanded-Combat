@@ -1,27 +1,26 @@
 package com.userofbricks.expandedcombat.events;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import com.userofbricks.expandedcombat.item.ECGauntletItem;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Map;
 import java.util.Optional;
-
-import net.minecraft.util.text.StringTextComponent;
-import org.apache.commons.lang3.StringUtils;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import com.userofbricks.expandedcombat.item.ECGauntletItem;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.fml.common.Mod;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
@@ -129,7 +128,7 @@ public class GauntletEvents
             else if (!event.getName().equals(left.getHoverName().getString())) {
                 nameCost = 1;
                 xpCost += nameCost;
-                stack1.setHoverName(new StringTextComponent(event.getName()));
+                stack1.setHoverName(new TextComponent(event.getName()));
             }
             if (flag && !stack1.isBookEnchantable(stack2)) {
                 stack1 = ItemStack.EMPTY;
@@ -165,9 +164,9 @@ public class GauntletEvents
     }
 
     @SubscribeEvent
-    public static void onEquipmentChange(final LivingEquipmentChangeEvent ev) {
-        if ((ev.getSlot() == EquipmentSlotType.MAINHAND || ev.getSlot() == EquipmentSlotType.OFFHAND) && ev.getEntityLiving() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity)ev.getEntityLiving();
+    public static void onEquipmentChange(LivingEquipmentChangeEvent ev) {
+        if ((ev.getSlot() == EquipmentSlot.MAINHAND || ev.getSlot() == EquipmentSlot.OFFHAND) && ev.getEntityLiving() instanceof Player) {
+            Player player = (Player)ev.getEntityLiving();
             ItemStack toStack = ev.getTo();
             Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
             ItemStack gauntlet = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
@@ -183,12 +182,12 @@ public class GauntletEvents
 
     //@SubscribeEvent
     public static void DamageGauntletEvent(AttackEntityEvent event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
         ItemStack stack = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
             if (!player.isCreative() && stack.getItem() instanceof ECGauntletItem && optionalImmutableTriple.isPresent()) {
-                stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio((String)optionalImmutableTriple.get().getLeft(), (int)optionalImmutableTriple.get().getMiddle(), damager));
+                stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(optionalImmutableTriple.get().getLeft(), optionalImmutableTriple.get().getMiddle(), damager));
             }
         });
     }
@@ -199,7 +198,7 @@ public class GauntletEvents
     //TODO:does not work and needs its own class
     /*
     public void FirstPersonGuantlets(RenderHandEvent event) {
-        AbstractClientPlayerEntity abstractclientplayerentity = Minecraft.getInstance().player;
+        AbstractClientPlayer abstractclientplayerentity = Minecraft.getInstance().player;
         CuriosApi.getCuriosHelper().getCuriosHandler(abstractclientplayerentity).ifPresent(curios -> {
             ItemStack curiosStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, abstractclientplayerentity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
             if (!(curiosStack.getItem() instanceof GauntletItem)) return;
@@ -233,7 +232,7 @@ public class GauntletEvents
         float f6 = MathHelper.sin(f1 * (float)Math.PI);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(f * f6 * 70.0F));
         matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f * f5 * -20.0F));
-        AbstractClientPlayerEntity abstractclientplayerentity = Minecraft.getInstance().player;
+        AbstractClientPlayer abstractclientplayerentity = Minecraft.getInstance().player;
         Minecraft.getInstance().getTextureManager().bind(guantletItem.getGAUNTLET_TEXTURE());
         matrixStack.translate(f * -1.0F, 3.6F, 3.5D);
         matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f * 120.0F));

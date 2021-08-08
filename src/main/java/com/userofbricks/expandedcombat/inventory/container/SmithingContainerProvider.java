@@ -19,29 +19,29 @@
 
 package com.userofbricks.expandedcombat.inventory.container;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SmithingTableContainer;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SmithingMenu;
 
 import javax.annotation.Nonnull;
 
-public class SmithingContainerProvider implements INamedContainerProvider {
+public class SmithingContainerProvider implements MenuProvider {
 
   @Nonnull
   @Override
-  public ITextComponent getDisplayName() {
-    return new TranslationTextComponent("container.upgrade");
+  public Component getDisplayName() {
+    return new TranslatableComponent("container.upgrade");
   }
 
   @Nonnull
   @Override
-  public Container createMenu(int i, @Nonnull PlayerInventory playerInventory,
-                              @Nonnull PlayerEntity playerEntity) {
-    return new SmithingTableContainer(i, playerInventory, IWorldPosCallable.NULL);
+  public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory,
+                                          @Nonnull Player playerEntity) {
+    return new SmithingMenu(i, playerInventory, ContainerLevelAccess.NULL);
   }
 }

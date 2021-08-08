@@ -19,29 +19,28 @@
 
 package com.userofbricks.expandedcombat.inventory.container;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ShieldSmithingContainerProvider implements INamedContainerProvider {
+public class ShieldSmithingContainerProvider implements MenuProvider {
 
   @Nonnull
   @Override
-  public ITextComponent getDisplayName() {
-    return new TranslationTextComponent("container.upgrade_shield");
+  public Component getDisplayName() {
+    return new TranslatableComponent("container.upgrade_shield");
   }
 
   @Nullable
   @Override
-  public Container createMenu(int i, @Nonnull PlayerInventory playerInventory,
-                              @Nonnull PlayerEntity playerEntity) {
-    return new ShieldSmithingContainer(i, playerInventory, IWorldPosCallable.NULL);
+  public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory, @Nonnull Player playerEntity) {
+    return new ShieldSmithingContainer(i, playerInventory, ContainerLevelAccess.NULL);
   }
 }

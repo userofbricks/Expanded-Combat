@@ -21,20 +21,20 @@ package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
 import top.theillusivec4.curios.common.network.client.CPacketOpenCurios;
 
 @OnlyIn(Dist.CLIENT)
 public class QuiverButton extends ImageButton {
 
-  public QuiverButton(ContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
+  public QuiverButton(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
                       int textureOffsetX, int textureOffsetY, int yDiffText, ResourceLocation resource) {
 
     super(xIn, yIn, widthIn, heightIn, textureOffsetX, textureOffsetY, yDiffText, resource, (button) -> {
@@ -42,7 +42,7 @@ public class QuiverButton extends ImageButton {
 
       if (parentGui instanceof CuriosScreen && mc.player != null) {
         CuriosScreen inventory = (CuriosScreen) parentGui;
-        RecipeBookGui recipeBookGui = inventory.getRecipeBookComponent();
+        RecipeBookComponent recipeBookGui = inventory.getRecipeBookComponent();
 
         if (recipeBookGui.isVisible()) {
           recipeBookGui.toggleVisibility();
@@ -51,8 +51,7 @@ public class QuiverButton extends ImageButton {
                 .send(PacketDistributor.SERVER.noArg(), new CPacketOpenCuriosQuiver());
       } else {
         if (parentGui instanceof ECCuriosQuiverScreen) {
-          top.theillusivec4.curios.common.network.NetworkHandler.INSTANCE
-                  .send(PacketDistributor.SERVER.noArg(), new CPacketOpenCurios());
+          top.theillusivec4.curios.common.network.NetworkHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(), new CPacketOpenCurios());
         }
       }
     });

@@ -2,10 +2,9 @@ package com.userofbricks.expandedcombat.events;
 
 import com.userofbricks.expandedcombat.client.renderer.gui.HudElementQuiverAmmo;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShootableItem;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,15 +20,15 @@ import java.util.Optional;
 public class HudEventHandler {
     @SubscribeEvent
     public static void onRenderOverlayPost(final RenderGameOverlayEvent.Post ev) {
-        if (ev.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            final PlayerEntity player = Minecraft.getInstance().player;
+        if (ev.getType() == RenderGameOverlayEvent.ElementType.PLAYER_LIST) {
+            final Player player = Minecraft.getInstance().player;
             ItemStack quiverStack = ItemStack.EMPTY;
             Optional<IDynamicStackHandler> optionalQuiverHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("quiver")).map(ICurioStacksHandler::getStacks);
             Optional<IDynamicStackHandler> optionalArrowsHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks);
             if (optionalQuiverHandler.isPresent() && optionalArrowsHandler.isPresent()) {
                 IDynamicStackHandler quiverHandler = optionalQuiverHandler.get();
                 IDynamicStackHandler arrowsHandler = optionalArrowsHandler.get();
-                if (player.getMainHandItem().getItem() instanceof ShootableItem) {
+                if (player.getMainHandItem().getItem() instanceof ProjectileWeaponItem) {
                     quiverStack = quiverHandler.getStackInSlot(0);
                 }
                 if (quiverStack.isEmpty()) {

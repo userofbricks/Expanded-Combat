@@ -1,26 +1,16 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import com.google.gson.JsonObject;
-import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.item.ECArrowItem;
-import com.userofbricks.expandedcombat.item.ECTippedArrowItem;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.TippedArrowItem;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -30,12 +20,12 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
 
    public TippedArrowFletchingRecipe(ResourceLocation id) { super(id); }
 
-   public boolean matches(IInventory iInventory, World world) {
+   public boolean matches(Container iInventory, Level world) {
       return (iInventory.getItem(0).getItem() instanceof ECArrowItem || iInventory.getItem(0).getItem() == Items.ARROW)
               && (iInventory.getItem(1).getItem() == Items.LINGERING_POTION);
    }
 
-   public ItemStack assemble(IInventory inv) {
+   public ItemStack assemble(Container inv) {
       final ItemStack itemstack = inv.getItem(1);
       Item baseItem = inv.getItem(0).getItem();
       Item resultItem = baseItem == Items.ARROW ? Items.TIPPED_ARROW : ((ECArrowItem)inv.getItem(0).getItem()).getArrowType().getTippedArrow();
@@ -67,7 +57,7 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
       return 64;
    }
 
-   public IRecipeSerializer<?> getSerializer() {
+   public RecipeSerializer<?> getSerializer() {
       return RecipeSerializerInit.EC_SPECIAL_FLETCHING_SERIALIZER.get();
    }
 }

@@ -1,5 +1,6 @@
 package com.userofbricks.expandedcombat.events;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
@@ -8,17 +9,18 @@ import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiContainerEvent;
@@ -29,7 +31,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -52,7 +54,7 @@ public class QuiverEvents {
     //still does not seem to work
     public void arrowPickup( PlayerEvent.ItemPickupEvent e) {
         ItemStack toPickup = e.getOriginalEntity().getItem();
-        PlayerEntity player = e.getPlayer();
+        Player player = e.getPlayer();
         ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof ECQuiverItem, player)
                 .map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
 
@@ -91,7 +93,7 @@ public class QuiverEvents {
 
     @SubscribeEvent
     public void curioRightClick(PlayerInteractEvent.RightClickItem evt) {
-        PlayerEntity player = evt.getPlayer();
+        Player player = evt.getPlayer();
         ItemStack stack = evt.getItemStack();
         ICuriosHelper curiosHelper = CuriosApi.getCuriosHelper();
         if (ExpandedCombat.quiver_predicate.test(stack) && stack.getMaxStackSize() > 1) {
@@ -107,7 +109,7 @@ public class QuiverEvents {
                             int remainingItems = stack.getCount();
                             for (int i = 0; i < stackHandler.getSlots(); i++) {
                                 String id = entry.getKey();
-                                SlotContext slotContext = new SlotContext(id, player, i);
+                                SlotContext slotContext = new SlotContext(id, player, i, false, entry.getValue().getRenders().get(i));
 
                                 if (curiosHelper.isStackValid(slotContext, stack) && curio.canEquip(id, player) &&
                                         curio.canEquipFromUse(slotContext)) {
@@ -129,7 +131,7 @@ public class QuiverEvents {
                                             stack.shrink(count);
                                         }
                                         if (remainingItems <= 0) {
-                                            evt.setCancellationResult(ActionResultType.SUCCESS);
+                                            evt.setCancellationResult(InteractionResult.SUCCESS);
                                             evt.setCanceled(true);
                                             return;
                                         }
@@ -139,7 +141,7 @@ public class QuiverEvents {
                             }
                         }
                         if (insertedItems) {
-                            evt.setCancellationResult(ActionResultType.SUCCESS);
+                            evt.setCancellationResult(InteractionResult.SUCCESS);
                             evt.setCanceled(true);
                         }
                     }
@@ -149,7 +151,7 @@ public class QuiverEvents {
 
     public static void drawSlotBack(GuiContainerEvent.DrawBackground e) {
         if (e.getGuiContainer() instanceof CuriosScreen) {
-            Minecraft.getInstance().getTextureManager().bind(ContainerScreen.INVENTORY_LOCATION);
+            RenderSystem.setShaderTexture(0, ContainerScreen.INVENTORY_LOCATION);
             CuriosScreen curiosScreen = (CuriosScreen)e.getGuiContainer();
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();
@@ -175,7 +177,7 @@ public class QuiverEvents {
     public static void onInventoryGuiInit(GuiScreenEvent.InitGuiEvent.Post evt) {
         Screen screen = evt.getGui();
         if (screen instanceof CuriosScreen) {
-            ContainerScreen<?> gui = (ContainerScreen<?>) screen;
+            AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             CuriosApi.getCuriosHelper().getCuriosHandler(gui.getMinecraft().player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).ifPresent(curioStacksHandler -> {
                 int slotCount = curioStacksHandler.getSlots();
                 if (slotCount > 1) {
@@ -253,10 +255,10 @@ public class QuiverEvents {
     }
 
     public void dropStack( ItemStack stack, LivingEntity entity) {
-        if (entity instanceof PlayerEntity) {
-            ItemHandlerHelper.giveItemToPlayer((PlayerEntity) entity, stack);
+        if (entity instanceof Player) {
+            ItemHandlerHelper.giveItemToPlayer((Player) entity, stack);
         } else {
-            InventoryHelper.dropItemStack(entity.level, entity.getX(), entity.getY(), entity.getZ(), stack);
+            Containers.dropItemStack(entity.level, entity.getX(), entity.getY(), entity.getZ(), stack);
         }
     }
 

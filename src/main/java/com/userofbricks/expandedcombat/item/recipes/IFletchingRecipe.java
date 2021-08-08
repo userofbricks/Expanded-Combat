@@ -1,23 +1,23 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public interface IFletchingRecipe extends IRecipe<IInventory> {
+public interface IFletchingRecipe extends Recipe<Container> {
     ResourceLocation FLETCHING_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_fletching");
 
     @Nonnull
     @Override
-    default IRecipeType<?> getType() {
+    default RecipeType<?> getType() {
         return Objects.requireNonNull(Registry.RECIPE_TYPE.get(FLETCHING_RECIPE_ID));
     }
 

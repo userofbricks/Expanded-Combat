@@ -5,25 +5,25 @@ import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
 import com.userofbricks.expandedcombat.item.ShieldMaterial;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.*;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
 @MethodsReturnNonnullByDefault
-public class ShieldSmithingRecipie implements IRecipe<IInventory> {
+public class ShieldSmithingRecipie implements Recipe<Container> {
     public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
     private final ResourceLocation id;
 
@@ -32,7 +32,7 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inventory, @Nonnull World world) {
+    public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
         if (!(base.getItem() instanceof ECShieldItem) && !(base.getItem() == Items.SHIELD)) return false;
         ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
@@ -64,7 +64,7 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack assemble(IInventory inventory) {
+    public ItemStack assemble(Container inventory) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
         ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
@@ -116,12 +116,12 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return RecipeSerializerInit.EC_SHIELD_SERIALIZER.get();
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return Objects.requireNonNull(Registry.RECIPE_TYPE.get(SHIELD_RECIPE_ID));
     }
 
@@ -140,17 +140,17 @@ public class ShieldSmithingRecipie implements IRecipe<IInventory> {
     }
 
     @ParametersAreNonnullByDefault
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ShieldSmithingRecipie> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ShieldSmithingRecipie> {
 
         public ShieldSmithingRecipie fromJson(ResourceLocation location, JsonObject jsonObject) {
             return new ShieldSmithingRecipie(location);
         }
 
-        public ShieldSmithingRecipie fromNetwork(ResourceLocation location, PacketBuffer packetBuffer) {
+        public ShieldSmithingRecipie fromNetwork(ResourceLocation location, FriendlyByteBuf packetBuffer) {
             return new ShieldSmithingRecipie(location);
         }
 
-        public void toNetwork(PacketBuffer packetBuffer, ShieldSmithingRecipie shieldSmithingRecipie) {
+        public void toNetwork(FriendlyByteBuf packetBuffer, ShieldSmithingRecipie shieldSmithingRecipie) {
         }
     }
 }

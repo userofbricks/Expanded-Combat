@@ -1,23 +1,23 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.ITextComponent;
-import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.potion.Potion;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.util.NonNullList;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ECTippedArrowItem extends ECArrowItem
 {
@@ -31,9 +31,9 @@ public class ECTippedArrowItem extends ECArrowItem
         return PotionUtils.setPotion(super.getDefaultInstance(), Potions.POISON);
     }
     
-    public void fillItemCategory(@Nonnull ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(@Nonnull CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
-            for (Potion potion : ForgeRegistries.POTION_TYPES) {
+            for (Potion potion : ForgeRegistries.POTIONS) {
                 if (!potion.getEffects().isEmpty()) {
                     items.add(PotionUtils.setPotion(new ItemStack(this), potion));
                 }
@@ -42,12 +42,12 @@ public class ECTippedArrowItem extends ECArrowItem
     }
     
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         PotionUtils.addPotionTooltip(stack, tooltip, 0.125f);
     }
 
-    public ITextComponent getName(ItemStack stack) {
-        return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ").append(new TranslationTextComponent(this.getPotionId(stack)));
+    public Component getName(ItemStack stack) {
+        return new TranslatableComponent(this.getDescriptionId(stack)).append(" ").append(new TranslatableComponent(this.getPotionId(stack)));
     }
     
     public String getPotionId(ItemStack stack) {

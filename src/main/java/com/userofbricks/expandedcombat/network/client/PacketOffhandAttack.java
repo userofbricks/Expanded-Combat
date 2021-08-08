@@ -1,20 +1,22 @@
 package com.userofbricks.expandedcombat.network.client;
 
 import com.userofbricks.expandedcombat.util.PlayerAttackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.Hand;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import java.util.Objects;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
-import net.minecraft.util.ResourceLocation;
+import java.util.function.Supplier;
+
 import net.minecraftforge.registries.ForgeRegistries;
 import com.userofbricks.expandedcombat.item.WeaponTypes;
 import com.userofbricks.expandedcombat.item.ECWeaponItem;
-import net.minecraftforge.fml.network.NetworkEvent;
-import java.util.function.Supplier;
-import net.minecraft.network.PacketBuffer;
 
 public class PacketOffhandAttack
 {
@@ -24,11 +26,11 @@ public class PacketOffhandAttack
         this.entityID = entityID;
     }
     
-    public static void encode( PacketOffhandAttack packet, PacketBuffer buf) {
+    public static void encode( PacketOffhandAttack packet, FriendlyByteBuf buf) {
         buf.writeInt(packet.entityID);
     }
     
-    public static PacketOffhandAttack decode( PacketBuffer buf) {
+    public static PacketOffhandAttack decode( FriendlyByteBuf buf) {
         return new PacketOffhandAttack(buf.readInt());
     }
 
@@ -37,7 +39,7 @@ public class PacketOffhandAttack
         public static void handle( PacketOffhandAttack packet,  Supplier<NetworkEvent.Context> ctx) {
             if (packet != null) {
                 ctx.get().enqueueWork(() -> {
-                     ServerPlayerEntity player = ctx.get().getSender();
+                     ServerPlayer player = ctx.get().getSender();
                     Entity target = null;
                     if (player != null) {
                         target = player.level.getEntity(packet.entityID);
@@ -60,9 +62,9 @@ public class PacketOffhandAttack
                              double distanceSquared = player.distanceToSqr(target);
                              double reachSquared = reach * reach;
                             if (reachSquared >= distanceSquared) {
-                                PlayerAttackHelper.attackTargetEntityWithCurrentOffhandItem(player, target);
+                                //todo PlayerAttackHelper.attackTargetEntityWithCurrentOffhandItem(player, target);
                             }
-                            PlayerAttackHelper.swingArm(player, Hand.OFF_HAND);
+                            //TODO PlayerAttackHelper.swingArm(player, InteractionHand.OFF_HAND);
                         }
                     }
                 });

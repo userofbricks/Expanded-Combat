@@ -20,25 +20,25 @@
 package com.userofbricks.expandedcombat.network.client;
 
 import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainerProvider;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
 public class CPacketOpenCuriosQuiver {
 
-  public static void encode(CPacketOpenCuriosQuiver msg, PacketBuffer buf) {
+  public static void encode(CPacketOpenCuriosQuiver msg, FriendlyByteBuf buf) {
   }
 
-  public static CPacketOpenCuriosQuiver decode(PacketBuffer buf) {
+  public static CPacketOpenCuriosQuiver decode(FriendlyByteBuf buf) {
     return new CPacketOpenCuriosQuiver();
   }
 
   public static void handle(CPacketOpenCuriosQuiver msg, Supplier<NetworkEvent.Context> ctx) {
     ctx.get().enqueueWork(() -> {
-      ServerPlayerEntity sender = ctx.get().getSender();
+      ServerPlayer sender = ctx.get().getSender();
 
       if (sender != null) {
         NetworkHooks.openGui(sender, new ECCuriosQuiverContainerProvider());

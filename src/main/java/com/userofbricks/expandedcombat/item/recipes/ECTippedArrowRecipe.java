@@ -1,26 +1,23 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import java.util.Collection;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import com.userofbricks.expandedcombat.item.ECArrowItem;
-import net.minecraft.item.Items;
-import net.minecraft.world.World;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 
-public class ECTippedArrowRecipe extends SpecialRecipe
+public class ECTippedArrowRecipe extends CustomRecipe
 {
     public ECTippedArrowRecipe(final ResourceLocation id) {
         super(id);
     }
     
-    public boolean matches(final CraftingInventory inv, final World worldIn) {
+    public boolean matches(final CraftingContainer inv, final Level worldIn) {
         if (inv.getWidth() == 3 && inv.getHeight() == 3) {
             final Boolean equalArrows = this.areArrowTypesEqual(inv);
             for (int i = 0; i < inv.getWidth(); ++i) {
@@ -50,7 +47,7 @@ public class ECTippedArrowRecipe extends SpecialRecipe
         return false;
     }
     
-    public ItemStack assemble(final CraftingInventory inv) {
+    public ItemStack assemble(final CraftingContainer inv) {
         final ItemStack itemstack = inv.getItem(1 + inv.getWidth());
         if (itemstack.getItem() != Items.LINGERING_POTION) {
             return ItemStack.EMPTY;
@@ -64,7 +61,7 @@ public class ECTippedArrowRecipe extends SpecialRecipe
         return itemstack2;
     }
     
-    private boolean areArrowTypesEqual(final CraftingInventory inv) {
+    private boolean areArrowTypesEqual(final CraftingContainer inv) {
         final Item firstArrow = inv.getItem(0).getItem();
         for (int i = 0; i < inv.getWidth(); ++i) {
             for (int j = 0; j < inv.getHeight(); ++j) {
@@ -80,7 +77,7 @@ public class ECTippedArrowRecipe extends SpecialRecipe
         return width >= 2 && height >= 2;
     }
     
-    public IRecipeSerializer<?> getSerializer() {
-        return (IRecipeSerializer<?>)RecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
+    public RecipeSerializer<?> getSerializer() {
+        return RecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
     }
 }

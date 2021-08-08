@@ -20,31 +20,27 @@
 package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
 import com.userofbricks.expandedcombat.network.NetworkHandler;
-import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenShieldSmithing;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenSmithing;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.screen.inventory.SmithingTableScreen;
-import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.SmithingScreen;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.PacketDistributor;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
-import top.theillusivec4.curios.common.network.client.CPacketOpenCurios;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 @OnlyIn(Dist.CLIENT)
 public class ShieldButton extends ImageButton {
 
-  public ShieldButton(ContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
+  public ShieldButton(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,
                       int textureOffsetX, int textureOffsetY, int yDiffText, ResourceLocation resource) {
 
     super(xIn, yIn, widthIn, heightIn, textureOffsetX, textureOffsetY, yDiffText, resource, (button) -> {
       Minecraft mc = Minecraft.getInstance();
 
-      if ((parentGui instanceof SmithingTableScreen) && mc.player != null) {
+      if ((parentGui instanceof SmithingScreen) && mc.player != null) {
         NetworkHandler.INSTANCE
                 .send(PacketDistributor.SERVER.noArg(), new CPacketOpenShieldSmithing());
       } else {

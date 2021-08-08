@@ -4,16 +4,16 @@ import com.google.gson.JsonObject;
 import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
 import com.userofbricks.expandedcombat.item.ShieldMaterial;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -27,7 +27,7 @@ public class UpgradingShieldSmithingRecipie extends ShieldSmithingRecipie {
     }
 
     @Override
-    public boolean matches(IInventory inventory, @Nonnull World world) {
+    public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
         if (!(base.getItem() instanceof ECShieldItem)) return false;
         ShieldMaterial addition_m_material = ShieldMaterial.getFromItemStack(inventory.getItem(3));
@@ -43,7 +43,7 @@ public class UpgradingShieldSmithingRecipie extends ShieldSmithingRecipie {
     }
 
     @Override
-    public ItemStack assemble(IInventory inventory) {
+    public ItemStack assemble(Container inventory) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
         ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
@@ -77,27 +77,27 @@ public class UpgradingShieldSmithingRecipie extends ShieldSmithingRecipie {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return RecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get();
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return Objects.requireNonNull(Registry.RECIPE_TYPE.get(ShieldSmithingRecipie.SHIELD_RECIPE_ID));
     }
 
     @ParametersAreNonnullByDefault
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<UpgradingShieldSmithingRecipie> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<UpgradingShieldSmithingRecipie> {
 
         public UpgradingShieldSmithingRecipie fromJson(ResourceLocation location, JsonObject jsonObject) {
             return new UpgradingShieldSmithingRecipie(location);
         }
 
-        public UpgradingShieldSmithingRecipie fromNetwork(ResourceLocation location, PacketBuffer packetBuffer) {
+        public UpgradingShieldSmithingRecipie fromNetwork(ResourceLocation location, FriendlyByteBuf packetBuffer) {
             return new UpgradingShieldSmithingRecipie(location);
         }
 
-        public void toNetwork(PacketBuffer packetBuffer, UpgradingShieldSmithingRecipie shieldSmithingRecipie) {
+        public void toNetwork(FriendlyByteBuf packetBuffer, UpgradingShieldSmithingRecipie shieldSmithingRecipie) {
         }
     }
 }
