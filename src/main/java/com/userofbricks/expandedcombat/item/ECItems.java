@@ -9,12 +9,16 @@ package com.userofbricks.expandedcombat.item;
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.client.renderer.model.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expandedcombat.config.ECConfig;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
 
 public class ECItems
 {

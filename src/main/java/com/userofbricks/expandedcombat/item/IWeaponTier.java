@@ -2,6 +2,8 @@ package com.userofbricks.expandedcombat.item;
 
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.function.Supplier;
+
 public interface IWeaponTier
 {
     String getTierName();
@@ -13,6 +15,6 @@ public interface IWeaponTier
     int getEnchantability();
     
     float getMendingBonus();
-    
-    Ingredient getRepairMaterial();
+
+    Supplier<Ingredient> getRepairMaterial();
 }

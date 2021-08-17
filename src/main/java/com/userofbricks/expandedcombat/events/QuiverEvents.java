@@ -5,9 +5,11 @@ import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.QuiverButton;
+import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
+import com.userofbricks.expandedcombat.util.QuiverUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -198,41 +200,42 @@ public class QuiverEvents {
     public static final NonNullSupplier<IllegalArgumentException> CAPABILITY_EXCEPTION = (() -> new IllegalArgumentException("Capability must not be null!"));
     @SubscribeEvent
     public void curioChangeToSpartanQuiver(CurioChangeEvent evt) {
-        if (ExpandedCombat.isSpartanWeponryLoaded) {
-            String type = evt.getIdentifier();
+        String type = evt.getIdentifier();
+        if (type.equals("quiver")) {
             ItemStack toStack = evt.getTo();
             ItemStack fromStack = evt.getFrom();
-            if (type.equals("quiver") && isQuiver(fromStack.getItem())) {
-                LivingEntity livingEntity = evt.getEntityLiving();
-                CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
-                    for (int i = 0; i < curioStackHandler.getSlots(); i++) {
-                        final IItemHandler quiverHandler = fromStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(CAPABILITY_EXCEPTION);
-                        ItemStack arrowStack = curioStackHandler.getStackInSlot(i);
+            boolean isFromSpartanQuiver = QuiverUtil.isSpartanQuiver(fromStack);
+            boolean isToSpartanQuiver = QuiverUtil.isSpartanQuiver(toStack);
+            boolean isFromECQuiver = fromStack.getItem() instanceof ECQuiverItem;
+            boolean isToECQuiver = toStack.getItem() instanceof ECQuiverItem;
+            int quiverProvidedSlots = QuiverUtil.getQuiverProvidedSlots(toStack);
+            LivingEntity livingEntity = evt.getEntityLiving();
+            CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
+                for (int i = 0; i < curioStackHandler.getSlots(); i++) {
+                    ItemStack arrowStack = curioStackHandler.getStackInSlot(i);
+                    if (ExpandedCombat.isSpartanWeponryLoaded && isFromSpartanQuiver) {
+                        IItemHandler quiverHandler = fromStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(CAPABILITY_EXCEPTION);
                         for (int j = 0; j < quiverHandler.getSlots(); ++j) {
                             arrowStack = quiverHandler.insertItem(j, arrowStack, false);
                             if (arrowStack.isEmpty()) {
                                 break;
                             }
                         }
-                        if (!arrowStack.isEmpty()) {
-                            dropStack(arrowStack , livingEntity);
-                            curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
-                        }
                     }
-                    if (curioStackHandler.getSlots() > 1 && toStack.isEmpty()) {
-                        CuriosApi.getSlotHelper().setSlotsForType("arrows", livingEntity, 1);
+                    if (!arrowStack.isEmpty() && (!isToECQuiver || i + 1 > quiverProvidedSlots)) {
+                        dropStack(arrowStack, livingEntity);
+                        curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
                     }
-                });
-            }
-            else if (type.equals("quiver") && isQuiver(toStack.getItem())) {
-                LivingEntity livingEntity = evt.getEntityLiving();
-                CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
-                    int slotCount = curioStackHandler.getSlots();
-                    int providedSlots = getQuiverProvidedSlots(toStack.getItem());
-                    if (providedSlots == 0) return;
-                    if (slotCount != providedSlots) {
-                        CuriosApi.getSlotHelper().setSlotsForType("arrows", livingEntity, providedSlots);
-                    }
+                }
+
+                //if (livingEntity instanceof Player) {
+                    //Player player = (Player) livingEntity;
+                    //if (!(player.containerMenu instanceof ECCuriosQuiverContainer)) {
+                        QuiverUtil.updateArrowSlotCount(toStack, livingEntity);
+                    //}
+                //}
+
+                if (ExpandedCombat.isSpartanWeponryLoaded && isToSpartanQuiver) {
                     IItemHandler quiverHandler1 = toStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(CAPABILITY_EXCEPTION);
                     for (int j = 0; j < quiverHandler1.getSlots(); ++j) {
                         ItemStack quiverArrowStack = quiverHandler1.extractItem(j, 64, false);
@@ -248,9 +251,9 @@ public class QuiverEvents {
                             }
                         }
                     }
-                });
-                toStack.getOrCreateTag().putBoolean("ammoCollect", false);
-            }
+                    toStack.getOrCreateTag().putBoolean("ammoCollect", false);
+                }
+            });
         }
     }
 
@@ -262,42 +265,4 @@ public class QuiverEvents {
         }
     }
 
-    public boolean isQuiver(Item item) {
-        for (SpartanWeponryQuiver quiverType : SpartanWeponryQuiver.values()) {
-            if (quiverType.getQuiver() == item) return true;
-        }
-        return false;
-    }
-    public int getQuiverProvidedSlots(Item item) {
-        for (SpartanWeponryQuiver quiverType : SpartanWeponryQuiver.values()) {
-            if (quiverType.getQuiver() == item) return quiverType.getProvidedSlots();
-        }
-        return 0;
-    }
-
-    public enum SpartanWeponryQuiver {
-        QUIVER_ARROW_SMALL("quiver_arrow_small", 4),
-        QUIVER_ARROW_MEDIUM("quiver_arrow_medium", 6),
-        QUIVER_ARROW_LARGE("quiver_arrow_large", 9),
-        QUIVER_ARROW_HUGE("quiver_arrow_huge", 12),
-        QUIVER_BOLT_SMALL("quiver_bolt_small", 4),
-        QUIVER_BOLT_MEDIUM("quiver_bolt_medium", 6),
-        QUIVER_BOLT_LARGE("quiver_bolt_large", 9),
-        QUIVER_BOLT_HUGE("quiver_bolt_huge", 12);
-        private final Item quiver;
-        private final int providedSlots;
-
-        SpartanWeponryQuiver(String quiver, int providedSlots) {
-            this.quiver = ExpandedCombat.isSpartanWeponryLoaded ? ForgeRegistries.ITEMS.getValue(new ResourceLocation("spartanweaponry", quiver)) : null;
-            this.providedSlots = providedSlots;
-        }
-
-        public Item getQuiver() {
-            return quiver;
-        }
-
-        public int getProvidedSlots() {
-            return providedSlots;
-        }
-    }
 }

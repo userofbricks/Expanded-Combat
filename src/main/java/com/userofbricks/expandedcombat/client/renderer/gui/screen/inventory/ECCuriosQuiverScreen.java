@@ -207,7 +207,7 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
     protected void renderBg(@Nonnull PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         if (this.minecraft != null && this.minecraft.player != null) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.setShaderTexture(0, INVENTORY_LOCATION);
+            RenderSystem.setShaderTexture(0, QUIVER_INVENTORY);
             int i = this.leftPos;
             int j = this.topPos;
             this.blit(matrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);

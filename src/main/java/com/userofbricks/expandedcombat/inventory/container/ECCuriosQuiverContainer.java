@@ -1,6 +1,9 @@
 package com.userofbricks.expandedcombat.inventory.container;
 
 import com.mojang.datafixers.util.Pair;
+import com.userofbricks.expandedcombat.events.QuiverEvents;
+import com.userofbricks.expandedcombat.item.ECQuiverItem;
+import com.userofbricks.expandedcombat.util.QuiverUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -122,21 +125,37 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
 
                 if (identifier.equals("quiver") && stacksHandler.getSlots() > 0) {
-                    this.addSlot(new CurioSlot(this.player, stackHandler, 0, identifier, 77, 18, stacksHandler.getRenders()) {
-                        public boolean mayPickup(@Nonnull Player playerIn) {
-                            return false;
-                        }
-                        public boolean mayPlace(@Nonnull ItemStack stack) {
-                            return false;
-                        }
+                    this.addSlot(new CurioSlot(this.player, stackHandler, 0, identifier, 77, 18, stacksHandler.getRenders()){
+                        public boolean mayPlace(@Nonnull ItemStack stack) { return false; }
+                        public boolean mayPickup(@Nonnull Player playerIn) { return false; }
                     });
                 }
                 if (identifier.equals("arrows") && stacksHandler.getSlots() > 0) {
                     int slotLeft = 98;
                     int slotTop = 18;
                     int rowCount = 0;
+                    ItemStack quiverStack = curioMap.get("quiver").getStacks().getStackInSlot(0).copy();
                     for (int i = 0; i < stacksHandler.getSlots(); ++i ) {
-                        this.addSlot(new CurioSlot(this.player, stackHandler, i, identifier, slotLeft, slotTop, stacksHandler.getRenders()));
+                        int finalI = i;
+                        this.addSlot(new CurioSlot(this.player, stackHandler, finalI, identifier, slotLeft, slotTop, stacksHandler.getRenders()) {
+                            public boolean mayPlace(@Nonnull ItemStack stack) {
+                                if(mayInteract())
+                                    return super.mayPlace(stack);
+                                return false;
+                            }
+                            private boolean mayInteract(){
+                                if(quiverStack.getItem() instanceof ECQuiverItem){
+                                    if (finalI + 1 <= ((ECQuiverItem)quiverStack.getItem()).providedSlots)
+                                        return true;
+                                    return false;
+                                } else if (QuiverUtil.isSpartanQuiver(quiverStack)) {
+                                    if (finalI + 1 <= QuiverUtil.getQuiverProvidedSlots(quiverStack))
+                                        return true;
+                                    return false;
+                                }
+                                return false;
+                            }
+                        });
                         ++rowCount;
                         if (rowCount == 4) {
                             slotTop += 18;
@@ -148,7 +167,7 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
                     }
                 }
 
-                if (stacksHandler.isVisible()) {
+                if (stacksHandler.isVisible() && !(identifier.equals("quiver"))) {
 
                     for (int i = 0; i < stackHandler.getSlots() && slots < 8; i++) {
                         this.addSlot(new CurioSlot(this.player, stackHandler, i, identifier, -18, yOffset,
@@ -195,9 +214,7 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
                 do {
                     if (!var7.hasNext()) {
                         if (!this.isLocalWorld) {
-                            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> {
-                                return (ServerPlayer)this.player;
-                            }), new SPacketScroll(this.containerId, indexIn));
+                            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer)this.player), new SPacketScroll(this.containerId, indexIn));
                         }
 
                         this.lastScrollIndex = indexIn;
@@ -205,6 +222,9 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
                     }
 
                     identifier = (String)var7.next();
+                    if (identifier.equals("quiver")) {
+                        identifier = (String)var7.next();
+                    }
                     stacksHandler = curioMap.get(identifier);
                     stackHandler = stacksHandler.getStacks();
                 } while(!stacksHandler.isVisible());
@@ -248,7 +268,12 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
     public void slotsChanged(@Nonnull Container inventoryIn) {}
 
 
-    public void removed(@Nonnull Player p_75134_1_) {}
+    public void removed(@Nonnull Player player) {
+        CuriosApi.getCuriosHelper().getCuriosHandler(player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("quiver")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
+            ItemStack quiverStack = curioStackHandler.getStackInSlot(0).copy();
+            QuiverUtil.updateArrowSlotCount(quiverStack.copy(), player);
+        });
+    }
 
     public boolean canScroll() {
         return this.curiosHandler.map((curios) -> curios.getVisibleSlots() > 8 ? 1 : 0).orElse(0) == 1;

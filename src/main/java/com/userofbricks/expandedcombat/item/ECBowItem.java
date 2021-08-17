@@ -114,7 +114,7 @@ public class ECBowItem extends BowItem
                 if (!worldIn.isClientSide) {
                     this.createBowArrow(stack, worldIn, playerentity, itemstack, arrowVelocity, arrowNumber, hasInfiniteAmmo, isAdditionalShot);
                 }
-                worldIn.playSound((Player)null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
+                worldIn.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
                 if (!hasInfiniteAmmo && !playerentity.getAbilities().instabuild && !isAdditionalShot) {
                     itemstack.shrink(1);
                     if (itemstack.isEmpty()) {
@@ -128,7 +128,7 @@ public class ECBowItem extends BowItem
     
     public void createBowArrow( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity,  int i,  boolean hasInfiniteAmmo,  boolean isAdditionalShot) {
          ArrowItem arrowitem = (ArrowItem)((itemstack.getItem() instanceof ArrowItem) ? itemstack.getItem() : Items.ARROW);
-        AbstractArrow abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, (LivingEntity)playerentity);
+        AbstractArrow abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
         abstractarrowentity = this.customArrow(abstractarrowentity);
         this.setArrowTrajectory(playerentity, arrowVelocity, i, abstractarrowentity);
         if (arrowVelocity == 1.0f) {

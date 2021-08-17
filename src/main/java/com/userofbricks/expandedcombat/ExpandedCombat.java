@@ -1,5 +1,7 @@
 package com.userofbricks.expandedcombat;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.ECLayerDefinitions;
 import com.userofbricks.expandedcombat.client.renderer.GauntletRenderer;
@@ -32,6 +34,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeableLeatherItem;
@@ -63,6 +66,9 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.fmllegacy.packs.ModFileResourcePack;
 import net.minecraftforge.fmllegacy.packs.ResourcePackLoader;
+import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
@@ -70,12 +76,15 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.function.Predicate;
 
 @Mod("expanded_combat")
 public class ExpandedCombat
 {
     public static final String MODID = "expanded_combat";
+    private static final Logger LOGGER = LogManager.getLogger();
     public static final Tag<Item> arrow_curios = ItemTags.bind(new ResourceLocation("curios", "arrows").toString());
     public static final Predicate<ItemStack> arrow_predicate = stack -> arrow_curios.contains(stack.getItem());
     public static final Tag<Item> quiver_curios = ItemTags.bind(new ResourceLocation("curios", "quiver").toString());
@@ -186,9 +195,7 @@ public class ExpandedCombat
                 CuriosRendererRegistry.register(item, QuiverRenderer::new);
             }
         }
-        for (Item item: arrow_curios.getValues()) {
-            CuriosRendererRegistry.register(item, QuiverArrowsRenderer::new);
-        }
+        //for (Item item: arrow_curios.getValues()) { CuriosRendererRegistry.register(item, QuiverArrowsRenderer::new); }
         KeyRegistry.registerKeys();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();

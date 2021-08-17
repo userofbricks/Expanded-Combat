@@ -39,37 +39,10 @@ public class ECQuiverItem extends Item implements ICurioItem
     }
 
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        LivingEntity livingEntity = slotContext.getWearer();
-        if (newStack.getItem() != stack.getItem()) {
-            CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
-                for (int i = 0; i < curioStackHandler.getSlots(); i++) {
-                    ItemStack arrowstack = curioStackHandler.getStackInSlot(i);
-                    if (arrowstack != ItemStack.EMPTY) {
-                        if (livingEntity instanceof Player) {
-                            ItemHandlerHelper.giveItemToPlayer((Player) livingEntity, arrowstack);
-                            curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
-                        } else {
-                            Containers.dropItemStack(livingEntity.level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), arrowstack);
-                            curioStackHandler.setStackInSlot(i, ItemStack.EMPTY);
-                        }
-                    }
-                }
-                if (curioStackHandler.getSlots() > 1 && newStack.isEmpty()) {
-                    CuriosApi.getSlotHelper().setSlotsForType("arrows", livingEntity, 1);
-                }
-            });
-        }
         stack.getOrCreateTag().putInt("expanded_combat:slotIndex", 0);
     }
 
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        LivingEntity livingEntity = slotContext.getWearer();
-        CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
-            int slotCount = curioStackHandler.getSlots();
-            if (slotCount != providedSlots) {
-                CuriosApi.getSlotHelper().setSlotsForType("arrows", livingEntity, providedSlots);
-            }
-        });
         stack.getOrCreateTag().putInt("expanded_combat:slotIndex", 0);
     }
 

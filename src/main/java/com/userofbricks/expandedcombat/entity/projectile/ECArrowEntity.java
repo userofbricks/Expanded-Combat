@@ -56,10 +56,6 @@ public class ECArrowEntity extends AbstractArrow
         this.arrowType = ArrowType.IRON;
     }
 
-    public void setPotionEffect(ItemStack stack) {
-        //use setEffectFromItem instead
-    }
-
     public void setEffectsFromItem(ItemStack stack) {
         if (stack.is(this.arrowType.getTippedArrow())) {
             this.potion = PotionUtils.getPotion(stack);
@@ -156,6 +152,7 @@ public class ECArrowEntity extends AbstractArrow
         if (this.potion != Potions.EMPTY && this.potion != null) {
             compound.putString("Potion", Registry.POTION.getKey(this.potion).toString());
         }
+
         if (this.fixedColor) {
             compound.putInt("Color", this.getColor());
         }
@@ -246,8 +243,5 @@ public class ECArrowEntity extends AbstractArrow
         this.arrowType = arrowType;
     }
     
-    @Nonnull
-    public Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    //@Nonnull public Packet<?> getAddEntityPacket() {return NetworkHooks.getEntitySpawningPacket(this);}
 }

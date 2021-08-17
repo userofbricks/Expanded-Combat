@@ -22,7 +22,7 @@ public class ECArrowItem extends ArrowItem
     @Nonnull
     public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter) {
         ECArrowEntity arrowentity = new ECArrowEntity(worldIn, shooter);
-        arrowentity.setPotionEffect(stack);
+        arrowentity.setEffectsFromItem(stack);
         arrowentity.setBaseDamage(this.arrowType.getDamage());
         arrowentity.setArrowType(this.arrowType);
         return arrowentity;

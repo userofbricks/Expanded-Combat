@@ -23,21 +23,21 @@ public class GauntletModel extends HumanoidModel<LivingEntity>
                                CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, cube),
                                PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -5.0F, 2.0F, 0.0F));
         part.addOrReplaceChild("left_arm",
-                               CubeListBuilder.create().mirror().texOffs(16, 0).addBox(5.0F, 2.0F, 0.0F, 4, 12, 4, cube),
-                               PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 5.0F, 2.0F, 0.0F));
+                               CubeListBuilder.create().mirror().texOffs(16, 0).addBox(-1F, -2.0F, -2.0F, 4, 12, 4, cube),
+                               PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 5.0F, 2.0F, 0.0F));
         return LayerDefinition.create(mesh, 32, 16);
     }
 
     @Override
     @Nonnull
     protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of(this.head);
+        return ImmutableList.of();
     }
 
     @Override
     @Nonnull
     protected Iterable<ModelPart> bodyParts() {
         return ImmutableList
-                .of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg, this.hat);
+                .of(this.rightArm, this.leftArm);
     }
 }

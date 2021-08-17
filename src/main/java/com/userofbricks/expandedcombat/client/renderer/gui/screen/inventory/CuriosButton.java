@@ -19,7 +19,6 @@
 
 package com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory;
 
-import com.userofbricks.expandedcombat.network.NetworkHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -47,7 +46,7 @@ public class CuriosButton extends ImageButton {
             mc.player.inventoryMenu.setCarried(ItemStack.EMPTY);
             mc.setScreen(inventory);
             mc.player.inventoryMenu.setCarried(stack);
-            NetworkHandler.INSTANCE
+            top.theillusivec4.curios.common.network.NetworkHandler.INSTANCE
                 .send(PacketDistributor.SERVER.noArg(), new CPacketOpenVanilla());
           }
         });
