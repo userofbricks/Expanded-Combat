@@ -5,9 +5,16 @@
   "refmap": "expanded_combat.refmap.json",
   "priority": 0,
   "mixins": [
-    "FletchingTableBlockMixin"
+    "AbstractArrowEntityMixin",
+    "ContainerAccessor",
+    "CurioContainerMixin",
+    "FletchingTableBlockMixin",
+    "PiglinTasksMixin",
+    "PlayerEntityMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "client": [
+    "GameRendererMixin"
   ],
   "server": [],
   "injectors": {

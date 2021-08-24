@@ -29,6 +29,7 @@ import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -116,7 +117,7 @@ public class ExpandedCombat
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.addListener(ShieldEvents::ShieldBlockEvent);
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            MinecraftForge.EVENT_BUS.addListener(this::registerEntityModels);
+            //MinecraftForge.EVENT_BUS.addListener(this::registerEntityModels);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::onInventoryGuiInit);
             MinecraftForge.EVENT_BUS.addListener(ShieldEvents::drawTabs);
@@ -129,7 +130,7 @@ public class ExpandedCombat
     }
 
     private void comms(InterModEnqueueEvent event) {
-        InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("quiver").icon(new ResourceLocation("expanded_combat", "item/empty_quiver_slot"))/*.hide()*/.build());
+        InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("quiver").icon(new ResourceLocation("expanded_combat", "item/empty_quiver_slot")).hide().build());
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("arrows").icon(new ResourceLocation("expanded_combat", "item/empty_arrows_slot")).hide().build());
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
     }
@@ -199,6 +200,7 @@ public class ExpandedCombat
         KeyRegistry.registerKeys();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();
+        this.registerEntityModels();
     }
 
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
@@ -209,6 +211,10 @@ public class ExpandedCombat
     @OnlyIn(Dist.CLIENT)
     private void registerEntityModels(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);
+    }
+    @OnlyIn(Dist.CLIENT)
+    private void registerEntityModels() {
+        EntityRenderers.register(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);
     }
     
     public void onModelBake(ModelBakeEvent event) {
