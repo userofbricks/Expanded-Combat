@@ -10,7 +10,9 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.config.ECClientConfig;
+import com.userofbricks.expandedcombat.util.VariableUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
@@ -43,8 +45,10 @@ public class HudElementQuiverAmmo extends HudElement
         String currentAmmoStr = "";
         String beforeAmmoStr = "";
         String nextAmmoStr = "";
-        int currentIndex = 0;
-        int beforeIndex = quiverSize - 1;
+        ClientPlayerEntity player = Minecraft.getInstance().player;
+        assert player != null;
+        int currentIndex = (int) VariableUtil.getArrowSlot(player);
+        int beforeIndex = currentIndex - 1;
         ItemStack currentArrow = this.arrowHandler.getStackInSlot(currentIndex).copy();
         if (currentArrow.isEmpty()) {
             currentArrow = getNextNonEmptyStack(currentIndex, quiverSize);

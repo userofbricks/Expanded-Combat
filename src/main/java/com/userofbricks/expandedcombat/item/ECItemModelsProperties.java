@@ -1,8 +1,9 @@
 package com.userofbricks.expandedcombat.item;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.*;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 

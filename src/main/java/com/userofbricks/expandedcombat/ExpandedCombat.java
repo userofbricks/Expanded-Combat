@@ -19,6 +19,7 @@ import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
+import com.userofbricks.expandedcombat.events.PlayerVariablesEvents;
 import com.userofbricks.expandedcombat.events.QuiverEvents;
 import com.userofbricks.expandedcombat.events.ShieldEvents;
 import com.userofbricks.expandedcombat.inventory.container.ECContainers;
@@ -28,6 +29,8 @@ import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.ECWeaponItem;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
+import com.userofbricks.expandedcombat.network.variables.PlayerVariables;
+import com.userofbricks.expandedcombat.network.variables.PlayerVariablesStorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -49,6 +52,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -111,6 +115,7 @@ public class ExpandedCombat
         MinecraftForge.EVENT_BUS.register(new QuiverEvents());
         MinecraftForge.EVENT_BUS.register(new ShieldEvents());
         MinecraftForge.EVENT_BUS.addListener(ShieldEvents::ShieldBlockEvent);
+        MinecraftForge.EVENT_BUS.register(new PlayerVariablesEvents());
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::onInventoryGuiInit);
@@ -174,6 +179,7 @@ public class ExpandedCombat
     
     private void setup(FMLCommonSetupEvent event) {
         NetworkHandler.register();
+        CapabilityManager.INSTANCE.register(PlayerVariables.class, new PlayerVariablesStorage(), PlayerVariables::new);
         ECItems.setAtributeModifiers();
     }
     
@@ -184,11 +190,11 @@ public class ExpandedCombat
         KeyRegistry.registerKeys();
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
         SpecialItemModels.detectSpecials();
-        this.registerEtityModels(event.getMinecraftSupplier());
+        this.registerEtityModels();
     }
     
     @OnlyIn(Dist.CLIENT)
-    private void registerEtityModels(Supplier<Minecraft> minecraft) {
+    private void registerEtityModels() {
         RenderingRegistry.registerEntityRenderingHandler(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);
     }
     

@@ -1,5 +1,6 @@
 package com.userofbricks.expandedcombat.mixin;
 
+import com.userofbricks.expandedcombat.util.VariableUtil;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -40,6 +41,19 @@ public abstract class PlayerEntityMixin extends LivingEntity
         ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, this).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         if (!quiverStack.isEmpty()) {
             CuriosApi.getCuriosHelper().getCuriosHandler(this).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(arrowHandler -> {
+                int firstArrowSlot = (int)VariableUtil.getArrowSlot(this);
+                if (firstArrowSlot < 0) {
+                    firstArrowSlot = 0;
+                    VariableUtil.setArrowSlotTo(this, 0);
+                }
+                if (firstArrowSlot >= arrowHandler.getSlots()) {
+                    firstArrowSlot = arrowHandler.getSlots() - 1;
+                    VariableUtil.setArrowSlotTo(this, arrowHandler.getSlots() - 1);
+                }
+                ItemStack firstStack = arrowHandler.getStackInSlot(firstArrowSlot);
+                if (!firstStack.isEmpty()) {
+                    cir.setReturnValue(firstStack);
+                }
                 ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, this).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
                 if (!stack.isEmpty()) {
                     cir.setReturnValue(stack);
