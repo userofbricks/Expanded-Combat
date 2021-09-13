@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -23,7 +23,7 @@ public class QuiverArrowsRenderer<L extends LivingEntity> implements ICurioRende
         LivingEntity entity = slotContext.entity();
         ICurioRenderer.rotateIfSneaking(matrixStack, slotContext.entity());
         ICurioRenderer.translateIfSneaking(matrixStack, slotContext.entity());
-        ItemStack itemstack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, entity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+        ItemStack itemstack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.arrow_predicate, entity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         if (!itemstack.isEmpty()) {
             matrixStack.pushPose();
             this.renderStacks(entity, itemstack, matrixStack, renderTypeBuffer, light);

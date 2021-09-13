@@ -1,15 +1,15 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.config.ECConfig;
+import com.userofbricks.expandedcombat.config.ECConfigOld;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public enum ArrowType
 {
-    IRON(ECConfig.SERVER.ironArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "iron_arrow"), new ResourceLocation("expanded_combat", "iron_tipped_arrow")),
-    DIAMOND(ECConfig.SERVER.diamondArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "diamond_arrow"), new ResourceLocation("expanded_combat", "diamond_tipped_arrow")),
-    NETHERITE(ECConfig.SERVER.netheriteArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "netherite_arrow"), new ResourceLocation("expanded_combat", "netherite_tipped_arrow"));
+    IRON(ECConfigOld.SERVER.ironArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "iron_arrow"), new ResourceLocation("expanded_combat", "iron_tipped_arrow")),
+    DIAMOND(ECConfigOld.SERVER.diamondArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "diamond_arrow"), new ResourceLocation("expanded_combat", "diamond_tipped_arrow")),
+    NETHERITE(ECConfigOld.SERVER.netheriteArrowBaseDamage.get(), new ResourceLocation("expanded_combat", "netherite_arrow"), new ResourceLocation("expanded_combat", "netherite_tipped_arrow"));
     
     private final double damage;
     private final ResourceLocation arrow;

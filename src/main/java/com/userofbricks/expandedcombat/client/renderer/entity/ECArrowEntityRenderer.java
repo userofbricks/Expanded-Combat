@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.client.renderer.entity;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.entity.projectile.ECArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -34,8 +34,8 @@ public class ECArrowEntityRenderer extends ArrowRenderer<ECArrowEntity>
     }
     
     static {
-        RES_IRON_ARROW = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/projectiles/iron_arrow.png");
-        RES_DIAMOND_ARROW = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/projectiles/diamond_arrow.png");
-        RES_NETHERITE_ARROW = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/projectiles/netherite_arrow.png");
+        RES_IRON_ARROW = new ResourceLocation(ExpandedCombatOld.MODID, "textures/entity/projectiles/iron_arrow.png");
+        RES_DIAMOND_ARROW = new ResourceLocation(ExpandedCombatOld.MODID, "textures/entity/projectiles/diamond_arrow.png");
+        RES_NETHERITE_ARROW = new ResourceLocation(ExpandedCombatOld.MODID, "textures/entity/projectiles/netherite_arrow.png");
     }
 }

@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -16,7 +16,7 @@ public class RecipeSerializerInit
     public static final RecipeType<IFletchingRecipe> FLETCHING_TYPE = register(IFletchingRecipe.FLETCHING_RECIPE_ID.toString());
     public static final RecipeType<ShieldSmithingRecipie> SHIELD_TYPE = register(ShieldSmithingRecipie.SHIELD_RECIPE_ID.toString());
 
-    public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ExpandedCombat.MODID);
+    public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ExpandedCombatOld.MODID);
     public static final RegistryObject<RecipeSerializer<?>> EC_TIPPED_ARROW_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_arrow", () -> new SimpleRecipeSerializer<>(ECTippedArrowRecipe::new));
     public static final RegistryObject<RecipeSerializer<?>> EC_POTION_WEAPON_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_potion_weapon", () -> new SimpleRecipeSerializer<>(ECScytheRecipe::new));
     public static final RegistryObject<RecipeSerializer<?>> EC_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching", FletchingRecipe.Serializer::new);

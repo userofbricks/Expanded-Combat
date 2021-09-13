@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.ECLayerDefinitions;
 import com.userofbricks.expandedcombat.client.renderer.GauntletRenderer;
-import com.userofbricks.expandedcombat.client.renderer.QuiverArrowsRenderer;
 import com.userofbricks.expandedcombat.client.renderer.QuiverRenderer;
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
@@ -15,7 +14,7 @@ import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
 import com.userofbricks.expandedcombat.client.renderer.model.SpecialItemModels;
 import com.userofbricks.expandedcombat.config.ECClientConfig;
-import com.userofbricks.expandedcombat.config.ECConfig;
+import com.userofbricks.expandedcombat.config.ECConfigOld;
 import com.userofbricks.expandedcombat.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
@@ -77,12 +76,10 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.function.Predicate;
 
 @Mod("expanded_combat")
-public class ExpandedCombat
+public class ExpandedCombatOld
 {
     public static final String MODID = "expanded_combat";
     private static final Logger LOGGER = LogManager.getLogger();
@@ -95,14 +92,14 @@ public class ExpandedCombat
     public static final CreativeModeTab EC_GROUP = new ECItemGroup();
     public static boolean isSpartanWeponryLoaded = false;
     
-    public ExpandedCombat() {
+    public ExpandedCombatOld() {
         isSpartanWeponryLoaded = ModList.get().isLoaded("spartanweaponry");
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ECClientConfig.CLIENT_SPEC);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfigOld.SERVER_SPEC);
         AttributeRegistry.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECItems.ITEMS.register(bus);
@@ -165,7 +162,7 @@ public class ExpandedCombat
     
     private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
          ItemStack stack = e.getObject();
-        if (ItemTags.getAllTags().getTag(new ResourceLocation("curios", "arrows")) != null && ExpandedCombat.arrow_curios.contains(stack.getItem())) {
+        if (ItemTags.getAllTags().getTag(new ResourceLocation("curios", "arrows")) != null && ExpandedCombatOld.arrow_curios.contains(stack.getItem())) {
              ArrowCurio arrowCurio = new ArrowCurio();
             e.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
                  final LazyOptional<ICurio> curio = LazyOptional.of(() -> arrowCurio);
@@ -207,11 +204,7 @@ public class ExpandedCombat
         evt.registerLayerDefinition(ECLayerDefinitions.GAUNTLET, GauntletModel::createLayer);
         evt.registerLayerDefinition(ECLayerDefinitions.QUIVER, QuiverModel::createLayer);
     }
-    
-    @OnlyIn(Dist.CLIENT)
-    private void registerEntityModels(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);
-    }
+
     @OnlyIn(Dist.CLIENT)
     private void registerEntityModels() {
         EntityRenderers.register(ECEntities.EC_ARROW_ENTITY.get(), ECArrowEntityRenderer::new);

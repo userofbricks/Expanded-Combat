@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public interface IFletchingRecipe extends Recipe<Container> {
-    ResourceLocation FLETCHING_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_fletching");
+    ResourceLocation FLETCHING_RECIPE_ID = new ResourceLocation(ExpandedCombatOld.MODID, "ec_fletching");
 
     @Nonnull
     @Override

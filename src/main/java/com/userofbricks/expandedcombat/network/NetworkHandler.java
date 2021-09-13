@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.network;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.network.client.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +22,7 @@ public class NetworkHandler {
 
     public static void register() {
 
-        INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ExpandedCombat.MODID, "main"))
+        INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ExpandedCombatOld.MODID, "main"))
                 .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)
                 .serverAcceptedVersions(PTC_VERSION::equals).simpleChannel();
 

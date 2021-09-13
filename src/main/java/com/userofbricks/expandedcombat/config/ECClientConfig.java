@@ -1,7 +1,7 @@
 package com.userofbricks.expandedcombat.config;
 
 import com.electronwill.nightconfig.core.EnumGetMethod;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.client.renderer.gui.AlignmentHelper;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
@@ -11,7 +11,7 @@ public class ECClientConfig {
 
     public static final ForgeConfigSpec CLIENT_SPEC;
     public static final Client CLIENT;
-    private static final String CONFIG_PREFIX = "config." + ExpandedCombat.MODID + ".client.";
+    private static final String CONFIG_PREFIX = "config." + ExpandedCombatOld.MODID + ".client.";
 
     static {
         final Pair<Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder()

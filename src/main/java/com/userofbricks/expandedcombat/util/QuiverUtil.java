@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.util;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,7 +31,7 @@ public class QuiverUtil {
     }
 
     public static int getQuiverProvidedSlots(Item item) {
-        if (ExpandedCombat.isSpartanWeponryLoaded && isSpartanQuiver(item)) {
+        if (ExpandedCombatOld.isSpartanWeponryLoaded && isSpartanQuiver(item)) {
             for (SpartanWeponryQuiver quiverType : SpartanWeponryQuiver.values()) {
                 if (quiverType.getQuiver() == item) return quiverType.getProvidedSlots();
             }
@@ -54,7 +54,7 @@ public class QuiverUtil {
         private final int providedSlots;
 
         SpartanWeponryQuiver(String quiver, int providedSlots) {
-            this.quiver = ExpandedCombat.isSpartanWeponryLoaded ? ForgeRegistries.ITEMS.getValue(new ResourceLocation("spartanweaponry", quiver)) : null;
+            this.quiver = ExpandedCombatOld.isSpartanWeponryLoaded ? ForgeRegistries.ITEMS.getValue(new ResourceLocation("spartanweaponry", quiver)) : null;
             this.providedSlots = providedSlots;
         }
 

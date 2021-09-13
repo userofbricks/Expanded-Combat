@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.client.renderer.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -32,11 +32,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 String sdl = stack.getOrCreateTag().getString("DL_Material");
                 String sdr = stack.getOrCreateTag().getString("DR_Material");
                 String sm =  stack.getOrCreateTag().getString("M_Material" );
-                ItemStack ul = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sul + "_ul")));
-                ItemStack ur = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sur + "_ur")));
-                ItemStack dl = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdl + "_dl")));
-                ItemStack dr = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdr + "_dr")));
-                ItemStack m =  new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sm  + "_m" )));
+                ItemStack ul = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombatOld.MODID, "shield_" + sul + "_ul")));
+                ItemStack ur = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombatOld.MODID, "shield_" + sur + "_ur")));
+                ItemStack dl = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombatOld.MODID, "shield_" + sdl + "_dl")));
+                ItemStack dr = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombatOld.MODID, "shield_" + sdr + "_dr")));
+                ItemStack m =  new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombatOld.MODID, "shield_" + sm  + "_m" )));
                 if (stack.hasFoil()) {
                     ul.enchant(Enchantments.VANISHING_CURSE, 0);
                     ur.enchant(Enchantments.VANISHING_CURSE, 0);

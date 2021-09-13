@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "expanded_combat",
+  "version": "${version}",
+  "name": "Expanded Combat",
+  "description": "An Expansion of Minecraft's combat equipment which includes a reimagining of dinnerbone's quiver.",
+  "authors": [
+    "Userofbricks"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-combat",
+    "sources": "https://github.com/userofbricks/Expanded-Combat/"
+  },
+  "license": "All RIGHTS RESERVED",
+  "icon": "assets/expanded_combat/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.userofbricks.expandedcombat.fabric.ExpandedCombatFabric"
+    ],
+    "modmenu": [
+      "com.userofbricks.expandedcombat.fabric.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "expanded_combat-common.mixins.json",
+    "expanded_combat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": ">=1.17.1",
+    "architectury": ">=2.3.23"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

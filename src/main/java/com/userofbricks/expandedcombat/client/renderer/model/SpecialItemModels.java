@@ -1,7 +1,7 @@
 package com.userofbricks.expandedcombat.client.renderer.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.item.ECItems;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -34,7 +34,7 @@ public class SpecialItemModels
         for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
              Item item = ro.get();
              ResourceLocation handheldModel = new ResourceLocation("expanded_combat", "models/item/" + item.getRegistryName().getPath() + "_handheld.json");
-            if (ExpandedCombat.modResourceExists(PackType.CLIENT_RESOURCES, handheldModel)) {
+            if (ExpandedCombatOld.modResourceExists(PackType.CLIENT_RESOURCES, handheldModel)) {
                 addSpecialHandheld(item);
             }
         }

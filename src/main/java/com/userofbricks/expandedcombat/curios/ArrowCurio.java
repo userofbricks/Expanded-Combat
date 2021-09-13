@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.curios;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +18,7 @@ public class ArrowCurio implements ICurio
     private Object model;
     
     public boolean canEquip( String identifier,  LivingEntity livingEntity) {
-        return CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(ExpandedCombat.quiver_curios::contains).orElse(false);
+        return CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.quiver_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).map(ItemStack::getItem).map(ExpandedCombatOld.quiver_curios::contains).orElse(false);
     }
 
     @Override

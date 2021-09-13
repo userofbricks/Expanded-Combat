@@ -1,16 +1,16 @@
 package com.userofbricks.expandedcombat.config;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class ECConfig {
+public class ECConfigOld {
 
     public static final ForgeConfigSpec SERVER_SPEC;
     public static final Server SERVER;
-    private static final String CONFIG_PREFIX = "config." + ExpandedCombat.MODID + ".server.";
+    private static final String CONFIG_PREFIX = "config." + ExpandedCombatOld.MODID + ".server.";
 
     static {
         final Pair<Server, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder()

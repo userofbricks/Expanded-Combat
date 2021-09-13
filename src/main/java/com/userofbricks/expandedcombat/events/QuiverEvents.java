@@ -1,11 +1,10 @@
 package com.userofbricks.expandedcombat.events;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.QuiverButton;
-import com.userofbricks.expandedcombat.inventory.container.ECCuriosQuiverContainer;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
 import com.userofbricks.expandedcombat.network.client.CPacketOpenCuriosQuiver;
@@ -98,7 +97,7 @@ public class QuiverEvents {
         Player player = evt.getPlayer();
         ItemStack stack = evt.getItemStack();
         ICuriosHelper curiosHelper = CuriosApi.getCuriosHelper();
-        if (ExpandedCombat.quiver_predicate.test(stack) && stack.getMaxStackSize() > 1) {
+        if (ExpandedCombatOld.quiver_predicate.test(stack) && stack.getMaxStackSize() > 1) {
             curiosHelper.getCurio(stack).ifPresent(
                 curio -> curiosHelper.getCuriosHandler(player).ifPresent(handler -> {
                     if (!player.level.isClientSide) {
@@ -213,7 +212,7 @@ public class QuiverEvents {
             CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
                 for (int i = 0; i < curioStackHandler.getSlots(); i++) {
                     ItemStack arrowStack = curioStackHandler.getStackInSlot(i);
-                    if (ExpandedCombat.isSpartanWeponryLoaded && isFromSpartanQuiver) {
+                    if (ExpandedCombatOld.isSpartanWeponryLoaded && isFromSpartanQuiver) {
                         IItemHandler quiverHandler = fromStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(CAPABILITY_EXCEPTION);
                         for (int j = 0; j < quiverHandler.getSlots(); ++j) {
                             arrowStack = quiverHandler.insertItem(j, arrowStack, false);
@@ -235,7 +234,7 @@ public class QuiverEvents {
                     //}
                 //}
 
-                if (ExpandedCombat.isSpartanWeponryLoaded && isToSpartanQuiver) {
+                if (ExpandedCombatOld.isSpartanWeponryLoaded && isToSpartanQuiver) {
                     IItemHandler quiverHandler1 = toStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(CAPABILITY_EXCEPTION);
                     for (int j = 0; j < quiverHandler1.getSlots(); ++j) {
                         ItemStack quiverArrowStack = quiverHandler1.extractItem(j, 64, false);

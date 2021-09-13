@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.mixin;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -28,9 +28,9 @@ public abstract class AbstractArrowEntityMixin {
     public void playerTouch(Player p_70100_1_) {
         if (!((AbstractArrow)(Object)this).level.isClientSide && (this.inGround || ((AbstractArrow)(Object)this).isNoPhysics()) && ((AbstractArrow)(Object)this).shakeTime <= 0) {
             boolean flag;
-            ItemStack arrowStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate,p_70100_1_)
+            ItemStack arrowStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.arrow_predicate, p_70100_1_)
                     .map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-            ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.quiver_predicate,p_70100_1_)
+            ItemStack quiverStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.quiver_predicate, p_70100_1_)
                     .map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
             if(arrowStack.getItem() == this.getPickupItem().getItem() && arrowStack.getCount() < 64 && !quiverStack.isEmpty()) {
                 arrowStack.setCount(arrowStack.getCount()+ 1);

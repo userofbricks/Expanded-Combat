@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.mixin;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.inventory.container.FlechingTableContainer;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -32,7 +32,7 @@ public class FletchingTableBlockMixin extends CraftingTableBlock {
     public FletchingTableBlockMixin(Block.Properties p_i49985_1_) {
         super(p_i49985_1_);
     }
-    private static final Component CONTAINER_TITLE = new TranslatableComponent("container." + ExpandedCombat.MODID + ".fletching");
+    private static final Component CONTAINER_TITLE = new TranslatableComponent("container." + ExpandedCombatOld.MODID + ".fletching");
 
     @Override
     public MenuProvider getMenuProvider(BlockState blockState, Level world, BlockPos pos) {

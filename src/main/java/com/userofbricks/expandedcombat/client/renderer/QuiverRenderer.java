@@ -3,10 +3,8 @@ package com.userofbricks.expandedcombat.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import com.userofbricks.expandedcombat.ExpandedCombat;
-import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
-import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -26,7 +24,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class QuiverRenderer implements ICurioRenderer {
 
-    private ResourceLocation QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
+    private ResourceLocation QUIVER_TEXTURE = new ResourceLocation(ExpandedCombatOld.MODID, "textures/entity/knuckles.png");
 
     private final QuiverModel model;
 
@@ -51,7 +49,7 @@ public class QuiverRenderer implements ICurioRenderer {
         this.model
                 .renderToBuffer(matrixStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F,
                                 1.0F, 1.0F);
-        ItemStack itemstack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.arrow_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
+        ItemStack itemstack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.arrow_predicate, livingEntity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         if (!itemstack.isEmpty()) {
             matrixStack.pushPose();
             this.renderStacks(livingEntity, itemstack, matrixStack, renderTypeBuffer, light);

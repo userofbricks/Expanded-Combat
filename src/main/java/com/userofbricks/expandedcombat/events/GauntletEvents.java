@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.events;
 
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -168,7 +168,7 @@ public class GauntletEvents
         if ((ev.getSlot() == EquipmentSlot.MAINHAND || ev.getSlot() == EquipmentSlot.OFFHAND) && ev.getEntityLiving() instanceof Player) {
             Player player = (Player)ev.getEntityLiving();
             ItemStack toStack = ev.getTo();
-            Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
+            Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.hands_predicate, player);
             ItemStack gauntlet = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
             if (gauntlet.getItem() instanceof ECGauntletItem && optionalImmutableTriple.isPresent()) {
                 if ((toStack.getItem() instanceof SwordItem || toStack.getItem() instanceof AxeItem)) {
@@ -183,7 +183,7 @@ public class GauntletEvents
     //@SubscribeEvent
     public static void DamageGauntletEvent(AttackEntityEvent event) {
         Player player = event.getPlayer();
-        Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, player);
+        Optional<ImmutableTriple<String, Integer, ItemStack>> optionalImmutableTriple = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombatOld.hands_predicate, player);
         ItemStack stack = optionalImmutableTriple.map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCurioItemHandler -> {
             if (!player.isCreative() && stack.getItem() instanceof ECGauntletItem && optionalImmutableTriple.isPresent()) {

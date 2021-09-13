@@ -1,7 +1,7 @@
 package com.userofbricks.expandedcombat.item.recipes;
 
 import com.google.gson.JsonObject;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.item.ECItems;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
 import com.userofbricks.expandedcombat.item.ShieldMaterial;
@@ -24,7 +24,7 @@ import java.util.Objects;
 
 @MethodsReturnNonnullByDefault
 public class ShieldSmithingRecipie implements Recipe<Container> {
-    public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
+    public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombatOld.MODID, "ec_shields");
     private final ResourceLocation id;
 
     public ShieldSmithingRecipie(ResourceLocation id) {

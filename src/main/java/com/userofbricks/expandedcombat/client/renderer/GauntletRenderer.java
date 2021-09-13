@@ -2,7 +2,7 @@ package com.userofbricks.expandedcombat.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.userofbricks.expandedcombat.ExpandedCombat;
+import com.userofbricks.expandedcombat.ExpandedCombatOld;
 import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import net.minecraft.client.Minecraft;
@@ -20,7 +20,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 public class GauntletRenderer implements ICurioRenderer{
 
-    private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
+    private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombatOld.MODID, "textures/entity/knuckles.png");
 
     private final GauntletModel model;
 

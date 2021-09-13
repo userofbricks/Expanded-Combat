@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[37,)"
+#issueTrackerURL = ""
+license = "All rights reserved"
+
+[[mods]]
+modId = "expanded_combat"
+version = "${version}"
+displayName = "Expanded Combat"
+authors = "Userofbricks"
+description = '''
+An Expansion of Minecraft's combat equipment which includes a reimagining of dinnerbone's quiver.
+'''
+logoFile = "assets/expanded_combat/icon.png"
+
+[[dependencies.expanded_combat]]
+modId = "forge"
+mandatory = true
+versionRange = "[37,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.expanded_combat]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.17.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.expanded_combat]]
+modId = "architectury"
+mandatory = true
+versionRange = "[2.3.23,)"
+ordering = "AFTER"
+side = "BOTH"
