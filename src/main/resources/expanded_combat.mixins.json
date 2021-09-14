@@ -9,7 +9,7 @@
     "ContainerAccessor",
     "CurioContainerMixin",
     "FletchingTableBlockMixin",
-    "PiglinTasksMixin",
+    "forge.PiglinTasksMixin",
     "PlayerEntityMixin",
     "ServerGamePacketListenerImplMixin"
   ],

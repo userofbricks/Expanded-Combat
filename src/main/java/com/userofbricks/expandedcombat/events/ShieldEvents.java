@@ -30,6 +30,8 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
 public class ShieldEvents {
+    /*
+     * Not going to implement.
     public static void ShieldBlockEvent(LivingAttackEvent event) {
         LivingEntity livingEntity = event.getEntityLiving();
         if (livingEntity instanceof Player) {
@@ -66,7 +68,7 @@ public class ShieldEvents {
                             }
                             f1 = baseBlocked + (amountNotBlocked * percentBlocked);
                             amount = amountNotBlocked * (1 - percentBlocked);
-                        } else {
+                        } else if (usedItemStack.getItem() == Items.SHIELD){
                             float amountNotBlocked = amount - 2;
                             if (amountNotBlocked < 0) {
                                 amountNotBlocked = 0;
@@ -205,7 +207,7 @@ public class ShieldEvents {
 
     /**
      * Directly copied from {@link LivingEntity} switching out "livingEntity" for living entity
-     */
+     * /
     private static boolean isDamageSourceBlocked(DamageSource p_184583_1_, LivingEntity livingEntity) {
         Entity entity = p_184583_1_.getDirectEntity();
         boolean flag = false;
@@ -231,7 +233,7 @@ public class ShieldEvents {
 
     /**
      * Directly copied from {@link LivingEntity} switching out "livingEntity" for living entity
-     */
+     * /
     protected static void hurtCurrentlyUsedShield(float p_184590_1_, LivingEntity livingEntity, ItemStack usedItemStack) {
         if (livingEntity instanceof Player) {
             Player playerEntity = (Player) livingEntity;
@@ -263,6 +265,7 @@ public class ShieldEvents {
             }
         }
     }
+    */
 
 
 

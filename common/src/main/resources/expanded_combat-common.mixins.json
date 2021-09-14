@@ -2,7 +2,9 @@
   "required": true,
   "package": "com.userofbricks.expandedcombat.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "BlockEntityWithoutLevelRendererMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

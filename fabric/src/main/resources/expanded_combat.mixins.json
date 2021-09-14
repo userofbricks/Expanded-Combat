@@ -3,6 +3,7 @@
   "package": "com.userofbricks.expandedcombat.mixin.fabric",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ExperienceOrbMixin",
     "ItemStackMixin"
   ],
   "client": [],

@@ -215,4 +215,97 @@ public class ECConfig implements ConfigData {
             this.knockBackResistance = knockBackResistance;
         }
     }
+
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig woodWeaponTier = new WeaponTierConfig(59, 3.0f, 15, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig oakWoodWeaponTier = new WeaponTierConfig(59, 3.0f, 15, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig oakPlankWeaponTier = new WeaponTierConfig(59, 3.0f, 15, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig stoneWeaponTier = new WeaponTierConfig(131, 4.0f, 5, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig ironWeaponTier = new WeaponTierConfig(250, 5.0f, 14, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig emeraldWeaponTier = new WeaponTierConfig(2000, 5.0f, 10, 0.1f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig diamondWeaponTier = new WeaponTierConfig(1561, 6.0f, 10, -0.1f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig goldWeaponTier = new WeaponTierConfig(32, 3.0f, 22, 2.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig netheriteWeaponTier = new WeaponTierConfig(2031, 7.0f, 15, 0.2f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig steelWeaponTier = new WeaponTierConfig(482, 5.5f, 10, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig bronzeWeaponTier = new WeaponTierConfig(225, 4.5f, 10, 0.1f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig silverWeaponTier = new WeaponTierConfig(325, 5.0f, 23, 1.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig leadWeaponTier = new WeaponTierConfig(1761, 6.5f, 10, 0.1f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig ironwoodWeaponTier = new WeaponTierConfig(512, 5.0f, 25, 1.5f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig fieryWeaponTier = new WeaponTierConfig(1024, 7.0f, 10, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig steeleafWeaponTier = new WeaponTierConfig(131, 6.0f, 9, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig knightmetalWeaponTier = new WeaponTierConfig(512, 6.0f, 8, 0.0f);
+    @Category("common")
+    @CollapsibleObject()
+    @RequiresRestart()
+    public WeaponTierConfig enderiteWeaponTier = new WeaponTierConfig(3000, 9.0f, 15, 0.1f);
+
+    public static class WeaponTierConfig {
+        @Tooltip
+        public int durability;
+        @Tooltip
+        public float attackDamage;
+
+        @Tooltip
+        public int enchantability;
+
+        @Tooltip
+        public float mendingBonus;
+
+        WeaponTierConfig(int durability, float damage, int enchantability, float mendingBonus){
+            this.durability = durability;
+            this.attackDamage = damage;
+            this.enchantability = enchantability;
+            this.mendingBonus = mendingBonus;
+        }
+    }
 }

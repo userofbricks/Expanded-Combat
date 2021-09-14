@@ -18,7 +18,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class ECBowItem extends BowItem
+public class ECBowItem extends BowItem implements ICustomMendingRatio
 {
     private final int multishotLevel;
     private final int bowPower;
@@ -198,7 +198,8 @@ public class ECBowItem extends BowItem
          int quickChargeLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         return (float)Math.max(20 - 5 * quickChargeLevel, 0);
     }
-    
+
+    @Override
     public float getXpRepairRatio( ItemStack stack) {
         return 2.0f + this.mendingBonus;
     }

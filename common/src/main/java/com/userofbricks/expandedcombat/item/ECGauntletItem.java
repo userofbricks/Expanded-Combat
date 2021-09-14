@@ -18,7 +18,7 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 import java.util.UUID;
 
-public class ECGauntletItem extends Item
+public class ECGauntletItem extends Item implements ICustomMendingRatio
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final IGauntletMaterial material;

@@ -1,4 +1,4 @@
-package com.userofbricks.expandedcombat.mixin;
+package com.userofbricks.expandedcombat.mixin.forge;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
@@ -22,7 +22,8 @@ public class PiglinTasksMixin {
             for (String identifier : curioMap.keySet()) {
                 IDynamicStackHandler stackHandler = curioMap.get(identifier).getStacks();
                 for (int i = 0; i < stackHandler.getSlots(); i++) {
-                    cir.setReturnValue(stackHandler.getStackInSlot(i).makesPiglinsNeutral(entity));
+                    boolean makesNeutral = stackHandler.getStackInSlot(i).makesPiglinsNeutral(entity);
+                    if (makesNeutral) cir.setReturnValue(makesNeutral);
                 }
             }
         });

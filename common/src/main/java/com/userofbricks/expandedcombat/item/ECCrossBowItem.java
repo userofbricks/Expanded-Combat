@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class ECCrossBowItem extends CrossbowItem
+public class ECCrossBowItem extends CrossbowItem implements ICustomMendingRatio
 {
     private int multishotLevel;
     private int bowPower;

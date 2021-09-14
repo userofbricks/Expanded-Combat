@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class ItemAndTagsUtil {
@@ -26,5 +27,13 @@ public class ItemAndTagsUtil {
             return Ingredient.of(Registry.ITEM.get(new ResourceLocation(modid + ":" + itemName)));
         }
         return Ingredient.EMPTY;
+    }
+
+    public static boolean doesGoldMendingContainItem( ItemStack itemStack) {
+        return doesGoldMendingContainItem(itemStack.getItem());
+    }
+
+    public static boolean doesGoldMendingContainItem( Item item) {
+        return ItemTags.getAllTags().getTagOrEmpty(new ResourceLocation("expanded_combat", "non_ec_mendable_gold")).contains(item);
     }
 }

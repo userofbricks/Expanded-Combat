@@ -1,6 +1,6 @@
 package com.userofbricks.expandedcombat.mixin.fabric;
 
-import com.userofbricks.expandedcombat.item.ItemStackBasedMaxDamage;
+import com.userofbricks.expandedcombat.item.IItemStackBasedMaxDamage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,9 +19,9 @@ public abstract class ItemStackMixin{
 
     @Inject(method = { "getMaxDamage" }, at = { @At("HEAD") }, cancellable = true)
     private void getMaxDamage(CallbackInfoReturnable<Integer> cir) {
-        if (this.getItem() instanceof ItemStackBasedMaxDamage) {
+        if (this.getItem() instanceof IItemStackBasedMaxDamage) {
             CompoundTag compoundTag = new CompoundTag();
-            ((ItemStackBasedMaxDamage)this.getItem()).getMaxDamage(this);
+            cir.setReturnValue(((IItemStackBasedMaxDamage)this.getItem()).getMaxDamage(this));
         }
     }
 }

@@ -21,6 +21,10 @@ repositories {
     }
 }
 
+repositories {
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+}
+
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
@@ -29,6 +33,7 @@ dependencies {
     modImplementation("top.theillusivec4.curios:curios-forge:${rootProject.minecraft_version}-${rootProject.curios_version}")
     modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config}"
     shadow "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config}"
+    implementation "org.spongepowered:mixin:0.8.4-SNAPSHOT"
 
     implementation(project(path: ":common")) {
         transitive = false

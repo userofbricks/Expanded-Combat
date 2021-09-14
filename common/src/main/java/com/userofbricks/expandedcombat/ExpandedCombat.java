@@ -6,6 +6,7 @@ import com.userofbricks.expandedcombat.registries.ECEnchantments;
 import com.userofbricks.expandedcombat.registries.ECEntities;
 import com.userofbricks.expandedcombat.registries.ECItems;
 import dev.architectury.event.events.client.ClientLifecycleEvent;
+import dev.architectury.event.events.client.ClientTooltipEvent;
 import dev.architectury.registry.CreativeTabRegistry;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
@@ -23,10 +24,12 @@ public class ExpandedCombat {
         ECConfig.instance = AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new).get();
         ECEnchantments.ENCHANTMENTS.register();
         ECItems.ITEMS.register();
+        ECItems.setAtributeModifiers();
         ECEntities.ENTITIES.register();
     }
 
     public static void clientInit() {
         ClientLifecycleEvent.CLIENT_SETUP.register(ECClientEvents::clientSetup);
+        ClientTooltipEvent.ITEM.register(ECClientEvents::tooltips);
     }
 }

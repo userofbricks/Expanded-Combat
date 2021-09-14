@@ -1,6 +1,5 @@
 package com.userofbricks.expandedcombat.item;
 
-import com.userofbricks.expandedcombat.client.renderer.model.ECShieldBlockEntityWithoutLevelRenderer;
 import dev.architectury.injectables.annotations.PlatformOnly;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -17,7 +16,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ECShieldItem extends ShieldItem implements ItemStackBasedMaxDamage
+public class ECShieldItem extends ShieldItem implements IItemStackBasedMaxDamage, ICustomMendingRatio
 {
     private final int tier;
     
@@ -100,7 +99,6 @@ public class ECShieldItem extends ShieldItem implements ItemStackBasedMaxDamage
         return true;
     }
 
-    @PlatformOnly(value = PlatformOnly.FORGE)
     public float getXpRepairRatio(ItemStack stack) {
         return 2.0f + getMendingBonus(stack);
     }
@@ -137,6 +135,7 @@ public class ECShieldItem extends ShieldItem implements ItemStackBasedMaxDamage
         return ul + ur + dl + dr + m;
     }
 
+    @Deprecated
     public float getBaseProtection(ItemStack stack) {
         float ul = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("UL_Material")).getBaseProtectionAmmount() /5;
         float ur = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("UR_Material")).getBaseProtectionAmmount() /5;
@@ -146,6 +145,7 @@ public class ECShieldItem extends ShieldItem implements ItemStackBasedMaxDamage
         return ul + ur + dl + dr + m;
     }
 
+    @Deprecated
     public float getPercentageProtection(ItemStack stack) {
         float ul = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("UL_Material")).getAfterBasePercentReduction() /5;
         float ur = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("UR_Material")).getAfterBasePercentReduction() /5;
@@ -153,15 +153,6 @@ public class ECShieldItem extends ShieldItem implements ItemStackBasedMaxDamage
         float dr = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("DR_Material")).getAfterBasePercentReduction() /5;
         float m = ShieldMaterial.getFromName(stack.getOrCreateTag().getString("M_Material")).getAfterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
-    }
-
-    public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
-        consumer.accept(new IItemRenderProperties() {
-            @Override
-            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
-                return new ECShieldBlockEntityWithoutLevelRenderer();
-            }
-        });
     }
 
     public int getTier() {

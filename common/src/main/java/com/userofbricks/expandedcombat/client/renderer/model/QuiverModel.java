@@ -7,8 +7,6 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.LivingEntity;
 
-import javax.annotation.Nonnull;
-
 public class QuiverModel<T extends LivingEntity> extends AgeableListModel<T>
 {
     public ModelPart quiver;
@@ -31,18 +29,16 @@ public class QuiverModel<T extends LivingEntity> extends AgeableListModel<T>
     }
 
     @Override
-    @Nonnull
     protected Iterable<ModelPart> headParts() {
         return ImmutableList.of();
     }
 
     @Override
-    @Nonnull
     protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(this.quiver);
     }
 
     @Override
-    public void setupAnim(@Nonnull T t, float v, float v1, float v2, float v3, float v4) {
+    public void setupAnim(T t, float v, float v1, float v2, float v3, float v4) {
     }
 }

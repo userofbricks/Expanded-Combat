@@ -13,15 +13,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 
-//todo: will likely have to change this to a mixin. if so mix into BlockEntityWithoutRenderer
+public class ECShieldBlockEntityWithoutLevelRenderer{
 
-public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
-
-    public ECShieldBlockEntityWithoutLevelRenderer() {
-        super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), new EntityModelSet());
-    }
-
-    public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack matrixStack, MultiBufferSource iRenderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public static void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack matrixStack, MultiBufferSource iRenderTypeBuffer, int combinedLight, int combinedOverlay) {
         if (!stack.isEmpty()) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.player != null) {

@@ -6,6 +6,7 @@ import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
 import com.userofbricks.expandedcombat.client.forge.GauntletRenderer;
 import com.userofbricks.expandedcombat.client.forge.QuiverRenderer;
+import com.userofbricks.expandedcombat.config.ECConfig;
 import com.userofbricks.expandedcombat.forge.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.forge.curios.GauntletCurio;
 import com.userofbricks.expandedcombat.forge.curios.QuiverCurio;
@@ -14,6 +15,7 @@ import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import com.userofbricks.expandedcombat.registries.ECItems;
 import dev.architectury.platform.forge.EventBuses;
 import dev.architectury.registry.registries.RegistrySupplier;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -29,9 +31,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fmlclient.ConfigGuiHandler;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import top.theillusivec4.curios.api.type.capability.ICurio;
@@ -54,6 +58,7 @@ public class ExpandedCombatForge {
         EventBuses.registerModEventBus(ExpandedCombat.MOD_ID, bus);
         bus.addListener(this::clientSetup);
         ExpandedCombat.init();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::registerModsPage);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExpandedCombat::clientInit);
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
@@ -103,5 +108,12 @@ public class ExpandedCombatForge {
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
         evt.registerLayerDefinition(ECLayerDefinitions.GAUNTLET, GauntletModel::createLayer);
         evt.registerLayerDefinition(ECLayerDefinitions.QUIVER, QuiverModel::createLayer);
+    }
+
+    public void registerModsPage() {
+        ModLoadingContext.get().registerExtensionPoint(ConfigGuiHandler.ConfigGuiFactory.class, () -> new ConfigGuiHandler.ConfigGuiFactory((client, parent) -> {
+            return AutoConfig.getConfigScreen(ECConfig.class, parent).get();
+            //ClothConfigDemo.getConfigBuilderWithDemo().setParentScreen(parent).build();
+        }));
     }
 }
