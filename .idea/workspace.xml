@@ -4,42 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="changed quiver arrow selection to a player variable instead of rotating the slot contents.">
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECSwordTier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ICustomMendingRatio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/IWeaponTier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/IWeaponType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/WeaponTier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/WeaponTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/BlockEntityWithoutLevelRendererMixin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECAttributes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/mixin/fabric/ExperienceOrbMixin.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="finished out ECItems.java">
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECItemModelsProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/fabric/ECItemModelsPropertiesImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/forge/ECItemModelsPropertiesImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/ECClientEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/ECClientEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECShieldBlockEntityWithoutLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECShieldBlockEntityWithoutLevelRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/QuiverModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/QuiverModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECBowItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECCrossBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECCrossBowItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECShieldItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ItemStackBasedMaxDamage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/IItemStackBasedMaxDamage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECEnchantments.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECEnchantments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/util/ItemAndTagsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/util/ItemAndTagsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/mixin/fabric/ItemStackMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/mixin/fabric/ItemStackMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/forge/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/ExpandedCombatForge.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/ExpandedCombatForge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/GoldMending.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/PiglinTasksMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/mixin/forge/PiglinTasksMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,11 +127,11 @@
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.client.renderer.model" />
       <recent name="com.userofbricks.expandedcombat.item" />
       <recent name="com.userofbricks.expandedcombat.registries" />
       <recent name="com.userofbricks.expandedcombat.util" />
       <recent name="com.userofbricks.expandedcombat.enchentment" />
-      <recent name="com.userofbricks.expandedcombat.entity" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.reimagined_quiver [clean]">
@@ -457,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629845013109</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="finished out ECItems.java">
+      <created>1631651171707</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1631651171707</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +476,8 @@
     <MESSAGE value="fixed the shield enchantment glint not apearing when enchanted" />
     <MESSAGE value="1.17.1 renaming dump" />
     <MESSAGE value="fixed arrow entity render and re-added mixin features" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed arrow entity render and re-added mixin features" />
+    <MESSAGE value="finished out ECItems.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished out ECItems.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

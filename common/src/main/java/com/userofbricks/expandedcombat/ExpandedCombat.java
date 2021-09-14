@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat;
 
 import com.userofbricks.expandedcombat.client.ECClientEvents;
+import com.userofbricks.expandedcombat.client.renderer.model.ECItemModelsProperties;
 import com.userofbricks.expandedcombat.config.ECConfig;
 import com.userofbricks.expandedcombat.registries.ECEnchantments;
 import com.userofbricks.expandedcombat.registries.ECEntities;
@@ -29,6 +30,7 @@ public class ExpandedCombat {
     }
 
     public static void clientInit() {
+        ECItemModelsProperties.RegisterProperties();
         ClientLifecycleEvent.CLIENT_SETUP.register(ECClientEvents::clientSetup);
         ClientTooltipEvent.ITEM.register(ECClientEvents::tooltips);
     }
