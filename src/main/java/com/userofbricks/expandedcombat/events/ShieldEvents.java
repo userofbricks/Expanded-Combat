@@ -16,6 +16,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
@@ -35,7 +36,8 @@ public class ShieldEvents {
             ItemStack usedItemStack = playerEntity.getUseItem();
             DamageSource source = event.getSource();
             if (usedItemStack.isShield(playerEntity) && !(playerEntity.level.isClientSide || playerEntity.isInvulnerableTo(source) ||
-                    playerEntity.isDeadOrDying() || (source.isFire() && playerEntity.hasEffect(Effects.FIRE_RESISTANCE)))) {
+                    playerEntity.isDeadOrDying() || (source.isFire() && playerEntity.hasEffect(Effects.FIRE_RESISTANCE))) &&
+                    (usedItemStack.getItem() instanceof ECShieldItem || usedItemStack.getItem() == Items.SHIELD)) {
                 while (true) {
                     float amount = event.getAmount();
                     if (playerEntity.isSleeping() && !playerEntity.level.isClientSide) {
@@ -64,7 +66,7 @@ public class ShieldEvents {
                             }
                             f1 = baseBlocked + (amountNotBlocked * percentBlocked);
                             amount = amountNotBlocked * (1 - percentBlocked);
-                        } else {
+                        } else if (usedItemStack.getItem() == Items.SHIELD){
                             float amountNotBlocked = amount - 2;
                             if (amountNotBlocked < 0) {
                                 amountNotBlocked = 0;
