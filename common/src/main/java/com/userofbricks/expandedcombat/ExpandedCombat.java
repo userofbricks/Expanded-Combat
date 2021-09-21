@@ -1,11 +1,9 @@
 package com.userofbricks.expandedcombat;
 
-import com.userofbricks.expandedcombat.client.ECClientEvents;
+import com.userofbricks.expandedcombat.events.ECClientEvents;
 import com.userofbricks.expandedcombat.client.renderer.model.ECItemModelsProperties;
 import com.userofbricks.expandedcombat.config.ECConfig;
-import com.userofbricks.expandedcombat.registries.ECEnchantments;
-import com.userofbricks.expandedcombat.registries.ECEntities;
-import com.userofbricks.expandedcombat.registries.ECItems;
+import com.userofbricks.expandedcombat.registries.*;
 import dev.architectury.event.events.client.ClientLifecycleEvent;
 import dev.architectury.event.events.client.ClientTooltipEvent;
 import dev.architectury.registry.CreativeTabRegistry;
@@ -23,9 +21,12 @@ public class ExpandedCombat {
     
     public static void init() {
         ECConfig.instance = AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new).get();
+        ECAttributes.ATTRIBUTES.register();
         ECEnchantments.ENCHANTMENTS.register();
         ECItems.ITEMS.register();
         ECItems.setAtributeModifiers();
+        ECRecipeSerializers.RECIPE_SERIALIZERS.register();
+        ECContainers.CONTAINER_TYPES.register();
         ECEntities.ENTITIES.register();
     }
 

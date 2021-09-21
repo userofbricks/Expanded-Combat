@@ -1,8 +1,19 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "expanded_combat:item/broadsword_dye",
-		"layer1": "expanded_combat:item/broadsword_stone"
-	}
+	"parent": "builtin/entity",
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"large": 1
+			},
+			"model": "item/large/broadsword_stone"
+		},
+		{
+			"predicate": {
+				"large": 0.5
+			},
+			"model": "item/small/broadsword_stone"
+		}
+	]
 }

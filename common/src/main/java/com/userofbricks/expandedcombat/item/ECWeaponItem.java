@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -124,6 +125,25 @@ public class ECWeaponItem extends SwordItem implements ICustomMendingRatio
     @Override
     public boolean canAttackBlock(BlockState state, Level worldIn, BlockPos pos, Player player) {
         return !player.isCreative();
+    }
+
+    public static boolean isLarge(ItemStack itemStack) {
+        CompoundTag compoundTag = itemStack.getTag();
+        return compoundTag != null && compoundTag.getBoolean("isLarge");
+    }
+    public static boolean isSmall(ItemStack itemStack) {
+        CompoundTag compoundTag = itemStack.getTag();
+        return compoundTag != null && compoundTag.getBoolean("isSmall");
+    }
+
+    public static void setLarge(ItemStack itemStack, boolean bl) {
+        CompoundTag compoundTag = itemStack.getOrCreateTag();
+        compoundTag.putBoolean("isLarge", bl);
+    }
+
+    public static void setSmall(ItemStack itemStack, boolean bl) {
+        CompoundTag compoundTag = itemStack.getOrCreateTag();
+        compoundTag.putBoolean("isSmall", bl);
     }
 
     @Override

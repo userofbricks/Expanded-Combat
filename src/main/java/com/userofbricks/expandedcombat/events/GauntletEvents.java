@@ -25,6 +25,7 @@ import java.util.Optional;
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
 {
+    /*replaced with mixins
     @SubscribeEvent
     public void GauntletAnvilEnchanting(AnvilUpdateEvent event) {
         final ItemStack left = event.getLeft();
@@ -158,6 +159,7 @@ public class GauntletEvents
             event.setCost(stack1.getBaseRepairCost());
         }
     }
+     */
     
     public static int getNewRepairCost(int oldRepairCost) {
         return oldRepairCost * 2 + 1;
@@ -174,7 +176,7 @@ public class GauntletEvents
                 if ((toStack.getItem() instanceof SwordItem || toStack.getItem() instanceof AxeItem)) {
                     ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
                 } else {
-                    ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = true;
+                    ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = false;
                 }
             }
         }

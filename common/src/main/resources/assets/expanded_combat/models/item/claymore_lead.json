@@ -1,8 +1,19 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "expanded_combat:item/claymore_dye",
-		"layer1": "expanded_combat:item/claymore_lead"
-	}
+	"parent": "builtin/entity",
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"large": 1
+			},
+			"model": "item/large/claymore_lead"
+		},
+		{
+			"predicate": {
+				"large": 0.5
+			},
+			"model": "item/small/claymore_lead"
+		}
+	]
 }

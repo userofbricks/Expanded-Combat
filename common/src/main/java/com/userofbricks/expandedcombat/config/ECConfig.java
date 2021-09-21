@@ -36,7 +36,7 @@ public class ECConfig implements ConfigData {
     @RequiresRestart(value = false)
     @EnumHandler(option = EnumHandler.EnumDisplayOption.DROPDOWN)
     @Tooltip(count = 2)
-    public AlignmentHelper.Alignment QuiverHudAnchor = AlignmentHelper.Alignment.BOTTOM_CENTER;
+    public AlignmentHelper.Alignment quiverHudAnchor = AlignmentHelper.Alignment.BOTTOM_CENTER;
 
     @Category("client")
     @RequiresRestart(value = false)

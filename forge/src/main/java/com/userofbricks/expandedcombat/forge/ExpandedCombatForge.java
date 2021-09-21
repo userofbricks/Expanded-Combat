@@ -2,18 +2,22 @@ package com.userofbricks.expandedcombat.forge;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.client.renderer.ECLayerDefinitions;
+import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
 import com.userofbricks.expandedcombat.client.renderer.model.GauntletModel;
 import com.userofbricks.expandedcombat.client.renderer.model.QuiverModel;
-import com.userofbricks.expandedcombat.client.forge.GauntletRenderer;
-import com.userofbricks.expandedcombat.client.forge.QuiverRenderer;
+import com.userofbricks.expandedcombat.client.GauntletRenderer;
+import com.userofbricks.expandedcombat.client.QuiverRenderer;
 import com.userofbricks.expandedcombat.config.ECConfig;
+import com.userofbricks.expandedcombat.events.GauntletEvents;
 import com.userofbricks.expandedcombat.forge.curios.ArrowCurio;
 import com.userofbricks.expandedcombat.forge.curios.GauntletCurio;
 import com.userofbricks.expandedcombat.forge.curios.QuiverCurio;
 import com.userofbricks.expandedcombat.item.ECGauntletItem;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
 import com.userofbricks.expandedcombat.registries.ECItems;
+import com.userofbricks.expandedcombat.registries.forge.ECContainersImpl;
 import dev.architectury.platform.forge.EventBuses;
+import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.Direction;
@@ -31,6 +35,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -52,7 +57,10 @@ public class ExpandedCombatForge {
     public static final Predicate<ItemStack> quiver_predicate = stack -> quiver_curios.contains(stack.getItem());
     public static final Tag<Item> hands_curios = ItemTags.bind(new ResourceLocation("curios", "hands").toString());
     public static final Predicate<ItemStack> hands_predicate = stack -> hands_curios.contains(stack.getItem());
+    public static boolean isSpartanWeponryLoaded = false;
+
     public ExpandedCombatForge() {
+        isSpartanWeponryLoaded = ModList.get().isLoaded("spartanweaponry");
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(ExpandedCombat.MOD_ID, bus);
@@ -62,6 +70,7 @@ public class ExpandedCombatForge {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExpandedCombat::clientInit);
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
+        MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
     }
 
     private void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
@@ -94,6 +103,7 @@ public class ExpandedCombatForge {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        MenuRegistry.registerScreenFactory(ECContainersImpl.EC_QUIVER_CURIOS.get(), ECCuriosQuiverScreen::new);
         for (RegistrySupplier<Item> object: ECItems.ITEMS.getEntries()) {
             Item item = object.get();
             if (item instanceof ECGauntletItem) {

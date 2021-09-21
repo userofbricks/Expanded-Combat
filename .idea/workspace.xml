@@ -4,13 +4,442 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="finished out ECItems.java">
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECItemModelsProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/fabric/ECItemModelsPropertiesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/forge/ECItemModelsPropertiesImpl.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="more mass conversion">
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/entity/ECArrowEntityRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/FletchingTableScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldSmithingTableScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECWeaponBlockEntityWithoutLevelRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/HudEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container/FlechingTableContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/ShieldSmithingRecipie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/SingleFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/SpecialFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipes/TippedArrowFletchingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/AbstractContainerMenuAccessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/ArrowKnockbackEnchantmentMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/KnockbackEnchantmentMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/NetworkHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenShieldSmithing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenSmithing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/client/PacketOffhandAttack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECLayerDefinitions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECRecipeSerializers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/battlestaff_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/broadsword_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/claymore_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/dancers_sword_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/glaive_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/katana_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/scythe_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small/spear_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_bronze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_diamond.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_enderite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_fiery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_gold.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_iron.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_ironwood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_knightly.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_lead.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_netherite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_silver.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_steel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_steeleaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_stone.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp/spear_wood.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/fabric/HudElementQuiverAmmoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/network/fabric/NetworkHandlerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/forge/HudElementQuiverAmmoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/CuriosButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ECCuriosQuiverScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/QuiverButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/events/GauntletEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainerProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/network/forge/NetworkHandlerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/network/forge/client/CPacketOpenCuriosQuiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/registries/forge/ECContainersImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/util/QuiverUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/ECClientEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/ECClientEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECItemModelsProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECItemModelsProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/SpecialItemModels.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/config/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/IWeaponType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/IWeaponType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/WeaponTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/WeaponTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/BlockEntityWithoutLevelRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/BlockEntityWithoutLevelRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECContainers.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/registries/ECContainers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/battlestaff_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/battlestaff_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/broadsword_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/broadsword_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/claymore_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/claymore_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/dancers_sword_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/dancers_sword_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/glaive_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/glaive_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/katana_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/katana_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/scythe_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/scythe_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_bronze.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_bronze_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_bronze.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_diamond.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_diamond_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_diamond.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_enderite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_enderite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_enderite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_fiery.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_fiery_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_fiery.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_gold.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_gold_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_gold.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_iron.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_iron_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_iron.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_ironwood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_ironwood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_ironwood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_knightly.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_knightly_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_knightly.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_lead.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_lead_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_lead.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_netherite.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_netherite_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_netherite.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_silver.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_silver_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_silver.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steel.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steel_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_steel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steeleaf.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_steeleaf_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_steeleaf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_stone.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_stone_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_stone.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_wood.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/spear_wood_handheld.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large/spear_wood.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/forge/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/GauntletRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/forge/QuiverRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/QuiverRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/ExpandedCombatForge.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/ExpandedCombatForge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/curios/GauntletCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/curios/GauntletCurio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/GauntletEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +472,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="architectury-expanded-combat" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="architectury-expanded-combat" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="architectury-expanded-combat" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -96,8 +536,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3143969" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -109,32 +549,34 @@
       <recent name="com.userofbricks.expandedcombat.network.client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item" />
-      <recent name="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks/expandedcombat/" />
-      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container" />
-      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client" />
-      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/config/handling" />
+      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui" />
+      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipies" />
+      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/client" />
+      <recent name="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/inventory/container" />
+      <recent name="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large" />
+      <recent name="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/temp" />
+      <recent name="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/small" />
       <recent name="$PROJECT_DIR$/forge/src/main/java/com/userofbricks" />
       <recent name="$PROJECT_DIR$/common/src/main/resources" />
-      <recent name="$PROJECT_DIR$/fabric/src/main/java/com/userofbricks" />
-      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedcombat.network.client" />
+      <recent name="com.userofbricks.expandedcombat.inventory" />
       <recent name="com.userofbricks.expandedcombat.client.forge" />
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.userofbricks.expandedcombat.client.renderer.model" />
-      <recent name="com.userofbricks.expandedcombat.item" />
+      <recent name="com.userofbricks.expandedcombat.events" />
+      <recent name="com.userofbricks.expandedcombat.mixin" />
       <recent name="com.userofbricks.expandedcombat.registries" />
-      <recent name="com.userofbricks.expandedcombat.util" />
-      <recent name="com.userofbricks.expandedcombat.enchentment" />
+      <recent name="com.userofbricks.expandedcombat.item.recipes" />
+      <recent name="com.userofbricks.expandedcombat.inventory.container" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [clean]">
+  <component name="RunManager" selected="Gradle.reimagined_quiver [build]">
     <configuration name="reimagined_quiver [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -198,27 +640,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="reimagined_quiver [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="reimagined_quiver [genIntellijRuns]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -240,13 +661,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="reimagined_quiver:forge [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/forge" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--scan --debug" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.reimagined_quiver [clean]" />
         <item itemvalue="Gradle.reimagined_quiver [build]" />
+        <item itemvalue="Gradle.reimagined_quiver:forge [build]" />
+        <item itemvalue="Gradle.reimagined_quiver [clean]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.reimagined_quiver [buildDependents]" />
-        <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -435,7 +877,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631651171707</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added ItemModelsProperties that were previously in the mod">
+      <created>1631663314940</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1631663314940</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,8 +901,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="(hopfully) fixed bug with jei disapearing." />
-    <MESSAGE value="(hopfully) fixed bug with jei disapearing.&#10;disabled update 2.1.0 items as to update 2.0.1 with a bug fix" />
     <MESSAGE value="hopefully this is the commit for the 2.1.0 release for Weapons" />
     <MESSAGE value="fixed server bug. now ready for 2.1.0 release" />
     <MESSAGE value="almost forgot the scythe recipe" />
@@ -477,7 +924,9 @@
     <MESSAGE value="1.17.1 renaming dump" />
     <MESSAGE value="fixed arrow entity render and re-added mixin features" />
     <MESSAGE value="finished out ECItems.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished out ECItems.java" />
+    <MESSAGE value="added ItemModelsProperties that were previously in the mod" />
+    <MESSAGE value="more mass conversion" />
+    <option name="LAST_COMMIT_MESSAGE" value="more mass conversion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

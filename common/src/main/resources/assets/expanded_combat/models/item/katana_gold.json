@@ -1,7 +1,19 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "expanded_combat:item/katana_gold"
-	}
+	"parent": "builtin/entity",
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"large": 1
+			},
+			"model": "item/large/katana_gold"
+		},
+		{
+			"predicate": {
+				"large": 0.5
+			},
+			"model": "item/small/katana_gold"
+		}
+	]
 }

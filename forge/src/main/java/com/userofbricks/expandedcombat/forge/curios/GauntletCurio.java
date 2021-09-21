@@ -35,12 +35,12 @@ public class GauntletCurio implements ICurio {
     }
 
     public void onEquipFromUse(SlotContext slotContext) {
-        LivingEntity livingEntity = slotContext.getWearer();
+        LivingEntity livingEntity = slotContext.entity();
         livingEntity.level.playSound(null, new BlockPos(livingEntity.position()), getGauntlet().getMaterial().getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        String identifier = slotContext.getIdentifier();
+        String identifier = slotContext.identifier();
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
             double attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();

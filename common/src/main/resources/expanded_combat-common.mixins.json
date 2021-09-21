@@ -1,9 +1,12 @@
 {
   "required": true,
   "package": "com.userofbricks.expandedcombat.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "BlockEntityWithoutLevelRendererMixin"
+    "AbstractContainerMenuAccessor",
+    "ArrowKnockbackEnchantmentMixin",
+    "BlockEntityWithoutLevelRendererMixin",
+    "KnockbackEnchantmentMixin"
   ],
   "client": [],
   "server": [],

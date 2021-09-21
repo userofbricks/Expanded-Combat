@@ -1,8 +1,19 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "expanded_combat:item/dancers_sword_dye",
-		"layer1": "expanded_combat:item/dancers_sword_fiery"
-	}
+	"parent": "builtin/entity",
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"large": 1
+			},
+			"model": "item/large/dancers_sword_fiery"
+		},
+		{
+			"predicate": {
+				"large": 0.5
+			},
+			"model": "item/small/dancers_sword_fiery"
+		}
+	]
 }

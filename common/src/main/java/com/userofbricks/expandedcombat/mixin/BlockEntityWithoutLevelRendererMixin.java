@@ -2,7 +2,9 @@ package com.userofbricks.expandedcombat.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expandedcombat.client.renderer.model.ECShieldBlockEntityWithoutLevelRenderer;
+import com.userofbricks.expandedcombat.client.renderer.model.ECWeaponBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
+import com.userofbricks.expandedcombat.item.ECWeaponItem;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -17,10 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class BlockEntityWithoutLevelRendererMixin {
 
     @Inject(method = { "renderByItem" }, at = { @At("HEAD") })
-    private void renderByItem(ItemStack itemStack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, CallbackInfo ci) {
+    public void renderByItem(ItemStack itemStack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, CallbackInfo ci) {
         Item item = itemStack.getItem();
         if (item instanceof ECShieldItem) {
             ECShieldBlockEntityWithoutLevelRenderer.renderByItem(itemStack, transformType, poseStack, multiBufferSource, i, j);
+        } else if (item instanceof ECWeaponItem && ((ECWeaponItem)item).getWeaponType().isHasLarge()) {
+            ECWeaponBlockEntityWithoutLevelRenderer.renderByItem(itemStack, transformType, poseStack, multiBufferSource, i, j);
         }
     }
 }

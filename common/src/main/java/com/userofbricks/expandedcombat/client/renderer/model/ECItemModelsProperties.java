@@ -2,10 +2,12 @@ package com.userofbricks.expandedcombat.client.renderer.model;
 
 import com.userofbricks.expandedcombat.item.ECBowItem;
 import com.userofbricks.expandedcombat.item.ECCrossBowItem;
+import com.userofbricks.expandedcombat.item.ECWeaponItem;
 import com.userofbricks.expandedcombat.registries.ECItems;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
@@ -27,6 +29,8 @@ public class ECItemModelsProperties
                 RegisterProperty(registryItem.get(), ECItemModelsProperties.Properties.CROSSBOW_PULLING.getResourcelocation(), ECItemModelsProperties.Properties.CROSSBOW_PULLING.getFunction());
                 RegisterProperty(registryItem.get(), ECItemModelsProperties.Properties.CROSSBOW_CHARGED.getResourcelocation(), ECItemModelsProperties.Properties.CROSSBOW_CHARGED.getFunction());
                 RegisterProperty(registryItem.get(), ECItemModelsProperties.Properties.CROSSBOW_FIREWORK.getResourcelocation(), ECItemModelsProperties.Properties.CROSSBOW_FIREWORK.getFunction());
+            } else if (registryItem.get() instanceof ECWeaponItem && ((ECWeaponItem)registryItem.get()).getWeaponType().isHasLarge()) {
+                RegisterProperty(registryItem.get(), ECItemModelsProperties.Properties.LARGE_WEAPON.getResourcelocation(), ECItemModelsProperties.Properties.LARGE_WEAPON.getFunction());
             }
         }
     }
@@ -44,6 +48,11 @@ public class ECItemModelsProperties
         ,CROSSBOW_PULLING(new ResourceLocation("pulling"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F)
         ,CROSSBOW_CHARGED(new ResourceLocation("charged"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F)
         ,CROSSBOW_FIREWORK(new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F)
+        ,LARGE_WEAPON(new ResourceLocation("large"), (itemStack, clientLevel, livingEntity, i) -> {
+            CompoundTag compoundTag = itemStack.getTag();
+            if (livingEntity == null || compoundTag == null) return 0.0f;
+            return ECWeaponItem.isLarge(itemStack) ? 1.0F : ECWeaponItem.isSmall(itemStack) ? 0.5F : 0.0f;
+        } )
         ;
         private final ResourceLocation resourcelocation;
         private final ClampedItemPropertyFunction function;

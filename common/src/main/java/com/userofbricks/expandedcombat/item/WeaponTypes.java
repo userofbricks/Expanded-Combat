@@ -4,21 +4,21 @@ import net.minecraft.network.chat.TranslatableComponent;
 
 public enum WeaponTypes implements IWeaponType
 {
-    battlestaff("battlestaff", -2, -1.4f, 1.5, 1.0f, 0.1f, true, false, WieldingType.TWOHANDED),
-    broadsword("broadsword", 3, -3.0f, 0.5, 0.0f, 0.0f, true, false, WieldingType.ONEHANDED),
-    claymore("claymore", 2, -3.0f, 1.0, 0.0f, 0.0f, true, false, WieldingType.TWOHANDED),
-    cutlass("cutlass", 0, -2.2f, 0.0, 0.0f, 0.2f, false, false, WieldingType.ONEHANDED),
-    dagger("dagger", -1, -1.2f, 0.0, 0.0f, 0.1f, false, false, WieldingType.DUALWIELD),
-    dancers_sword("dancers_sword", 2, -1.8f, 0.0, 0.0f, 0.2f, true, false, WieldingType.ONEHANDED),
-    flail("flail", 4, -3.4f, 1.0, 0.5f, 0.0f, false, false, WieldingType.ONEHANDED),
-    glaive("glaive", 3, -3.2f, 2.0, 0.5f, 0.1f, true, false, WieldingType.TWOHANDED),
-    great_hammer("great_hammer", 5, -1.2f, 0.0, 1.0f, 0.0f, false, false, WieldingType.ONEHANDED),
-    katana("katana", 2, -2.4f, 0.5, 0.0f, 0.0f, false, false, WieldingType.ONEHANDED),
-    mace("mace", 4, -3.2f, 0.0, 0.5f, 0.0f, false, false, WieldingType.ONEHANDED),
-    //rapier("rapier", 1, -2.2f, 0.0, 0.0f, 0.0f, dyable, WieldingType.ONEHANDED),
-    scythe("scythe", 4, -3.4f, 2.0, 1.0f, 0.1f, false, true, WieldingType.TWOHANDED),
-    sickle("sickle", 0, -1.8f, 0.0, 0.0f, 0.2f, false, false, WieldingType.DUALWIELD),
-    spear("spear", 3, -3.4f, 2.0, 0.5f, 0.1f, false, false, WieldingType.TWOHANDED);
+    battlestaff("battlestaff", -2, -1.4f, 1.5, 1.0f, 0.1f, true, false, true, WieldingType.TWOHANDED),
+    broadsword("broadsword", 3, -3.0f, 0.5, 0.0f, 0.0f, true, false, true, WieldingType.ONEHANDED),
+    claymore("claymore", 2, -3.0f, 1.0, 0.0f, 0.0f, true, false, true, WieldingType.TWOHANDED),
+    cutlass("cutlass", 0, -2.2f, 0.0, 0.0f, 0.2f, false, false, false, WieldingType.ONEHANDED),
+    dagger("dagger", -1, -1.2f, 0.0, 0.0f, 0.1f, false, false, false, WieldingType.DUALWIELD),
+    dancers_sword("dancers_sword", 2, -1.8f, 0.0, 0.0f, 0.2f, true, false, true, WieldingType.ONEHANDED),
+    flail("flail", 4, -3.4f, 1.0, 0.5f, 0.0f, false, false, false, WieldingType.ONEHANDED),
+    glaive("glaive", 3, -3.2f, 2.0, 0.5f, 0.1f, true, false, true, WieldingType.TWOHANDED),
+    great_hammer("great_hammer", 5, -1.2f, 0.0, 1.0f, 0.0f, false, false, false, WieldingType.ONEHANDED),
+    katana("katana", 2, -2.4f, 0.5, 0.0f, 0.0f, false, false, true, WieldingType.ONEHANDED),
+    mace("mace", 4, -3.2f, 0.0, 0.5f, 0.0f, false, false, false, WieldingType.ONEHANDED),
+    //rapier("rapier", 1, -2.2f, 0.0, 0.0f, 0.0f, true, true, true, WieldingType.ONEHANDED),
+    scythe("scythe", 4, -3.4f, 2.0, 1.0f, 0.1f, false, true, true, WieldingType.TWOHANDED),
+    sickle("sickle", 0, -1.8f, 0.0, 0.0f, 0.2f, false, false, false, WieldingType.DUALWIELD),
+    spear("spear", 3, -3.4f, 2.0, 0.5f, 0.1f, false, false, true, WieldingType.TWOHANDED);
 
     private final String translationName;
     private final int attackDamage;
@@ -29,8 +29,9 @@ public enum WeaponTypes implements IWeaponType
     private final WieldingType wieldType;
     private final boolean dyable;
     private final boolean hasPotion;
+    private final boolean hasLarge;
 
-    WeaponTypes(String translationName, int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, boolean dyable, boolean hasPotion, WieldingType wieldType) {
+    WeaponTypes(String translationName, int attackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, boolean dyable, boolean hasPotion, boolean hasLarge, WieldingType wieldType) {
         this.translationName = translationName;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
@@ -39,6 +40,7 @@ public enum WeaponTypes implements IWeaponType
         this.knockback = knockback;
         this.dyable = dyable;
         this.hasPotion = hasPotion;
+        this.hasLarge = hasLarge;
         this.wieldType = wieldType;
     }
 
@@ -91,7 +93,12 @@ public enum WeaponTypes implements IWeaponType
     public WieldingType getWieldingType() {
         return this.wieldType;
     }
-    
+
+    @Override
+    public boolean isHasLarge() {
+        return hasLarge;
+    }
+
     public enum WieldingType
     {
         ONEHANDED, 

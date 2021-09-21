@@ -23,4 +23,6 @@ public interface IWeaponType
     boolean hasPotion();
 
     WeaponTypes.WieldingType getWieldingType();
+
+    boolean isHasLarge();
 }
