@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed the issue with mixinGradle by replacing with forked version.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" afterDir="false" />
-    </list>
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -391,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627861484307</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat.">
+      <created>1632249290317</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1632249290317</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,6 +433,7 @@
     <MESSAGE value="added config for arrow damage and bow power." />
     <MESSAGE value="fixed bugs in fletching recipe system as well as them showing in jei" />
     <MESSAGE value="added config for gauntlet armor and damage attributes." />
-    <option name="LAST_COMMIT_MESSAGE" value="added config for gauntlet armor and damage attributes." />
+    <MESSAGE value="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat." />
   </component>
 </project>
