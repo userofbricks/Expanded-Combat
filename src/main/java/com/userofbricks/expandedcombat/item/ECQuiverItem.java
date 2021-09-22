@@ -70,10 +70,11 @@ public class ECQuiverItem extends Item implements ICurioItem
     public void sycleArrows(LivingEntity livingEntity, IDynamicStackHandler curioStackHandler, boolean forward) {
         int arrowSlot = (int) VariableUtil.getArrowSlot(livingEntity);
         int currentCheck = arrowSlot + (forward ? 1 : -1);
+        if (currentCheck > providedSlots - 1) currentCheck = 0;
         while (curioStackHandler.getStackInSlot(currentCheck).isEmpty() && slotsChecked <= providedSlots) {
             slotsChecked++;
             currentCheck += (forward ? 1 : -1);
-            if (currentCheck > providedSlots) currentCheck = 0;
+            if (currentCheck > providedSlots - 1) currentCheck = 0;
         }
         VariableUtil.setArrowSlotTo(livingEntity, currentCheck);
     }
