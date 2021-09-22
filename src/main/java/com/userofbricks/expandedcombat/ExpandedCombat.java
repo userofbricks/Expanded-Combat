@@ -1,11 +1,8 @@
 package com.userofbricks.expandedcombat;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.client.renderer.ECLayerDefinitions;
 import com.userofbricks.expandedcombat.client.renderer.GauntletRenderer;
-import com.userofbricks.expandedcombat.client.renderer.QuiverArrowsRenderer;
 import com.userofbricks.expandedcombat.client.renderer.QuiverRenderer;
 import com.userofbricks.expandedcombat.client.renderer.entity.ECArrowEntityRenderer;
 import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ECCuriosQuiverScreen;
@@ -21,12 +18,14 @@ import com.userofbricks.expandedcombat.enchentments.ECEnchantments;
 import com.userofbricks.expandedcombat.entity.AttributeRegistry;
 import com.userofbricks.expandedcombat.entity.ECEntities;
 import com.userofbricks.expandedcombat.events.GauntletEvents;
+import com.userofbricks.expandedcombat.events.PlayerVariablesEvents;
 import com.userofbricks.expandedcombat.events.QuiverEvents;
 import com.userofbricks.expandedcombat.events.ShieldEvents;
 import com.userofbricks.expandedcombat.inventory.container.ECContainers;
 import com.userofbricks.expandedcombat.item.*;
 import com.userofbricks.expandedcombat.item.recipes.RecipeSerializerInit;
 import com.userofbricks.expandedcombat.network.NetworkHandler;
+import com.userofbricks.expandedcombat.network.variables.PlayerVariables;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -35,7 +34,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeableLeatherItem;
@@ -50,6 +48,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -67,7 +66,6 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.fmllegacy.packs.ModFileResourcePack;
 import net.minecraftforge.fmllegacy.packs.ResourcePackLoader;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -77,8 +75,6 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.function.Predicate;
 
 @Mod("expanded_combat")
@@ -116,6 +112,7 @@ public class ExpandedCombat
         MinecraftForge.EVENT_BUS.register(new ShieldEvents());
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.addListener(ShieldEvents::ShieldBlockEvent);
+        MinecraftForge.EVENT_BUS.register(new PlayerVariablesEvents());
         if (FMLEnvironment.dist == Dist.CLIENT) {
             //MinecraftForge.EVENT_BUS.addListener(this::registerEntityModels);
             MinecraftForge.EVENT_BUS.addListener(QuiverEvents::drawSlotBack);

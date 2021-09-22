@@ -11,10 +11,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.userofbricks.expandedcombat.client.KeyRegistry;
 import com.userofbricks.expandedcombat.config.ECClientConfig;
+import com.userofbricks.expandedcombat.util.VariableUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
@@ -43,7 +46,9 @@ public class HudElementQuiverAmmo extends HudElement
         String currentAmmoStr = "";
         String beforeAmmoStr = "";
         String nextAmmoStr = "";
-        int currentIndex = 0;
+        LocalPlayer player = Minecraft.getInstance().player;
+        assert player != null;
+        int currentIndex = (int) VariableUtil.getArrowSlot(player);
         int beforeIndex = quiverSize - 1;
         ItemStack currentArrow = this.arrowHandler.getStackInSlot(currentIndex).copy();
         if (currentArrow.isEmpty()) {

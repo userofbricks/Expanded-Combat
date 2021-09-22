@@ -1,6 +1,7 @@
 package com.userofbricks.expandedcombat.item;
 
 import com.userofbricks.expandedcombat.client.KeyRegistry;
+import com.userofbricks.expandedcombat.util.VariableUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.LivingEntity;
@@ -56,37 +57,24 @@ public class ECQuiverItem extends Item implements ICurioItem
                 stack.getOrCreateTag().putInt("countdown_ticks", countdownTicks - 1);
             }
             if (KeyRegistry.cycleQuiverLeft.isDown() && countdownTicks == 0) {
-                sycleArrows(curioStackHandler, false);
+                sycleArrows(livingEntity, curioStackHandler, false);
                 stack.getOrCreateTag().putInt("countdown_ticks", 5);
             }
             if (KeyRegistry.cycleQuiverRight.isDown() && countdownTicks == 0) {
-                sycleArrows(curioStackHandler, true);
+                sycleArrows(livingEntity, curioStackHandler, true);
                 stack.getOrCreateTag().putInt("countdown_ticks", 5);
             }
         });
     }
 
-    public void sycleArrows(IDynamicStackHandler curioStackHandler, boolean forward) {
-        Map<Integer , ItemStack> stacks = new LinkedHashMap<>();
-        for (int i = 0; i < curioStackHandler.getSlots(); i++) {
-            ItemStack arrowstack = curioStackHandler.getStackInSlot(i).copy();
-            stacks.put(i, arrowstack);
-        }
-        for (int i = 0; i < curioStackHandler.getSlots(); i++) {
-            int stackIndex = i + (forward ? 1 : -1);
-            if (stackIndex < 0) {
-                stackIndex = curioStackHandler.getSlots() -1;
-            }
-            if (stackIndex >= curioStackHandler.getSlots()) {
-                stackIndex = 0;
-            }
-            curioStackHandler.setStackInSlot(i, stacks.getOrDefault(stackIndex, ItemStack.EMPTY));
-        }
-        if (curioStackHandler.getStackInSlot(0).isEmpty() && slotsChecked <= providedSlots) {
+    public void sycleArrows(LivingEntity livingEntity, IDynamicStackHandler curioStackHandler, boolean forward) {
+        int arrowSlot = (int) VariableUtil.getArrowSlot(livingEntity);
+        int currentCheck = arrowSlot + (forward ? 1 : -1);
+        while (curioStackHandler.getStackInSlot(currentCheck).isEmpty() && slotsChecked <= providedSlots) {
             slotsChecked++;
-            sycleArrows(curioStackHandler, forward);
-        } else {
-            slotsChecked = 0;
+            currentCheck += (forward ? 1 : -1);
+            if (currentCheck > providedSlots) currentCheck = 0;
         }
+        VariableUtil.setArrowSlotTo(livingEntity, currentCheck);
     }
 }

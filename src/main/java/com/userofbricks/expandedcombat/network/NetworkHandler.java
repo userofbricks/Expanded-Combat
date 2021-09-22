@@ -2,6 +2,7 @@ package com.userofbricks.expandedcombat.network;
 
 import com.userofbricks.expandedcombat.ExpandedCombat;
 import com.userofbricks.expandedcombat.network.client.*;
+import com.userofbricks.expandedcombat.network.variables.PlayerVariablesSyncMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fmllegacy.network.NetworkEvent;
@@ -26,6 +27,8 @@ public class NetworkHandler {
                 .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)
                 .serverAcceptedVersions(PTC_VERSION::equals).simpleChannel();
 
+        register(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new,
+                 PlayerVariablesSyncMessage::handler);
         //Client Packets
         register(CPacketOpenCuriosQuiver.class, CPacketOpenCuriosQuiver::encode, CPacketOpenCuriosQuiver::decode,
                 CPacketOpenCuriosQuiver::handle);
