@@ -22,6 +22,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,7 +38,8 @@ public class ShieldEvents {
             ItemStack usedItemStack = playerEntity.getUseItem();
             DamageSource source = event.getSource();
             if (usedItemStack.isShield(playerEntity) && !(playerEntity.level.isClientSide || playerEntity.isInvulnerableTo(source) ||
-                    playerEntity.isDeadOrDying() || (source.isFire() && playerEntity.hasEffect(MobEffects.FIRE_RESISTANCE)))) {
+                    playerEntity.isDeadOrDying() || (source.isFire() && playerEntity.hasEffect(MobEffects.FIRE_RESISTANCE))) &&
+                    (usedItemStack.getItem() instanceof ECShieldItem || usedItemStack.getItem() == Items.SHIELD)) {
                 while (true) {
                     float amount = event.getAmount();
                     if (playerEntity.isSleeping() && !playerEntity.level.isClientSide) {
@@ -66,7 +68,7 @@ public class ShieldEvents {
                             }
                             f1 = baseBlocked + (amountNotBlocked * percentBlocked);
                             amount = amountNotBlocked * (1 - percentBlocked);
-                        } else {
+                        } else if (usedItemStack.getItem() == Items.SHIELD){
                             float amountNotBlocked = amount - 2;
                             if (amountNotBlocked < 0) {
                                 amountNotBlocked = 0;
