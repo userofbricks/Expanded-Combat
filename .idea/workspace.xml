@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="more mass conversion">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="updated to archloom 0.10.0-SHNAPSHOT">
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingContainerProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container/SmithingContainerProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/AbstractContainerScreenAccessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/mixin/PlayerAccessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/events/QuiverEvents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/forge/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/TODOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/TODOS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/ECClientEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/ECClientEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/events/HudEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/expanded_combat-common.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/forge/HudElementQuiverAmmoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/forge/HudElementQuiverAmmoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainerProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainerProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +78,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -108,7 +119,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3143969" />
@@ -121,11 +132,11 @@
       <recent name="com.userofbricks.expandedcombat.network.client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/inventory/container" />
       <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui" />
       <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/item/recipies" />
       <recent name="$PROJECT_DIR$/common/src/main/java/com/userofbricks/expandedcombat/network/client" />
       <recent name="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/forge/inventory/container" />
-      <recent name="$PROJECT_DIR$/forge/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/common/src/main/resources/assets/expanded_combat/models/item/large" />
@@ -141,8 +152,8 @@
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.userofbricks.expandedcombat.events" />
       <recent name="com.userofbricks.expandedcombat.mixin" />
+      <recent name="com.userofbricks.expandedcombat.events" />
       <recent name="com.userofbricks.expandedcombat.registries" />
       <recent name="com.userofbricks.expandedcombat.item.recipes" />
       <recent name="com.userofbricks.expandedcombat.inventory.container" />
@@ -456,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631663314940</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="updated to archloom 0.10.0-SHNAPSHOT">
+      <created>1632359037405</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1632359037405</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +491,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="hopefully this is the commit for the 2.1.0 release for Weapons" />
     <MESSAGE value="fixed server bug. now ready for 2.1.0 release" />
     <MESSAGE value="almost forgot the scythe recipe" />
     <MESSAGE value="alpha 0 for 2.2.0" />
@@ -498,7 +515,8 @@
     <MESSAGE value="finished out ECItems.java" />
     <MESSAGE value="added ItemModelsProperties that were previously in the mod" />
     <MESSAGE value="more mass conversion" />
-    <option name="LAST_COMMIT_MESSAGE" value="more mass conversion" />
+    <MESSAGE value="updated to archloom 0.10.0-SHNAPSHOT" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated to archloom 0.10.0-SHNAPSHOT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

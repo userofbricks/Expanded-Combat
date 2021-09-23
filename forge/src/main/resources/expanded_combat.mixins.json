@@ -3,9 +3,15 @@
   "package": "com.userofbricks.expandedcombat.mixin.forge",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "PiglinTasksMixin"
+    "AbstractArrowEntityMixin",
+    "ContainerAccessor",
+    "CurioContainerMixin",
+    "PiglinTasksMixin",
+    "PlayerEntityMixin"
   ],
-  "client": [],
+  "client": [
+    "GameRendererMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

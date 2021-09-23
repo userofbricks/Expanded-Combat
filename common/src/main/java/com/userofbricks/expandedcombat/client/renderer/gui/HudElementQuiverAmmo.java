@@ -24,7 +24,6 @@ public class HudElementQuiverAmmo extends HudElement
     protected static final ResourceLocation WIDGETS = new ResourceLocation("textures/gui/widgets.png");
     public static HudElementQuiverAmmo hudActive = null;
     protected ItemStack quiver;
-    protected int quiverSize;
 
     public HudElementQuiverAmmo(int elementWidth, int elementHeight, ItemStack quiverStack) {
         super(elementWidth, elementHeight);
@@ -32,10 +31,6 @@ public class HudElementQuiverAmmo extends HudElement
         this.setQuiver(quiverStack);
     }
 
-    public HudElementQuiverAmmo(int elementWidth, int elementHeight) {
-        super(elementWidth, elementHeight);
-    }
-    
     @Override
     public void render(PoseStack matrixStack, float partialTicks) {
         RenderSystem.assertThread(RenderSystem::isOnRenderThread);
@@ -44,13 +39,13 @@ public class HudElementQuiverAmmo extends HudElement
         }
         Minecraft mc = Minecraft.getInstance();
         Font font = mc.font;
-        //int quiverSize = this.getNumberOfArrowSlots();
+        int quiverSize = getNumberOfArrowSlots();
         String currentAmmoStr = "";
         String beforeAmmoStr = "";
         String nextAmmoStr = "";
         int currentIndex = 0;
         int beforeIndex = quiverSize - 1;
-        ItemStack currentArrow = this.getArrowInSlot(currentIndex).copy();
+        ItemStack currentArrow = getArrowInSlot(currentIndex).copy();
         if (currentArrow.isEmpty()) {
             currentArrow = getNextNonEmptyStack(currentIndex, quiverSize);
             currentIndex = getNextNonEmptyIndex(currentIndex, quiverSize);
@@ -59,7 +54,7 @@ public class HudElementQuiverAmmo extends HudElement
         if (nextIndex >= quiverSize) {
             nextIndex = 0;
         }
-        ItemStack nextArrow = this.getArrowInSlot(nextIndex).copy();
+        ItemStack nextArrow = getArrowInSlot(nextIndex).copy();
         if (nextArrow.isEmpty()) {
             nextArrow = getNextNonEmptyStack(currentIndex, quiverSize);
             nextIndex = getNextNonEmptyIndex(currentIndex, quiverSize);
@@ -67,7 +62,7 @@ public class HudElementQuiverAmmo extends HudElement
         if (beforeIndex < 0) {
             beforeIndex = quiverSize - 1;
         }
-        ItemStack beforeArrow = this.getArrowInSlot(beforeIndex).copy();
+        ItemStack beforeArrow = getArrowInSlot(beforeIndex).copy();
         if (beforeArrow.isEmpty()) {
             beforeArrow = getPreviousNonEmptyStack(currentIndex, quiverSize);
             beforeIndex = getPreviousNonEmptyIndex(currentIndex, quiverSize);
@@ -110,37 +105,37 @@ public class HudElementQuiverAmmo extends HudElement
     }
 
     @ExpectPlatform
-    public ItemStack setQuiver(Player player) {
+    public static ItemStack getQuiver(Player player) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private int getNumberOfArrowSlots() {
+    private static int getNumberOfArrowSlots() {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private ItemStack getArrowInSlot(int currentIndex) {
+    private static ItemStack getArrowInSlot(int currentIndex) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private ItemStack getNextNonEmptyStack(int currentSlot, int quiverSize) {
+    private static ItemStack getNextNonEmptyStack(int currentSlot, int quiverSize) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private ItemStack getPreviousNonEmptyStack(int currentSlot, int quiverSize) {
+    private static ItemStack getPreviousNonEmptyStack(int currentSlot, int quiverSize) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private int getNextNonEmptyIndex(int currentSlot, int quiverSize) {
+    private static int getNextNonEmptyIndex(int currentSlot, int quiverSize) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    private int getPreviousNonEmptyIndex(int currentSlot, int quiverSize) {
+    private static int getPreviousNonEmptyIndex(int currentSlot, int quiverSize) {
         throw new AssertionError();
     }
 }

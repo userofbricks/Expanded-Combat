@@ -4,9 +4,12 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "AbstractContainerMenuAccessor",
+    "AbstractContainerScreenAccessor",
     "ArrowKnockbackEnchantmentMixin",
     "BlockEntityWithoutLevelRendererMixin",
-    "KnockbackEnchantmentMixin"
+    "FletchingTableBlockMixin",
+    "KnockbackEnchantmentMixin",
+    "PlayerAccessor"
   ],
   "client": [],
   "server": [],

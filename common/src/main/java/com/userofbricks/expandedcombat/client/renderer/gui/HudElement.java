@@ -38,7 +38,7 @@ public abstract class HudElement
         }
     }
     
-    public int getAlignedY(final AlignmentHelper.Alignment align, final int offset) {
+    public int getAlignedY(AlignmentHelper.Alignment align, int offset) {
         switch (align) {
             case TOP_LEFT:
             case TOP_CENTER:
@@ -63,7 +63,7 @@ public abstract class HudElement
         }
     }
     
-    public HudElement(final int elementWidth, final int elementHeight) {
+    public HudElement(int elementWidth, int elementHeight) {
         this.width = elementWidth;
         this.height = elementHeight;
     }
@@ -76,5 +76,5 @@ public abstract class HudElement
         return this.height;
     }
     
-    public abstract void render(final PoseStack p0, final float p1);
+    public abstract void render(PoseStack p0, float p1);
 }

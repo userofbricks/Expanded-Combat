@@ -2,6 +2,7 @@ package com.userofbricks.expandedcombat.inventory.container;
 
 import com.mojang.datafixers.util.Pair;
 import com.userofbricks.expandedcombat.item.ECQuiverItem;
+import com.userofbricks.expandedcombat.mixin.AbstractContainerMenuAccessor;
 import com.userofbricks.expandedcombat.registries.forge.ECContainersImpl;
 import com.userofbricks.expandedcombat.util.QuiverUtil;
 import net.minecraft.network.FriendlyByteBuf;
@@ -63,7 +64,7 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
         super(playerInventory, playerInventory.player.level.isClientSide, playerInventory.player);
         this.menuType = ECContainersImpl.EC_QUIVER_CURIOS.get();
         this.containerId = windowId;
-        this.lastSlots.clear();
+        ((AbstractContainerMenuAccessor)this).getLastSlots().clear();
         this.slots.clear();
         this.player = playerInventory.player;
         this.isLocalWorld = this.player.level.isClientSide;
@@ -201,8 +202,8 @@ public class ECCuriosQuiverContainer extends InventoryMenu {
             int arrows = curioMap.get("arrows").getSlots();
             int quiver = curioMap.get("quiver").getSlots();
             this.slots.subList(41 + arrows + quiver, this.slots.size()).clear();
-            if (this.lastSlots != null) {
-                this.lastSlots.subList(41 + arrows + quiver, this.lastSlots.size()).clear();
+            if (((AbstractContainerMenuAccessor)this).getLastSlots() != null) {
+                ((AbstractContainerMenuAccessor)this).getLastSlots().subList(41 + arrows + quiver, ((AbstractContainerMenuAccessor)this).getLastSlots().size()).clear();
             }
 
             Iterator var7 = curioMap.keySet().iterator();

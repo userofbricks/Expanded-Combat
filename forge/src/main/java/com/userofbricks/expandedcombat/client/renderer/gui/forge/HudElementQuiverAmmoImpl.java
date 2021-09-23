@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import java.util.Optional;
 
 public class HudElementQuiverAmmoImpl {
-    public ItemStack setQuiver(Player player) {
+    public ItemStack getQuiver(Player player) {
         Optional<IDynamicStackHandler> optionalQuiverHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("quiver")).map(ICurioStacksHandler::getStacks);
         if (optionalQuiverHandler.isPresent()){
             IDynamicStackHandler quiverHandler = optionalQuiverHandler.get();

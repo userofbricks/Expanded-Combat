@@ -25,23 +25,17 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+public class ShieldSmithingContainerProvider implements MenuProvider {
 
-public class ECCuriosQuiverContainerProvider implements MenuProvider {
-
-  @Nonnull
   @Override
   public Component getDisplayName() {
-    return new TranslatableComponent("container.quiver");
+    return new TranslatableComponent("container.upgrade_shield");
   }
 
-  //createMenu
-  @Nullable
   @Override
-  public AbstractContainerMenu m_7208_(int i, @Nonnull Inventory playerInventory,
-                                          @Nonnull Player playerEntity) {
-    return new ECCuriosQuiverContainer(i, playerInventory);
+  public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
+    return new ShieldSmithingContainer(i, playerInventory, ContainerLevelAccess.NULL);
   }
 }
