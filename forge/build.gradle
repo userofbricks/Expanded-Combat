@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "5.0.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 configurations {
@@ -12,8 +12,10 @@ architectury {
 }
 
 loom {
-    mixinConfigs = ["expanded_combat.mixins.json", "expanded_combat-common.mixins.json"]
-    useFabricMixin = true
+    forge {
+        mixinConfigs = ["expanded_combat.mixins.json", "expanded_combat-common.mixins.json"]
+        //useFabricMixin = true
+    }
 }
 repositories {
     maven {

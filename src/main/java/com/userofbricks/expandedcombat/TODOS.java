@@ -8,6 +8,10 @@ package com.userofbricks.expandedcombat;
     this will allow acsess to far more powerfull enchantment capabilities but at a much higher cost (lapis Blocks instead of the item)
     the upgraded bookshelves will be togleable to allow acces to normal enchantments
  */
+// TODO NEXT UP: Events: HudEventHandler
+/* TODO IMPORTANT
+    update from 2.3.0 to 2.3.1 beta 0
+ */
 /* TODO
     Create a wiki:
     1. a page for weapons and there abilities
