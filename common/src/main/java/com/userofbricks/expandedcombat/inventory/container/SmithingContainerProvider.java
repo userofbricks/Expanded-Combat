@@ -19,6 +19,8 @@
 
 package com.userofbricks.expandedcombat.inventory.container;
 
+import dev.architectury.registry.menu.ExtendedMenuProvider;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
@@ -28,7 +30,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.SmithingMenu;
 
-public class SmithingContainerProvider implements MenuProvider {
+public class SmithingContainerProvider implements ExtendedMenuProvider {
 
   @Override
   public Component getDisplayName() {
@@ -39,4 +41,7 @@ public class SmithingContainerProvider implements MenuProvider {
   public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
     return new SmithingMenu(i, playerInventory, ContainerLevelAccess.NULL);
   }
+
+  @Override
+  public void saveExtraData(FriendlyByteBuf friendlyByteBuf) {}
 }

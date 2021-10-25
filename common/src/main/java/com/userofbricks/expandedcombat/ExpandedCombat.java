@@ -27,7 +27,6 @@ public class ExpandedCombat {
         ECAttributes.ATTRIBUTES.register();
         ECEnchantments.ENCHANTMENTS.register();
         ECItems.ITEMS.register();
-        ECItems.setAtributeModifiers();
         ECRecipeSerializers.RECIPE_SERIALIZERS.register();
         ECContainers.CONTAINER_TYPES.register();
         ECEntities.ENTITIES.register();
@@ -41,5 +40,9 @@ public class ExpandedCombat {
         ClientGuiEvent.RENDER_HUD.register(ECClientEvents::onRenderOverlayPost);
         ClientGuiEvent.INIT_POST.register(ECClientEvents::onInventoryGuiInit);
         ClientGuiEvent.RENDER_POST.register(ECClientEvents::drawTabs);
+    }
+
+    public static void commonSetup() {
+        ECItems.setAtributeModifiers();
     }
 }

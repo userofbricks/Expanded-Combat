@@ -30,6 +30,6 @@ side = "BOTH"
 [[dependencies.expanded_combat]]
 modId = "architectury"
 mandatory = true
-versionRange = "[2.3.23,)"
+versionRange = "[2.5.28,)"
 ordering = "AFTER"
 side = "BOTH"

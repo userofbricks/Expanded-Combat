@@ -200,8 +200,8 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
 
     protected void renderBg(@Nonnull PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         if (this.minecraft != null && this.minecraft.player != null) {
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.setShaderTexture(0, QUIVER_INVENTORY);
+            RenderSystem.m_157429_(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.m_157456_(0, QUIVER_INVENTORY);
             int i = this.leftPos;
             int j = this.topPos;
             this.blit(matrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -210,7 +210,7 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
                 if (slot instanceof CurioSlot && ((CurioSlot)slot).getIdentifier().equals("arrows")) {
                     int x = this.leftPos + slot.x - 1;
                     int y = this.topPos + slot.y - 1;
-                    RenderSystem.setShaderTexture(0, QUIVER_INVENTORY);
+                    RenderSystem.m_157456_(0, QUIVER_INVENTORY);
                     this.blit(matrixStack, x, y, 176, 0, 18, 18);
                 }
             }
@@ -218,8 +218,8 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
                 int slotCount = handler.getVisibleSlots();
                 if (slotCount > 0) {
                     int upperHeight = 7 + Math.min(slotCount, 9) * 18;
-                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                    RenderSystem.setShaderTexture(0, CURIO_INVENTORY);
+                    RenderSystem.m_157429_(1.0F, 1.0F, 1.0F, 1.0F);
+                    RenderSystem.m_157456_(0, CURIO_INVENTORY);
                     int xTexOffset = 0;
                     int width = 27;
                     int xOffset = -26;
@@ -234,7 +234,7 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
                         this.blit(matrixStack, i + xOffset, j + 4 + upperHeight, xTexOffset, 151, width, 7);
                     } else {
                         this.blit(matrixStack, i + xOffset - 16, j + 4, 27, 0, 23, 158);
-                        RenderSystem.setShaderTexture(0, CREATIVE_INVENTORY_TABS);
+                        RenderSystem.m_157456_(0, CREATIVE_INVENTORY_TABS);
                         this.blit(matrixStack, i + xOffset - 8, j + 12 + (int)(127.0F * currentScroll), 232, 0, 12, 15);
                     }
 
@@ -242,7 +242,7 @@ public class ECCuriosQuiverScreen  extends AbstractContainerScreen<ECCuriosQuive
                         if (slot instanceof CosmeticCurioSlot) {
                             int x = this.leftPos + slot.x - 1;
                             int y = this.topPos + slot.y - 1;
-                            RenderSystem.setShaderTexture(0, CURIO_INVENTORY);
+                            RenderSystem.m_157456_(0, CURIO_INVENTORY);
                             this.blit(matrixStack, x, y, 138, 0, 18, 18);
                         }
                     }

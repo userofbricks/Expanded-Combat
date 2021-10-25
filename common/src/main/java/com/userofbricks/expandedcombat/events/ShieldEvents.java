@@ -1,16 +1,10 @@
 package com.userofbricks.expandedcombat.events;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldButton;
-import com.userofbricks.expandedcombat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expandedcombat.item.ECShieldItem;
+import com.userofbricks.expandedcombat.mixin.LivingEntityAccessor;
 import com.userofbricks.expandedcombat.mixin.PlayerAccessor;
-import dev.architectury.annotations.ForgeEvent;
 import dev.architectury.event.EventResult;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.SmithingScreen;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -81,15 +75,15 @@ public class ShieldEvents {
                     playerEntity.animationSpeed = 1.5F;
                     boolean flag1 = true;
                     if ((float) playerEntity.invulnerableTime > 10.0F) {
-                        if (amount <= ((PlayerAccessor) playerEntity).getLastHurt()) {
+                        if (amount <= ((LivingEntityAccessor) playerEntity).getLastHurt()) {
                             break;
                         }
 
-                        ((PlayerAccessor) playerEntity).invokeActuallyHurt(source, amount - ((PlayerAccessor) playerEntity).getLastHurt());
-                        ((PlayerAccessor) playerEntity).setLastHurt(amount);
+                        ((PlayerAccessor) playerEntity).invokeActuallyHurt(source, amount - ((LivingEntityAccessor) playerEntity).getLastHurt());
+                        ((LivingEntityAccessor) playerEntity).setLastHurt(amount);
                         flag1 = false;
                     } else {
-                        ((PlayerAccessor) playerEntity).setLastHurt(amount);
+                        ((LivingEntityAccessor) playerEntity).setLastHurt(amount);
                         playerEntity.invulnerableTime = 20;
                         ((PlayerAccessor) playerEntity).invokeActuallyHurt(source, amount);
                         playerEntity.hurtDuration = 10;
@@ -104,16 +98,16 @@ public class ShieldEvents {
                         }
 
                         if (entity1 instanceof Player) {
-                            ((PlayerAccessor) playerEntity).setLastHurtByPlayerTime(100);
-                            ((PlayerAccessor) playerEntity).setLastHurtByPlayer((Player) entity1);
+                            ((LivingEntityAccessor) playerEntity).setLastHurtByPlayerTime(100);
+                            ((LivingEntityAccessor) playerEntity).setLastHurtByPlayer((Player) entity1);
                         } else if (entity1 instanceof TamableAnimal wolfentity) {
                             if (wolfentity.isTame()) {
-                                ((PlayerAccessor) playerEntity).setLastHurtByPlayerTime(100);
+                                ((LivingEntityAccessor) playerEntity).setLastHurtByPlayerTime(100);
                                 LivingEntity livingentity = wolfentity.getOwner();
                                 if (livingentity != null && livingentity.getType() == EntityType.PLAYER) {
-                                    ((PlayerAccessor) playerEntity).setLastHurtByPlayer((Player) livingentity);
+                                    ((LivingEntityAccessor) playerEntity).setLastHurtByPlayer((Player) livingentity);
                                 } else {
-                                    ((PlayerAccessor) playerEntity).setLastHurtByPlayer(null);
+                                    ((LivingEntityAccessor) playerEntity).setLastHurtByPlayer(null);
                                 }
                             }
                         }
@@ -141,7 +135,7 @@ public class ShieldEvents {
                         }
 
                         if (source != DamageSource.DROWN && (!flag || amount > 0.0F)) {
-                            ((PlayerAccessor) playerEntity).invokeMarkHurt();
+                            ((LivingEntityAccessor) playerEntity).invokeMarkHurt();
                         }
 
                         if (entity1 != null) {
@@ -160,7 +154,7 @@ public class ShieldEvents {
                     }
 
                     if (playerEntity.isDeadOrDying()) {
-                        if (!((PlayerAccessor) playerEntity).invokeCheckTotemDeathProtection(source)) {
+                        if (!((LivingEntityAccessor) playerEntity).invokeCheckTotemDeathProtection(source)) {
                             SoundEvent soundevent = SoundEvents.PLAYER_DEATH;
                             if (flag1 && soundevent != null) {
                                 playerEntity.playSound(soundevent, 1.0F, (playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.2F + 1.0F);
@@ -169,13 +163,13 @@ public class ShieldEvents {
                             playerEntity.die(source);
                         }
                     } else if (flag1) {
-                        ((PlayerAccessor) playerEntity).invokePlayHurtSound(source);
+                        ((LivingEntityAccessor) playerEntity).invokePlayHurtSound(source);
                     }
 
                     boolean flag2 = !flag || amount > 0.0F;
                     if (flag2) {
-                        ((PlayerAccessor) playerEntity).setLastDamageSource(source);
-                        ((PlayerAccessor) playerEntity).setLastDamageStamp(playerEntity.level.getGameTime());
+                        ((LivingEntityAccessor) playerEntity).setLastDamageSource(source);
+                        ((LivingEntityAccessor) playerEntity).setLastDamageStamp(playerEntity.level.getGameTime());
                     }
 
                     if (playerEntity instanceof ServerPlayer) {

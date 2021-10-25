@@ -21,7 +21,7 @@ public abstract class ItemStackMixin{
     private void getMaxDamage(CallbackInfoReturnable<Integer> cir) {
         if (this.getItem() instanceof IItemStackBasedMaxDamage) {
             CompoundTag compoundTag = new CompoundTag();
-            cir.setReturnValue(((IItemStackBasedMaxDamage)this.getItem()).getMaxDamage(this));
+            cir.setReturnValue(((IItemStackBasedMaxDamage)this.getItem()).getMaxDamage(ItemStack.of(this.save(compoundTag))));
         }
     }
 }

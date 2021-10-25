@@ -24,8 +24,6 @@ import dev.architectury.networking.NetworkManager;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
@@ -40,8 +38,6 @@ public class CPacketOpenShieldSmithing {
 
   /**
    * {@link MenuRegistry} for openExtendedMenu
-   * @param msg
-   * @param ctx
    */
   public static void handle(CPacketOpenShieldSmithing msg, Supplier<NetworkManager.PacketContext> ctx) {
     ctx.get().queue(() -> {

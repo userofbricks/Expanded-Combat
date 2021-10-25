@@ -34,7 +34,7 @@ dependencies {
 
     modImplementation("top.theillusivec4.curios:curios-forge:${rootProject.minecraft_version}-${rootProject.curios_version}")
     modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config}"
-    shadow "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config}"
+    //shadow "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config}"
     implementation "org.spongepowered:mixin:0.8.4-SNAPSHOT"
 
     implementation(project(path: ":common")) {

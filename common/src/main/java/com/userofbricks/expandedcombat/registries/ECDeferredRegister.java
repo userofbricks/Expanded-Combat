@@ -21,7 +21,7 @@ public class ECDeferredRegister<T> {
     private final List<ECDeferredRegister<T>.Entry<T>> entries = new ArrayList();
     private boolean registered = false;
     @Nullable
-    private String modId;
+    private final String modId;
 
     private ECDeferredRegister(Supplier<Registries> registriesSupplier, ResourceKey<Registry<T>> key, @Nullable String modId) {
         this.registriesSupplier = Objects.requireNonNull(registriesSupplier);
@@ -33,7 +33,7 @@ public class ECDeferredRegister<T> {
         Supplier<Registries> value = Suppliers.memoize(() -> {
             return Registries.get(modId);
         });
-        return new ECDeferredRegister(value, key, Objects.requireNonNull(modId));
+        return new ECDeferredRegister<>(value, key, Objects.requireNonNull(modId));
     }
 
     public <R extends T> RegistrySupplier<R> register(String id, Supplier<? extends R> supplier) {

@@ -33,12 +33,14 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmlclient.ConfigGuiHandler;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -65,9 +67,10 @@ public class ExpandedCombatForge {
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(ExpandedCombat.MOD_ID, bus);
         bus.addListener(this::clientSetup);
+        bus.addListener(this::commonSetup);
         ExpandedCombat.init();
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::registerModsPage);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExpandedCombat::clientInit);
+        //DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExpandedCombat::clientInit);
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::attachCaps);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
@@ -102,7 +105,12 @@ public class ExpandedCombatForge {
         }
     }
 
+    private void commonSetup(FMLCommonSetupEvent event) {
+        ExpandedCombat.commonSetup();
+    }
+
     private void clientSetup(FMLClientSetupEvent event) {
+        ExpandedCombat.clientInit();
         MenuRegistry.registerScreenFactory(ECContainersImpl.EC_QUIVER_CURIOS.get(), ECCuriosQuiverScreen::new);
         for (RegistrySupplier<Item> object: ECItems.ITEMS.getEntries()) {
             Item item = object.get();

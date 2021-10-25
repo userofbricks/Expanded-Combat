@@ -9,6 +9,7 @@
     "BlockEntityWithoutLevelRendererMixin",
     "FletchingTableBlockMixin",
     "KnockbackEnchantmentMixin",
+    "LivingEntityAccessor",
     "PlayerAccessor"
   ],
   "client": [],
