@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="just a push">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECQuiverItem.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="hot fix for server quiver crash due to button checking.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +45,12 @@
                 <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="reimagined_quiver" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="forgegradle runs" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -245,11 +253,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
         <item itemvalue="Gradle.reimagined_quiver [clean]" />
         <item itemvalue="Gradle.reimagined_quiver [buildDependents]" />
-        <item itemvalue="Gradle.reimagined_quiver [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -452,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632338468633</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="hot fix for server quiver crash due to button checking.">
+      <created>1636594942430</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1636594942430</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,6 +481,17 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="1.17.1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
           </value>
         </entry>
@@ -475,7 +501,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="hopefully this is the commit for the 2.1.0 release for Weapons" />
     <MESSAGE value="fixed server bug. now ready for 2.1.0 release" />
     <MESSAGE value="almost forgot the scythe recipe" />
     <MESSAGE value="alpha 0 for 2.2.0" />
@@ -500,7 +525,8 @@
     <MESSAGE value="changed quiver arrow selection to a player variable instead of rotating the slot contents." />
     <MESSAGE value="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat." />
     <MESSAGE value="fix: gold armor not protecting from piglins&#10;minor player variable fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: gold armor not protecting from piglins&#10;minor player variable fix" />
+    <MESSAGE value="hot fix for server quiver crash due to button checking." />
+    <option name="LAST_COMMIT_MESSAGE" value="hot fix for server quiver crash due to button checking." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
