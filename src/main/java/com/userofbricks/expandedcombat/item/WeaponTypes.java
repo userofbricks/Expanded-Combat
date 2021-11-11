@@ -12,7 +12,7 @@ public enum WeaponTypes implements IWeaponType
     dancers_sword("dancers_sword", 2, -1.8f, 0.0, 0.0f, 0.2f, WieldingType.ONEHANDED),
     flail("flail", 4, -3.4f, 1.0, 0.5f, 0.0f, WieldingType.ONEHANDED),
     glaive("glaive", 3, -3.2f, 2.0, 0.5f, 0.1f, WieldingType.TWOHANDED),
-    great_hammer("great_hammer", 5, -1.2f, 0.0, 1.0f, 0.0f, WieldingType.ONEHANDED),
+    great_hammer("great_hammer", 5, -3.3f, 0.0, 1.0f, 0.0f, WieldingType.ONEHANDED),
     katana("katana", 2, -2.4f, 0.5, 0.0f, 0.0f, WieldingType.ONEHANDED),
     mace("mace", 4, -3.2f, 0.0, 0.5f, 0.0f, WieldingType.ONEHANDED),
     rapier("rapier", 1, -2.2f, 0.0, 0.0f, 0.0f, WieldingType.ONEHANDED),
