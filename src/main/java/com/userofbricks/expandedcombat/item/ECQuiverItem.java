@@ -101,13 +101,15 @@ public class ECQuiverItem extends Item implements ICurioItem
             if (countdownTicks > 0) {
                 stack.getOrCreateTag().putInt("countdown_ticks", countdownTicks - 1);
             }
-            if (KeyRegistry.cycleQuiverLeft.isDown() && countdownTicks == 0) {
-                sycleArrows(livingEntity, curioStackHandler, false);
-                stack.getOrCreateTag().putInt("countdown_ticks", 5);
-            }
-            if (KeyRegistry.cycleQuiverRight.isDown() && countdownTicks == 0) {
-                sycleArrows(livingEntity, curioStackHandler, true);
-                stack.getOrCreateTag().putInt("countdown_ticks", 5);
+            if (livingEntity.level.isClientSide()) {
+                if (KeyRegistry.cycleQuiverLeft.isDown() && countdownTicks == 0) {
+                    sycleArrows(livingEntity, curioStackHandler, false);
+                    stack.getOrCreateTag().putInt("countdown_ticks", 5);
+                }
+                if (KeyRegistry.cycleQuiverRight.isDown() && countdownTicks == 0) {
+                    sycleArrows(livingEntity, curioStackHandler, true);
+                    stack.getOrCreateTag().putInt("countdown_ticks", 5);
+                }
             }
         });
     }
