@@ -97,11 +97,11 @@ public class ECQuiverItem extends Item implements ICurioItem
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
         CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).map(ICuriosItemHandler::getCurios).map(stringICurioStacksHandlerMap -> stringICurioStacksHandlerMap.get("arrows")).map(ICurioStacksHandler::getStacks).ifPresent(curioStackHandler -> {
-            int countdownTicks = stack.getOrCreateTag().getInt("countdown_ticks");
-            if (countdownTicks > 0) {
-                stack.getOrCreateTag().putInt("countdown_ticks", countdownTicks - 1);
-            }
             if (livingEntity.level.isClientSide()) {
+                int countdownTicks = stack.getOrCreateTag().getInt("countdown_ticks");
+                if (countdownTicks > 0) {
+                    stack.getOrCreateTag().putInt("countdown_ticks", countdownTicks - 1);
+                }
                 if (KeyRegistry.cycleQuiverLeft.isDown() && countdownTicks == 0) {
                     sycleArrows(livingEntity, curioStackHandler, false);
                     stack.getOrCreateTag().putInt("countdown_ticks", 5);
@@ -117,11 +117,13 @@ public class ECQuiverItem extends Item implements ICurioItem
     public void sycleArrows(LivingEntity livingEntity, IDynamicStackHandler curioStackHandler, boolean forward) {
         int arrowSlot = (int)VariableUtil.getArrowSlot(livingEntity);
         int currentCheck = arrowSlot + (forward ? 1 : -1);
-        if (currentCheck > providedSlots - 1) currentCheck = 0;
-        while (curioStackHandler.getStackInSlot(currentCheck).isEmpty() && slotsChecked <= providedSlots) {
-            slotsChecked++;
+        if (currentCheck > this.providedSlots - 1) currentCheck = 0;
+        if (currentCheck < 0) currentCheck = this.providedSlots - 1;
+        while (curioStackHandler.getStackInSlot(currentCheck).isEmpty() && this.slotsChecked <= this.providedSlots) {
+            this.slotsChecked++;
             currentCheck += (forward ? 1 : -1);
-            if (currentCheck > providedSlots - 1) currentCheck = 0;
+            if (currentCheck > this.providedSlots - 1) currentCheck = 0;
+            if (currentCheck < 0) currentCheck = this.providedSlots - 1;
         }
         VariableUtil.setArrowSlotTo(livingEntity, currentCheck);
     }

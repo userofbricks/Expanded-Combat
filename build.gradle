@@ -144,12 +144,12 @@ repositories{
     mavenCentral()
     maven { url = "https://maven.theillusivec4.top/" }
 
-    maven {
-        url "https://www.cursemaven.com"
-        content {includeGroup "curse.maven"}
-    }
+    //maven {
+    //    url "https://www.cursemaven.com"
+    //    content {includeGroup "curse.maven"}
+    //}
 
-    flatDir {dirs 'externalmods'}
+    //flatDir {dirs 'externalmods'}
 }
 
 dependencies {
