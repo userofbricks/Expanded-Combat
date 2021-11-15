@@ -1,9 +1,3 @@
-//Deobfuscated with https://github.com/PetoPetko/Minecraft-Deobfuscator3000 using mappings "mcp_snapshot-20201028-1.16.3"!
-
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package com.userofbricks.expandedcombat.client.renderer.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
