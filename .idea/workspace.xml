@@ -5,12 +5,148 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="bumped to beta 1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/item/ECItems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/mixin/PunchEnchantmentMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/values/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECQuiverItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/TODOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/TODOS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/KeyRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/ECLayerDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/client/ECLayerDefinitions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/client/renderer/GauntletRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/QuiverArrowsRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/QuiverRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/entity/ECArrowEntityRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/AlignmentHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/HudElementQuiverAmmo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/CuriosButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ECCuriosQuiverScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/FletchingTableScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/QuiverButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/gui/screen/inventory/ShieldSmithingTableScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/ECShieldBlockEntityWithoutLevelRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/GauntletModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/client/model/GauntletModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/QuiverModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/SpecialItemModels.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/client/renderer/model/TestingOfTheNewItemStackTileEntityRendererAssignment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/config/ECClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/config/ECConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/curios/ArrowCurio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/enchentments/ECEnchantments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/enchentments/ECEnchantments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/enchentments/KnockbackResistanceEnchantment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/enchentments/KnockbackResistanceEnchantment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/entity/AttributeRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/entity/ECEntities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/entity/projectile/ECArrowEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/GoldMending.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/events/GoldMending.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/HudEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/PlayerVariablesEvents.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/QuiverEvents.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/events/ShieldEvents.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECContainers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ECCuriosQuiverContainerProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/FlechingTableContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/ShieldSmithingContainerProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/inventory/container/SmithingContainerProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ArrowType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECArrowItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECBowItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECCrossBowItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/item/ECGauntletItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItemGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/item/ECItemGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItemModelsProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECItems.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECQuiverItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECShieldItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECSwordTier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECTippedArrowItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ECWeaponItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/GauntletMaterials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/values/GauntletMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/IGauntletMaterial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/IWeaponTier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/IWeaponType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/ShieldMaterial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/WeaponTier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/WeaponTypes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECScytheRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ECTippedArrowRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/FletchingRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/IFletchingRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/RecipeSerializerInit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/ShieldSmithingRecipie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/SingleFletchingRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/SpecialFletchingRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/TippedArrowFletchingRecipe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/item/recipes/UpgradingShieldSmithingRecipie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/ContainerAccessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/CurioContainerMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/FletchingTableBlockMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/GameRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/PiglinTasksMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/mixin/PiglinTasksMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/PlayerEntityMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/mixin/ServerGamePacketListenerImplMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/NetworkHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenCuriosQuiver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenShieldSmithing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/CPacketOpenSmithing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/client/PacketOffhandAttack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/variables/PlayerVariables.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/variables/PlayerVariablesProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/network/variables/PlayerVariablesSyncMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/CombatEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/ItemAndTagsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedCombatMelee/util/IngredientUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/OffhandAttackDamageSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/PlayerAttackHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/QuiverUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expandedcombat/util/VariableUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/artic_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bronze_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/diamond_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/enderite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/fiery_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/gold_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/iron_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/ironwood_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/knightly_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/lead_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/leather_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/naga_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/netherite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/silver_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/steel_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/steeleaf_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/yeti_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/arctic_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/bronze_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/diamond_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/enderite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/fiery_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/gold_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/iron_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/ironwood_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/knightly_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/lead_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/leather_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/naga_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/netherite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/silver_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/steel_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/steeleaf_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/gauntlet/yeti_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +172,11 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Expanded-Combat-1.17.1" type="f1a62948:ProjectNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Expanded-Combat-1.17.1" type="f1a62948:ProjectNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
                 <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
@@ -78,6 +214,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1nJkS9nAmqwXnAmwvmHWi5uz8yr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -98,7 +237,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.reader.mode" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -114,13 +253,14 @@
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/shield" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/libs" />
       <recent name="$PROJECT_DIR$/src/main/java/top/theillusivec4/curios/client" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/tetra/modules" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expandedCombatMelee.values" />
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -236,6 +376,17 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
@@ -490,7 +641,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
