@@ -1,6 +1,6 @@
 {
   "parent": "expanded_combat:item/bases/shield_dr",
   "textures": {
-    "base": "expanded_combat:entity/shields/silver"
+    "base": "expanded_combat:item/shields/silver"
   }
 }

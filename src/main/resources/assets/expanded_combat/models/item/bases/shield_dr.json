@@ -1,6 +1,5 @@
 {
 	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/shield",
 	"ambientocclusion": false,
 	"texture_size": [64, 32],
 	"textures": {
