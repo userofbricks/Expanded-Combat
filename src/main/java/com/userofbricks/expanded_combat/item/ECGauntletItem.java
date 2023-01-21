@@ -22,6 +22,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -34,8 +35,6 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final GauntletMaterial material;
-    private final double attackDamage;
-    protected final int armorAmount;
     private static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
     private static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
     private static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
@@ -44,11 +43,9 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
 
     @ParametersAreNonnullByDefault
     public ECGauntletItem(GauntletMaterial materialIn, Item.Properties properties) {
-        super(properties.defaultDurability(materialIn.getDurability()));
+        super(properties);
         this.material = materialIn;
         this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getTextureName() + ".png");
-        this.attackDamage = materialIn.getAttackDamage();
-        this.armorAmount = materialIn.getArmorAmount();
     }
     
     public GauntletMaterial getMaterial() {
@@ -59,15 +56,29 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
         return this.material.getEnchantability();
     }
     
-    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
         return this.material.getRepairMaterial().test(repair) || super.isValidRepairItem(toRepair, repair);
+    }
+
+    @Override
+    public int getMaxStackSize(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return this.material.getDurability();
+    }
+
+    public boolean canBeDepleted() {
+        return this.material.getDurability() > 0;
     }
 
     public float getXpRepairRatio( ItemStack stack) {
         return this.material == ECConfig.SERVER.goldGauntlet ? 4.0f : 2.0f;
     }
 
-    public void appendHoverText(ItemStack stack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         if (this.material == ECConfig.SERVER.goldGauntlet) {
             list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN)
                     .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
@@ -75,11 +86,11 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
     }
     
     public int getArmorAmount() {
-        return this.armorAmount;
+        return this.material.getArmorAmount();
     }
     
     public double getAttackDamage() {
-        return this.attackDamage;
+        return this.material.getAttackDamage();
     }
     
     public ResourceLocation getGAUNTLET_TEXTURE() {
@@ -104,12 +115,12 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
     }*/
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
-        LivingEntity livingEntity = slotContext.getWearer();
+        LivingEntity livingEntity = slotContext.entity();
         livingEntity.level.playSound(null, new BlockPos(livingEntity.position()), this.material.getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        String identifier = slotContext.getIdentifier();
+        String identifier = slotContext.identifier();
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
             double attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();
@@ -119,14 +130,14 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
             double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
             double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getArmorToughness();
             if (((ECGauntletItem) stack.getItem()).hasWeaponInHand) {
-                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
             } else {
-                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage), AttributeModifier.Operation.ADDITION));
+                atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage), AttributeModifier.Operation.ADDITION));
             }
             atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
             atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", (knockbackResistance + EnchantmentHelper.getItemEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack) / 5.0f), AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", (knockbackResistance + EnchantmentHelper.getTagEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack) / 5.0f), AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getTagEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }

@@ -69,7 +69,7 @@ public class GauntletMaterial {
         }
         this.gauntletEntry = itemBuilder.register();
 
-        gauntletMaterials.add(this);
+        if (gauntletMaterials != null) gauntletMaterials.add(this);
     }
 
     GauntletMaterial(ForgeConfigSpec.Builder builder, String name, ArmorMaterial armorMaterial, int durability, double mendingBonus, double attackDamage, boolean fireResistant, List<GauntletMaterial> gauntletMaterials) {
