@@ -1,6 +1,6 @@
-package com.userofbricks.expandedCombatMelee.client;
+package com.userofbricks.expanded_combat.client;
 
-import com.userofbricks.expandedCombatMelee.ExpandedCombat;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 

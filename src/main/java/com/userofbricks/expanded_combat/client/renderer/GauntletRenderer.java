@@ -1,11 +1,11 @@
-package com.userofbricks.expandedCombatMelee.client.renderer;
+package com.userofbricks.expanded_combat.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.userofbricks.expandedCombatMelee.ExpandedCombat;
-import com.userofbricks.expandedCombatMelee.client.ECLayerDefinitions;
-import com.userofbricks.expandedCombatMelee.client.model.GauntletModel;
-import com.userofbricks.expandedCombatMelee.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
+import com.userofbricks.expanded_combat.client.model.GauntletModel;
+import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;

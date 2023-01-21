@@ -1,4 +1,4 @@
-package com.userofbricks.expandedCombatMelee;
+package com.userofbricks.expanded_combat;
 /*
     enchantment idea:
     ad an upgraded form of enchanting space.

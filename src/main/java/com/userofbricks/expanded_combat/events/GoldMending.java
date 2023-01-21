@@ -1,4 +1,4 @@
-package com.userofbricks.expandedCombatMelee.events;
+package com.userofbricks.expanded_combat.events;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

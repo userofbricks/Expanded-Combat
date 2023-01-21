@@ -129,7 +129,7 @@ dependencies {
 
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
-    implementation fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
+    compileOnly fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
 }
 
 jar {

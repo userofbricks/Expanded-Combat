@@ -1,0 +1,18 @@
+package com.userofbricks.expanded_combat.tags;
+
+import com.userofbricks.expanded_combat.ExpandedCombat;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+
+public final class ECItemTags {
+
+    public static final TagKey<Item> GAUNTLETS = bind("gauntlets");
+    public static final TagKey<Item> SHIELDS = bind("shields");
+
+    private static TagKey<Item> bind(String name) {
+        return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID + name));
+    }
+}

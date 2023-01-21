@@ -1,13 +1,11 @@
-package com.userofbricks.expandedCombatMelee.enchentments;
+package com.userofbricks.expanded_combat.enchentments;
 
-import com.userofbricks.expandedCombatMelee.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
-
-import java.util.Arrays;
 
 public class KnockbackResistanceEnchantment extends Enchantment
 {

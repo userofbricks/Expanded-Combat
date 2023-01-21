@@ -1,17 +1,15 @@
-package com.userofbricks.expandedCombatMelee;
+package com.userofbricks.expanded_combat;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import com.userofbricks.expandedCombatMelee.client.ECLayerDefinitions;
-import com.userofbricks.expandedCombatMelee.client.model.GauntletModel;
-import com.userofbricks.expandedCombatMelee.client.renderer.GauntletRenderer;
-import com.userofbricks.expandedCombatMelee.enchentments.ECEnchantments;
-import com.userofbricks.expandedCombatMelee.events.GauntletEvents;
-import com.userofbricks.expandedCombatMelee.item.ECGauntletItem;
-import com.userofbricks.expandedCombatMelee.item.ECItemGroup;
-import com.userofbricks.expandedCombatMelee.item.ECItems;
-import com.userofbricks.expandedCombatMelee.values.ECConfig;
-import net.minecraft.world.item.CreativeModeTab;
+import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
+import com.userofbricks.expanded_combat.client.model.GauntletModel;
+import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.events.GauntletEvents;
+import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.values.ECConfig;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,7 +30,6 @@ public class ExpandedCombat
 {
     public static final String MODID = "expanded_combat";
     public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
-    public static final CreativeModeTab EC_GROUP = new ECItemGroup();
     
     public ExpandedCombat() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.userofbricks.expandedCombatMelee.mixin",
+  "package": "com.userofbricks.expanded_combat.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "expanded_combat.refmap.json",
   "priority": 0,

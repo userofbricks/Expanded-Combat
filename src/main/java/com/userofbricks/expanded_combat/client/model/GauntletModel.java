@@ -1,4 +1,4 @@
-package com.userofbricks.expandedCombatMelee.client.model;
+package com.userofbricks.expanded_combat.client.model;
 
 import javax.annotation.Nonnull;
 

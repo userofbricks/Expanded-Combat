@@ -1,4 +1,4 @@
-package com.userofbricks.expandedCombatMelee.mixin;
+package com.userofbricks.expanded_combat.mixin;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;

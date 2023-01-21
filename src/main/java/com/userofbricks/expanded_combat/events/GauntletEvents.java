@@ -1,6 +1,6 @@
-package com.userofbricks.expandedCombatMelee.events;
+package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expandedCombatMelee.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

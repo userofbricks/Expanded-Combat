@@ -1,10 +1,10 @@
-package com.userofbricks.expandedCombatMelee.item;
+package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.userofbricks.expandedCombatMelee.enchentments.ECEnchantments;
-import com.userofbricks.expandedCombatMelee.values.ECConfig;
-import com.userofbricks.expandedCombatMelee.values.GauntletMaterial;
+import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.values.ECConfig;
+import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -55,7 +55,7 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
         return this.material;
     }
     
-    public int getEnchantmentValue() {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.material.getEnchantability();
     }
     
