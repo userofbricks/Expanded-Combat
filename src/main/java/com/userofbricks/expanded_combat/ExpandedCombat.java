@@ -7,10 +7,10 @@ import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.events.GauntletEvents;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.values.ECConfig;
-import net.minecraft.world.item.Item;
+import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,7 +21,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -36,7 +35,8 @@ public class ExpandedCombat
         bus.addListener(this::clientSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
         ECEnchantments.ENCHANTMENTS.register(bus);
-        ECItems.ITEMS.register(bus);
+        ECItems.loadClass();
+        ECCreativeTabs.loadClass();
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         bus.addListener(this::registerLayers);
@@ -48,11 +48,8 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        for (RegistryObject<Item> object: ECItems.ITEMS.getEntries()) {
-            Item item = object.get();
-            if (item instanceof ECGauntletItem) {
-                CuriosRendererRegistry.register(item, GauntletRenderer::new);
-            }
+        for (GauntletMaterial material: ECConfig.SERVER.gauntletMaterials) {
+            CuriosRendererRegistry.register(material.gauntletEntry.get(), GauntletRenderer::new);
         }
     }
 

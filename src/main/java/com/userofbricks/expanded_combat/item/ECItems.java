@@ -22,8 +22,6 @@ import static com.userofbricks.expanded_combat.item.ECCreativeTabs.EC_GROUP;
 
 public class ECItems
 {
-    //NOT USED
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExpandedCombat.MODID);
 
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_1 = ExpandedCombat.REGISTRATE.get().item("shield_1", (properties -> new ECShieldItem(false, properties)))
             .lang("Shield")
@@ -45,4 +43,6 @@ public class ECItems
             .tag(ECItemTags.SHIELDS)
             .model((ctx, prov) -> prov.withExistingParent("item" + ctx.getName(), new ResourceLocation("item/shield")))
             .register();
+
+    public static void loadClass() {}
 }
