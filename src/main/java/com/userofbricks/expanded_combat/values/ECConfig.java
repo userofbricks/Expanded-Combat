@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import twilightforest.enums.TwilightArmorMaterial;
 import twilightforest.util.TwilightItemTier;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,38 +31,17 @@ public class ECConfig {
     }
 
     public static class Server {
-        public final GauntletMaterial netheriteGauntlet;
-        public final GauntletMaterial diamondGauntlet;
-        public final GauntletMaterial goldGauntlet;
-        public final GauntletMaterial ironGauntlet;
-        public final GauntletMaterial leatherGauntlet;
-        public final GauntletMaterial steelGauntlet;
-        public final GauntletMaterial bronzeGauntlet;
-        public final GauntletMaterial silverGauntlet;
-        public final GauntletMaterial leadGauntlet;
-        public final GauntletMaterial nagaGauntlet;
-        public final GauntletMaterial ironwoodGauntlet;
-        public final GauntletMaterial fieryGauntlet;
-        public final GauntletMaterial steeleafGauntlet;
-        public final GauntletMaterial knightlyGauntlet;
-        public final GauntletMaterial yetiGauntlet;
-        public final GauntletMaterial arcticGauntlet;
+        public final GauntletMaterial netheriteGauntlet, diamondGauntlet, goldGauntlet, ironGauntlet, leatherGauntlet;
+        public final GauntletMaterial steelGauntlet, bronzeGauntlet, silverGauntlet, leadGauntlet;
+        @Nullable
+        public final GauntletMaterial nagaGauntlet, ironwoodGauntlet, fieryGauntlet, steeleafGauntlet, knightlyGauntlet, yetiGauntlet, arcticGauntlet;
         public List<GauntletMaterial> gauntletMaterials = new ArrayList<>();
 
         public final ShieldMaterial emptyShield;
-        public final ShieldMaterial netheriteShield;
-        public final ShieldMaterial diamondShield;
-        public final ShieldMaterial goldShield;
-        public final ShieldMaterial ironShield;
-        public final ShieldMaterial steelShield;
-        public final ShieldMaterial bronzeShield;
-        public final ShieldMaterial silverShield;
-        public final ShieldMaterial leadShield;
-        public final ShieldMaterial nagaShield;
-        public final ShieldMaterial ironwoodShield;
-        public final ShieldMaterial fieryShield;
-        public final ShieldMaterial steeleafShield;
-        public final ShieldMaterial knightlyShield;
+        public final ShieldMaterial netheriteShield, diamondShield, goldShield, ironShield;
+        public final ShieldMaterial steelShield, bronzeShield, silverShield, leadShield;
+        @Nullable
+        public final ShieldMaterial nagaShield, ironwoodShield, fieryShield,steeleafShield, knightlyShield;
         public List<ShieldMaterial> shieldMaterials = new ArrayList<>();
 
         public Server(ForgeConfigSpec.Builder builder) {
@@ -89,13 +69,13 @@ public class ECConfig {
                 yetiGauntlet =      new GauntletMaterial(builder, "Yeti",     TwilightArmorMaterial.ARMOR_YETI,   TwilightItemTier.IRONWOOD.getUses(), 0, 2.5d, false, gauntletMaterials);
                 arcticGauntlet =    new GauntletMaterial(builder, "Arctic",   TwilightArmorMaterial.ARMOR_ARCTIC, TwilightItemTier.STEELEAF.getUses(), 0, 2d,   false, gauntletMaterials);
             } else {
-                nagaGauntlet = new GauntletMaterial(builder, "empty");
-                ironwoodGauntlet = new GauntletMaterial(builder, "empty");
-                fieryGauntlet = new GauntletMaterial(builder, "empty");
-                steeleafGauntlet = new GauntletMaterial(builder, "empty");
-                knightlyGauntlet = new GauntletMaterial(builder, "empty");
-                yetiGauntlet = new GauntletMaterial(builder, "empty");
-                arcticGauntlet = new GauntletMaterial(builder, "empty");
+                nagaGauntlet = null;
+                ironwoodGauntlet = null;
+                fieryGauntlet = null;
+                steeleafGauntlet = null;
+                knightlyGauntlet = null;
+                yetiGauntlet = null;
+                arcticGauntlet = null;
             }
             builder.pop(1);
             builder.push("Shields");
@@ -117,11 +97,11 @@ public class ECConfig {
                 steeleafShield =    new ShieldMaterial(builder, "steeleaf", 0,  3.5, 0.6,  TwilightArmorMaterial.ARMOR_STEELEAF.getRepairIngredient(), 180, false,false, "", "", shieldMaterials);
                 knightlyShield =    new ShieldMaterial(builder, "knightly", 0,  4,   0.6,  TwilightArmorMaterial.ARMOR_KNIGHTLY.getRepairIngredient(), 250, false,false, "", "", shieldMaterials);
             } else {
-                nagaShield = emptyShield;
-                ironwoodShield = emptyShield;
-                fieryShield = emptyShield;
-                steeleafShield = emptyShield;
-                knightlyShield = emptyShield;
+                nagaShield = null;
+                ironwoodShield = null;
+                fieryShield = null;
+                steeleafShield = null;
+                knightlyShield = null;
             }
         }
     }

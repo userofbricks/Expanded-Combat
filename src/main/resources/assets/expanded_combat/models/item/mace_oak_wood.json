@@ -1,8 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/mace_external_material",
-	"textures": {
-		"head": "expanded_combat:item/mace",
-		"particle": "block/oak_log"
-	}
-}

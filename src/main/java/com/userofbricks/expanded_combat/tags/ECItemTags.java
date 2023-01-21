@@ -13,6 +13,6 @@ public final class ECItemTags {
     public static final TagKey<Item> SHIELDS = bind("shields");
 
     private static TagKey<Item> bind(String name) {
-        return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID + name));
+        return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
     }
 }

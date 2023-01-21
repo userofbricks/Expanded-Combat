@@ -4,7 +4,7 @@
 	"ambientocclusion": false,
 	"texture_size": [64, 32],
 	"textures": {
-		"base": "expanded_combat:entity/shields/diamond"
+		"particle": "#base"
 	},
 	"elements": [
 		{

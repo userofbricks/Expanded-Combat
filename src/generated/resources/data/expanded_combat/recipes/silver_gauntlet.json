@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "tag": "forge:ingots/silver"
+    }
+  },
+  "pattern": [
+    "bb",
+    "b "
+  ],
+  "result": {
+    "item": "expanded_combat:silver_gauntlet"
+  }
+}

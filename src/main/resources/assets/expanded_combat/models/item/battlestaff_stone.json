@@ -1,8 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "expanded_combat:item/battlestaff_dye",
-		"layer1": "expanded_combat:item/battlestaff_stone"
-	}
-}

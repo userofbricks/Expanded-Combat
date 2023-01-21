@@ -1,7 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/cutlass",
-	"textures": {
-		"layer1": "expanded_combat:item/cutlass_enderite"
-	}
-}

@@ -77,7 +77,6 @@ public class ShieldMaterial {
         return ExpandedCombat.REGISTRATE.get().item("shield_model/" + name.toLowerCase(Locale.ROOT) + "_" + suffix, Item::new)
                 .model((ctx, prov) -> {
                     prov.withExistingParent("item/" + ctx.getName(), prov.modLoc("item/bases/shield_" + suffix))
-                            .texture("particle", prov.modLoc("entity/shields/" + name.toLowerCase(Locale.ROOT)))
                             .texture("base", prov.modLoc("entity/shields/" + name.toLowerCase(Locale.ROOT)));
                 })
                 .register();

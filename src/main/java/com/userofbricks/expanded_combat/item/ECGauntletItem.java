@@ -71,7 +71,7 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
     }
 
     public boolean canBeDepleted() {
-        return this.material.getDurability() > 0;
+        return true;
     }
 
     public float getXpRepairRatio( ItemStack stack) {

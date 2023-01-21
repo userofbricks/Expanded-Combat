@@ -1,8 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/dancers_sword",
-	"textures": {
-		"layer0": "expanded_combat:item_large/dancers_sword_dye",
-		"layer1": "expanded_combat:item_large/dancers_sword_netherite"
-	}
-}

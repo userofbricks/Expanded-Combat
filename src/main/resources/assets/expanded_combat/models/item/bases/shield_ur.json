@@ -4,8 +4,7 @@
 	"ambientocclusion": false,
 	"texture_size": [64, 32],
 	"textures": {
-		"particle": "expanded_combat:entity/shields/netherite",
-		"base": "expanded_combat:entity/shields/netherite"
+		"particle": "#base"
 	},
 	"elements": [
 		{

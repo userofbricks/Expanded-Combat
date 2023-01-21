@@ -104,15 +104,6 @@ public class GauntletMaterial {
                 gauntletMaterials);
     }
 
-    GauntletMaterial(ForgeConfigSpec.Builder builder, String name) {
-        this(   builder,
-                name,
-                0, 0, 0, 0, 0,
-                Ingredient.of(Items.AIR),
-                SoundEvents.ARMOR_EQUIP_GENERIC,
-                0, 0, false, null);
-    }
-
     public int getEnchantability() {
         return this.enchantability.get();
     }

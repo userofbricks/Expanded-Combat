@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "bb",
+    "b "
+  ],
+  "result": {
+    "item": "expanded_combat:iron_gauntlet"
+  }
+}

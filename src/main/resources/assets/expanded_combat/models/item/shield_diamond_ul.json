@@ -1,9 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/shield_ul",
-	"ambientocclusion": false,
-	"textures": {
-		"particle": "expanded_combat:entity/shields/diamond",
-		"base": "expanded_combat:entity/shields/diamond"
-	}
-}

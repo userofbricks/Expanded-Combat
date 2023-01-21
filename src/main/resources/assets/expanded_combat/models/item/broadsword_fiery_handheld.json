@@ -1,8 +1,0 @@
-{
-	"credit": "Made by Userofbricks",
-	"parent": "expanded_combat:item/bases/broadsword",
-	"textures": {
-		"layer0": "expanded_combat:item_large/broadsword_dye",
-		"layer1": "expanded_combat:item_large/broadsword_fiery"
-	}
-}
