@@ -28,11 +28,6 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 String sdl = stack.getOrCreateTag().getString("DL_Material");
                 String sdr = stack.getOrCreateTag().getString("DR_Material");
                 String sm =  stack.getOrCreateTag().getString("M_Material" );
-                //ItemStack ul = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sul + "_ul")));
-                //ItemStack ur = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sur + "_ur")));
-                //ItemStack dl = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdl + "_dl")));
-                //ItemStack dr = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sdr + "_dr")));
-                //ItemStack m =  new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ExpandedCombat.MODID, "shield_" + sm  + "_m" )));
                 ItemStack ul = new ItemStack(ShieldMaterial.getFromName(sul).ULModel.get());
                 ItemStack ur = new ItemStack(ShieldMaterial.getFromName(sur).URModel.get());
                 ItemStack dl = new ItemStack(ShieldMaterial.getFromName(sdl).DLModel.get());
@@ -45,13 +40,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                     dr.enchant(Enchantments.VANISHING_CURSE, 0);
                     m.enchant(Enchantments.VANISHING_CURSE, 0);
                 }
-                poseStack.pushPose();
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, m,  transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, ul, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, ur, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, dl, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, dr, transformType, false, poseStack, multiBufferSource, combinedLight);
-                poseStack.popPose();
             }
         }
     }
