@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
+import org.joml.Quaternionf;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -40,11 +41,13 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                     dr.enchant(Enchantments.VANISHING_CURSE, 0);
                     m.enchant(Enchantments.VANISHING_CURSE, 0);
                 }
+                poseStack.pushPose();
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, m,  transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, ul, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, ur, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, dl, transformType, false, poseStack, multiBufferSource, combinedLight);
                 mc.getEntityRenderDispatcher().getItemInHandRenderer().renderItem(mc.player, dr, transformType, false, poseStack, multiBufferSource, combinedLight);
+                poseStack.popPose();
             }
         }
     }
