@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ECConfig {
 
@@ -31,6 +32,7 @@ public class ECConfig {
     }
 
     public static class Server {
+        public final ForgeConfigSpec.BooleanValue enableGauntlets;
         public final GauntletMaterial netheriteGauntlet, diamondGauntlet, goldGauntlet, ironGauntlet, leatherGauntlet;
         public final GauntletMaterial steelGauntlet, bronzeGauntlet, silverGauntlet, leadGauntlet;
         @Nullable
@@ -49,6 +51,8 @@ public class ECConfig {
                     .push("server");
 
             builder.push("Gauntlets");
+            enableGauntlets = builder.comment("Default value: true").translation(ECConfig.CONFIG_PREFIX + "EnableGauntlets").define("EnableGauntlets", true);
+
             netheriteGauntlet = new GauntletMaterial(builder, "Netherite", Tiers.NETHERITE, ArmorMaterials.NETHERITE, 0.2, true, true, gauntletMaterials);
             diamondGauntlet =   new GauntletMaterial(builder, "Diamond",   Tiers.DIAMOND,   ArmorMaterials.DIAMOND, -0.1, true, false, gauntletMaterials);
             goldGauntlet =      new GauntletMaterial(builder, "Gold",      Tiers.GOLD,      ArmorMaterials.GOLD, 2, true, false, gauntletMaterials);

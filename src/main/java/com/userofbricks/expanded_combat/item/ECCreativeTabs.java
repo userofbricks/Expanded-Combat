@@ -4,9 +4,7 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.values.ECConfig;
 import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import com.userofbricks.expanded_combat.values.ShieldMaterial;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 
 import java.util.function.Supplier;
 
@@ -16,7 +14,7 @@ import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_3;
 public class ECCreativeTabs {
     public static final Supplier<CreativeModeTab> EC_GROUP = ExpandedCombat.REGISTRATE.get().buildCreativeModeTab("ec_group",
             builder -> {
-                builder.icon(() -> new ItemStack(ECConfig.SERVER.diamondGauntlet.gauntletEntry.get()))
+                builder.icon(() -> new ItemStack(getIcon()))
                         .displayItems((featureFlagSet, output, isOped) -> addItems(output))
                         .build();
             },
@@ -27,8 +25,10 @@ public class ECCreativeTabs {
     }
 
     private static void addItems(CreativeModeTab.Output output) {
-        for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials){
-            output.accept(material.gauntletEntry.get());
+        if (ECConfig.SERVER.enableGauntlets.get()) {
+            for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
+                output.accept(material.getGauntletEntry().get());
+            }
         }
         for (ShieldMaterial material : ECConfig.SERVER.shieldMaterials) {
             ItemStack stack;
@@ -45,5 +45,10 @@ public class ECCreativeTabs {
             output.accept(stack);
         }
 
+    }
+
+    private static Item getIcon() {
+        if(ECConfig.SERVER.enableGauntlets.get()) return ECConfig.SERVER.diamondGauntlet.getGauntletEntry().get();
+        return Items.ARROW;
     }
 }

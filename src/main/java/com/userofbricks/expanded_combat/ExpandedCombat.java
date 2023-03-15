@@ -34,6 +34,7 @@ public class ExpandedCombat
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::clientSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
+        for (GauntletMaterial gm : ECConfig.SERVER.gauntletMaterials) { gm.registerElements(); }
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECItems.loadClass();
         ECCreativeTabs.loadClass();
@@ -48,8 +49,10 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        for (GauntletMaterial material: ECConfig.SERVER.gauntletMaterials) {
-            CuriosRendererRegistry.register(material.gauntletEntry.get(), GauntletRenderer::new);
+        if (ECConfig.SERVER.enableGauntlets.get()) {
+            for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
+                CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
+            }
         }
     }
 

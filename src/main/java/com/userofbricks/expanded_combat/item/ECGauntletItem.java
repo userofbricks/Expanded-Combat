@@ -79,6 +79,7 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
     }
 
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
+        list.add(Component.translatable("tooltip.expanded_combat.half_added_damage_when_holding_item").withStyle(ChatFormatting.GRAY));
         if (this.material == ECConfig.SERVER.goldGauntlet) {
             list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN)
                     .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));

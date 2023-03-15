@@ -22,7 +22,7 @@ An Expansion of Minecraft's combat equipment which includes a reimagining of din
 [[dependencies.expanded_combat]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[37,)" #mandatory
+    versionRange="[44,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
