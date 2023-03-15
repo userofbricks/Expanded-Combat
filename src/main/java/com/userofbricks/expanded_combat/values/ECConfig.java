@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -13,10 +14,7 @@ import twilightforest.enums.TwilightArmorMaterial;
 import twilightforest.util.TwilightItemTier;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class ECConfig {
 
@@ -83,23 +81,19 @@ public class ECConfig {
             }
             builder.pop(1);
             builder.push("Shields");
-            netheriteShield =   new ShieldMaterial(builder, "netherite", 0.2, 6.5, 0.85, Tiers.NETHERITE.getRepairIngredient(),375,true, true,  ExpandedCombat.MODID + ":shield_required_before_netherite", ExpandedCombat.MODID + ":shield_netherite_only_replace", shieldMaterials);
-            diamondShield =     new ShieldMaterial(builder, "diamond",   -0.1,5,   0.75, Tiers.DIAMOND.getRepairIngredient(),  300,false,false, ExpandedCombat.MODID + ":shield_required_before_diamond", "", shieldMaterials);
-            goldShield =        new ShieldMaterial(builder, "gold",      2,   3,   0.4,  Tiers.GOLD.getRepairIngredient(),     40, false,false, "", "", shieldMaterials);
-            ironShield =        new ShieldMaterial(builder, "iron",      0,   3,   0.6,  Tiers.IRON.getRepairIngredient(),     150,false,false, "", "", shieldMaterials);
 
-            steelShield =       new ShieldMaterial(builder, "steel",    0,    3.5, 0.65, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"),    200, false,false, "", "", shieldMaterials);
-            bronzeShield =      new ShieldMaterial(builder, "bronze",   0.1,  2.75,0.5,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"),   125, false,false, "", "", shieldMaterials);
-            silverShield =      new ShieldMaterial(builder, "silver",   1,    2.5, 0.4,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"),   175, false,false, "", "", shieldMaterials);
-            leadShield =        new ShieldMaterial(builder, "lead",     0.1,  5,   0.6,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"),     350, false,false, "", "", shieldMaterials);
+            steelShield =       new ShieldMaterial(builder, "steel",    0,    3.5, 0.65, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"),    200, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+            bronzeShield =      new ShieldMaterial(builder, "bronze",   0.1,  2.75,0.5,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"),   125, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+            silverShield =      new ShieldMaterial(builder, "silver",   1,    2.5, 0.4,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"),   175, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+            leadShield =        new ShieldMaterial(builder, "lead",     0.1,  5,   0.6,  IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"),     350, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
 
-            emptyShield =       new ShieldMaterial(builder, "empty", 0, 0, 0, Ingredient.EMPTY, 0, false, false, "", "");
+            emptyShield =       new ShieldMaterial(builder, "empty", 0, 0, 0, Ingredient.EMPTY, 0, false, false, new ArrayList<>(), new ArrayList<>());
             if (ModList.get().isLoaded("twilightforest")) {
-                nagaShield =        new ShieldMaterial(builder, "naga",     0.1,4,   0.65, TwilightArmorMaterial.ARMOR_NAGA.getRepairIngredient(),     260, false,false, "", "", shieldMaterials);
-                ironwoodShield =    new ShieldMaterial(builder, "ironwood", 1.5,3.5, 0.6,  TwilightArmorMaterial.ARMOR_IRONWOOD.getRepairIngredient(), 250, false,false, "", "", shieldMaterials);
-                fieryShield =       new ShieldMaterial(builder, "fiery",    0,  4.5, 0.7,  TwilightArmorMaterial.ARMOR_FIERY.getRepairIngredient(),    275, false,false, "", "", shieldMaterials);
-                steeleafShield =    new ShieldMaterial(builder, "steeleaf", 0,  3.5, 0.6,  TwilightArmorMaterial.ARMOR_STEELEAF.getRepairIngredient(), 180, false,false, "", "", shieldMaterials);
-                knightlyShield =    new ShieldMaterial(builder, "knightly", 0,  4,   0.6,  TwilightArmorMaterial.ARMOR_KNIGHTLY.getRepairIngredient(), 250, false,false, "", "", shieldMaterials);
+                nagaShield =        new ShieldMaterial(builder, "naga",     0.1,4,   0.65, TwilightArmorMaterial.ARMOR_NAGA.getRepairIngredient(),     260, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+                ironwoodShield =    new ShieldMaterial(builder, "ironwood", 1.5,3.5, 0.6,  TwilightArmorMaterial.ARMOR_IRONWOOD.getRepairIngredient(), 250, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+                fieryShield =       new ShieldMaterial(builder, "fiery",    0,  4.5, 0.7,  TwilightArmorMaterial.ARMOR_FIERY.getRepairIngredient(),    275, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+                steeleafShield =    new ShieldMaterial(builder, "steeleaf", 0,  3.5, 0.6,  TwilightArmorMaterial.ARMOR_STEELEAF.getRepairIngredient(), 180, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+                knightlyShield =    new ShieldMaterial(builder, "knightly", 0,  4,   0.6,  TwilightArmorMaterial.ARMOR_KNIGHTLY.getRepairIngredient(), 250, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
             } else {
                 nagaShield = null;
                 ironwoodShield = null;
@@ -107,6 +101,10 @@ public class ECConfig {
                 steeleafShield = null;
                 knightlyShield = null;
             }
+            ironShield =        new ShieldMaterial(builder, "iron",      0,   3,   0.6,  Tiers.IRON.getRepairIngredient(),     150,false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+            goldShield =        new ShieldMaterial(builder, "gold",      2,   3,   0.4,  Tiers.GOLD.getRepairIngredient(),     40, false,false, new ArrayList<>(), new ArrayList<>(), shieldMaterials);
+            diamondShield =     new ShieldMaterial(builder, "diamond",   -0.1,5,   0.75, Tiers.DIAMOND.getRepairIngredient(),  300,false,false, new ArrayList<>(Arrays.asList(steelShield.getName(), bronzeShield.getName(), silverShield.getName(), leadShield.getName(), nagaShield != null ? nagaShield.getName() : "", ironwoodShield != null ? ironwoodShield.getName() : "", fieryShield != null ? fieryShield.getName() : "", steeleafShield != null ? steeleafShield.getName() : "", knightlyShield != null ? knightlyShield.getName() : "")), new ArrayList<>(), shieldMaterials);
+            netheriteShield =   new ShieldMaterial(builder, "netherite", 0.2, 6.5, 0.85, Tiers.NETHERITE.getRepairIngredient(),375,true, true, new ArrayList<>(Collections.singleton(diamondShield.getName())), new ArrayList<>(Collections.singleton(diamondShield.getName())), shieldMaterials);
         }
     }
 }
