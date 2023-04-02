@@ -26,15 +26,15 @@ public class ShieldMaterial {
     private final ForgeConfigSpec.DoubleValue mendingBonus;
     private final ForgeConfigSpec.BooleanValue isSingleAddition;
     private final ForgeConfigSpec.BooleanValue fireResistant;
-    private final ForgeConfigSpec.ConfigValue<ArrayList<String>> requiredBeforeResourceLocation;
-    private final ForgeConfigSpec.ConfigValue<ArrayList<String>> onlyReplaceResourceLocation;
+    private final ForgeConfigSpec.ConfigValue<ArrayList<String>> requiredBeforeResource;
+    private final ForgeConfigSpec.ConfigValue<ArrayList<String>> onlyReplaceResource;
     public final RegistryEntry<Item> ULModel;
     public final RegistryEntry<Item> URModel;
     public final RegistryEntry<Item> DLModel;
     public final RegistryEntry<Item> DRModel;
     public final RegistryEntry<Item> MModel;
 
-    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResourceLocation, ArrayList<String> onlyReplaceResourceLocation) {
+    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
         builder.push(name + " Shield");
         this.name =                           name;
         this.mendingBonus =                   builder.comment("Default Value: " + mendingBonus)             .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "GauntletMendingBonus")              .defineInRange(name.toLowerCase(Locale.ROOT) + "GauntletMendingBonus",            mendingBonus,             Double.MIN_VALUE, Double.MAX_VALUE);
@@ -47,14 +47,16 @@ public class ShieldMaterial {
                 .define(name.toLowerCase(Locale.ROOT) + "ShieldIngredientItems", IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial));
         this.isSingleAddition =               builder.comment("Dafault value: " + isSingleAddition)         .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldIsSingleAddition")            .define(name.toLowerCase(Locale.ROOT) + "ShieldIsSingleAddition",                 isSingleAddition);
         this.fireResistant =                  builder.comment("Default value: " + fireResistant)            .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldFireResistance")              .define(name.toLowerCase(Locale.ROOT) + "ShieldFireResistance",                   fireResistant);
-        this.requiredBeforeResourceLocation = builder
-                .comment("Default value: " + requiredBeforeResourceLocation)
+        requiredBeforeResource.removeIf(requiredBeforeName -> !name.equals(""));
+        this.requiredBeforeResource = builder
+                .comment("Default value: " + requiredBeforeResource)
                 .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldRequiredBefore")
-                .define(name.toLowerCase(Locale.ROOT) + "ShieldRequiredBefore", requiredBeforeResourceLocation);
-        this.onlyReplaceResourceLocation =    builder
-                .comment("Default value: " + onlyReplaceResourceLocation)
+                .define(name.toLowerCase(Locale.ROOT) + "ShieldRequiredBefore", requiredBeforeResource);
+        onlyReplaceResource.removeIf(onlyReplaceName -> !name.equals(""));
+        this.onlyReplaceResource =    builder
+                .comment("Default value: " + onlyReplaceResource)
                 .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldOnlyReplace")
-                .define(name.toLowerCase(Locale.ROOT) + "ShieldOnlyReplace", onlyReplaceResourceLocation);
+                .define(name.toLowerCase(Locale.ROOT) + "ShieldOnlyReplace", onlyReplaceResource);
         builder.pop(1);
 
         //register items used for models
@@ -65,8 +67,8 @@ public class ShieldMaterial {
         MModel = createModelItem(name, "m");
     }
 
-    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResourceLocation, ArrayList<String> onlyReplaceResourceLocation, List<ShieldMaterial> shieldMaterials) {
-        this(builder, name, medingBonus, baseProtectionAmmount, afterBasePercentReduction, ingotOrMaterial, addedDurability, isSingleAddition, fireResistant, requiredBeforeResourceLocation, onlyReplaceResourceLocation);
+    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, List<ShieldMaterial> shieldMaterials) {
+        this(builder, name, medingBonus, baseProtectionAmmount, afterBasePercentReduction, ingotOrMaterial, addedDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
         shieldMaterials.add(this);
     }
 
@@ -107,12 +109,22 @@ public class ShieldMaterial {
         return isSingleAddition.get();
     }
 
-    private ArrayList<String> getRequiredBeforeResourceLocation() {
-        return requiredBeforeResourceLocation.get();
+    public boolean satifiesbeforeRequirement(String shieldMaterialName) {
+        if (requiredBeforeResource.get().isEmpty()) return true;
+        for (String name :
+                requiredBeforeResource.get()) {
+            if (name.equals(shieldMaterialName)) return true;
+        }
+        return false;
     }
 
-    private ArrayList<String> getOnlyReplaceResourceLocation() {
-        return onlyReplaceResourceLocation.get();
+    public boolean satifiesOnlyReplaceRequirement(String shieldMaterialName) {
+        if (onlyReplaceResource.get().isEmpty()) return true;
+        for (String name :
+                onlyReplaceResource.get()) {
+            if (name.equals(shieldMaterialName)) return true;
+        }
+        return false;
     }
 
     public boolean getFireResistant() {
