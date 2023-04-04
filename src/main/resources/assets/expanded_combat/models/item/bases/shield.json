@@ -6,22 +6,22 @@
   },
   "display": {
     "thirdperson_righthand": {
-      "rotation": [ 0, -90, 0 ],
+      "rotation": [ 0, 90, 0 ],
       "translation": [ 10, 6, -4 ],
       "scale": [ 1, 1, 1 ]
     },
     "thirdperson_lefthand": {
-      "rotation": [ 0, -90, 0 ],
+      "rotation": [ 0, 90, 0 ],
       "translation": [ 10, 6, 12 ],
       "scale": [ 1, 1, 1 ]
     },
     "firstperson_righthand": {
-      "rotation": [ 0, 0, 5 ],
+      "rotation": [ 0, 180, 5 ],
       "translation": [ -10, 2, -10 ],
       "scale": [ 1.25, 1.25, 1.25 ]
     },
     "firstperson_lefthand": {
-      "rotation": [ 0, 0, 5 ],
+      "rotation": [ 0, 180, 5 ],
       "translation": [ 10, 0, -10 ],
       "scale": [ 1.25, 1.25, 1.25 ]
     },
@@ -44,7 +44,7 @@
   "overrides": [
     {
       "predicate": {
-        "blocking": 1
+        "minecraft:blocking": 1
       },
       "model": "expanded_combat:item/bases/shield_blocking"
     }

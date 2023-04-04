@@ -1,4 +1,4 @@
-// 1.19.3	2023-04-03T20:33:36.833093	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.3	2023-04-03T21:36:16.312961	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 c9d5fc10ce1808484f4b00913b4791041be17dfd assets/expanded_combat/lang/en_ud.json
 8a65a1d5ab6527ba0764e220888701b39b1c3a4a assets/expanded_combat/lang/en_us.json
 12b3cf8a889e482513c97ef235d09b780e8259a2 assets/expanded_combat/models/item/arctic_gauntlet.json
@@ -13,10 +13,10 @@ b7fa4630a9b91d67786c2dd7c18a1094f5db13b9 assets/expanded_combat/models/item/iron
 7ec095063f0a896bf95f66078435025108b243d0 assets/expanded_combat/models/item/leather_gauntlet.json
 cdb5b8fc98e0ee570491c65990e770ed4b257ae4 assets/expanded_combat/models/item/naga_gauntlet.json
 7975638f0ee686325fedcf2945dbff65950530d1 assets/expanded_combat/models/item/netherite_gauntlet.json
-83ff696e4fb70edd6f3c5ef8571d07cd7d693d15 assets/expanded_combat/models/item/shield_1.json
-83ff696e4fb70edd6f3c5ef8571d07cd7d693d15 assets/expanded_combat/models/item/shield_2.json
-83ff696e4fb70edd6f3c5ef8571d07cd7d693d15 assets/expanded_combat/models/item/shield_3.json
-83ff696e4fb70edd6f3c5ef8571d07cd7d693d15 assets/expanded_combat/models/item/shield_4.json
+0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_1.json
+0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_2.json
+0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_3.json
+0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_4.json
 eba05f73f4fd212a42ab77835621ea252363d152 assets/expanded_combat/models/item/shield_model/bronze_dl.json
 b9c0e0c45775df23f8cc6b93ff972a41ae81d641 assets/expanded_combat/models/item/shield_model/bronze_dr.json
 26d8c07a35041de44e4e9b9042ff25575cedb64f assets/expanded_combat/models/item/shield_model/bronze_m.json
