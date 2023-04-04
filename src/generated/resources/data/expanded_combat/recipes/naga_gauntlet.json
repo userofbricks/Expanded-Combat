@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "b": {
-      "item": "minecraft:barrier"
+      "item": "twilightforest:naga_scale"
     }
   },
   "pattern": [
@@ -11,6 +11,6 @@
     "b "
   ],
   "result": {
-    "item": "expanded_combat:steel_gauntlet"
+    "item": "expanded_combat:naga_gauntlet"
   }
 }

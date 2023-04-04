@@ -10,7 +10,7 @@ import com.userofbricks.expanded_combat.events.GauntletEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItems;
-import com.userofbricks.expanded_combat.item.recipes.RecipeSerializerInit;
+import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.values.ECConfig;
 import com.userofbricks.expanded_combat.values.GauntletMaterial;
@@ -39,11 +39,11 @@ public class ExpandedCombat
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
-        for (GauntletMaterial gm : ECConfig.SERVER.gauntletMaterials) { gm.registerElements(); }
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECItems.loadClass();
         ECCreativeTabs.loadClass();
-        RecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
+        ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
+        ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
@@ -60,7 +60,8 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        if (ECConfig.SERVER.enableGauntlets.get()) {
+        //TODO: FInd out why this happens before config can be used
+        if (ECConfig.SERVER.enableGauntlets.getDefault()) {
             for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
                 CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
             }

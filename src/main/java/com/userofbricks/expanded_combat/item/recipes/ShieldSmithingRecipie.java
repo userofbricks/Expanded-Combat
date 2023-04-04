@@ -111,7 +111,7 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.EC_SHIELD_SERIALIZER.get();
+        return ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get();
     }
 
     @Override

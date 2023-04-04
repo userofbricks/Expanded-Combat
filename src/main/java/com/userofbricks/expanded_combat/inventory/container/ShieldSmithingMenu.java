@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
-import com.userofbricks.expanded_combat.item.recipes.RecipeSerializerInit;
+import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipie;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -40,7 +40,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
         this.access = iWorldPosCallable;
         this.player = playerInventory.player;
         this.level = playerInventory.player.level;
-        this.recipes = this.level.getRecipeManager().getAllRecipesFor(RecipeSerializerInit.SHIELD_TYPE);
+        this.recipes = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
         //shield slot
         this.addSlot(new Slot(this.inputSlots, 0, 27, 47) {
             @Override
@@ -122,7 +122,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
      * takes the input slots and matches it to the recipe and then asks the recipe to create its result
      */
     public void createResult() {
-        List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getRecipesFor(RecipeSerializerInit.SHIELD_TYPE, this.inputSlots, this.level);
+        List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get(), this.inputSlots, this.level);
         if (list.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {

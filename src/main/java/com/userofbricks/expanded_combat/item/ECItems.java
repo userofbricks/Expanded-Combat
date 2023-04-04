@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.item;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.tags.ECItemTags;
+import com.userofbricks.expanded_combat.values.ECConfig;
+import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import net.minecraft.resources.ResourceLocation;
 
 public class ECItems
@@ -29,6 +31,8 @@ public class ECItems
             .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation(ExpandedCombat.MODID, "item/bases/shield")))
             .register();
 
-    public static void loadClass() {}
+    public static void loadClass() {
+        for (GauntletMaterial gm : ECConfig.SERVER.gauntletMaterials) { gm.registerElements(); }
+    }
 
 }

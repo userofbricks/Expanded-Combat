@@ -1,0 +1,6 @@
+{
+  "parent": "expanded_combat:item/bases/shield_m",
+  "textures": {
+    "base": "expanded_combat:item/shields/naga"
+  }
+}

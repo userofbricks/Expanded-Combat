@@ -34,7 +34,7 @@ public class ShieldMaterial {
     public final RegistryEntry<Item> DRModel;
     public final RegistryEntry<Item> MModel;
 
-    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
+    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, String ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
         builder.push(name + " Shield");
         this.name =                           name;
         this.mendingBonus =                   builder.comment("Default Value: " + mendingBonus)             .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "GauntletMendingBonus")              .defineInRange(name.toLowerCase(Locale.ROOT) + "GauntletMendingBonus",            mendingBonus,             Double.MIN_VALUE, Double.MAX_VALUE);
@@ -42,9 +42,9 @@ public class ShieldMaterial {
         this.baseProtectionAmmount =          builder.comment("Dafault value: " + baseProtectionAmmount)    .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldBaseProtectionAmmount")       .defineInRange(name.toLowerCase(Locale.ROOT) + "ShieldBaseProtectionAmmount",     baseProtectionAmmount,    0, Double.MAX_VALUE);
         this.afterBasePercentReduction =      builder.comment("Dafault value: " + afterBasePercentReduction).translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldAfterBasePercentReduction")   .defineInRange(name.toLowerCase(Locale.ROOT) + "ShieldAfterBasePercentReduction", afterBasePercentReduction,0, 1);
         this.ingotOrMaterial =                builder
-                .comment("default Value: " + IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial))
+                .comment("default Value: " + ingotOrMaterial)
                 .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldIngredientItems")
-                .define(name.toLowerCase(Locale.ROOT) + "ShieldIngredientItems", IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial));
+                .define(name.toLowerCase(Locale.ROOT) + "ShieldIngredientItems", ingotOrMaterial);
         this.isSingleAddition =               builder.comment("Dafault value: " + isSingleAddition)         .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldIsSingleAddition")            .define(name.toLowerCase(Locale.ROOT) + "ShieldIsSingleAddition",                 isSingleAddition);
         this.fireResistant =                  builder.comment("Default value: " + fireResistant)            .translation(ECConfig.CONFIG_PREFIX + name.toLowerCase(Locale.ROOT) + "ShieldFireResistance")              .define(name.toLowerCase(Locale.ROOT) + "ShieldFireResistance",                   fireResistant);
         requiredBeforeResource.removeIf(requiredBeforeName -> !name.equals(""));
@@ -68,6 +68,11 @@ public class ShieldMaterial {
     }
 
     ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, List<ShieldMaterial> shieldMaterials) {
+        this(builder, name, medingBonus, baseProtectionAmmount, afterBasePercentReduction, IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial), addedDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
+        shieldMaterials.add(this);
+    }
+
+    ShieldMaterial(ForgeConfigSpec.Builder builder, String name, double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, String ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, List<ShieldMaterial> shieldMaterials) {
         this(builder, name, medingBonus, baseProtectionAmmount, afterBasePercentReduction, ingotOrMaterial, addedDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
         shieldMaterials.add(this);
     }

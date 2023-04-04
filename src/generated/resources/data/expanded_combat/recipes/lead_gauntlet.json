@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "b": {
-      "tag": "forge:ingots/lead"
+      "item": "minecraft:barrier"
     }
   },
   "pattern": [

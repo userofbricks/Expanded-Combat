@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "b": {
-      "tag": "forge:ingots/silver"
+      "item": "minecraft:barrier"
     }
   },
   "pattern": [
