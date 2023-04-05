@@ -39,7 +39,7 @@ public class ExpandedCombat
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
-        ECEnchantments.ENCHANTMENTS.register(bus);
+        ECEnchantments.loadClass();
         ECItems.loadClass();
         ECCreativeTabs.loadClass();
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);

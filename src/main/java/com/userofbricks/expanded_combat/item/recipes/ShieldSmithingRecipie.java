@@ -136,7 +136,7 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     @ParametersAreNonnullByDefault
     public static class Serializer implements RecipeSerializer<ShieldSmithingRecipie> {
 
-        public ShieldSmithingRecipie fromJson(ResourceLocation location, JsonObject jsonObject) {
+        public @NotNull ShieldSmithingRecipie fromJson(ResourceLocation location, JsonObject jsonObject) {
             return new ShieldSmithingRecipie(location);
         }
 

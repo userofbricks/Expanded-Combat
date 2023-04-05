@@ -180,7 +180,7 @@ public class GauntletMaterial {
     }
 
     public RegistryEntry<ECGauntletItem> getGauntletEntry() {
-        Preconditions.checkNotNull(gauntletEntry, "Cannot save config value before spec is built");
+        Preconditions.checkNotNull(gauntletEntry, "Cannot access value of gauntlet registry entry before its creation");
         return gauntletEntry;
     }
 }
