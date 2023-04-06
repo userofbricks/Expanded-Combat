@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.tags;
+package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.core.registries.Registries;

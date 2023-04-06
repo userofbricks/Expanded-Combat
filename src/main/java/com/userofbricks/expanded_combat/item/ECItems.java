@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.tags.ECItemTags;
 import com.userofbricks.expanded_combat.values.ECConfig;
 import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import net.minecraft.resources.ResourceLocation;
