@@ -13,21 +13,15 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
-
-import static com.userofbricks.expanded_combat.item.ECCreativeTabs.EC_GROUP;
 
 public class GauntletMaterial {
     private final String name;
@@ -128,9 +122,6 @@ public class GauntletMaterial {
                     .define('b', IngredientUtil.getIngrediantFromItemString(this.repairItem.getDefault()))
                     .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(IngredientUtil.getIngrediantFromItemString(this.repairItem.getDefault()))))
                     .save(prov));
-            if (fireResistant.getDefault()) {
-                itemBuilder.properties(Item.Properties::fireResistant);
-            }
             this.gauntletEntry = itemBuilder.register();
         }
     }

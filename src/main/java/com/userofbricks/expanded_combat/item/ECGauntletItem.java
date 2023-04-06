@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -72,6 +73,14 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
 
     public boolean canBeDepleted() {
         return true;
+    }
+
+    public boolean isFireResistant() {
+        return this.getMaterial().getFireResistant();
+    }
+
+    public boolean canBeHurtBy(DamageSource p_41387_) {
+        return !this.getMaterial().getFireResistant() || !p_41387_.isFire();
     }
 
     public float getXpRepairRatio( ItemStack stack) {
