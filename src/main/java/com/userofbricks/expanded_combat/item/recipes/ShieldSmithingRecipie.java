@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.values.ECConfig;
 import com.userofbricks.expanded_combat.values.ShieldMaterial;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -64,7 +65,7 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory) {
+    public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
         ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
@@ -100,7 +101,7 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess p_267052_) {
         return ItemStack.EMPTY;
     }
 

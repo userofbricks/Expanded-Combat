@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -59,10 +60,10 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
         RenderSystem.setShaderTexture(0, SHIELD_SMITHING_LOCATION);
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        this.blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
         //this.blit(p_230450_1_, i + 59, j + 20, 0, this.imageHeight + (this.menu.getSlot(0).hasItem() ? 0 : 16), 110, 16);
         if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem() || this.menu.getSlot(2).hasItem() || this.menu.getSlot(3).hasItem() || this.menu.getSlot(4).hasItem() || this.menu.getSlot(5).hasItem()) && !this.menu.getSlot(6).hasItem()) {
-            this.blit(p_230450_1_, i + 99, j + 45, this.imageWidth, 0, 28, 21);
+            blit(p_230450_1_, i + 99, j + 45, this.imageWidth, 0, 28, 21);
         }
 
     }

@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.Wearable;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -32,7 +32,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.UUID;
 
-public class ECGauntletItem extends Item implements ICurioItem, Wearable
+public class ECGauntletItem extends Item implements ICurioItem
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final GauntletMaterial material;
@@ -79,12 +79,12 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
         return this.getMaterial().getFireResistant();
     }
 
-    public boolean canBeHurtBy(@NotNull DamageSource p_41387_) {
-        return !this.getMaterial().getFireResistant() || !p_41387_.isFire();
+    public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
+        return !this.getMaterial().getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
     }
 
     public float getXpRepairRatio( ItemStack stack) {
-        return this.material == ECConfig.SERVER.goldGauntlet ? 4.0f : 2.0f;
+        return (float) this.material.getMendingBonus();
     }
 
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
@@ -114,7 +114,7 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
-        livingEntity.level.playSound(null, new BlockPos(livingEntity.position()), this.material.getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+        livingEntity.level.playSound(null, livingEntity.blockPosition(), this.material.getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {

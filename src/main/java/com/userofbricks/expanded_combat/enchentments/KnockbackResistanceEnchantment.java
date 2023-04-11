@@ -2,13 +2,13 @@ package com.userofbricks.expanded_combat.enchentments;
 
 import com.google.common.collect.Maps;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.ECItems;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class KnockbackResistanceEnchantment extends Enchantment
     }
 
     @Override
-    public Map<EquipmentSlot, ItemStack> getSlotItems(LivingEntity p_44685_) {
+    public @NotNull Map<EquipmentSlot, ItemStack> getSlotItems(@NotNull LivingEntity p_44685_) {
         return Maps.newEnumMap(EquipmentSlot.class);
     }
     
@@ -39,7 +39,7 @@ public class KnockbackResistanceEnchantment extends Enchantment
         return stack.getItem() instanceof ECGauntletItem;
     }
     
-    protected boolean checkCompatibility(final Enchantment ench) {
+    protected boolean checkCompatibility(final @NotNull Enchantment ench) {
         return ench != Enchantments.KNOCKBACK;
     }
 }

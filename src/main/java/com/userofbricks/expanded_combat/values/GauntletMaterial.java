@@ -1,8 +1,6 @@
 package com.userofbricks.expanded_combat.values;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -21,12 +19,10 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.crafting.ConditionalAdvancement;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -34,7 +30,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class GauntletMaterial {
     private final String name;
@@ -96,7 +91,7 @@ public class GauntletMaterial {
                 durability,
                 armorMaterial.getEnchantmentValue(),
                 mendingBonus,
-                armorMaterial.getDefenseForSlot(EquipmentSlot.FEET),
+                armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS),
                 attackDamage,
                 armorMaterial.getRepairIngredient(),
                 armorMaterial.getEquipSound(),
@@ -112,7 +107,7 @@ public class GauntletMaterial {
                 tier.getUses(),
                 armorNotWeaponEnchantability ? armorMaterial.getEnchantmentValue() : tier.getEnchantmentValue(),
                 mendingBonus,
-                armorMaterial.getDefenseForSlot(EquipmentSlot.FEET),
+                armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS),
                 tier.getAttackDamageBonus(),
                 armorMaterial.getRepairIngredient(),
                 armorMaterial.getEquipSound(),

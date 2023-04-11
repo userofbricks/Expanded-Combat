@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.openjdk.nashorn.internal.ir.annotations.Ignore;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -45,7 +46,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.inputSlots, 0, 27, 47) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.getItem().getMaxStackSize() == 1 && super.mayPlace(stack);
+                return stack.getMaxStackSize() == 1 && super.mayPlace(stack);
             }
         });
         this.addSlot(new Slot(this.inputSlots, 1, 67, 29));
@@ -62,7 +63,6 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
                 return ShieldSmithingMenu.this.mayPickup();
             }
 
-            @Nonnull
             public void onTake(Player p_190901_1_, ItemStack p_190901_2_) {
                 ShieldSmithingMenu.this.onTake(p_190901_1_, p_190901_2_);
             }
@@ -95,8 +95,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
     /**
      * shrink itemStacks from each input slot when
      */
-    @Nonnull
-    protected ItemStack onTake(Player p_230301_1_, ItemStack p_230301_2_) {
+    protected void onTake(Player p_230301_1_, ItemStack p_230301_2_) {
         p_230301_2_.onCraftedBy(p_230301_1_.level, p_230301_1_, p_230301_2_.getCount());
         this.resultSlots.awardUsedRecipes(p_230301_1_);
         this.inputSlots.setItem(0, ItemStack.EMPTY);
@@ -106,7 +105,6 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
         this.shrinkStackInSlot(4);
         this.shrinkStackInSlot(5);
         this.access.execute((p_234653_0_, p_234653_1_) -> p_234653_0_.levelEvent(1044, p_234653_1_, 0));
-        return p_230301_2_;
     }
 
     /**
@@ -127,7 +125,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
             this.selectedRecipe = list.get(0);
-            ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots);
+            ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
             this.resultSlots.setRecipeUsed(this.selectedRecipe);
             this.resultSlots.setItem(0, itemstack);
         }

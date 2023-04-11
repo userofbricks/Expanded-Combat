@@ -14,7 +14,7 @@ import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_3;
 public class ECCreativeTabs {
     public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().buildCreativeModeTab("ec_group",
             builder -> builder.icon(() -> new ItemStack(getIcon()))
-                    .displayItems((featureFlagSet, output, isOped) -> addItems(output))
+                    .displayItems((displayParameters, output) -> addItems(output))
                     .build(),
             "Expanded Combat");
 

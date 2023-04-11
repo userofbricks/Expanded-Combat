@@ -63,11 +63,8 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        //TODO: FInd out why this happens before config can be used
-        if (ECConfig.SERVER.enableGauntlets.getDefault()) {
-            for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
-                CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
-            }
+        for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
+            CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
     }
 

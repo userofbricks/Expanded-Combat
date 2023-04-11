@@ -47,8 +47,6 @@ public class ECShieldItem extends ShieldItem {
         return stack;
     }
 
-    //TODO creative tab stuff
-
     /**
      * combines the added material durability from each material with the base shield durability
      * @param stack the stack to find the durability for

@@ -35,11 +35,10 @@ public class GoldMending
              ItemStack itemstack = entry.getValue();
             if (doesGoldMendingContainItem(itemstack)) {
                 entityIn.takeXpDelay = 2;
-                entityIn.take((Entity)thisxp, 1);
+                entityIn.take(thisxp, 1);
                 if (!itemstack.isEmpty() && itemstack.isDamaged()) {
-                     int repairedDamage = Math.min(thisxp.value * 4, itemstack.getDamageValue());
-                     ExperienceOrb experienceOrbEntity = thisxp;
-                    experienceOrbEntity.value -= durabilityToXp(repairedDamage);
+                    int repairedDamage = Math.min(thisxp.value * 4, itemstack.getDamageValue());
+                    thisxp.value -= durabilityToXp(repairedDamage);
                     itemstack.setDamageValue(itemstack.getDamageValue() - repairedDamage);
                 }
                 if (thisxp.value > 0) {
