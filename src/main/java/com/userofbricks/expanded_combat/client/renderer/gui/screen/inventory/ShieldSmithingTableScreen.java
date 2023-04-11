@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerListener;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmithingMenu> implements ContainerListener {
     public static final ResourceLocation SHIELD_SMITHING_LOCATION = new ResourceLocation("expanded_combat", "textures/gui/container/shield_smithing.png");
@@ -35,13 +36,13 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
         this.menu.removeSlotListener(this);
     }
 
-    protected void renderLabels(PoseStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+    protected void renderLabels(@NotNull PoseStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
         RenderSystem.disableBlend();
         super.renderLabels(p_230451_1_, p_230451_2_, p_230451_3_);
     }
 
     @Override
-    public void render(PoseStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
+    public void render(@NotNull PoseStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
         this.renderBackground(p_230430_1_);
         super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
         RenderSystem.disableBlend();
@@ -53,7 +54,7 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
     }
 
     @Override
-    protected void renderBg(PoseStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+    protected void renderBg(@NotNull PoseStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, SHIELD_SMITHING_LOCATION);
         int i = (this.width - this.imageWidth) / 2;
@@ -70,9 +71,9 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
         this.slotChanged(p_71110_1_, 0, p_71110_1_.getSlot(0).getItem());
     }
 
-    public void dataChanged(AbstractContainerMenu p_71112_1_, int p_71112_2_, int p_71112_3_) {
+    public void dataChanged(@NotNull AbstractContainerMenu p_71112_1_, int p_71112_2_, int p_71112_3_) {
     }
 
-    public void slotChanged(AbstractContainerMenu p_71111_1_, int p_71111_2_, ItemStack p_71111_3_) {
+    public void slotChanged(@NotNull AbstractContainerMenu p_71111_1_, int p_71111_2_, @NotNull ItemStack p_71111_3_) {
     }
 }

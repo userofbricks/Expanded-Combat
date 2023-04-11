@@ -1,15 +1,19 @@
 package com.userofbricks.expanded_combat.client.renderer.item;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 
 public class ECItemModelsProperties {
     public ECItemModelsProperties() {
-        ItemProperties.register(ECItems.SHIELD_TIER_1.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        ItemProperties.register(ECItems.SHIELD_TIER_2.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        ItemProperties.register(ECItems.SHIELD_TIER_3.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-        ItemProperties.register(ECItems.SHIELD_TIER_4.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+        for (RegistryEntry<? extends Item> registryEntry : ECItems.ITEMS) {
+            if (registryEntry.get() instanceof ECShieldItem) {
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+            }
+        }
         //for (RegistryObject<Item> registryItem : ECItems.ITEMS.getEntries()) {
             //if (registryItem.get() instanceof ECBowItem) {
             //    ItemProperties.register(registryItem.get(), new ResourceLocation("pull"), (itemStack, clientWorld, livingEntity, p_174618_) -> {
