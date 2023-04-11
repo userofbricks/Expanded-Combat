@@ -79,7 +79,7 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
         return this.getMaterial().getFireResistant();
     }
 
-    public boolean canBeHurtBy(DamageSource p_41387_) {
+    public boolean canBeHurtBy(@NotNull DamageSource p_41387_) {
         return !this.getMaterial().getFireResistant() || !p_41387_.isFire();
     }
 
@@ -111,18 +111,6 @@ public class ECGauntletItem extends Item implements ICurioItem, Wearable
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
         return stack.getItem() instanceof ECGauntletItem && ((ECGauntletItem) stack.getItem()).getMaterial() == ECConfig.SERVER.goldGauntlet;
     }
-
-    /*TODO: creative tabs
-    @Override
-    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> list) {
-        if (this.allowdedIn(tab)) {
-            ItemStack istack = new ItemStack(this);
-            if (this.getMaterial() == GauntletMaterials.steeleaf) {
-                istack.enchant(Enchantments.ALL_DAMAGE_PROTECTION, 2);
-            }
-            list.add(istack);
-        }
-    }*/
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();

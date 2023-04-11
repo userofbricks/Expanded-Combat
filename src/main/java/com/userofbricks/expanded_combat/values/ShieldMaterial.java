@@ -121,6 +121,9 @@ public class ShieldMaterial {
         return false;
     }
 
+    /**
+     * used for single additions only
+     */
     public boolean satifiesOnlyReplaceRequirement(String shieldMaterialName) {
         if (onlyReplaceResource.get().isEmpty()) return true;
         for (String name :

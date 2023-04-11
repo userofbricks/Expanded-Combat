@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.values.ECConfig;
 import com.userofbricks.expanded_combat.values.GauntletMaterial;
 import com.userofbricks.expanded_combat.values.ShieldMaterial;
@@ -8,20 +7,19 @@ import net.minecraft.world.item.*;
 
 import java.util.function.Supplier;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_1;
 import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_3;
 
 public class ECCreativeTabs {
-    public static final Supplier<CreativeModeTab> EC_GROUP = ExpandedCombat.REGISTRATE.get().buildCreativeModeTab("ec_group",
-            builder -> {
-                builder.icon(() -> new ItemStack(getIcon()))
-                        .displayItems((featureFlagSet, output, isOped) -> addItems(output))
-                        .build();
-            },
+    public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().buildCreativeModeTab("ec_group",
+            builder -> builder.icon(() -> new ItemStack(getIcon()))
+                    .displayItems((featureFlagSet, output, isOped) -> addItems(output))
+                    .build(),
             "Expanded Combat");
 
     public static void loadClass() {
-        ExpandedCombat.REGISTRATE.get().modifyCreativeModeTab(()-> CreativeModeTabs.COMBAT, ECCreativeTabs::addItems);
+        REGISTRATE.get().modifyCreativeModeTab(()-> CreativeModeTabs.COMBAT, ECCreativeTabs::addItems);
     }
 
     private static void addItems(CreativeModeTab.Output output) {

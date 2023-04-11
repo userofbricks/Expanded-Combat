@@ -39,37 +39,7 @@ public class IngredientUtil {
     }
 
     /**
-     * gets the number of matching ingredients of the reference and returns there count
-     * @param reference the ingredient all others are compared to
-     * @param canadates the ingredients that are compared to the reference
-     * @return returns a list of all matching ingredients including the reference
-     */
-    public static List<Ingredient> getNumberOf(Ingredient reference, Ingredient... canadates) {
-        List<Ingredient> ingredientList = Arrays.asList(reference);
-        for (Ingredient canadate : canadates) {
-            if (reference == canadate) ingredientList.add(canadate);
-        }
-        return ingredientList;
-    }
-
-    /**
-     * opposite of getNumberOf(Ingredient, Ingrediant...) except it takes in shield material names and outputs the names instead
-     * @param reference the shield name all others are compared to
-     * @param canadates the shield names that are compared to the reference
-     * @return returns a list of all non-matching shield names excluding the reference
-     */
-    public static List<String> getNumberOfNot(String reference, String... canadates) {
-        List<String> names = new ArrayList<>();
-        for (String canadate :
-                canadates) {
-            if (!Objects.equals(reference, canadate)) names.add(canadate);
-        }
-        return names;
-    }
-
-    /**
      * takes an Ingredient and returns a string representing every item in it with notation: domain:item1,domain:item2,domain2:item3
-     * @param ingredient
      * @return a string containing all items in @ingredient
      */
     public static String getItemStringFromIngrediant(Ingredient ingredient) {
@@ -83,7 +53,6 @@ public class IngredientUtil {
 
     /**
      * takes a string of notation: domain:item1,domain:item2,domain2:item3 and turns it into an Ingrediant object
-     * @param stringOfItems
      * @return an Ingrediant Object containing all items listed in the string
      */
     public static Ingredient getIngrediantFromItemString(String stringOfItems) {
