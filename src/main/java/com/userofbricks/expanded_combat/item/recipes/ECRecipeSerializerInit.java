@@ -4,8 +4,10 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ECRecipeSerializerInit {
@@ -24,10 +26,16 @@ public class ECRecipeSerializerInit {
 
 
     private static <T extends Recipe<?>> RecipeType<T> register(final String recourceLocation) {
-        return new RecipeType<T>() {
+        return new RecipeType<>() {
             public String toString() {
                 return recourceLocation;
             }
         };
+    }
+
+    public static void registerConditions(RegisterEvent event) {
+        if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+            CraftingHelper.register(ECConfigBooleanCondition.Serializer.INSTANCE);
+        }
     }
 }

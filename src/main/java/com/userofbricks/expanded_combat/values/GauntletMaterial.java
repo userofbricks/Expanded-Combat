@@ -1,14 +1,22 @@
 package com.userofbricks.expanded_combat.values;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -16,12 +24,17 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.crafting.ConditionalAdvancement;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class GauntletMaterial {
     private final String name;
@@ -109,21 +122,43 @@ public class GauntletMaterial {
                 gauntletMaterials);
     }
 
-    //TODO: Find out how to use config before item registry
     public final void registerElements() {
-        if (ECConfig.SERVER.enableGauntlets.getDefault()) {
             //register item
             ItemBuilder<ECGauntletItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(this.name.toLowerCase(Locale.ROOT) + "_gauntlet", (p) -> new ECGauntletItem(this, p));
             itemBuilder.defaultModel();
             itemBuilder.tag(ECItemTags.GAUNTLETS);
-            itemBuilder.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get(), 1)
-                    .pattern("bb")
-                    .pattern("b ")
-                    .define('b', IngredientUtil.getIngrediantFromItemString(this.repairItem.getDefault()))
-                    .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(IngredientUtil.getIngrediantFromItemString(this.repairItem.getDefault()))))
-                    .save(prov));
+            itemBuilder.recipe((ctx, prov) -> {
+                //used for advancement trigger and recipe input item
+                Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(this.repairItem.getDefault());
+                //here only because it is needed in both the conditional and standard advancements
+                InventoryChangeTrigger.TriggerInstance triggerInstance = InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(ingredient));
+
+                Advancement.Builder advancement = Advancement.Builder.advancement()
+                        .addCriterion("has_item", triggerInstance)
+                        .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                        .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(ctx.getId()))
+                        .rewards(AdvancementRewards.Builder.recipe(ctx.getId()))
+                        .requirements(RequirementsStrategy.OR);
+
+                ECConfigBooleanCondition enableGauntlets = new ECConfigBooleanCondition(ECConfig.SERVER.enableGauntlets);
+
+                ConditionalRecipe.Builder conditionalRecipe = ConditionalRecipe.builder()
+                        .addCondition(enableGauntlets)
+                        .setAdvancement(ctx.getId().getNamespace(), "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath(),
+                                ConditionalAdvancement.builder()
+                                .addCondition(enableGauntlets)
+                                .addAdvancement(advancement));
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
+                        .pattern("bb")
+                        .pattern("b ")
+                        .define('b', ingredient)
+                        .unlockedBy("has_item", triggerInstance)
+                        .save(conditionalRecipe::addRecipe);
+
+                conditionalRecipe.build(prov, ctx.getId());
+            });
             this.gauntletEntry = itemBuilder.register();
-        }
     }
 
     public int getEnchantability() {

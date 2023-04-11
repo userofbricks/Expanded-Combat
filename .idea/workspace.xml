@@ -5,10 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="bumped to beta 1">
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/arctic_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/bronze_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/diamond_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/fiery_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/gold_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/iron_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/ironwood_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/knightly_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/lead_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/leather_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/naga_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/netherite_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/silver_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/steel_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/steeleaf_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/yeti_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBooleanCondition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/tags/ECItemTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/arctic_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knightly_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/yeti_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/arctic_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/arctic_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knightly_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knightly_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/yeti_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/yeti_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/values/GauntletMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/values/GauntletMaterial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

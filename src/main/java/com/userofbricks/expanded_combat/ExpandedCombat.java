@@ -42,6 +42,7 @@ public class ExpandedCombat
         ECEnchantments.loadClass();
         ECItems.loadClass();
         ECCreativeTabs.loadClass();
+        bus.addListener(ECRecipeSerializerInit::registerConditions);
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
@@ -52,7 +53,9 @@ public class ExpandedCombat
     }
 
     private void comms(InterModEnqueueEvent event) {
-        InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
+        if (ECConfig.SERVER.enableGauntlets.get()) {
+            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
+        }
     }
 
     private void setup(FMLCommonSetupEvent event) {

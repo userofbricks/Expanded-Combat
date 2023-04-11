@@ -1,34 +1,46 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_item": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:netherite_ingot"
-            ]
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_item": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:netherite_ingot"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "expanded_combat:netherite_gauntlet"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_item",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "expanded_combat:netherite_gauntlet"
+          ]
+        }
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "expanded_combat:netherite_gauntlet"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "server-Gauntlets-EnableGauntlets"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_item",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "expanded_combat:netherite_gauntlet"
-    ]
-  }
+  ]
 }

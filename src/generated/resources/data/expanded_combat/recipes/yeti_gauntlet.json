@@ -1,16 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "b": {
-      "item": "twilightforest:alpha_yeti_fur"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "server-Gauntlets-EnableGauntlets"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "b": {
+            "item": "twilightforest:alpha_yeti_fur"
+          }
+        },
+        "pattern": [
+          "bb",
+          "b "
+        ],
+        "result": {
+          "item": "expanded_combat:yeti_gauntlet"
+        }
+      }
     }
-  },
-  "pattern": [
-    "bb",
-    "b "
-  ],
-  "result": {
-    "item": "expanded_combat:yeti_gauntlet"
-  }
+  ]
 }
