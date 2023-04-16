@@ -4,8 +4,8 @@ import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.values.ECConfig;
-import com.userofbricks.expanded_combat.values.ShieldMaterial;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -126,7 +126,7 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     }
 
     public boolean isAdditionIngredient(ItemStack stack) {
-        for (ShieldMaterial material : ECConfig.SERVER.shieldMaterials) {
+        for (ShieldMaterial material : MaterialInit.shieldMaterials) {
             if (material.getIngotOrMaterial().test(stack) && !material.isSingleAddition()) {
                 return true;
             }

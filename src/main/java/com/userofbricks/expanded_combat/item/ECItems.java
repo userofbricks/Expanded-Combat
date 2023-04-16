@@ -1,16 +1,16 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.values.ECConfig;
-import com.userofbricks.expanded_combat.values.GauntletMaterial;
+import com.userofbricks.expanded_combat.ECConfig;
+import com.userofbricks.expanded_combat.ECConfig.GauntletMaterialConfig;
+import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 public class ECItems
 {
@@ -22,7 +22,7 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
     public static void loadClass() {
-        for (GauntletMaterial gm : ECConfig.SERVER.gauntletMaterials) { gm.registerElements(); }
+        for (GauntletMaterial gm : MaterialInit.gauntletMaterials) { gm.registerElements(); }
     }
 
     private static RegistryEntry<ECShieldItem> registerShield(String name, boolean fireresistant) {

@@ -2,22 +2,20 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.values.ECConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 
-import java.util.Arrays;
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECConfigBooleanCondition implements ICondition {
     private static final ResourceLocation NAME = new ResourceLocation(ExpandedCombat.MODID, "config_boolean");
-    private final ForgeConfigSpec.BooleanValue configBoolean;
+    private final String configBooleanName;
 
-    public ECConfigBooleanCondition(ForgeConfigSpec.BooleanValue configBoolean)
+    public ECConfigBooleanCondition(String configBooleanName)
     {
-        this.configBoolean = configBoolean;
+        this.configBooleanName = configBooleanName;
     }
 
     @Override
@@ -29,13 +27,17 @@ public class ECConfigBooleanCondition implements ICondition {
     @Override
     public boolean test(IContext context)
     {
-        return configBoolean.get();
+        return switch (configBooleanName) {
+            default -> false;
+            case "gauntlet" -> CONFIG.enableGauntlets;
+            case "shield" -> CONFIG.enableShields;
+        };
     }
 
     @Override
     public String toString()
     {
-        return "config_boolean(\"" + String.join("-", configBoolean.getPath()) + "\")";
+        return "config_boolean(\"" + this.configBooleanName + "\")";
     }
 
     public static class Serializer implements IConditionSerializer<ECConfigBooleanCondition>
@@ -45,13 +47,13 @@ public class ECConfigBooleanCondition implements ICondition {
         @Override
         public void write(JsonObject json, ECConfigBooleanCondition value)
         {
-            json.addProperty("config_entry", String.join("-", value.configBoolean.getPath()));
+            json.addProperty("config_entry", value.configBooleanName);
         }
 
         @Override
         public ECConfigBooleanCondition read(JsonObject json)
         {
-            return new ECConfigBooleanCondition(ECConfig.SERVER_SPEC.get(Arrays.asList(GsonHelper.getAsString(json, "config_entry").split("-"))));
+            return new ECConfigBooleanCondition(GsonHelper.getAsString(json, "config_entry"));
         }
 
         @Override

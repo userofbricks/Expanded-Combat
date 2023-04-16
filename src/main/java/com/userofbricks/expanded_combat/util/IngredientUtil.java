@@ -56,6 +56,7 @@ public class IngredientUtil {
      * @return an Ingrediant Object containing all items listed in the string
      */
     public static Ingredient getIngrediantFromItemString(String stringOfItems) {
+        if(stringOfItems == null) return Ingredient.EMPTY;
         String[] itemStrings = stringOfItems.split(",");
         ArrayList<Item> items = new ArrayList<>();
         for (String itemString : itemStrings) {

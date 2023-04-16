@@ -5,7 +5,7 @@
       "conditions": [
         {
           "type": "expanded_combat:config_boolean",
-          "config_entry": "server-Gauntlets-EnableGauntlets"
+          "config_entry": "gauntlet"
         }
       ],
       "recipe": {
@@ -22,7 +22,8 @@
         ],
         "result": {
           "item": "expanded_combat:gold_gauntlet"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

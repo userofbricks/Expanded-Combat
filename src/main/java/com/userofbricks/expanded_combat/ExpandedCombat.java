@@ -10,17 +10,18 @@ import com.userofbricks.expanded_combat.events.GauntletEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
-import com.userofbricks.expanded_combat.values.ECConfig;
-import com.userofbricks.expanded_combat.values.GauntletMaterial;
+import com.userofbricks.expanded_combat.ECConfig.GauntletMaterialConfig;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -33,12 +34,15 @@ public class ExpandedCombat
 {
     public static final String MODID = "expanded_combat";
     public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
+    public static ECConfig CONFIG;
     
     public ExpandedCombat() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ECConfig.SERVER_SPEC);
+        MaterialInit.loadClass();
         ECEnchantments.loadClass();
         ECItems.loadClass();
         ECCreativeTabs.loadClass();
@@ -53,7 +57,7 @@ public class ExpandedCombat
     }
 
     private void comms(InterModEnqueueEvent event) {
-        if (ECConfig.SERVER.enableGauntlets.get()) {
+        if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
         }
     }
@@ -63,7 +67,8 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        for (GauntletMaterial material : ECConfig.SERVER.gauntletMaterials) {
+        AutoConfig.getGuiRegistry(ECConfig.class);
+        for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
     }

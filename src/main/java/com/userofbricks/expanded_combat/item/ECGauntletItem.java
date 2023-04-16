@@ -3,10 +3,9 @@ package com.userofbricks.expanded_combat.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
-import com.userofbricks.expanded_combat.values.ECConfig;
-import com.userofbricks.expanded_combat.values.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -31,6 +30,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.UUID;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECGauntletItem extends Item implements ICurioItem
 {
@@ -58,7 +59,7 @@ public class ECGauntletItem extends Item implements ICurioItem
     }
     
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return this.material.getRepairMaterial().test(repair) || super.isValidRepairItem(toRepair, repair);
+        return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("tooltip.expanded_combat.half_added_damage_when_holding_item").withStyle(ChatFormatting.GRAY));
-        if (this.material == ECConfig.SERVER.goldGauntlet) {
+        if (this.material == MaterialInit.GOLD_GAUNTLET) {
             list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN)
                     .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
@@ -109,7 +110,7 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return stack.getItem() instanceof ECGauntletItem && ((ECGauntletItem) stack.getItem()).getMaterial() == ECConfig.SERVER.goldGauntlet;
+        return stack.getItem() instanceof ECGauntletItem && ((ECGauntletItem) stack.getItem()).getMaterial() == MaterialInit.GOLD_GAUNTLET;
     }
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
@@ -122,8 +123,8 @@ public class ECGauntletItem extends Item implements ICurioItem
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
             double attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();
-            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == ECConfig.SERVER.nagaGauntlet ? (attackDamage/2.0d*3) : 0;
-            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == ECConfig.SERVER.yetiGauntlet ? (attackDamage/2.0d) : 0;
+            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.NAGA_GAUNTLET ? (attackDamage/2.0d*3) : 0;
+            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.YETI_GAUNTLET ? (attackDamage/2.0d) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
             double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
             double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getArmorToughness();

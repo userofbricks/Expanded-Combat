@@ -118,6 +118,8 @@ repositories{
     maven { url = "https://maven.theillusivec4.top/" }
 
     maven {url = "https://modmaven.dev/"}
+
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
@@ -127,9 +129,11 @@ dependencies {
     jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "${registrate_mc_version_range}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
+    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_api_version}")
+
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
-    implementation fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
+    compileOnly fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
 }
 
 jar {

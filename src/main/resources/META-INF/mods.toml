@@ -22,7 +22,7 @@ An Expansion of Minecraft's combat equipment which includes a reimagining of din
 [[dependencies.expanded_combat]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[44,)" #mandatory
+    versionRange="[45,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
@@ -37,6 +37,13 @@ An Expansion of Minecraft's combat equipment which includes a reimagining of din
     modId="curios"
     mandatory=true
     versionRange="[1.17.1-5.0.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.expanded_combat]]
+    modId="cloth_config"
+    mandatory=true
+    versionRange="[10.0.96,)"
     ordering="NONE"
     side="BOTH"
 
