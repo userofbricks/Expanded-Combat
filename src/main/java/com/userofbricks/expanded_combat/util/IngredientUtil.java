@@ -23,8 +23,9 @@ public class IngredientUtil {
     }
 
     public static Ingredient getItemOrEmpty(String modid, String itemName) {
-        if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation(modid + ":" + itemName))) {
-            return Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(modid + ":" + itemName)));
+        ResourceLocation itemLoctaion = new ResourceLocation(modid + ":" + itemName);
+        if (ForgeRegistries.ITEMS.containsKey(itemLoctaion)) {
+            return Ingredient.of(ForgeRegistries.ITEMS.getValue(itemLoctaion));
         }
         return Ingredient.EMPTY;
     }

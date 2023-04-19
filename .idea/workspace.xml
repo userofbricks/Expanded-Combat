@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="split material config values from non config values">
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="separated server run folder from other runs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -527,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681682188569</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="separated server run folder from other runs">
+      <created>1681683113903</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1681683113903</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -541,17 +546,6 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="1.17.1" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
             </State>
           </value>
         </entry>
@@ -560,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed issue #6" />
     <MESSAGE value="loads of stuff&#10;added enderite plus compat&#10;added quiver multi slot functionality" />
     <MESSAGE value="loads of stuff&#10;added quiver gui, hud, and arrow swaping" />
     <MESSAGE value="loads of stuff&#10;added client Config" />
@@ -585,7 +578,8 @@
     <MESSAGE value="code cleanup" />
     <MESSAGE value="update to 1.19.4" />
     <MESSAGE value="split material config values from non config values" />
-    <option name="LAST_COMMIT_MESSAGE" value="split material config values from non config values" />
+    <MESSAGE value="separated server run folder from other runs" />
+    <option name="LAST_COMMIT_MESSAGE" value="separated server run folder from other runs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
