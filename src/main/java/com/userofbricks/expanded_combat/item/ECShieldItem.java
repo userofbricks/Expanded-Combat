@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
@@ -82,10 +83,10 @@ public class ECShieldItem extends ShieldItem {
         String currentSlotMaterial = "empty";
         int checked = 0;
         while (currentSlotMaterial.equals("empty") || currentSlotMaterial.equals("")) {
+            if(checked == 5) return false;
             currentSlotMaterial = slotMaterials.get(last);
             checked++;
             last++;
-            if(checked == 5) return false;
             if (last == 5) last = 0;
         }
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
@@ -131,18 +132,18 @@ public class ECShieldItem extends ShieldItem {
         String dl = getDownLeftMaterial(stack);
         String dr = getDownRightMaterial(stack);
         String m = getMiddleMaterial(stack);
-        list.add(Component.translatable("tooltip.expanded_combat.shield_material.upper_left").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable("tooltip.expanded_combat.shield_material." + ul).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable("tooltip.expanded_combat.shield_material.upper_right").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable("tooltip.expanded_combat.shield_material." + ur).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable("tooltip.expanded_combat.shield_material.pegs_trim").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable("tooltip.expanded_combat.shield_material." + m).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable("tooltip.expanded_combat.shield_material.lower_left").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable("tooltip.expanded_combat.shield_material." + dl).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable("tooltip.expanded_combat.shield_material.lower_right").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable("tooltip.expanded_combat.shield_material." + dr).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(Component.translatable(LangStrings.UPPER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ul).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(Component.translatable(LangStrings.UPPER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ur).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(Component.translatable(LangStrings.CENTER_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + m).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(Component.translatable(LangStrings.LOWER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dl).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        list.add(Component.translatable(LangStrings.LOWER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dr).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
 
         if (getMendingBonus(stack) != 0.0f) {
             if (getMendingBonus(stack) > 0.0f) {
-                list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
             else if (getMendingBonus(stack) < 0.0f) {
-                list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
         }
         super.appendHoverText(stack, world, list, flag);

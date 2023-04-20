@@ -30,7 +30,7 @@ public class ECItems
                 .lang("Shield")
                 .tag(ECItemTags.SHIELDS)
                 .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation(MODID, "item/bases/shield"))
-                        .override().predicate(new ResourceLocation("blocking"), 1.0f).model(prov.getExistingFile(new ResourceLocation(MODID, "item/bases/shield_blocking"))))
+                        .override().predicate(new ResourceLocation("blocking"), 1.0f).model(prov.withExistingParent(ctx.getName()+"_blocking", new ResourceLocation(MODID, "item/bases/shield_blocking"))))
                 .register();
         ITEMS.add(shieldRegistryEntry);
         return shieldRegistryEntry;

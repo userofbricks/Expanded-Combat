@@ -12,6 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Locale;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.util.LangStrings.SHIELD_MATERIAL_LANG_START;
+
 public class ShieldMaterial {
     @NotNull
     public final String name;
@@ -38,6 +41,12 @@ public class ShieldMaterial {
         DLModel = createModelItem(name, "dl");
         DRModel = createModelItem(name, "dr");
         MModel = createModelItem(name, "m");
+
+        if(name.equals("Naga")) {
+            REGISTRATE.get().addRawLang(SHIELD_MATERIAL_LANG_START + name.toLowerCase(Locale.ROOT), "Naga Scale");
+        } else {
+            REGISTRATE.get().addRawLang(SHIELD_MATERIAL_LANG_START + name.toLowerCase(Locale.ROOT), name);
+        }
 
         shieldMaterials.add(this);
     }
@@ -70,7 +79,7 @@ public class ShieldMaterial {
     }
 
     public boolean isEmpty() {
-        return this.name.equals("empty");
+        return this.name.toLowerCase(Locale.ROOT).equals("empty");
     }
 
     public boolean isSingleAddition() {
@@ -103,7 +112,7 @@ public class ShieldMaterial {
     }
 
     public @NotNull String getName() {
-        return name;
+        return name.toLowerCase(Locale.ROOT);
     }
 
     public static ShieldMaterial getFromName(String name) {

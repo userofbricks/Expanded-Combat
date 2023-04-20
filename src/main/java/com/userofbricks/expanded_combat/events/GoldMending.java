@@ -1,5 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -28,29 +30,24 @@ public class GoldMending
 {
     @SubscribeEvent
     public void MendingBonus( PlayerXpEvent.PickupXp event) {
-         Player entityIn = event.getEntity();
-        ExperienceOrb thisxp = event.getOrb();
-         Map.Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.MENDING, entityIn, ItemStack::isDamaged);
-        if (entry != null) {
-             ItemStack itemstack = entry.getValue();
-            if (doesGoldMendingContainItem(itemstack)) {
-                entityIn.takeXpDelay = 2;
-                entityIn.take(thisxp, 1);
-                if (!itemstack.isEmpty() && itemstack.isDamaged()) {
-                    int repairedDamage = Math.min(thisxp.value * 4, itemstack.getDamageValue());
-                    thisxp.value -= durabilityToXp(repairedDamage);
-                    itemstack.setDamageValue(itemstack.getDamageValue() - repairedDamage);
+         Player player = event.getEntity();
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            ItemStack stack = player.getItemBySlot(slot);
+            if (!stack.isEmpty() || stack.getEnchantmentLevel(Enchantments.MENDING) > 0 || stack.isDamaged() || doesGoldMendingContainItem(stack)) {
+                event.setCanceled(true);
+                ExperienceOrb orb = event.getOrb();
+                player.takeXpDelay = 2;
+                player.take(orb, 1);
+                int toRepair = Math.min(orb.value * 4, stack.getDamageValue());
+                orb.value -= toRepair / 4;
+                stack.setDamageValue(stack.getDamageValue() - toRepair);
+
+                if (orb.value > 0) {
+                    player.giveExperiencePoints(orb.value);
                 }
-                if (thisxp.value > 0) {
-                    entityIn.giveExperiencePoints(thisxp.value);
-                }
-                thisxp.kill();
+                orb.remove(Entity.RemovalReason.KILLED);
             }
         }
-    }
-
-    private int durabilityToXp(int p_20794_) {
-        return p_20794_ / 2;
     }
     
     @SubscribeEvent
@@ -59,7 +56,7 @@ public class GoldMending
          ItemStack itemStack = event.getItemStack();
         if (doesGoldMendingContainItem(itemStack)) {
              List<Component> list = event.getToolTip();
-            list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN)
+            list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN)
                     .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
     }
@@ -71,6 +68,6 @@ public class GoldMending
     public static boolean doesGoldMendingContainItem( Item item) {
         ITagManager<Item> tagManager = ForgeRegistries.ITEMS.tags();
         assert tagManager != null;
-        return tagManager.getTag(tagManager.createTagKey(new ResourceLocation("expanded_combat", "non_ec_mendable_gold"))).contains(item);
+        return tagManager.getTag(ECItemTags.NON_EC_MENDABLE_GOLD).contains(item);
     }
 }

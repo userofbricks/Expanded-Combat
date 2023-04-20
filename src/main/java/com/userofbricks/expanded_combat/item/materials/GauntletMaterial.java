@@ -46,6 +46,7 @@ public class GauntletMaterial {
         //register item
         ItemBuilder<ECGauntletItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(this.name.toLowerCase(Locale.ROOT) + "_gauntlet", (p) -> new ECGauntletItem(this, p));
         itemBuilder.defaultModel();
+        if (name.equals(MaterialInit.NAGA_GAUNTLET.name)) itemBuilder.lang("Naga Scale Gauntlet");
         itemBuilder.tag(ECItemTags.GAUNTLETS);
         itemBuilder.recipe((ctx, prov) -> {
             //used for advancement trigger and recipe input item
