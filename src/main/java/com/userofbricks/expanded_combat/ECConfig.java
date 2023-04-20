@@ -6,7 +6,6 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Excluded;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
 import net.minecraft.resources.ResourceLocation;
@@ -19,12 +18,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.item.materials.MaterialInit.*;
+import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 
 @Config(name = MODID)
 public class ECConfig implements ConfigData {
-    @Excluded
-    private static final String TwilightForestMOD_ID = "twilightforest";
 
     @Category("gauntlets") @RequiresRestart
     public boolean enableGauntlets = true;
@@ -199,7 +196,7 @@ public class ECConfig implements ConfigData {
     }
 
     public static class ShieldProtectionConfig {
-        @Tooltip(count = 2)
+        @Tooltip
         public boolean EnableVanillaStyleShieldProtection = false;
         @Tooltip(count = 2)
         public boolean EnableShieldBaseProtection = true;
@@ -212,6 +209,7 @@ public class ECConfig implements ConfigData {
 
         public enum ShieldBaseProtectionType {
             DURABILITY_PERCENTAGE,
+            INVERTED_DURABILITY_PERCENTAGE,
             PREDEFINED_AMMOUNT
         }
     }

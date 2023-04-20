@@ -6,14 +6,14 @@ import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShieldItem;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -93,12 +93,10 @@ public class ECShieldItem extends ShieldItem {
         return ShieldMaterial.getFromName(currentSlotMaterial).getIngotOrMaterial().test(repair);
     }
 
-    /* TODO: find out if another way is required
     @Override
-    public boolean isShield(ItemStack stack, LivingEntity entity) {
-        return true;
+    public boolean canPerformAction(@NotNull ItemStack stack, @NotNull ToolAction toolAction) {
+        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
     }
-     */
 
     /**
      * increases the mending amount per xp based on the materials used.
@@ -149,7 +147,7 @@ public class ECShieldItem extends ShieldItem {
         super.appendHoverText(stack, world, list, flag);
     }
 
-    public double getBaseProtection(ItemStack stack) {
+    public static double getBaseProtection(ItemStack stack) {
         double ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getBaseProtectionAmmount() /5;
         double ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getBaseProtectionAmmount() /5;
         double dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getBaseProtectionAmmount() /5;
@@ -158,7 +156,7 @@ public class ECShieldItem extends ShieldItem {
         return ul + ur + dl + dr + m;
     }
 
-    public double getPercentageProtection(ItemStack stack) {
+    public static double getPercentageProtection(ItemStack stack) {
         double ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getAfterBasePercentReduction() /5;
         double ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getAfterBasePercentReduction() /5;
         double dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getAfterBasePercentReduction() /5;
@@ -166,6 +164,7 @@ public class ECShieldItem extends ShieldItem {
         double m = ShieldMaterial.getFromName(getMiddleMaterial(stack)).getAfterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
+    @Override
     public void initializeClient(@Nonnull Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override
@@ -175,23 +174,28 @@ public class ECShieldItem extends ShieldItem {
         });
     }
 
-    private String getUpperLeftMaterial(ItemStack stack) {
+    @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack p_41452_) {
+        return UseAnim.BLOCK;
+    }
+
+    private static String getUpperLeftMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(ULMaterialTagName);
     }
 
-    private String getUpperRightMaterial(ItemStack stack) {
+    private static String getUpperRightMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(URMaterialTagName);
     }
 
-    private String getDownLeftMaterial(ItemStack stack) {
+    private static String getDownLeftMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(DLMaterialTagName);
     }
 
-    private String getDownRightMaterial(ItemStack stack) {
+    private static String getDownRightMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(DRMaterialTagName);
     }
 
-    private String getMiddleMaterial(ItemStack stack) {
+    private static String getMiddleMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(MMaterialTagName);
     }
 }
