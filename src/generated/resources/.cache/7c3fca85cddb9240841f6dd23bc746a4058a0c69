@@ -1,6 +1,6 @@
-// 1.19.4	2023-04-16T15:53:45.036729	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-8ad66c1a418c074a04453624c4382c1f804ff920 assets/expanded_combat/lang/en_ud.json
-f6f90708ea26d50dd9521870f1d350e2ee8b7c3b assets/expanded_combat/lang/en_us.json
+// 1.19.4	2023-04-21T23:21:15.226622	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+4e2a4cea467883d61ce3c689d219a8d866bd4ab1 assets/expanded_combat/lang/en_ud.json
+d46685259416e12c38b97b7279440019ef8f5498 assets/expanded_combat/lang/en_us.json
 12b3cf8a889e482513c97ef235d09b780e8259a2 assets/expanded_combat/models/item/arctic_gauntlet.json
 5d65562855321247441e99d1ccb138e87878b01e assets/expanded_combat/models/item/bronze_gauntlet.json
 e22822e79b85b173b30a2ce3b97aa36200ed875d assets/expanded_combat/models/item/diamond_gauntlet.json
@@ -13,10 +13,14 @@ b7fa4630a9b91d67786c2dd7c18a1094f5db13b9 assets/expanded_combat/models/item/iron
 7ec095063f0a896bf95f66078435025108b243d0 assets/expanded_combat/models/item/leather_gauntlet.json
 cdb5b8fc98e0ee570491c65990e770ed4b257ae4 assets/expanded_combat/models/item/naga_gauntlet.json
 7975638f0ee686325fedcf2945dbff65950530d1 assets/expanded_combat/models/item/netherite_gauntlet.json
-0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_1.json
-0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_2.json
-0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_3.json
-0be32efe8b922461d9d96e5f7fa380cd9f3cdaa4 assets/expanded_combat/models/item/shield_4.json
+e41e9201271c0a28fec3994aa056437822d06c64 assets/expanded_combat/models/item/shield_1.json
+1a9322e3983feadec42cec33f6e1498b645b5e2f assets/expanded_combat/models/item/shield_1_blocking.json
+57c6714cbc37c169a5de01c5f8dbdbcc2b8d86cf assets/expanded_combat/models/item/shield_2.json
+1a9322e3983feadec42cec33f6e1498b645b5e2f assets/expanded_combat/models/item/shield_2_blocking.json
+cb3fb96f0ded078cbfb3008c12a7ea0d58f93d5e assets/expanded_combat/models/item/shield_3.json
+1a9322e3983feadec42cec33f6e1498b645b5e2f assets/expanded_combat/models/item/shield_3_blocking.json
+a83ccf0214be7a4e32aeb83f434ad99b8f065ad8 assets/expanded_combat/models/item/shield_4.json
+1a9322e3983feadec42cec33f6e1498b645b5e2f assets/expanded_combat/models/item/shield_4_blocking.json
 eba05f73f4fd212a42ab77835621ea252363d152 assets/expanded_combat/models/item/shield_model/bronze_dl.json
 b9c0e0c45775df23f8cc6b93ff972a41ae81d641 assets/expanded_combat/models/item/shield_model/bronze_dr.json
 26d8c07a35041de44e4e9b9042ff25575cedb64f assets/expanded_combat/models/item/shield_model/bronze_m.json

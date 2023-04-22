@@ -17,6 +17,7 @@ import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,6 +45,7 @@ public class ExpandedCombat
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
+        LangStrings.registerLang();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         MaterialInit.loadClass();
