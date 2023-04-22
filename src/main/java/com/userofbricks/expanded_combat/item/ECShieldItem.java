@@ -188,23 +188,23 @@ public class ECShieldItem extends ShieldItem {
         return 72000;
     }
 
-    private static String getUpperLeftMaterial(ItemStack stack) {
+    public static String getUpperLeftMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(ULMaterialTagName);
     }
 
-    private static String getUpperRightMaterial(ItemStack stack) {
+    public static String getUpperRightMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(URMaterialTagName);
     }
 
-    private static String getDownLeftMaterial(ItemStack stack) {
+    public static String getDownLeftMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(DLMaterialTagName);
     }
 
-    private static String getDownRightMaterial(ItemStack stack) {
+    public static String getDownRightMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(DRMaterialTagName);
     }
 
-    private static String getMiddleMaterial(ItemStack stack) {
+    public static String getMiddleMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(MMaterialTagName);
     }
 }

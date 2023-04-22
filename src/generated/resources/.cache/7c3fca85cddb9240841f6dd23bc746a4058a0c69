@@ -1,6 +1,6 @@
-// 1.19.4	2023-04-21T23:21:15.226622	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-4e2a4cea467883d61ce3c689d219a8d866bd4ab1 assets/expanded_combat/lang/en_ud.json
-d46685259416e12c38b97b7279440019ef8f5498 assets/expanded_combat/lang/en_us.json
+// 1.19.4	2023-04-22T15:18:27.470585	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+9d7cd9d9461801757f7aef75d057108dfadfbbc1 assets/expanded_combat/lang/en_ud.json
+b68d98c19a471bbd1af95c3564b72bebfb80e520 assets/expanded_combat/lang/en_us.json
 12b3cf8a889e482513c97ef235d09b780e8259a2 assets/expanded_combat/models/item/arctic_gauntlet.json
 5d65562855321247441e99d1ccb138e87878b01e assets/expanded_combat/models/item/bronze_gauntlet.json
 e22822e79b85b173b30a2ce3b97aa36200ed875d assets/expanded_combat/models/item/diamond_gauntlet.json
@@ -102,6 +102,7 @@ ea2dcda91814b65660241c5a5a3b622bf806efd6 data/expanded_combat/advancements/recip
 8697fe013174d5f3b61914f9ed378f8c351de3fd data/expanded_combat/advancements/recipes/combat/lead_gauntlet.json
 376663254f44ff618b32acfee6c366d596c08819 data/expanded_combat/advancements/recipes/combat/leather_gauntlet.json
 5ec116fe4bd8d4f8add55e39eac4567d2b199244 data/expanded_combat/advancements/recipes/combat/netherite_gauntlet.json
+5493ae819ddd6ab5e928f6fc1208d4621ff3f153 data/expanded_combat/advancements/recipes/combat/shield_smithing.json
 8fef37ac7cc77e9856fd0809f6866a7e418f59ca data/expanded_combat/advancements/recipes/combat/silver_gauntlet.json
 5143e27d0d32bec3058c62be315b50c094e07e11 data/expanded_combat/advancements/recipes/combat/steel_gauntlet.json
 35e5606cefa6b9fc134a6789478333e3abf9c687 data/expanded_combat/recipes/bronze_gauntlet.json
@@ -111,7 +112,9 @@ eca5667d5fffd6fc41746ed9bd8810483a8a735a data/expanded_combat/recipes/iron_gaunt
 0bce7c41823cdf4dbf3fb987c918b429d6c87724 data/expanded_combat/recipes/lead_gauntlet.json
 4ef44387dc43c5e14b75c6e214de8048922869f9 data/expanded_combat/recipes/leather_gauntlet.json
 64f75ab790a7fff4385baa2f5bd44bfea5a10fe2 data/expanded_combat/recipes/netherite_gauntlet.json
+b638e78153f5a5f3543865c5bba46a0e299c156b data/expanded_combat/recipes/shield_smithing.json
 4d2439a86e919f826472d9e67ff0945e731f9654 data/expanded_combat/recipes/silver_gauntlet.json
 bc28d8d17583039b951add8969db9d4b0efaf0ac data/expanded_combat/recipes/steel_gauntlet.json
 5df5c9cd2fe3f6e4f97161cac6707a4682c55254 data/expanded_combat/tags/items/gauntlets.json
-4a7d200ec663a3dbd9de54ec0ce847770cdb59c3 data/expanded_combat/tags/items/shields.json
+d2fdd71596f7dad5610ea7eb23221e90a3aa67b0 data/expanded_combat/tags/items/shields.json
+4a7d200ec663a3dbd9de54ec0ce847770cdb59c3 data/forge/tags/items/tools/shields.json

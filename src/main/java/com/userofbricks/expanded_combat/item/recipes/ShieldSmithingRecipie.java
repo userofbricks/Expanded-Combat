@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -16,12 +17,16 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import twilightforest.init.TFItems;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
+
+import static com.userofbricks.expanded_combat.item.ECItemTags.SHIELDS;
 
 public class ShieldSmithingRecipie implements Recipe<Container> {
     public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
@@ -34,14 +39,14 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     @Override
     public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
-        if (!(base.getItem() instanceof ECShieldItem) && !(base.getItem() == Items.SHIELD)) return false;
+        if (!Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(SHIELDS).contains(base.getItem())) return false;
         if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
                 && inventory.getItem(5).isEmpty()) return false;
-        ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
-        ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
-        ShieldMaterial dl_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("DL_Material"));
-        ShieldMaterial dr_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("DR_Material"));
-        ShieldMaterial m_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("M_Material"));
+        ShieldMaterial ul_material = ShieldMaterial.getFromName(ECShieldItem.getUpperLeftMaterial(base));
+        ShieldMaterial ur_material = ShieldMaterial.getFromName(ECShieldItem.getUpperRightMaterial(base));
+        ShieldMaterial dl_material = ShieldMaterial.getFromName(ECShieldItem.getDownLeftMaterial(base));
+        ShieldMaterial dr_material = ShieldMaterial.getFromName(ECShieldItem.getDownRightMaterial(base));
+        ShieldMaterial m_material = ShieldMaterial.getFromName(ECShieldItem.getMiddleMaterial(base));
         ShieldMaterial addition_ul_material = ShieldMaterial.getFromItemStack(inventory.getItem(1));
         ShieldMaterial addition_ur_material = ShieldMaterial.getFromItemStack(inventory.getItem(2));
         ShieldMaterial addition_dl_material = ShieldMaterial.getFromItemStack(inventory.getItem(4));
@@ -50,28 +55,28 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
         if (addition_ul_material.isSingleAddition() || addition_ur_material.isSingleAddition() || addition_dl_material.isSingleAddition()
                 || addition_dr_material.isSingleAddition() || addition_m_material.isSingleAddition()) return false;
 
-        boolean ul_require = addition_ul_material.satifiesbeforeRequirement(ul_material.getName());
-        boolean ur_require = addition_ur_material.satifiesbeforeRequirement(ur_material.getName());
-        boolean dl_require = addition_dl_material.satifiesbeforeRequirement(dl_material.getName());
-        boolean dr_require = addition_dr_material.satifiesbeforeRequirement(dr_material.getName());
-        boolean m_require = addition_m_material.satifiesbeforeRequirement(m_material.getName());
+        if (!addition_ul_material.satifiesbeforeRequirement(ul_material.getName())) return false;
+        if (!addition_ur_material.satifiesbeforeRequirement(ur_material.getName())) return false;
+        if (!addition_dl_material.satifiesbeforeRequirement(dl_material.getName())) return false;
+        if (!addition_dr_material.satifiesbeforeRequirement(dr_material.getName())) return false;
+        if (!addition_m_material.satifiesbeforeRequirement(m_material.getName())) return false;
 
-        boolean is_ul = (ul_material != addition_ul_material && ul_require) || addition_ul_material.isEmpty();
-        boolean is_ur = (ur_material != addition_ur_material && ur_require) || addition_ur_material.isEmpty();
-        boolean is_dl = (dl_material != addition_dl_material && dl_require) || addition_dl_material.isEmpty();
-        boolean is_dr = (dr_material != addition_dr_material && dr_require) || addition_dr_material.isEmpty();
-        boolean is_m = (m_material != addition_m_material && m_require) || addition_m_material.isEmpty();
+        boolean is_ul = (ul_material != addition_ul_material) || addition_ul_material.isEmpty();
+        boolean is_ur = (ur_material != addition_ur_material) || addition_ur_material.isEmpty();
+        boolean is_dl = (dl_material != addition_dl_material) || addition_dl_material.isEmpty();
+        boolean is_dr = (dr_material != addition_dr_material) || addition_dr_material.isEmpty();
+        boolean is_m = (m_material != addition_m_material) || addition_m_material.isEmpty();
         return is_ul && is_ur && is_dl && is_dr && is_m;
     }
 
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        ShieldMaterial ul_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UL_Material"));
-        ShieldMaterial ur_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("UR_Material"));
-        ShieldMaterial dl_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("DL_Material"));
-        ShieldMaterial dr_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("DR_Material"));
-        ShieldMaterial m_material = ShieldMaterial.getFromName(base.getOrCreateTag().getString("M_Material"));
+        ShieldMaterial ul_material = ShieldMaterial.getFromName(ECShieldItem.getUpperLeftMaterial(base));
+        ShieldMaterial ur_material = ShieldMaterial.getFromName(ECShieldItem.getUpperRightMaterial(base));
+        ShieldMaterial dl_material = ShieldMaterial.getFromName(ECShieldItem.getDownLeftMaterial(base));
+        ShieldMaterial dr_material = ShieldMaterial.getFromName(ECShieldItem.getDownRightMaterial(base));
+        ShieldMaterial m_material = ShieldMaterial.getFromName(ECShieldItem.getMiddleMaterial(base));
         ShieldMaterial addition_ul_material = ShieldMaterial.getFromItemStack(inventory.getItem(1));
         ShieldMaterial addition_ur_material = ShieldMaterial.getFromItemStack(inventory.getItem(2));
         ShieldMaterial addition_dl_material = ShieldMaterial.getFromItemStack(inventory.getItem(4));
@@ -87,11 +92,11 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
         if (result_ul_material.getFireResistant() || result_ur_material.getFireResistant() || result_m_material.getFireResistant() || result_dl_material.getFireResistant() || result_dr_material.getFireResistant()) {
             result = new ItemStack(ECItems.SHIELD_TIER_3.get());
         }
-        result.getOrCreateTag().putString("UL_Material", result_ul_material.getName());
-        result.getOrCreateTag().putString("UR_Material", result_ur_material.getName());
-        result.getOrCreateTag().putString("DL_Material", result_dl_material.getName());
-        result.getOrCreateTag().putString("DR_Material", result_dr_material.getName());
-        result.getOrCreateTag().putString("M_Material", result_m_material.getName());
+        result.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, result_ul_material.getName());
+        result.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, result_ur_material.getName());
+        result.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, result_dl_material.getName());
+        result.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, result_dr_material.getName());
+        result.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, result_m_material.getName());
         return result;
     }
 
@@ -145,7 +150,6 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
             return new ShieldSmithingRecipie(location);
         }
 
-        public void toNetwork(FriendlyByteBuf packetBuffer, ShieldSmithingRecipie shieldSmithingRecipie) {
-        }
+        public void toNetwork(FriendlyByteBuf packetBuffer, ShieldSmithingRecipie shieldSmithingRecipie) {}
     }
 }

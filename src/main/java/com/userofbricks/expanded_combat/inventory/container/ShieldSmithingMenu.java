@@ -120,14 +120,18 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
      * takes the input slots and matches it to the recipe and then asks the recipe to create its result
      */
     public void createResult() {
-        List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get(), this.inputSlots, this.level);
+        List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
         if (list.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
             this.selectedRecipe = list.get(0);
-            ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
-            this.resultSlots.setRecipeUsed(this.selectedRecipe);
-            this.resultSlots.setItem(0, itemstack);
+            if (this.selectedRecipe.matches(this.inputSlots, this.level)) {
+                ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
+                this.resultSlots.setRecipeUsed(this.selectedRecipe);
+                this.resultSlots.setItem(0, itemstack);
+            } else {
+                this.resultSlots.setItem(0, ItemStack.EMPTY);
+            }
         }
     }
     public void slotsChanged(Container p_75130_1_) {

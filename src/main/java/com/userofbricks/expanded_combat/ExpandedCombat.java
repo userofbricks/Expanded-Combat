@@ -13,6 +13,7 @@ import com.userofbricks.expanded_combat.events.GauntletEvents;
 import com.userofbricks.expanded_combat.events.ShieldEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
+import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
@@ -53,6 +54,7 @@ public class ExpandedCombat
         MaterialInit.loadClass();
         ECEnchantments.loadClass();
         ECItems.loadClass();
+        ECItemTags.loadTags();
         ECCreativeTabs.loadClass();
         bus.addListener(ECRecipeSerializerInit::registerConditions);
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
