@@ -31,7 +31,7 @@ public class GauntletModel extends HumanoidModel<LivingEntity>
     @Override
     @Nonnull
     protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of(this.head);
+        return ImmutableList.of();
     }
 
     @Override
