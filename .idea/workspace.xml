@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="shields now block and config gui now appears">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_1_blocking.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_2_blocking.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_3_blocking.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_4_blocking.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ConfigName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/TooltipFrase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/TooltipFrases.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="config lang now generates itself">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_3.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_4.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_4.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/GauntletModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/GauntletModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -587,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682132334753</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="config lang now generates itself">
+      <created>1682177794006</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1682177794006</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -609,7 +603,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="started on shield recipe stuff" />
     <MESSAGE value="finished shield recipes and models" />
     <MESSAGE value="started on some more quiver and arrow recipies fixed bug not alowing gauntlents to be enchanted with punch or knockback." />
     <MESSAGE value="bug fixes......." />
@@ -634,7 +627,8 @@
     <MESSAGE value="lang stuff" />
     <MESSAGE value="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version" />
     <MESSAGE value="shields now block and config gui now appears" />
-    <option name="LAST_COMMIT_MESSAGE" value="shields now block and config gui now appears" />
+    <MESSAGE value="config lang now generates itself" />
+    <option name="LAST_COMMIT_MESSAGE" value="config lang now generates itself" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

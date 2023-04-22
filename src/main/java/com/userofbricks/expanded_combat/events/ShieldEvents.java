@@ -60,6 +60,4 @@ public class ShieldEvents {
         }
         return damageBlocked;
     }
-
-
 }

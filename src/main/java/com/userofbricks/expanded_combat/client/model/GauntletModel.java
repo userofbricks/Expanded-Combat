@@ -38,6 +38,6 @@ public class GauntletModel extends HumanoidModel<LivingEntity>
     @Nonnull
     protected Iterable<ModelPart> bodyParts() {
         return ImmutableList
-                .of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg, this.hat);
+                .of(this.rightArm, this.leftArm);
     }
 }
