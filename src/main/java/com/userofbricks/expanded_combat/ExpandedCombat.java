@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
@@ -20,6 +21,7 @@ import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,7 +33,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -66,6 +67,7 @@ public class ExpandedCombat
     }
 
     private void comms(InterModEnqueueEvent event) {
+        MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
         }

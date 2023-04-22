@@ -1,8 +1,10 @@
 package com.userofbricks.expanded_combat.network.client;
 
 import com.userofbricks.expanded_combat.inventory.container.SmithingMenuProvider;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkHooks;

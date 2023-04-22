@@ -24,6 +24,7 @@ public class LangStrings {
     public static final String LOWER_LEFT_MATERIAL = "tooltip.expanded_combat.shield_material.lower_left";
     public static final String LOWER_RIGHT_MATERIAL = "tooltip.expanded_combat.shield_material.lower_right";
     public static final String SHIELD_MATERIAL_LANG_START = "tooltip.expanded_combat.shield_material.";
+    public static final String SHIELD_UPGRADE_CONTAINER = "container.upgrade_shield";
 
     //Config
     private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
@@ -36,6 +37,7 @@ public class LangStrings {
         REGISTRATE.get().addRawLang(CENTER_MATERIAL, "Pegs & Trim: ");
         REGISTRATE.get().addRawLang(LOWER_RIGHT_MATERIAL, "Lower Right: ");
         REGISTRATE.get().addRawLang(LOWER_LEFT_MATERIAL, "Lower Left: ");
+        REGISTRATE.get().addRawLang(SHIELD_UPGRADE_CONTAINER, "Upgrade Shield");
 
         //Config
         List<String> alreadyAddedConfigStrings = new ArrayList<>();
