@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item.materials;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.ECConfig.ShieldMaterialConfig;
+import com.userofbricks.expanded_combat.config.ECConfig.ShieldMaterialConfig;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.world.item.Item;

@@ -177,12 +177,15 @@ public class GauntletEvents
 
     public static void DamageGauntletEvent(AttackEntityEvent event) {
         Player player = event.getEntity();
+        if (player.isCreative()) return;
         List<SlotResult> slotResults = CuriosApi.getCuriosHelper().findCurios(player, itemStack -> itemStack.getItem() instanceof ECGauntletItem);
-        int randomGauntlet = (int) Math.round(Math.random() * (slotResults.size() - 1));
-        ItemStack stack = slotResults.get(randomGauntlet).stack();
-        SlotContext slotContext = slotResults.get(randomGauntlet).slotContext();
-        if (!player.isCreative() && stack.getItem() instanceof ECGauntletItem) {
-            stack.hurtAndBreak(1, (LivingEntity)player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(slotContext));
+        if (slotResults.isEmpty()) return;
+        for (SlotResult slotResult : slotResults) {
+            ItemStack stack = slotResult.stack();
+            SlotContext slotContext = slotResult.slotContext();
+            if (stack.getItem() instanceof ECGauntletItem) {
+                stack.hurtAndBreak(1, (LivingEntity) player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(slotContext));
+            }
         }
     }
 

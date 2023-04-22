@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="lang stuff">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/ModIDs.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ECConfigGUIRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +159,7 @@
       <recent name="com.userofbricks.expandedcombat.network.server" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [genIntellijRuns]">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -552,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682028502154</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version">
+      <created>1682033461377</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1682033461377</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -574,7 +584,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="loads of stuff&#10;added client Config" />
     <MESSAGE value="completly overhalled how shields where set up." />
     <MESSAGE value="started on shield recipe stuff" />
     <MESSAGE value="finished shield recipes and models" />
@@ -599,7 +608,8 @@
     <MESSAGE value="separated server run folder from other runs" />
     <MESSAGE value="small ingrediantUtil readability change" />
     <MESSAGE value="lang stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="lang stuff" />
+    <MESSAGE value="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

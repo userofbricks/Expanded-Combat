@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.userofbricks.expanded_combat.ECConfig.ShieldMaterialConfig;
 import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;

@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.ECConfig.GauntletMaterialConfig;
+import com.userofbricks.expanded_combat.config.ECConfig.GauntletMaterialConfig;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;

@@ -5,8 +5,11 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.events.GauntletEvents;
+import com.userofbricks.expanded_combat.events.ShieldEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItems;
@@ -14,12 +17,13 @@ import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
-import com.userofbricks.expanded_combat.ECConfig.GauntletMaterialConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -52,8 +56,10 @@ public class ExpandedCombat
         ECContainers.MENU_TYPES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
+        MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
         bus.addListener(this::registerLayers);
         MinecraftForge.EVENT_BUS.register(this);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);
     }
 
     private void comms(InterModEnqueueEvent event) {
@@ -67,7 +73,6 @@ public class ExpandedCombat
     }
     
     private void clientSetup(FMLClientSetupEvent event) {
-        AutoConfig.getGuiRegistry(ECConfig.class);
         for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }

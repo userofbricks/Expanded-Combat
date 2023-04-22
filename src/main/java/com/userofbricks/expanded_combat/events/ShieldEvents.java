@@ -5,12 +5,15 @@ import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import twilightforest.item.KnightmetalShieldItem;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ShieldEvents {
+
+    @SubscribeEvent
     public static void ShieldBlockingEvent(ShieldBlockEvent event) {
         if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();

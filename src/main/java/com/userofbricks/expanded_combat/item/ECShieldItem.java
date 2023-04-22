@@ -64,6 +64,10 @@ public class ECShieldItem extends ShieldItem {
         return durability + ul + ur + dl + dr + m;
     }
 
+    public boolean canBeDepleted() {
+        return true;
+    }
+
     /**
      * finds what is the most common material in the shield and tests that material like normal
      * @param toRepair the item to repair
@@ -177,6 +181,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack p_41452_) {
         return UseAnim.BLOCK;
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack p_43107_) {
+        return 72000;
     }
 
     private static String getUpperLeftMaterial(ItemStack stack) {
