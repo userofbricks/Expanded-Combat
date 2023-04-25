@@ -86,13 +86,13 @@ public class ShieldMaterial {
         return this.shieldConfig.isSingleAddition;
     }
 
-    public boolean satifiesbeforeRequirement(String shieldMaterialName) {
-        if (this.shieldConfig.requiredBeforeResource.isEmpty()) return true;
+    public boolean notSatifyingbeforeRequirement(String shieldMaterialName) {
+        if (this.shieldConfig.requiredBeforeResource.isEmpty()) return false;
         for (String name :
                 this.shieldConfig.requiredBeforeResource) {
-            if (name.equals(shieldMaterialName)) return true;
+            if (name.equals(shieldMaterialName)) return false;
         }
-        return false;
+        return true;
     }
 
     /**

@@ -6,21 +6,17 @@ import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
-import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import twilightforest.init.TFItems;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -55,11 +51,11 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
         if (addition_ul_material.isSingleAddition() || addition_ur_material.isSingleAddition() || addition_dl_material.isSingleAddition()
                 || addition_dr_material.isSingleAddition() || addition_m_material.isSingleAddition()) return false;
 
-        if (!addition_ul_material.satifiesbeforeRequirement(ul_material.getName())) return false;
-        if (!addition_ur_material.satifiesbeforeRequirement(ur_material.getName())) return false;
-        if (!addition_dl_material.satifiesbeforeRequirement(dl_material.getName())) return false;
-        if (!addition_dr_material.satifiesbeforeRequirement(dr_material.getName())) return false;
-        if (!addition_m_material.satifiesbeforeRequirement(m_material.getName())) return false;
+        if (addition_ul_material.notSatifyingbeforeRequirement(ul_material.getName())) return false;
+        if (addition_ur_material.notSatifyingbeforeRequirement(ur_material.getName())) return false;
+        if (addition_dl_material.notSatifyingbeforeRequirement(dl_material.getName())) return false;
+        if (addition_dr_material.notSatifyingbeforeRequirement(dr_material.getName())) return false;
+        if (addition_m_material.notSatifyingbeforeRequirement(m_material.getName())) return false;
 
         boolean is_ul = (ul_material != addition_ul_material) || addition_ul_material.isEmpty();
         boolean is_ur = (ur_material != addition_ur_material) || addition_ur_material.isEmpty();

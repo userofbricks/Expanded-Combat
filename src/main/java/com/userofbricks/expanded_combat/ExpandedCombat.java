@@ -37,7 +37,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
-@Mod("expanded_combat")
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+
+@Mod(MODID)
 public class ExpandedCombat
 {
     public static final String MODID = "expanded_combat";

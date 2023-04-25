@@ -13,10 +13,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
@@ -56,25 +56,25 @@ public class ECConfig implements ConfigData {
 
     //Twilight Forest
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Ironwood Gauntlet Settings")
-    public GauntletMaterialConfig ironwoodGauntlet = new GauntletMaterialConfig(512, 25, 1.5, 2, 2, TwilightForestMOD_ID + ":ironwood_ingot", new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
+    public GauntletMaterialConfig ironwoodGauntlet = new GauntletMaterialConfig(512, 25, 1.5, 2, 2, new ArrayList<>(List.of(TwilightForestMOD_ID + ":ironwood_ingot")), new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Fiery Gauntlet Settings")
-    public GauntletMaterialConfig fieryGauntlet = new GauntletMaterialConfig(1024, 10, 0, 4, 4, TwilightForestMOD_ID + ":fiery_ingot", new ResourceLocation("item.armor.equip_generic"), 1.5, 0, true);
+    public GauntletMaterialConfig fieryGauntlet = new GauntletMaterialConfig(1024, 10, 0, 4, 4, new ArrayList<>(List.of(TwilightForestMOD_ID + ":fiery_ingot")), new ResourceLocation("item.armor.equip_generic"), 1.5, 0, true);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Steeleaf Gauntlet Settings")
-    public GauntletMaterialConfig steeleafGauntlet = new GauntletMaterialConfig(131, 9, 0, 3, 3, TwilightForestMOD_ID + ":steeleaf_ingot", new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
+    public GauntletMaterialConfig steeleafGauntlet = new GauntletMaterialConfig(131, 9, 0, 3, 3, new ArrayList<>(List.of(TwilightForestMOD_ID + ":steeleaf_ingot")), new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Knightly Gauntlet Settings")
-    public GauntletMaterialConfig knightlyGauntlet = new GauntletMaterialConfig(512, 8, 0, 3, 3, TwilightForestMOD_ID + ":knightmetal_ingot", new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"), 1, 0, false);
+    public GauntletMaterialConfig knightlyGauntlet = new GauntletMaterialConfig(512, 8, 0, 3, 3, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"), 1, 0, false);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Naga Scale Gauntlet Settings")
-    public GauntletMaterialConfig nagaGauntlet = new GauntletMaterialConfig((int) (512 * 1.05), 15, 0.1, 3, 2.1d, TwilightForestMOD_ID + ":naga_scale", new ResourceLocation("item.armor.equip_generic"), 0.5, 0, false);
+    public GauntletMaterialConfig nagaGauntlet = new GauntletMaterialConfig((int) (512 * 1.05), 15, 0.1, 3, 2.1d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":naga_scale")), new ResourceLocation("item.armor.equip_generic"), 0.5, 0, false);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Yeti Gauntlet Settings")
-    public GauntletMaterialConfig yetiGauntlet = new GauntletMaterialConfig(512, 15, 0, 3, 2.5d, TwilightForestMOD_ID + ":alpha_yeti_fur", new ResourceLocation("item.armor.equip_generic"), 3, 0, false);
+    public GauntletMaterialConfig yetiGauntlet = new GauntletMaterialConfig(512, 15, 0, 3, 2.5d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":alpha_yeti_fur")), new ResourceLocation("item.armor.equip_generic"), 3, 0, false);
 
     @Category("Gauntlets") @CollapsibleObject @ConfigName("Arctic Gauntlet Settings")
-    public GauntletMaterialConfig arcticGauntlet = new GauntletMaterialConfig(131, 8, 0, 2, 2d, TwilightForestMOD_ID + ":arctic_fur", new ResourceLocation("item.armor.equip_generic"), 2, 0, false);
+    public GauntletMaterialConfig arcticGauntlet = new GauntletMaterialConfig(131, 8, 0, 2, 2d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":arctic_fur")), new ResourceLocation("item.armor.equip_generic"), 2, 0, false);
 
 
 
@@ -85,7 +85,7 @@ public class ECConfig implements ConfigData {
     public ShieldProtectionConfig shieldProtectionConfig = new ShieldProtectionConfig();
 
     @Category("Shields") @CollapsibleObject @ConfigName("Vanilla Shield Settings")
-    public ShieldMaterialConfig emptyShield = new ShieldMaterialConfig(0, 0, 0, "empty", 0, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig emptyShield = new ShieldMaterialConfig(0, 0, 0, new ArrayList<>(List.of("empty")), 0, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Netherite Shield Settings")
     public ShieldMaterialConfig netheriteShield = new ShieldMaterialConfig(0.2, 6.5, 0.85, Tiers.NETHERITE.getRepairIngredient(), 375, true, true, new ArrayList<>(Collections.singleton("diamond")), new ArrayList<>(Collections.singleton("diamond")));
@@ -113,19 +113,19 @@ public class ECConfig implements ConfigData {
 
     //Twilight Forest
     @Category("Shields") @CollapsibleObject @ConfigName("Naga Scale Shield Settings")
-    public ShieldMaterialConfig nagaShield = new ShieldMaterialConfig(0.1, 4, 0.65, TwilightForestMOD_ID + ":naga_scale", 260, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig nagaShield = new ShieldMaterialConfig(0.1, 4, 0.65, new ArrayList<>(List.of(TwilightForestMOD_ID + ":naga_scale")), 260, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Ironwood Shield Settings")
-    public ShieldMaterialConfig ironwoodShield = new ShieldMaterialConfig(1.5, 3.5, 0.6, TwilightForestMOD_ID + ":ironwood_ingot", 250, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig ironwoodShield = new ShieldMaterialConfig(1.5, 3.5, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":ironwood_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Fiery Shield Settings")
-    public ShieldMaterialConfig fieryShield = new ShieldMaterialConfig(0, 4.5, 0.7, TwilightForestMOD_ID + ":fiery_ingot", 275, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig fieryShield = new ShieldMaterialConfig(0, 4.5, 0.7, new ArrayList<>(List.of(TwilightForestMOD_ID + ":fiery_ingot")), 275, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Steeleaf Shield Settings")
-    public ShieldMaterialConfig steeleafShield = new ShieldMaterialConfig(0, 3.5, 0.6, TwilightForestMOD_ID + ":steeleaf_ingot", 180, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig steeleafShield = new ShieldMaterialConfig(0, 3.5, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":steeleaf_ingot")), 180, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Knighly Shield Settings")
-    public ShieldMaterialConfig knightlyShield = new ShieldMaterialConfig(0, 4, 0.6, TwilightForestMOD_ID + ":knightmetal_ingot", 250, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig knightlyShield = new ShieldMaterialConfig(0, 4, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
 
     public static class GauntletMaterialConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
@@ -143,13 +143,13 @@ public class ECConfig implements ConfigData {
         @ConfigName("Knockback Resistance")
         public double knockbackResistance;
         @ConfigName("Repair Item")
-        public String repairItem;
+        public ArrayList<String> repairItem;
         @ConfigName("Mending Bonus")
         public double mendingBonus;
         @ConfigName("Fire Resistant")
         public boolean fireResistant;
 
-        GauntletMaterialConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, String repairItem, ResourceLocation equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
+        GauntletMaterialConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, ResourceLocation equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
             this.durability =           durability;
             this.enchantability =       enchantability;
             this.mendingBonus =         mendingBonus;
@@ -238,7 +238,7 @@ public class ECConfig implements ConfigData {
         @TooltipFrase(line = 1, value = "Only works if Shield Protection Percentage is enabled in the Shield Protection Settings")
         public double afterBasePercentReduction;
         @ConfigName("Repair Item")
-        public String ingotOrMaterial;
+        public ArrayList<String> ingotOrMaterial;
         @ConfigName("Mending Bonus")
         public double mendingBonus;
         @ConfigName("Is Single Addition")
@@ -250,7 +250,7 @@ public class ECConfig implements ConfigData {
         @ConfigName("Only Replaced By This")
         public ArrayList<String> onlyReplaceResource;
 
-        ShieldMaterialConfig(double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, String ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
+        ShieldMaterialConfig(double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, ArrayList<String> ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
             this.mendingBonus =                   mendingBonus;
             this.addedDurability =                addedDurability;
             this.baseProtectionAmmount =          baseProtectionAmmount;
