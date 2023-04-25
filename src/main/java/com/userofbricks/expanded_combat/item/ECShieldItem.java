@@ -7,6 +7,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -77,6 +80,7 @@ public class ECShieldItem extends ShieldItem {
     @ParametersAreNonnullByDefault
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+        if (repair.getItem() instanceof EnchantedBookItem) return  false;
         String ul = getUpperLeftMaterial(toRepair);
         String ur = getUpperRightMaterial(toRepair);
         String dl = getDownLeftMaterial(toRepair);
@@ -85,16 +89,16 @@ public class ECShieldItem extends ShieldItem {
         int last = toRepair.getOrCreateTag().getInt(LastRepairNumber);
         List<String> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
         String currentSlotMaterial = "empty";
-        int checked = 0;
-        while (currentSlotMaterial.equals("empty") || currentSlotMaterial.equals("")) {
-            if(checked == 5) return false;
-            currentSlotMaterial = slotMaterials.get(last);
-            checked++;
-            last++;
-            if (last == 5) last = 0;
+        for (int checked = 0; checked < 5; checked++) {
+            int check = last + checked;
+            if (check >= 5) check = 0;
+            currentSlotMaterial = slotMaterials.get(check);
+            if (!currentSlotMaterial.equals("empty") && !currentSlotMaterial.equals("")) break;
         }
+
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
-        return ShieldMaterial.getFromName(currentSlotMaterial).getIngotOrMaterial().test(repair);
+        Ingredient ingredient = ShieldMaterial.getFromName(currentSlotMaterial).getIngotOrMaterial();
+        return !ingredient.isEmpty() && ingredient.test(repair);
     }
 
     @Override
@@ -186,6 +190,14 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getUseDuration(@NotNull ItemStack p_43107_) {
         return 72000;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.BINDING_CURSE) {
+            return false;
+        }
+        return super.canApplyAtEnchantingTable(stack,enchantment);
     }
 
     public static String getUpperLeftMaterial(ItemStack stack) {

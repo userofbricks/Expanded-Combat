@@ -15,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -122,7 +123,7 @@ public class ECGauntletItem extends Item implements ICurioItem
         String identifier = slotContext.identifier();
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
-            double attackDamage = ((ECGauntletItem)stack.getItem()).getAttackDamage();
+            double attackDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
             double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.NAGA_GAUNTLET ? (attackDamage/2.0d*3) : 0;
             double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.YETI_GAUNTLET ? (attackDamage/2.0d) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
@@ -145,10 +146,11 @@ public class ECGauntletItem extends Item implements ICurioItem
         return true;
     }
 
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         if (enchantment == Enchantments.KNOCKBACK || enchantment == Enchantments.PUNCH_ARROWS) {
             return true;
         }
-        return enchantment.category.canEnchant(stack.getItem());
+        return super.canApplyAtEnchantingTable(stack,enchantment);
     }
 }
