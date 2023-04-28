@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="shield smithing recipe now generates and works">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed crash when combining curses with shields in anvil">
+      <change afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_data/config/fml.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/IngredientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/IngredientUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,11 +143,11 @@
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/shield" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/run/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/libs" />
       <recent name="$PROJECT_DIR$/src/main/java/top/theillusivec4/curios/client" />
-      <recent name="$PROJECT_DIR$/src/main/resources/data/tetra/modules" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expanded_combat" />
@@ -610,7 +614,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682198380870</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fixed crash when combining curses with shields in anvil">
+      <created>1682439719617</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1682439719617</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fixed crash when combining curses with shields in anvil">
+      <created>1682439783934</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1682439783934</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -632,8 +650,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed bugs in fletching recipe system as well as them showing in jei" />
-    <MESSAGE value="added config for gauntlet armor and damage attributes." />
     <MESSAGE value="fixed the shield enchantment glint not apearing when enchanted" />
     <MESSAGE value="1.17.1 renaming dump" />
     <MESSAGE value="fixed arrow entity render and re-added mixin features" />
@@ -657,7 +673,9 @@
     <MESSAGE value="gauntlets now render correctly" />
     <MESSAGE value="got shield smithing menu to render" />
     <MESSAGE value="shield smithing recipe now generates and works" />
-    <option name="LAST_COMMIT_MESSAGE" value="shield smithing recipe now generates and works" />
+    <MESSAGE value="fixed crash when combining curses with shields" />
+    <MESSAGE value="fixed crash when combining curses with shields in anvil" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed crash when combining curses with shields in anvil" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

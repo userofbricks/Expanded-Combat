@@ -1,0 +1,354 @@
+enableGauntlets = true
+enableShields = true
+
+[netheriteGauntlet]
+durability = 2031
+armorAmount = 3
+attackDamage = 4.0
+enchantability = 15
+equipSound = "minecraft:item.armor.equip_netherite"
+armorToughness = 3.0
+knockbackResistance = 0.10000000149011612
+repairItem = ["minecraft:netherite_ingot"]
+mendingBonus = 0.2
+fireResistant = true
+
+[diamondGauntlet]
+durability = 1561
+armorAmount = 3
+attackDamage = 3.0
+enchantability = 10
+equipSound = "minecraft:item.armor.equip_diamond"
+armorToughness = 2.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:diamond"]
+mendingBonus = -0.1
+fireResistant = false
+
+[goldGauntlet]
+durability = 32
+armorAmount = 1
+attackDamage = 0.0
+enchantability = 25
+equipSound = "minecraft:item.armor.equip_gold"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:gold_ingot"]
+mendingBonus = 2.0
+fireResistant = false
+
+[ironGauntlet]
+durability = 250
+armorAmount = 2
+attackDamage = 2.0
+enchantability = 14
+equipSound = "minecraft:item.armor.equip_iron"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:iron_ingot"]
+mendingBonus = 0.0
+fireResistant = false
+
+[leatherGauntlet]
+durability = 131
+armorAmount = 1
+attackDamage = 1.0
+enchantability = 5
+equipSound = "minecraft:item.armor.equip_leather"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:leather"]
+mendingBonus = 0.0
+fireResistant = false
+
+[steelGauntlet]
+durability = 482
+armorAmount = 2
+attackDamage = 2.5
+enchantability = 10
+equipSound = "minecraft:item.armor.equip_iron"
+armorToughness = 1.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:barrier"]
+mendingBonus = 0.0
+fireResistant = false
+
+[bronzeGauntlet]
+durability = 225
+armorAmount = 2
+attackDamage = 2.0
+enchantability = 12
+equipSound = "minecraft:item.armor.equip_gold"
+armorToughness = 0.5
+knockbackResistance = 0.0
+repairItem = ["minecraft:barrier"]
+mendingBonus = 0.1
+fireResistant = false
+
+[silverGauntlet]
+durability = 325
+armorAmount = 2
+attackDamage = 1.0
+enchantability = 23
+equipSound = "minecraft:item.armor.equip_gold"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["minecraft:barrier"]
+mendingBonus = 1.0
+fireResistant = false
+
+[leadGauntlet]
+durability = 1761
+armorAmount = 3
+attackDamage = 3.0
+enchantability = 10
+equipSound = "minecraft:item.armor.equip_gold"
+armorToughness = 0.25
+knockbackResistance = 0.5
+repairItem = ["minecraft:barrier"]
+mendingBonus = 0.1
+fireResistant = false
+
+[ironwoodGauntlet]
+durability = 512
+armorAmount = 2
+attackDamage = 2.0
+enchantability = 25
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["twilightforest:ironwood_ingot"]
+mendingBonus = 1.5
+fireResistant = false
+
+[fieryGauntlet]
+durability = 1024
+armorAmount = 4
+attackDamage = 4.0
+enchantability = 10
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 1.5
+knockbackResistance = 0.0
+repairItem = ["twilightforest:fiery_ingot"]
+mendingBonus = 0.0
+fireResistant = true
+
+[steeleafGauntlet]
+durability = 131
+armorAmount = 3
+attackDamage = 3.0
+enchantability = 9
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 0.0
+knockbackResistance = 0.0
+repairItem = ["twilightforest:steeleaf_ingot"]
+mendingBonus = 0.0
+fireResistant = false
+
+[knightlyGauntlet]
+durability = 512
+armorAmount = 3
+attackDamage = 3.0
+enchantability = 8
+equipSound = "twilightforest:item.twilightforest.armor.equip_knightmetal"
+armorToughness = 1.0
+knockbackResistance = 0.0
+repairItem = ["twilightforest:knightmetal_ingot"]
+mendingBonus = 0.0
+fireResistant = false
+
+[nagaGauntlet]
+durability = 537
+armorAmount = 3
+attackDamage = 2.1
+enchantability = 15
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 0.5
+knockbackResistance = 0.0
+repairItem = ["twilightforest:naga_scale"]
+mendingBonus = 0.1
+fireResistant = false
+
+[yetiGauntlet]
+durability = 512
+armorAmount = 3
+attackDamage = 2.5
+enchantability = 15
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 3.0
+knockbackResistance = 0.0
+repairItem = ["twilightforest:alpha_yeti_fur"]
+mendingBonus = 0.0
+fireResistant = false
+
+[arcticGauntlet]
+durability = 131
+armorAmount = 2
+attackDamage = 2.0
+enchantability = 8
+equipSound = "minecraft:item.armor.equip_generic"
+armorToughness = 2.0
+knockbackResistance = 0.0
+repairItem = ["twilightforest:arctic_fur"]
+mendingBonus = 0.0
+fireResistant = false
+
+[shieldProtectionConfig]
+EnableVanillaStyleShieldProtection = false
+EnableShieldBaseProtection = true
+shieldBaseProtectionType = "DURABILITY_PERCENTAGE"
+EnableShieldProtectionPercentage = true
+
+[emptyShield]
+addedDurability = 0
+baseProtectionAmmount = 2.5
+afterBasePercentReduction = 0.3
+ingotOrMaterial = ["minecraft:barrier"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[netheriteShield]
+addedDurability = 375
+baseProtectionAmmount = 6.5
+afterBasePercentReduction = 0.85
+ingotOrMaterial = ["minecraft:netherite_ingot"]
+mendingBonus = 0.2
+isSingleAddition = true
+fireResistant = true
+requiredBeforeResource = ["diamond"]
+onlyReplaceResource = ["diamond"]
+
+[diamondShield]
+addedDurability = 300
+baseProtectionAmmount = 5.0
+afterBasePercentReduction = 0.75
+ingotOrMaterial = ["minecraft:diamond"]
+mendingBonus = -0.1
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = ["netherite", "gold", "iron", "steel", "bronze", "silver", "lead", "ironwood", "fiery", "steeleaf", "knightly", "naga"]
+onlyReplaceResource = []
+
+[goldShield]
+addedDurability = 40
+baseProtectionAmmount = 3.0
+afterBasePercentReduction = 0.4
+ingotOrMaterial = ["minecraft:gold_ingot"]
+mendingBonus = 2.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[ironShield]
+addedDurability = 150
+baseProtectionAmmount = 3.0
+afterBasePercentReduction = 0.6
+ingotOrMaterial = ["minecraft:iron_ingot"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[steelShield]
+addedDurability = 200
+baseProtectionAmmount = 3.5
+afterBasePercentReduction = 0.65
+ingotOrMaterial = ["minecraft:barrier"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[bronzeShield]
+addedDurability = 125
+baseProtectionAmmount = 2.75
+afterBasePercentReduction = 0.5
+ingotOrMaterial = ["minecraft:barrier"]
+mendingBonus = 0.1
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[silverShield]
+addedDurability = 175
+baseProtectionAmmount = 2.5
+afterBasePercentReduction = 0.4
+ingotOrMaterial = ["minecraft:barrier"]
+mendingBonus = 1.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[leadShield]
+addedDurability = 350
+baseProtectionAmmount = 5.0
+afterBasePercentReduction = 0.6
+ingotOrMaterial = ["minecraft:barrier"]
+mendingBonus = 0.1
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[nagaShield]
+addedDurability = 260
+baseProtectionAmmount = 4.0
+afterBasePercentReduction = 0.65
+ingotOrMaterial = ["twilightforest:naga_scale"]
+mendingBonus = 0.1
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[ironwoodShield]
+addedDurability = 250
+baseProtectionAmmount = 3.5
+afterBasePercentReduction = 0.6
+ingotOrMaterial = ["twilightforest:ironwood_ingot"]
+mendingBonus = 1.5
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[fieryShield]
+addedDurability = 275
+baseProtectionAmmount = 4.5
+afterBasePercentReduction = 0.7
+ingotOrMaterial = ["twilightforest:fiery_ingot"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[steeleafShield]
+addedDurability = 180
+baseProtectionAmmount = 3.5
+afterBasePercentReduction = 0.6
+ingotOrMaterial = ["twilightforest:steeleaf_ingot"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []
+
+[knightlyShield]
+addedDurability = 250
+baseProtectionAmmount = 4.0
+afterBasePercentReduction = 0.6
+ingotOrMaterial = ["twilightforest:knightmetal_ingot"]
+mendingBonus = 0.0
+isSingleAddition = false
+fireResistant = false
+requiredBeforeResource = []
+onlyReplaceResource = []

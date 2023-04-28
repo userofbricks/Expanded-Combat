@@ -67,7 +67,7 @@ minecraft {
         // By default, the server will crash when no gametests are provided.
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
-            workingDirectory project.file('run')
+            workingDirectory project.file('run_test')
             arg "-mixin.config=${modid}.mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -80,7 +80,7 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file('run_data')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')

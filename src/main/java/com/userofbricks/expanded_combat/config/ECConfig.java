@@ -3,13 +3,11 @@ package com.userofbricks.expanded_combat.config;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.*;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -85,7 +83,7 @@ public class ECConfig implements ConfigData {
     public ShieldProtectionConfig shieldProtectionConfig = new ShieldProtectionConfig();
 
     @Category("Shields") @CollapsibleObject @ConfigName("Vanilla Shield Settings")
-    public ShieldMaterialConfig emptyShield = new ShieldMaterialConfig(0, 0, 0, new ArrayList<>(List.of("empty")), 0, false, false, new ArrayList<>(), new ArrayList<>());
+    public ShieldMaterialConfig emptyShield = new ShieldMaterialConfig(0, 2.5, 0.3, Ingredient.of(ItemTags.PLANKS), 0, false, false, new ArrayList<>(), new ArrayList<>());
 
     @Category("Shields") @CollapsibleObject @ConfigName("Netherite Shield Settings")
     public ShieldMaterialConfig netheriteShield = new ShieldMaterialConfig(0.2, 6.5, 0.85, Tiers.NETHERITE.getRepairIngredient(), 375, true, true, new ArrayList<>(Collections.singleton("diamond")), new ArrayList<>(Collections.singleton("diamond")));
@@ -128,7 +126,8 @@ public class ECConfig implements ConfigData {
     public ShieldMaterialConfig knightlyShield = new ShieldMaterialConfig(0, 4, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
 
     public static class GauntletMaterialConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
+        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability") @Tooltip
+        @TooltipFrase("this is the amount of durability added, by each of the five sections, onto the base vanilla shield amount of 336")
         public int durability;
         @BoundedDiscrete(max = 512) @ConfigName("Armor Amount")
         public int armorAmount;
@@ -208,7 +207,7 @@ public class ECConfig implements ConfigData {
         @Tooltip @ConfigName("Enable Shield Base Protection")
         @TooltipFrase("If disabled alongside shield protection percentage, shields will no longer block anything unless vanilla protection is activated")
         public boolean EnableShieldBaseProtection = true;
-        @Tooltip(count = 3) @ConfigName("Shield Base Protection Type")
+        @Tooltip(count = 3) @ConfigName("Shield Base Protection Type") @EnumHandler(option = EnumHandler.EnumDisplayOption.BUTTON)
         @TooltipFrase("DURABILITY_PERCENTAGE: the more durability left on the shield, the more damage is blocked")
         @TooltipFrase(line = 1,value = "INVERTED_DURABILITY_PERCENTAGE: the less durability left on the shield, the more damage is blocked")
         @TooltipFrase(line = 2,value = "PREDEFINED_AMMOUNT: the amount defined in the individual shield configs is blocked the rest hits the player")

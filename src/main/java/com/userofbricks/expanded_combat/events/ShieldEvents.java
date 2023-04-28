@@ -39,7 +39,7 @@ public class ShieldEvents {
                 double damagePercent = MaterialInit.VANILLA_SHIELD.getAfterBasePercentReduction();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
-                } else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
+                }else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
                     if (shieldItemStack.getItem() instanceof KnightmetalShieldItem) {
                         damagePercent = MaterialInit.KNIGHTLY_SHIELD.getAfterBasePercentReduction();
                     }

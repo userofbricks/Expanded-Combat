@@ -86,15 +86,10 @@ public class ECShieldItem extends ShieldItem {
         String dl = getDownLeftMaterial(toRepair);
         String dr = getDownRightMaterial(toRepair);
         String m = getMiddleMaterial(toRepair);
-        int last = toRepair.getOrCreateTag().getInt(LastRepairNumber);
+        int last = toRepair.getOrCreateTag().getInt(LastRepairNumber) + 1;
+        if (last >= 5) last = 0;
         List<String> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
-        String currentSlotMaterial = "empty";
-        for (int checked = 0; checked < 5; checked++) {
-            int check = last + checked;
-            if (check >= 5) check = 0;
-            currentSlotMaterial = slotMaterials.get(check);
-            if (!currentSlotMaterial.equals("empty") && !currentSlotMaterial.equals("")) break;
-        }
+        String currentSlotMaterial = slotMaterials.get(last);
 
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
         Ingredient ingredient = ShieldMaterial.getFromName(currentSlotMaterial).getIngotOrMaterial();
