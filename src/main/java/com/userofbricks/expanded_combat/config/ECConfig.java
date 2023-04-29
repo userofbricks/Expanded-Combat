@@ -151,7 +151,7 @@ public class ECConfig implements ConfigData {
     public BowMaterialConfig diamondBow = new BowMaterialConfig(672, Tiers.DIAMOND.getEnchantmentValue(), 1, 3.5f, Tiers.DIAMOND.getRepairIngredient(), -0.1f);
 
     @Category("Bows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
-    public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f);
+    public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f, true, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
 
     public static class GauntletMaterialConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
@@ -345,10 +345,10 @@ public class ECConfig implements ConfigData {
                     0,
                     bowPower,
                     velocityMultiplyer,
-                    IngredientUtil.getItemStringFromIngrediant(repairItem),
+                    repairItem,
                     mendingBonus,
                     fireResistant,
-                    Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(smithingTemplate)).toString());
+                    smithingTemplate);
         }
 
         public BowMaterialConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus) {
@@ -360,18 +360,6 @@ public class ECConfig implements ConfigData {
                     mendingBonus,
                     false,
                     null);
-        }
-
-        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
-            this(durability,
-                    enchantability,
-                    multishotLevel,
-                    bowPower,
-                    velocityMultiplyer,
-                    IngredientUtil.getItemStringFromIngrediant(repairItem),
-                    mendingBonus,
-                    fireResistant,
-                    smithingTemplate);
         }
     }
 
