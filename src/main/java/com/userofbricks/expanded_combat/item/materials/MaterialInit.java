@@ -8,6 +8,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 public class MaterialInit {
     public static List<GauntletMaterial> gauntletMaterials = new ArrayList<>();
     public static List<ShieldMaterial> shieldMaterials = new ArrayList<>();
+    public static List<BowMaterial> bowMaterials = new ArrayList<>();
 
     public static GauntletMaterial NETHERITE_GAUNTLET = new GauntletMaterial("Netherite", CONFIG.netheriteGauntlet, gauntletMaterials);
     public static GauntletMaterial DIAMOND_GAUNTLET = new GauntletMaterial("Diamond", CONFIG.diamondGauntlet, gauntletMaterials);
@@ -26,6 +27,7 @@ public class MaterialInit {
     public static GauntletMaterial YETI_GAUNTLET = new GauntletMaterial("Yeti", CONFIG.yetiGauntlet, gauntletMaterials);
     public static GauntletMaterial ARCTIC_GAUNTLET = new GauntletMaterial("Arctic", CONFIG.arcticGauntlet, gauntletMaterials);
 
+
     public static ShieldMaterial VANILLA_SHIELD = new ShieldMaterial("Empty", CONFIG.emptyShield, shieldMaterials);
     public static ShieldMaterial NETHERITE_SHIELD = new ShieldMaterial("Netherite", CONFIG.netheriteShield, shieldMaterials);
     public static ShieldMaterial DIAMOND_SHIELD = new ShieldMaterial("Diamond", CONFIG.diamondShield, shieldMaterials);
@@ -41,6 +43,15 @@ public class MaterialInit {
     public static ShieldMaterial STEELEAF_SHIELD = new ShieldMaterial("Steeleaf", CONFIG.steeleafShield, shieldMaterials);
     public static ShieldMaterial KNIGHTLY_SHIELD = new ShieldMaterial("Knightly", CONFIG.knightlyShield, shieldMaterials);
     public static ShieldMaterial NAGA_SHIELD = new ShieldMaterial("Naga", CONFIG.nagaShield, shieldMaterials);
+
+
+    public static BowMaterial HALF_IRON_BOW = new BowMaterial("Half Iron", true, false, CONFIG.halfIronBow, null, bowMaterials);
+    public static BowMaterial IRON_BOW = new BowMaterial("Iron", false, false, CONFIG.ironBow, HALF_IRON_BOW, bowMaterials);
+    public static BowMaterial HALF_GOLD_BOW = new BowMaterial("Half Gold", true, false, CONFIG.halfGoldBow, null, bowMaterials);
+    public static BowMaterial GOLD_BOW = new BowMaterial("Gold", false, false, CONFIG.goldBow, HALF_GOLD_BOW, bowMaterials);
+    public static BowMaterial HALF_DIAMOND_BOW = new BowMaterial("Half Diamond", true, false, CONFIG.halfDiamondBow, IRON_BOW, bowMaterials);
+    public static BowMaterial DIAMOND_BOW = new BowMaterial("Diamond", false, false, CONFIG.diamondBow, HALF_DIAMOND_BOW, bowMaterials);
+    public static BowMaterial NETHERITE_BOW = new BowMaterial("Netherite", false, true, CONFIG.netheriteBow, DIAMOND_BOW, bowMaterials);
 
     public static void loadClass() {}
 }

@@ -1,5 +1,8 @@
 enableGauntlets = true
 enableShields = true
+enableBows = true
+bowRecipeType = "SMITHING_ONLY"
+enableHalfBows = true
 
 [netheriteGauntlet]
 durability = 2031
@@ -352,3 +355,80 @@ isSingleAddition = false
 fireResistant = false
 requiredBeforeResource = []
 onlyReplaceResource = []
+
+[halfIronBow]
+durability = 414
+enchantability = 14
+multishotLevel = 0
+bowPower = 0
+velocityMultiplyer = 1.5
+repairItem = ["minecraft:iron_ingot"]
+mendingBonus = 0.0
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[ironBow]
+durability = 480
+enchantability = 14
+multishotLevel = 0
+bowPower = 0
+velocityMultiplyer = 3.0
+repairItem = ["minecraft:iron_ingot"]
+mendingBonus = 0.0
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[halfGoldBow]
+durability = 390
+enchantability = 22
+multishotLevel = 0
+bowPower = 0
+velocityMultiplyer = 1.25
+repairItem = ["minecraft:gold_ingot"]
+mendingBonus = 1.0
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[goldBow]
+durability = 395
+enchantability = 22
+multishotLevel = 0
+bowPower = 0
+velocityMultiplyer = 2.5
+repairItem = ["minecraft:gold_ingot"]
+mendingBonus = 2.0
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[halfDiamondBow]
+durability = 576
+enchantability = 10
+multishotLevel = 0
+bowPower = 0
+velocityMultiplyer = 2.0
+repairItem = ["minecraft:diamond"]
+mendingBonus = -0.05
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[diamondBow]
+durability = 672
+enchantability = 10
+multishotLevel = 0
+bowPower = 1
+velocityMultiplyer = 3.5
+repairItem = ["minecraft:diamond"]
+mendingBonus = -0.1
+fireResistant = false
+smithingTemplate = "minecraft:air"
+
+[netheriteBow]
+durability = 768
+enchantability = 15
+multishotLevel = 0
+bowPower = 1
+velocityMultiplyer = 4.0
+repairItem = ["minecraft:netherite_ingot"]
+mendingBonus = 0.2
+fireResistant = false
+smithingTemplate = "minecraft:air"

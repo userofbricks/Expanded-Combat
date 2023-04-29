@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.events.ShieldEvents;
+import com.userofbricks.expanded_combat.item.materials.BowMaterial;
 import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
@@ -44,6 +44,13 @@ public class ECCreativeTabs {
                                     stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
                                     stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
                                     output.accept(stack);
+                                }
+                            }
+                        }
+                        if (CONFIG.enableBows) {
+                            for (BowMaterial material : MaterialInit.bowMaterials) {
+                                if (material.isNotHalfBow() || CONFIG.enableHalfBows) {
+                                    output.accept(material.getBowEntry().get());
                                 }
                             }
                         }
@@ -96,6 +103,13 @@ public class ECCreativeTabs {
                         stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
 
                         items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    }
+                }
+            }
+            if (CONFIG.enableBows) {
+                for (BowMaterial material : MaterialInit.bowMaterials) {
+                    if (material.isNotHalfBow() || CONFIG.enableHalfBows) {
+                        items.putAfter(new ItemStack(Items.BOW), new ItemStack(material.getBowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }

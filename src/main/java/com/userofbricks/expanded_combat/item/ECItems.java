@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.item.materials.BowMaterial;
 import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipeBuilder;
@@ -34,6 +35,7 @@ public class ECItems
 
     public static void loadClass() {
         for (GauntletMaterial gm : MaterialInit.gauntletMaterials) { gm.registerElements(); }
+        for (BowMaterial bm : MaterialInit.bowMaterials) { bm.registerElements(); }
         REGISTRATE.get().addDataGenerator(ProviderType.RECIPE, recipeProvider -> new ShieldSmithingRecipeBuilder(RecipeCategory.COMBAT)
                 .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                 .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing")));

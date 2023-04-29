@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
+import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
@@ -85,6 +86,7 @@ public class ExpandedCombat
         for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
+        MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
     }
 
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {

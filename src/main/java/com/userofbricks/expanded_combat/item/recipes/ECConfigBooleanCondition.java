@@ -31,6 +31,8 @@ public class ECConfigBooleanCondition implements ICondition {
             default -> false;
             case "gauntlet" -> CONFIG.enableGauntlets;
             case "shield" -> CONFIG.enableShields;
+            case "bow" -> CONFIG.enableBows;
+            case "half_bow" -> CONFIG.enableHalfBows;
         };
     }
 

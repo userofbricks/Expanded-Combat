@@ -54,11 +54,13 @@ public class ECGauntletItem extends Item implements ICurioItem
     public GauntletMaterial getMaterial() {
         return this.material;
     }
-    
+
+    @Override
     public int getEnchantmentValue(ItemStack stack) {
         return this.material.getEnchantability();
     }
-    
+
+    @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
         return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
@@ -73,22 +75,27 @@ public class ECGauntletItem extends Item implements ICurioItem
         return this.material.getDurability();
     }
 
+    @Override
     public boolean canBeDepleted() {
         return true;
     }
 
+    @Override
     public boolean isFireResistant() {
-        return this.getMaterial().getFireResistant();
+        return this.material.getFireResistant();
     }
 
+    @Override
     public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
-        return !this.getMaterial().getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
+        return !this.material.getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
     }
 
+    @Override
     public float getXpRepairRatio( ItemStack stack) {
         return (float) this.material.getMendingBonus();
     }
 
+    @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("tooltip.expanded_combat.half_added_damage_when_holding_item").withStyle(ChatFormatting.GRAY));
         if (this.material == MaterialInit.GOLD_GAUNTLET) {

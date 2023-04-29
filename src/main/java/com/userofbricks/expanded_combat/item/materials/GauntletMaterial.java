@@ -8,6 +8,7 @@ import com.userofbricks.expanded_combat.config.ECConfig.GauntletMaterialConfig;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.Advancement;
@@ -15,11 +16,10 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.ConditionalAdvancement;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -67,22 +67,34 @@ public class GauntletMaterial {
 
                 ConditionalRecipe.Builder conditionalRecipe = ConditionalRecipe.builder()
                         .addCondition(enableGauntlets)
-                        .setAdvancement(ctx.getId().getNamespace(), "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath(),
+                        .setAdvancement(ctx.getId().getNamespace(), "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath() + "_conditional",
                                 ConditionalAdvancement.builder()
                                         .addCondition(enableGauntlets)
                                         .addAdvancement(advancement));
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
-                        .pattern("bb")
-                        .pattern("b ")
-                        .define('b', ingredient)
-                        .unlockedBy("has_item", triggerInstance)
-                        .save(conditionalRecipe::addRecipe);
+                if (!name.equals(MaterialInit.NETHERITE_GAUNTLET.name)) {
+                    ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
+                            .pattern("bb")
+                            .pattern("b ")
+                            .define('b', ingredient)
+                            .unlockedBy("has_item", triggerInstance)
+                            .save(conditionalRecipe::addRecipe);
+                } else {
+                    LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(MaterialInit.DIAMOND_GAUNTLET.gauntletEntry.get()), ingredient, RecipeCategory.COMBAT, ctx.get())
+                            .unlocks("has_item", triggerInstance)
+                            .save(conditionalRecipe::addRecipe, ctx.getId() + "_smithing");
+                    conditionalRecipe
+                            .addCondition(enableGauntlets);
+                    SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(MaterialInit.DIAMOND_GAUNTLET.gauntletEntry.get()), ingredient, RecipeCategory.COMBAT, ctx.get())
+                            .unlocks("has_item", triggerInstance)
+                            .save(conditionalRecipe::addRecipe, ctx.getId() + "_future_smithing");
+                }
 
                 conditionalRecipe.build(prov, ctx.getId());
             }
         });
         this.gauntletEntry = itemBuilder.register();
+        ECItems.ITEMS.add(this.gauntletEntry);
     }
 
     public int getEnchantability() {

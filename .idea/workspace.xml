@@ -4,17 +4,132 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed crash when combining curses with shields in anvil">
-      <change afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_data/config/fml.toml" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixes and stuff">
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_diamond_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_diamond_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_diamond_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_gold_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_gold_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_gold_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_iron_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_iron_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/half_iron_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_bow_pulling_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_bow_pulling_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_bow_pulling_2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_gold_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_gold_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_gauntlet_conditional.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_gold_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_gold_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_gold_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_half.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_half_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_120.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/bows.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECBowItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/BowMaterial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBowRecipeTypeCondition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBooleanCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBooleanCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/diamond_bow_half.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_diamond_bow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/diamond_bow_half_pulling_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_diamond_bow_pulling_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/diamond_bow_half_pulling_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_diamond_bow_pulling_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/diamond_bow_half_pulling_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_diamond_bow_pulling_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gold_bow_half.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_gold_bow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gold_bow_half_pulling_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_gold_bow_pulling_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gold_bow_half_pulling_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_gold_bow_pulling_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gold_bow_half_pulling_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_gold_bow_pulling_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/iron_bow_half.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_iron_bow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/iron_bow_half_pulling_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_iron_bow_pulling_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/iron_bow_half_pulling_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_iron_bow_pulling_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/iron_bow_half_pulling_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/half_iron_bow_pulling_2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -628,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682439783934</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="fixes and stuff">
+      <created>1682701900185</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1682701900185</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -650,7 +772,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed the shield enchantment glint not apearing when enchanted" />
     <MESSAGE value="1.17.1 renaming dump" />
     <MESSAGE value="fixed arrow entity render and re-added mixin features" />
     <MESSAGE value="changed quiver arrow selection to a player variable instead of rotating the slot contents." />
@@ -675,7 +796,8 @@
     <MESSAGE value="shield smithing recipe now generates and works" />
     <MESSAGE value="fixed crash when combining curses with shields" />
     <MESSAGE value="fixed crash when combining curses with shields in anvil" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed crash when combining curses with shields in anvil" />
+    <MESSAGE value="fixes and stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes and stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

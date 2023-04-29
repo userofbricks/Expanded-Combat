@@ -36,6 +36,7 @@ public class ECRecipeSerializerInit {
     public static void registerConditions(RegisterEvent event) {
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
             CraftingHelper.register(ECConfigBooleanCondition.Serializer.INSTANCE);
+            CraftingHelper.register(ECConfigBowRecipeTypeCondition.Serializer.INSTANCE);
         }
     }
 }

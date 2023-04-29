@@ -10,11 +10,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
@@ -125,9 +123,38 @@ public class ECConfig implements ConfigData {
     @Category("Shields") @CollapsibleObject @ConfigName("Knighly Shield Settings")
     public ShieldMaterialConfig knightlyShield = new ShieldMaterialConfig(0, 4, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
 
+
+
+    @Category("Bows") @RequiresRestart @ConfigName("Enable Bows")
+    public boolean enableBows = true;
+    @Category("Bows") @RequiresRestart @ConfigName("Bow Crafting Type")
+    public BowRecipeType bowRecipeType = BowRecipeType.SMITHING_ONLY;
+    @Category("Bows") @RequiresRestart @ConfigName("Enable Half Bows")
+    public boolean enableHalfBows = true;
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Half Iron Bow Settings")
+    public BowMaterialConfig halfIronBow = new BowMaterialConfig(414, Tiers.WOOD.getEnchantmentValue()/2 + Tiers.IRON.getEnchantmentValue()/2, 0, 1.5f, Tiers.IRON.getRepairIngredient(), 0);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Iron Bow Settings")
+    public BowMaterialConfig ironBow = new BowMaterialConfig(480, Tiers.IRON.getEnchantmentValue(), 0, 3f, Tiers.IRON.getRepairIngredient(), 0);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Half Gold Bow Settings")
+    public BowMaterialConfig halfGoldBow = new BowMaterialConfig(390, Tiers.GOLD.getEnchantmentValue(), 0, 1.25f, Tiers.GOLD.getRepairIngredient(), 1);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Gold Bow Settings")
+    public BowMaterialConfig goldBow = new BowMaterialConfig(395, Tiers.GOLD.getEnchantmentValue(), 0, 2.5f, Tiers.GOLD.getRepairIngredient(), 2);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Half Diamond Bow Settings")
+    public BowMaterialConfig halfDiamondBow = new BowMaterialConfig(576, Tiers.DIAMOND.getEnchantmentValue(), 0, 2f, Tiers.DIAMOND.getRepairIngredient(), -0.05f);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Diamond Bow Settings")
+    public BowMaterialConfig diamondBow = new BowMaterialConfig(672, Tiers.DIAMOND.getEnchantmentValue(), 1, 3.5f, Tiers.DIAMOND.getRepairIngredient(), -0.1f);
+
+    @Category("Bows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
+    public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f);
+
     public static class GauntletMaterialConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability") @Tooltip
-        @TooltipFrase("this is the amount of durability added, by each of the five sections, onto the base vanilla shield amount of 336")
+        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
         public int durability;
         @BoundedDiscrete(max = 512) @ConfigName("Armor Amount")
         public int armorAmount;
@@ -226,7 +253,8 @@ public class ECConfig implements ConfigData {
     }
 
     public static class ShieldMaterialConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Added Durability")
+        @BoundedDiscrete(max = Integer.MAX_VALUE/5) @ConfigName("Added Durability") @Tooltip
+        @TooltipFrase("this is the amount of durability added, by each of the five sections, onto the base vanilla shield amount of 336")
         public int addedDurability;
         @Tooltip(count = 2) @ConfigName("Base Protection Amount")
         @TooltipFrase("Defines the amount of Damage a shield entirely made of this material will block")
@@ -264,5 +292,92 @@ public class ECConfig implements ConfigData {
         ShieldMaterialConfig(double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
             this(medingBonus, baseProtectionAmmount, afterBasePercentReduction, IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial), addedDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
         }
+    }
+
+    public static class BowMaterialConfig {
+        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
+        public int durability;
+        @BoundedDiscrete(max = 512) @ConfigName("Enchantability")
+        public int enchantability;
+        @BoundedDiscrete(max = 3) @ConfigName("Multishot Level")
+        public int multishotLevel;
+        @BoundedDiscrete(max = 100) @ConfigName("Base Power level")
+        public int bowPower;
+        @ConfigName("Arrow Velocity Multiplier")
+        public float velocityMultiplyer;
+        @ConfigName("Repair Item")
+        public ArrayList<String> repairItem;
+        @ConfigName("Mending Bonus")
+        public float mendingBonus;
+        @ConfigName("Fire Resistant")
+        public boolean fireResistant;
+        @ConfigName("Smithing Template") @Tooltip
+        @TooltipFrase("1.20 feature")
+        public String smithingTemplate;
+
+        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, ArrayList<String> repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
+            this.durability = durability;
+            this.enchantability = enchantability;
+            this.multishotLevel = multishotLevel;
+            this.bowPower = bowPower;
+            this.velocityMultiplyer = velocityMultiplyer;
+            this.repairItem = repairItem;
+            this.mendingBonus = mendingBonus;
+            this.fireResistant = fireResistant;
+            this.smithingTemplate = smithingTemplate;
+        }
+
+        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
+            this(durability,
+                    enchantability,
+                    multishotLevel,
+                    bowPower,
+                    velocityMultiplyer,
+                    IngredientUtil.getItemStringFromIngrediant(repairItem),
+                    mendingBonus,
+                    fireResistant,
+                    Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(smithingTemplate)).toString());
+        }
+
+        public BowMaterialConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
+            this(durability,
+                    enchantability,
+                    0,
+                    bowPower,
+                    velocityMultiplyer,
+                    IngredientUtil.getItemStringFromIngrediant(repairItem),
+                    mendingBonus,
+                    fireResistant,
+                    Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(smithingTemplate)).toString());
+        }
+
+        public BowMaterialConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus) {
+            this(durability,
+                    enchantability,
+                    bowPower,
+                    velocityMultiplyer,
+                    repairItem,
+                    mendingBonus,
+                    false,
+                    null);
+        }
+
+        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
+            this(durability,
+                    enchantability,
+                    multishotLevel,
+                    bowPower,
+                    velocityMultiplyer,
+                    IngredientUtil.getItemStringFromIngrediant(repairItem),
+                    mendingBonus,
+                    fireResistant,
+                    smithingTemplate);
+        }
+    }
+
+    public enum BowRecipeType {
+        SMITHING_ONLY,
+        CRAFTING_TABLE_ONLY,
+        CRAFTING_TABLE_AND_SMITHING
     }
 }

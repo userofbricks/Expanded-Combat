@@ -21,6 +21,7 @@ public final class ECItemTags {
     public static final TagKey<Item> GAUNTLETS = bind("gauntlets");
     public static final TagKey<Item> SHIELDS = bind("shields");
     public static final TagKey<Item> NON_EC_MENDABLE_GOLD = bind("non_ec_mendable_gold");
+    public static final TagKey<Item> BOWS = bind("bows");
 
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));

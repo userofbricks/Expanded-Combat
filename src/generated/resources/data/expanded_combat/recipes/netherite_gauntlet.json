@@ -9,21 +9,39 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "equipment",
-        "key": {
-          "b": {
-            "item": "minecraft:netherite_ingot"
-          }
+        "type": "minecraft:smithing",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
         },
-        "pattern": [
-          "bb",
-          "b "
-        ],
+        "base": {
+          "item": "expanded_combat:diamond_gauntlet"
+        },
+        "result": {
+          "item": "expanded_combat:netherite_gauntlet"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "gauntlet"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
+        },
+        "base": {
+          "item": "expanded_combat:diamond_gauntlet"
+        },
         "result": {
           "item": "expanded_combat:netherite_gauntlet"
         },
-        "show_notification": true
+        "template": {
+          "item": "minecraft:netherite_upgrade_smithing_template"
+        }
       }
     }
   ]
