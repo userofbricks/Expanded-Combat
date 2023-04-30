@@ -93,6 +93,6 @@
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item/half_iron_bow"
+    "layer0": "expanded_combat:item/bow/half_iron"
   }
 }

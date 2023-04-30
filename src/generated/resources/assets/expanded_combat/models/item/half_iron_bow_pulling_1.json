@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/bow",
   "textures": {
-    "layer0": "expanded_combat:item/half_iron_bow_pulling_1"
+    "layer0": "expanded_combat:item/bow/half_iron_pulling_1"
   }
 }

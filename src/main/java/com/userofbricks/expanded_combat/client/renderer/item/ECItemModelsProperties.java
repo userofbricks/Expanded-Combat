@@ -2,11 +2,14 @@ package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.item.ECBowItem;
+import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 public class ECItemModelsProperties {
     public ECItemModelsProperties() {
@@ -19,18 +22,15 @@ public class ECItemModelsProperties {
                     if (livingEntity == null) return 0f;
                     return livingEntity.getUseItem() != itemStack ? 0f : (itemStack.getUseDuration() - livingEntity.getUseItemRemainingTicks()) / 20f;
                 });
+            } else if (registryEntry.get() instanceof ECCrossBowItem) {
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("pull"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+                    if (livingEntity == null) return 0.0f;
+                    else return CrossbowItem.isCharged(itemStack) ? 0.0F : (float)(itemStack.getUseDuration() - livingEntity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(itemStack);
+                });
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("pulling"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("charged"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
             }
         }
-        //for (RegistryObject<Item> registryItem : ECItems.ITEMS.getEntries()) {
-            //} else if (registryItem.get() instanceof ECCrossBowItem) {
-            //    ItemProperties.register(registryItem.get(), new ResourceLocation("pull"), (p_239427_0_, p_239427_1_, p_239427_2_, p_174618_) -> {
-            //        if (p_239427_2_ == null) return 0.0f;
-            //        else return CrossbowItem.isCharged(p_239427_0_) ? 0.0F : (float)(p_239427_0_.getUseDuration() - p_239427_2_.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(p_239427_0_);
-            //    });
-            //    ItemProperties.register(registryItem.get(), new ResourceLocation("pulling"), (p_239426_0_, p_239426_1_, p_239426_2_, p_174618_) -> p_239426_2_ != null && p_239426_2_.isUsingItem() && p_239426_2_.getUseItem() == p_239426_0_ && !CrossbowItem.isCharged(p_239426_0_) ? 1.0F : 0.0F);
-            //    ItemProperties.register(registryItem.get(), new ResourceLocation("charged"), (p_239425_0_, p_239425_1_, p_239425_2_, p_174618_) -> p_239425_2_ != null && CrossbowItem.isCharged(p_239425_0_) ? 1.0F : 0.0F);
-            //    ItemProperties.register(registryItem.get(), new ResourceLocation("firework"), (p_239424_0_, p_239424_1_, p_239424_2_, p_174618_) -> p_239424_2_ != null && CrossbowItem.isCharged(p_239424_0_) && CrossbowItem.containsChargedProjectile(p_239424_0_, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
-            //}
-        //}
     }
 }

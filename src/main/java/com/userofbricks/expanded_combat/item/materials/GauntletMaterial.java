@@ -29,6 +29,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Locale;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+
 public class GauntletMaterial {
     @NotNull
     private final String name;
@@ -43,9 +45,10 @@ public class GauntletMaterial {
     }
 
     public final void registerElements() {
+        String recourseName = this.name.toLowerCase(Locale.ROOT).replace(' ', '_');
         //register item
-        ItemBuilder<ECGauntletItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(this.name.toLowerCase(Locale.ROOT) + "_gauntlet", (p) -> new ECGauntletItem(this, p));
-        itemBuilder.defaultModel();
+        ItemBuilder<ECGauntletItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(recourseName + "_gauntlet", (p) -> new ECGauntletItem(this, p));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/gauntlet/" + recourseName)));
         if (name.equals(MaterialInit.NAGA_GAUNTLET.name)) itemBuilder.lang("Naga Scale Gauntlet");
         itemBuilder.tag(ECItemTags.GAUNTLETS);
         itemBuilder.recipe((ctx, prov) -> {

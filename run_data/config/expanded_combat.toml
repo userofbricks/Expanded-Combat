@@ -3,6 +3,8 @@ enableShields = true
 enableBows = true
 bowRecipeType = "SMITHING_ONLY"
 enableHalfBows = true
+enableCrossbows = true
+crossbowVelocityBonus = 0.5
 
 [netheriteGauntlet]
 durability = 2031

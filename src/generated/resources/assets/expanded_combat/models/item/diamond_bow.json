@@ -93,6 +93,6 @@
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item/diamond_bow"
+    "layer0": "expanded_combat:item/bow/diamond"
   }
 }

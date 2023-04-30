@@ -8,6 +8,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.ECBowItem;
+import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
@@ -30,6 +31,7 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.crafting.conditions.OrCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Locale;
@@ -47,6 +49,8 @@ public class BowMaterial {
 
     private final BowMaterial crafted_from;
     private RegistryEntry<ECBowItem> bowEntry;
+    @Nullable
+    private RegistryEntry<ECCrossBowItem> crossbowEntry;
 
     public BowMaterial(@NotNull String name, boolean halfBow, boolean smithingOnly, @NotNull ECConfig.BowMaterialConfig bowMaterialConfig, BowMaterial crafted_from, List<BowMaterial> bowMaterials) {
         this.name = name;
@@ -58,9 +62,10 @@ public class BowMaterial {
     }
 
     public final void registerElements() {
-        //register item
-        ItemBuilder<ECBowItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(this.name.toLowerCase(Locale.ROOT).replace(' ', '_') + "_bow", (p) -> new ECBowItem(this, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx)
+        String recourseName = this.name.toLowerCase(Locale.ROOT).replace(' ', '_');
+
+        ItemBuilder<ECBowItem, Registrate> itemBuilder = ExpandedCombat.REGISTRATE.get().item(recourseName + "_bow", (p) -> new ECBowItem(this, p));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/bow/" + recourseName))
                 .transforms()
                     .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-80, 260, -40).translation(-1, -2, 2.5f).scale(0.9f).end()
                     .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-80, -280, 40).translation(-1, -2, 2.5f).scale(0.9f).end()
@@ -68,13 +73,13 @@ public class BowMaterial {
                     .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 90, -25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .end()
                 .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/" + ctx.getId().getPath() + "_pulling_0"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + recourseName + "_pulling_0"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65f).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/" + ctx.getId().getPath() + "_pulling_1"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + recourseName + "_pulling_1"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9f).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/" + ctx.getId().getPath() + "_pulling_2"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + recourseName + "_pulling_2"))
                 ).end());
         itemBuilder.tag(ECItemTags.BOWS);
         itemBuilder.recipe((ctx, prov) -> {
@@ -181,11 +186,98 @@ public class BowMaterial {
         });
         this.bowEntry = itemBuilder.register();
         ECItems.ITEMS.add(this.bowEntry);
+
+        if (!halfBow) {
+            //register item
+            ItemBuilder<ECCrossBowItem, Registrate> itemBuilder2 = ExpandedCombat.REGISTRATE.get().item(recourseName + "_crossbow", (p) -> new ECCrossBowItem(this, p));
+            itemBuilder2.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/crossbow/" + recourseName))
+                    .transforms()
+                    .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-90, 0, -60).translation(2, 0.1f, -3f).scale(0.9f).end()
+                    .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-90, 0, 30).translation(2, 0.1f, -3f).scale(0.9f).end()
+                    .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(-90, 0, -55).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
+                    .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(-90, 0, 35).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
+                    .end()
+                    .override().predicate(new ResourceLocation("pulling"), 1).model(
+                            prov.withExistingParent(ctx.getName() + "_pulling_0", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + recourseName + "_pulling_0"))
+                    ).end()
+                    .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.58f).model(
+                            prov.withExistingParent(ctx.getName() + "_pulling_1", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + recourseName + "_pulling_1"))
+                    ).end()
+                    .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 1f).model(
+                            prov.withExistingParent(ctx.getName() + "_pulling_2", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + recourseName + "_pulling_2"))
+                    ).end()
+                    .override().predicate(new ResourceLocation("charged"), 1).model(
+                            prov.withExistingParent(ctx.getName() + "_arrow", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + recourseName + "_arrow"))
+                    ).end()
+                    .override().predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1).model(
+                            prov.withExistingParent(ctx.getName() + "_firework", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + recourseName + "_firework"))
+                    ).end()
+            );
+            itemBuilder2.tag(ECItemTags.CROSSBOWS);
+            itemBuilder2.recipe((ctx, prov) -> {
+                //used for advancement trigger and recipe input item
+                Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(this.bowMaterialConfig.repairItem);
+                //only register recipe if ingredient isn't empty
+                if (!ingredient.isEmpty()) {
+                    //here only because it is needed in both the conditional and standard advancements
+                    InventoryChangeTrigger.TriggerInstance triggerInstance = InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(ingredient));
+
+                    Advancement.Builder advancement = Advancement.Builder.advancement()
+                            .addCriterion("has_item", triggerInstance)
+                            .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                            .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(ctx.getId()))
+                            .rewards(AdvancementRewards.Builder.recipe(ctx.getId()))
+                            .requirements(RequirementsStrategy.OR);
+
+                    ECConfigBooleanCondition enableCrossBows = new ECConfigBooleanCondition("crossbow");
+
+                    ConditionalRecipe.Builder shappedorLegacy = ConditionalRecipe.builder().setAdvancement(ctx.getId().getNamespace(),
+                            "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath(),
+                            ConditionalAdvancement.builder().addCondition(enableCrossBows).addAdvancement(advancement));
+                    ConditionalRecipe.Builder smithing120 = ConditionalRecipe.builder().setAdvancement(ctx.getId().getNamespace(),
+                            "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath(),
+                            ConditionalAdvancement.builder().addCondition(enableCrossBows).addAdvancement(advancement));
+
+                    if (!this.smithingOnly) {
+                        shapedRecipe(ctx,
+                                new String[]{"ibi", " i "}, ingredient,
+                                crafted_from == null || crafted_from.crafted_from == null ? Ingredient.of(Items.BOW) : Ingredient.of(this.crafted_from.crafted_from.bowEntry.get()),
+                                shappedorLegacy,
+                                null,
+                                triggerInstance, "");
+                    } else {
+                        //1.19.4 and prior version
+                        legacySmithingRecipe(ctx,
+                                ingredient,
+                                //if doesn't have predefined upgrade path then start one
+                                crafted_from == null ? Ingredient.of(Items.BOW) : Ingredient.of(crafted_from.bowEntry.get()),
+                                shappedorLegacy,
+                                null,
+                                triggerInstance);
+
+                        //1.20 version
+                        smithing120Recipe(ctx,
+                                Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(this.bowMaterialConfig.smithingTemplate))),
+                                ingredient,
+                                //if doesn't have predefined upgrade path then start one
+                                crafted_from == null ? Ingredient.of(Items.BOW) : Ingredient.of(crafted_from.bowEntry.get()),
+                                smithing120,
+                                null,
+                                triggerInstance);
+                    }
+
+                    shappedorLegacy.build(prov, ctx.getId());
+                    if (this.smithingOnly) smithing120.build(prov, ctx.getId().withSuffix("_120"));
+                }
+            });
+            this.crossbowEntry = itemBuilder2.register();
+            ECItems.ITEMS.add(this.crossbowEntry);
+        }
     }
 
-    private void shapedRecipe(DataGenContext<Item, ECBowItem> ctx, String[] pattern, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix) {
+    private void shapedRecipe(DataGenContext<Item,? extends Item> ctx, String[] pattern, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix) {
         conditionalRecipe.addCondition(new ECConfigBooleanCondition("bow"));
-        conditionalRecipe.addCondition(orCondition);
+        if (orCondition != null ) conditionalRecipe.addCondition(orCondition);
 
         ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get());
         for (String string:
@@ -198,9 +290,9 @@ public class BowMaterial {
         builder.save(conditionalRecipe::addRecipe, ctx.getId() + "_shaped" + nameSufix);
     }
 
-    private void smithing120Recipe(DataGenContext<Item, ECBowItem> ctx, Ingredient template, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance) {
+    private void smithing120Recipe(DataGenContext<Item,? extends Item> ctx, Ingredient template, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance) {
         conditionalRecipe.addCondition(new ECConfigBooleanCondition("bow"));
-        conditionalRecipe.addCondition(orCondition);
+        if (orCondition != null ) conditionalRecipe.addCondition(orCondition);
 
         SmithingTransformRecipeBuilder.smithing( template, prevBow, ingredient, RecipeCategory.COMBAT, ctx.get())
                 .unlocks("has_item", triggerInstance)
@@ -208,9 +300,9 @@ public class BowMaterial {
     }
 
     @Deprecated(forRemoval = true)
-    private void legacySmithingRecipe(DataGenContext<Item, ECBowItem> ctx, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance) {
+    private void legacySmithingRecipe(DataGenContext<Item,? extends Item> ctx, Ingredient ingredient, Ingredient prevBow, ConditionalRecipe.Builder conditionalRecipe, OrCondition orCondition, InventoryChangeTrigger.TriggerInstance triggerInstance) {
         conditionalRecipe.addCondition(new ECConfigBooleanCondition("bow"));
-        conditionalRecipe.addCondition(orCondition);
+        if (orCondition != null ) conditionalRecipe.addCondition(orCondition);
 
         LegacyUpgradeRecipeBuilder.smithing( ingredient, prevBow, RecipeCategory.COMBAT, ctx.get())
                 .unlocks("has_item", triggerInstance)
@@ -258,7 +350,11 @@ public class BowMaterial {
     }
 
     public RegistryEntry<ECBowItem> getBowEntry() {
-        Preconditions.checkNotNull(bowEntry, "Cannot access value of bow registry entry before its creation");
+        Preconditions.checkNotNull(bowEntry, "Cannot access value of " + this.name + " bow registry entry before its creation");
         return bowEntry;
+    }
+
+    public @Nullable RegistryEntry<ECCrossBowItem> getCrossbowEntry() {
+        return crossbowEntry;
     }
 }

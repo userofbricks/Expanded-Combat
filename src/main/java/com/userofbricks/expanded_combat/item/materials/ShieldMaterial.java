@@ -54,7 +54,7 @@ public class ShieldMaterial {
     private RegistryEntry<Item> createModelItem(String name, String suffix) {
         return ExpandedCombat.REGISTRATE.get().item("shield_model/" + name.toLowerCase(Locale.ROOT) + "_" + suffix, Item::new)
                 .model((ctx, prov) -> prov.withExistingParent("item/" + ctx.getName(), prov.modLoc("item/bases/shield_" + suffix))
-                        .texture("base", prov.modLoc("item/shields/" + name.toLowerCase(Locale.ROOT))))
+                        .texture("base", prov.modLoc("item/shields/" + name.toLowerCase(Locale.ROOT).replace(' ', '_'))))
                 .register();
     }
 

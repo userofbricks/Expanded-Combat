@@ -93,6 +93,6 @@
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item/netherite_bow"
+    "layer0": "expanded_combat:item/bow/netherite"
   }
 }

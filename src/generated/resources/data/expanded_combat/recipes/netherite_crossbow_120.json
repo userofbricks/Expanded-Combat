@@ -1,0 +1,26 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "bow"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
+        },
+        "base": {
+          "item": "expanded_combat:diamond_bow"
+        },
+        "result": {
+          "item": "expanded_combat:netherite_crossbow"
+        },
+        "template": []
+      }
+    }
+  ]
+}

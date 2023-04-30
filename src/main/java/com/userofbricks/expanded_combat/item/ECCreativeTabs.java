@@ -54,6 +54,13 @@ public class ECCreativeTabs {
                                 }
                             }
                         }
+                        if (CONFIG.enableCrossbows) {
+                            for (BowMaterial material : MaterialInit.bowMaterials) {
+                                if (material.isNotHalfBow() && material.getCrossbowEntry() != null) {
+                                    output.accept(material.getCrossbowEntry().get());
+                                }
+                            }
+                        }
                     })
                     .build(),
             "Expanded Combat");
@@ -110,6 +117,13 @@ public class ECCreativeTabs {
                 for (BowMaterial material : MaterialInit.bowMaterials) {
                     if (material.isNotHalfBow() || CONFIG.enableHalfBows) {
                         items.putAfter(new ItemStack(Items.BOW), new ItemStack(material.getBowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    }
+                }
+            }
+            if (CONFIG.enableCrossbows) {
+                for (BowMaterial material : MaterialInit.bowMaterials) {
+                    if (material.isNotHalfBow() && material.getCrossbowEntry() != null) {
+                        items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(material.getCrossbowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }

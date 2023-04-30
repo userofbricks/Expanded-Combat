@@ -125,32 +125,36 @@ public class ECConfig implements ConfigData {
 
 
 
-    @Category("Bows") @RequiresRestart @ConfigName("Enable Bows")
+    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Bows")
     public boolean enableBows = true;
-    @Category("Bows") @RequiresRestart @ConfigName("Bow Crafting Type")
+    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Bow Crafting Type")
     public BowRecipeType bowRecipeType = BowRecipeType.SMITHING_ONLY;
-    @Category("Bows") @RequiresRestart @ConfigName("Enable Half Bows")
+    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Half Bows")
     public boolean enableHalfBows = true;
+    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Crossbows")
+    public boolean enableCrossbows = true;
+    @Category("Bows And Crossbows") @ConfigName("Additional Velocity for Crossbows")
+    public float crossbowVelocityBonus = 0.5f;
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Half Iron Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Iron Bow Settings")
     public BowMaterialConfig halfIronBow = new BowMaterialConfig(414, Tiers.WOOD.getEnchantmentValue()/2 + Tiers.IRON.getEnchantmentValue()/2, 0, 1.5f, Tiers.IRON.getRepairIngredient(), 0);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Iron Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Iron Bow Settings")
     public BowMaterialConfig ironBow = new BowMaterialConfig(480, Tiers.IRON.getEnchantmentValue(), 0, 3f, Tiers.IRON.getRepairIngredient(), 0);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Half Gold Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Gold Bow Settings")
     public BowMaterialConfig halfGoldBow = new BowMaterialConfig(390, Tiers.GOLD.getEnchantmentValue(), 0, 1.25f, Tiers.GOLD.getRepairIngredient(), 1);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Gold Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Gold Bow Settings")
     public BowMaterialConfig goldBow = new BowMaterialConfig(395, Tiers.GOLD.getEnchantmentValue(), 0, 2.5f, Tiers.GOLD.getRepairIngredient(), 2);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Half Diamond Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Diamond Bow Settings")
     public BowMaterialConfig halfDiamondBow = new BowMaterialConfig(576, Tiers.DIAMOND.getEnchantmentValue(), 0, 2f, Tiers.DIAMOND.getRepairIngredient(), -0.05f);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Diamond Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Diamond Bow Settings")
     public BowMaterialConfig diamondBow = new BowMaterialConfig(672, Tiers.DIAMOND.getEnchantmentValue(), 1, 3.5f, Tiers.DIAMOND.getRepairIngredient(), -0.1f);
 
-    @Category("Bows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
+    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
     public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f, true, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
 
     public static class GauntletMaterialConfig {
