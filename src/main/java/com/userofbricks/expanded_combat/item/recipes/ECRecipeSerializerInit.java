@@ -22,7 +22,9 @@ public class ECRecipeSerializerInit {
     //public static final RegistryObject<RecipeSerializer<?>> EC_SINGLE_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching_single", SingleFletchingRecipe.Serializer::new);
     //public static final RegistryObject<RecipeSerializer<?>> EC_SPECIAL_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_fletching", () -> new SpecialFletchingRecipe.SpecialFletchingRecipeSerializer<>(TippedArrowFletchingRecipe::new));
     public static final RegistryObject<RecipeSerializer<?>> EC_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("smithing_shields", ShieldSmithingRecipie.Serializer::new);
-    //public static final RegistryObject<RecipeSerializer<?>> EC_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("upgrading_shields", UpgradingShieldSmithingRecipie.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> EC_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("upgrading_shields", ShieldUpgradeRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("legacy_shield_smithing_upgrade", LegacyShieldSmithingUpgradeRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("shield_smithing_upgrade", ShieldSmithingUpgradeRecipe.Serializer::new);
 
 
     private static <T extends Recipe<?>> RecipeType<T> register(final String recourceLocation) {

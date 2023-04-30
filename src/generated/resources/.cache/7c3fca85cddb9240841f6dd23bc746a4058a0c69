@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-29T15:57:57.518553	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-04-29T20:33:09.130274	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 8771b1b3cffef99c41a2914e00b2202e905c30f6 assets/expanded_combat/lang/en_ud.json
 384759b7152284ba4dcfad18e2ff65a1bbaff4a9 assets/expanded_combat/lang/en_us.json
 12b3cf8a889e482513c97ef235d09b780e8259a2 assets/expanded_combat/models/item/arctic_gauntlet.json
@@ -150,10 +150,13 @@ e2551074d2ccaf5420c9c6108d1e9588ee9b0fd6 data/expanded_combat/advancements/recip
 2714d4e2b113bafd70de2b8b26d4b051614f282b data/expanded_combat/advancements/recipes/combat/iron_gauntlet_conditional.json
 8697fe013174d5f3b61914f9ed378f8c351de3fd data/expanded_combat/advancements/recipes/combat/lead_gauntlet_conditional.json
 376663254f44ff618b32acfee6c366d596c08819 data/expanded_combat/advancements/recipes/combat/leather_gauntlet_conditional.json
+4b81a58f1dbe3da90dab675436e4e3e043751369 data/expanded_combat/advancements/recipes/combat/legacy_shield_vanilla_smithing_singleton.json
 fdb6f5ad1af22c605ab5b5ed62a4c9d03fde903c data/expanded_combat/advancements/recipes/combat/netherite_bow.json
 fdb6f5ad1af22c605ab5b5ed62a4c9d03fde903c data/expanded_combat/advancements/recipes/combat/netherite_bow_120.json
 5ec116fe4bd8d4f8add55e39eac4567d2b199244 data/expanded_combat/advancements/recipes/combat/netherite_gauntlet_conditional.json
 5493ae819ddd6ab5e928f6fc1208d4621ff3f153 data/expanded_combat/advancements/recipes/combat/shield_smithing.json
+de82ee7021578c7f3c6a170ce8bdf8e9751694d6 data/expanded_combat/advancements/recipes/combat/shield_smithing_singleton.json
+fcdd3c0962288dda90b199568be061854f63d17a data/expanded_combat/advancements/recipes/combat/shield_vanilla_smithing_singleton.json
 8fef37ac7cc77e9856fd0809f6866a7e418f59ca data/expanded_combat/advancements/recipes/combat/silver_gauntlet_conditional.json
 5143e27d0d32bec3058c62be315b50c094e07e11 data/expanded_combat/advancements/recipes/combat/steel_gauntlet_conditional.json
 35e5606cefa6b9fc134a6789478333e3abf9c687 data/expanded_combat/recipes/bronze_gauntlet.json
@@ -183,10 +186,13 @@ bc7224ee65ba4b6252f4c040cf2a93c80aea92d3 data/expanded_combat/recipes/iron_bow_h
 eca5667d5fffd6fc41746ed9bd8810483a8a735a data/expanded_combat/recipes/iron_gauntlet.json
 0bce7c41823cdf4dbf3fb987c918b429d6c87724 data/expanded_combat/recipes/lead_gauntlet.json
 4ef44387dc43c5e14b75c6e214de8048922869f9 data/expanded_combat/recipes/leather_gauntlet.json
+af049c5c674cd16bc5bba5cd84090cb9b1418ae8 data/expanded_combat/recipes/legacy_shield_vanilla_smithing_singleton.json
 9c84f9d758d99b1a6b4f255f4d6381c6aeb0ed1e data/expanded_combat/recipes/netherite_bow.json
 e57a192034f5a3b76d2f17ad64b532c99bbbcfff data/expanded_combat/recipes/netherite_bow_120.json
 84ca6e41d417bf73788c3692513c4d06ff92a951 data/expanded_combat/recipes/netherite_gauntlet.json
 b638e78153f5a5f3543865c5bba46a0e299c156b data/expanded_combat/recipes/shield_smithing.json
+e5b082a79e0e29e596fc23ada0c9e90813468b26 data/expanded_combat/recipes/shield_smithing_singleton.json
+6e3eda102834a67442002c1906f721f9ab93864b data/expanded_combat/recipes/shield_vanilla_smithing_singleton.json
 4d2439a86e919f826472d9e67ff0945e731f9654 data/expanded_combat/recipes/silver_gauntlet.json
 bc28d8d17583039b951add8969db9d4b0efaf0ac data/expanded_combat/recipes/steel_gauntlet.json
 194dd04e43fe7dfab732f66608a2bb8491f7ce32 data/expanded_combat/tags/items/bows.json

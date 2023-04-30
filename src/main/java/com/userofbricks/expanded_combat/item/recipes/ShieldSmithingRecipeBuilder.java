@@ -18,10 +18,12 @@ import java.util.function.Consumer;
 
 public class ShieldSmithingRecipeBuilder {
     private final RecipeCategory category;
+    private final RecipeSerializer<?> recipeSerializer;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public ShieldSmithingRecipeBuilder(RecipeCategory category) {
+    public ShieldSmithingRecipeBuilder(RecipeCategory category, RecipeSerializer<?> recipeSerializer) {
         this.category = category;
+        this.recipeSerializer = recipeSerializer;
     }
 
     public ShieldSmithingRecipeBuilder unlocks(String p_267310_, CriterionTriggerInstance p_266808_) {
@@ -29,14 +31,10 @@ public class ShieldSmithingRecipeBuilder {
         return this;
     }
 
-    public void save(Consumer<FinishedRecipe> p_266900_, String p_266899_) {
-        this.save(p_266900_, new ResourceLocation(p_266899_));
-    }
-
-    public void save(Consumer<FinishedRecipe> p_266852_, ResourceLocation p_267253_) {
-        this.ensureValid(p_267253_);
-        this.advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_267253_)).rewards(AdvancementRewards.Builder.recipe(p_267253_)).requirements(RequirementsStrategy.OR);
-        p_266852_.accept(new ShieldSmithingRecipeBuilder.Result(p_267253_, this.advancement, p_267253_.withPrefix("recipes/" + this.category.getFolderName() + "/")));
+    public void save(Consumer<FinishedRecipe> p_266852_, ResourceLocation resourceLocation) {
+        this.ensureValid(resourceLocation);
+        this.advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation)).rewards(AdvancementRewards.Builder.recipe(resourceLocation)).requirements(RequirementsStrategy.OR);
+        p_266852_.accept(new ShieldSmithingRecipeBuilder.Result(resourceLocation, this.advancement, resourceLocation.withPrefix("recipes/" + this.category.getFolderName() + "/"), recipeSerializer));
     }
 
     private void ensureValid(ResourceLocation p_266958_) {
@@ -49,11 +47,13 @@ public class ShieldSmithingRecipeBuilder {
         private final ResourceLocation id;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
+        private final RecipeSerializer<?> recipeSerializer;
 
-        public Result(ResourceLocation id, Advancement.Builder advancement, ResourceLocation advancementId) {
+        public Result(ResourceLocation id, Advancement.Builder advancement, ResourceLocation advancementId, RecipeSerializer<?> recipeSerializer) {
             this.id = id;
             this.advancement = advancement;
             this.advancementId = advancementId;
+            this.recipeSerializer = recipeSerializer;
         }
 
         @Override
@@ -63,7 +63,7 @@ public class ShieldSmithingRecipeBuilder {
         public @NotNull ResourceLocation getId() {return this.id;}
 
         @Override
-        public @NotNull RecipeSerializer<?> getType() {return ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get();}
+        public @NotNull RecipeSerializer<?> getType() {return recipeSerializer;}
 
         @Nullable
         @Override

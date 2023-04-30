@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added bows and fixed a few things">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="quick netherite bow fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/LegacyShieldSmithingUpgradeRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingUpgradeRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldUpgradeRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipeBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,10 +126,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expanded_combat.config" />
       <recent name="com.userofbricks.expanded_combat.network.client" />
       <recent name="com.userofbricks.expanded_combat.network" />
-      <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expandedcombat.network.variables" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -146,14 +152,14 @@
       <recent name="com.userofbricks.expandedcombat.network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expanded_combat.network.client" />
       <recent name="com.userofbricks.expanded_combat.inventory.container" />
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
       <recent name="top.theillusivec4.curios.client.gui" />
-      <recent name="com.userofbricks.expandedcombat.network.server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Application.runData">
     <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -289,13 +295,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00001" summary="hopefully this is the commit for the 2.1.0 release for Weapons">
-      <created>1620601180647</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1620601180647</updated>
     </task>
     <task id="LOCAL-00002" summary="fixed server bug. now ready for 2.1.0 release">
       <created>1620604047475</created>
@@ -633,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682806760908</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="quick netherite bow fix">
+      <created>1682807737690</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1682807737691</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -655,7 +661,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed arrow entity render and re-added mixin features" />
     <MESSAGE value="changed quiver arrow selection to a player variable instead of rotating the slot contents." />
     <MESSAGE value="fixed protection percentage reduction being applied to shields not from Vanilla or Expanded Combat." />
     <MESSAGE value="fix: gold armor not protecting from piglins&#10;minor player variable fix" />
@@ -680,7 +685,8 @@
     <MESSAGE value="fixed crash when combining curses with shields in anvil" />
     <MESSAGE value="fixes and stuff" />
     <MESSAGE value="added bows and fixed a few things" />
-    <option name="LAST_COMMIT_MESSAGE" value="added bows and fixed a few things" />
+    <MESSAGE value="quick netherite bow fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="quick netherite bow fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
