@@ -1,17 +1,17 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.materials.BowMaterial;
-import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.item.materials.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -58,6 +58,18 @@ public class ECCreativeTabs {
                             for (BowMaterial material : MaterialInit.bowMaterials) {
                                 if (material.isNotHalfBow() && material.getCrossbowEntry() != null) {
                                     output.accept(material.getCrossbowEntry().get());
+                                }
+                            }
+                        }
+                        if (CONFIG.enableArrows) {
+                            for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+                                output.accept(material.getArrowEntry().get());
+                            }
+                            for (Potion potion : ForgeRegistries.POTIONS) {
+                                for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+                                    if (!potion.getEffects().isEmpty()) {
+                                        output.accept(PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion));
+                                    }
                                 }
                             }
                         }
@@ -124,6 +136,18 @@ public class ECCreativeTabs {
                 for (BowMaterial material : MaterialInit.bowMaterials) {
                     if (material.isNotHalfBow() && material.getCrossbowEntry() != null) {
                         items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(material.getCrossbowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    }
+                }
+            }
+            if (CONFIG.enableArrows) {
+                for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+                    items.putAfter(new ItemStack(Items.ARROW), new ItemStack(material.getArrowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                }
+                for (Potion potion : ForgeRegistries.POTIONS) {
+                    for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+                        if (!potion.getEffects().isEmpty()) {
+                            items.putAfter(PotionUtils.setPotion(new ItemStack(Items.TIPPED_ARROW), potion), PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                        }
                     }
                 }
             }

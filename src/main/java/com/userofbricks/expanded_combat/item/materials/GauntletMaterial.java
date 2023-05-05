@@ -74,6 +74,12 @@ public class GauntletMaterial {
                                 ConditionalAdvancement.builder()
                                         .addCondition(enableGauntlets)
                                         .addAdvancement(advancement));
+                ConditionalRecipe.Builder conditionalRecipe1 = ConditionalRecipe.builder()
+                        .addCondition(enableGauntlets)
+                        .setAdvancement(ctx.getId().getNamespace(), "recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + ctx.getId().getPath() + "_conditional",
+                                ConditionalAdvancement.builder()
+                                        .addCondition(enableGauntlets)
+                                        .addAdvancement(advancement));
 
                 if (!name.equals(MaterialInit.NETHERITE_GAUNTLET.name)) {
                     ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
@@ -86,14 +92,13 @@ public class GauntletMaterial {
                     LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(MaterialInit.DIAMOND_GAUNTLET.gauntletEntry.get()), ingredient, RecipeCategory.COMBAT, ctx.get())
                             .unlocks("has_item", triggerInstance)
                             .save(conditionalRecipe::addRecipe, ctx.getId() + "_smithing");
-                    conditionalRecipe
-                            .addCondition(enableGauntlets);
                     SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(MaterialInit.DIAMOND_GAUNTLET.gauntletEntry.get()), ingredient, RecipeCategory.COMBAT, ctx.get())
                             .unlocks("has_item", triggerInstance)
-                            .save(conditionalRecipe::addRecipe, ctx.getId() + "_future_smithing");
+                            .save(conditionalRecipe1::addRecipe, ctx.getId() + "_future_smithing");
                 }
 
                 conditionalRecipe.build(prov, ctx.getId());
+                if(name.equals(MaterialInit.NETHERITE_GAUNTLET.name)) conditionalRecipe1.build(prov, ctx.getId().withSuffix("_120"));
             }
         });
         this.gauntletEntry = itemBuilder.register();

@@ -5,14 +5,20 @@ import com.userofbricks.expanded_combat.item.ECBowItem;
 import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
+import com.userofbricks.expanded_combat.item.materials.ArrowMaterial;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ECItemModelsProperties {
-    public ECItemModelsProperties() {
+    public static void registerModelOverides() {
         for (RegistryEntry<? extends Item> registryEntry : ECItems.ITEMS) {
             if (registryEntry.get() instanceof ECShieldItem) {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
@@ -32,5 +38,24 @@ public class ECItemModelsProperties {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
             }
         }
+    }
+
+    public static void itemColors(RegisterColorHandlersEvent.Item event) {
+        for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+            event.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, material.getTippedArrowEntry().get());
+        }
+
+        /*for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
+            Item item = ro.get();
+            if (item instanceof ECWeaponItem.HasPotion) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack), item);
+            }
+            if (item instanceof ECWeaponItem.HasPotionAndIsDyeable) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer == 1) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack): -1, item);
+            }
+            if (item instanceof ECWeaponItem.Dyeable) {
+                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack), item);
+            }
+        }*/
     }
 }

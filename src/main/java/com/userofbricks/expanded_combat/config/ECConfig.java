@@ -157,6 +157,22 @@ public class ECConfig implements ConfigData {
     @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
     public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f, true, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
 
+
+
+    @Category("Arrows") @RequiresRestart @ConfigName("Enable Arrows")
+    public boolean enableArrows = true;
+    @Category("Arrows") @RequiresRestart @ConfigName("Enable Fletching Table")
+    public boolean enableFletchingTable = true;
+
+    @Category("Arrows") @CollapsibleObject @ConfigName("Iron Arrow Settings")
+    public ArrowMaterialConfig ironArrow = new ArrowMaterialConfig(3.0f);
+
+    @Category("Arrows") @CollapsibleObject @ConfigName("Diamond Arrow Settings")
+    public ArrowMaterialConfig diamondArrow = new ArrowMaterialConfig(3.75f);
+
+    @Category("Arrows") @CollapsibleObject @ConfigName("Netherite Arrow Settings")
+    public ArrowMaterialConfig netheriteArrow = new ArrowMaterialConfig(4.5f);
+
     public static class GauntletMaterialConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
         public int durability;
@@ -371,5 +387,29 @@ public class ECConfig implements ConfigData {
         SMITHING_ONLY,
         CRAFTING_TABLE_ONLY,
         CRAFTING_TABLE_AND_SMITHING
+    }
+
+    public static class ArrowMaterialConfig {
+        @ConfigName("Damage")
+        public float damage;
+        @ConfigName("Flaming")
+        public boolean flaming;
+        @ConfigName("Freezing")
+        @Tooltip
+        @TooltipFrase("Not Implemented Yet")
+        public boolean freezing;
+        @ConfigName("Can Be Tipped With Potions")
+        public boolean canBeTipped;
+
+        public ArrowMaterialConfig(float damage, boolean flaming, boolean freezing, boolean canBeTipped) {
+            this.damage = damage;
+            this.flaming = flaming;
+            this.freezing = freezing;
+            this.canBeTipped = canBeTipped;
+        }
+
+        public ArrowMaterialConfig(float damage) {
+            this(damage, false, false, true);
+        }
     }
 }

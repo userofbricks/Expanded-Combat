@@ -1,5 +1,7 @@
 package com.userofbricks.expanded_combat.item.materials;
 
+import net.minecraft.world.item.Tiers;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class MaterialInit {
     public static List<GauntletMaterial> gauntletMaterials = new ArrayList<>();
     public static List<ShieldMaterial> shieldMaterials = new ArrayList<>();
     public static List<BowMaterial> bowMaterials = new ArrayList<>();
+    public static List<ArrowMaterial> arrowMaterials = new ArrayList<>();
 
     public static GauntletMaterial NETHERITE_GAUNTLET = new GauntletMaterial("Netherite", CONFIG.netheriteGauntlet, gauntletMaterials);
     public static GauntletMaterial DIAMOND_GAUNTLET = new GauntletMaterial("Diamond", CONFIG.diamondGauntlet, gauntletMaterials);
@@ -52,6 +55,10 @@ public class MaterialInit {
     public static BowMaterial HALF_DIAMOND_BOW = new BowMaterial("Half Diamond", true, false, CONFIG.halfDiamondBow, IRON_BOW, bowMaterials);
     public static BowMaterial DIAMOND_BOW = new BowMaterial("Diamond", false, false, CONFIG.diamondBow, HALF_DIAMOND_BOW, bowMaterials);
     public static BowMaterial NETHERITE_BOW = new BowMaterial("Netherite", false, true, CONFIG.netheriteBow, DIAMOND_BOW, bowMaterials);
+
+    public static ArrowMaterial IRON_ARROW = new ArrowMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironArrow, arrowMaterials);
+    public static ArrowMaterial DIAMOND_ARROW = new ArrowMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondArrow, arrowMaterials);
+    public static ArrowMaterial NETHERITE_ARROW = new ArrowMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_ARROW, CONFIG.netheriteArrow, arrowMaterials);
 
     public static void loadClass() {}
 }

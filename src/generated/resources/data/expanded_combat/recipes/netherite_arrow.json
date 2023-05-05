@@ -5,7 +5,7 @@
       "conditions": [
         {
           "type": "expanded_combat:config_boolean",
-          "config_entry": "gauntlet"
+          "config_entry": "arrow"
         }
       ],
       "recipe": {
@@ -14,10 +14,10 @@
           "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "expanded_combat:diamond_gauntlet"
+          "item": "expanded_combat:diamond_arrow"
         },
         "result": {
-          "item": "expanded_combat:netherite_gauntlet"
+          "item": "expanded_combat:netherite_arrow"
         }
       }
     }

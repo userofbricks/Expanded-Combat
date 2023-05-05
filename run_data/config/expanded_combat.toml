@@ -5,6 +5,8 @@ bowRecipeType = "SMITHING_ONLY"
 enableHalfBows = true
 enableCrossbows = true
 crossbowVelocityBonus = 0.5
+enableArrows = true
+enableFletchingTable = true
 
 [netheriteGauntlet]
 durability = 2031
@@ -434,3 +436,21 @@ repairItem = ["minecraft:netherite_ingot"]
 mendingBonus = 0.2
 fireResistant = false
 smithingTemplate = "minecraft:air"
+
+[ironArrow]
+damage = 3.0
+flaming = false
+freezing = false
+canBeTipped = true
+
+[diamondArrow]
+damage = 3.75
+flaming = false
+freezing = false
+canBeTipped = true
+
+[netheriteArrow]
+damage = 4.5
+flaming = false
+freezing = false
+canBeTipped = true

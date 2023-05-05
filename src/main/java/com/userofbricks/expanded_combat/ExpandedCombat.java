@@ -4,12 +4,15 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
+import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.entity.ECArrow;
+import com.userofbricks.expanded_combat.entity.ECEntities;
 import com.userofbricks.expanded_combat.events.GauntletEvents;
 import com.userofbricks.expanded_combat.events.ShieldEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
@@ -24,6 +27,9 @@ import com.userofbricks.expanded_combat.util.LangStrings;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,6 +69,7 @@ public class ExpandedCombat
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
+        ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
@@ -81,12 +88,14 @@ public class ExpandedCombat
     private void setup(FMLCommonSetupEvent event) {
         ECNetworkHandler.register();
     }
-    
+
+    @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
         for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
         MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
+        EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
     }
 
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {

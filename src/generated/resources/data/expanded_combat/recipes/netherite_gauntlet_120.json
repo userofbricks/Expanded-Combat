@@ -9,7 +9,7 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:smithing",
+        "type": "minecraft:smithing_transform",
         "addition": {
           "item": "minecraft:netherite_ingot"
         },
@@ -18,6 +18,9 @@
         },
         "result": {
           "item": "expanded_combat:netherite_gauntlet"
+        },
+        "template": {
+          "item": "minecraft:netherite_upgrade_smithing_template"
         }
       }
     }
