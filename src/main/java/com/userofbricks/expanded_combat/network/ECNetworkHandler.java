@@ -17,21 +17,13 @@ public class ECNetworkHandler {
 
     private static final String PTC_VERSION = "1";
 
-    public static SimpleChannel INSTANCE;
+    public static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ExpandedCombat.MODID, "main"))
+            .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)
+            .serverAcceptedVersions(PTC_VERSION::equals).simpleChannel();
 
     private static int id = 0;
 
     public static void register() {
-
-        INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ExpandedCombat.MODID, "main"))
-                .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)
-                .serverAcceptedVersions(PTC_VERSION::equals).simpleChannel();
-
-        //register(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new,
-        //        PlayerVariablesSyncMessage::handler);
-        //Client Packets
-        //register(CPacketOpenCuriosQuiver.class, CPacketOpenCuriosQuiver::encode, CPacketOpenCuriosQuiver::decode,
-        //        CPacketOpenCuriosQuiver::handle);
         //register(PacketOffhandAttack.class, PacketOffhandAttack::encode, PacketOffhandAttack::decode,
         //        PacketOffhandAttack.OffhandHandler::handle);
         register(CPacketOpenSmithing.class, CPacketOpenSmithing::encode, CPacketOpenSmithing::decode,
@@ -40,7 +32,7 @@ public class ECNetworkHandler {
                 CPacketOpenShieldSmithing::handle);
     }
 
-    private static <M> void register(Class<M> messageType, BiConsumer<M, FriendlyByteBuf> encoder,
+    public static <M> void register(Class<M> messageType, BiConsumer<M, FriendlyByteBuf> encoder,
                                      Function<FriendlyByteBuf, M> decoder,
                                      BiConsumer<M, Supplier<NetworkEvent.Context>> messageConsumer) {
         INSTANCE.registerMessage(id++, messageType, encoder, decoder, messageConsumer);

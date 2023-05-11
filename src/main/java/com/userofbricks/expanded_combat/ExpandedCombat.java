@@ -2,18 +2,19 @@ package com.userofbricks.expanded_combat;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
-import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
-import com.userofbricks.expanded_combat.entity.ECArrow;
 import com.userofbricks.expanded_combat.entity.ECEntities;
 import com.userofbricks.expanded_combat.events.GauntletEvents;
+import com.userofbricks.expanded_combat.events.QuiverEvents;
 import com.userofbricks.expanded_combat.events.ShieldEvents;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
@@ -21,6 +22,7 @@ import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.QuiverMaterial;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.LangStrings;
@@ -28,10 +30,9 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -50,9 +51,13 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class ExpandedCombat
 {
     public static final String MODID = "expanded_combat";
+    public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
+    public static final String QUIVER_CURIOS_IDENTIFIER = "quiver";
+    public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
     public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
     public static ECConfig CONFIG;
-    
+    public static int maxQuiverSlots = 0;
+
     public ExpandedCombat() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
@@ -71,9 +76,11 @@ public class ExpandedCombat
         ECContainers.MENU_TYPES.register(bus);
         ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
+        MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, ECItems::attachCaps);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
+        MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
         MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
-        bus.addListener(this::registerLayers);
+        bus.addListener(ECLayerDefinitions::registerLayers);
         MinecraftForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);
     }
@@ -81,7 +88,18 @@ public class ExpandedCombat
     private void comms(InterModEnqueueEvent event) {
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         if (CONFIG.enableGauntlets) {
-            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("hands").build());
+            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
+        }
+        if (CONFIG.enableQuivers) {
+            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(QUIVER_CURIOS_IDENTIFIER)
+                    .icon(new ResourceLocation(MODID, "slot/empty_" + QUIVER_CURIOS_IDENTIFIER + "_slot"))
+                    .hide()
+                    .build());
+            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(ARROWS_CURIOS_IDENTIFIER)
+                    .icon(new ResourceLocation(MODID, "slot/empty_" + ARROWS_CURIOS_IDENTIFIER + "_slot"))
+                    .hide()
+                    .size(maxQuiverSlots)
+                    .build());
         }
     }
 
@@ -94,11 +112,12 @@ public class ExpandedCombat
         for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
-        MinecraftForge.EVENT_BUS.register(new ECItemModelsProperties());
+        for (QuiverMaterial material : MaterialInit.quiverMaterials) {
+            CuriosRendererRegistry.register(material.getQuiverEntry().get(), QuiverRenderer::new);
+        }
+        ECItemModelsProperties.registerModelOverides();
+        MinecraftForge.EVENT_BUS.addListener(ECItemModelsProperties::itemColors);
+        MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
-    }
-
-    private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
-        evt.registerLayerDefinition(ECLayerDefinitions.GAUNTLET, GauntletModel::createLayer);
     }
 }

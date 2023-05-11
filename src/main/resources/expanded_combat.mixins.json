@@ -5,7 +5,7 @@
   "refmap": "expanded_combat.refmap.json",
   "priority": 0,
   "mixins": [
-    "PiglinTasksMixin",
+    "CuriosMenuMixin",
     "PunchEnchantmentMixin"
   ],
   "client": [

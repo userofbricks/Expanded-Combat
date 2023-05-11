@@ -15,7 +15,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 public class LangStrings {
     public static final String GOLD_MENDING_TOOLTIP = "tooltip.expanded_combat.mending_bonus";
@@ -27,7 +27,12 @@ public class LangStrings {
     public static final String LOWER_RIGHT_MATERIAL = "tooltip.expanded_combat.shield_material.lower_right";
     public static final String SHIELD_MATERIAL_LANG_START = "tooltip.expanded_combat.shield_material.";
     public static final String SHIELD_UPGRADE_CONTAINER = "container.upgrade_shield";
+    //Arrow Lang
     public static final String TIPPED_ARROW_POTION_ENDING = "arrow.expanded_combat.effect.";
+    //Key Lang
+    public static final String CYCLE_QUIVER_RIGHT = "key.expanded_combat.cycle_quiver_right";
+    public static final String CYCLE_QUIVER_LEFT = "key.expanded_combat.cycle_quiver_left";
+    public static final String KEY_CATEGORY = "key.expanded_combat.category";
 
     //Config
     private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
@@ -37,6 +42,7 @@ public class LangStrings {
     public static void registerLang() {
         List<String> alreadyAddedStrings = new ArrayList<>();
 
+        //shields
         REGISTRATE.get().addRawLang(UPPER_RIGHT_MATERIAL, "Upper Right: ");
         REGISTRATE.get().addRawLang(UPPER_LEFT_MATERIAL, "Upper Left: ");
         REGISTRATE.get().addRawLang(CENTER_MATERIAL, "Pegs & Trim: ");
@@ -44,9 +50,17 @@ public class LangStrings {
         REGISTRATE.get().addRawLang(LOWER_LEFT_MATERIAL, "Lower Left: ");
         REGISTRATE.get().addRawLang(SHIELD_UPGRADE_CONTAINER, "Upgrade Shield");
 
+        //arrows
         for (Potion potion : ForgeRegistries.POTIONS) {
             getOrCreateLang(alreadyAddedStrings, potion.getName(TIPPED_ARROW_POTION_ENDING), " of " + locationToName(potion.getName("")), "");
         }
+
+        //keys
+        REGISTRATE.get().addRawLang(KEY_CATEGORY, "Expanded Combat");
+        REGISTRATE.get().addRawLang(CYCLE_QUIVER_LEFT, "Cycle Quiver Left");
+        REGISTRATE.get().addRawLang(CYCLE_QUIVER_RIGHT, "Cycle Quiver Right");
+        REGISTRATE.get().addRawLang("curios.identifier." + QUIVER_CURIOS_IDENTIFIER, "Quiver");
+        REGISTRATE.get().addRawLang("curios.identifier." + ARROWS_CURIOS_IDENTIFIER, "Arrow");
 
         //Config
         String configLangStart = configLangStartGetter.get();

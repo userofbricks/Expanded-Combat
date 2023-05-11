@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.item.materials;
 
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Tiers;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class MaterialInit {
     public static List<ShieldMaterial> shieldMaterials = new ArrayList<>();
     public static List<BowMaterial> bowMaterials = new ArrayList<>();
     public static List<ArrowMaterial> arrowMaterials = new ArrayList<>();
+    public static List<QuiverMaterial> quiverMaterials = new ArrayList<>();
 
     public static GauntletMaterial NETHERITE_GAUNTLET = new GauntletMaterial("Netherite", CONFIG.netheriteGauntlet, gauntletMaterials);
     public static GauntletMaterial DIAMOND_GAUNTLET = new GauntletMaterial("Diamond", CONFIG.diamondGauntlet, gauntletMaterials);
@@ -59,6 +61,11 @@ public class MaterialInit {
     public static ArrowMaterial IRON_ARROW = new ArrowMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironArrow, arrowMaterials);
     public static ArrowMaterial DIAMOND_ARROW = new ArrowMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondArrow, arrowMaterials);
     public static ArrowMaterial NETHERITE_ARROW = new ArrowMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_ARROW, CONFIG.netheriteArrow, arrowMaterials);
+
+    public static QuiverMaterial LEATHER_QUIVER = new QuiverMaterial("Leather", ArmorMaterials.LEATHER.getRepairIngredient(), CONFIG.leatherQuiver, quiverMaterials);
+    public static QuiverMaterial IRON_QUIVER = new QuiverMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironQuiver, quiverMaterials);
+    public static QuiverMaterial DIAMOND_QUIVER = new QuiverMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondQuiver, quiverMaterials);
+    public static QuiverMaterial NETHERITE_QUIVER = new QuiverMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_QUIVER, CONFIG.netheriteQuiver, quiverMaterials);
 
     public static void loadClass() {}
 }

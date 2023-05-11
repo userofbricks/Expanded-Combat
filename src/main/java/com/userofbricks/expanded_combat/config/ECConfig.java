@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.config;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
@@ -172,6 +173,30 @@ public class ECConfig implements ConfigData {
 
     @Category("Arrows") @CollapsibleObject @ConfigName("Netherite Arrow Settings")
     public ArrowMaterialConfig netheriteArrow = new ArrowMaterialConfig(4.5f);
+
+
+
+    @Category("Quivers") @RequiresRestart @ConfigName("Enable Quivers")
+    public boolean enableQuivers = true;
+
+    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Leather Quiver Settings")
+    public QuiverMaterialConfig leatherQuiver = new QuiverMaterialConfig(1);
+
+    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Iron Quiver Settings")
+    public QuiverMaterialConfig ironQuiver = new QuiverMaterialConfig(3);
+
+    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Gold Quiver Settings")
+    public QuiverMaterialConfig goldQuiver = new QuiverMaterialConfig(5);
+
+    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Diamond Quiver Settings")
+    public QuiverMaterialConfig diamondQuiver = new QuiverMaterialConfig(7);
+
+    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Netherite Quiver Settings")
+    public QuiverMaterialConfig netheriteQuiver = new QuiverMaterialConfig(9);
+
+
+
+
 
     public static class GauntletMaterialConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
@@ -410,6 +435,16 @@ public class ECConfig implements ConfigData {
 
         public ArrowMaterialConfig(float damage) {
             this(damage, false, false, true);
+        }
+    }
+
+    public static class QuiverMaterialConfig {
+        @ConfigName("InventorySlots")
+        public int providedSlots;
+
+        public QuiverMaterialConfig(int providedSlots) {
+            this.providedSlots = providedSlots;
+            ExpandedCombat.maxQuiverSlots = Math.max(providedSlots, ExpandedCombat.maxQuiverSlots);
         }
     }
 }

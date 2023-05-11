@@ -40,6 +40,7 @@ public class ECItemModelsProperties {
         }
     }
 
+    @SubscribeEvent
     public static void itemColors(RegisterColorHandlersEvent.Item event) {
         for (ArrowMaterial material : MaterialInit.arrowMaterials) {
             event.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, material.getTippedArrowEntry().get());

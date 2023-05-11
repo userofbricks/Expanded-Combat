@@ -7,6 +7,7 @@ enableCrossbows = true
 crossbowVelocityBonus = 0.5
 enableArrows = true
 enableFletchingTable = true
+enableQuivers = true
 
 [netheriteGauntlet]
 durability = 2031
@@ -454,3 +455,18 @@ damage = 4.5
 flaming = false
 freezing = false
 canBeTipped = true
+
+[leatherQuiver]
+providedSlots = 1
+
+[ironQuiver]
+providedSlots = 3
+
+[goldQuiver]
+providedSlots = 5
+
+[diamondQuiver]
+providedSlots = 7
+
+[netheriteQuiver]
+providedSlots = 9

@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "arrow"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
+        },
+        "base": {
+          "item": "expanded_combat:diamond_quiver"
+        },
+        "result": {
+          "item": "expanded_combat:netherite_quiver"
+        }
+      }
+    }
+  ]
+}

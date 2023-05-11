@@ -24,6 +24,7 @@ public final class ECItemTags {
     public static final TagKey<Item> BOWS = bind("bows");
     public static final TagKey<Item> CROSSBOWS = bind("crossbows");
     public static final TagKey<Item> ARROWS = bind("arrows");
+    public static final TagKey<Item> QUIVERS = bind("quivers");
 
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));

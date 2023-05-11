@@ -16,17 +16,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-public class ShieldSmithingRecipeBuilder {
+public class HardCodedRecipeBuilder {
     private final RecipeCategory category;
     private final RecipeSerializer<?> recipeSerializer;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public ShieldSmithingRecipeBuilder(RecipeCategory category, RecipeSerializer<?> recipeSerializer) {
+    public HardCodedRecipeBuilder(RecipeCategory category, RecipeSerializer<?> recipeSerializer) {
         this.category = category;
         this.recipeSerializer = recipeSerializer;
     }
 
-    public ShieldSmithingRecipeBuilder unlocks(String p_267310_, CriterionTriggerInstance p_266808_) {
+    public HardCodedRecipeBuilder unlocks(String p_267310_, CriterionTriggerInstance p_266808_) {
         this.advancement.addCriterion(p_267310_, p_266808_);
         return this;
     }
@@ -34,7 +34,7 @@ public class ShieldSmithingRecipeBuilder {
     public void save(Consumer<FinishedRecipe> p_266852_, ResourceLocation resourceLocation) {
         this.ensureValid(resourceLocation);
         this.advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation)).rewards(AdvancementRewards.Builder.recipe(resourceLocation)).requirements(RequirementsStrategy.OR);
-        p_266852_.accept(new ShieldSmithingRecipeBuilder.Result(resourceLocation, this.advancement, resourceLocation.withPrefix("recipes/" + this.category.getFolderName() + "/"), recipeSerializer));
+        p_266852_.accept(new HardCodedRecipeBuilder.Result(resourceLocation, this.advancement, resourceLocation.withPrefix("recipes/" + this.category.getFolderName() + "/"), recipeSerializer));
     }
 
     private void ensureValid(ResourceLocation p_266958_) {

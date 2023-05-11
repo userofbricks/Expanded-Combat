@@ -2,21 +2,32 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.item.materials.ArrowMaterial;
-import com.userofbricks.expanded_combat.item.materials.BowMaterial;
-import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
+import com.userofbricks.expanded_combat.item.materials.*;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
-import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.HardCodedRecipeBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
@@ -34,17 +45,18 @@ public class ECItems
         for (GauntletMaterial gm : MaterialInit.gauntletMaterials) { gm.registerElements(); }
         for (BowMaterial bm : MaterialInit.bowMaterials) { bm.registerElements(); }
         for (ArrowMaterial am : MaterialInit.arrowMaterials) {am.registerElements();}
+        for (QuiverMaterial qm : MaterialInit.quiverMaterials) {qm.registerElements();}
         REGISTRATE.get().addDataGenerator(ProviderType.RECIPE, recipeProvider -> {
-            new ShieldSmithingRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get())
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing"));
-            new ShieldSmithingRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get())
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing_singleton"));
-            new ShieldSmithingRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "legacy_shield_vanilla_smithing_singleton"));
-            new ShieldSmithingRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
         });
@@ -60,5 +72,21 @@ public class ECItems
                 .register();
         ITEMS.add(shieldRegistryEntry);
         return shieldRegistryEntry;
+    }
+
+    public static void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
+        ItemStack stack = e.getObject();
+
+        if (Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem())) {
+            ArrowCurio arrowCurio = new ArrowCurio(stack);
+            e.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
+                final LazyOptional<ICurio> curio = LazyOptional.of(() -> arrowCurio);
+
+                @Nonnull
+                public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+                    return CuriosCapability.ITEM.orEmpty(cap, this.curio);
+                }
+            });
+        }
     }
 }

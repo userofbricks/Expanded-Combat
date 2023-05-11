@@ -16,15 +16,17 @@ public class GauntletModel extends HumanoidModel<LivingEntity>
     }
 
     public static LayerDefinition createLayer() {
-        CubeDeformation cube = new CubeDeformation(0.5F);
-        MeshDefinition mesh = HumanoidModel.createMesh(cube, 0.0F);
+        CubeDeformation deformation = new CubeDeformation(0.5F);
+        MeshDefinition mesh = HumanoidModel.createMesh(deformation, 0.0F);
         PartDefinition part = mesh.getRoot();
         part.addOrReplaceChild("right_arm",
-                               CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, cube),
-                               PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -5.0F, 2.0F, 0.0F));
+                CubeListBuilder.create().texOffs(0, 0)
+                        .addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, deformation),
+                PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -5.0F, 2.0F, 0.0F));
         part.addOrReplaceChild("left_arm",
-                               CubeListBuilder.create().mirror().texOffs(16, 0).addBox(-1F, -2.0F, -2.0F, 4, 12, 4, cube),
-                               PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 5.0F, 2.0F, 0.0F));
+                CubeListBuilder.create().mirror().texOffs(16, 0)
+                        .addBox(-1F, -2.0F, -2.0F, 4, 12, 4, deformation),
+                PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 5.0F, 2.0F, 0.0F));
         return LayerDefinition.create(mesh, 32, 16);
     }
 
