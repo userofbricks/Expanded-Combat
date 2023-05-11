@@ -91,6 +91,7 @@ public class QuiverRenderer implements ICurioRenderer {
                             mc.getEntityRenderDispatcher().getItemInHandRenderer()
                                     .renderItem(mc.player, stackHandler.getStackInSlot(notOneSlot ? nonEmptySlots.get(Math.round((thirdOfCapacity * 2) - 1)) : 0), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
                         }
+                        poseStack.popPose();
                     }
                 }
             });

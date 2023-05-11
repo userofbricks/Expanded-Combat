@@ -53,13 +53,13 @@ public class ECQuiverItem extends Item implements ICurioItem {
     }
 
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        onUnequip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
         //create a store function that stores all arrows in quiver nbt
-        stack.getOrCreateTag().putInt("expanded_combat:slotIndex", 0);
     }
 
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        this.onEquip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
         //create a getting function that puts all stored arrows in arrow slots
-        stack.getOrCreateTag().putInt("expanded_combat:slotIndex", 0);
     }
 
 

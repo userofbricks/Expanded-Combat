@@ -64,6 +64,7 @@ public class MaterialInit {
 
     public static QuiverMaterial LEATHER_QUIVER = new QuiverMaterial("Leather", ArmorMaterials.LEATHER.getRepairIngredient(), CONFIG.leatherQuiver, quiverMaterials);
     public static QuiverMaterial IRON_QUIVER = new QuiverMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironQuiver, quiverMaterials);
+    public static QuiverMaterial GOLD_QUIVER = new QuiverMaterial("Gold", Tiers.GOLD.getRepairIngredient(), CONFIG.goldQuiver, quiverMaterials);
     public static QuiverMaterial DIAMOND_QUIVER = new QuiverMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondQuiver, quiverMaterials);
     public static QuiverMaterial NETHERITE_QUIVER = new QuiverMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_QUIVER, CONFIG.netheriteQuiver, quiverMaterials);
 

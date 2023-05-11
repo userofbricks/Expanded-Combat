@@ -4,61 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added arrows">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/leather_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_quiver_conditional.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_quiver_conditional.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_quiver_conditional.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_quiver_conditional.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_quiver.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/quivers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/ECKeyRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/QuiverModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/QuiverRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/curios/ArrowCurio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/QuiverMaterial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/blocks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/arrows.json" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added quivers and their ability to hold arrows">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/ECLayerDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/ECLayerDefinitions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/GauntletModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/GauntletModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/QuiverRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/QuiverRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/HardCodedRecipeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PiglinTasksMixin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECNetworkHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECNetworkHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver/leather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver_diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver/diamond.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver_gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver/gold.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver_iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver/iron.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver_netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver/netherite.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/quiver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/quiver.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/empty_arrows_slot.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/slot/empty_arrows_slot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/empty_quiver_slot.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/slot/empty_quiver_slot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/arrows.json.disabled" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/hands.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/hands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/quiver.json.disabled" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/quiver.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,13 +292,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00006" summary="finished the twilight forest compat. working on adding some fletching table functionality.">
-      <created>1621808933385</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1621808933385</updated>
     </task>
     <task id="LOCAL-00007" summary="finished the twilight forest compat. working on adding some fletching table functionality.">
       <created>1621816795933</created>
@@ -686,7 +629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683308403841</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added quivers and their ability to hold arrows">
+      <created>1683779096170</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1683779096170</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -708,7 +658,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="bumped to beta 1" />
     <MESSAGE value="finished Gauntlet toggle config effects" />
     <MESSAGE value="made item properties assigned dynamically instead of hard coded" />
     <MESSAGE value="code cleanup" />
@@ -733,7 +682,8 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="added crossbows and refactored item texture names" />
     <MESSAGE value="added arrows" />
-    <option name="LAST_COMMIT_MESSAGE" value="added arrows" />
+    <MESSAGE value="added quivers and their ability to hold arrows" />
+    <option name="LAST_COMMIT_MESSAGE" value="added quivers and their ability to hold arrows" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
