@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed quiver bug">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added arrow item pickup into quiver">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,13 +296,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00008" summary="alpha 2 for 2.2.0">
-      <created>1622077222406</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1622077222406</updated>
     </task>
     <task id="LOCAL-00009" summary="fixed issue #6">
       <created>1622077306994</created>
@@ -634,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683846163327</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="added arrow item pickup into quiver">
+      <created>1684333089236</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1684333089237</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -656,7 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="made item properties assigned dynamically instead of hard coded" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="update to 1.19.4" />
     <MESSAGE value="split material config values from non config values" />
@@ -681,7 +686,8 @@
     <MESSAGE value="added arrows" />
     <MESSAGE value="added quivers and their ability to hold arrows" />
     <MESSAGE value="fixed quiver bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed quiver bug" />
+    <MESSAGE value="added arrow item pickup into quiver" />
+    <option name="LAST_COMMIT_MESSAGE" value="added arrow item pickup into quiver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

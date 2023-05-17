@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.events;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -55,8 +55,8 @@ public class QuiverEvents {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void onInventoryGuiInit(ScreenEvent.BackgroundRendered evt) {
-        Screen screen = evt.getScreen();
+    public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
+        AbstractContainerScreen<?> screen = evt.getContainerScreen();
         if (screen instanceof CuriosScreen curiosScreen) {
             RenderSystem.setShaderTexture(0, new ResourceLocation(MODID, "textures/gui/container/quiver.png"));
             int left = curiosScreen.getGuiLeft();

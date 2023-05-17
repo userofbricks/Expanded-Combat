@@ -180,19 +180,19 @@ public class ECConfig implements ConfigData {
     public boolean enableQuivers = true;
 
     @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Leather Quiver Settings")
-    public QuiverMaterialConfig leatherQuiver = new QuiverMaterialConfig(1);
+    public QuiverMaterialConfig leatherQuiver = new QuiverMaterialConfig(2);
 
     @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Iron Quiver Settings")
-    public QuiverMaterialConfig ironQuiver = new QuiverMaterialConfig(3);
+    public QuiverMaterialConfig ironQuiver = new QuiverMaterialConfig(4);
 
     @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Gold Quiver Settings")
-    public QuiverMaterialConfig goldQuiver = new QuiverMaterialConfig(5);
+    public QuiverMaterialConfig goldQuiver = new QuiverMaterialConfig(6);
 
     @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Diamond Quiver Settings")
-    public QuiverMaterialConfig diamondQuiver = new QuiverMaterialConfig(7);
+    public QuiverMaterialConfig diamondQuiver = new QuiverMaterialConfig(8);
 
     @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Netherite Quiver Settings")
-    public QuiverMaterialConfig netheriteQuiver = new QuiverMaterialConfig(9);
+    public QuiverMaterialConfig netheriteQuiver = new QuiverMaterialConfig(10);
 
 
 

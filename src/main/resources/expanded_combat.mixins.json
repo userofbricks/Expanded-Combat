@@ -5,6 +5,7 @@
   "refmap": "expanded_combat.refmap.json",
   "priority": 0,
   "mixins": [
+    "AbstractArrowEntityMixin",
     "CuriosMenuMixin",
     "PunchEnchantmentMixin"
   ],

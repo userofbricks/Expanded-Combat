@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 
+import com.userofbricks.expanded_combat.inventory.container.ArrowSlot;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -30,8 +31,6 @@ public class CuriosMenuMixin {
 
     @Inject(method = "scrollToIndex", at = @At("RETURN"), remap = false)
     public void InventoryMenu(int indexIn, CallbackInfo ci) {
-        //quiver slot gets set here along with its reload of the slots to keep from crashing when a quiver is removed
-        //then call the quiver inventory menu generator
         createQuiver();
     }
 
@@ -46,7 +45,7 @@ public class CuriosMenuMixin {
             int y = 12;
             for (int i = 0; i < arrowStackHandler.getSlots(); i++) {
                 int finalI = i;
-                ((InventoryMenu)(Object)this).addSlot(new CurioSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y, arrowStacksHandler.getRenders()) {
+                ((InventoryMenu)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y) {
                     @Override
                     public boolean mayPlace(@Nonnull ItemStack stack) {
                         if (stackHandler.getStackInSlot(0).getItem() instanceof ECQuiverItem quiverItem) {
