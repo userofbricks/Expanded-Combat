@@ -5,18 +5,53 @@ import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 public class QuiverEvents {
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onArrowItemPickup(EntityItemPickupEvent evt) {
+        Player player = evt.getEntity();
+        ItemStack toPickup = evt.getItem().getItem();
+        SlotResult slotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+        if(toPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
+             CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(curios -> {
+                 IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+                 int slots = arrowStackHandler.getSlots();
+
+                 for (int s = 0; s < slots; s++) {
+                     ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
+                     ItemStack rem = toPickup.copy();
+                     int itemsRemaining = toPickup.getCount();
+                     if ((currentStack.getItem() == toPickup.getItem() || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
+                         rem = arrowStackHandler.insertItem(s, rem, false);
+                         if (rem.getCount() < itemsRemaining) {
+                             //arrowStackHandler.getStackInSlot(s).setPopTime(5);
+                             //TODO: make arrows picked up make pop sound
+                             player.awardStat(Stats.ITEM_PICKED_UP.get(toPickup.getItem()), itemsRemaining - rem.getCount());
+                         }
+                     }
+                     toPickup.setCount(rem.getCount());
+                 }
+             });
+        }
+    }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
