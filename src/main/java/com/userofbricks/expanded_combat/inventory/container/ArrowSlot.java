@@ -42,6 +42,10 @@ public class ArrowSlot extends SlotItemHandler {
                         : new ResourceLocation(Curios.MODID, "slot/empty_curio_slot"));
     }
 
+    public SlotContext getSlotContext() {
+        return slotContext;
+    }
+
 
     @Nullable
     public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {

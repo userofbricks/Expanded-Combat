@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added arrow entity pickup into quiver fixed quiver gui rendering">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="made gui rendering of quiver more flexible and less visually cluttered">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractContainerScreenMixin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/QuiverMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/QuiverMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/quiver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/quiver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,20 +292,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00010" summary="loads of stuff&#10;added enderite plus compat&#10;added quiver multi slot functionality">
-      <created>1622309981169</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1622309981169</updated>
-    </task>
-    <task id="LOCAL-00011" summary="loads of stuff&#10;added quiver gui, hud, and arrow swaping">
-      <created>1622670354832</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1622670354832</updated>
     </task>
     <task id="LOCAL-00012" summary="loads of stuff&#10;added client Config">
       <created>1622740061202</created>
@@ -638,7 +622,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684366649954</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="abandoned saving items to quiver">
+      <created>1684385070703</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1684385070704</updated>
+    </task>
+    <task id="LOCAL-00060" summary="made gui rendering of quiver more flexible and less visually cluttered">
+      <created>1684385122102</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1684385122102</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -660,8 +658,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update to 1.19.4" />
-    <MESSAGE value="split material config values from non config values" />
     <MESSAGE value="separated server run folder from other runs" />
     <MESSAGE value="small ingrediantUtil readability change" />
     <MESSAGE value="lang stuff" />
@@ -685,7 +681,9 @@
     <MESSAGE value="fixed quiver bug" />
     <MESSAGE value="added arrow item pickup into quiver" />
     <MESSAGE value="added arrow entity pickup into quiver fixed quiver gui rendering" />
-    <option name="LAST_COMMIT_MESSAGE" value="added arrow entity pickup into quiver fixed quiver gui rendering" />
+    <MESSAGE value="abandoned saving items to quiver" />
+    <MESSAGE value="made gui rendering of quiver more flexible and less visually cluttered" />
+    <option name="LAST_COMMIT_MESSAGE" value="made gui rendering of quiver more flexible and less visually cluttered" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
