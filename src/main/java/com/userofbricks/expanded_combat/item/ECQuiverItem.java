@@ -3,37 +3,19 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.item.materials.QuiverMaterial;
 import com.userofbricks.expanded_combat.network.ECVariables;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
-import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
-import top.theillusivec4.curios.common.inventory.container.CuriosContainerProvider;
 
-import javax.annotation.Nullable;
 import java.util.Locale;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
-import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 
 public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
@@ -52,16 +34,31 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return true;
     }
 
+    /*
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        onUnequip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
-        //create a store function that stores all arrows in quiver nbt
+        if (!(newStack.getItem() instanceof ECQuiverItem)) {
+            serializeArrowsNBT(stack, slotContext.entity());
+        }
     }
 
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        this.onEquip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
-        //create a getting function that puts all stored arrows in arrow slots
+        if (prevStack.getItem() instanceof ECQuiverItem) {
+            serializeArrowsNBT(prevStack, slotContext.entity());
+        }
+        CuriosApi.getCuriosHelper().getCuriosHandler(slotContext.entity()).ifPresent(curios -> {
+                IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+                arrowStackHandler.deserializeNBT(stack.getOrCreateTag().getCompound("Arrows"));
+        });
     }
 
+    private static void serializeArrowsNBT(ItemStack stack, LivingEntity entity) {
+        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(curios -> {
+            IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+            stack.getOrCreateTag().put("Arrows", arrowStackHandler.serializeNBT());
+            for (int s = 0; s < arrowStackHandler.getSlots(); s++) {arrowStackHandler.setStackInSlot(s, ItemStack.EMPTY);}
+        });
+    }
+*/
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
