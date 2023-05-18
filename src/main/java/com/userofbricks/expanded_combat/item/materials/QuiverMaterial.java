@@ -119,20 +119,8 @@ public class QuiverMaterial {
         return name;
     }
 
-    public boolean isSmithingOnly() {
-        return smithingOnly;
-    }
-
-    public @Nullable QuiverMaterial getCrafted_from() {
-        return crafted_from;
-    }
-
     public @NotNull Ingredient getIngredient() {
         return ingredient;
-    }
-
-    public @NotNull QuiverMaterialConfig getQuiverMaterialConfig() {
-        return quiverMaterialConfig;
     }
 
     public RegistryEntry<ECQuiverItem> getQuiverEntry() {

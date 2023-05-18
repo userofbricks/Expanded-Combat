@@ -43,7 +43,8 @@ public class CuriosMenuMixin {
             IDynamicStackHandler arrowStackHandler = arrowStacksHandler.getStacks();
             int x = 176 + 2;
             int y = 12;
-            for (int i = 0; i < arrowStackHandler.getSlots(); i++) {
+            int row = 1;
+            for (int i = 0; i < arrowStackHandler.getSlots(); i++, row++) {
                 int finalI = i;
                 ((InventoryMenu)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y) {
                     @Override
@@ -55,7 +56,8 @@ public class CuriosMenuMixin {
                     }
                 });
                 y += 18;
-                if (i >= 7) {
+                if (row == 8) {
+                    row = 0;
                     y = 12;
                     x += 18;
                 }
