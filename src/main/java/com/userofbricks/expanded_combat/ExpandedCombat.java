@@ -20,9 +20,8 @@ import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECItems;
-import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.QuiverMaterial;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.LangStrings;
@@ -109,10 +108,10 @@ public class ExpandedCombat
 
     @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
-        for (GauntletMaterial material : MaterialInit.gauntletMaterials) {
+        for (Material material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
-        for (QuiverMaterial material : MaterialInit.quiverMaterials) {
+        for (Material material : MaterialInit.quiverMaterials) {
             CuriosRendererRegistry.register(material.getQuiverEntry().get(), QuiverRenderer::new);
         }
         ECItemModelsProperties.registerModelOverides();

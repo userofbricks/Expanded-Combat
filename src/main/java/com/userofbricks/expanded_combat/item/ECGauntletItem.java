@@ -3,8 +3,9 @@ package com.userofbricks.expanded_combat.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
-import com.userofbricks.expanded_combat.item.materials.GauntletMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -23,6 +23,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -30,14 +31,13 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECGauntletItem extends Item implements ICurioItem
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
-    private final GauntletMaterial material;
+    private final Material material;
     private static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
     private static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
     private static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
@@ -45,24 +45,24 @@ public class ECGauntletItem extends Item implements ICurioItem
     public Boolean hasWeaponInHand = false;
 
     @ParametersAreNonnullByDefault
-    public ECGauntletItem(GauntletMaterial materialIn, Item.Properties properties) {
+    public ECGauntletItem(Material materialIn, Item.Properties properties) {
         super(properties);
         this.material = materialIn;
-        this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getTextureName() + ".png");
+        this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName() + ".png");
     }
     
-    public GauntletMaterial getMaterial() {
+    public Material getMaterial() {
         return this.material;
     }
 
     @Override
     public int getEnchantmentValue(ItemStack stack) {
-        return this.material.getEnchantability();
+        return (this.material.getConfig().enchanting.offenseEnchantability/2) + (this.material.getConfig().enchanting.defenseEnchantability/2);
     }
 
     @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
+        return IngredientUtil.getIngrediantFromItemString(this.material.getConfig().crafting.repairItem).test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.material.getDurability();
+        return this.material.getConfig().durability.toolDurability;
     }
 
     @Override
@@ -82,34 +82,38 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     @Override
     public boolean isFireResistant() {
-        return this.material.getFireResistant();
+        return this.material.getConfig().fireResistant;
     }
 
     @Override
     public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
-        return !this.material.getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
+        return !this.material.getConfig().fireResistant || !damageSource.is(DamageTypeTags.IS_FIRE);
     }
 
     @Override
     public float getXpRepairRatio( ItemStack stack) {
-        return (float) this.material.getMendingBonus();
+        return 2f + this.material.getConfig().mendingBonus;
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("tooltip.expanded_combat.half_added_damage_when_holding_item").withStyle(ChatFormatting.GRAY));
-        if (this.material == MaterialInit.GOLD_GAUNTLET) {
-            list.add(Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN)
-                    .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+        if (this.material.getConfig().mendingBonus != 0.0f) {
+            if (this.material.getConfig().mendingBonus > 0.0f) {
+                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
+            }
+            else if (this.material.getConfig().mendingBonus < 0.0f) {
+                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
+            }
         }
     }
     
     public int getArmorAmount() {
-        return this.material.getArmorAmount();
+        return this.material.getConfig().defense.gauntletArmorAmount;
     }
     
     public double getAttackDamage() {
-        return this.material.getAttackDamage();
+        return this.material.getConfig().offense.gauntletAttackDamage;
     }
     
     public ResourceLocation getGAUNTLET_TEXTURE() {
@@ -118,12 +122,12 @@ public class ECGauntletItem extends Item implements ICurioItem
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return stack.getItem() instanceof ECGauntletItem && ((ECGauntletItem) stack.getItem()).getMaterial() == MaterialInit.GOLD_GAUNTLET;
+        return ((ECGauntletItem) stack.getItem()).getMaterial().getName().equals("Gold");
     }
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
-        livingEntity.level.playSound(null, livingEntity.blockPosition(), this.material.getSoundEvent(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+        livingEntity.level.playSound(null, livingEntity.blockPosition(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(this.material.getConfig().equipSound))), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
@@ -131,11 +135,11 @@ public class ECGauntletItem extends Item implements ICurioItem
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
             double attackDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
-            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.NAGA_GAUNTLET ? (attackDamage/2.0d*3) : 0;
-            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.YETI_GAUNTLET ? (attackDamage/2.0d) : 0;
+            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.NAGASCALE ? (attackDamage/2.0d*3) : 0;
+            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialInit.YETI ? (attackDamage/2.0d) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
-            double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getKnockbackResistance();
-            double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getArmorToughness();
+            double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.knockbackResistance;
+            double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.armorToughness;
             if (((ECGauntletItem) stack.getItem()).hasWeaponInHand) {
                 atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + nagaDamage + yetiDamage) / 2d, AttributeModifier.Operation.ADDITION));
             } else {

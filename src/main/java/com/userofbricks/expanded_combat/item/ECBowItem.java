@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.item.materials.BowMaterial;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -25,11 +25,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ECBowItem extends BowItem {
-    public final BowMaterial material;
+    public final Material material;
+    @Nullable
+    public final Material previosMaterial;
 
-    public ECBowItem(BowMaterial material,  Item.Properties builder) {
+    public ECBowItem(Material material, @Nullable Material previosMaterial, Item.Properties builder) {
         super(builder);
         this.material = material;
+        this.previosMaterial = previosMaterial;
     }
 
     @Override
@@ -52,8 +55,13 @@ public class ECBowItem extends BowItem {
         }
     }
 
+    private int getMultishotLevel() {
+        if (previosMaterial != null) return (this.material.getConfig().offense.multishotLevel / 2) + (this.previosMaterial.getConfig().offense.multishotLevel / 2);
+        return this.material.getConfig().offense.multishotLevel;
+    }
+
     public void fireArrows( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity) {
-        int multishotLevel = stack.getEnchantmentLevel(Enchantments.MULTISHOT) + this.material.getMultishotLevel();
+        int multishotLevel = stack.getEnchantmentLevel(Enchantments.MULTISHOT) + this.getMultishotLevel();
         for (int arrowNumber = 0; arrowNumber < 1 + multishotLevel * 2; ++arrowNumber) {
             if (arrowVelocity >= 0.1) {
                 boolean hasInfiniteAmmo = playerentity.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
@@ -73,6 +81,11 @@ public class ECBowItem extends BowItem {
         }
     }
 
+    private int getBowPower() {
+        if (previosMaterial != null) return (this.material.getConfig().offense.bowPower / 2) + (this.previosMaterial.getConfig().offense.bowPower / 2);
+        return this.material.getConfig().offense.bowPower;
+    }
+
     public void createBowArrow( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity,  int i,  boolean hasInfiniteAmmo,  boolean isAdditionalShot) {
         ArrowItem arrowitem = (ArrowItem)((itemstack.getItem() instanceof ArrowItem) ? itemstack.getItem() : Items.ARROW);
         AbstractArrow abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
@@ -81,7 +94,7 @@ public class ECBowItem extends BowItem {
         if (arrowVelocity == 1.0f) {
             abstractarrowentity.setCritArrow(true);
         }
-        int powerLevel = stack.getEnchantmentLevel(Enchantments.POWER_ARROWS) + this.material.getPowerLevel();
+        int powerLevel = stack.getEnchantmentLevel(Enchantments.POWER_ARROWS) + this.getBowPower();
         if (powerLevel > 0) {
             abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + powerLevel * 0.5 + 0.5);
         }
@@ -102,27 +115,32 @@ public class ECBowItem extends BowItem {
         worldIn.addFreshEntity(abstractarrowentity);
     }
 
+    private float getVelocitiMultiplier() {
+        if (previosMaterial != null) return (this.material.getConfig().offense.velocityMultiplier / 2) + (this.previosMaterial.getConfig().offense.velocityMultiplier / 2);
+        return this.material.getConfig().offense.velocityMultiplier;
+    }
+
     public void setArrowTrajectory(Player playerentity, float arrowVelocity, int i, AbstractArrow abstractarrowentity) {
         if (i == 0) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 0.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 0.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 1) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 10.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 10.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 2) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 10.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 10.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 3) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 20.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 20.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 4) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 20.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 20.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 5) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 30.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() + 30.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
         if (i == 6) {
-            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 30.0f, 0.0f, arrowVelocity * this.material.getVelocityMultiplier(), 1.0f);
+            abstractarrowentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot() - 30.0f, 0.0f, arrowVelocity * this.getVelocitiMultiplier(), 1.0f);
         }
     }
 
@@ -144,27 +162,32 @@ public class ECBowItem extends BowItem {
         return (float)Math.max(20 - 5 * quickChargeLevel, 0);
     }
 
+    private float getMendingBonus() {
+        if (previosMaterial != null) return (this.material.getConfig().mendingBonus / 2) + (this.previosMaterial.getConfig().mendingBonus / 2);
+        return this.material.getConfig().mendingBonus;
+    }
+
     @Override
     public float getXpRepairRatio( ItemStack stack) {
-        return 2.0f + this.material.getMendingBonus();
+        return 2.0f + getMendingBonus();
     }
 
     @OnlyIn(Dist.CLIENT)
     @ParametersAreNonnullByDefault
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
-        if (this.material.getMendingBonus() != 0.0f) {
-            if (this.material.getMendingBonus() > 0.0f) {
-                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getMendingBonus()))));
+        if (this.getMendingBonus() != 0.0f) {
+            if (this.getMendingBonus() > 0.0f) {
+                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getMendingBonus()))));
             }
-            else if (this.material.getMendingBonus() < 0.0f) {
-                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getMendingBonus()))));
+            else if (this.getMendingBonus() < 0.0f) {
+                list.add(0, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getMendingBonus()))));
             }
         }
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.material.getDurability();
+        return this.material.getConfig().durability.bowDurability;
     }
 
     @Override
@@ -174,30 +197,34 @@ public class ECBowItem extends BowItem {
 
     @Override
     public int getEnchantmentValue(ItemStack stack) {
-        return this.material.getEnchantability();
+        return this.material.getConfig().enchanting.offenseEnchantability;
     }
 
     @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
+        return IngredientUtil.getIngrediantFromItemString(this.material.getConfig().crafting.repairItem).test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
     @Override
     public boolean isFireResistant() {
-        return this.material.getFireResistant();
+        return this.material.getConfig().fireResistant;
     }
 
     @Override
     public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
-        return !this.material.getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
+        return !this.material.getConfig().fireResistant || !damageSource.is(DamageTypeTags.IS_FIRE);
     }
 
-    public BowMaterial getMaterial() {
+    public Material getMaterial() {
         return this.material;
+    }
+    public @Nullable Material getPreviosMaterial() {
+        return this.previosMaterial;
     }
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return ((ECBowItem) stack.getItem()).getMaterial() == MaterialInit.HALF_GOLD_BOW || ((ECBowItem) stack.getItem()).getMaterial() == MaterialInit.GOLD_BOW;
+        ECBowItem bowItem = ((ECBowItem) stack.getItem());
+        return bowItem.getMaterial().getName().equals("Gold") || (bowItem.getPreviosMaterial() != null && bowItem.getPreviosMaterial().getName().equals("Gold"));
     }
 }

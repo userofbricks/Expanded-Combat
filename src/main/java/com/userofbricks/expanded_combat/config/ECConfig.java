@@ -6,6 +6,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.*;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
@@ -21,185 +22,501 @@ import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 @Config(name = MODID)
 public class ECConfig implements ConfigData {
 
-    @Category("Gauntlets") @RequiresRestart @ConfigName("Enable Gauntlets")
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Arrows")
+    public boolean enableArrows = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Bows")
+    public boolean enableBows = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Half Bows")
+    public boolean enableHalfBows = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Crossbows")
+    public boolean enableCrossbows = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Gauntlets")
     public boolean enableGauntlets = true;
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Netherite Gauntlet Settings")
-    public GauntletMaterialConfig netheriteGauntlet = new GauntletMaterialConfig(Tiers.NETHERITE, ArmorMaterials.NETHERITE, true, 0.2, true);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Diamond Gauntlet Settings")
-    public GauntletMaterialConfig diamondGauntlet = new GauntletMaterialConfig(Tiers.DIAMOND, ArmorMaterials.DIAMOND, true, -0.1, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Gold Gauntlet Settings")
-    public GauntletMaterialConfig goldGauntlet = new GauntletMaterialConfig(Tiers.GOLD, ArmorMaterials.GOLD, true, 2, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Iron Gauntlet Settings")
-    public GauntletMaterialConfig ironGauntlet = new GauntletMaterialConfig(Tiers.IRON, ArmorMaterials.IRON, false, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Leather Gauntlet Settings")
-    public GauntletMaterialConfig leatherGauntlet = new GauntletMaterialConfig(Tiers.STONE, ArmorMaterials.LEATHER, false, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Steel Gauntlet Settings")
-    public GauntletMaterialConfig steelGauntlet = new GauntletMaterialConfig(482, 10, 0d, 2, 2.5d, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), ArmorMaterials.IRON.getEquipSound(), 1d, 0d, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Bronze Gauntlet Settings")
-    public GauntletMaterialConfig bronzeGauntlet = new GauntletMaterialConfig(225, 12, 0.1d, 2, 2d, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), ArmorMaterials.GOLD.getEquipSound(), 0.5d, 0d, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Silver Gauntlet Settings")
-    public GauntletMaterialConfig silverGauntlet = new GauntletMaterialConfig(325, 23, 1d, 2, 1d, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), ArmorMaterials.GOLD.getEquipSound(), 0d, 0d, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Lead Gauntlet Settings")
-    public GauntletMaterialConfig leadGauntlet = new GauntletMaterialConfig(1761, 10, 0.1d, 3, 3d, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"), ArmorMaterials.GOLD.getEquipSound(), 0.25d, 0.5d, false);
-
-    //Twilight Forest
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Ironwood Gauntlet Settings")
-    public GauntletMaterialConfig ironwoodGauntlet = new GauntletMaterialConfig(512, 25, 1.5, 2, 2, new ArrayList<>(List.of(TwilightForestMOD_ID + ":ironwood_ingot")), new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Fiery Gauntlet Settings")
-    public GauntletMaterialConfig fieryGauntlet = new GauntletMaterialConfig(1024, 10, 0, 4, 4, new ArrayList<>(List.of(TwilightForestMOD_ID + ":fiery_ingot")), new ResourceLocation("item.armor.equip_generic"), 1.5, 0, true);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Steeleaf Gauntlet Settings")
-    public GauntletMaterialConfig steeleafGauntlet = new GauntletMaterialConfig(131, 9, 0, 3, 3, new ArrayList<>(List.of(TwilightForestMOD_ID + ":steeleaf_ingot")), new ResourceLocation("item.armor.equip_generic"), 0, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Knightly Gauntlet Settings")
-    public GauntletMaterialConfig knightlyGauntlet = new GauntletMaterialConfig(512, 8, 0, 3, 3, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"), 1, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Naga Scale Gauntlet Settings")
-    public GauntletMaterialConfig nagaGauntlet = new GauntletMaterialConfig((int) (512 * 1.05), 15, 0.1, 3, 2.1d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":naga_scale")), new ResourceLocation("item.armor.equip_generic"), 0.5, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Yeti Gauntlet Settings")
-    public GauntletMaterialConfig yetiGauntlet = new GauntletMaterialConfig(512, 15, 0, 3, 2.5d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":alpha_yeti_fur")), new ResourceLocation("item.armor.equip_generic"), 3, 0, false);
-
-    @Category("Gauntlets") @CollapsibleObject @ConfigName("Arctic Gauntlet Settings")
-    public GauntletMaterialConfig arcticGauntlet = new GauntletMaterialConfig(131, 8, 0, 2, 2d, new ArrayList<>(List.of(TwilightForestMOD_ID + ":arctic_fur")), new ResourceLocation("item.armor.equip_generic"), 2, 0, false);
-
-
-
-    @Category("Shields") @RequiresRestart @ConfigName("Enable Shields")
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Quivers")
+    public boolean enableQuivers = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Shields")
     public boolean enableShields = true;
 
-    @Category("Shields") @CollapsibleObject @ConfigName("Shield Protection Settings")
-    public ShieldProtectionConfig shieldProtectionConfig = new ShieldProtectionConfig();
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Vanilla Shield Settings")
-    public ShieldMaterialConfig emptyShield = new ShieldMaterialConfig(0, 2.5, 0.3, Ingredient.of(ItemTags.PLANKS), 0, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Netherite Shield Settings")
-    public ShieldMaterialConfig netheriteShield = new ShieldMaterialConfig(0.2, 6.5, 0.85, Tiers.NETHERITE.getRepairIngredient(), 375, true, true, new ArrayList<>(Collections.singleton("diamond")), new ArrayList<>(Collections.singleton("diamond")));
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Diamond Shield Settings")
-    public ShieldMaterialConfig diamondShield = new ShieldMaterialConfig(-0.1, 5, 0.75, Tiers.DIAMOND.getRepairIngredient(), 300, false, false, new ArrayList<>(Arrays.asList("netherite", "gold", "iron", "steel", "bronze", "silver", "lead", "ironwood", "fiery", "steeleaf", "knightly", "naga")), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Gold Shield Settings")
-    public ShieldMaterialConfig goldShield = new ShieldMaterialConfig(2, 3, 0.4, Tiers.GOLD.getRepairIngredient(), 40, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Iron Shield Settings")
-    public ShieldMaterialConfig ironShield = new ShieldMaterialConfig(0, 3, 0.6, Tiers.IRON.getRepairIngredient(), 150, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Steel Shield Settings")
-    public ShieldMaterialConfig steelShield = new ShieldMaterialConfig(0, 3.5, 0.65, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"), 200, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Bronze Shield Settings")
-    public ShieldMaterialConfig bronzeShield = new ShieldMaterialConfig(0.1, 2.75, 0.5, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"), 125, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Silver Shield Settings")
-    public ShieldMaterialConfig silverShield = new ShieldMaterialConfig(1, 2.5, 0.4, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"), 175, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Lead Shield Settings")
-    public ShieldMaterialConfig leadShield = new ShieldMaterialConfig(0.1, 5, 0.6, IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"), 350, false, false, new ArrayList<>(), new ArrayList<>());
-
-    //Twilight Forest
-    @Category("Shields") @CollapsibleObject @ConfigName("Naga Scale Shield Settings")
-    public ShieldMaterialConfig nagaShield = new ShieldMaterialConfig(0.1, 4, 0.65, new ArrayList<>(List.of(TwilightForestMOD_ID + ":naga_scale")), 260, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Ironwood Shield Settings")
-    public ShieldMaterialConfig ironwoodShield = new ShieldMaterialConfig(1.5, 3.5, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":ironwood_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Fiery Shield Settings")
-    public ShieldMaterialConfig fieryShield = new ShieldMaterialConfig(0, 4.5, 0.7, new ArrayList<>(List.of(TwilightForestMOD_ID + ":fiery_ingot")), 275, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Steeleaf Shield Settings")
-    public ShieldMaterialConfig steeleafShield = new ShieldMaterialConfig(0, 3.5, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":steeleaf_ingot")), 180, false, false, new ArrayList<>(), new ArrayList<>());
-
-    @Category("Shields") @CollapsibleObject @ConfigName("Knighly Shield Settings")
-    public ShieldMaterialConfig knightlyShield = new ShieldMaterialConfig(0, 4, 0.6, new ArrayList<>(List.of(TwilightForestMOD_ID + ":knightmetal_ingot")), 250, false, false, new ArrayList<>(), new ArrayList<>());
-
-
-
-    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Bows")
-    public boolean enableBows = true;
-    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Bow Crafting Type")
-    public BowRecipeType bowRecipeType = BowRecipeType.SMITHING_ONLY;
-    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Half Bows")
-    public boolean enableHalfBows = true;
-    @Category("Bows And Crossbows") @RequiresRestart @ConfigName("Enable Crossbows")
-    public boolean enableCrossbows = true;
-    @Category("Bows And Crossbows") @ConfigName("Additional Velocity for Crossbows")
+    @Category("Item Types") @ConfigName("Additional Velocity for Crossbows")
     public float crossbowVelocityBonus = 0.5f;
 
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Iron Bow Settings")
-    public BowMaterialConfig halfIronBow = new BowMaterialConfig(414, Tiers.WOOD.getEnchantmentValue()/2 + Tiers.IRON.getEnchantmentValue()/2, 0, 1.5f, Tiers.IRON.getRepairIngredient(), 0);
+    @Category("Item Types") @CollapsibleObject @ConfigName("Shield Protection Settings")
+    public ShieldProtectionConfig shieldProtectionConfig = new ShieldProtectionConfig();
 
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Iron Bow Settings")
-    public BowMaterialConfig ironBow = new BowMaterialConfig(480, Tiers.IRON.getEnchantmentValue(), 0, 3f, Tiers.IRON.getRepairIngredient(), 0);
-
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Gold Bow Settings")
-    public BowMaterialConfig halfGoldBow = new BowMaterialConfig(390, Tiers.GOLD.getEnchantmentValue(), 0, 1.25f, Tiers.GOLD.getRepairIngredient(), 1);
-
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Gold Bow Settings")
-    public BowMaterialConfig goldBow = new BowMaterialConfig(395, Tiers.GOLD.getEnchantmentValue(), 0, 2.5f, Tiers.GOLD.getRepairIngredient(), 2);
-
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Half Diamond Bow Settings")
-    public BowMaterialConfig halfDiamondBow = new BowMaterialConfig(576, Tiers.DIAMOND.getEnchantmentValue(), 0, 2f, Tiers.DIAMOND.getRepairIngredient(), -0.05f);
-
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Diamond Bow Settings")
-    public BowMaterialConfig diamondBow = new BowMaterialConfig(672, Tiers.DIAMOND.getEnchantmentValue(), 1, 3.5f, Tiers.DIAMOND.getRepairIngredient(), -0.1f);
-
-    @Category("Bows And Crossbows") @CollapsibleObject @ConfigName("Netherite Bow Settings")
-    public BowMaterialConfig netheriteBow = new BowMaterialConfig(768, Tiers.NETHERITE.getEnchantmentValue(), 1, 4f, Tiers.NETHERITE.getRepairIngredient(), 0.2f, true, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
-
-
-
-    @Category("Arrows") @RequiresRestart @ConfigName("Enable Arrows")
-    public boolean enableArrows = true;
-    @Category("Arrows") @RequiresRestart @ConfigName("Enable Fletching Table")
+    @Category("Item Types") @RequiresRestart @ConfigName("Bow Crafting Type")
+    public BowRecipeType bowRecipeType = BowRecipeType.SMITHING_ONLY;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Fletching Table")
     public boolean enableFletchingTable = true;
 
-    @Category("Arrows") @CollapsibleObject @ConfigName("Iron Arrow Settings")
-    public ArrowMaterialConfig ironArrow = new ArrowMaterialConfig(3.0f);
 
-    @Category("Arrows") @CollapsibleObject @ConfigName("Diamond Arrow Settings")
-    public ArrowMaterialConfig diamondArrow = new ArrowMaterialConfig(3.75f);
+    @Category("Materials") @CollapsibleObject @ConfigName("Vanilla Settings")
+    public MaterialConfig vanilla = new MaterialConfig.Builder().fromArmorMaterial(ArmorMaterials.LEATHER).fromTier(Tiers.WOOD)
+            .baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(ItemTags.PLANKS))
+            .build();
 
-    @Category("Arrows") @CollapsibleObject @ConfigName("Netherite Arrow Settings")
-    public ArrowMaterialConfig netheriteArrow = new ArrowMaterialConfig(4.5f);
+    @Category("Materials") @CollapsibleObject @ConfigName("Leather Settings")
+    public MaterialConfig leather = new MaterialConfig.Builder().fromTier(Tiers.STONE).fromArmorMaterial(ArmorMaterials.LEATHER)
+            .addedShieldDurability(80).baseProtectionAmmount(3).afterBasePercentReduction(0.5f)
+            .quiverSlots(2)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Iron Settings")
+    public MaterialConfig iron = new MaterialConfig.Builder().fromTier(Tiers.IRON).fromArmorMaterial(ArmorMaterials.IRON)
+            .addedShieldDurability(150).baseProtectionAmmount(3).afterBasePercentReduction(0.6f)
+            .bowDurability(480).arrowDamage(3).velocityMultiplier(3)
+            .quiverSlots(4)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Gold Settings")
+    public MaterialConfig gold = new MaterialConfig.Builder().fromTier(Tiers.GOLD).fromArmorMaterial(ArmorMaterials.GOLD)
+            .addedShieldDurability(40).baseProtectionAmmount(3).afterBasePercentReduction(0.4f)
+            .bowDurability(395).arrowDamage(2).velocityMultiplier(2.5f)
+            .quiverSlots(6)
+            .mendingBonus(2)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Diamond Settings")
+    public MaterialConfig diamond = new MaterialConfig.Builder().fromTier(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND)
+            .addedShieldDurability(300).baseProtectionAmmount(5).afterBasePercentReduction(0.75f).requiredBeforeResource("Netherite", "Gold", "Iron", "Steel", "Bronze", "Silver", "Lead", "Ironwood", "Fiery", "Steeleaf", "Knightly", "Naga Scale")
+            .bowDurability(672).arrowDamage(3.75f).bowPower(1).velocityMultiplier(3.5f)
+            .quiverSlots(8)
+            .mendingBonus(-0.1f)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Netherite Settings")
+    public MaterialConfig netherite = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE)
+            .addedShieldDurability(375).baseProtectionAmmount(6).afterBasePercentReduction(0.85f).requiredBeforeResource("Diamond").onlyReplaceResource("Diamond")
+            .bowDurability(768).arrowDamage(4.5f).bowPower(1).velocityMultiplier(4)
+            .quiverSlots(10)
+            .mendingBonus(0.2f)
+            .singleAddition().smithingTemplate(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
+            .fireResistant()
+            .build();
+
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Steel Settings")
+    public MaterialConfig steel = new MaterialConfig.Builder()
+            .toolDurability(482).gauntletArmorAmount(2).gauntletAttackDamage(2.5f).armorToughness(1f)
+            .addedShieldDurability(200).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.65f)
+            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"))
+            .offenseEnchantability(9).defenseEnchantability(9)
+            .equipSound(ArmorMaterials.IRON.getEquipSound())
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Bronze Settings")
+    public MaterialConfig bronze = new MaterialConfig.Builder()
+            .toolDurability(225).gauntletArmorAmount(2).gauntletAttackDamage(2f).armorToughness(0.5f)
+            .addedShieldDurability(125).baseProtectionAmmount(2.75f).afterBasePercentReduction(0.5f)
+            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"))
+            .offenseEnchantability(8).defenseEnchantability(8)
+            .mendingBonus(0.1f)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Silver Settings")
+    public MaterialConfig silver = new MaterialConfig.Builder()
+            .toolDurability(325).gauntletArmorAmount(2).gauntletAttackDamage(1f)
+            .addedShieldDurability(175).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.4f)
+            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"))
+            .offenseEnchantability(18).defenseEnchantability(18)
+            .mendingBonus(1)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Lead Settings")
+    public MaterialConfig lead = new MaterialConfig.Builder()
+            .toolDurability(1761).gauntletArmorAmount(3).gauntletAttackDamage(3f).armorToughness(0.25f).knockbackResistance(0.5)
+            .addedShieldDurability(350).baseProtectionAmmount(5).afterBasePercentReduction(0.6f)
+            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"))
+            .offenseEnchantability(8).defenseEnchantability(8)
+            .mendingBonus(0.1f)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Naga Scale Settings")
+    public MaterialConfig nagaScale = new MaterialConfig.Builder()
+            .toolDurability((int)(512 * 1.05)).gauntletArmorAmount(3).gauntletAttackDamage(2.1f).armorToughness(0.5f)
+            .addedShieldDurability(260).baseProtectionAmmount(4).afterBasePercentReduction(0.65f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "naga_scale"))
+            .defenseEnchantability(15)
+            .mendingBonus(0.1f)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Arctic Settings")
+    public MaterialConfig arctic = new MaterialConfig.Builder()
+            .toolDurability(131).gauntletArmorAmount(2).gauntletAttackDamage(2).armorToughness(2)
+            .addedShieldDurability(130).baseProtectionAmmount(3).afterBasePercentReduction(0.55f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "arctic_fur"))
+            .defenseEnchantability(8)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Arctic Settings")
+    public MaterialConfig yeti = new MaterialConfig.Builder()
+            .toolDurability(512).gauntletArmorAmount(3).gauntletAttackDamage(2.5f).armorToughness(3)
+            .addedShieldDurability(250).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.65f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "alpha_yeti_fur"))
+            .defenseEnchantability(15)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Ironwood Settings")
+    public MaterialConfig ironwood = new MaterialConfig.Builder()
+            .toolDurability(512).gauntletArmorAmount(2).gauntletAttackDamage(2f)
+            .addedShieldDurability(250).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.6f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "ironwood_ingot"))
+            .offenseEnchantability(25).defenseEnchantability(15)
+            .mendingBonus(1.5f)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Fiery Settings")
+    public MaterialConfig fiery = new MaterialConfig.Builder()
+            .toolDurability(1024).gauntletArmorAmount(4).gauntletAttackDamage(4f).armorToughness(1.5)
+            .addedShieldDurability(275).baseProtectionAmmount(4.5f).afterBasePercentReduction(0.7f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "steeleaf_ingot"))
+            .offenseEnchantability(10).defenseEnchantability(10)
+            .flaming()
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Steeleaf Settings")
+    public MaterialConfig steeleaf = new MaterialConfig.Builder()
+            .toolDurability(131).gauntletArmorAmount(3).gauntletAttackDamage(3f)
+            .addedShieldDurability(180).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.6f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "steeleaf_ingot"))
+            .offenseEnchantability(9).defenseEnchantability(9)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Knightmetal Settings")
+    public MaterialConfig knightmetal = new MaterialConfig.Builder()
+            .toolDurability(512).gauntletArmorAmount(3).gauntletAttackDamage(3f).armorToughness(1)
+            .addedShieldDurability(250).baseProtectionAmmount(4).afterBasePercentReduction(0.6f)
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "knightmetal_ingot"))
+            .offenseEnchantability(8).defenseEnchantability(8)
+            .equipSound(new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"))
+            .build();
 
 
 
-    @Category("Quivers") @RequiresRestart @ConfigName("Enable Quivers")
-    public boolean enableQuivers = true;
 
-    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Leather Quiver Settings")
-    public QuiverMaterialConfig leatherQuiver = new QuiverMaterialConfig(2);
+    public static class MaterialConfig {
 
-    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Iron Quiver Settings")
-    public QuiverMaterialConfig ironQuiver = new QuiverMaterialConfig(4);
+        @CollapsibleObject @ConfigName("Durability")
+        public Durability durability;
+        @CollapsibleObject @ConfigName("Enchanting")
+        public Enchanting enchanting;
+        @ConfigName("Equip Sound")
+        public String equipSound;
+        @ConfigName("Mending Bonus")
+        public float mendingBonus;
+        @ConfigName("Fire Resistant")
+        public boolean fireResistant;
+        @CollapsibleObject @ConfigName("Offence")
+        public Offense offense;
+        @CollapsibleObject @ConfigName("Defence")
+        public Defense defense;
+        @CollapsibleObject @ConfigName("Crafting")
+        public Crafting crafting;
+        @ConfigName("InventorySlots")
+        public int quiverSlots;
 
-    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Gold Quiver Settings")
-    public QuiverMaterialConfig goldQuiver = new QuiverMaterialConfig(6);
+        MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, ArrayList<String> repairItem,
+                       float mendingBonus, boolean fireResistant, double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower,
+                       float velocityMultiplier, int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction,
+                       boolean isSingleAddition, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
+            this.durability = new Durability(toolDurability, addedShieldDurability, bowDurability);
+            this.enchanting = new Enchanting(offenseEnchantability, defenseEnchantability);
+            this.equipSound = equipSound;
+            this.mendingBonus = mendingBonus;
+            this.fireResistant = fireResistant;
+            this.offense = new Offense(gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower, velocityMultiplier);
+            this.defense =  new Defense(gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction);
+            this.crafting = new Crafting(repairItem, isSingleAddition, requiredBeforeResource, onlyReplaceResource, smithingTemplate);
+            this.quiverSlots = quiverSlots;
+        }
 
-    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Diamond Quiver Settings")
-    public QuiverMaterialConfig diamondQuiver = new QuiverMaterialConfig(8);
+        public static class Durability {
+            @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Tool Durability") @Tooltip
+            @TooltipFrase("This is used as the gauntlet durability as well as the base durability for weapons")
+            public int toolDurability;
+            @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Bow/Crossbow Durability")
+            public int bowDurability;
+            @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Added Shield Durability") @Tooltip
+            @TooltipFrase("this is the amount of durability added by each of the five sections, onto the base wood shield durability")
+            public int addedShieldDurability;
 
-    @Category("Quivers") @CollapsibleObject(startExpanded = true) @ConfigName("Netherite Quiver Settings")
-    public QuiverMaterialConfig netheriteQuiver = new QuiverMaterialConfig(10);
+            Durability(int toolDurability, int addedShieldDurability, int bowDurability) {
+                this.toolDurability = toolDurability;
+                this.addedShieldDurability = addedShieldDurability;
+                this.bowDurability = bowDurability;
+            }
+        }
+        public static class Enchanting {
+            @BoundedDiscrete(max = 512) @ConfigName("Weapon Enchantability")
+            public int offenseEnchantability;
+            @BoundedDiscrete(max = 512) @ConfigName("Weapon Enchantability")
+            public int defenseEnchantability;
+
+            public Enchanting(int offenseEnchantability, int defenseEnchantability) {
+                this.offenseEnchantability = offenseEnchantability;
+                this.defenseEnchantability = defenseEnchantability;
+            }
+        }
+        public static class Offense {
+            public Offense(double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier) {
+                this.gauntletAttackDamage = gauntletAttackDamage;
+                this.arrowDamage = arrowDamage;
+                this.flaming = flaming;
+                this.canBeTipped = canBeTipped;
+                this.multishotLevel = multishotLevel;
+                this.bowPower = bowPower;
+                this.velocityMultiplier = velocityMultiplier;
+            }
+
+            @ConfigName("Gauntlet Attack Damage")
+            public double gauntletAttackDamage;
+            @ConfigName("Arrow Damage")
+            public float arrowDamage;
+            @ConfigName("Flaming Arrow")
+            public boolean flaming;
+            @ConfigName("Can Arrow Be Tipped With Potions")
+            public boolean canBeTipped;
+            @BoundedDiscrete(max = 3) @ConfigName("Multishot Level")
+            public int multishotLevel;
+            @BoundedDiscrete(max = 100) @ConfigName("Base Power level") @Tooltip
+            @TooltipFrase("Added to power enchantment level on the bow or crossbow")
+            public int bowPower;
+            @ConfigName("Arrow Velocity Multiplier") @Tooltip
+            @TooltipFrase("used when firing a bow or crossbow")
+            public float velocityMultiplier;
+        }
+        public static class Defense {
+            public Defense(int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction) {
+                this.gauntletArmorAmount = gauntletArmorAmount;
+                this.armorToughness = armorToughness;
+                this.knockbackResistance = knockbackResistance;
+                this.baseProtectionAmmount = baseProtectionAmmount;
+                this.afterBasePercentReduction = afterBasePercentReduction;
+            }
+
+            @BoundedDiscrete(max = 512) @ConfigName("Gauntlet Armor Amount")
+            public int gauntletArmorAmount;
+            @ConfigName("Armor Toughness")
+            public double armorToughness;
+            @ConfigName("Knockback Resistance")
+            public double knockbackResistance;
+            @Tooltip(count = 2) @ConfigName("Base Protection Amount")
+            @TooltipFrase("Defines the amount of Damage a shield entirely made of this material will block")
+            @TooltipFrase(line = 1, value = "Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings")
+            public float baseProtectionAmmount;
+            @Tooltip(count = 2) @ConfigName("After Base Percent Protection")
+            @TooltipFrase("Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked")
+            @TooltipFrase(line = 1, value = "Only works if Shield Protection Percentage is enabled in the Shield Protection Settings")
+            public float afterBasePercentReduction;
+        }
+        public static class Crafting {
+            public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, String smithingTemplate) {
+                this.repairItem = repairItem;
+                this.isSingleAddition = isSingleAddition;
+                this.requiredBeforeResource = requiredBeforeResource;
+                this.onlyReplaceResource = onlyReplaceResource;
+                this.smithingTemplate = smithingTemplate;
+            }
+
+            @ConfigName("Repair Item")
+            public ArrayList<String> repairItem;
+            @ConfigName("Is Single Addition")
+            public boolean isSingleAddition;
+            @ConfigName("Required On Shield Before This")
+            public ArrayList<String> requiredBeforeResource;
+            @ConfigName("Only Replaced On Shield By This")
+            public ArrayList<String> onlyReplaceResource;
+            @ConfigName("Smithing Template") @Tooltip(count = 2)
+            @TooltipFrase("1.20 feature")
+            @TooltipFrase(line = 1, value = "Only Used if material is single addition or in bow crafting")
+            public String smithingTemplate;
+        }
+
+        public static class Builder {
+            private int toolDurability = 0;
+            private int bowDurability = 0;
+            private int addedShieldDurability = 0;
+            private int offenseEnchantability = 0;
+            private int defenseEnchantability = 0;
+            private String equipSound = new ResourceLocation("item.armor.equip_generic").toString();
+            private ArrayList<String> repairItem = new ArrayList<>();
+            private float mendingBonus = 0;
+            private boolean fireResistant = false;
+            private float gauntletAttackDamage = 0;
+            private float arrowDamage = 0;
+            private boolean flaming = false;
+            private boolean canBeTipped = true;
+            private int multishotLevel = 0;
+            private int bowPower = 0;
+            private float velocityMultiplier = 1;
+            private int gauntletArmorAmount = 0;
+            private double armorToughness = 0;
+            private double knockbackResistance = 0;
+            private float baseProtectionAmmount = 0;
+            private float afterBasePercentReduction = 0;
+            private boolean isSingleAddition = false;
+            private final ArrayList<String> requiredBeforeResource = new ArrayList<>();
+            private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
+            private String smithingTemplate = BuiltInRegistries.ITEM.getKey(ItemStack.EMPTY.getItem()).toString();
+            private int quiverSlots = 0;
 
 
+            public Builder fromTier(Tier tier) {
+                return this.toolDurability(tier.getUses())
+                        .offenseEnchantability(tier.getEnchantmentValue())
+                        .repairItem(tier.getRepairIngredient())
+                        .gauntletAttackDamage(tier.getAttackDamageBonus());
+            }
+            public Builder fromArmorMaterial(ArmorMaterial armorMaterial) {
+                return this.defenseEnchantability(armorMaterial.getEnchantmentValue())
+                        .equipSound(armorMaterial.getEquipSound())
+                        .repairItem(armorMaterial.getRepairIngredient())
+                        .gauntletArmorAmount(armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS))
+                        .armorToughness(armorMaterial.getToughness())
+                        .knockbackResistance(armorMaterial.getKnockbackResistance());
+            }
+            public Builder toolDurability(int durability) {
+                this.toolDurability = durability;
+                return this;
+            }
+            public Builder bowDurability(int durability) {
+                this.bowDurability = durability;
+                return this;
+            }
+            public Builder addedShieldDurability(int durability) {
+                this.addedShieldDurability = durability;
+                return this;
+            }
+            public Builder offenseEnchantability(int enchantability) {
+                this.offenseEnchantability = enchantability;
+                return this;
+            }
+            public Builder defenseEnchantability(int enchantability) {
+                this.defenseEnchantability = enchantability;
+                return this;
+            }
+            public Builder equipSound(String equipSound) {
+                this.equipSound = equipSound;
+                return this;
+            }
+            public Builder equipSound(ResourceLocation equipSound) {
+                this.equipSound = equipSound.toString();
+                return this;
+            }
+            public Builder equipSound(SoundEvent equipSound) {
+                this.equipSound = equipSound.getLocation().toString();
+                return this;
+            }
+            public Builder repairItem(String ... items) {
+                this.repairItem.addAll(Arrays.asList(items));
+                return this;
+            }
+            public Builder repairItem(ResourceLocation ... items) {
+                this.repairItem.addAll(Arrays.stream(items).map(ResourceLocation::toString).toList());
+                return this;
+            }
+            public Builder repairItem(Ingredient ingredient) {
+                this.repairItem = IngredientUtil.getItemStringFromIngrediant(ingredient);
+                return this;
+            }
+            public Builder mendingBonus(float mendingBonus) {
+                this.mendingBonus = mendingBonus;
+                return this;
+            }
+            public Builder fireResistant() {
+                this.fireResistant = true;
+                return this;
+            }
+            public Builder gauntletAttackDamage(float damage){
+                this.gauntletAttackDamage = damage;
+                return this;
+            }
+            public Builder arrowDamage(float damage) {
+                this.arrowDamage = damage;
+                return this;
+            }
+            public Builder flaming() {
+                this.flaming = true;
+                return this;
+            }
+            public Builder noTippedArrows() {
+                this.canBeTipped = false;
+                return this;
+            }
+            public Builder multishotLevel(int multishotLevel) {
+                this.multishotLevel = multishotLevel;
+                return this;
+            }
+            public Builder bowPower(int power) {
+                this.bowPower = power;
+                return this;
+            }
+            public Builder velocityMultiplier(float velocityMultiplier) {
+                this.velocityMultiplier = velocityMultiplier;
+                return this;
+            }
+            public Builder gauntletArmorAmount(int armor) {
+                this.gauntletArmorAmount = armor;
+                return this;
+            }
+            public Builder armorToughness(double toughness) {
+                this.armorToughness = toughness;
+                return this;
+            }
+            public Builder knockbackResistance(double resistance) {
+                this.knockbackResistance = resistance;
+                return this;
+            }
+            public Builder baseProtectionAmmount(float damage){
+                this.baseProtectionAmmount = damage;
+                return this;
+            }
+            public Builder afterBasePercentReduction(float percent) {
+                this.afterBasePercentReduction = percent;
+                return this;
+            }
+            public Builder singleAddition() {
+                this.isSingleAddition = true;
+                return this;
+            }
+            public Builder requiredBeforeResource(String ... materials) {
+                this.requiredBeforeResource.addAll(Arrays.asList(materials));
+                return this;
+            }
+            public Builder onlyReplaceResource(String ... materials) {
+                this.onlyReplaceResource.addAll(Arrays.asList(materials));
+                return this;
+            }
+            public Builder smithingTemplate(String template) {
+                this.smithingTemplate = template;
+                return this;
+            }
+            public Builder smithingTemplate(ResourceLocation template) {
+                this.smithingTemplate = template.toString();
+                return this;
+            }
+            public Builder smithingTemplate(Item template) {
+                this.smithingTemplate = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(template)).toString();
+                return this;
+            }
+            public Builder quiverSlots(int slots) {
+                this.quiverSlots = slots;
+                return this;
+            }
 
+            public MaterialConfig build() {
+                ExpandedCombat.maxQuiverSlots = Math.max(quiverSlots, ExpandedCombat.maxQuiverSlots);
+                return new MaterialConfig(toolDurability, addedShieldDurability, bowDurability, offenseEnchantability, defenseEnchantability, equipSound, repairItem,
+                mendingBonus, fireResistant, gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower,
+                velocityMultiplier, gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction,
+                isSingleAddition, requiredBeforeResource, onlyReplaceResource, smithingTemplate, quiverSlots);
+            }
+        }
+    }
 
-
-    public static class GauntletMaterialConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
+    public static class GauntletConfig {
+        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability Shift") //@Tooltip
+        //@TooltipFrase("Shifts the durability of all gauntlets by this amount")
         public int durability;
         @BoundedDiscrete(max = 512) @ConfigName("Armor Amount")
         public int armorAmount;
@@ -220,7 +537,7 @@ public class ECConfig implements ConfigData {
         @ConfigName("Fire Resistant")
         public boolean fireResistant;
 
-        GauntletMaterialConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, ResourceLocation equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
+        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, ResourceLocation equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
             this.durability =           durability;
             this.enchantability =       enchantability;
             this.mendingBonus =         mendingBonus;
@@ -233,7 +550,7 @@ public class ECConfig implements ConfigData {
             this.fireResistant =        fireResistant;
         }
 
-        GauntletMaterialConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, Ingredient repairItem, SoundEvent equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
+        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, Ingredient repairItem, SoundEvent equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
             this(   durability,
                     enchantability,
                     mendingBonus,
@@ -246,7 +563,7 @@ public class ECConfig implements ConfigData {
                     fireResistant);
         }
 
-        GauntletMaterialConfig(ArmorMaterial armorMaterial, int durability, double mendingBonus, double attackDamage, boolean fireResistant) {
+        GauntletConfig(ArmorMaterial armorMaterial, int durability, double mendingBonus, double attackDamage, boolean fireResistant) {
             this(   durability,
                     armorMaterial.getEnchantmentValue(),
                     mendingBonus,
@@ -259,7 +576,7 @@ public class ECConfig implements ConfigData {
                     fireResistant);
         }
 
-        GauntletMaterialConfig(Tier tier, ArmorMaterial armorMaterial, boolean armorNotWeaponEnchantability, double mendingBonus, boolean fireResistant) {
+        GauntletConfig(Tier tier, ArmorMaterial armorMaterial, boolean armorNotWeaponEnchantability, double mendingBonus, boolean fireResistant) {
             this(   tier.getUses(),
                     armorNotWeaponEnchantability ? armorMaterial.getEnchantmentValue() : tier.getEnchantmentValue(),
                     mendingBonus,
@@ -297,10 +614,10 @@ public class ECConfig implements ConfigData {
         }
     }
 
-    public static class ShieldMaterialConfig {
+    public static class ShieldConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE/5) @ConfigName("Added Durability") @Tooltip
         @TooltipFrase("this is the amount of durability added, by each of the five sections, onto the base vanilla shield amount of 336")
-        public int addedDurability;
+        public int baseDurability;
         @Tooltip(count = 2) @ConfigName("Base Protection Amount")
         @TooltipFrase("Defines the amount of Damage a shield entirely made of this material will block")
         @TooltipFrase(line = 1, value = "Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings")
@@ -322,9 +639,9 @@ public class ECConfig implements ConfigData {
         @ConfigName("Only Replaced By This")
         public ArrayList<String> onlyReplaceResource;
 
-        ShieldMaterialConfig(double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, ArrayList<String> ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
+        ShieldConfig(double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, ArrayList<String> ingotOrMaterial, int baseDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
             this.mendingBonus =                   mendingBonus;
-            this.addedDurability =                addedDurability;
+            this.baseDurability =                baseDurability;
             this.baseProtectionAmmount =          baseProtectionAmmount;
             this.afterBasePercentReduction =      afterBasePercentReduction;
             this.ingotOrMaterial =                ingotOrMaterial;
@@ -334,12 +651,12 @@ public class ECConfig implements ConfigData {
             this.onlyReplaceResource =            onlyReplaceResource;
         }
 
-        ShieldMaterialConfig(double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int addedDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
-            this(medingBonus, baseProtectionAmmount, afterBasePercentReduction, IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial), addedDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
+        ShieldConfig(double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int baseDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
+            this(medingBonus, baseProtectionAmmount, afterBasePercentReduction, IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial), baseDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
         }
     }
 
-    public static class BowMaterialConfig {
+    public static class BowConfig {
         @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
         public int durability;
         @BoundedDiscrete(max = 512) @ConfigName("Enchantability")
@@ -360,7 +677,7 @@ public class ECConfig implements ConfigData {
         @TooltipFrase("1.20 feature")
         public String smithingTemplate;
 
-        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, ArrayList<String> repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
+        public BowConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, ArrayList<String> repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
             this.durability = durability;
             this.enchantability = enchantability;
             this.multishotLevel = multishotLevel;
@@ -372,7 +689,7 @@ public class ECConfig implements ConfigData {
             this.smithingTemplate = smithingTemplate;
         }
 
-        public BowMaterialConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
+        public BowConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
             this(durability,
                     enchantability,
                     multishotLevel,
@@ -384,7 +701,7 @@ public class ECConfig implements ConfigData {
                     Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(smithingTemplate)).toString());
         }
 
-        public BowMaterialConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
+        public BowConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
             this(durability,
                     enchantability,
                     0,
@@ -396,7 +713,7 @@ public class ECConfig implements ConfigData {
                     smithingTemplate);
         }
 
-        public BowMaterialConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus) {
+        public BowConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus) {
             this(durability,
                     enchantability,
                     bowPower,
@@ -419,17 +736,12 @@ public class ECConfig implements ConfigData {
         public float damage;
         @ConfigName("Flaming")
         public boolean flaming;
-        @ConfigName("Freezing")
-        @Tooltip
-        @TooltipFrase("Not Implemented Yet")
-        public boolean freezing;
         @ConfigName("Can Be Tipped With Potions")
         public boolean canBeTipped;
 
         public ArrowMaterialConfig(float damage, boolean flaming, boolean freezing, boolean canBeTipped) {
             this.damage = damage;
             this.flaming = flaming;
-            this.freezing = freezing;
             this.canBeTipped = canBeTipped;
         }
 

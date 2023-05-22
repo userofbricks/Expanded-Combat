@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
-import com.userofbricks.expanded_combat.item.materials.QuiverMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,17 +13,15 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
-import java.util.Locale;
-
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 
 public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
     public final int providedSlots;
-    public ECQuiverItem(QuiverMaterial material, Properties properties) {
+    public ECQuiverItem(Material material, Properties properties) {
         super(properties);
-        this.QUIVER_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/quiver/" + material.getName().toLowerCase(Locale.ROOT).replace(' ', '_') + ".png");
-        this.providedSlots = material.getProvidedSlots();
+        this.QUIVER_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/quiver/" + material.getLocationName() + ".png");
+        this.providedSlots = material.getConfig().quiverSlots;
     }
 
     public ResourceLocation getQUIVER_TEXTURE() {

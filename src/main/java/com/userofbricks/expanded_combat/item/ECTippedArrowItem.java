@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.item.materials.ArrowMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -14,7 +14,7 @@ import java.util.List;
 import static com.userofbricks.expanded_combat.util.LangStrings.TIPPED_ARROW_POTION_ENDING;
 
 public class ECTippedArrowItem extends ECArrowItem{
-    public ECTippedArrowItem(ArrowMaterial material, Properties properties) {
+    public ECTippedArrowItem(Material material, Properties properties) {
         super(material, properties);
     }
 

@@ -36,12 +36,12 @@ public class ShieldEvents {
                 damageLeftToBlock -= damageBlocked;
             }
             if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
-                double damagePercent = MaterialInit.VANILLA_SHIELD.getAfterBasePercentReduction();
+                double damagePercent = MaterialInit.VANILLA.getConfig().defense.afterBasePercentReduction;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
                 }else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
                     if (shieldItemStack.getItem() instanceof KnightmetalShieldItem) {
-                        damagePercent = MaterialInit.KNIGHTLY_SHIELD.getAfterBasePercentReduction();
+                        damagePercent = MaterialInit.KNIGHTMETAL.getConfig().defense.afterBasePercentReduction;
                     }
                 }
                 damageBlocked += (damageLeftToBlock * damagePercent);
@@ -54,12 +54,12 @@ public class ShieldEvents {
         float damageBlocked = 0;
         switch (CONFIG.shieldProtectionConfig.shieldBaseProtectionType) {
             case PREDEFINED_AMMOUNT -> {
-                double protectionAmount = MaterialInit.VANILLA_SHIELD.getBaseProtectionAmmount();
+                double protectionAmount = MaterialInit.VANILLA.getConfig().defense.baseProtectionAmmount;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
                 } else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
                     if (shieldItemStack.getItem() instanceof KnightmetalShieldItem) {
-                        protectionAmount = MaterialInit.KNIGHTLY_SHIELD.getBaseProtectionAmmount();
+                        protectionAmount = MaterialInit.KNIGHTMETAL.getConfig().defense.baseProtectionAmmount;
                     }
                 }
                 damageBlocked = (float) protectionAmount;

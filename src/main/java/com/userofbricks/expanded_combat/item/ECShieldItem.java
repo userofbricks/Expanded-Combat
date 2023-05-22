@@ -1,7 +1,8 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
-import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -59,11 +60,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getMaxDamage(ItemStack stack) {
         int durability = 336;
-        int ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getAddedDurability();
-        int ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getAddedDurability();
-        int dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getAddedDurability();
-        int dr = ShieldMaterial.getFromName(getDownRightMaterial(stack)).getAddedDurability();
-        int m = ShieldMaterial.getFromName(getMiddleMaterial(stack)).getAddedDurability();
+        int ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().durability.addedShieldDurability;
         return durability + ul + ur + dl + dr + m;
     }
 
@@ -92,7 +93,7 @@ public class ECShieldItem extends ShieldItem {
         String currentSlotMaterial = slotMaterials.get(last);
 
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
-        Ingredient ingredient = ShieldMaterial.getFromName(currentSlotMaterial).getIngotOrMaterial();
+        Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(Material.valueOfShield(currentSlotMaterial).getConfig().crafting.repairItem);
         return !ingredient.isEmpty() && ingredient.test(repair);
     }
 
@@ -117,11 +118,11 @@ public class ECShieldItem extends ShieldItem {
      * @return the mending bonus.
      */
     public double getMendingBonus(ItemStack stack) {
-        double ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getMendingBonus()/5;
-        double ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getMendingBonus()/5;
-        double dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getMendingBonus()/5;
-        double dr = ShieldMaterial.getFromName(getDownRightMaterial(stack)).getMendingBonus()/5;
-        double m = ShieldMaterial.getFromName(getMiddleMaterial(stack)).getMendingBonus()/5;
+        double ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
+        double ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
+        double dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
+        double dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().mendingBonus/5;
+        double m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().mendingBonus/5;
         return ul + ur + dl + dr + m;
     }
 
@@ -151,20 +152,20 @@ public class ECShieldItem extends ShieldItem {
     }
 
     public static double getBaseProtection(ItemStack stack) {
-        double ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getBaseProtectionAmmount() /5;
-        double ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getBaseProtectionAmmount() /5;
-        double dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getBaseProtectionAmmount() /5;
-        double dr = ShieldMaterial.getFromName(getDownRightMaterial(stack)).getBaseProtectionAmmount() /5;
-        double m = ShieldMaterial.getFromName(getMiddleMaterial(stack)).getBaseProtectionAmmount() /5;
+        double ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
         return ul + ur + dl + dr + m;
     }
 
     public static double getPercentageProtection(ItemStack stack) {
-        double ul = ShieldMaterial.getFromName(getUpperLeftMaterial(stack)).getAfterBasePercentReduction() /5;
-        double ur = ShieldMaterial.getFromName(getUpperRightMaterial(stack)).getAfterBasePercentReduction() /5;
-        double dl = ShieldMaterial.getFromName(getDownLeftMaterial(stack)).getAfterBasePercentReduction() /5;
-        double dr = ShieldMaterial.getFromName(getDownRightMaterial(stack)).getAfterBasePercentReduction() /5;
-        double m = ShieldMaterial.getFromName(getMiddleMaterial(stack)).getAfterBasePercentReduction() /5;
+        double ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
         return ul + ur + dl + dr + m;
     }
     @Override

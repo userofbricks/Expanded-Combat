@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.entity;
 
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
-import com.userofbricks.expanded_combat.item.materials.ArrowMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 public class ECArrow extends Arrow {
-    private ArrowMaterial arrowMaterial;
+    private Material material;
     @SuppressWarnings("unchecked")
     public ECArrow(EntityType<? extends Entity> entityEntityType, Level level) {
         super((EntityType<? extends ECArrow>) entityEntityType, level);
@@ -55,7 +55,7 @@ public class ECArrow extends Arrow {
             } else {
                 this.setFixedColor(i);
             }
-        } else if (p_36879_.is(this.arrowMaterial.getArrowEntry().get())) {
+        } else if (p_36879_.is(this.material.getArrowEntry().get())) {
             this.potion = Potions.EMPTY;
             this.effects.clear();
             this.entityData.set(ID_EFFECT_COLOR, -1);
@@ -66,23 +66,23 @@ public class ECArrow extends Arrow {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putString("ArrowMaterial", this.arrowMaterial.getName());
+        compound.putString("Material", this.material.getName());
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        if (compound.contains("ArrowMaterial")) {
-            String type = compound.getString("ArrowMaterial");
-            this.arrowMaterial = ArrowMaterial.valueOf(type);
+        if (compound.contains("Material")) {
+            String type = compound.getString("Material");
+            this.material = Material.valueOfArrow(type);
         }
     }
 
     @Override
     protected @NotNull ItemStack getPickupItem() {
         if (this.effects.isEmpty() && this.potion == Potions.EMPTY) {
-            return new ItemStack(this.arrowMaterial.getArrowEntry().get());
+            return new ItemStack(this.material.getArrowEntry().get());
         }
-        ItemStack itemstack = new ItemStack(this.arrowMaterial.getTippedArrowEntry().get());
+        ItemStack itemstack = new ItemStack(this.material.getTippedArrowEntry().get());
         PotionUtils.setPotion(itemstack, this.potion);
         PotionUtils.setCustomEffects(itemstack, this.effects);
         if (this.fixedColor) {
@@ -91,11 +91,17 @@ public class ECArrow extends Arrow {
         return itemstack;
     }
 
-    public ArrowMaterial getArrowMaterial() {
-        return  arrowMaterial;
+    @Override
+    public void setEnchantmentEffectsFromEntity(@NotNull LivingEntity livingEntity, float damage) {
+        super.setEnchantmentEffectsFromEntity(livingEntity, damage);
+        if (material.getConfig().offense.flaming) this.setSecondsOnFire(100);
     }
 
-    public void setArrowType(ArrowMaterial arrowMaterial) {
-        this.arrowMaterial = arrowMaterial;
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setArrowType(Material arrowMaterial) {
+        this.material = arrowMaterial;
     }
 }

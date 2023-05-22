@@ -5,9 +5,8 @@ import com.userofbricks.expanded_combat.item.ECBowItem;
 import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.ArrowMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
@@ -42,7 +41,7 @@ public class ECItemModelsProperties {
 
     @SubscribeEvent
     public static void itemColors(RegisterColorHandlersEvent.Item event) {
-        for (ArrowMaterial material : MaterialInit.arrowMaterials) {
+        for (Material material : MaterialInit.arrowMaterials) {
             event.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, material.getTippedArrowEntry().get());
         }
 

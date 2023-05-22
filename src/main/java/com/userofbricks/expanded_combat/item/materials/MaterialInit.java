@@ -9,64 +9,31 @@ import java.util.List;
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class MaterialInit {
-    public static List<GauntletMaterial> gauntletMaterials = new ArrayList<>();
-    public static List<ShieldMaterial> shieldMaterials = new ArrayList<>();
-    public static List<BowMaterial> bowMaterials = new ArrayList<>();
-    public static List<ArrowMaterial> arrowMaterials = new ArrayList<>();
-    public static List<QuiverMaterial> quiverMaterials = new ArrayList<>();
+    public static List<Material> materials = new ArrayList<>();
+    public static List<Material> gauntletMaterials = new ArrayList<>();
+    public static List<Material> shieldMaterials = new ArrayList<>();
+    public static List<Material> bowMaterials = new ArrayList<>();
+    public static List<Material> crossbowMaterials = new ArrayList<>();
+    public static List<Material> arrowMaterials = new ArrayList<>();
+    public static List<Material> quiverMaterials = new ArrayList<>();
 
-    public static GauntletMaterial NETHERITE_GAUNTLET = new GauntletMaterial("Netherite", CONFIG.netheriteGauntlet, gauntletMaterials);
-    public static GauntletMaterial DIAMOND_GAUNTLET = new GauntletMaterial("Diamond", CONFIG.diamondGauntlet, gauntletMaterials);
-    public static GauntletMaterial GOLD_GAUNTLET = new GauntletMaterial("Gold", CONFIG.goldGauntlet, gauntletMaterials);
-    public static GauntletMaterial IRON_GAUNTLET = new GauntletMaterial("Iron", CONFIG.ironGauntlet, gauntletMaterials);
-    public static GauntletMaterial LEATHER_GAUNTLET = new GauntletMaterial("Leather", CONFIG.leatherGauntlet, gauntletMaterials);
-    public static GauntletMaterial STEEL_GAUNTLET = new GauntletMaterial("Steel", CONFIG.steelGauntlet, gauntletMaterials);
-    public static GauntletMaterial BRONZE_GAUNTLET = new GauntletMaterial("Bronze", CONFIG.bronzeGauntlet, gauntletMaterials);
-    public static GauntletMaterial SILVER_GAUNTLET = new GauntletMaterial("Silver", CONFIG.silverGauntlet, gauntletMaterials);
-    public static GauntletMaterial LEAD_GAUNTLET = new GauntletMaterial("Lead", CONFIG.leadGauntlet, gauntletMaterials);
-    public static GauntletMaterial IRONWOOD_GAUNTLET = new GauntletMaterial("Ironwood", CONFIG.ironwoodGauntlet, gauntletMaterials);
-    public static GauntletMaterial FIERY_GAUNTLET = new GauntletMaterial("Fiery", CONFIG.fieryGauntlet, gauntletMaterials);
-    public static GauntletMaterial STEELEAF_GAUNTLET = new GauntletMaterial("Steeleaf", CONFIG.steeleafGauntlet, gauntletMaterials);
-    public static GauntletMaterial KNIGHTLY_GAUNTLET = new GauntletMaterial("Knightly", CONFIG.knightlyGauntlet, gauntletMaterials);
-    public static GauntletMaterial NAGA_GAUNTLET = new GauntletMaterial("Naga", CONFIG.nagaGauntlet, gauntletMaterials);
-    public static GauntletMaterial YETI_GAUNTLET = new GauntletMaterial("Yeti", CONFIG.yetiGauntlet, gauntletMaterials);
-    public static GauntletMaterial ARCTIC_GAUNTLET = new GauntletMaterial("Arctic", CONFIG.arcticGauntlet, gauntletMaterials);
-
-
-    public static ShieldMaterial VANILLA_SHIELD = new ShieldMaterial("Empty", CONFIG.emptyShield, shieldMaterials);
-    public static ShieldMaterial NETHERITE_SHIELD = new ShieldMaterial("Netherite", CONFIG.netheriteShield, shieldMaterials);
-    public static ShieldMaterial DIAMOND_SHIELD = new ShieldMaterial("Diamond", CONFIG.diamondShield, shieldMaterials);
-    public static ShieldMaterial GOLD_SHIELD = new ShieldMaterial("Gold", CONFIG.goldShield, shieldMaterials);
-    public static ShieldMaterial IRON_SHIELD = new ShieldMaterial("Iron", CONFIG.ironShield, shieldMaterials);
-    public static ShieldMaterial STEEL_SHIELD = new ShieldMaterial("Steel", CONFIG.steelShield, shieldMaterials);
-    public static ShieldMaterial BRONZE_SHIELD = new ShieldMaterial("Bronze", CONFIG.bronzeShield, shieldMaterials);
-    public static ShieldMaterial SILVER_SHIELD = new ShieldMaterial("Silver", CONFIG.silverShield, shieldMaterials);
-    public static ShieldMaterial LEAD_SHIELD = new ShieldMaterial("Lead", CONFIG.leadShield, shieldMaterials);
-    //Twilight Forest
-    public static ShieldMaterial IRONWOOD_SHIELD = new ShieldMaterial("Ironwood", CONFIG.ironwoodShield, shieldMaterials);
-    public static ShieldMaterial FIERY_SHIELD = new ShieldMaterial("Fiery", CONFIG.fieryShield, shieldMaterials);
-    public static ShieldMaterial STEELEAF_SHIELD = new ShieldMaterial("Steeleaf", CONFIG.steeleafShield, shieldMaterials);
-    public static ShieldMaterial KNIGHTLY_SHIELD = new ShieldMaterial("Knightly", CONFIG.knightlyShield, shieldMaterials);
-    public static ShieldMaterial NAGA_SHIELD = new ShieldMaterial("Naga", CONFIG.nagaShield, shieldMaterials);
-
-
-    public static BowMaterial HALF_IRON_BOW = new BowMaterial("Half Iron", true, false, CONFIG.halfIronBow, null, bowMaterials);
-    public static BowMaterial IRON_BOW = new BowMaterial("Iron", false, false, CONFIG.ironBow, HALF_IRON_BOW, bowMaterials);
-    public static BowMaterial HALF_GOLD_BOW = new BowMaterial("Half Gold", true, false, CONFIG.halfGoldBow, null, bowMaterials);
-    public static BowMaterial GOLD_BOW = new BowMaterial("Gold", false, false, CONFIG.goldBow, HALF_GOLD_BOW, bowMaterials);
-    public static BowMaterial HALF_DIAMOND_BOW = new BowMaterial("Half Diamond", true, false, CONFIG.halfDiamondBow, IRON_BOW, bowMaterials);
-    public static BowMaterial DIAMOND_BOW = new BowMaterial("Diamond", false, false, CONFIG.diamondBow, HALF_DIAMOND_BOW, bowMaterials);
-    public static BowMaterial NETHERITE_BOW = new BowMaterial("Netherite", false, true, CONFIG.netheriteBow, DIAMOND_BOW, bowMaterials);
-
-    public static ArrowMaterial IRON_ARROW = new ArrowMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironArrow, arrowMaterials);
-    public static ArrowMaterial DIAMOND_ARROW = new ArrowMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondArrow, arrowMaterials);
-    public static ArrowMaterial NETHERITE_ARROW = new ArrowMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_ARROW, CONFIG.netheriteArrow, arrowMaterials);
-
-    public static QuiverMaterial LEATHER_QUIVER = new QuiverMaterial("Leather", ArmorMaterials.LEATHER.getRepairIngredient(), CONFIG.leatherQuiver, quiverMaterials);
-    public static QuiverMaterial IRON_QUIVER = new QuiverMaterial("Iron", Tiers.IRON.getRepairIngredient(), CONFIG.ironQuiver, quiverMaterials);
-    public static QuiverMaterial GOLD_QUIVER = new QuiverMaterial("Gold", Tiers.GOLD.getRepairIngredient(), CONFIG.goldQuiver, quiverMaterials);
-    public static QuiverMaterial DIAMOND_QUIVER = new QuiverMaterial("Diamond", Tiers.DIAMOND.getRepairIngredient(), CONFIG.diamondQuiver, quiverMaterials);
-    public static QuiverMaterial NETHERITE_QUIVER = new QuiverMaterial("Netherite", Tiers.NETHERITE.getRepairIngredient(), true, DIAMOND_QUIVER, CONFIG.netheriteQuiver, quiverMaterials);
+    public static Material VANILLA =    new Material("Vanilla",     null, CONFIG.vanilla,   false, false, false, false, false,false, true);
+    public static Material LEATHER =    new Material("Leather",     null, CONFIG.leather,   false, false, false, false, true, true,  false);
+    public static Material IRON =       new Material("Iron",        null, CONFIG.iron,      true,  true,  true,  true,  true, true,  true);
+    public static Material GOLD =       new Material("Iron",        null, CONFIG.gold,      true,  true,  true,  true,  true, true,  true);
+    public static Material DIAMOND =    new Material("Diamond",     IRON,            CONFIG.diamond,   true,  true,  true,  true,  true, true,  true);
+    public static Material NETHERITE =  new Material("Netherite",   DIAMOND,         CONFIG.netherite, true,  true,  false, true,  true, true,  true);
+    public static Material STEEL =      new Material("Steel",       null, CONFIG.steel,     false, false, false, false, true, false, true);
+    public static Material BRONZE =     new Material("Bronze",      null, CONFIG.bronze,    false, false, false, false, true, false, true);
+    public static Material SILVER =     new Material("Silver",      null, CONFIG.silver,    false, false, false, false, true, false, true);
+    public static Material LEAD =       new Material("Lead",        null, CONFIG.lead,      false, false, false, false, true, false, true);
+    public static Material IRONWOOD =   new Material("Ironwood",    null, CONFIG.ironwood,  false, false, false, false, true, false, true);
+    public static Material FIERY =      new Material("Fiery",       null, CONFIG.fiery,     false, false, false, false, true, false, true);
+    public static Material STEELEAF =   new Material("Steeleaf",    null, CONFIG.steeleaf,  false, false, false, false, true, false, true);
+    public static Material KNIGHTMETAL =new Material("Knight Metal",null, CONFIG.knightmetal,false,false, false, false, true, false, true);
+    public static Material NAGASCALE =  new Material("Naga Scale",  null, CONFIG.nagaScale, false, false, false, false, true, false, true);
+    public static Material YETI =       new Material("Yeti",        null, CONFIG.yeti,      false, false, false, false, true, false, false);
+    public static Material ARCTIC =     new Material("Arctic",      null, CONFIG.arctic,    false, false, false, false, true, false, false);
 
     public static void loadClass() {}
 }

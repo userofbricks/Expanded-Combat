@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -28,11 +28,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 String sdl = stack.getOrCreateTag().getString("DL_Material");
                 String sdr = stack.getOrCreateTag().getString("DR_Material");
                 String sm =  stack.getOrCreateTag().getString("M_Material" );
-                ItemStack ul = new ItemStack(ShieldMaterial.getFromName(sul).ULModel.get());
-                ItemStack ur = new ItemStack(ShieldMaterial.getFromName(sur).URModel.get());
-                ItemStack dl = new ItemStack(ShieldMaterial.getFromName(sdl).DLModel.get());
-                ItemStack dr = new ItemStack(ShieldMaterial.getFromName(sdr).DRModel.get());
-                ItemStack m =  new ItemStack(ShieldMaterial.getFromName(sm).MModel.get());
+                ItemStack ul = new ItemStack(Material.valueOfShield(sul).getULModel().get());
+                ItemStack ur = new ItemStack(Material.valueOfShield(sur).getURModel().get());
+                ItemStack dl = new ItemStack(Material.valueOfShield(sdl).getDLModel().get());
+                ItemStack dr = new ItemStack(Material.valueOfShield(sdr).getDRModel().get());
+                ItemStack m =  new ItemStack(Material.valueOfShield(sm).getMModel().get());
                 if (stack.hasFoil()) {
                     ul.enchant(Enchantments.VANISHING_CURSE, 0);
                     ur.enchant(Enchantments.VANISHING_CURSE, 0);

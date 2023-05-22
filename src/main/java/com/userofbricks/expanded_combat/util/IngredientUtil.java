@@ -39,6 +39,19 @@ public class IngredientUtil {
         return list;
     }
 
+    public static ItemLike[] toItemLikeArray(ResourceLocation... locations) {
+        ItemLike[] list =  new ItemLike[locations.length];
+
+        for (int i = 0; i < locations.length; i++) {
+            list[i] = ForgeRegistries.ITEMS.getValue(locations[i]);
+        }
+        return list;
+    }
+
+    public static ItemLike[] toItemLikeArray(ArrayList<String> locations) {
+        return toItemLikeArray((ResourceLocation[]) locations.stream().map(ResourceLocation::new).toArray());
+    }
+
     /**
      * takes an Ingredient and returns a string representing every item in it with notation: domain:item1,domain:item2,domain2:item3
      * @return a string containing all items in @ingredient

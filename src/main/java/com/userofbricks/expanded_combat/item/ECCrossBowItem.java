@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.Lists;
-import com.userofbricks.expanded_combat.item.materials.BowMaterial;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -39,12 +39,12 @@ import java.util.Objects;
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECCrossBowItem extends CrossbowItem {
-    public final BowMaterial material;
+    public final Material material;
 
     private boolean startSoundPlayed = false;
     private boolean midLoadSoundPlayed = false;
 
-    public ECCrossBowItem(BowMaterial material,  Item.Properties builder) {
+    public ECCrossBowItem(Material material, Item.Properties builder) {
         super(builder);
         this.material = material;
     }
@@ -70,9 +70,9 @@ public class ECCrossBowItem extends CrossbowItem {
 
     public float getProjectileVelocity( ItemStack stack) {
         if (containsChargedProjectile(stack, Items.FIREWORK_ROCKET)) {
-            return 1.6f * (this.material.getVelocityMultiplier() + CONFIG.crossbowVelocityBonus);
+            return 1.6f * (this.material.getConfig().offense.velocityMultiplier + CONFIG.crossbowVelocityBonus);
         }
-        return 3.2f * (this.material.getVelocityMultiplier() + CONFIG.crossbowVelocityBonus);
+        return 3.2f * (this.material.getConfig().offense.velocityMultiplier + CONFIG.crossbowVelocityBonus);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ECCrossBowItem extends CrossbowItem {
     }
 
     public boolean tryLoadProjectiles(@NotNull LivingEntity entityIn, ItemStack stack) {
-        int multishotLevel = stack.getEnchantmentLevel(Enchantments.MULTISHOT) + this.material.getMultishotLevel();
+        int multishotLevel = stack.getEnchantmentLevel(Enchantments.MULTISHOT) + this.material.getConfig().offense.multishotLevel;
         int arrowsToFire = (multishotLevel == 0) ? 1 : (1 + multishotLevel * 2);
         boolean flag = entityIn instanceof Player && ((Player)entityIn).getAbilities().instabuild;
         ItemStack itemstack = entityIn.getProjectile(stack);
@@ -204,11 +204,11 @@ public class ECCrossBowItem extends CrossbowItem {
         if (piercingLevel > 0) {
             abstractArrowEntity.setPierceLevel((byte)piercingLevel);
         }
-        int powerLevel = stack.getEnchantmentLevel(Enchantments.POWER_ARROWS) + this.material.getPowerLevel();
+        int powerLevel = stack.getEnchantmentLevel(Enchantments.POWER_ARROWS) + this.material.getConfig().offense.bowPower;
         if (powerLevel > 0) {
             abstractArrowEntity.setBaseDamage(abstractArrowEntity.getBaseDamage() + powerLevel * 0.5 + 0.5);
         }
-        int punchLevel = stack.getEnchantmentLevel(Enchantments.POWER_ARROWS) + this.material.getPowerLevel();
+        int punchLevel = stack.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
         if (punchLevel > 0) {
             abstractArrowEntity.setKnockback(punchLevel);
         }
@@ -319,24 +319,24 @@ public class ECCrossBowItem extends CrossbowItem {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
-        if (this.material.getMendingBonus() != 0.0f) {
-            if (this.material.getMendingBonus() > 0.0f) {
-                list.add(0, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getMendingBonus()))));
+        if (this.material.getConfig().mendingBonus != 0.0f) {
+            if (this.material.getConfig().mendingBonus > 0.0f) {
+                list.add(0, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
             }
-            else if (this.material.getMendingBonus() < 0.0f) {
-                list.add(0, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getMendingBonus()))));
+            else if (this.material.getConfig().mendingBonus < 0.0f) {
+                list.add(0, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
             }
         }
     }
 
     @Override
     public float getXpRepairRatio( ItemStack stack) {
-        return 2.0f + this.material.getMendingBonus();
+        return 2.0f + this.material.getConfig().mendingBonus;
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.material.getDurability();
+        return this.material.getConfig().durability.bowDurability;
     }
 
     @Override
@@ -346,30 +346,30 @@ public class ECCrossBowItem extends CrossbowItem {
 
     @Override
     public int getEnchantmentValue(ItemStack stack) {
-        return this.material.getEnchantability();
+        return this.material.getConfig().enchanting.offenseEnchantability;
     }
 
     @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
+        return IngredientUtil.getIngrediantFromItemString(this.material.getConfig().crafting.repairItem).test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
     @Override
     public boolean isFireResistant() {
-        return this.material.getFireResistant();
+        return this.material.getConfig().fireResistant;
     }
 
     @Override
     public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
-        return !this.material.getFireResistant() || !damageSource.is(DamageTypeTags.IS_FIRE);
+        return !this.material.getConfig().fireResistant || !damageSource.is(DamageTypeTags.IS_FIRE);
     }
 
-    public BowMaterial getMaterial() {
+    public Material getMaterial() {
         return this.material;
     }
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return ((ECBowItem) stack.getItem()).getMaterial() == MaterialInit.HALF_GOLD_BOW || ((ECBowItem) stack.getItem()).getMaterial() == MaterialInit.GOLD_BOW;
+        return ((ECCrossBowItem) stack.getItem()).getMaterial().getName().equals("Gold");
     }
 }

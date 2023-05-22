@@ -42,10 +42,8 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
     public static void loadClass() {
-        for (GauntletMaterial gm : MaterialInit.gauntletMaterials) { gm.registerElements(); }
-        for (BowMaterial bm : MaterialInit.bowMaterials) { bm.registerElements(); }
-        for (ArrowMaterial am : MaterialInit.arrowMaterials) {am.registerElements();}
-        for (QuiverMaterial qm : MaterialInit.quiverMaterials) {qm.registerElements();}
+        for (Material material : MaterialInit.materials) material.registerElements();
+
         REGISTRATE.get().addDataGenerator(ProviderType.RECIPE, recipeProvider -> {
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))

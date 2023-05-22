@@ -3,8 +3,7 @@ package com.userofbricks.expanded_combat.item.recipes;
 import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.ShieldMaterial;
+import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +14,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -31,42 +31,42 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         ItemStack base = inventory.getItem(1);
         if (!(base.getItem() instanceof ECShieldItem)) return false;
         if (!(inventory.getItem(2).isEmpty())) return false;
-        ShieldMaterial existing_ur_material = ShieldMaterial.getFromName(ECShieldItem.getUpperRightMaterial(base));
-        ShieldMaterial existing_ul_material = ShieldMaterial.getFromName(ECShieldItem.getUpperLeftMaterial(base));
-        ShieldMaterial addition_m_material = ShieldMaterial.getFromItemStack(inventory.getItem(2));
-        ShieldMaterial existing_m_material = ShieldMaterial.getFromName(ECShieldItem.getMiddleMaterial(base));
-        ShieldMaterial existing_dr_material = ShieldMaterial.getFromName(ECShieldItem.getDownRightMaterial(base));
-        ShieldMaterial existing_dl_material = ShieldMaterial.getFromName(ECShieldItem.getDownLeftMaterial(base));
-        if (!(addition_m_material.isSingleAddition())) return false;
-        if (addition_m_material == MaterialInit.NETHERITE_SHIELD && !(inventory.getItem(0).getItem() == Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)) {
+        Material existing_ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
+        Material existing_ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
+        Material addition_m_material = Material.valueOfShield(inventory.getItem(2));
+        Material existing_m_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
+        Material existing_dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
+        Material existing_dl_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
+        if (!(addition_m_material.getConfig().crafting.isSingleAddition)) return false;
+        if (!(inventory.getItem(0).getItem() == ForgeRegistries.ITEMS.getValue(new ResourceLocation(addition_m_material.getConfig().crafting.smithingTemplate)))) {
             return false;
         } else if (!(inventory.getItem(0).isEmpty())) {
             return false;
         }
-        return !addition_m_material.notSatifyingbeforeRequirement(existing_ur_material.name) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_ul_material.name) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_m_material.name) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_dr_material.name) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_dl_material.name);
+        return !addition_m_material.notSatifyingbeforeRequirement(existing_ur_material.getName()) ||
+                !addition_m_material.notSatifyingbeforeRequirement(existing_ul_material.getName()) ||
+                !addition_m_material.notSatifyingbeforeRequirement(existing_m_material.getName()) ||
+                !addition_m_material.notSatifyingbeforeRequirement(existing_dr_material.getName()) ||
+                !addition_m_material.notSatifyingbeforeRequirement(existing_dl_material.getName());
     }
 
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(1);
-        ShieldMaterial ul_material = ShieldMaterial.getFromName(ECShieldItem.getUpperRightMaterial(base));
-        ShieldMaterial ur_material = ShieldMaterial.getFromName(ECShieldItem.getUpperLeftMaterial(base));
-        ShieldMaterial dl_material = ShieldMaterial.getFromName(ECShieldItem.getMiddleMaterial(base));
-        ShieldMaterial dr_material = ShieldMaterial.getFromName(ECShieldItem.getDownRightMaterial(base));
-        ShieldMaterial m_material = ShieldMaterial.getFromName(ECShieldItem.getDownLeftMaterial(base));
-        ShieldMaterial addition_material = ShieldMaterial.getFromItemStack(inventory.getItem(2));
-        ShieldMaterial result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.name) ? addition_material: ul_material;
-        ShieldMaterial result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.name) ? addition_material: ur_material;
-        ShieldMaterial result_dl_material = addition_material.satifiesOnlyReplaceRequirement(dl_material.name) ? addition_material: dl_material;
-        ShieldMaterial result_dr_material = addition_material.satifiesOnlyReplaceRequirement(dr_material.name) ? addition_material: dr_material;
-        ShieldMaterial result_m_material = addition_material.satifiesOnlyReplaceRequirement(m_material.name) ? addition_material: m_material;
+        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
+        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
+        Material dl_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
+        Material dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
+        Material m_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
+        Material addition_material = Material.valueOfShield(inventory.getItem(2));
+        Material result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.getName()) ? addition_material: ul_material;
+        Material result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.getName()) ? addition_material: ur_material;
+        Material result_dl_material = addition_material.satifiesOnlyReplaceRequirement(dl_material.getName()) ? addition_material: dl_material;
+        Material result_dr_material = addition_material.satifiesOnlyReplaceRequirement(dr_material.getName()) ? addition_material: dr_material;
+        Material result_m_material = addition_material.satifiesOnlyReplaceRequirement(m_material.getName()) ? addition_material: m_material;
 
         ItemStack result = new ItemStack(ECItems.SHIELD_TIER_1.get());
-        if (result_ul_material.getFireResistant() || result_ur_material.getFireResistant() || result_m_material.getFireResistant() || result_dl_material.getFireResistant() || result_dr_material.getFireResistant()) {
+        if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
             result = new ItemStack(ECItems.SHIELD_TIER_3.get());
         }
         result.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, result_ul_material.getName());
@@ -91,7 +91,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     public boolean isAdditionIngredient(@NotNull ItemStack stack) {
-        return ShieldMaterial.getFromItemStack(stack).isSingleAddition();
+        return Material.valueOfShield(stack).getConfig().crafting.isSingleAddition;
     }
 
     @Override
