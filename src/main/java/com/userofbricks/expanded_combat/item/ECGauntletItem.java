@@ -113,7 +113,7 @@ public class ECGauntletItem extends Item implements ICurioItem
     }
     
     public double getAttackDamage() {
-        return this.material.getConfig().offense.gauntletAttackDamage;
+        return this.material.getConfig().offense.addedAttackDamage;
     }
     
     public ResourceLocation getGAUNTLET_TEXTURE() {

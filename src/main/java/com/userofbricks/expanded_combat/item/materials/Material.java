@@ -10,7 +10,9 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class Material {
     @NotNull
@@ -19,7 +21,7 @@ public class Material {
     private final Material craftedFrom;
     @NotNull
     private final ECConfig.MaterialConfig config;
-    public final boolean halfbow;
+    public final boolean halfbow, blockWeaponOnly;
 
     private RegistryEntry<ECArrowItem> arrowEntry = null;
     private RegistryEntry<ECArrowItem> tippedArrowEntry = null;
@@ -33,12 +35,14 @@ public class Material {
     private RegistryEntry<Item> DLModel = null;
     private RegistryEntry<Item> DRModel = null;
     private RegistryEntry<Item> MModel = null;
+    private final Map<String, RegistryEntry<ECWeaponItem>> weaponEntries = new HashMap<>();
 
-    public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield) {
+    public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly) {
         this.name = name;
         this.craftedFrom = craftedFrom;
         this.config = config;
         this.halfbow = halfbow;
+        this.blockWeaponOnly = blockWeaponOnly;
 
         MaterialInit.materials.add(this);
         if (arrow) MaterialInit.arrowMaterials.add(this);
@@ -47,9 +51,10 @@ public class Material {
         if (gauntlet) MaterialInit.gauntletMaterials.add(this);
         if (quiver) MaterialInit.quiverMaterials.add(this);
         if (shield) MaterialInit.shieldMaterials.add(this);
+        if (weapons) MaterialInit.weaponMaterials.add(this);
     }
 
-    public final void registerElements() {
+    public void registerElements() {
         if (MaterialInit.arrowMaterials.contains(this)) {
             this.arrowEntry = ArrowBuilder.generateArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
             if (config.offense.canBeTipped) this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
@@ -73,6 +78,12 @@ public class Material {
             this.DLModel = ShieldBuilder.createModelItem(getLocationName(), "dl");
             this.DRModel = ShieldBuilder.createModelItem(getLocationName(), "dr");
             this.MModel = ShieldBuilder.createModelItem(getLocationName(), "m");
+        }
+        if (MaterialInit.weaponMaterials.contains(this)) {
+            for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
+                if (!weaponMaterial.isBlockWeapon() && blockWeaponOnly) continue;
+                weaponEntries.put(weaponMaterial.name(), WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, weaponMaterial, this, craftedFrom));
+            }
         }
     }
 
@@ -130,6 +141,10 @@ public class Material {
 
     public RegistryEntry<Item> getMModel() {
         return MModel;
+    }
+
+    public RegistryEntry<ECWeaponItem> getWeaponEntry(String name) {
+        return weaponEntries.get(name);
     }
 
     public @NotNull String getName() {
@@ -231,5 +246,63 @@ public class Material {
 
     public boolean isVanilla() {
         return this.name.equals("Vanilla");
+    }
+
+    public static class Builder {
+        @NotNull
+        private final String name;
+        @Nullable
+        private final Material craftedFrom;
+        @NotNull
+        private final ECConfig.MaterialConfig config;
+
+        private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false;
+
+        public Builder(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
+            this.name = name;
+            this.craftedFrom = craftedFrom;
+            this.config = config;
+        }
+
+        public Builder halfbow() {
+            this.halfbow = true;
+            return this;
+        }
+        public Builder arrow() {
+            this.arrow = true;
+            return this;
+        }
+        public Builder bow() {
+            this.bow = true;
+            return this;
+        }
+        public Builder crossbow() {
+            this.crossbow = true;
+            return this;
+        }
+        public Builder gauntlet() {
+            this.gauntlet = true;
+            return this;
+        }
+        public Builder quiver() {
+            this.quiver = true;
+            return this;
+        }
+        public Builder shield() {
+            this.shield = true;
+            return this;
+        }
+        public Builder weapons() {
+            this.weapons = true;
+            return this;
+        }
+        public Builder blockWeaponOnly() {
+            this.blockWeaponOnly = true;
+            return this;
+        }
+
+        public Material build() {
+            return new Material(name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly);
+        }
     }
 }

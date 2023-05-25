@@ -35,6 +35,7 @@ public class ECConfigBooleanCondition implements ICondition {
             case "half_bow" -> CONFIG.enableHalfBows;
             case "crossbow" -> CONFIG.enableCrossbows;
             case "arrow" -> CONFIG.enableArrows;
+            case "weapon" -> CONFIG.enableWeapons;
         };
     }
 

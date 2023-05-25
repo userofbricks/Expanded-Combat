@@ -1,6 +1,8 @@
 package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
@@ -36,6 +38,8 @@ public class ECConfig implements ConfigData {
     public boolean enableQuivers = true;
     @Category("Item Types") @RequiresRestart @ConfigName("Enable Shields")
     public boolean enableShields = true;
+    @Category("Item Types") @RequiresRestart @ConfigName("Enable Weapons")
+    public boolean enableWeapons = true;
 
     @Category("Item Types") @ConfigName("Additional Velocity for Crossbows")
     public float crossbowVelocityBonus = 0.5f;
@@ -49,6 +53,92 @@ public class ECConfig implements ConfigData {
     public boolean enableFletchingTable = true;
 
 
+    //Weapon Types
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Battle Staff")
+    public WeaponMaterialConfig battlestaff = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+            .durabilityMultiplier(0.9)
+            .baseAttackDamage(-2).attackSpeed(-1.4f).attackRange(1.5).knockback(1).mendingBonus(0.1f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Broad Sword")
+    public WeaponMaterialConfig broadsword = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .durabilityMultiplier(1.1)
+            .baseAttackDamage(3).attackSpeed(-3.0f).attackRange(0.5)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Claymore")
+    public WeaponMaterialConfig claymore = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+            .durabilityMultiplier(1.1)
+            .baseAttackDamage(2).attackSpeed(-3f).attackRange(1)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Cutlass")
+    public WeaponMaterialConfig cutlass = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .baseAttackDamage(0).attackSpeed(-2.2f).mendingBonus(0.2f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Dagger")
+    public WeaponMaterialConfig dagger = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.DUALWIELD)
+            .durabilityMultiplier(0.75)
+            .baseAttackDamage(-1).attackSpeed(-1.2f).mendingBonus(0.1f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Dancer's Sword")
+    public WeaponMaterialConfig dancers_sword = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .durabilityMultiplier(1.3)
+            .baseAttackDamage(2).attackSpeed(-1.8f).mendingBonus(0.2f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Flail")
+    public WeaponMaterialConfig flail = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .durabilityMultiplier(1.1)
+            .baseAttackDamage(4).attackSpeed(-3.4f).attackRange(1).knockback(0.5f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Glaive")
+    public WeaponMaterialConfig glaive = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+            .baseAttackDamage(3).attackSpeed(-3.2f).attackRange(2).knockback(0.5f).mendingBonus(0.1f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Great Hammer")
+    public WeaponMaterialConfig great_hammer = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .durabilityMultiplier(1.5)
+            .baseAttackDamage(5).attackSpeed(-3.3f).knockback(1)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Katana")
+    public WeaponMaterialConfig katana = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .baseAttackDamage(2).attackSpeed(-2.4f).attackRange(0.5)
+            .hasLargeModel()
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Mace")
+    public WeaponMaterialConfig mace = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+            .durabilityMultiplier(1.1)
+            .baseAttackDamage(4).attackSpeed(-3.2f).knockback(0.5f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Scythe")
+    public WeaponMaterialConfig scythe = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+            .durabilityMultiplier(1.2)
+            .baseAttackDamage(4).attackSpeed(-3.4f).attackRange(2).knockback(1.0f).mendingBonus(0.1f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Sickle")
+    public WeaponMaterialConfig sickle = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.DUALWIELD)
+            .durabilityMultiplier(0.8)
+            .baseAttackDamage(0).attackSpeed(-1.8f).mendingBonus(0.2f)
+            .build();
+
+    @Category("Weapon Types") @CollapsibleObject @ConfigName("Spear")
+    public WeaponMaterialConfig spear = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+            .baseAttackDamage(3).attackSpeed(-3.4f).attackRange(2).knockback(0.5f).mendingBonus(0.1f)
+            .hasLargeModel()
+            .build();
+
+
+
+    //Materials
     @Category("Materials") @CollapsibleObject @ConfigName("Vanilla Settings")
     public MaterialConfig vanilla = new MaterialConfig.Builder().fromArmorMaterial(ArmorMaterials.LEATHER).fromTier(Tiers.WOOD)
             .baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
@@ -96,37 +186,33 @@ public class ECConfig implements ConfigData {
 
 
     @Category("Materials") @CollapsibleObject @ConfigName("Steel Settings")
-    public MaterialConfig steel = new MaterialConfig.Builder()
-            .toolDurability(482).gauntletArmorAmount(2).gauntletAttackDamage(2.5f).armorToughness(1f)
+    public MaterialConfig steel = new MaterialConfig.Builder().fromTier(ECSwordTiers.STEEL)
+            .gauntletArmorAmount(2).armorToughness(1f)
             .addedShieldDurability(200).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.65f)
-            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/steel"))
             .offenseEnchantability(9).defenseEnchantability(9)
             .equipSound(ArmorMaterials.IRON.getEquipSound())
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Bronze Settings")
-    public MaterialConfig bronze = new MaterialConfig.Builder()
-            .toolDurability(225).gauntletArmorAmount(2).gauntletAttackDamage(2f).armorToughness(0.5f)
+    public MaterialConfig bronze = new MaterialConfig.Builder().fromTier(ECSwordTiers.BRONZE)
+            .gauntletArmorAmount(2).armorToughness(0.5f)
             .addedShieldDurability(125).baseProtectionAmmount(2.75f).afterBasePercentReduction(0.5f)
-            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/bronze"))
             .offenseEnchantability(8).defenseEnchantability(8)
             .mendingBonus(0.1f)
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Silver Settings")
-    public MaterialConfig silver = new MaterialConfig.Builder()
-            .toolDurability(325).gauntletArmorAmount(2).gauntletAttackDamage(1f)
+    public MaterialConfig silver = new MaterialConfig.Builder().fromTier(ECSwordTiers.SILVER)
+            .gauntletArmorAmount(2)
             .addedShieldDurability(175).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.4f)
-            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/silver"))
             .offenseEnchantability(18).defenseEnchantability(18)
             .mendingBonus(1)
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Lead Settings")
-    public MaterialConfig lead = new MaterialConfig.Builder()
-            .toolDurability(1761).gauntletArmorAmount(3).gauntletAttackDamage(3f).armorToughness(0.25f).knockbackResistance(0.5)
+    public MaterialConfig lead = new MaterialConfig.Builder().fromTier(ECSwordTiers.LEAD)
+            .gauntletArmorAmount(3).armorToughness(0.25f).knockbackResistance(0.5)
             .addedShieldDurability(350).baseProtectionAmmount(5).afterBasePercentReduction(0.6f)
-            .repairItem(IngredientUtil.getTagedIngredientOrEmpty("forge", "ingots/lead"))
             .offenseEnchantability(8).defenseEnchantability(8)
             .mendingBonus(0.1f)
             .build();
@@ -190,8 +276,6 @@ public class ECConfig implements ConfigData {
             .offenseEnchantability(8).defenseEnchantability(8)
             .equipSound(new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"))
             .build();
-
-
 
 
     public static class MaterialConfig {
@@ -258,8 +342,8 @@ public class ECConfig implements ConfigData {
             }
         }
         public static class Offense {
-            public Offense(double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier) {
-                this.gauntletAttackDamage = gauntletAttackDamage;
+            public Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier) {
+                this.addedAttackDamage = addedAttackDamage;
                 this.arrowDamage = arrowDamage;
                 this.flaming = flaming;
                 this.canBeTipped = canBeTipped;
@@ -268,8 +352,9 @@ public class ECConfig implements ConfigData {
                 this.velocityMultiplier = velocityMultiplier;
             }
 
-            @ConfigName("Gauntlet Attack Damage")
-            public double gauntletAttackDamage;
+            @ConfigName("Added Attack Damage") @Tooltip
+            @TooltipFrase("used for gauntlet damage and also added to melee weapon base damage")
+            public double addedAttackDamage;
             @ConfigName("Arrow Damage")
             public float arrowDamage;
             @ConfigName("Flaming Arrow")
@@ -524,8 +609,6 @@ public class ECConfig implements ConfigData {
         public double attackDamage;
         @BoundedDiscrete(max = 512) @ConfigName("Enchantability")
         public int enchantability;
-        @ConfigName("Equip Sound")
-        public String equipSound;
         @ConfigName("Armor Toughness")
         public double armorToughness;
         @ConfigName("Knockback Resistance")
@@ -537,56 +620,16 @@ public class ECConfig implements ConfigData {
         @ConfigName("Fire Resistant")
         public boolean fireResistant;
 
-        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, ResourceLocation equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
+        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, double armorToughness, double knockbackResistance, boolean fireResistant) {
             this.durability =           durability;
             this.enchantability =       enchantability;
             this.mendingBonus =         mendingBonus;
             this.armorAmount =          armorAmount;
             this.attackDamage =         attackDamage;
-            this.equipSound =           equipSound.toString();
             this.repairItem =           repairItem;
             this.armorToughness =       armorToughness;
             this.knockbackResistance =  knockbackResistance;
             this.fireResistant =        fireResistant;
-        }
-
-        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, Ingredient repairItem, SoundEvent equipSound, double armorToughness, double knockbackResistance, boolean fireResistant) {
-            this(   durability,
-                    enchantability,
-                    mendingBonus,
-                    armorAmount,
-                    attackDamage,
-                    IngredientUtil.getItemStringFromIngrediant(repairItem),
-                    equipSound.getLocation(),
-                    armorToughness,
-                    knockbackResistance,
-                    fireResistant);
-        }
-
-        GauntletConfig(ArmorMaterial armorMaterial, int durability, double mendingBonus, double attackDamage, boolean fireResistant) {
-            this(   durability,
-                    armorMaterial.getEnchantmentValue(),
-                    mendingBonus,
-                    armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS),
-                    attackDamage,
-                    armorMaterial.getRepairIngredient(),
-                    armorMaterial.getEquipSound(),
-                    armorMaterial.getToughness(),
-                    armorMaterial.getKnockbackResistance(),
-                    fireResistant);
-        }
-
-        GauntletConfig(Tier tier, ArmorMaterial armorMaterial, boolean armorNotWeaponEnchantability, double mendingBonus, boolean fireResistant) {
-            this(   tier.getUses(),
-                    armorNotWeaponEnchantability ? armorMaterial.getEnchantmentValue() : tier.getEnchantmentValue(),
-                    mendingBonus,
-                    armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS),
-                    tier.getAttackDamageBonus(),
-                    armorMaterial.getRepairIngredient(),
-                    armorMaterial.getEquipSound(),
-                    armorMaterial.getToughness(),
-                    armorMaterial.getKnockbackResistance(),
-                    fireResistant);
         }
     }
 
@@ -757,6 +800,89 @@ public class ECConfig implements ConfigData {
         public QuiverMaterialConfig(int providedSlots) {
             this.providedSlots = providedSlots;
             ExpandedCombat.maxQuiverSlots = Math.max(providedSlots, ExpandedCombat.maxQuiverSlots);
+        }
+    }
+
+    public static class WeaponMaterialConfig {
+        @ConfigName("Durability Multiplier")
+        public double durabilityMultiplier;
+        @ConfigName("Base Attack Damage") @Tooltip
+        @TooltipFrase("Material tool damage is added to this")
+        public int baseAttackDamage;
+        @ConfigName("Attack Speed")
+        public float attackSpeed;
+        @ConfigName("Mending Bonus")
+        public float mendingBonus;
+        @ConfigName("Knockback")
+        public float knockback;
+        @ConfigName("Added Attack Range") @Tooltip
+        @TooltipFrase("In Blocks")
+        public double attackRange;
+        @ConfigName("Grip Type")
+        public WieldingType wieldType;
+
+        WeaponMaterialConfig(double durabilityMultiplier, int baseAttackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType) {
+            this.durabilityMultiplier = durabilityMultiplier;
+            this.baseAttackDamage = baseAttackDamage;
+            this.attackSpeed = attackSpeed;
+            this.attackRange = attackRange;
+            this.mendingBonus = mendingBonus;
+            this.knockback = knockback;
+            this.wieldType = wieldType;
+        }
+
+        public enum WieldingType
+        {
+            ONEHANDED,
+            TWOHANDED,
+            DUALWIELD
+        }
+
+        public static class Builder {
+            public boolean hasLargeModel = false;
+            private double durabilityMultiplier = 1;
+            private int baseAttackDamage = 0;
+            private float attackSpeed = 0;
+            private float mendingBonus = 0;
+            private float knockback = 0;
+            private double attackRange = 0;
+            private final WieldingType wieldType;
+
+            public Builder(WieldingType wieldType) {
+                this.wieldType = wieldType;
+            }
+
+            public Builder durabilityMultiplier(double multiplier) {
+                this.durabilityMultiplier = multiplier;
+                return this;
+            }
+            public Builder baseAttackDamage(int damage) {
+                this.baseAttackDamage = damage;
+                return this;
+            }
+            public Builder attackSpeed(float speed) {
+                this.attackSpeed = speed;
+                return this;
+            }
+            public Builder mendingBonus(float bonus) {
+                this.mendingBonus = bonus;
+                return this;
+            }
+            public Builder knockback(float knockback) {
+                this.knockback = knockback;
+                return this;
+            }
+            public Builder attackRange(double range) {
+                this.attackRange = range;
+                return this;
+            }
+            public Builder hasLargeModel() {
+                this.hasLargeModel = true;
+                return this;
+            }
+            public WeaponMaterialConfig build() {
+                return new WeaponMaterialConfig(durabilityMultiplier, baseAttackDamage, attackSpeed, attackRange, knockback, mendingBonus, wieldType);
+            }
         }
     }
 }

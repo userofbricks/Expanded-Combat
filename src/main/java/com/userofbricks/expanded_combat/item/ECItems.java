@@ -2,10 +2,13 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.item.materials.*;
+import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.HardCodedRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
@@ -14,10 +17,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -36,12 +42,27 @@ public class ECItems
 {
     public static ArrayList<RegistryEntry<? extends Item>> ITEMS = new ArrayList<>();
 
+    public static final RegistryEntry<Item> LEATHER_STICK = ExpandedCombat.REGISTRATE.get().item("leather_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+            .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " l ", "s  "}, new RecipeIngredientMapBuilder().put('s', Items.STICK).put('l', Items.LEATHER).build(), 4,
+            new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER, Items.STICK), "")).register();
+
+    public static final RegistryEntry<Item> GOLD_STICK = ExpandedCombat.REGISTRATE.get().item("gold_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+            .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.IRON_INGOT).put('s', Items.STICK).build(), 4,
+            new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT, Items.STICK), "")).register();
+
+    public static final RegistryEntry<Item> IRON_STICK = ExpandedCombat.REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+            .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.GOLD_INGOT).put('s', Items.STICK).build(), 4,
+            new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.STICK), "")).register();
+
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_1 = registerShield("shield_1", false);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_2 = registerShield("shield_2", false);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
     public static void loadClass() {
+        ITEMS.add(LEATHER_STICK);
+        ITEMS.add(GOLD_STICK);
+        ITEMS.add(IRON_STICK);
         for (Material material : MaterialInit.materials) material.registerElements();
 
         REGISTRATE.get().addDataGenerator(ProviderType.RECIPE, recipeProvider -> {

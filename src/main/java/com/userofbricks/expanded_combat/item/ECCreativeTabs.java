@@ -17,13 +17,16 @@ import java.util.function.Supplier;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
-import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_1;
-import static com.userofbricks.expanded_combat.item.ECItems.SHIELD_TIER_3;
+import static com.userofbricks.expanded_combat.item.ECItems.*;
+
 @Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECCreativeTabs {
     public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().buildCreativeModeTab("ec_group",
             builder -> builder.icon(() -> new ItemStack(getIcon()))
                     .displayItems((displayParameters, output) -> {
+                        output.accept(LEATHER_STICK.get());
+                        output.accept(GOLD_STICK.get());
+                        output.accept(IRON_STICK.get());
                         if (CONFIG.enableGauntlets) {
                             for (Material material : MaterialInit.gauntletMaterials) {
                                 output.accept(material.getGauntletEntry().get());
@@ -76,7 +79,7 @@ public class ECCreativeTabs {
             "Expanded Combat");
 
     private static Item getIcon() {
-        if(CONFIG.enableGauntlets) return MaterialInit.DIAMOND_GAUNTLET.getGauntletEntry().get();
+        if(CONFIG.enableGauntlets) return MaterialInit.DIAMOND.getGauntletEntry().get();
         return Items.ARROW;
     }
 
@@ -147,6 +150,10 @@ public class ECCreativeTabs {
                     }
                 }
             }
+        } else if (tab == CreativeModeTabs.INGREDIENTS) {
+            event.getEntries().putAfter(new ItemStack(Items.STICK), new ItemStack(LEATHER_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(LEATHER_STICK.get()), new ItemStack(GOLD_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(GOLD_STICK.get()), new ItemStack(IRON_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
 
