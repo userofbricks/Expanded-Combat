@@ -42,7 +42,7 @@ public class MaterialInit {
     public static Material IRON =       new Material.Builder("Iron",        null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material GOLD =       new Material.Builder("Iron",        null, CONFIG.gold).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material DIAMOND =    new Material.Builder("Diamond",     IRON,            CONFIG.diamond).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
-    public static Material NETHERITE =  new Material.Builder("Netherite",   DIAMOND,         CONFIG.netherite).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
+    public static Material NETHERITE =  new Material.Builder("Netherite",   DIAMOND,         CONFIG.netherite).arrow().bow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material STEEL =      new Material.Builder("Steel",       null, CONFIG.steel).gauntlet().shield().weapons().build();
     public static Material BRONZE =     new Material.Builder("Bronze",      null, CONFIG.bronze).gauntlet().shield().weapons().build();
     public static Material SILVER =     new Material.Builder("Silver",      null, CONFIG.silver).gauntlet().shield().weapons().build();
@@ -51,7 +51,7 @@ public class MaterialInit {
     public static Material FIERY =      new Material.Builder("Fiery",       null, CONFIG.fiery).gauntlet().shield().weapons().build();
     public static Material STEELEAF =   new Material.Builder("Steeleaf",    null, CONFIG.steeleaf).gauntlet().shield().weapons().build();
     public static Material KNIGHTMETAL =new Material.Builder("Knight Metal",null, CONFIG.knightmetal).gauntlet().shield().weapons().build();
-    public static Material NAGASCALE =  new Material.Builder("Naga Scale",  null, CONFIG.nagaScale).gauntlet().shield().weapons().build();
+    public static Material NAGASCALE =  new Material.Builder("Naga Scale",  null, CONFIG.nagaScale).gauntlet().shield().build();
     public static Material YETI =       new Material.Builder("Yeti",        null, CONFIG.yeti).gauntlet().build();
     public static Material ARCTIC =     new Material.Builder("Arctic",      null, CONFIG.arctic).gauntlet().build();
 

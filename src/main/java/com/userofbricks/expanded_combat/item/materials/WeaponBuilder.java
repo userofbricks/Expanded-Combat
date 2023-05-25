@@ -58,12 +58,13 @@ public class WeaponBuilder extends MaterialBuilder{
 
                 Map<Character, Ingredient> ingredientMap = new RecipeIngredientMapBuilder().put('i', material.getConfig().crafting.repairItem).build();
                 if (weapon.recipeIngredients() != null) {
+                    if (!weapon.recipeContains("i")) ingredientMap.remove('i');
                     ingredientMap.putAll(weapon.recipeIngredients().get().build());
-                    if(ingredientMap.get('p') == null) {
+                    if(ingredientMap.get('p') == null && weapon.recipeContains("p")) {
                         Ingredient prev = weapon.craftedFrom() == null ? IngredientUtil.getTagedIngredientOrEmpty(MODID, "sword/" + material.getLocationName()) : Ingredient.of(material.getWeaponEntry(weapon.craftedFrom().name()).get());
                         ingredientMap.put('p', prev);
                     }
-                    if(ingredientMap.get('b') == null) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty(MODID, "block/" + material.getLocationName()));
+                    if(ingredientMap.get('b') == null && weapon.recipeContains("b")) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty(MODID, "block/" + material.getLocationName()));
 
                     conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
                 }

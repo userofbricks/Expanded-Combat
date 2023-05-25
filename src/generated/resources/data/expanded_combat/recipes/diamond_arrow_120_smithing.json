@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "arrow"
+        },
+        {
+          "type": "expanded_combat:config_material_boolean",
+          "location_path": [
+            "config",
+            "crafting",
+            "is_single_addition"
+          ],
+          "material": "Diamond"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:diamond"
+        },
+        "base": {
+          "item": "expanded_combat:iron_arrow"
+        },
+        "result": {
+          "item": "expanded_combat:diamond_arrow"
+        },
+        "template": []
+      }
+    }
+  ]
+}

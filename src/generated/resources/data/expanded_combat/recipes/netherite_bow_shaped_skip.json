@@ -1,0 +1,47 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:or",
+          "values": [
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "CRAFTING_TABLE_ONLY"
+            },
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "CRAFTING_TABLE_AND_SMITHING"
+            }
+          ]
+        },
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "bow"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "b": {
+            "item": "expanded_combat:diamond_bow"
+          },
+          "i": {
+            "item": "minecraft:netherite_ingot"
+          }
+        },
+        "pattern": [
+          "i",
+          "b",
+          "i"
+        ],
+        "result": {
+          "item": "expanded_combat:netherite_bow"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

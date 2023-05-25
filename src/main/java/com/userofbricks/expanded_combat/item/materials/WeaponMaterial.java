@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.function.Supplier;
 
@@ -15,6 +16,14 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
 
     public String getLocationName() {
         return this.name.toLowerCase(Locale.ROOT).replace(' ', '_').replace('\'', '_');
+    }
+
+    public boolean recipeContains(String character) {
+        for (String row :
+                this.recipe) {
+            if (row.contains(character)) return true;
+        }
+        return false;
     }
 
     public static class Builder {

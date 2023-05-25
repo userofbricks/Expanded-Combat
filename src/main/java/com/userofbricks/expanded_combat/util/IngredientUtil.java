@@ -49,7 +49,12 @@ public class IngredientUtil {
     }
 
     public static ItemLike[] toItemLikeArray(ArrayList<String> locations) {
-        return toItemLikeArray((ResourceLocation[]) locations.stream().map(ResourceLocation::new).toArray());
+        ItemLike[] list =  new ItemLike[locations.size()];
+
+        for (int i = 0; i < locations.size(); i++) {
+            list[i] = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locations.get(i)));
+        }
+        return list;
     }
 
     /**

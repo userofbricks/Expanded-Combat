@@ -1,0 +1,62 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:or",
+          "values": [
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "SMITHING_ONLY"
+            },
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "CRAFTING_TABLE_AND_SMITHING"
+            }
+          ]
+        },
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "bow"
+        },
+        {
+          "type": "forge:or",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "expanded_combat:config_boolean",
+                "config_entry": "half_bow"
+              }
+            },
+            {
+              "type": "expanded_combat:config_material_boolean",
+              "location_path": [
+                "config",
+                "crafting",
+                "is_single_addition"
+              ],
+              "material": "Netherite"
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
+        },
+        "base": {
+          "item": "expanded_combat:diamond_bow"
+        },
+        "result": {
+          "item": "expanded_combat:netherite_bow"
+        },
+        "template": {
+          "item": "minecraft:netherite_upgrade_smithing_template"
+        }
+      }
+    }
+  ]
+}

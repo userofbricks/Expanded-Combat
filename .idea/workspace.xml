@@ -4,23 +4,974 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="refactored config and merged all materials">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ECSwordTiers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponMaterial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/RecipeIngredientMapBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/SepteConsumer.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added weapons back">
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/arctic_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/bronze_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_arrow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_arrow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_arrow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_battle_staff_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_battle_staff_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_bow_conditional_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_broad_sword_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_broad_sword_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_claymore_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_claymore_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_crossbow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_crossbow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_crossbow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_cutlass_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_cutlass_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dagger_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dagger_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dancer_s_sword_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_dancer_s_sword_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_flail_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_flail_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_gauntlet_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_glaive_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_glaive_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_great_hammer_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_great_hammer_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_katana_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_katana_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_mace_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_mace_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_quiver_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_quiver_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_quiver_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_scythe_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_scythe_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_sickle_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_sickle_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fiery_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_stick_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_diamond_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_iron_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_netherite_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_netherite_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/half_netherite_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_arrow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_arrow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_arrow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_bow_conditional_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_crossbow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_crossbow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_crossbow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_quiver_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_stick_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/ironwood_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/knight_metal_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/lead_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_quiver_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/leather_stick_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/naga_scale_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_arrow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_arrow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_arrow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_battle_staff_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_battle_staff_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_bow_conditional_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_broad_sword_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_broad_sword_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_claymore_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_claymore_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_crossbow_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_crossbow_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_crossbow_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_cutlass_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_cutlass_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dagger_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dagger_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dancer_s_sword_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_dancer_s_sword_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_flail_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_flail_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_gauntlet_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_glaive_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_glaive_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_great_hammer_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_great_hammer_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_katana_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_katana_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_mace_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_mace_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_quiver_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_quiver_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_quiver_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_scythe_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_scythe_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_sickle_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_sickle_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_spear_conditional_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_spear_conditional_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/silver_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steel_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_battle_staff_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_broad_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_claymore_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_cutlass_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_dagger_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_dancer_s_sword_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_flail_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_glaive_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_great_hammer_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_katana_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_mace_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_scythe_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_sickle_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/steeleaf_spear_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/yeti_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/arctic_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/bronze_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_arrow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_arrow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_arrow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_battle_staff_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_battle_staff_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_bow_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_broad_sword_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_broad_sword_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_claymore_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_claymore_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_crossbow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_crossbow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_crossbow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_cutlass_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_cutlass_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dagger_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dagger_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dancer_s_sword_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_dancer_s_sword_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_flail_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_flail_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_gauntlet_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_gauntlet_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_glaive_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_glaive_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_great_hammer_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_great_hammer_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_katana_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_katana_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_mace_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_mace_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_quiver_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_quiver_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_quiver_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_scythe_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_scythe_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_sickle_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_sickle_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_spear_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_spear_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fiery_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_stick_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_diamond_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_iron_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_netherite_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_netherite_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/half_netherite_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_arrow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_arrow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_arrow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_bow_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_crossbow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_crossbow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_crossbow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_quiver_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_stick_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/ironwood_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/knight_metal_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/lead_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_quiver_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/leather_stick_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/naga_scale_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_arrow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_arrow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_arrow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_battle_staff_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_battle_staff_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_120_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_shaped_skip.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_bow_smithing_singleton.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_broad_sword_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_broad_sword_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_claymore_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_claymore_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_crossbow_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_crossbow_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_crossbow_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_cutlass_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_cutlass_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dagger_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dagger_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dancer_s_sword_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_dancer_s_sword_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_flail_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_flail_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_gauntlet_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_glaive_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_glaive_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_great_hammer_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_great_hammer_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_katana_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_katana_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_mace_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_mace_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_quiver_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_quiver_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_quiver_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_scythe_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_scythe_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_sickle_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_sickle_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_spear_120_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_spear_smithing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/silver_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steel_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_battle_staff_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_broad_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_claymore_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_cutlass_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_dagger_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_dancer_s_sword_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_flail_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_glaive_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_great_hammer_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_katana_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_mace_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_scythe_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_sickle_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/steeleaf_spear_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/yeti_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/dye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/wood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/enderite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/fiery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/fiery.png.mcmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/ironwood.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/knight_metal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/lead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/steel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/steeleaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/stone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/wood.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/CrossBowBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/CrossBowBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/bows.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/bows.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/crossbows.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/crossbows.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/gauntlets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/gauntlets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECItemModelsProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ArrowBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ArrowBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBooleanCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECConfigBooleanCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/battlestaff.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/battle_staff.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/IngredientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/IngredientUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/broadsword.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/broad_sword.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/dancers_sword.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/dancer_s_sword.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/flail_external_material.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/great_hammer_external.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/mace_external_material.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/dye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/dye.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/fiery.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/fiery.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/fiery.png.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/fiery.png.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/ironwood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/ironwood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/steeleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/steeleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battlestaff/wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/battle_staff/wood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/dye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/dye.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/fiery.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/fiery.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/fiery.png.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/fiery.png.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/ironwood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/ironwood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/steeleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/steeleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broadsword/wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/broad_sword/wood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/claymore/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/claymore/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/cutlass/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/cutlass/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dagger/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dagger/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/dye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/dye.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/fiery.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/fiery.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/fiery.png.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/fiery.png.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/ironwood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/ironwood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/steeleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/steeleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancers_sword/wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword/wood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/naga.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/naga_scale.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/katana/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/katana/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/empty.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/vanilla.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/naga.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/naga_scale.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/sickle/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/sickle/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/spear/knightly.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/spear/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/stick_gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gold_stick.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/stick_iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/iron_stick.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/stick_leather.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/leather_stick.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battlestaff/battlestaff_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_fiery.png.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/battle_staff/fiery.png.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broadsword/broadsword_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/claymore/claymore_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancer_s_sword/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/dancers_sword/dancers_sword_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/glaive/glaive_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/katana/katana_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/rapier/rapier_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_dye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/scythe/scythe_wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_fiery.png.mcmeta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_knightly.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_steel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/spear/spear_wood.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +1119,7 @@
       <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Application.runData">
     <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -304,13 +1255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00014" summary="started on shield recipe stuff">
-      <created>1623703450491</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1623703450491</updated>
     </task>
     <task id="LOCAL-00015" summary="finished shield recipes and models">
       <created>1623831081529</created>
@@ -648,7 +1592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684783273188</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="added weapons back">
+      <created>1684984666577</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1684984666578</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -670,7 +1621,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="lang stuff" />
     <MESSAGE value="updated ShieldEvents.ShieldBlockingEvent from the old LivingEvent version" />
     <MESSAGE value="shields now block and config gui now appears" />
     <MESSAGE value="config lang now generates itself" />
@@ -695,7 +1645,8 @@
     <MESSAGE value="made gui rendering of quiver more flexible and less visually cluttered" />
     <MESSAGE value="arrow slots now don't render the hover sheen when not used" />
     <MESSAGE value="refactored config and merged all materials" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored config and merged all materials" />
+    <MESSAGE value="added weapons back" />
+    <option name="LAST_COMMIT_MESSAGE" value="added weapons back" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
