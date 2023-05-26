@@ -1,15 +1,15 @@
 {
-  "parent": "expanded_combat:item/bases/dancer_s_sword",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/iron_dancer_s_sword",
+      "model": "expanded_combat:item/iron_dancer_s_sword_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/dancer_s_sword/dye",
-    "layer1": "expanded_combat:item_large/dancer_s_sword/iron"
+    "layer0": "expanded_combat:item/dancer_s_sword/dye",
+    "layer1": "expanded_combat:item/dancer_s_sword/iron"
   }
 }

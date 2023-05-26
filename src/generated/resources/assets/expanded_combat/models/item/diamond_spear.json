@@ -1,14 +1,14 @@
 {
-  "parent": "expanded_combat:item/bases/spear",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/diamond_spear",
+      "model": "expanded_combat:item/diamond_spear_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/spear/diamond"
+    "layer0": "expanded_combat:item/spear/diamond"
   }
 }

@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "i": {
-            "item": "minecraft:gold_ingot"
+            "item": "minecraft:iron_ingot"
           },
           "l": {
             "tag": "forge:leather"

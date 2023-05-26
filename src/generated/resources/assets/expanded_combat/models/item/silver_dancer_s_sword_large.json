@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/dancer_s_sword",
+  "textures": {
+    "layer0": "expanded_combat:item_large/dancer_s_sword/dye",
+    "layer1": "expanded_combat:item_large/dancer_s_sword/silver"
+  }
+}

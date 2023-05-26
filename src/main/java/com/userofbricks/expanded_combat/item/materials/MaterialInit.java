@@ -40,7 +40,7 @@ public class MaterialInit {
     public static Material VANILLA =    new Material.Builder("Vanilla",     null, CONFIG.vanilla).shield().build();
     public static Material LEATHER =    new Material.Builder("Leather",     null, CONFIG.leather).gauntlet().quiver().build();
     public static Material IRON =       new Material.Builder("Iron",        null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
-    public static Material GOLD =       new Material.Builder("Gold",        null, CONFIG.gold).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
+    public static Material GOLD =       new Material.Builder("Gold",        null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material DIAMOND =    new Material.Builder("Diamond",     IRON,            CONFIG.diamond).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material NETHERITE =  new Material.Builder("Netherite",   DIAMOND,         CONFIG.netherite).arrow().bow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material STEEL =      new Material.Builder("Steel",       null, CONFIG.steel).gauntlet().shield().weapons().build();

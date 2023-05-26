@@ -1,14 +1,14 @@
 {
-  "parent": "expanded_combat:item/bases/katana",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/knight_metal_katana",
+      "model": "expanded_combat:item/knight_metal_katana_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/katana/knight_metal"
+    "layer0": "expanded_combat:item/katana/knight_metal"
   }
 }

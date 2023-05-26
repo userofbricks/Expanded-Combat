@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "crossbow"
+        },
+        {
+          "type": "expanded_combat:config_material_boolean",
+          "location_path": [
+            "config",
+            "crafting",
+            "is_single_addition"
+          ],
+          "material": "Gold"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:gold_ingot"
+        },
+        "base": {
+          "item": "minecraft:crossbow"
+        },
+        "result": {
+          "item": "expanded_combat:gold_crossbow"
+        },
+        "template": []
+      }
+    }
+  ]
+}

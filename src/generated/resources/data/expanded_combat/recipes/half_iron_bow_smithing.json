@@ -31,7 +31,7 @@
           "item": "minecraft:bow"
         },
         "base": {
-          "item": "minecraft:gold_ingot"
+          "item": "minecraft:iron_ingot"
         },
         "result": {
           "item": "expanded_combat:half_iron_bow"

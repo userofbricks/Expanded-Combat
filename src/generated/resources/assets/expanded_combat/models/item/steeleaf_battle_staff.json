@@ -1,15 +1,15 @@
 {
-  "parent": "expanded_combat:item/bases/battle_staff",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/steeleaf_battle_staff",
+      "model": "expanded_combat:item/steeleaf_battle_staff_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/battle_staff/dye",
-    "layer1": "expanded_combat:item_large/battle_staff/steeleaf"
+    "layer0": "expanded_combat:item/battle_staff/dye",
+    "layer1": "expanded_combat:item/battle_staff/steeleaf"
   }
 }

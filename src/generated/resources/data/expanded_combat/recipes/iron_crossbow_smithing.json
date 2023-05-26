@@ -23,7 +23,7 @@
           "item": "minecraft:crossbow"
         },
         "base": {
-          "item": "minecraft:gold_ingot"
+          "item": "minecraft:iron_ingot"
         },
         "result": {
           "item": "expanded_combat:iron_crossbow"

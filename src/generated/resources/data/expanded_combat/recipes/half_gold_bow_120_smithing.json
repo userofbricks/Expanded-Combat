@@ -1,0 +1,43 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:or",
+          "values": [
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "SMITHING_ONLY"
+            },
+            {
+              "type": "expanded_combat:config_bow_recipe_type",
+              "crafting_type": "CRAFTING_TABLE_AND_SMITHING"
+            }
+          ]
+        },
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "bow"
+        },
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "half_bow"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "minecraft:gold_ingot"
+        },
+        "base": {
+          "item": "minecraft:bow"
+        },
+        "result": {
+          "item": "expanded_combat:half_gold_bow"
+        },
+        "template": []
+      }
+    }
+  ]
+}

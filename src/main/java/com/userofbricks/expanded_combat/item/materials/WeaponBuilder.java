@@ -36,14 +36,14 @@ public class WeaponBuilder extends MaterialBuilder{
         itemBuilder.model((ctx, prov) -> {
             ItemModelBuilder modelbuilder;
             if (weapon.isBlockWeapon()) {
-                modelbuilder = getItemBaseModel(ctx, prov, weapon).texture("head", getWeaponTexture(prov, weapon.getLocationName(), locationName));
+                modelbuilder = getItemBaseModel(ctx, prov, weapon, "").texture("head", getWeaponTexture(prov, weapon.getLocationName(), locationName));
             } else {
-                if (weapon.dyeable()) modelbuilder = prov.generated(ctx, getWeaponDyeTexture(prov, weapon.getLocationName()), getWeaponTexture(prov, weapon.getLocationName(), locationName));
+                if (weapon.dyeable() || weapon.potionDippable()) modelbuilder = prov.generated(ctx, getWeaponDyeTexture(prov, weapon.getLocationName()), getWeaponTexture(prov, weapon.getLocationName(), locationName));
                 else modelbuilder = prov.generated(ctx, getWeaponTexture(prov, weapon.getLocationName(), locationName));
             }
 
             if (weapon.hasLargeModel() && !weapon.isBlockWeapon()) {
-                ItemModelBuilder largeModelbuilder = getItemBaseModel(ctx, prov, weapon);
+                ItemModelBuilder largeModelbuilder = getItemBaseModel(ctx, prov, weapon, "_large");
                 if (weapon.dyeable()) {
                     largeModelbuilder.texture("layer0", prov.modLoc("item_large/" + weapon.getLocationName() + "/" + "dye"));
                     largeModelbuilder.texture("layer1", prov.modLoc("item_large/" + weapon.getLocationName() + "/" + locationName));
@@ -88,8 +88,8 @@ public class WeaponBuilder extends MaterialBuilder{
         return itemBuilder.register();
     }
 
-    private static ItemModelBuilder getItemBaseModel(DataGenContext<Item, ECWeaponItem> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon) {
-        return prov.withExistingParent("item/" + ctx.getName(), prov.modLoc("item/bases/" + weapon.getLocationName()));
+    private static ItemModelBuilder getItemBaseModel(DataGenContext<Item, ECWeaponItem> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, String suffix) {
+        return prov.withExistingParent("item/" + ctx.getName() + suffix, prov.modLoc("item/bases/" + weapon.getLocationName()));
     }
 
     private static ResourceLocation getWeaponTexture(RegistrateItemModelProvider prov, String weaponLocation, String textureName) {

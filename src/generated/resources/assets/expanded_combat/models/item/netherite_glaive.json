@@ -1,15 +1,15 @@
 {
-  "parent": "expanded_combat:item/bases/glaive",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/netherite_glaive",
+      "model": "expanded_combat:item/netherite_glaive_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/glaive/dye",
-    "layer1": "expanded_combat:item_large/glaive/netherite"
+    "layer0": "expanded_combat:item/glaive/dye",
+    "layer1": "expanded_combat:item/glaive/netherite"
   }
 }

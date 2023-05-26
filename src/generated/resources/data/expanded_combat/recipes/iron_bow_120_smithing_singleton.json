@@ -45,7 +45,7 @@
       "recipe": {
         "type": "minecraft:smithing_transform",
         "addition": {
-          "item": "minecraft:gold_ingot"
+          "item": "minecraft:iron_ingot"
         },
         "base": {
           "item": "minecraft:bow"

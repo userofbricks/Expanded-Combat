@@ -1,14 +1,15 @@
 {
-  "parent": "expanded_combat:item/bases/scythe",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/lead_scythe",
+      "model": "expanded_combat:item/lead_scythe_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/scythe/lead"
+    "layer0": "expanded_combat:item/scythe/dye",
+    "layer1": "expanded_combat:item/scythe/lead"
   }
 }

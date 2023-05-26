@@ -1,0 +1,6 @@
+{
+  "parent": "expanded_combat:item/bases/spear",
+  "textures": {
+    "layer0": "expanded_combat:item_large/spear/steeleaf"
+  }
+}

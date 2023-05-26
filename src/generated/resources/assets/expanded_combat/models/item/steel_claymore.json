@@ -1,15 +1,15 @@
 {
-  "parent": "expanded_combat:item/bases/claymore",
+  "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "expanded_combat:item/steel_claymore",
+      "model": "expanded_combat:item/steel_claymore_large",
       "predicate": {
         "expanded_combat:large": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "expanded_combat:item_large/claymore/dye",
-    "layer1": "expanded_combat:item_large/claymore/steel"
+    "layer0": "expanded_combat:item/claymore/dye",
+    "layer1": "expanded_combat:item/claymore/steel"
   }
 }
