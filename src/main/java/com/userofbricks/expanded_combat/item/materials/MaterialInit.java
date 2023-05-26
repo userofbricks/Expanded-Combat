@@ -1,8 +1,7 @@
 package com.userofbricks.expanded_combat.item.materials;
 
 import com.userofbricks.expanded_combat.item.ECItems;
-import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
+import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;

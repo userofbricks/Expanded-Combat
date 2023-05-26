@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.item.recipes;
+package com.userofbricks.expanded_combat.item.recipes.conditions;
 
 import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;

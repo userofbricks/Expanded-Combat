@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.item.recipes;
+package com.userofbricks.expanded_combat.item.recipes.builders;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;

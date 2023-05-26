@@ -5,10 +5,10 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.item.materials.*;
-import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
-import com.userofbricks.expanded_combat.item.recipes.HardCodedRecipeBuilder;
-import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.HardCodedRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
@@ -23,7 +23,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -78,6 +77,12 @@ public class ECItems
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.ARROWS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.POTION_WEAPONS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
         });
     }
 

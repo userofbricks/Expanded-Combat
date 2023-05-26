@@ -1,11 +1,10 @@
 package com.userofbricks.expanded_combat.item.materials;
 
 import com.userofbricks.expanded_combat.config.ECConfig;
-import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.function.Supplier;
 

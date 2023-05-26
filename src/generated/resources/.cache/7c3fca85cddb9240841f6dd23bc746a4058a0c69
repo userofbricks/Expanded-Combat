@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-25T18:25:50.654979	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-05-26T13:23:17.286553	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 9de1e49472732248666233c9b8232d9441a11c9c assets/expanded_combat/lang/en_ud.json
 af3e5c987a0f8fd9d636393765aa622d3c4d599f assets/expanded_combat/lang/en_us.json
 b84c7efb5d6e309a3de54e20cecc8ff3ea721370 assets/expanded_combat/models/item/arctic_gauntlet.json
@@ -501,6 +501,7 @@ c5446c094ceb7bb56e1924a8b183119a37329d7d data/expanded_combat/advancements/recip
 c4472be088d1c560ef06f795305938a6273e3476 data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_120_smithing.json
 f63948cb1ab74d421229d5ec78b24fb3aef26aa9 data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_shaped.json
 c4472be088d1c560ef06f795305938a6273e3476 data/expanded_combat/advancements/recipes/combat/diamond_spear_conditional_smithing.json
+a47a7303f8fdc1e2a3c8049ace0707589da4db3e data/expanded_combat/advancements/recipes/combat/ec_tipped_arrow_recipe.json
 8ee496c867701c0dff3a12edbd1660f3ed085f1a data/expanded_combat/advancements/recipes/combat/fiery_battle_staff_conditional_shaped.json
 9b48f38795bd6080d10ff3096f8b026a87b67ebf data/expanded_combat/advancements/recipes/combat/fiery_broad_sword_conditional_shaped.json
 3a6eafde46d024c2cfd54ea8c6ea0fe6db27c3cf data/expanded_combat/advancements/recipes/combat/fiery_claymore_conditional_shaped.json
@@ -737,6 +738,7 @@ d917a7cbe05933d47863665c0c8fa75756289773 data/expanded_combat/advancements/recip
 b67ea36939d451b7e14a5d3776f14c4dceb2595d data/expanded_combat/advancements/recipes/combat/steeleaf_scythe_conditional_shaped.json
 dd12159721f2f2e9b086d791fc307ac53badd3ff data/expanded_combat/advancements/recipes/combat/steeleaf_sickle_conditional_shaped.json
 fd68cf80efc8a818049ddee1d985a4977ea8d294 data/expanded_combat/advancements/recipes/combat/steeleaf_spear_conditional_shaped.json
+001a4255c8980eb38af38647917f3ba9a315048b data/expanded_combat/advancements/recipes/combat/weapon_potion_dipping_recipe.json
 fdae80d5fb5bacb7536e06702bb03a1e3c4d432e data/expanded_combat/advancements/recipes/combat/yeti_gauntlet_conditional_shaped.json
 5f909afa61017920878b4eb96da977cd69790567 data/expanded_combat/recipes/arctic_gauntlet_shaped.json
 5cb7901263f1eb35507ca6e67ba81b15d91b7115 data/expanded_combat/recipes/bronze_battle_staff_shaped.json
@@ -814,6 +816,7 @@ c711658cdc5d4d5f17368de7a73ba41120cb5fde data/expanded_combat/recipes/diamond_si
 0cce68413ccb49bf15b2ccaa3f756533c7d5f168 data/expanded_combat/recipes/diamond_spear_120_smithing.json
 70618b0f44c8c2d0b8a89c84b5f6c8ba2f24c434 data/expanded_combat/recipes/diamond_spear_shaped.json
 d6f59b664ad0d6240bd46433babf09d2411800c8 data/expanded_combat/recipes/diamond_spear_smithing.json
+5e13efb5a2ac174d6aa32afcbbc234767c861d45 data/expanded_combat/recipes/ec_tipped_arrow_recipe.json
 09826b0231c51e472d2bdac739bd805ddd204693 data/expanded_combat/recipes/fiery_battle_staff_shaped.json
 23337736265ac3b6b5e671a7561c1048c5c7993d data/expanded_combat/recipes/fiery_broad_sword_shaped.json
 dcff1dc5d973cc5d8ef9ff1f5137128c2ba1d2d3 data/expanded_combat/recipes/fiery_claymore_shaped.json
@@ -1050,11 +1053,13 @@ dd9c64bf7ad328f433be9baeca0aff1f740cf4bb data/expanded_combat/recipes/steeleaf_m
 05c9d6d19cff7c1e2a7e05e2f7a6fca11449d92f data/expanded_combat/recipes/steeleaf_scythe_shaped.json
 24518b25ac549f7ff49ec254833dfdff79dcdcbb data/expanded_combat/recipes/steeleaf_sickle_shaped.json
 f3d0197455f49b73d9976ee149fca6ac28337e46 data/expanded_combat/recipes/steeleaf_spear_shaped.json
+04b5780d5a7216035dc324856644ac5f67d01191 data/expanded_combat/recipes/weapon_potion_dipping_recipe.json
 060b775b100559fecb6f45b55a9be227b9e4de5f data/expanded_combat/recipes/yeti_gauntlet_shaped.json
 a5e510bcf687c6087eee85269957523f2a415e56 data/expanded_combat/tags/items/arrows.json
 194dd04e43fe7dfab732f66608a2bb8491f7ce32 data/expanded_combat/tags/items/bows.json
 b45eb971d3976ef4105f4b6c21802a82749d813d data/expanded_combat/tags/items/crossbows.json
 cffa977c7252ef2609b7a3e3807f88f0d245afab data/expanded_combat/tags/items/gauntlets.json
+65a6fd49be3944a7cabf0509ffea265be919bb4f data/expanded_combat/tags/items/potion_weapons.json
 5c4ddacd34dd6a9d3c21e9dd73bdec06b7742eee data/expanded_combat/tags/items/quivers.json
 d2fdd71596f7dad5610ea7eb23221e90a3aa67b0 data/expanded_combat/tags/items/shields.json
 4a7d200ec663a3dbd9de54ec0ce847770cdb59c3 data/forge/tags/items/tools/shields.json

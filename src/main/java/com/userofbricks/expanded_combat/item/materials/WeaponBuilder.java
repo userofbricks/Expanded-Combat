@@ -6,10 +6,11 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.ECMaterialBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
+import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.client.color.item.ItemColor;
@@ -32,6 +33,9 @@ public class WeaponBuilder extends MaterialBuilder{
         if (weapon.dyeable() && weapon.potionDippable()) itemBuilder = registrate.item(locationName + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.HasPotionAndIsDyeable(material, weapon, p));
         else if (weapon.dyeable()) itemBuilder = registrate.item(locationName + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.Dyeable(material, weapon, p));
         else if (weapon.potionDippable()) itemBuilder = registrate.item(locationName + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.HasPotion(material, weapon, p));
+
+        if (weapon.dyeable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
+
         //MODEL
         itemBuilder.model((ctx, prov) -> {
             ItemModelBuilder modelbuilder;

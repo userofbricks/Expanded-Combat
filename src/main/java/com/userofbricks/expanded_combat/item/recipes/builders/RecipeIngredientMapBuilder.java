@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.item.recipes;
+package com.userofbricks.expanded_combat.item.recipes.builders;
 
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.world.item.crafting.Ingredient;
