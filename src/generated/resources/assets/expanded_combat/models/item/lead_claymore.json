@@ -1,0 +1,15 @@
+{
+  "parent": "expanded_combat:item/bases/claymore",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/lead_claymore",
+      "predicate": {
+        "expanded_combat:large": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "expanded_combat:item_large/claymore/dye",
+    "layer1": "expanded_combat:item_large/claymore/lead"
+  }
+}

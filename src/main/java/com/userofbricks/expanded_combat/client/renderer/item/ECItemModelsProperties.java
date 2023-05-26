@@ -38,24 +38,4 @@ public class ECItemModelsProperties {
             }
         }
     }
-
-    @SubscribeEvent
-    public static void itemColors(RegisterColorHandlersEvent.Item event) {
-        for (Material material : MaterialInit.arrowMaterials) {
-            event.register((itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1, material.getTippedArrowEntry().get());
-        }
-
-        /*for ( RegistryObject<Item> ro : ECItems.ITEMS.getEntries()) {
-            Item item = ro.get();
-            if (item instanceof ECWeaponItem.HasPotion) {
-                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack), item);
-            }
-            if (item instanceof ECWeaponItem.HasPotionAndIsDyeable) {
-                itemcolors.register((stack, itemLayer) -> (itemLayer == 1) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack): -1, item);
-            }
-            if (item instanceof ECWeaponItem.Dyeable) {
-                itemcolors.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack), item);
-            }
-        }*/
-    }
 }

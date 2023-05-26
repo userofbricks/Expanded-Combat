@@ -12,8 +12,11 @@ import com.userofbricks.expanded_combat.item.recipes.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.crafting.conditions.ICondition;
@@ -76,6 +79,11 @@ public class WeaponBuilder extends MaterialBuilder{
                 }
             }
         });
+        if (weapon.dyeable()) {
+            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack));
+        } else if (weapon.potionDippable()) {
+            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack));
+        }
 
         return itemBuilder.register();
     }

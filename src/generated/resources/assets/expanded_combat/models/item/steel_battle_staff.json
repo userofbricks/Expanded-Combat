@@ -1,0 +1,15 @@
+{
+  "parent": "expanded_combat:item/bases/battle_staff",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/steel_battle_staff",
+      "predicate": {
+        "expanded_combat:large": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "expanded_combat:item_large/battle_staff/dye",
+    "layer1": "expanded_combat:item_large/battle_staff/steel"
+  }
+}

@@ -147,6 +147,10 @@ public class Material {
         return weaponEntries.get(name);
     }
 
+    public Map<String, RegistryEntry<ECWeaponItem>> getWeapons() {
+        return weaponEntries;
+    }
+
     public @NotNull String getName() {
         return name;
     }

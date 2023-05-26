@@ -1,0 +1,14 @@
+{
+  "parent": "expanded_combat:item/bases/spear",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/knight_metal_spear",
+      "predicate": {
+        "expanded_combat:large": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "expanded_combat:item_large/spear/knight_metal"
+  }
+}

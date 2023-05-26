@@ -115,7 +115,6 @@ public class ExpandedCombat
             CuriosRendererRegistry.register(material.getQuiverEntry().get(), QuiverRenderer::new);
         }
         ECItemModelsProperties.registerModelOverides();
-        MinecraftForge.EVENT_BUS.addListener(ECItemModelsProperties::itemColors);
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
     }

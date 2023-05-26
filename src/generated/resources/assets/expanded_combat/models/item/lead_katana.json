@@ -1,0 +1,14 @@
+{
+  "parent": "expanded_combat:item/bases/katana",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/lead_katana",
+      "predicate": {
+        "expanded_combat:large": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "expanded_combat:item_large/katana/lead"
+  }
+}

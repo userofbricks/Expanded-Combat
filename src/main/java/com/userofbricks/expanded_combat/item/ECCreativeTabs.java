@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.materials.*;
 import net.minecraft.world.item.*;
@@ -71,6 +72,15 @@ public class ECCreativeTabs {
                                     if (!potion.getEffects().isEmpty()) {
                                         output.accept(PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion));
                                     }
+                                }
+                            }
+                        }
+                        if (CONFIG.enableWeapons) {
+                            for (Material material :
+                                    MaterialInit.weaponMaterials) {
+                                for (RegistryEntry<ECWeaponItem> itemRegistry :
+                                        material.getWeapons().values()) {
+                                    output.accept(new ItemStack(itemRegistry.get()));
                                 }
                             }
                         }
@@ -147,6 +157,15 @@ public class ECCreativeTabs {
                         if (!potion.getEffects().isEmpty()) {
                             items.putAfter(PotionUtils.setPotion(new ItemStack(Items.TIPPED_ARROW), potion), PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                         }
+                    }
+                }
+            }
+            if (CONFIG.enableWeapons) {
+                for (Material material :
+                        MaterialInit.weaponMaterials) {
+                    for (RegistryEntry<ECWeaponItem> itemRegistry :
+                            material.getWeapons().values()) {
+                        items.put(new ItemStack(itemRegistry.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }

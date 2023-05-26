@@ -10,9 +10,12 @@ import com.userofbricks.expanded_combat.item.recipes.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
@@ -71,6 +74,7 @@ public class ArrowBuilder extends MaterialBuilder {
                 //TODO: create tipped arrow recipes
             }
         });
+        itemBuilder.color(() -> () -> (ItemColor) (itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1);
         return itemBuilder.register();
     }
 }
