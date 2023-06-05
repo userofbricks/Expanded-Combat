@@ -27,7 +27,6 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         for(int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack itemstack = inv.getItem(i);
             if (itemstack.getItem() instanceof ECWeaponItem.HasPotion ecWeaponItem && MaterialInit.weaponMaterials.contains(ecWeaponItem.getMaterial())) {
-                if (PotionUtils.getPotion(itemstack).getEffects().size() != 0) return false;
 
                 if(numPotionWeapons > 0) return false;
 

@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "b": {
-            "tag": "expanded_combat:block/knight_metal"
+            "tag": "forge:storage_blocks/knight_metal"
           },
           "s": {
             "item": "minecraft:stick"

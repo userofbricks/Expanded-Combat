@@ -45,10 +45,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "minecraft:bow"
+          "item": "minecraft:gold_ingot"
         },
         "base": {
-          "item": "minecraft:gold_ingot"
+          "item": "minecraft:bow"
         },
         "result": {
           "item": "expanded_combat:gold_bow"

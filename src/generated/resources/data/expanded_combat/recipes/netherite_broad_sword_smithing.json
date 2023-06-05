@@ -20,10 +20,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:diamond_broad_sword"
+          "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "minecraft:netherite_ingot"
+          "item": "expanded_combat:diamond_broad_sword"
         },
         "result": {
           "item": "expanded_combat:netherite_broad_sword"

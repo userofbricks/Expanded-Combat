@@ -20,10 +20,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "minecraft:arrow"
+          "item": "minecraft:iron_ingot"
         },
         "base": {
-          "item": "minecraft:iron_ingot"
+          "item": "minecraft:arrow"
         },
         "result": {
           "item": "expanded_combat:iron_arrow"

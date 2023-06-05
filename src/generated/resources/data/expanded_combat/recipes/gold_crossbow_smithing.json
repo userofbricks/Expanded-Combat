@@ -20,10 +20,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "minecraft:crossbow"
+          "item": "minecraft:gold_ingot"
         },
         "base": {
-          "item": "minecraft:gold_ingot"
+          "item": "minecraft:crossbow"
         },
         "result": {
           "item": "expanded_combat:gold_crossbow"

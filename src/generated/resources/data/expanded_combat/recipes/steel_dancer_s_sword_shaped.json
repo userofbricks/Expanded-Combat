@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "p": {
-            "tag": "expanded_combat:sword/steel"
+            "tag": "forge:tools/swords/steel"
           },
           "s": {
             "item": "expanded_combat:gold_stick"

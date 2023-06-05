@@ -23,7 +23,7 @@
           "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "expanded_combat:diamond_bow"
+          "item": "expanded_combat:diamond_crossbow"
         },
         "result": {
           "item": "expanded_combat:netherite_crossbow"

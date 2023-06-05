@@ -27,6 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -128,11 +129,21 @@ public class ECWeaponItem extends SwordItem {
         public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
             if (PotionUtils.getPotion(weapon) != Potions.EMPTY) {
                 for ( MobEffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
-                    MobEffectInstance potionEffect = new MobEffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2);
+                    MobEffectInstance potionEffect = new MobEffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2, effectInstance.getAmplifier(), effectInstance.isAmbient(), effectInstance.isVisible());
                     target.addEffect(potionEffect);
+                    Collection<MobEffectInstance> collection = PotionUtils.getCustomEffects(weapon);
+                    if (!collection.isEmpty()) {
+                        for(MobEffectInstance mobeffectinstance : collection) {
+                            target.addEffect(new MobEffectInstance(mobeffectinstance));
+                        }
+                    }
                 }
             }
             return super.hurtEnemy(weapon, target, attacker);
+        }
+
+        public @NotNull ItemStack getDefaultInstance() {
+            return PotionUtils.setPotion(super.getDefaultInstance(), Potions.EMPTY);
         }
     }
 

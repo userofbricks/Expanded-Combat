@@ -28,7 +28,7 @@
             "item": "minecraft:netherite_ingot"
           },
           "p": {
-            "tag": "expanded_combat:sword/netherite"
+            "tag": "forge:tools/swords/netherite"
           },
           "s": {
             "item": "minecraft:stick"

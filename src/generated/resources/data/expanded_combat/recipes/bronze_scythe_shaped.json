@@ -28,7 +28,7 @@
             "item": "minecraft:barrier"
           },
           "p": {
-            "tag": "expanded_combat:sword/bronze"
+            "tag": "forge:tools/swords/bronze"
           },
           "s": {
             "item": "minecraft:stick"

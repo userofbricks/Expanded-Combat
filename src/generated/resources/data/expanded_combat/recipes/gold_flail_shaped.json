@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "b": {
-            "tag": "expanded_combat:block/gold"
+            "tag": "forge:storage_blocks/gold"
           },
           "c": {
             "item": "minecraft:chain"

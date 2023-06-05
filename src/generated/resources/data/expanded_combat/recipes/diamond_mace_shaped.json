@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "b": {
-            "tag": "expanded_combat:block/diamond"
+            "tag": "forge:storage_blocks/diamond"
           },
           "s": {
             "item": "minecraft:stick"

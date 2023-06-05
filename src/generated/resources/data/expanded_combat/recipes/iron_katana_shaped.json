@@ -28,7 +28,7 @@
             "item": "minecraft:iron_ingot"
           },
           "p": {
-            "tag": "expanded_combat:sword/iron"
+            "tag": "forge:tools/swords/iron"
           }
         },
         "pattern": [

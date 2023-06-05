@@ -80,7 +80,7 @@ public class ECCreativeTabs {
                                     MaterialInit.weaponMaterials) {
                                 for (RegistryEntry<ECWeaponItem> itemRegistry :
                                         material.getWeapons().values()) {
-                                    output.accept(new ItemStack(itemRegistry.get()));
+                                    output.accept(itemRegistry.get().getDefaultInstance());
                                 }
                             }
                         }
@@ -165,7 +165,7 @@ public class ECCreativeTabs {
                         MaterialInit.weaponMaterials) {
                     for (RegistryEntry<ECWeaponItem> itemRegistry :
                             material.getWeapons().values()) {
-                        items.put(new ItemStack(itemRegistry.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                        items.put(itemRegistry.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }

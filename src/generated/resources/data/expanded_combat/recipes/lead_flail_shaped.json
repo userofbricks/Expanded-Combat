@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "b": {
-            "tag": "expanded_combat:block/lead"
+            "tag": "forge:storage_blocks/lead"
           },
           "c": {
             "item": "minecraft:chain"

@@ -20,10 +20,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:iron_glaive"
+          "item": "minecraft:diamond"
         },
         "base": {
-          "item": "minecraft:diamond"
+          "item": "expanded_combat:iron_glaive"
         },
         "result": {
           "item": "expanded_combat:diamond_glaive"

@@ -23,15 +23,27 @@
         {
           "type": "expanded_combat:config_boolean",
           "config_entry": "half_bow"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Netherite"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "minecraft:bow"
+          "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "minecraft:netherite_ingot"
+          "item": "minecraft:bow"
         },
         "result": {
           "item": "expanded_combat:netherite_bow"

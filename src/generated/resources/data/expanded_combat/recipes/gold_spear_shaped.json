@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "p": {
-            "tag": "expanded_combat:sword/gold"
+            "tag": "forge:tools/swords/gold"
           },
           "s": {
             "item": "minecraft:stick"

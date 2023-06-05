@@ -8,9 +8,9 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.client.color.item.ItemColor;
@@ -24,8 +24,6 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 
 import java.util.Map;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class WeaponBuilder extends MaterialBuilder{
     public static RegistryEntry<ECWeaponItem> generateWeapon(Registrate registrate, String locationName, String name, WeaponMaterial weapon, Material material, Material craftedFrom) {
@@ -68,10 +66,10 @@ public class WeaponBuilder extends MaterialBuilder{
                     if (!weapon.recipeContains("i")) ingredientMap.remove('i');
                     ingredientMap.putAll(weapon.recipeIngredients().get().build());
                     if(ingredientMap.get('p') == null && weapon.recipeContains("p")) {
-                        Ingredient prev = weapon.craftedFrom() == null ? IngredientUtil.getTagedIngredientOrEmpty(MODID, "sword/" + material.getLocationName()) : Ingredient.of(material.getWeaponEntry(weapon.craftedFrom().name()).get());
+                        Ingredient prev = weapon.craftedFrom() == null ? IngredientUtil.getTagedIngredientOrEmpty("forge", "tools/swords/" + material.getLocationName()) : Ingredient.of(material.getWeaponEntry(weapon.craftedFrom().name()).get());
                         ingredientMap.put('p', prev);
                     }
-                    if(ingredientMap.get('b') == null && weapon.recipeContains("b")) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty(MODID, "block/" + material.getLocationName()));
+                    if(ingredientMap.get('b') == null && weapon.recipeContains("b")) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty("forge", "storage_blocks/" + material.getLocationName()));
 
                     conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
                 }

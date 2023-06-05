@@ -20,10 +20,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:iron_bow"
+          "item": "minecraft:diamond"
         },
         "base": {
-          "item": "minecraft:diamond"
+          "item": "expanded_combat:iron_crossbow"
         },
         "result": {
           "item": "expanded_combat:diamond_crossbow"

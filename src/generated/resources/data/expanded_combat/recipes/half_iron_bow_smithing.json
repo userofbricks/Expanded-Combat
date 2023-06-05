@@ -28,10 +28,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "minecraft:bow"
+          "item": "minecraft:iron_ingot"
         },
         "base": {
-          "item": "minecraft:iron_ingot"
+          "item": "minecraft:bow"
         },
         "result": {
           "item": "expanded_combat:half_iron_bow"

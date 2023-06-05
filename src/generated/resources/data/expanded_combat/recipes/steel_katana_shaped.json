@@ -28,7 +28,7 @@
             "item": "minecraft:barrier"
           },
           "p": {
-            "tag": "expanded_combat:sword/steel"
+            "tag": "forge:tools/swords/steel"
           }
         },
         "pattern": [

@@ -28,7 +28,7 @@
             "item": "minecraft:barrier"
           },
           "p": {
-            "tag": "expanded_combat:sword/silver"
+            "tag": "forge:tools/swords/silver"
           },
           "s": {
             "item": "minecraft:stick"

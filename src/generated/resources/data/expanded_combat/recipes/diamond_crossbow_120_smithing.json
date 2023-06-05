@@ -23,7 +23,7 @@
           "item": "minecraft:diamond"
         },
         "base": {
-          "item": "expanded_combat:iron_bow"
+          "item": "expanded_combat:iron_crossbow"
         },
         "result": {
           "item": "expanded_combat:diamond_crossbow"

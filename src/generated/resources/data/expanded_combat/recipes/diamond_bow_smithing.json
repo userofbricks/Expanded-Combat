@@ -23,15 +23,27 @@
         {
           "type": "expanded_combat:config_boolean",
           "config_entry": "half_bow"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Diamond"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:half_diamond_bow"
+          "item": "minecraft:diamond"
         },
         "base": {
-          "item": "minecraft:diamond"
+          "item": "expanded_combat:half_diamond_bow"
         },
         "result": {
           "item": "expanded_combat:diamond_bow"

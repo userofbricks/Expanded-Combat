@@ -25,7 +25,7 @@
         "category": "equipment",
         "key": {
           "p": {
-            "tag": "expanded_combat:sword/lead"
+            "tag": "forge:tools/swords/lead"
           },
           "s": {
             "item": "minecraft:stick"

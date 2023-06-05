@@ -45,10 +45,10 @@
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:diamond_bow"
+          "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "minecraft:netherite_ingot"
+          "item": "expanded_combat:diamond_bow"
         },
         "result": {
           "item": "expanded_combat:netherite_bow"

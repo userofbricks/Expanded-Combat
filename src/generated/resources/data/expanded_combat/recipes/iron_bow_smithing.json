@@ -23,15 +23,27 @@
         {
           "type": "expanded_combat:config_boolean",
           "config_entry": "half_bow"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Iron"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:smithing",
         "addition": {
-          "item": "expanded_combat:half_iron_bow"
+          "item": "minecraft:iron_ingot"
         },
         "base": {
-          "item": "minecraft:iron_ingot"
+          "item": "expanded_combat:half_iron_bow"
         },
         "result": {
           "item": "expanded_combat:iron_bow"

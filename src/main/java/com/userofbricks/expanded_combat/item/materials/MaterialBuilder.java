@@ -73,7 +73,7 @@ public abstract class MaterialBuilder {
                                                        InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix) {
         ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_smithing" + nameSufix);
 
-        LegacyUpgradeRecipeBuilder.smithing( ingredient, previosItem, RecipeCategory.COMBAT, ctx.get())
+        LegacyUpgradeRecipeBuilder.smithing( previosItem, ingredient, RecipeCategory.COMBAT, ctx.get())
                 .unlocks("has_item", triggerInstance)
                 .save(conditionalRecipe::addRecipe, ctx.getId() + "_smithing");
 

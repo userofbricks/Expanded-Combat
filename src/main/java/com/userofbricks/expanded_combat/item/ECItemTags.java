@@ -11,6 +11,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fml.ModList;
 import twilightforest.init.TFItems;
 
@@ -26,9 +27,19 @@ public final class ECItemTags {
     public static final TagKey<Item> ARROWS = bind("arrows");
     public static final TagKey<Item> QUIVERS = bind("quivers");
     public static final TagKey<Item> POTION_WEAPONS = bind("potion_weapons");
+    public static final TagKey<Item> IRON_SWORD = bindForgeSword("iron");
+    public static final TagKey<Item> GOLD_SWORD = bindForgeSword("gold");
+    public static final TagKey<Item> DIAMOND_SWORD = bindForgeSword("diamond");
+    public static final TagKey<Item> NETHERITE_SWORD = bindForgeSword("netherite");
 
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
+    }
+    private static TagKey<Item> bindForge(String name) {
+        return ItemTags.create(new ResourceLocation("forge", name));
+    }
+    private static TagKey<Item> bindForgeSword(String materialName) {
+        return bindForge("tools/swords/" + materialName);
     }
 
     public static void loadTags() {
@@ -37,6 +48,11 @@ public final class ECItemTags {
             if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)) {
                 shields.add(TFItems.KNIGHTMETAL_SHIELD.get());
             }
+
+            tagsProvider.addTag(IRON_SWORD).add(Items.IRON_SWORD);
+            tagsProvider.addTag(GOLD_SWORD).add(Items.GOLDEN_SWORD);
+            tagsProvider.addTag(DIAMOND_SWORD).add(Items.DIAMOND_SWORD);
+            tagsProvider.addTag(NETHERITE_SWORD).add(Items.NETHERITE_SWORD);
         });
     }
 }

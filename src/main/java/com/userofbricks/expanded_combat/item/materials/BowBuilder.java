@@ -58,7 +58,7 @@ public class BowBuilder extends MaterialBuilder {
                 //1.19.4 and prior
                 conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
                         material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows}, triggerInstance, "");
+                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows, new NotCondition(isSingleAddition)}, triggerInstance, "");
                 conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
                         craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
                         new ICondition[]{smithing_or_both, enableBows, new OrCondition(new NotCondition(enableHalfBows), isSingleAddition)}, triggerInstance, "_singleton");
@@ -66,7 +66,7 @@ public class BowBuilder extends MaterialBuilder {
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,
                         material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows}, "");
+                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows, new NotCondition(isSingleAddition)}, "");
                 conditionalSmithing120Recipe(ctx, prov, material,
                         craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
                         new ICondition[]{smithing_or_both, enableBows, new OrCondition(new NotCondition(enableHalfBows), isSingleAddition)}, "_singleton");
