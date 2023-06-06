@@ -23,7 +23,7 @@
           "item": "minecraft:diamond"
         },
         "base": {
-          "item": "expanded_combat:iron_arrow"
+          "item": "expanded_combat:iron_quiver"
         },
         "result": {
           "item": "expanded_combat:diamond_quiver"

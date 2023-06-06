@@ -155,7 +155,6 @@ public class Material {
         return name;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOf(String name) {
         for (Material material :
                 MaterialInit.materials) {
@@ -164,7 +163,6 @@ public class Material {
         return MaterialInit.materials.get(0);
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfArrow(String name) {
         for (Material material :
                 MaterialInit.arrowMaterials) {
@@ -173,7 +171,6 @@ public class Material {
         return MaterialInit.IRON;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfBow(String name) {
         for (Material material :
                 MaterialInit.bowMaterials) {
@@ -182,7 +179,6 @@ public class Material {
         return MaterialInit.IRON;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfCrossBow(String name) {
         for (Material material :
                 MaterialInit.crossbowMaterials) {
@@ -191,7 +187,6 @@ public class Material {
         return MaterialInit.IRON;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfGauntlet(String name) {
         for (Material material :
                 MaterialInit.gauntletMaterials) {
@@ -200,7 +195,6 @@ public class Material {
         return MaterialInit.LEATHER;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfQuiver(String name) {
         for (Material material :
                 MaterialInit.quiverMaterials) {
@@ -209,7 +203,6 @@ public class Material {
         return MaterialInit.LEATHER;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfShield(String name) {
         for (Material material :
                 MaterialInit.shieldMaterials) {
@@ -218,7 +211,6 @@ public class Material {
         return MaterialInit.VANILLA;
     }
 
-    @SuppressWarnings("unused")
     public static Material valueOfShield(ItemStack itemStack) {
         for (Material material :
                 MaterialInit.shieldMaterials) {

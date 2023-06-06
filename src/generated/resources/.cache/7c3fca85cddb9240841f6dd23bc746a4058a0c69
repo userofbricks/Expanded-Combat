@@ -1,4 +1,4 @@
-// 1.19.4	2023-06-04T20:55:18.590782	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-06-04T21:37:20.069929	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 9de1e49472732248666233c9b8232d9441a11c9c assets/expanded_combat/lang/en_ud.json
 af3e5c987a0f8fd9d636393765aa622d3c4d599f assets/expanded_combat/lang/en_us.json
 b84c7efb5d6e309a3de54e20cecc8ff3ea721370 assets/expanded_combat/models/item/arctic_gauntlet.json
@@ -804,9 +804,9 @@ ae0ba1d3ae35625c3759966d60f86d998b7b66a2 data/expanded_combat/recipes/diamond_ka
 f411df635c1f84c78555cbb6e810075dcfbbe008 data/expanded_combat/recipes/diamond_mace_120_smithing.json
 497714263db5cb7763176cf1fdc86e13f7fc3f5b data/expanded_combat/recipes/diamond_mace_shaped.json
 4a1c72f790c2ccfa405fc04b70eaca15769643f2 data/expanded_combat/recipes/diamond_mace_smithing.json
-45b198fc3b53f22a97490bf41655a8d66e429b6e data/expanded_combat/recipes/diamond_quiver_120_smithing.json
+029828f6b25dfaf7b44b3368fae64287b4623a02 data/expanded_combat/recipes/diamond_quiver_120_smithing.json
 2a8f57fd3523d9bbb86178d7110adb72f999b15c data/expanded_combat/recipes/diamond_quiver_shaped.json
-c67d6699a34c6ebb6b350352ff6e2a5a8c3f6093 data/expanded_combat/recipes/diamond_quiver_smithing.json
+df06ff7ebd352c0cd07dbdf945ab1f449ed1c06c data/expanded_combat/recipes/diamond_quiver_smithing.json
 6702eef5de3b446ffc76ff72a0dfaba121ffd806 data/expanded_combat/recipes/diamond_scythe_120_smithing.json
 9a73a49fa7e34e43c2c880c58cb7dfdc4267a3a2 data/expanded_combat/recipes/diamond_scythe_shaped.json
 0fd795311a58a080c82258a27f7a3f4eff93e634 data/expanded_combat/recipes/diamond_scythe_smithing.json
@@ -993,9 +993,9 @@ ae6f22a08e1f985a773e453b02281818e150d32f data/expanded_combat/recipes/netherite_
 0ee5b4154445887304c33de1b4fd910da6dedbc5 data/expanded_combat/recipes/netherite_mace_120_smithing.json
 40c3390692d1cc9f0bb05744dcadd774bbda48f2 data/expanded_combat/recipes/netherite_mace_shaped.json
 1d3e85e6c210c56e2a28b5e5bc8fcef5a6c833a9 data/expanded_combat/recipes/netherite_mace_smithing.json
-63c71c8a5aad0271356c6e6274183c583df194ba data/expanded_combat/recipes/netherite_quiver_120_smithing.json
+563e62d6616634e36a52e1c6c08537a062d24443 data/expanded_combat/recipes/netherite_quiver_120_smithing.json
 1fa289cade0811e397a93dfb876699535efdb68e data/expanded_combat/recipes/netherite_quiver_shaped.json
-568dff1a4d4de382245ad2734694b574488175fc data/expanded_combat/recipes/netherite_quiver_smithing.json
+e91fc348562afdc79da3ca06b8c15ef83992963f data/expanded_combat/recipes/netherite_quiver_smithing.json
 cb19804ed776b25b075e465c91e8a0cbe9f63efb data/expanded_combat/recipes/netherite_scythe_120_smithing.json
 8f91f4d0e7b76cb3250288f4eeeb1de6a43ae9fb data/expanded_combat/recipes/netherite_scythe_shaped.json
 8159f8c00297007013b4795329efffbb0ab86cd4 data/expanded_combat/recipes/netherite_scythe_smithing.json

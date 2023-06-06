@@ -63,6 +63,11 @@ public class ECCreativeTabs {
                                 output.accept(material.getCrossbowEntry().get());
                             }
                         }
+                        if (CONFIG.enableQuivers) {
+                            for (Material material : MaterialInit.quiverMaterials) {
+                                output.accept(material.getQuiverEntry().get());
+                            }
+                        }
                         if (CONFIG.enableArrows) {
                             for (Material material : MaterialInit.arrowMaterials) {
                                 output.accept(material.getArrowEntry().get());
@@ -146,6 +151,11 @@ public class ECCreativeTabs {
             if (CONFIG.enableCrossbows) {
                 for (Material material : MaterialInit.crossbowMaterials) {
                     items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(material.getCrossbowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                }
+            }
+            if (CONFIG.enableQuivers) {
+                for (Material material : MaterialInit.quiverMaterials) {
+                    items.putBefore(new ItemStack(Items.ARROW), new ItemStack(material.getQuiverEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableArrows) {
