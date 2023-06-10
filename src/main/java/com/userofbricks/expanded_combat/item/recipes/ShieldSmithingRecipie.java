@@ -52,11 +52,11 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
         if (addition_ul_material.getConfig().crafting.isSingleAddition || addition_ur_material.getConfig().crafting.isSingleAddition || addition_dl_material.getConfig().crafting.isSingleAddition
                 || addition_dr_material.getConfig().crafting.isSingleAddition || addition_m_material.getConfig().crafting.isSingleAddition) return false;
 
-        if (addition_ul_material.notSatifyingbeforeRequirement(ul_material.getName())) return false;
-        if (addition_ur_material.notSatifyingbeforeRequirement(ur_material.getName())) return false;
-        if (addition_dl_material.notSatifyingbeforeRequirement(dl_material.getName())) return false;
-        if (addition_dr_material.notSatifyingbeforeRequirement(dr_material.getName())) return false;
-        if (addition_m_material.notSatifyingbeforeRequirement(m_material.getName())) return false;
+        if (!addition_ul_material.satifiesOnlyReplaceRequirement(ul_material.getName())) return false;
+        if (!addition_ur_material.satifiesOnlyReplaceRequirement(ur_material.getName())) return false;
+        if (!addition_dl_material.satifiesOnlyReplaceRequirement(dl_material.getName())) return false;
+        if (!addition_dr_material.satifiesOnlyReplaceRequirement(dr_material.getName())) return false;
+        if (!addition_m_material.satifiesOnlyReplaceRequirement(m_material.getName())) return false;
 
         boolean is_ul = (ul_material != addition_ul_material) || addition_ul_material.isVanilla();
         boolean is_ur = (ur_material != addition_ur_material) || addition_ur_material.isVanilla();
@@ -80,11 +80,11 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
         Material addition_dr_material = Material.valueOfShield(inventory.getItem(5));
         Material addition_m_material = Material.valueOfShield(inventory.getItem(3));
 
-        Material result_ul_material = addition_ul_material.isVanilla() ? ul_material: addition_ul_material;
-        Material result_ur_material = addition_ur_material.isVanilla() ? ur_material: addition_ur_material;
-        Material result_dl_material = addition_dl_material.isVanilla() ? dl_material: addition_dl_material;
-        Material result_dr_material = addition_dr_material.isVanilla() ? dr_material: addition_dr_material;
-        Material result_m_material = addition_m_material.isVanilla() ? m_material: addition_m_material;
+        Material result_ul_material = inventory.getItem(1).isEmpty() ? ul_material: addition_ul_material;
+        Material result_ur_material = inventory.getItem(2).isEmpty() ? ur_material: addition_ur_material;
+        Material result_dl_material = inventory.getItem(4).isEmpty() ? dl_material: addition_dl_material;
+        Material result_dr_material = inventory.getItem(5).isEmpty() ? dr_material: addition_dr_material;
+        Material result_m_material = inventory.getItem(3).isEmpty() ? m_material: addition_m_material;
         ItemStack result = new ItemStack(ECItems.SHIELD_TIER_1.get());
         if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
             result = new ItemStack(ECItems.SHIELD_TIER_3.get());

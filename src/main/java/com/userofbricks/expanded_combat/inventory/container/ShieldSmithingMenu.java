@@ -13,7 +13,6 @@ import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.openjdk.nashorn.internal.ir.annotations.Ignore;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -120,17 +119,27 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
      * takes the input slots and matches it to the recipe and then asks the recipe to create its result
      */
     public void createResult() {
-        List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
-        if (list.isEmpty()) {
-            this.resultSlots.setItem(0, ItemStack.EMPTY);
+        if (this.selectedRecipe != null && this.selectedRecipe.matches(this.inputSlots, this.level)) {
+            ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
+            this.resultSlots.setRecipeUsed(this.selectedRecipe);
+            this.resultSlots.setItem(0, itemstack);
         } else {
-            this.selectedRecipe = list.get(0);
-            if (this.selectedRecipe.matches(this.inputSlots, this.level)) {
-                ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
-                this.resultSlots.setRecipeUsed(this.selectedRecipe);
-                this.resultSlots.setItem(0, itemstack);
-            } else {
+            List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
+            if (list.isEmpty()) {
                 this.resultSlots.setItem(0, ItemStack.EMPTY);
+            } else {
+                for (ShieldSmithingRecipie recipe :
+                        list) {
+                    this.selectedRecipe = recipe;
+                    if (this.selectedRecipe.matches(this.inputSlots, this.level)) {
+                        ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
+                        this.resultSlots.setRecipeUsed(this.selectedRecipe);
+                        this.resultSlots.setItem(0, itemstack);
+                        break;
+                    } else {
+                        this.resultSlots.setItem(0, ItemStack.EMPTY);
+                    }
+                }
             }
         }
     }

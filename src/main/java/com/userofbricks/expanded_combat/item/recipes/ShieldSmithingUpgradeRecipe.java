@@ -30,7 +30,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(1);
         if (!(base.getItem() instanceof ECShieldItem)) return false;
-        if (!(inventory.getItem(2).isEmpty())) return false;
+        if (inventory.getItem(2).isEmpty()) return false;
         Material existing_ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
         Material existing_ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
         Material addition_m_material = Material.valueOfShield(inventory.getItem(2));
@@ -43,11 +43,11 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         } else if (!(inventory.getItem(0).isEmpty())) {
             return false;
         }
-        return !addition_m_material.notSatifyingbeforeRequirement(existing_ur_material.getName()) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_ul_material.getName()) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_m_material.getName()) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_dr_material.getName()) ||
-                !addition_m_material.notSatifyingbeforeRequirement(existing_dl_material.getName());
+        return addition_m_material.satifiesOnlyReplaceRequirement(existing_ur_material.getName()) ||
+                addition_m_material.satifiesOnlyReplaceRequirement(existing_ul_material.getName()) ||
+                addition_m_material.satifiesOnlyReplaceRequirement(existing_m_material.getName()) ||
+                addition_m_material.satifiesOnlyReplaceRequirement(existing_dr_material.getName()) ||
+                addition_m_material.satifiesOnlyReplaceRequirement(existing_dl_material.getName());
     }
 
     @Override

@@ -168,7 +168,7 @@ public class ECConfig implements ConfigData {
 
     @Category("Materials") @CollapsibleObject @ConfigName("Diamond Settings")
     public MaterialConfig diamond = new MaterialConfig.Builder().fromTier(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND)
-            .addedShieldDurability(300).baseProtectionAmmount(5).afterBasePercentReduction(0.75f).requiredBeforeResource("Netherite", "Gold", "Iron", "Steel", "Bronze", "Silver", "Lead", "Ironwood", "Fiery", "Steeleaf", "Knightly", "Naga Scale")
+            .addedShieldDurability(300).baseProtectionAmmount(5).afterBasePercentReduction(0.75f)
             .bowDurability(672).arrowDamage(3.75f).bowPower(1).velocityMultiplier(3.5f)
             .quiverSlots(8)
             .mendingBonus(-0.1f)
@@ -176,7 +176,7 @@ public class ECConfig implements ConfigData {
 
     @Category("Materials") @CollapsibleObject @ConfigName("Netherite Settings")
     public MaterialConfig netherite = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE)
-            .addedShieldDurability(375).baseProtectionAmmount(6).afterBasePercentReduction(0.85f).requiredBeforeResource("Diamond").onlyReplaceResource("Diamond")
+            .addedShieldDurability(375).baseProtectionAmmount(6).afterBasePercentReduction(0.85f).onlyReplaceResource("Diamond")
             .bowDurability(768).arrowDamage(4.5f).bowPower(1).velocityMultiplier(4)
             .quiverSlots(10)
             .mendingBonus(0.2f)
@@ -302,7 +302,7 @@ public class ECConfig implements ConfigData {
         MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, ArrayList<String> repairItem,
                        float mendingBonus, boolean fireResistant, double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower,
                        float velocityMultiplier, int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction,
-                       boolean isSingleAddition, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
+                       boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
             this.durability = new Durability(toolDurability, addedShieldDurability, bowDurability);
             this.enchanting = new Enchanting(offenseEnchantability, defenseEnchantability);
             this.equipSound = equipSound;
@@ -310,7 +310,7 @@ public class ECConfig implements ConfigData {
             this.fireResistant = fireResistant;
             this.offense = new Offense(gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower, velocityMultiplier);
             this.defense =  new Defense(gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction);
-            this.crafting = new Crafting(repairItem, isSingleAddition, requiredBeforeResource, onlyReplaceResource, smithingTemplate);
+            this.crafting = new Crafting(repairItem, isSingleAddition, onlyReplaceResource, smithingTemplate);
             this.quiverSlots = quiverSlots;
         }
 
@@ -395,10 +395,9 @@ public class ECConfig implements ConfigData {
             public float afterBasePercentReduction;
         }
         public static class Crafting {
-            public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource, String smithingTemplate) {
+            public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate) {
                 this.repairItem = repairItem;
                 this.isSingleAddition = isSingleAddition;
-                this.requiredBeforeResource = requiredBeforeResource;
                 this.onlyReplaceResource = onlyReplaceResource;
                 this.smithingTemplate = smithingTemplate;
             }
@@ -407,8 +406,6 @@ public class ECConfig implements ConfigData {
             public ArrayList<String> repairItem;
             @ConfigName("Is Single Addition")
             public boolean isSingleAddition;
-            @ConfigName("Required On Shield Before This")
-            public ArrayList<String> requiredBeforeResource;
             @ConfigName("Only Replaced On Shield By This")
             public ArrayList<String> onlyReplaceResource;
             @ConfigName("Smithing Template") @Tooltip(count = 2)
@@ -440,7 +437,6 @@ public class ECConfig implements ConfigData {
             private float baseProtectionAmmount = 0;
             private float afterBasePercentReduction = 0;
             private boolean isSingleAddition = false;
-            private final ArrayList<String> requiredBeforeResource = new ArrayList<>();
             private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
             private String smithingTemplate = BuiltInRegistries.ITEM.getKey(ItemStack.EMPTY.getItem()).toString();
             private int quiverSlots = 0;
@@ -564,10 +560,6 @@ public class ECConfig implements ConfigData {
                 this.isSingleAddition = true;
                 return this;
             }
-            public Builder requiredBeforeResource(String ... materials) {
-                this.requiredBeforeResource.addAll(Arrays.asList(materials));
-                return this;
-            }
             public Builder onlyReplaceResource(String ... materials) {
                 this.onlyReplaceResource.addAll(Arrays.asList(materials));
                 return this;
@@ -594,7 +586,7 @@ public class ECConfig implements ConfigData {
                 return new MaterialConfig(toolDurability, addedShieldDurability, bowDurability, offenseEnchantability, defenseEnchantability, equipSound, repairItem,
                 mendingBonus, fireResistant, gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower,
                 velocityMultiplier, gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction,
-                isSingleAddition, requiredBeforeResource, onlyReplaceResource, smithingTemplate, quiverSlots);
+                isSingleAddition, onlyReplaceResource, smithingTemplate, quiverSlots);
             }
         }
     }

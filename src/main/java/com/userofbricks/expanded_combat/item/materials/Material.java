@@ -152,7 +152,7 @@ public class Material {
     }
 
     public @NotNull String getName() {
-        return name;
+        return this.name;
     }
 
     public static Material valueOf(String name) {
@@ -214,18 +214,10 @@ public class Material {
     public static Material valueOfShield(ItemStack itemStack) {
         for (Material material :
                 MaterialInit.shieldMaterials) {
+            if (material.getConfig().crafting.repairItem.isEmpty()) continue;
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
         }
         return MaterialInit.VANILLA;
-    }
-
-    public boolean notSatifyingbeforeRequirement(String shieldMaterialName) {
-        if (this.config.crafting.requiredBeforeResource.isEmpty()) return false;
-        for (String name :
-                this.config.crafting.requiredBeforeResource) {
-            if (name.equals(shieldMaterialName)) return false;
-        }
-        return true;
     }
 
     /**

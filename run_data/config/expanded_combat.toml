@@ -176,7 +176,6 @@ afterBasePercentReduction = 0.3
 [vanilla.crafting]
 repairItem = ["minecraft:barrier"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -214,7 +213,6 @@ afterBasePercentReduction = 0.5
 [leather.crafting]
 repairItem = ["minecraft:leather"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -252,7 +250,6 @@ afterBasePercentReduction = 0.6
 [iron.crafting]
 repairItem = ["minecraft:iron_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -290,7 +287,6 @@ afterBasePercentReduction = 0.4
 [gold.crafting]
 repairItem = ["minecraft:gold_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -328,7 +324,6 @@ afterBasePercentReduction = 0.75
 [diamond.crafting]
 repairItem = ["minecraft:diamond"]
 isSingleAddition = false
-requiredBeforeResource = ["Netherite", "Gold", "Iron", "Steel", "Bronze", "Silver", "Lead", "Ironwood", "Fiery", "Steeleaf", "Knightly", "Naga Scale"]
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -366,7 +361,6 @@ afterBasePercentReduction = 0.85
 [netherite.crafting]
 repairItem = ["minecraft:netherite_ingot"]
 isSingleAddition = true
-requiredBeforeResource = ["Diamond"]
 onlyReplaceResource = ["Diamond"]
 smithingTemplate = "minecraft:netherite_upgrade_smithing_template"
 
@@ -404,7 +398,6 @@ afterBasePercentReduction = 0.65
 [steel.crafting]
 repairItem = ["minecraft:barrier"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -442,7 +435,6 @@ afterBasePercentReduction = 0.5
 [bronze.crafting]
 repairItem = ["minecraft:barrier"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -480,7 +472,6 @@ afterBasePercentReduction = 0.4
 [silver.crafting]
 repairItem = ["minecraft:barrier"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -518,7 +509,6 @@ afterBasePercentReduction = 0.6
 [lead.crafting]
 repairItem = ["minecraft:barrier"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -556,7 +546,6 @@ afterBasePercentReduction = 0.65
 [nagaScale.crafting]
 repairItem = ["twilightforest:naga_scale"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -594,7 +583,6 @@ afterBasePercentReduction = 0.55
 [arctic.crafting]
 repairItem = ["twilightforest:arctic_fur"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -632,7 +620,6 @@ afterBasePercentReduction = 0.65
 [yeti.crafting]
 repairItem = ["twilightforest:alpha_yeti_fur"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -670,7 +657,6 @@ afterBasePercentReduction = 0.6
 [ironwood.crafting]
 repairItem = ["twilightforest:ironwood_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -708,7 +694,6 @@ afterBasePercentReduction = 0.7
 [fiery.crafting]
 repairItem = ["twilightforest:steeleaf_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -746,7 +731,6 @@ afterBasePercentReduction = 0.6
 [steeleaf.crafting]
 repairItem = ["twilightforest:steeleaf_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
@@ -784,6 +768,5 @@ afterBasePercentReduction = 0.6
 [knightmetal.crafting]
 repairItem = ["twilightforest:knightmetal_ingot"]
 isSingleAddition = false
-requiredBeforeResource = []
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
