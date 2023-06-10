@@ -32,7 +32,7 @@ public class WeaponBuilder extends MaterialBuilder{
         else if (weapon.dyeable()) itemBuilder = registrate.item(locationName + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.Dyeable(material, weapon, p));
         else if (weapon.potionDippable()) itemBuilder = registrate.item(locationName + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.HasPotion(material, weapon, p));
 
-        if (weapon.dyeable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
+        if (weapon.potionDippable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
 
         //MODEL
         itemBuilder.model((ctx, prov) -> {

@@ -26,45 +26,34 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
 
         for(int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack itemstack = inv.getItem(i);
-            if (itemstack.getItem() instanceof ECWeaponItem.HasPotion ecWeaponItem && MaterialInit.weaponMaterials.contains(ecWeaponItem.getMaterial())) {
-
+            if (itemstack.getItem() instanceof ECWeaponItem.HasPotion) {
                 if(numPotionWeapons > 0) return false;
-
-                numPotionWeapons++;
-
+                else numPotionWeapons++;
             } else if (itemstack.is(Items.LINGERING_POTION)) {
-                if(numPotions > 0)
-                    return false;
-                /* Potion potion = PotionUtils.getPotion(itemstack);
-                for(MobEffectInstance e:potion.getEffects())
-                    if(e.getEffect().equals(MobEffects.HARM))
-                        return false; */
-                numPotions++;
-            } else if (numPotions > 0 && !itemstack.isEmpty()) return false;
+                if(numPotions > 0) return false;
+                else numPotions++;
+            } else if (!itemstack.isEmpty()) return false;
         }
         return numPotions == 1 && numPotionWeapons == 1;
     }
 
     public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull RegistryAccess registryAccess) {
-        int numPotionWeapons = 0;
-        int numPotions = 0;
-        ItemStack potionItem = null;
-        ItemStack potionWeaponItem = null;
+        ItemStack potionItem = ItemStack.EMPTY;
+        ItemStack potionWeaponItem = ItemStack.EMPTY;
 
-        for(int i=0;i<inv.getContainerSize();i++) {
+        for(int i = 0; i < inv.getContainerSize(); i++) {
             ItemStack stack = inv.getItem(i);
             Item item = stack.getItem();
-            if(item instanceof ECWeaponItem.HasPotion ecWeaponItem && MaterialInit.weaponMaterials.contains(ecWeaponItem.getMaterial())) {
-                if (numPotionWeapons != 0) return ItemStack.EMPTY;
-                numPotionWeapons++;
+            if(item instanceof ECWeaponItem.HasPotion) {
+                if (potionWeaponItem != ItemStack.EMPTY) return ItemStack.EMPTY;
                 potionWeaponItem = stack.copy();
             }
-            else if(inv.getItem(i).is(Items.LINGERING_POTION))
-                if (numPotions != 0) return  ItemStack.EMPTY;
-                numPotions++;
-                potionItem = inv.getItem(i);
+            else if(stack.is(Items.LINGERING_POTION)) {
+                if (potionItem != ItemStack.EMPTY) return ItemStack.EMPTY;
+                potionItem = stack.copy();
+            }
         }
-        if(potionItem == null || potionWeaponItem == null)
+        if(potionItem == ItemStack.EMPTY || potionWeaponItem == ItemStack.EMPTY)
             return ItemStack.EMPTY;
 
         PotionUtils.setPotion(potionWeaponItem, PotionUtils.getPotion(potionItem));
@@ -73,8 +62,8 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         return potionWeaponItem;
     }
 
-    public boolean canCraftInDimensions(int p_44505_, int p_44506_) {
-        return p_44505_ >= 2 && p_44506_ >= 2;
+    public boolean canCraftInDimensions(int w, int h) {
+        return (w * h) >= 2;
     }
 
     public @NotNull RecipeSerializer<?> getSerializer() {
