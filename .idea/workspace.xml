@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed shield recipes again">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed potion weapon dipping recipe">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECWeaponBlockEntityWithoutLevelRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/TwilightForestCompatEvents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/PotionDippedWeaponRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/PotionDippedWeaponRecipe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,13 +300,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00022" summary="fixed the shield enchantment glint not apearing when enchanted">
-      <created>1627863645248</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1627863645248</updated>
     </task>
     <task id="LOCAL-00023" summary="1.17.1 renaming dump">
       <created>1628448710974</created>
@@ -637,7 +637,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686372520294</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="fixed potion weapon dipping recipe">
+      <created>1686434790280</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1686434790280</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -659,7 +666,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="shield smithing recipe now generates and works" />
     <MESSAGE value="fixed crash when combining curses with shields" />
     <MESSAGE value="fixed crash when combining curses with shields in anvil" />
     <MESSAGE value="fixes and stuff" />
@@ -684,7 +690,8 @@
     <MESSAGE value="added tipped arrow recipe and potion weapon recipe" />
     <MESSAGE value="lots of recipe bug fixing" />
     <MESSAGE value="fixed shield recipes again" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed shield recipes again" />
+    <MESSAGE value="fixed potion weapon dipping recipe" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed potion weapon dipping recipe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

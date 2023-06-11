@@ -15,9 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
@@ -41,15 +39,15 @@ public class ECItems
 {
     public static ArrayList<RegistryEntry<? extends Item>> ITEMS = new ArrayList<>();
 
-    public static final RegistryEntry<Item> LEATHER_STICK = ExpandedCombat.REGISTRATE.get().item("leather_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+    public static final RegistryEntry<Item> LEATHER_STICK = REGISTRATE.get().item("leather_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " l ", "s  "}, new RecipeIngredientMapBuilder().put('s', Items.STICK).put('l', Items.LEATHER).build(), 4,
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER, Items.STICK), "")).register();
 
-    public static final RegistryEntry<Item> GOLD_STICK = ExpandedCombat.REGISTRATE.get().item("gold_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+    public static final RegistryEntry<Item> GOLD_STICK = REGISTRATE.get().item("gold_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.IRON_INGOT).put('s', Items.STICK).build(), 4,
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT, Items.STICK), "")).register();
 
-    public static final RegistryEntry<Item> IRON_STICK = ExpandedCombat.REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+    public static final RegistryEntry<Item> IRON_STICK = REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.GOLD_INGOT).put('s', Items.STICK).build(), 4,
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.STICK), "")).register();
 
@@ -57,6 +55,19 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_2 = registerShield("shield_2", false);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
+
+    public static final RegistryEntry<SwordItem> STEEL_SWORD = REGISTRATE.get().item("steel_sword", properties -> new SwordItem(ECSwordTiers.STEEL, 3, -2.4F, properties))
+            .tag(ECItemTags.STEEL_SWORD)
+            .register();
+    public static final RegistryEntry<SwordItem> SILVER_SWORD = REGISTRATE.get().item("silver_sword", properties -> new SwordItem(ECSwordTiers.SILVER, 3, -2.4F, properties))
+            .tag(ECItemTags.SILVER_SWORD)
+            .register();
+    public static final RegistryEntry<SwordItem> LEAD_SWORD = REGISTRATE.get().item("lead_sword", properties -> new SwordItem(ECSwordTiers.LEAD, 3, -2.4F, properties))
+            .tag(ECItemTags.LEAD_SWORD)
+            .register();
+    public static final RegistryEntry<SwordItem> BRONZE_SWORD = REGISTRATE.get().item("bronze_sword", properties -> new SwordItem(ECSwordTiers.BRONZE, 3, -2.4F, properties))
+            .tag(ECItemTags.BRONZE_SWORD)
+            .register();
 
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
