@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/scythe",
+  "textures": {
+    "layer0": "expanded_combat:item_large/scythe/dye",
+    "layer1": "expanded_combat:item_large/scythe/gold"
+  }
+}

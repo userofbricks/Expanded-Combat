@@ -1,0 +1,6 @@
+{
+  "parent": "expanded_combat:item/bases/flail",
+  "textures": {
+    "head": "expanded_combat:item/flail/diamond"
+  }
+}

@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.function.Supplier;
 
 public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craftedFrom, @NotNull ECConfig.WeaponMaterialConfig config, boolean potionDippable, boolean dyeable, boolean isBlockWeapon,
-                             boolean hasLargeModel, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
+                             boolean hasCustomTransforms, boolean hasLargeModel, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
 
     public WeaponMaterial {MaterialInit.weaponMaterialConfigs.add(this);}
 
@@ -32,6 +32,7 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
         private boolean potionDippable = false;
         private boolean dyeable = false;
         private boolean isBlockWeapon = false;
+        private boolean hasCustomTransforms = false;
         private boolean hasLargeModel = false;
         private final Supplier<RecipeIngredientMapBuilder> recipeIngredients;
         private final String[] recipe;
@@ -63,9 +64,13 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
             this.craftedFrom = material;
             return this;
         }
+        public Builder customModelTransforms() {
+            hasCustomTransforms = true;
+            return this;
+        }
 
         public WeaponMaterial build() {
-            return new WeaponMaterial(name, craftedFrom, config, potionDippable, dyeable, isBlockWeapon, hasLargeModel, recipeIngredients, recipe);
+            return new WeaponMaterial(name, craftedFrom, config, potionDippable, dyeable, isBlockWeapon, hasCustomTransforms, hasLargeModel, recipeIngredients, recipe);
         }
     }
 }

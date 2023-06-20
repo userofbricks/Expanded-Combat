@@ -36,6 +36,8 @@ public class Material {
     private RegistryEntry<Item> DRModel = null;
     private RegistryEntry<Item> MModel = null;
     private final Map<String, RegistryEntry<ECWeaponItem>> weaponEntries = new HashMap<>();
+    private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
+    private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
 
     public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly) {
         this.name = name;
@@ -82,7 +84,9 @@ public class Material {
         if (MaterialInit.weaponMaterials.contains(this)) {
             for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
                 if (!weaponMaterial.isBlockWeapon() && blockWeaponOnly) continue;
-                weaponEntries.put(weaponMaterial.name(), WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, weaponMaterial, this, craftedFrom));
+                weaponEntries.put(weaponMaterial.name(), WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), name, weaponMaterial, this, craftedFrom));
+                weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
+                weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
             }
         }
     }
@@ -149,6 +153,14 @@ public class Material {
 
     public Map<String, RegistryEntry<ECWeaponItem>> getWeapons() {
         return weaponEntries;
+    }
+
+    public Map<String, RegistryEntry<DyableItem>> getWeaponGUIModel() {
+        return weaponGUIModel;
+    }
+
+    public Map<String, RegistryEntry<DyableItem>> getWeaponInHandModel() {
+        return weaponInHandModel;
     }
 
     public @NotNull String getName() {

@@ -4,6 +4,11 @@
       "type": "directory",
       "source": "slot",
       "prefix": "slot/"
+    },
+    {
+      "type": "directory",
+      "source": "item_large",
+      "prefix": "item_large/"
     }
   ]
 }

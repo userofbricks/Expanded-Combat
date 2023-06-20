@@ -1,6 +1,4 @@
 {
-  "parent": "expanded_combat:item/bases/flail",
-  "textures": {
-    "head": "expanded_combat:item/flail/fiery"
-  }
+  "parent": "minecraft:builtin/entity",
+  "gui_light": "front"
 }

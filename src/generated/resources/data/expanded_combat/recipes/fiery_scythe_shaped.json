@@ -24,7 +24,9 @@
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
-          "i": [],
+          "i": {
+            "item": "twilightforest:steeleaf_ingot"
+          },
           "p": {
             "tag": "forge:tools/swords/fiery"
           },

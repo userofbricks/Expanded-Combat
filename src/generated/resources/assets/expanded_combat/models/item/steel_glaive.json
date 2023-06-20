@@ -1,15 +1,4 @@
 {
-  "parent": "minecraft:item/generated",
-  "overrides": [
-    {
-      "model": "expanded_combat:item/steel_glaive_large",
-      "predicate": {
-        "expanded_combat:large": 1.0
-      }
-    }
-  ],
-  "textures": {
-    "layer0": "expanded_combat:item/glaive/dye",
-    "layer1": "expanded_combat:item/glaive/steel"
-  }
+  "parent": "minecraft:builtin/entity",
+  "gui_light": "front"
 }
