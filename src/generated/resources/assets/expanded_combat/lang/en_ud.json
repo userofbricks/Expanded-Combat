@@ -1458,9 +1458,14 @@
   "text.autoconfig.expanded_combat.option.yeti.offense.velocityMultiplier.@Tooltip": "ʍoqssoɹɔ ɹo ʍoq ɐ buıɹıɟ uǝɥʍ pǝsn",
   "text.autoconfig.expanded_combat.option.yeti.quiverSlots": "sʇoןSʎɹoʇuǝʌuI",
   "text.autoconfig.expanded_combat.title": "sbuıʇʇǝS ʇɐqɯoƆ pǝpuɐdxƎ",
+  "tooltip.expanded_combat.fiery.weapon": "sʇǝbɹɐʇ suɹnᗺ",
+  "tooltip.expanded_combat.knightly.weapon_armored": "sʇǝbɹɐʇ pǝɹoɯɹɐ oʇ ǝbɐɯɐp ɐɹʇxƎ",
+  "tooltip.expanded_combat.knightly.weapon_unarmored": "sʇǝbɹɐʇ pǝɹoɯɹɐun oʇ ǝbɐɯɐp ɐɹʇxƎ",
+  "tooltip.expanded_combat.mending_bonus": "snuoᗺ buıpuǝW",
   "tooltip.expanded_combat.shield_material.lower_left": " :ʇɟǝꞀ ɹǝʍoꞀ",
   "tooltip.expanded_combat.shield_material.lower_right": " :ʇɥbıᴚ ɹǝʍoꞀ",
   "tooltip.expanded_combat.shield_material.pegs_trim": " :ɯıɹ⟘ & sbǝԀ",
   "tooltip.expanded_combat.shield_material.upper_left": " :ʇɟǝꞀ ɹǝdd∩",
-  "tooltip.expanded_combat.shield_material.upper_right": " :ʇɥbıᴚ ɹǝdd∩"
+  "tooltip.expanded_combat.shield_material.upper_right": " :ʇɥbıᴚ ɹǝdd∩",
+  "tooltip.expanded_combat.when_both_hands_empty": "uodɐǝM buıpןoH ʇoN uǝɥM"
 }

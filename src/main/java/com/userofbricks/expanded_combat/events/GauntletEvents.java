@@ -1,13 +1,24 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,159 +31,40 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
 {
-    /*
     @SubscribeEvent
-    public void GauntletAnvilEnchanting(AnvilUpdateEvent event) {
-        final ItemStack left = event.getLeft();
-        final ItemStack right = event.getRight();
-        final ItemStack output = event.getOutput();
-        if (left.getItem() instanceof ECGauntletItem && (right.getItem() instanceof EnchantedBookItem || left.getItem() == right.getItem())) {
-            int xpCost = 0;
-            int nameCost = 0;
-            int maximumCost = event.getCost();
-            ItemStack stack1 = left.copy();
-            final ItemStack stack2 = right.copy();
-            final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack1);
-            final int j = left.getBaseRepairCost() + (stack2.isEmpty() ? 0 : stack2.getBaseRepairCost());
+    public static void onEquipmentChange(LivingHurtEvent ev) {
+        Entity entity = ev.getSource().getEntity();
+        if (!(entity instanceof LivingEntity causingEntity)) return;
+        Entity directEntity = ev.getSource().getDirectEntity();
+        if (entity != directEntity) return;
 
-            final boolean flag = stack2.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(stack2).isEmpty();
-            if (stack1.isDamageableItem() && !flag) {
-                final int l = left.getMaxDamage() - left.getDamageValue();
-                final int i1 = stack2.getMaxDamage() - stack2.getDamageValue();
-                final int j2 = i1 + stack1.getMaxDamage() * 12 / 100;
-                final int k1 = l + j2;
-                int l2 = stack1.getMaxDamage() - k1;
-                if (l2 < 0) {
-                    l2 = 0;
-                }
-                if (l2 < stack1.getDamageValue()) {
-                    stack1.setDamageValue(l2);
-                    xpCost += 2;
-                }
-            }
-            final Map<Enchantment, Integer> map2 = EnchantmentHelper.getEnchantments(stack2);
-            boolean flag2 = false;
-            boolean flag3 = false;
-            for (final Enchantment enchantment1 : map2.keySet()) {
-                if (enchantment1 != null) {
-                    final int i2 = map.getOrDefault(enchantment1, 0);
-                    int j3 = map2.get(enchantment1);
-                    j3 = ((i2 == j3) ? (j3 + 1) : Math.max(j3, i2));
-                    boolean flag4 = enchantment1.canEnchant(left);
-                    if (left.getItem() == Items.ENCHANTED_BOOK) {
-                        flag4 = true;
-                    }
-                    else if (enchantment1 == Enchantments.PUNCH_ARROWS || enchantment1 == Enchantments.KNOCKBACK) {
-                        flag4 = true;
-                    }
-                    for (final Enchantment enchantment2 : map.keySet()) {
-                        if (enchantment2 != enchantment1 && !enchantment1.isCompatibleWith(enchantment2)) {
-                            flag4 = false;
-                            ++xpCost;
-                        }
-                    }
-                    if (!flag4) {
-                        flag3 = true;
-                    }
-                    else {
-                        flag2 = true;
-                        if (j3 > enchantment1.getMaxLevel()) {
-                            j3 = enchantment1.getMaxLevel();
-                        }
-                        map.put(enchantment1, j3);
-                        int k2 = 0;
-                        switch (enchantment1.getRarity()) {
-                            case COMMON: {
-                                k2 = 1;
-                                break;
-                            }
-                            case UNCOMMON: {
-                                k2 = 2;
-                                break;
-                            }
-                            case RARE: {
-                                k2 = 4;
-                                break;
-                            }
-                            case VERY_RARE: {
-                                k2 = 8;
-                                break;
-                            }
-                        }
-                        if (flag) {
-                            k2 = Math.max(1, k2 / 2);
-                        }
-                        xpCost += k2 * j3;
-                        if (left.getCount() <= 1) {
-                            continue;
-                        }
-                        xpCost = 40;
-                    }
-                }
-            }
-            if (flag3 && !flag2) {
-                event.setOutput(ItemStack.EMPTY);
-                event.setCost(0);
-                return;
-            }
-            if (StringUtils.isBlank(event.getName())) {
-                if (left.hasCustomHoverName()) {
-                    nameCost = 1;
-                    xpCost += nameCost;
-                    stack1.resetHoverName();
-                }
-            }
-            else if (!event.getName().equals(left.getHoverName().getString())) {
-                nameCost = 1;
-                xpCost += nameCost;
-                stack1.setHoverName(new TextComponent(event.getName()));
-            }
-            if (flag && !stack1.isBookEnchantable(stack2)) {
-                stack1 = ItemStack.EMPTY;
-            }
-            maximumCost = j + xpCost;
-            if (xpCost <= 0) {
-                stack1 = ItemStack.EMPTY;
-            }
-            if (nameCost == xpCost && nameCost > 0 && maximumCost >= 40) {
-                maximumCost = 39;
-            }
-            if (maximumCost >= 40) {
-                stack1 = ItemStack.EMPTY;
-            }
-            if (!stack1.isEmpty()) {
-                int k3 = stack1.getBaseRepairCost();
-                if (!stack2.isEmpty() && k3 < stack2.getBaseRepairCost()) {
-                    k3 = stack2.getBaseRepairCost();
-                }
-                if (nameCost != xpCost || nameCost == 0) {
-                    k3 = getNewRepairCost(k3);
-                }
-                stack1.setRepairCost(k3);
-                EnchantmentHelper.setEnchantments(map, stack1);
-            }
-            event.setOutput(stack1);
-            event.setCost(stack1.getBaseRepairCost());
-        }
-    }
-    
-    public static int getNewRepairCost(int oldRepairCost) {
-        return oldRepairCost * 2 + 1;
-    }
-    */
+        CuriosApi.getCuriosHelper().findFirstCurio(causingEntity, stack -> stack.getItem() instanceof ECGauntletItem).ifPresent(slotResult -> {
+            ECGauntletItem gauntlet = (ECGauntletItem) slotResult.stack().getItem();
+            boolean hasWeaponInHand = false;
+            Multimap<Attribute, AttributeModifier> mainHandAttributes = causingEntity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
+            Multimap<Attribute, AttributeModifier> offHandAttributes = causingEntity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
 
-    @SubscribeEvent
-    public static void onEquipmentChange(LivingEquipmentChangeEvent ev) {
-        if ((ev.getSlot() == EquipmentSlot.MAINHAND || ev.getSlot() == EquipmentSlot.OFFHAND) && ev.getEntity() instanceof Player player) {
-            ItemStack toStack = ev.getTo();
-            List<SlotResult> slotResults = CuriosApi.getCuriosHelper().findCurios(player, itemStack -> itemStack.getItem() instanceof ECGauntletItem);
-            for (SlotResult slotResult : slotResults) {
-                ItemStack gauntlet = slotResult.stack();
-                if(gauntlet != ItemStack.EMPTY && gauntlet.getItem() instanceof ECGauntletItem ) {
-                    ((ECGauntletItem) gauntlet.getItem()).hasWeaponInHand = toStack.getItem() instanceof SwordItem || toStack.getItem() instanceof AxeItem;
+            if (mainHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
+                for (AttributeModifier modifier :
+                        mainHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
+                    if (modifier.getAmount() > 1) hasWeaponInHand = true;
                 }
             }
-        }
+            if (offHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
+                for (AttributeModifier modifier :
+                        offHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
+                    if (modifier.getAmount() > 1) hasWeaponInHand = true;
+                }
+            }
+
+
+            if (!hasWeaponInHand) {
+                float attackDamage = (float) Math.max(gauntlet.getAttackDamage(), 0.5);
+                float nagaDamage = gauntlet.getMaterial() == MaterialInit.NAGASCALE ? (float) (attackDamage / 2.0d * 3) : 0;
+                float yetiDamage = gauntlet.getMaterial() == MaterialInit.YETI ? (float) (attackDamage / 2.0d) : 0;
+                ev.setAmount(ev.getAmount() + ((attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, slotResult.stack())) + nagaDamage + yetiDamage)/2));
+            }
+        });
     }
 
     public static void DamageGauntletEvent(AttackEntityEvent event) {

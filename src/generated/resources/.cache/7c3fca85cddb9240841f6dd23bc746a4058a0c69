@@ -1,6 +1,6 @@
-// 1.19.4	2023-06-20T10:51:38.383398	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-eebd4df36220259de282f6e9a7a92f9fdd8536b1 assets/expanded_combat/lang/en_ud.json
-bfde7fcef4069bc50c188543a5902cc0c0e3b2d5 assets/expanded_combat/lang/en_us.json
+// 1.19.4	2023-06-20T22:31:28.12708	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+ad2f4a3bafa92691614c4292833b89ffc9c6d667 assets/expanded_combat/lang/en_ud.json
+ab89e6bc232bef5068ec0ac0e7522178b0ce1523 assets/expanded_combat/lang/en_us.json
 b84c7efb5d6e309a3de54e20cecc8ff3ea721370 assets/expanded_combat/models/item/arctic_gauntlet.json
 2c8c32d785bfc59bf23083eff8838054ee580570 assets/expanded_combat/models/item/bronze_battle_staff.json
 2c8c32d785bfc59bf23083eff8838054ee580570 assets/expanded_combat/models/item/bronze_broad_sword.json

@@ -74,7 +74,7 @@ public class LangStrings {
                 .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(field, configLangStart, alreadyAddedStrings)));
 
         REGISTRATE.get().addRawLang(GOLD_MENDING_TOOLTIP, "Mending Bonus");
-        REGISTRATE.get().addRawLang(WHEN_HANDS_EMPTY, "When Both Hands Empty");
+        REGISTRATE.get().addRawLang(WHEN_HANDS_EMPTY, "When Not Holding Weapon");
         REGISTRATE.get().addRawLang(FIERY_WEAPON_TOOLTIP, "Burns targets");
         REGISTRATE.get().addRawLang(KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP, "Extra damage to armored targets");
         REGISTRATE.get().addRawLang(KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP, "Extra damage to unarmored targets");

@@ -1458,9 +1458,14 @@
   "text.autoconfig.expanded_combat.option.yeti.offense.velocityMultiplier.@Tooltip": "used when firing a bow or crossbow",
   "text.autoconfig.expanded_combat.option.yeti.quiverSlots": "InventorySlots",
   "text.autoconfig.expanded_combat.title": "Expanded Combat Settings",
+  "tooltip.expanded_combat.fiery.weapon": "Burns targets",
+  "tooltip.expanded_combat.knightly.weapon_armored": "Extra damage to armored targets",
+  "tooltip.expanded_combat.knightly.weapon_unarmored": "Extra damage to unarmored targets",
+  "tooltip.expanded_combat.mending_bonus": "Mending Bonus",
   "tooltip.expanded_combat.shield_material.lower_left": "Lower Left: ",
   "tooltip.expanded_combat.shield_material.lower_right": "Lower Right: ",
   "tooltip.expanded_combat.shield_material.pegs_trim": "Pegs & Trim: ",
   "tooltip.expanded_combat.shield_material.upper_left": "Upper Left: ",
-  "tooltip.expanded_combat.shield_material.upper_right": "Upper Right: "
+  "tooltip.expanded_combat.shield_material.upper_right": "Upper Right: ",
+  "tooltip.expanded_combat.when_both_hands_empty": "When Not Holding Weapon"
 }
