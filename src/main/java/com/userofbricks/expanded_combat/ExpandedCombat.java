@@ -47,8 +47,7 @@ import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @Mod(MODID)
-public class ExpandedCombat
-{
+public class ExpandedCombat {
     public static final String MODID = "expanded_combat";
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver";

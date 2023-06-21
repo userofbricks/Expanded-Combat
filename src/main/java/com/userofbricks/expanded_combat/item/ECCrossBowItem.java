@@ -38,7 +38,7 @@ import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
-public class ECCrossBowItem extends CrossbowItem {
+public class ECCrossBowItem extends CrossbowItem implements ISimpleMaterialItem {
     public final Material material;
 
     private boolean startSoundPlayed = false;
@@ -317,21 +317,13 @@ public class ECCrossBowItem extends CrossbowItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(stack, world, list, flag);
-        if (this.material.getConfig().mendingBonus != 0.0f) {
-            if (this.material.getConfig().mendingBonus > 0.0f) {
-                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
-            }
-            else if (this.material.getConfig().mendingBonus < 0.0f) {
-                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
-            }
-        }
+    public float getMendingBonus() {
+        return material.getConfig().mendingBonus;
     }
 
     @Override
     public float getXpRepairRatio( ItemStack stack) {
-        return 2.0f + this.material.getConfig().mendingBonus;
+        return 2.0f + this.getMendingBonus();
     }
 
     @Override

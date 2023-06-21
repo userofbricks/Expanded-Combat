@@ -19,6 +19,10 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 public class LangStrings {
     public static final String GOLD_MENDING_TOOLTIP = "tooltip.expanded_combat.mending_bonus";
+    public static final String WHEN_HANDS_EMPTY = "tooltip.expanded_combat.when_both_hands_empty";
+    public static final String FIERY_WEAPON_TOOLTIP = "tooltip.expanded_combat.fiery.weapon";
+    public static final String KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_armored";
+    public static final String KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_unarmored";
     //Shield lang
     public static final String UPPER_LEFT_MATERIAL = "tooltip.expanded_combat.shield_material.upper_left";
     public static final String UPPER_RIGHT_MATERIAL = "tooltip.expanded_combat.shield_material.upper_right";
@@ -68,6 +72,12 @@ public class LangStrings {
         Arrays.stream(ECConfig.class.getDeclaredFields()).collect(
                 Collectors.groupingBy((field) -> getOrCreateCategoryForField(field, alreadyAddedStrings, configLangStart), LinkedHashMap::new, Collectors.toList()))
                 .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(field, configLangStart, alreadyAddedStrings)));
+
+        REGISTRATE.get().addRawLang(GOLD_MENDING_TOOLTIP, "Mending Bonus");
+        REGISTRATE.get().addRawLang(WHEN_HANDS_EMPTY, "When Both Hands Empty");
+        REGISTRATE.get().addRawLang(FIERY_WEAPON_TOOLTIP, "Burns targets");
+        REGISTRATE.get().addRawLang(KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP, "Extra damage to armored targets");
+        REGISTRATE.get().addRawLang(KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP, "Extra damage to unarmored targets");
     }
 
     private static String getOrCreateCategoryForField(Field field, List<String> alreadyAddedStrings, String configLangStart) {

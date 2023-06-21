@@ -109,7 +109,7 @@ public class ECShieldItem extends ShieldItem {
      */
     @Override
     public float getXpRepairRatio(ItemStack stack) {
-        return 2.0f + (float)getMendingBonus(stack);
+        return 2.0f + getMendingBonus(stack);
     }
 
     /**
@@ -117,12 +117,12 @@ public class ECShieldItem extends ShieldItem {
      * @param stack the stack that we want the mendiong bonus for.
      * @return the mending bonus.
      */
-    public double getMendingBonus(ItemStack stack) {
-        double ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
-        double ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
-        double dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
-        double dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().mendingBonus/5;
-        double m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().mendingBonus/5;
+    public float getMendingBonus(ItemStack stack) {
+        float ul = Material.valueOfShield(getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
+        float ur = Material.valueOfShield(getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
+        float dl = Material.valueOfShield(getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
+        float dr = Material.valueOfShield(getDownRightMaterial(stack)).getConfig().mendingBonus/5;
+        float m = Material.valueOfShield(getMiddleMaterial(stack)).getConfig().mendingBonus/5;
         return ul + ur + dl + dr + m;
     }
 
@@ -142,10 +142,10 @@ public class ECShieldItem extends ShieldItem {
 
         if (getMendingBonus(stack) != 0.0f) {
             if (getMendingBonus(stack) > 0.0f) {
-                list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE).append(Component.literal(ChatFormatting.BLUE + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
             else if (getMendingBonus(stack) < 0.0f) {
-                list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
         }
         super.appendHoverText(stack, world, list, flag);
