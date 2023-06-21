@@ -2,18 +2,16 @@ package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.client.renderer.item.ECWeaponBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import net.minecraft.ChatFormatting;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,7 +36,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class ECWeaponItem extends SwordItem {
+public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     private final Material material;
     private final WeaponMaterial weapon;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
@@ -96,25 +94,19 @@ public class ECWeaponItem extends SwordItem {
         return super.getDefaultAttributeModifiers(equipmentSlot);
     }
 
+    public float getMendingBonus() {return this.material.getConfig().mendingBonus + this.weapon.config().mendingBonus;}
+
     public float getXpRepairRatio( ItemStack stack) {
-        return 2.0f + this.material.getConfig().mendingBonus + this.weapon.config().mendingBonus;
+        return 2.0f + getMendingBonus();
     }
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         if (this.material == MaterialInit.FIERY) {
-            list.add(Component.translatable("tooltip.expanded_combat.fiery.weapon"));
+            list.add(Component.translatable(LangStrings.FIERY_WEAPON_TOOLTIP));
         } else if (this.material == MaterialInit.KNIGHTMETAL) {
-            list.add(Component.translatable("tooltip.expanded_combat.knightly.weapon"));
-        }
-        float mendingBonus = this.material.getConfig().mendingBonus + this.weapon.config().mendingBonus;
-        if (mendingBonus != 0.0f) {
-            if (mendingBonus > 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
-            }
-            else if (mendingBonus < 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(mendingBonus))));
-            }
+            if (this.weapon.isBlockWeapon()) list.add(Component.translatable(LangStrings.KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP));
+            else list.add(Component.translatable(LangStrings.KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP));
         }
     }
 

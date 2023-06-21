@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class ECBowItem extends BowItem {
+public class ECBowItem extends BowItem implements ISimpleMaterialItem {
     public final Material material;
     @Nullable
     public final Material previosMaterial;
@@ -162,7 +162,7 @@ public class ECBowItem extends BowItem {
         return (float)Math.max(20 - 5 * quickChargeLevel, 0);
     }
 
-    private float getMendingBonus() {
+    public float getMendingBonus() {
         if (previosMaterial != null) return (this.material.getConfig().mendingBonus / 2) + (this.previosMaterial.getConfig().mendingBonus / 2);
         return this.material.getConfig().mendingBonus;
     }
@@ -170,19 +170,6 @@ public class ECBowItem extends BowItem {
     @Override
     public float getXpRepairRatio( ItemStack stack) {
         return 2.0f + getMendingBonus();
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @ParametersAreNonnullByDefault
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
-        if (this.getMendingBonus() != 0.0f) {
-            if (this.getMendingBonus() > 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getMendingBonus()))));
-            }
-            else if (this.getMendingBonus() < 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getMendingBonus()))));
-            }
-        }
     }
 
     @Override

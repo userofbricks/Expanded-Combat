@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.item.ISimpleMaterialItem;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -54,10 +55,22 @@ public class GoldMending
     @OnlyIn(Dist.CLIENT)
     public static void handleToolTip( ItemTooltipEvent event) {
          ItemStack itemStack = event.getItemStack();
+        List<Component> list = event.getToolTip();
         if (doesGoldMendingContainItem(itemStack)) {
-             List<Component> list = event.getToolTip();
-            list.add(Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.GREEN)
-                    .append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+            list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)
+                    .append(Component.literal(ChatFormatting.BLUE + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+        }
+        if (itemStack.getItem() instanceof ISimpleMaterialItem simpleMaterialItem) {
+            if (simpleMaterialItem.getMendingBonus() != 0.0f) {
+                if (simpleMaterialItem.getMendingBonus() > 0.0f) {
+                    list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)
+                            .append(Component.literal(ChatFormatting.BLUE + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
+                }
+                else if (simpleMaterialItem.getMendingBonus() < 0.0f) {
+                    list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED)
+                            .append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
+                }
+            }
         }
     }
     

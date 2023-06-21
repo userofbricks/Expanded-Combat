@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -34,7 +35,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class ECGauntletItem extends Item implements ICurioItem
+public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final Material material;
@@ -91,20 +92,25 @@ public class ECGauntletItem extends Item implements ICurioItem
     }
 
     @Override
+    public float getMendingBonus() {
+        return material.getConfig().mendingBonus;
+    }
+
+    @Override
     public float getXpRepairRatio( ItemStack stack) {
-        return 2f + this.material.getConfig().mendingBonus;
+        return 2f + getMendingBonus();
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        list.add(Component.translatable("tooltip.expanded_combat.half_added_damage_when_holding_item").withStyle(ChatFormatting.GRAY));
-        if (this.material.getConfig().mendingBonus != 0.0f) {
-            if (this.material.getConfig().mendingBonus > 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.GREEN).append(Component.literal(ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
-            }
-            else if (this.material.getConfig().mendingBonus < 0.0f) {
-                list.add(1, Component.translatable("tooltip.expanded_combat.mending_bonus").withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.material.getConfig().mendingBonus))));
-            }
+        if (getAttackDamage() != 0){
+            list.add(Component.translatable(LangStrings.WHEN_HANDS_EMPTY).withStyle(ChatFormatting.GOLD));
+            list.add(
+                    Component.literal((getAttackDamage() > 0 ? ChatFormatting.BLUE + " +" : ChatFormatting.RED + " ") +
+                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getAttackDamage() / 2) + " ")
+                            .append(Component.translatable(Attributes.ATTACK_DAMAGE.getDescriptionId()).withStyle(getAttackDamage() > 0 ? ChatFormatting.BLUE : ChatFormatting.RED))
+            );
+            list.add(Component.empty());
         }
     }
     
