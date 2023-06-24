@@ -16,15 +16,15 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ECRecipeSerializerInit {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, ExpandedCombat.MODID);
-    //public static final RecipeType<IFletchingRecipe> FLETCHING_TYPE = register(IFletchingRecipe.FLETCHING_RECIPE_ID.toString());
+    public static final RegistryObject<RecipeType<IFletchingRecipe>> FLETCHING_TYPE = RECIPE_TYPES.register(IFletchingRecipe.FLETCHING_RECIPE_ID.getPath() , () -> ECRecipeSerializerInit.register(IFletchingRecipe.FLETCHING_RECIPE_ID.toString()));
     public static final RegistryObject<RecipeType<ShieldSmithingRecipie>> SHIELD_TYPE = RECIPE_TYPES.register(ShieldSmithingRecipie.SHIELD_RECIPE_ID.getPath(), () -> ECRecipeSerializerInit.register(ShieldSmithingRecipie.SHIELD_RECIPE_ID.toString()));
 
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ExpandedCombat.MODID);
     public static final RegistryObject<RecipeSerializer<?>> EC_TIPPED_ARROW_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_arrow", () -> new SimpleCraftingRecipeSerializer<>(ECTippedArrowRecipe::new));
     public static final RegistryObject<RecipeSerializer<?>> EC_POTION_WEAPON_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_potion_weapon", () -> new SimpleCraftingRecipeSerializer<>(PotionDippedWeaponRecipe::new));
-    //public static final RegistryObject<RecipeSerializer<?>> EC_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching", FletchingRecipe.Serializer::new);
-    //public static final RegistryObject<RecipeSerializer<?>> EC_SINGLE_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching_single", SingleFletchingRecipe.Serializer::new);
-    //public static final RegistryObject<RecipeSerializer<?>> EC_SPECIAL_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_fletching", () -> new SpecialFletchingRecipe.SpecialFletchingRecipeSerializer<>(TippedArrowFletchingRecipe::new));
+    public static final RegistryObject<RecipeSerializer<?>> EC_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching", FletchingRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> EC_TIPPED_ARROW_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_fletching", () -> new SpecialFletchingRecipe.SpecialFletchingRecipeSerializer<>(TippedArrowFletchingRecipe::new));
+
     public static final RegistryObject<RecipeSerializer<?>> EC_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("smithing_shields", ShieldSmithingRecipie.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> EC_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("upgrading_shields", ShieldUpgradeRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("legacy_shield_smithing_upgrade", LegacyShieldSmithingUpgradeRecipe.Serializer::new);

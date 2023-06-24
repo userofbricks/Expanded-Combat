@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractArrowEntityMixin",
     "CuriosMenuMixin",
+    "FletchingTableBlockMixin",
     "PunchEnchantmentMixin"
   ],
   "client": [

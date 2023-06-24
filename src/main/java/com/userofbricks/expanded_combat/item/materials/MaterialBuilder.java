@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item.materials;
 
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -78,6 +79,28 @@ public abstract class MaterialBuilder {
                 .save(conditionalRecipe::addRecipe, ctx.getId() + "_smithing");
 
         conditionalRecipe.build(prov, ctx.getId().withSuffix("_smithing" + nameSufix));
+    }
+
+    public static void conditionalFletchingRecipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient addition, Ingredient previosItem, ICondition[] conditions,
+                                                  InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix, int resultCount) {
+        ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_fletching" + nameSufix);
+
+        FletchingRecipeBuilder.fletching(previosItem, addition, RecipeCategory.COMBAT, ctx.get(), resultCount)
+                .unlocks("has_item", triggerInstance)
+                .save(conditionalRecipe::addRecipe, ctx.getId() + "_fletching");
+
+        conditionalRecipe.build(prov, ctx.getId().withSuffix("_fletching" + nameSufix));
+    }
+
+    public static void conditionalVariableFletchingRecipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient addition, Ingredient previosItem, ICondition[] conditions,
+                                                          InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix, int maxResultCount) {
+        ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_variable_fletching" + nameSufix);
+
+        FletchingRecipeBuilder.fletchingVarableResult(previosItem, addition, RecipeCategory.COMBAT, ctx.get(), maxResultCount)
+                .unlocks("has_item", triggerInstance)
+                .save(conditionalRecipe::addRecipe, ctx.getId() + "_variable_fletching");
+
+        conditionalRecipe.build(prov, ctx.getId().withSuffix("_variable_fletching" + nameSufix));
     }
 
     private static ConditionalRecipe.Builder createConditionalBuilder(DataGenContext<Item,? extends Item> ctx, ICondition[] conditions, InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix){
