@@ -21,29 +21,17 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "equipment",
-        "key": {
-          "#": {
-            "item": "minecraft:stick"
-          },
-          "X": {
-            "item": "minecraft:diamond"
-          },
-          "Y": {
-            "item": "minecraft:feather"
-          }
+        "type": "expanded_combat:ec_fletching",
+        "addition": {
+          "item": "minecraft:diamond"
         },
-        "pattern": [
-          "X",
-          "#",
-          "Y"
-        ],
+        "base": {
+          "item": "expanded_combat:fletched_sticks"
+        },
         "result": {
-          "count": 4,
+          "count": 6,
           "item": "expanded_combat:diamond_arrow"
-        },
-        "show_notification": true
+        }
       }
     }
   ]

@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "arrow"
+        },
+        {
+          "type": "expanded_combat:config_material_boolean",
+          "location_path": [
+            "config",
+            "crafting",
+            "is_single_addition"
+          ],
+          "material": "Netherite"
+        }
+      ],
+      "recipe": {
+        "type": "expanded_combat:ec_fletching",
+        "addition": {
+          "item": "minecraft:netherite_ingot"
+        },
+        "base": {
+          "item": "expanded_combat:diamond_arrow"
+        },
+        "max_output_repeat": 32,
+        "result": {
+          "item": "expanded_combat:netherite_arrow"
+        }
+      }
+    }
+  ]
+}

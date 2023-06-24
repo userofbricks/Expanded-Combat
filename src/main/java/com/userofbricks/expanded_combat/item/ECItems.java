@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.item.materials.*;
+import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.builders.HardCodedRecipeBuilder;
@@ -13,6 +14,7 @@ import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.*;
@@ -50,6 +52,11 @@ public class ECItems
     public static final RegistryEntry<Item> IRON_STICK = REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.GOLD_INGOT).put('s', Items.STICK).build(), 4,
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.STICK), "")).register();
+
+    public static final RegistryEntry<Item> FLETCHED_STICKS = REGISTRATE.get().item("fletched_sticks", Item::new).recipe((ctx, prov) -> {
+        MaterialBuilder.conditionalFletchingRecipe(ctx, prov, Ingredient.of(Items.FEATHER), Ingredient.of(Items.STICK), new ICondition[]{new ECConfigBooleanCondition("arrow")},
+                InventoryChangeTrigger.TriggerInstance.hasItems(Items.FEATHER, Items.STICK), "", 1);
+    }).register();
 
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_1 = registerShield("shield_1", false);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_2 = registerShield("shield_2", false);
@@ -93,11 +100,35 @@ public class ECItems
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.ARROWS))))
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.POTION_WEAPONS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
+
+            FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, MaterialInit.IRON.getArrowEntry().get(), 2)
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
+                    .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_fletching2"));
+            FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.FLINT), RecipeCategory.COMBAT, Items.ARROW, 6)
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
+                    .save(recipeProvider, new ResourceLocation(MODID, "gold_arrow_fletching2"));
+
+            FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(MaterialInit.DIAMOND.getTippedArrowEntry().get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, MaterialInit.NETHERITE.getTippedArrowEntry().get(), 32)
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
+                    .save(recipeProvider, new ResourceLocation(MODID, "netherite_arrow_fletching2"));
+
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MaterialInit.IRON.getArrowEntry().get(), 1)
+                    .pattern("N")
+                    .pattern("S")
+                    .pattern("F")
+                    .define('N', Items.IRON_NUGGET)
+                    .define('S', Items.STICK)
+                    .define('F', Items.FEATHER)
+                    .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_NUGGET, Items.STICK, Items.FEATHER))
+                    .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_shaped2"));
         });
     }
 

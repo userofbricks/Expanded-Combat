@@ -23,6 +23,7 @@ public class LangStrings {
     public static final String FIERY_WEAPON_TOOLTIP = "tooltip.expanded_combat.fiery.weapon";
     public static final String KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_armored";
     public static final String KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_unarmored";
+    public static final String FLETCHING_TABLE_SCREEN_TITLE = "container.expanded_combat.fletching";
     //Shield lang
     public static final String UPPER_LEFT_MATERIAL = "tooltip.expanded_combat.shield_material.upper_left";
     public static final String UPPER_RIGHT_MATERIAL = "tooltip.expanded_combat.shield_material.upper_right";
@@ -78,6 +79,7 @@ public class LangStrings {
         REGISTRATE.get().addRawLang(FIERY_WEAPON_TOOLTIP, "Burns targets");
         REGISTRATE.get().addRawLang(KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP, "Extra damage to armored targets");
         REGISTRATE.get().addRawLang(KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP, "Extra damage to unarmored targets");
+        REGISTRATE.get().addRawLang(FLETCHING_TABLE_SCREEN_TITLE, "Fletching Table");
     }
 
     private static String getOrCreateCategoryForField(Field field, List<String> alreadyAddedStrings, String configLangStart) {

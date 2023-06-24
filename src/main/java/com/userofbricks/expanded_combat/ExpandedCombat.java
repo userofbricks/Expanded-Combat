@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
+import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
@@ -85,6 +86,7 @@ public class ExpandedCombat {
 
     private void comms(InterModEnqueueEvent event) {
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
+        MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
         }
