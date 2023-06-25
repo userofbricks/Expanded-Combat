@@ -38,8 +38,8 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 public class QuiverSlotOverlay {
     protected static final ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/widgets.png");
 
-    //@SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void overlayEventHandler(RenderGuiEvent.Post event) {
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void overlayEventHandler(RenderGuiEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         assert player != null;
@@ -50,7 +50,6 @@ public class QuiverSlotOverlay {
         int w = event.getWindow().getGuiScaledWidth();
         int h = event.getWindow().getGuiScaledHeight();
         ECQuiverItem quiver = (ECQuiverItem) quiverSlotResult.get().stack().getItem();
-        Font font = mc.font;
         PoseStack poseStack = event.getPoseStack();
         int providedSlots = quiver.providedSlots;
 
@@ -117,19 +116,7 @@ public class QuiverSlotOverlay {
 
         renderSlot(poseStack, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow, 12);
         renderSlot(poseStack, offsetX -17, offsetY + 3, event.getPartialTick(), player, beforeArrow, 13);
-        renderSlot(poseStack, offsetX -23, offsetY + 3, event.getPartialTick(), player, nextArrow, 14);
-
-        poseStack.pushPose();
-        MultiBufferSource.BufferSource renderBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        if (!beforeArrow.isEmpty()) {
-            String inventoryKey1 = "[" + ECKeyRegistry.cycleQuiverLeft.getTranslatedKeyMessage().getString().toUpperCase() + "]";
-            font.drawInBatch(inventoryKey1, offsetX - 9 - font.width(inventoryKey1) / 2.0f, (float)(offsetY - 5), 16777215, true, poseStack.last().pose(), renderBuffer, Font.DisplayMode.NORMAL, 0, 15728880);
-        }
-        if (!nextArrow.isEmpty()) {
-            String inventoryKey1 = "[" + ECKeyRegistry.cycleQuiverRight.getTranslatedKeyMessage().getString().toUpperCase() + "]";
-            font.drawInBatch(inventoryKey1, offsetX + 31 - font.width(inventoryKey1) / 2.0f, (float)(offsetY - 5), 16777215, true, poseStack.last().pose(), renderBuffer, Font.DisplayMode.NORMAL, 0, 15728880);
-        }
-        poseStack.popPose();
+        renderSlot(poseStack, offsetX + 20, offsetY + 3, event.getPartialTick(), player, nextArrow, 14);
     }
 
     //near identical to the one in Gui.class

@@ -25,6 +25,17 @@ import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 @Config(name = MODID)
 public class ECConfig implements ConfigData {
 
+    //CLIENTSIDE
+    @Category("Client") @ConfigName("Quiver Hud Anchor Possition")
+    public OverlayAnchorPoss quiverHudAnchor = OverlayAnchorPoss.LEFT_OF_HOTBAR;
+    @Category("Client") @ConfigName("Quiver Hud horizontal adjustment")
+    public int quiverHudXAdjustment = -40;
+    @Category("Client") @ConfigName("Quiver Hud vertical adjustment")
+    public int quiverHudYAdjustment = -20;
+
+
+
+    //COMMON
     @Category("Item Types") @RequiresRestart @ConfigName("Enable Arrows")
     public boolean enableArrows = true;
     @Category("Item Types") @RequiresRestart @ConfigName("Enable Bows")
