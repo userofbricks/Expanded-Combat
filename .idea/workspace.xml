@@ -4,40 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed gauntlet damage when holding weapons">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_arrow_conditional_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/diamond_arrow_conditional_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fletched_sticks_conditional_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_arrow_conditional_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_arrow_conditional_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_arrow_conditional_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/netherite_arrow_conditional_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_arrow_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/diamond_arrow_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fletched_sticks_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_arrow_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_arrow_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_arrow_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/netherite_arrow_variable_fletching.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/inventory/FletchingTableScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/FletchingTableMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/FletchingRecipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/IFletchingRecipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/SpecialFletchingRecipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/TippedArrowFletchingRecipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/builders/FletchingRecipeBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/FletchingTableBlockMixin.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added fletching table functionality and all associated recipes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/OverlayAnchorPoss.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/arrows.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/arrows.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/arrows.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/arrows.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ECContainers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ECContainers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ArrowBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ArrowBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/curios/ArrowCurio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/curios/ArrowCurio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/SepteConsumer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +92,7 @@
         <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -217,7 +203,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Expanded-Combat [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -228,7 +214,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="runData" />
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -314,11 +300,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.Expanded-Combat [clean]" />
         <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [assemble]" />
-        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
-        <item itemvalue="Gradle.Expanded-Combat [runData]" />
       </list>
     </recent_temporary>
   </component>
@@ -331,20 +317,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00029" summary="bumped to beta 1">
-      <created>1636598349346</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1636598349346</updated>
-    </task>
-    <task id="LOCAL-00030" summary="finished Gauntlet toggle config effects">
-      <created>1681173304731</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1681173304731</updated>
     </task>
     <task id="LOCAL-00031" summary="made item properties assigned dynamically instead of hard coded">
       <created>1681180284909</created>
@@ -675,7 +647,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687379000085</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="added fletching table functionality and all associated recipes">
+      <created>1687576482897</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1687576482897</updated>
+    </task>
+    <task id="LOCAL-00079" summary="added fletching table functionality and all associated recipes">
+      <created>1687576502734</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1687576502734</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -697,7 +683,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added missing shield single addition recipes" />
     <MESSAGE value="update README.md" />
     <MESSAGE value="added crossbows and refactored item texture names" />
     <MESSAGE value="added arrows" />
@@ -722,7 +707,8 @@
     <MESSAGE value="added weapon large ing hand models" />
     <MESSAGE value="a bunch of tooltip stuff" />
     <MESSAGE value="fixed gauntlet damage when holding weapons" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed gauntlet damage when holding weapons" />
+    <MESSAGE value="added fletching table functionality and all associated recipes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added fletching table functionality and all associated recipes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

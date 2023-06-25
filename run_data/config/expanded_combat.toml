@@ -1,3 +1,6 @@
+quiverHudAnchor = "LEFT_OF_HOTBAR"
+quiverHudXAdjustment = -40
+quiverHudYAdjustment = -30
 enableArrows = true
 enableBows = true
 enableHalfBows = true

@@ -50,10 +50,11 @@ public abstract class AbstractArrowEntityMixin {
                     for (int s = 0; s < slots; s++) {
                         ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
                         if (((currentStack.getItem() == this.getPickupItem().getItem() && currentStack.getCount() < currentStack.getMaxStackSize()) || currentStack.isEmpty()) && ((ECQuiverItem) quiverStack.getItem()).providedSlots > s) {
-                            arrowStackHandler.insertItem(s, this.getPickupItem(), false);
+                            arrowStackHandler.insertItem(s, this.getPickupItem().copy(), false);
                             player.awardStat(Stats.ITEM_PICKED_UP.get(this.getPickupItem().getItem()), 1);
                             ((AbstractArrow) (Object) this).discard();
                             added.set(true);
+                            break;
                         }
                     }
                 });

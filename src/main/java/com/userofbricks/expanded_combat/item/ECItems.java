@@ -25,6 +25,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
@@ -84,6 +85,11 @@ public class ECItems
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);
         ITEMS.add(IRON_STICK);
+        ITEMS.add(FLETCHED_STICKS);
+        ITEMS.add(SHIELD_TIER_1);
+        ITEMS.add(SHIELD_TIER_2);
+        ITEMS.add(SHIELD_TIER_3);
+        ITEMS.add(SHIELD_TIER_4);
         for (Material material : MaterialInit.materials) material.registerElements();
 
         REGISTRATE.get().addDataGenerator(ProviderType.RECIPE, recipeProvider -> {
@@ -144,7 +150,8 @@ public class ECItems
         return shieldRegistryEntry;
     }
 
-    public static void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
+    @SubscribeEvent
+    public void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
         ItemStack stack = e.getObject();
 
         if (Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem())) {

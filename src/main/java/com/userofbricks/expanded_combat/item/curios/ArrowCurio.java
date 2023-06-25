@@ -5,8 +5,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
@@ -24,15 +26,14 @@ public class ArrowCurio implements ICurio {
         int slotId = slotContext.index();
         String identifier = slotContext.identifier();
         LivingEntity entity = slotContext.entity();
-        AtomicBoolean result = new AtomicBoolean(false);
-        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(curios -> {
-            ItemStack quiver = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0);
-            if (quiver.getItem() instanceof ECQuiverItem ecQuiverItem) {
-                int providedSlots = ecQuiverItem.providedSlots;
-                result.set(slotId < providedSlots);
-            }
-        });
-        return result.get() && identifier.equals(ARROWS_CURIOS_IDENTIFIER);
+
+        Optional<SlotResult> quiverSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(entity, stack -> stack.getItem() instanceof ECQuiverItem);
+        if (quiverSlotResult.isEmpty()) return false;
+
+        ECQuiverItem quiverItem = (ECQuiverItem) quiverSlotResult.get().stack().getItem();
+        int providedSlots = quiverItem.providedSlots;
+
+        return slotId < providedSlots && identifier.equals(ARROWS_CURIOS_IDENTIFIER);
     }
 
     @Override

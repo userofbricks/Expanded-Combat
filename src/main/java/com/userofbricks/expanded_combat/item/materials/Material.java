@@ -59,20 +59,31 @@ public class Material {
     public void registerElements() {
         if (MaterialInit.arrowMaterials.contains(this)) {
             this.arrowEntry = ArrowBuilder.generateArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
-            if (config.offense.canBeTipped) this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+            ECItems.ITEMS.add(arrowEntry);
+            if (config.offense.canBeTipped) {
+                this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+                ECItems.ITEMS.add(tippedArrowEntry);
+            }
         }
         if (MaterialInit.bowMaterials.contains(this)) {
-            if (halfbow) this.halfBowEntry = BowBuilder.generateHalfBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+            if (halfbow) {
+                this.halfBowEntry = BowBuilder.generateHalfBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+                ECItems.ITEMS.add(halfBowEntry);
+            }
             this.bowEntry = BowBuilder.generateBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            ECItems.ITEMS.add(bowEntry);
         }
         if (MaterialInit.crossbowMaterials.contains(this)) {
             this.crossbowEntry = CrossBowBuilder.generateCrossBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            ECItems.ITEMS.add(crossbowEntry);
         }
         if (MaterialInit.gauntletMaterials.contains(this)) {
             this.gauntletEntry = GauntletBuilder.generateGauntlet(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            ECItems.ITEMS.add(gauntletEntry);
         }
         if (MaterialInit.quiverMaterials.contains(this)) {
             this.quiverEntry = QuiverBuilder.generateQuiver(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            ECItems.ITEMS.add(quiverEntry);
         }
         if (MaterialInit.shieldMaterials.contains(this)) {
             this.ULModel = ShieldBuilder.createModelItem(getLocationName(), "ul");
@@ -84,7 +95,9 @@ public class Material {
         if (MaterialInit.weaponMaterials.contains(this)) {
             for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
                 if (!weaponMaterial.isBlockWeapon() && blockWeaponOnly) continue;
-                weaponEntries.put(weaponMaterial.name(), WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), name, weaponMaterial, this, craftedFrom));
+                RegistryEntry<ECWeaponItem> weapon = WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), name, weaponMaterial, this, craftedFrom);
+                weaponEntries.put(weaponMaterial.name(), weapon);
+                ECItems.ITEMS.add(weapon);
                 weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
                 weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
             }

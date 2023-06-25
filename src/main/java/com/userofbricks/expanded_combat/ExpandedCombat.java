@@ -31,7 +31,6 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -75,7 +74,6 @@ public class ExpandedCombat {
         ECContainers.MENU_TYPES.register(bus);
         ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
-        MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, ECItems::attachCaps);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
         MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
@@ -104,6 +102,7 @@ public class ExpandedCombat {
     }
 
     private void setup(FMLCommonSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(new ECItems());
         ECNetworkHandler.register();
     }
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
+@SuppressWarnings("unused")
 public class MaterialInit {
     public static List<WeaponMaterial> weaponMaterialConfigs = new ArrayList<>();
 
