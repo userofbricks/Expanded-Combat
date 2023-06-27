@@ -1,8 +1,8 @@
 {
 	"credit": "Made by Userofbricks",
 	"textures": {
-		"head": "expanded_combat:item/great_hammer_diamond",
-		"particle": "#head"
+		"particle": "expanded_combat:item/great_hammer_diamond",
+		"head": "expanded_combat:item/great_hammer_diamond"
 	},
 	"elements": [
 		{
@@ -157,8 +157,8 @@
 			"scale": [1.75, 1.75, 1.75]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [0, -90, -45],
-			"translation": [-2, 5.75, 2.75],
+			"rotation": [-90, -90, -45],
+			"translation": [-1, 5.75, 1],
 			"scale": [1.75, 1.75, 1.75]
 		},
 		"firstperson_righthand": {
@@ -167,7 +167,7 @@
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 90, -55],
+			"rotation": [90, 90, -55],
 			"translation": [2, 2, -0.5],
 			"scale": [1.5, 1.5, 1.5]
 		},

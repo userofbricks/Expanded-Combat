@@ -1,8 +1,8 @@
 {
 	"credit": "Made by Userofbricks",
 	"textures": {
-		"head": "expanded_combat:item/mace_oak_wood",
-		"particle": "#head"
+		"particle": "expanded_combat:item/mace_oak_wood",
+		"head": "expanded_combat:item/mace_oak_wood"
 	},
 	"elements": [
 		{
@@ -210,12 +210,12 @@
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, 0],
-			"translation": [-2, 6.75, 2.75],
+			"translation": [-1, 6.75, 0.5],
 			"scale": [2, 2, 2]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 90, -10],
-			"translation": [2, 4, 1.5],
+			"translation": [-1, 4, 1],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_lefthand": {
@@ -242,11 +242,13 @@
 		{
 			"name": "handle",
 			"origin": [8.75, 8.25, 15],
+			"color": 0,
 			"children": [0, 1, 2, 3, 4, 5, 6, 7]
 		},
 		{
 			"name": "head",
 			"origin": [10.25, 10, 9.975],
+			"color": 0,
 			"children": [8, 9, 10, 11, 12, 13, 14]
 		}
 	]
