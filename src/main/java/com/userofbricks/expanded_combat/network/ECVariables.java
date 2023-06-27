@@ -1,6 +1,8 @@
 package com.userofbricks.expanded_combat.network;
 
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -31,6 +33,7 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECVariables {
+
     public static int getArrowSlot(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).arrowSlot;
     }
@@ -90,7 +93,7 @@ public class ECVariables {
         @SubscribeEvent
         public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
             if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
-                event.addCapability(new ResourceLocation("examples_for_expanded_combat", "player_variables"), new PlayerVariablesProvider());
+                event.addCapability(new ResourceLocation("expanded_combat", "player_variables"), new PlayerVariablesProvider());
         }
 
         private final PlayerVariables playerVariables = new PlayerVariables();
@@ -118,6 +121,9 @@ public class ECVariables {
         public void syncPlayerVariables(Entity entity) {
             if (entity instanceof ServerPlayer serverPlayer)
                 ECNetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new PlayerVariablesSyncMessage(this));
+            else if (entity instanceof LocalPlayer localPlayer) {
+                ECNetworkHandler.INSTANCE.send(ECNetworkHandler.LOCAL_PLAYER.with(() -> localPlayer), new PlayerVariablesSyncMessage(this));
+            }
         }
 
         public Tag writeNBT() {
@@ -154,6 +160,11 @@ public class ECVariables {
                 if (!context.getDirection().getReceptionSide().isServer()) {
                     assert Minecraft.getInstance().player != null;
                     PlayerVariables variables = Minecraft.getInstance().player.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
+                    variables.arrowSlot = message.data.arrowSlot;
+                } else {
+                    ServerPlayer serverPlayer = context.getSender();
+                    assert serverPlayer != null;
+                    PlayerVariables variables = serverPlayer.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
                     variables.arrowSlot = message.data.arrowSlot;
                 }
             });

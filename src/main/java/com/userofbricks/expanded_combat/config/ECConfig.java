@@ -267,7 +267,7 @@ public class ECConfig implements ConfigData {
     public MaterialConfig fiery = new MaterialConfig.Builder()
             .toolDurability(1024).gauntletArmorAmount(4).gauntletAttackDamage(4f).armorToughness(1.5)
             .addedShieldDurability(275).baseProtectionAmmount(4.5f).afterBasePercentReduction(0.7f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "steeleaf_ingot"))
+            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "fiery_ingot"))
             .offenseEnchantability(10).defenseEnchantability(10)
             .flaming()
             .build();

@@ -29,8 +29,9 @@ public class ECArrow extends Arrow {
         this.setPos(x, y, z);
     }
 
-    public ECArrow(Level level, LivingEntity shooter) {
+    public ECArrow(Level level, LivingEntity shooter, Material material) {
         this(ECEntities.EC_ARROW.get(), level);
+        this.material = material;
         this.setPos(shooter.getX(), shooter.getEyeY() - (double)0.1F, shooter.getZ());
         this.setOwner(shooter);
         if (shooter instanceof Player) {

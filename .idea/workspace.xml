@@ -4,11 +4,84 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed arrow dupe bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/OverlayAnchorPoss.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="finished quiver hud">
+      <change afterPath="$PROJECT_DIR$/run_server/banned-ips.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/banned-players.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/config/fml.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/config/forge-common.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/config/twilightforest-common.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-06-25_14.30.49-fml.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/eula.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/ops.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/server.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/usercache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/usernamecache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/whitelist.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/capabilities.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/capabilities.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/advancements/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/data/raids.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/capabilities.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/level.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/level.dat_old" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/poi/r.-1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/poi/r.-1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/serverconfig/curios-server.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/serverconfig/forge-server.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/serverconfig/jei-server.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/session.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/stats/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_stick_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gold_stick_conditional_shaped.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_stick_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/iron_stick_conditional_shaped.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_stick_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gold_stick_shaped.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_stick_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/iron_stick_shaped.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/ECArrowRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/ECArrowRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/ECArrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/ECArrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECArrowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECArrowItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECNetworkHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECNetworkHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +195,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/minecraft" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/run_server/mods" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -138,11 +211,11 @@
       <recent name="com.userofbricks.expanded_combat.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/run_server/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/minecraft" />
       <recent name="$PROJECT_DIR$/run/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item" />
-      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/run/mods" />
@@ -285,9 +358,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.Expanded-Combat [clean]" />
-        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [assemble]" />
         <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
       </list>
@@ -302,13 +375,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00032" summary="code cleanup">
-      <created>1681239191203</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1681239191203</updated>
     </task>
     <task id="LOCAL-00033" summary="update to 1.19.4">
       <created>1681255442128</created>
@@ -646,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687666100224</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="finished quiver hud">
+      <created>1687668044524</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1687668044524</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +741,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added crossbows and refactored item texture names" />
     <MESSAGE value="added arrows" />
     <MESSAGE value="added quivers and their ability to hold arrows" />
     <MESSAGE value="fixed quiver bug" />
@@ -693,7 +765,8 @@
     <MESSAGE value="fixed gauntlet damage when holding weapons" />
     <MESSAGE value="added fletching table functionality and all associated recipes" />
     <MESSAGE value="fixed arrow dupe bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed arrow dupe bug" />
+    <MESSAGE value="finished quiver hud" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished quiver hud" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -712,5 +785,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Expanded_Combat$runClient.ic" NAME="runClient Coverage Results" MODIFIED="1687738441054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

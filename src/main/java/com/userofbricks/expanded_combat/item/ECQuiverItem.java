@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -87,7 +88,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         for (int check = 0; check < this.providedSlots; check++) {
             arrowSlot += forward ? 1 : -1;
             if (arrowSlot >= this.providedSlots) arrowSlot = 0;
-            if (arrowSlot < 0) arrowSlot = this.providedSlots;
+            if (arrowSlot < 0) arrowSlot = this.providedSlots - 1;
             if (!itemHandler.getStackInSlot(arrowSlot).isEmpty())  {
                 break;
             }

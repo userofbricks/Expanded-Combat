@@ -83,8 +83,6 @@ public class ExpandedCombat {
     }
 
     private void comms(InterModEnqueueEvent event) {
-        MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
-        MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
         }
@@ -108,6 +106,9 @@ public class ExpandedCombat {
 
     @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
+        MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
+        MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
+        
         for (Material material : MaterialInit.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }

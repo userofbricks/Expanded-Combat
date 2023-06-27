@@ -19,10 +19,9 @@ public class ECArrowItem extends ArrowItem {
     }
 
     public @NotNull AbstractArrow createArrow(@NotNull Level worldIn, @NotNull ItemStack stack, @NotNull LivingEntity shooter) {
-        ECArrow arrowentity = new ECArrow(worldIn, shooter);
+        ECArrow arrowentity = new ECArrow(worldIn, shooter, material);
         arrowentity.setEffectsFromItem(stack);
         arrowentity.setBaseDamage(this.material.getConfig().offense.arrowDamage);
-        arrowentity.setArrowType(this.material);
         return arrowentity;
     }
 

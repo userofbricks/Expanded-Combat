@@ -13,7 +13,7 @@
         "category": "equipment",
         "key": {
           "i": {
-            "item": "minecraft:iron_ingot"
+            "item": "minecraft:gold_ingot"
           },
           "s": {
             "item": "minecraft:stick"

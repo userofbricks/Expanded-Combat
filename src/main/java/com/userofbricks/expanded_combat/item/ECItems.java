@@ -47,12 +47,12 @@ public class ECItems
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER, Items.STICK), "")).register();
 
     public static final RegistryEntry<Item> GOLD_STICK = REGISTRATE.get().item("gold_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
-            .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.IRON_INGOT).put('s', Items.STICK).build(), 4,
-            new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT, Items.STICK), "")).register();
-
-    public static final RegistryEntry<Item> IRON_STICK = REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.GOLD_INGOT).put('s', Items.STICK).build(), 4,
             new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT, Items.STICK), "")).register();
+
+    public static final RegistryEntry<Item> IRON_STICK = REGISTRATE.get().item("iron_stick", Item::new).recipe((ctx, prov) -> MaterialBuilder
+            .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " i ", "s  "}, new RecipeIngredientMapBuilder().put('i', Items.IRON_INGOT).put('s', Items.STICK).build(), 4,
+            new ICondition[]{new ECConfigBooleanCondition("weapon")}, InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT, Items.STICK), "")).register();
 
     public static final RegistryEntry<Item> FLETCHED_STICKS = REGISTRATE.get().item("fletched_sticks", Item::new).recipe((ctx, prov) -> {
         MaterialBuilder.conditionalFletchingRecipe(ctx, prov, Ingredient.of(Items.FEATHER), Ingredient.of(Items.STICK), new ICondition[]{new ECConfigBooleanCondition("arrow")},

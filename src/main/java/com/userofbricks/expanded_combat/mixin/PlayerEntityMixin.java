@@ -37,10 +37,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (quiverStack.isPresent()) {
             int providedSlots = ((ECQuiverItem)quiverStack.get().stack().getItem()).providedSlots;
             int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots - 1), 0);
-            ECVariables.setArrowSlotTo(this, selectedSlot);
+            //ECVariables.setArrowSlotTo(this, selectedSlot);
 
             Optional<SlotResult> currentSelectedSlot = CuriosApi.getCuriosHelper().findCurio(this, ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, selectedSlot);
-            if (currentSelectedSlot.isPresent()) cir.setReturnValue(currentSelectedSlot.get().stack());
+            if (currentSelectedSlot.isPresent() && currentSelectedSlot.get().slotContext().index() == selectedSlot) cir.setReturnValue(currentSelectedSlot.get().stack());
             else {
                 CuriosApi.getCuriosHelper().findFirstCurio(this, stack -> Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()))
                         .ifPresent(slotResult -> cir.setReturnValue(slotResult.stack()));
