@@ -92,7 +92,7 @@ public class QuiverEvents {
         }
     }
 
-    private static int roundToNearest8(int original) {
+    public static int roundToNearest8(int original) {
         int modulus = original % 8;
         if (modulus != 0) {
             return original + (8 - modulus);
