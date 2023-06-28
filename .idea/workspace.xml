@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed weapon model rotations and positions in hand">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECJEIPlugin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/container_handelers/CuriosContainerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/item_subtype/ShieldSubtypeInterpreter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/FletchingRecipeCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/ShieldSmithingRecipeCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECFletchingTippedArrowRecipeMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECPotionWeaponRecipeMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECTippedArrowRecipeMaker.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="jei support for fletching and quiver not tested yet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/server.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/usercache.json" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/usercache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/advancements/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/advancements/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/raids.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" afterDir="false" />
@@ -29,17 +17,11 @@
       <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/level.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/level.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat_old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat_old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/stats/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/stats/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/TwilightForestCompatEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/twilight_forest/TwilightForestCompatEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +179,7 @@
       <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runServer">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="Expanded-Combat [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -333,13 +315,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00035" summary="separated server run folder from other runs">
-      <created>1681683113903</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1681683113903</updated>
     </task>
     <task id="LOCAL-00036" summary="small ingrediantUtil readability change">
       <created>1681932170947</created>
@@ -677,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687904087775</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="jei support for fletching and quiver not tested yet">
+      <created>1687928043106</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1687928043107</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -699,7 +681,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed quiver bug" />
     <MESSAGE value="added arrow item pickup into quiver" />
     <MESSAGE value="added arrow entity pickup into quiver fixed quiver gui rendering" />
     <MESSAGE value="abandoned saving items to quiver" />
@@ -724,7 +705,8 @@
     <MESSAGE value="finished quiver hud" />
     <MESSAGE value="fixed some bugs involving quivers arrows and materials" />
     <MESSAGE value="fixed weapon model rotations and positions in hand" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed weapon model rotations and positions in hand" />
+    <MESSAGE value="jei support for fletching and quiver not tested yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="jei support for fletching and quiver not tested yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

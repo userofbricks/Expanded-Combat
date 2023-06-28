@@ -29,7 +29,7 @@ public class ECRecipes {
     }
 
     public List<IFletchingRecipe> getFletchingRecipes(IRecipeCategory<IFletchingRecipe> fletchingCategory) {
-        CategoryRecipeValidator<IFletchingRecipe> validator = new CategoryRecipeValidator<>(fletchingCategory, ingredientManager, 0);
+        CategoryRecipeValidator<IFletchingRecipe> validator = new CategoryRecipeValidator<>(fletchingCategory, ingredientManager, 2);
         return getValidHandledRecipes(recipeManager, ECRecipeSerializerInit.FLETCHING_TYPE.get(), validator);
     }
 
