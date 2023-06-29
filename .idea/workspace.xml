@@ -4,24 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="jei support for fletching and quiver not tested yet">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="jei support for fletching confirmed works">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldSmithingRecipeMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/IShieldSmithingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/StanderStyleShieldSmithingRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/recipe_icons.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/server.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/raids.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat_old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECJEIPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECJEIPlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/FletchingRecipeCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/FletchingRecipeCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/ShieldSmithingRecipeCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/ShieldSmithingRecipeCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ShieldSmithingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ShieldSmithingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ECRecipeSerializerInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/FletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/FletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/IFletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/IFletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldUpgradeRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldUpgradeRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/SpecialFletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/SpecialFletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/TippedArrowFletchingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/TippedArrowFletchingRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/fletching.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/recipe_backgrounds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/fletching.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/recipe_backgrounds.xcf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,8 +147,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.userofbricks.expanded_combat.compatability.jei.container_handelers" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.recipes" />
+      <recent name="com.userofbricks.expanded_combat.compatability.jei.container_handelers" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.recipe_category" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.item_subtype" />
@@ -315,13 +318,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00036" summary="small ingrediantUtil readability change">
-      <created>1681932170947</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1681932170947</updated>
     </task>
     <task id="LOCAL-00037" summary="lang stuff">
       <created>1682028502154</created>
@@ -659,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687928043107</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="jei support for fletching confirmed works">
+      <created>1687994550161</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1687994550162</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -681,7 +684,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added arrow item pickup into quiver" />
     <MESSAGE value="added arrow entity pickup into quiver fixed quiver gui rendering" />
     <MESSAGE value="abandoned saving items to quiver" />
     <MESSAGE value="made gui rendering of quiver more flexible and less visually cluttered" />
@@ -706,7 +708,8 @@
     <MESSAGE value="fixed some bugs involving quivers arrows and materials" />
     <MESSAGE value="fixed weapon model rotations and positions in hand" />
     <MESSAGE value="jei support for fletching and quiver not tested yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="jei support for fletching and quiver not tested yet" />
+    <MESSAGE value="jei support for fletching confirmed works" />
+    <option name="LAST_COMMIT_MESSAGE" value="jei support for fletching confirmed works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

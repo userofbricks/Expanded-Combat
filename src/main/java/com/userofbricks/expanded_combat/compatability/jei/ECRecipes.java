@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.compatability.jei;
 
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
+import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.common.util.ErrorUtil;
@@ -38,5 +39,10 @@ public class ECRecipes {
                 .stream()
                 .filter(r -> validator.isRecipeValid(r) && validator.isRecipeHandled(r))
                 .toList();
+    }
+
+    public List<IShieldSmithingRecipe> getShieldSmithingRecipes(IRecipeCategory<IShieldSmithingRecipe> shieldSmithingCategory) {
+        CategoryRecipeValidator<IShieldSmithingRecipe> validator = new CategoryRecipeValidator<>(shieldSmithingCategory, ingredientManager, 2);
+        return getValidHandledRecipes(recipeManager, ECRecipeSerializerInit.SHIELD_TYPE.get(), validator);
     }
 }

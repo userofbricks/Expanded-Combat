@@ -59,10 +59,6 @@ public class FletchingRecipe implements IFletchingRecipe {
         return this.addition;
     }
 
-    public boolean isAdditionIngredient(ItemStack p_241456_1_) {
-        return this.addition.test(p_241456_1_);
-    }
-
     @Override
     public int getMaxCraftingAmount() {
         return maxResultingCount;

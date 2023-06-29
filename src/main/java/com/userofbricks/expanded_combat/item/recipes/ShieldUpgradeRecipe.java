@@ -80,11 +80,6 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
         return ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get();
     }
 
-    @Override
-    public @NotNull RecipeType<?> getType() {
-        return Objects.requireNonNull(ForgeRegistries.RECIPE_TYPES.getValue(SHIELD_RECIPE_ID));
-    }
-
     @ParametersAreNonnullByDefault
     public static class Serializer implements RecipeSerializer<ShieldUpgradeRecipe> {
 

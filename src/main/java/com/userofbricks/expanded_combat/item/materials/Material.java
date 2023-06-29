@@ -180,6 +180,10 @@ public class Material {
         return this.name;
     }
 
+    public Material getCraftedFrom() {
+        return craftedFrom;
+    }
+
     public static Material valueOf(String name) {
         for (Material material :
                 MaterialInit.materials) {

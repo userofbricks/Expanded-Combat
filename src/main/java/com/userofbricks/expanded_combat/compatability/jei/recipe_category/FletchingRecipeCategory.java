@@ -70,8 +70,8 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
     public void draw(IFletchingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.getMaxCraftingAmount() > 1) {
             poseStack.pushPose();
-            drawAcendingNumbers(poseStack, 5, 9, recipe.getMaxCraftingAmount());
-            drawAcendingNumbers(poseStack, 112, 9, recipe.getMaxCraftingAmount());
+            drawAcendingNumbers(poseStack, 7, 12, recipe.getMaxCraftingAmount());
+            drawAcendingNumbers(poseStack, 114, 12, recipe.getMaxCraftingAmount());
             poseStack.popPose();
         }
     }
@@ -105,13 +105,13 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IFletchingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 0, 0)
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
                 .addIngredients(recipe.getBase());
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 49, 0)
+        builder.addSlot(RecipeIngredientRole.INPUT, 50, 1)
                 .addIngredients(recipe.getAddition());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 107, 0)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 108, 1)
                 .addItemStack(RecipeUtil.getResultItem(recipe));
     }
 

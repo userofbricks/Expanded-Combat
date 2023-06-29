@@ -12,6 +12,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -25,7 +26,7 @@ import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.item.ECItemTags.SHIELDS;
 
-public class ShieldSmithingRecipie implements Recipe<Container> {
+public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
     private final ResourceLocation id;
 
@@ -98,8 +99,33 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     }
 
     @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 6;
+    public Ingredient getBase() {
+        return Ingredient.EMPTY;
+    }
+
+    @Override
+    public Ingredient getURAddition() {
+        return Ingredient.EMPTY;
+    }
+
+    @Override
+    public Ingredient getULAddition() {
+        return Ingredient.EMPTY;
+    }
+
+    @Override
+    public Ingredient getMAddition() {
+        return Ingredient.EMPTY;
+    }
+
+    @Override
+    public Ingredient getDRAddition() {
+        return Ingredient.EMPTY;
+    }
+
+    @Override
+    public Ingredient getDLAddition() {
+        return null;
     }
 
     @Override
@@ -118,15 +144,11 @@ public class ShieldSmithingRecipie implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
-        return Objects.requireNonNull(ForgeRegistries.RECIPE_TYPES.getValue(SHIELD_RECIPE_ID));
-    }
-
-    @Override
     public boolean isSpecial() {
         return true;
     }
 
+    @Override
     public boolean isAdditionIngredient(ItemStack stack) {
         for (Material material : MaterialInit.shieldMaterials) {
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(stack) && !material.getConfig().crafting.isSingleAddition) {

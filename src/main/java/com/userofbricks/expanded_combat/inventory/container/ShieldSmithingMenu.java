@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipie;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -32,8 +33,8 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
     protected final Player player;
     private final Level level;
 
-    private ShieldSmithingRecipie selectedRecipe;
-    private final List<ShieldSmithingRecipie> recipes;
+    private IShieldSmithingRecipe selectedRecipe;
+    private final List<IShieldSmithingRecipe> recipes;
 
     public ShieldSmithingMenu(int id, Inventory playerInventory, ContainerLevelAccess iWorldPosCallable) {
         super(ECContainers.SHIELD_SMITHING.get(), id);
@@ -124,11 +125,11 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
             this.resultSlots.setRecipeUsed(this.selectedRecipe);
             this.resultSlots.setItem(0, itemstack);
         } else {
-            List<ShieldSmithingRecipie> list = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
+            List<IShieldSmithingRecipe> list = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
             if (list.isEmpty()) {
                 this.resultSlots.setItem(0, ItemStack.EMPTY);
             } else {
-                for (ShieldSmithingRecipie recipe :
+                for (IShieldSmithingRecipe recipe :
                         list) {
                     this.selectedRecipe = recipe;
                     if (this.selectedRecipe.matches(this.inputSlots, this.level)) {
