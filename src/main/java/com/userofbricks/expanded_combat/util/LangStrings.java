@@ -8,6 +8,7 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -44,7 +45,14 @@ public class LangStrings {
     private static final BiFunction<String, String, String> categoryFunction = (baseI13n, categoryName) -> String.format("%s.category.%s", baseI13n, categoryName);
     private static final BiFunction<String, Field, String> optionFunction = (baseI13n, field) -> String.format("%s.option.%s", baseI13n, field.getName());
 
+    private static final List<Pair<String, String>> advancementList = new ArrayList<>();
+
     public static void registerLang() {
+        //Advancements
+        for (Pair<String, String> stringPair: advancementList){
+            REGISTRATE.get().addRawLang(stringPair.getLeft(), stringPair.getRight());
+        }
+
         List<String> alreadyAddedStrings = new ArrayList<>();
 
         //shields
@@ -146,5 +154,15 @@ public class LangStrings {
             return firstLetter + theRest;
         }).toList();
         return String.join(" ", parts);
+    }
+
+    public static String createAdvancementLang(String advancementName, String englishLang, boolean tittle) {
+        String lang = "advancements." + MODID + "." + advancementName + "." + (tittle ? "title" : "description");
+        advancementList.add(new Pair<>() {
+            @Override public String getLeft() {return lang;}
+            @Override public String getRight() {return englishLang;}
+            @Override public String setValue(String value) {return null;}
+        });
+        return lang;
     }
 }

@@ -126,6 +126,13 @@ repositories{
     maven {url = "https://modmaven.dev/"}
 
     maven { url "https://maven.shedaniel.me/" }
+
+    maven { url 'https://api.modrinth.com/maven' }
+
+    maven {
+        name "KosmX's maven"
+        url 'https://maven.kosmx.dev/'
+    }
 }
 
 dependencies {
@@ -146,6 +153,9 @@ dependencies {
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
     // at runtime, use the full JEI jar for Forge
     implementation(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
+
+    implementation fg.deobf("maven.modrinth:better-combat:${better_combat_version}+${mc_version}-forge")
+    implementation fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${player_anim_version}+${mc_version}")
 }
 
 jar {
