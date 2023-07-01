@@ -16,8 +16,7 @@ Version 1.0.1 works with forge 31.2.45 and above for minecraft 1.15.x
 
 #
 Fully supported minecraft versions: 1.19.4 \
-bug fixes only: 1.16.5 \
-dropped support: 1.17.1
+dropped support: 1.17.1, 1.16.5
 
 
 Minecraft versions with only part of the mod: 1.15.2, 1.16.4
