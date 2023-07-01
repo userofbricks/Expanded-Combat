@@ -53,3 +53,10 @@ An Expansion of Minecraft's combat equipment which includes a reimagining of din
     versionRange="[4.2.1549,)"
     ordering="BEFORE"
     side="BOTH"
+
+[[dependencies.expanded_combat]]
+    modId="bettercombat"
+    mandatory=false
+    versionRange="[1.7.1,)"
+    ordering="AFTER"
+    side="BOTH"
