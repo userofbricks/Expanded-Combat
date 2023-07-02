@@ -37,11 +37,6 @@ public class GauntletBuilder extends MaterialBuilder {
                 conditionalShapedRecipe(ctx, prov, new String[]{"bb","b "}, recipe, 1, new ICondition[]{enableGauntlets, new NotCondition(isSingleAddition)}, triggerInstance, "");
 
                 if (craftedFrom != null) {
-                    conditionalLegacySmithingRecipe(ctx, prov,
-                            IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                            Ingredient.of(craftedFrom.getArrowEntry().get()),
-                            new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
-
                     conditionalSmithing120Recipe(ctx, prov,
                             material.getConfig().crafting.smithingTemplate != null ? Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))) : Ingredient.EMPTY,
                             IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),

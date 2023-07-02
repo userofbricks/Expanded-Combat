@@ -1,9 +1,8 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -37,33 +36,31 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
         this.menu.removeSlotListener(this);
     }
 
-    protected void renderLabels(@NotNull PoseStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+    protected void renderLabels(@NotNull GuiGraphics guiGraphics, int p_230451_2_, int p_230451_3_) {
         RenderSystem.disableBlend();
-        super.renderLabels(p_230451_1_, p_230451_2_, p_230451_3_);
+        super.renderLabels(guiGraphics, p_230451_2_, p_230451_3_);
     }
 
     @Override
-    public void render(@NotNull PoseStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-        this.renderBackground(p_230430_1_);
-        super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
         RenderSystem.disableBlend();
-        this.renderFg(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
-        this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
+        this.renderFg(guiGraphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    protected void renderFg(PoseStack p_230452_1_, int p_230452_2_, int p_230452_3_, float p_230452_4_) {
+    protected void renderFg(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
     }
 
     @Override
-    protected void renderBg(@NotNull PoseStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, SHIELD_SMITHING_LOCATION);
+    protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        guiGraphics.blit(SHIELD_SMITHING_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
         //this.blit(p_230450_1_, i + 59, j + 20, 0, this.imageHeight + (this.menu.getSlot(0).hasItem() ? 0 : 16), 110, 16);
         if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem() || this.menu.getSlot(2).hasItem() || this.menu.getSlot(3).hasItem() || this.menu.getSlot(4).hasItem() || this.menu.getSlot(5).hasItem()) && !this.menu.getSlot(6).hasItem()) {
-            blit(p_230450_1_, i + 99, j + 45, this.imageWidth, 0, 28, 21);
+            guiGraphics.blit(SHIELD_SMITHING_LOCATION, i + 99, j + 45, this.imageWidth, 0, 28, 21);
         }
 
     }

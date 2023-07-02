@@ -69,18 +69,6 @@ public abstract class MaterialBuilder {
         conditionalRecipe.build(prov, ctx.getId().withSuffix("_120_smithing" + nameSufix));
     }
 
-    @Deprecated
-    public static void conditionalLegacySmithingRecipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient ingredient, Ingredient previosItem, ICondition[] conditions,
-                                                       InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix) {
-        ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_smithing" + nameSufix);
-
-        LegacyUpgradeRecipeBuilder.smithing( previosItem, ingredient, RecipeCategory.COMBAT, ctx.get())
-                .unlocks("has_item", triggerInstance)
-                .save(conditionalRecipe::addRecipe, ctx.getId() + "_smithing");
-
-        conditionalRecipe.build(prov, ctx.getId().withSuffix("_smithing" + nameSufix));
-    }
-
     public static void conditionalFletchingRecipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient addition, Ingredient previosItem, ICondition[] conditions,
                                                   InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix, int resultCount) {
         ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_fletching" + nameSufix);

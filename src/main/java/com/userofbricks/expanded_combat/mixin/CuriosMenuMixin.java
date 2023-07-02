@@ -38,7 +38,7 @@ public class CuriosMenuMixin {
         CuriosApi.getCuriosHelper().getCuriosHandler(this.player).ifPresent(curios -> {
             ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
             IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-            ((InventoryMenu)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders()));
+            ((InventoryMenu)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));
             ICurioStacksHandler arrowStacksHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER);
             IDynamicStackHandler arrowStackHandler = arrowStacksHandler.getStacks();
             int x = 176 + 2;

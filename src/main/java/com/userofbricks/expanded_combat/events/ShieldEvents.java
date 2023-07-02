@@ -6,10 +6,8 @@ import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.Shi
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.ModIDs;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.LegacySmithingScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -79,7 +77,7 @@ public class ShieldEvents {
     @SubscribeEvent
     public static void onInventoryGuiInit(ScreenEvent.Init.Post evt) {
         Screen screen = evt.getScreen();
-        if (screen instanceof SmithingScreen || screen instanceof LegacySmithingScreen) {
+        if (screen instanceof SmithingScreen) {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
@@ -103,20 +101,18 @@ public class ShieldEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void drawTabs(ContainerScreenEvent.Render.Background e) {
-        if (e.getContainerScreen() instanceof SmithingScreen || e.getContainerScreen() instanceof LegacySmithingScreen) {
-            RenderSystem.setShaderTexture(0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION);
+        if (e.getContainerScreen() instanceof SmithingScreen) {
             AbstractContainerScreen<?> smithingTableScreen = e.getContainerScreen();
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();
-            GuiComponent.blit(e.getPoseStack(), left -28, top + 4, 0, 194, 32, 28);
-            GuiComponent.blit(e.getPoseStack(), left -28, top + 32, 0, 166, 32, 28);
-            GuiComponent.blit(e.getPoseStack(), left -23, top + 8, 204, 0, 20, 20);
+            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 194, 32, 28);
+            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 32, 0, 166, 32, 28);
+            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 8, 204, 0, 20, 20);
         } else if (e.getContainerScreen() instanceof ShieldSmithingTableScreen smithingTableScreen) {
-            RenderSystem.setShaderTexture(0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION);
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();
-            GuiComponent.blit(e.getPoseStack(), left -28, top + 4, 0, 166, 32, 56);
-            GuiComponent.blit(e.getPoseStack(), left -23, top + 36, 224, 0, 20, 20);
+            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 166, 32, 56);
+            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 36, 224, 0, 20, 20);
         }
     }
 }

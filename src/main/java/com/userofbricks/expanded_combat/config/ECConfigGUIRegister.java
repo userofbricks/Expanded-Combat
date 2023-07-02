@@ -8,10 +8,11 @@ public class ECConfigGUIRegister {
     public ECConfigGUIRegister(){}
 
     public static void registerModsPage() {
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> {
-            return new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> {
-                return AutoConfig.getConfigScreen(ECConfig.class, parent).get();
-            });
-        });
+        ModLoadingContext.get().registerExtensionPoint(
+                ConfigScreenHandler.ConfigScreenFactory.class,
+                () -> new ConfigScreenHandler.ConfigScreenFactory(
+                        (client, parent) -> AutoConfig.getConfigScreen(ECConfig.class, parent).get()
+                )
+        );
     }
 }

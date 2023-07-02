@@ -49,11 +49,6 @@ public class ArrowBuilder extends MaterialBuilder {
                 recipe.put('#', Ingredient.of(Items.STICK));
                 recipe.put('Y', Ingredient.of(Items.FEATHER));
                 conditionalShapedRecipe(ctx, prov, new String[]{"X","#","Y"}, recipe, 4, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
-                //TODO:add fletching
-                conditionalLegacySmithingRecipe(ctx, prov,
-                        IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
-                        new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
 
                 conditionalSmithing120Recipe(ctx, prov,
                         material.getConfig().crafting.smithingTemplate != null ? Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))) : Ingredient.EMPTY,

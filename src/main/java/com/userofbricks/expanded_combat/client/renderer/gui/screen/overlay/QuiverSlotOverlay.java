@@ -1,18 +1,12 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.config.OverlayAnchorPoss;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -50,7 +44,7 @@ public class QuiverSlotOverlay {
         int w = event.getWindow().getGuiScaledWidth();
         int h = event.getWindow().getGuiScaledHeight();
         ECQuiverItem quiver = (ECQuiverItem) quiverSlotResult.get().stack().getItem();
-        PoseStack poseStack = event.getPoseStack();
+        GuiGraphics guiGraphics = event.getGuiGraphics();
         int providedSlots = quiver.providedSlots;
 
         int currentIndex = ECVariables.getArrowSlot(player);
@@ -108,35 +102,35 @@ public class QuiverSlotOverlay {
         }
 
         //Rendering selection Background
-        poseStack.pushPose();
-        poseStack.translate(0.0F, 0.0F, -90.0F);
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, 0.0F, -90.0F);
         RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
-        GuiComponent.blit(poseStack, offsetX, offsetY, 24, 23, 22, 22);
-        poseStack.popPose();
+        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 24, 23, 22, 22);
+        guiGraphics.pose().popPose();
 
-        renderSlot(poseStack, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow, 12);
-        renderSlot(poseStack, offsetX -17, offsetY + 3, event.getPartialTick(), player, beforeArrow, 13);
-        renderSlot(poseStack, offsetX + 20, offsetY + 3, event.getPartialTick(), player, nextArrow, 14);
+        renderSlot(guiGraphics, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow);
+        renderSlot(guiGraphics, offsetX -17, offsetY + 3, event.getPartialTick(), player, beforeArrow);
+        renderSlot(guiGraphics, offsetX + 20, offsetY + 3, event.getPartialTick(), player, nextArrow);
     }
 
     //near identical to the one in Gui.class
-    private static void renderSlot(PoseStack poseStack, int x, int y, float particleTick, Player player, ItemStack itemStack, int modelOverrideSeperationThing) {
+    private static void renderSlot(GuiGraphics guiGraphics, int x, int y, float particleTick, Player player, ItemStack itemStack) {
         if (!itemStack.isEmpty()) {
             float f = (float)itemStack.getPopTime() - particleTick;
             if (f > 0.0F) {
                 float f1 = 1.0F + f / 5.0F;
-                poseStack.pushPose();
-                poseStack.translate((float)(x + 8), (float)(y + 12), 0.0F);
-                poseStack.scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
-                poseStack.translate((float)(-(x + 8)), (float)(-(y + 12)), 0.0F);
+                guiGraphics.pose().pushPose();
+                guiGraphics.pose().translate((float)(x + 8), (float)(y + 12), 0.0F);
+                guiGraphics.pose().scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
+                guiGraphics.pose().translate((float)(-(x + 8)), (float)(-(y + 12)), 0.0F);
             }
 
-            Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(poseStack, player, itemStack, x, y, 0);
+            guiGraphics.renderItem(player, itemStack, x, y, 0);
             if (f > 0.0F) {
-                poseStack.popPose();
+                guiGraphics.pose().popPose();
             }
 
-            Minecraft.getInstance().getItemRenderer().renderGuiItemDecorations(poseStack, Minecraft.getInstance().font, itemStack, x, y);
+            guiGraphics.renderItemDecorations(Minecraft.getInstance().font, itemStack, x, y);
         }
     }
 }

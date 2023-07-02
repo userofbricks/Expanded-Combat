@@ -34,14 +34,14 @@ public class TwilightForestCompatEvents {
         if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)) {
             LivingEntity target = event.getEntity();
 
-            if (!target.getLevel().isClientSide() && event.getSource().getDirectEntity() instanceof LivingEntity living) {
+            if (!target.level().isClientSide() && event.getSource().getDirectEntity() instanceof LivingEntity living) {
                 ItemStack weapon = living.getMainHandItem();
 
                 if (!weapon.isEmpty() && weapon.getItem() instanceof ECWeaponItem weaponItem && weaponItem.getMaterial() == MaterialInit.KNIGHTMETAL) {
                     if (target.getArmorValue() == 0 && weaponItem.getWeapon().isBlockWeapon()) {
                         event.setAmount(event.getAmount() + KNIGHTMETAL_BONUS_DAMAGE);
                         // enchantment attack sparkles
-                        ((ServerLevel) target.getLevel()).getChunkSource().broadcastAndSend(target, new ClientboundAnimatePacket(target, 5));
+                        ((ServerLevel) target.level()).getChunkSource().broadcastAndSend(target, new ClientboundAnimatePacket(target, 5));
                     } else {
                         if (target.getArmorCoverPercentage() > 0) {
                             int moreBonus = (int) (KNIGHTMETAL_BONUS_DAMAGE * target.getArmorCoverPercentage());
@@ -50,7 +50,7 @@ public class TwilightForestCompatEvents {
                             event.setAmount(event.getAmount() + KNIGHTMETAL_BONUS_DAMAGE);
                         }
                         // enchantment attack sparkles
-                        ((ServerLevel) target.getLevel()).getChunkSource().broadcastAndSend(target, new ClientboundAnimatePacket(target, 5));
+                        ((ServerLevel) target.level()).getChunkSource().broadcastAndSend(target, new ClientboundAnimatePacket(target, 5));
                     }
                 }
             }

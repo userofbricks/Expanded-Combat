@@ -133,7 +133,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
 
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
-        livingEntity.level.playSound(null, livingEntity.blockPosition(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(this.material.getConfig().equipSound))), SoundSource.NEUTRAL, 1.0f, 1.0f);
+        livingEntity.level().playSound(null, livingEntity.blockPosition(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(this.material.getConfig().equipSound))), SoundSource.NEUTRAL, 1.0f, 1.0f);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {

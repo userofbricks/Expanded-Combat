@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.Optional;
 
 public class FletchingTableMenu extends ItemCombinerMenu {
@@ -25,7 +26,7 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     public FletchingTableMenu(int p_i231591_1_, Inventory p_i231591_2_, ContainerLevelAccess p_i231591_3_) {
         super(ECContainers.FLETCHING.get(), p_i231591_1_, p_i231591_2_, p_i231591_3_);
-        this.level = p_i231591_2_.player.level;
+        this.level = p_i231591_2_.player.level();
     }
 
     public FletchingTableMenu(int i, Inventory playerInventory, FriendlyByteBuf packetBuffer) {
@@ -44,8 +45,8 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     @Override
     protected void onTake(@NotNull Player player, ItemStack itemStack) {
-        itemStack.onCraftedBy(player.level, player, itemStack.getCount());
-        this.resultSlots.awardUsedRecipes(player);
+        itemStack.onCraftedBy(player.level(), player, itemStack.getCount());
+        this.resultSlots.awardUsedRecipes(player, Collections.singletonList(itemStack));
 
         assert selectedRecipe != null;
         this.shrinkStackInSlot(0, Math.min(inputSlots.getItem(0).getCount(), selectedRecipe.getMaxCraftingAmount()));

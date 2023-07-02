@@ -59,9 +59,6 @@ public class WeaponBuilder extends MaterialBuilder{
                     conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
                 }
                 if (craftedFrom != null){
-                    conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                            Ingredient.of(craftedFrom.getWeaponEntry(weapon.name()).get()),
-                            new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
                     conditionalSmithing120Recipe(ctx, prov, material, Ingredient.of(craftedFrom.getWeaponEntry(weapon.name()).get()), new ICondition[]{enableArrows, isSingleAddition}, "");
                 }
             }

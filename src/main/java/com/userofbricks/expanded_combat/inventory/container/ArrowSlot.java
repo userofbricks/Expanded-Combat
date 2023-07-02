@@ -2,10 +2,13 @@ package com.userofbricks.expanded_combat.inventory.container;
 
 import com.mojang.datafixers.util.Pair;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,6 +27,9 @@ import top.theillusivec4.curios.mixin.core.AccessorEntity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 
 public class ArrowSlot extends SlotItemHandler {
 
@@ -60,7 +66,7 @@ public class ArrowSlot extends SlotItemHandler {
         boolean flag = current.isEmpty() && stack.isEmpty();
         super.set(stack);
 
-        if (!flag && !ItemStack.isSame(current, stack) &&
+        if (!flag && !ItemStack.matches(current, stack) &&
                 !((AccessorEntity) this.player).getFirstTick()) {
             CuriosApi.getCuriosHelper().getCurio(stack)
                     .ifPresent(curio -> curio.onEquipFromUse(this.slotContext));
@@ -96,5 +102,14 @@ public class ArrowSlot extends SlotItemHandler {
                 ((stack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(stack)) &&
                         CuriosApi.getCuriosHelper().getCurio(stack).map(curio -> curio.canUnequip(slotContext))
                                 .orElse(true) && super.mayPickup(playerIn));
+    }
+
+    @Override
+    public boolean isHighlightable() {
+        SlotResult slotResult = CuriosApi.getCuriosHelper().findCurio(Objects.requireNonNull(Minecraft.getInstance().player), QUIVER_CURIOS_IDENTIFIER, 0).orElse(null);
+        int curiosSlots = 0;
+        if (slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
+        int id = slotContext.index();
+        return curiosSlots > id;
     }
 }

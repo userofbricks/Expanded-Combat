@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Collections;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
@@ -40,7 +41,7 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
         super(ECContainers.SHIELD_SMITHING.get(), id);
         this.access = iWorldPosCallable;
         this.player = playerInventory.player;
-        this.level = playerInventory.player.level;
+        this.level = playerInventory.player.level();
         this.recipes = this.level.getRecipeManager().getAllRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get());
         //shield slot
         this.addSlot(new Slot(this.inputSlots, 0, 27, 47) {
@@ -95,9 +96,9 @@ public class ShieldSmithingMenu extends AbstractContainerMenu {
     /**
      * shrink itemStacks from each input slot when
      */
-    protected void onTake(Player p_230301_1_, ItemStack p_230301_2_) {
-        p_230301_2_.onCraftedBy(p_230301_1_.level, p_230301_1_, p_230301_2_.getCount());
-        this.resultSlots.awardUsedRecipes(p_230301_1_);
+    protected void onTake(Player player, ItemStack itemStack) {
+        itemStack.onCraftedBy(player.level(), player, itemStack.getCount());
+        this.resultSlots.awardUsedRecipes(player, Collections.singletonList(itemStack));
         this.inputSlots.setItem(0, ItemStack.EMPTY);
         this.shrinkStackInSlot(1);
         this.shrinkStackInSlot(2);

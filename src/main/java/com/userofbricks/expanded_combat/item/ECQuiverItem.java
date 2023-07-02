@@ -66,7 +66,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
 
         CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity).ifPresent(curios -> {
             IDynamicStackHandler stackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-            if (livingEntity.level.isClientSide()) {
+            if (livingEntity.level().isClientSide()) {
                 int countdownTicks = stack.getOrCreateTag().getInt("countdown_ticks");
                 if (countdownTicks > 0) {
                     stack.getOrCreateTag().putInt("countdown_ticks", countdownTicks - 1);

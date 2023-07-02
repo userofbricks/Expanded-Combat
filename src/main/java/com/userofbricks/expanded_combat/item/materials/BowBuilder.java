@@ -54,15 +54,6 @@ public class BowBuilder extends MaterialBuilder {
                 ingredientMap.put('b', craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()));
                 conditionalShapedRecipe(ctx, prov, new String[]{"i", "b", "i"}, ingredientMap, 1, new ICondition[]{crafting_or_both, enableBows}, triggerInstance, "_skip");
 
-                //Smithy Crafting
-                //1.19.4 and prior
-                conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows, new NotCondition(isSingleAddition)}, triggerInstance, "");
-                conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, new OrCondition(new NotCondition(enableHalfBows), isSingleAddition)}, triggerInstance, "_singleton");
-
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,
                         material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()),
@@ -96,12 +87,6 @@ public class BowBuilder extends MaterialBuilder {
                 ingredientMap.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
                 ingredientMap.put('b', material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()));
                 conditionalShapedRecipe(ctx, prov, new String[]{"b", "i"}, ingredientMap, 1, new ICondition[]{crafting_or_both, enableBows, enableHalfBows}, triggerInstance, "");
-
-                //Smithy Crafting
-                //1.19.4 and prior
-                conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows}, triggerInstance, "");
 
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,

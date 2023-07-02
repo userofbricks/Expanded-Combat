@@ -1,8 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
@@ -58,27 +56,27 @@ public class QuiverEvents {
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
         if (screen instanceof CuriosScreen curiosScreen) {
-            RenderSystem.setShaderTexture(0, new ResourceLocation(MODID, "textures/gui/container/quiver.png"));
+            ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();
-            GuiComponent.blit(evt.getPoseStack(), left + 76, top + 43, 45, 18, 18, 18);
+            evt.getGuiGraphics().blit(textureLocation, left + 76, top + 43, 45, 18, 18, 18);
 
             CuriosApi.getCuriosHelper().getCuriosHandler(curiosScreen.getMenu().player).ifPresent(curios -> {
                 Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
                 int curiosSlots = 0;
                 if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
                 if (curiosSlots > 0){
-                    GuiComponent.blit(evt.getPoseStack(), left + 175, top + 4, 0, 0, 2, 158);
+                    evt.getGuiGraphics().blit(textureLocation, left + 175, top + 4, 0, 0, 2, 158);
                     for (int column = 0; column < roundToNearest8(curiosSlots) / 8; column++) {
-                        if ((column - (roundToNearest8(curiosSlots) / 8)) == -1) GuiComponent.blit(evt.getPoseStack(), left + 177 + (column * 18), top + 4, 20, 0, 25, 158);
-                        else GuiComponent.blit(evt.getPoseStack(), left + 177 + (column * 18), top + 4, 2, 0, 18, 158);
+                        if ((column - (roundToNearest8(curiosSlots) / 8)) == -1) evt.getGuiGraphics().blit(textureLocation, left + 177 + (column * 18), top + 4, 20, 0, 25, 158);
+                        else evt.getGuiGraphics().blit(textureLocation, left + 177 + (column * 18), top + 4, 2, 0, 18, 158);
                     }
                     int x = 176 + 1;
                     int y = 11;
                     int row = 1;
                     for (int slot = 0; slot < roundToNearest8(curiosSlots); slot++, row++) {
                         if (!(slot < curiosSlots)) {
-                            GuiComponent.blit(evt.getPoseStack(), left + x, top + y, 45, 0, 18, 18);
+                            evt.getGuiGraphics().blit(textureLocation, left + x, top + y, 45, 0, 18, 18);
                         }
                         y += 18;
                         if (row == 8) {

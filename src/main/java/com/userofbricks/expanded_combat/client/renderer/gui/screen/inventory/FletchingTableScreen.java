@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.util.LangStrings;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -20,5 +20,5 @@ public class FletchingTableScreen extends ItemCombinerScreen<FletchingTableMenu>
     }
 
     @Override
-    protected void renderErrorIcon(@NotNull PoseStack p_266902_, int p_266822_, int p_267045_) {}
+    protected void renderErrorIcon(@NotNull GuiGraphics p_266902_, int p_266822_, int p_267045_) {}
 }

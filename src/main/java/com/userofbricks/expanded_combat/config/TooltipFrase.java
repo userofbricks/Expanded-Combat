@@ -1,7 +1,5 @@
 package com.userofbricks.expanded_combat.config;
 
-import org.spongepowered.asm.mixin.injection.Descriptors;
-
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)

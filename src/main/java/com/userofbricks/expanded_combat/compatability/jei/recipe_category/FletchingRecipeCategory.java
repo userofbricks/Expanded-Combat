@@ -1,8 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.gui.ITickTimer;
@@ -17,12 +15,11 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.library.util.RecipeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import org.joml.Matrix4f;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -67,19 +64,16 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
     }
 
     @Override
-    public void draw(IFletchingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(IFletchingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.getMaxCraftingAmount() > 1) {
-            poseStack.pushPose();
-            drawAcendingNumbers(poseStack, 7, 12, recipe.getMaxCraftingAmount());
-            drawAcendingNumbers(poseStack, 114, 12, recipe.getMaxCraftingAmount());
-            poseStack.popPose();
+            guiGraphics.pose().pushPose();
+            drawAcendingNumbers(guiGraphics, 7, 12, recipe.getMaxCraftingAmount());
+            drawAcendingNumbers(guiGraphics, 114, 12, recipe.getMaxCraftingAmount());
+            guiGraphics.pose().popPose();
         }
     }
 
-    public void drawAcendingNumbers(PoseStack poseStack, int offsetX, int offsetY, int maxRecipeRepeats) {
-        Minecraft minecraft = Minecraft.getInstance();
-        RenderSystem.setShaderTexture(0, textureLocation);
-
+    public void drawAcendingNumbers(GuiGraphics guiGraphics, int offsetX, int offsetY, int maxRecipeRepeats) {
         int firstNumber = tickTimer.getValue() / 10;
         int secondNumber = tickTimer.getValue() % 10;
 
@@ -97,7 +91,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
         for (int i = 0; i < 2; i++) {
             int numTexX = i == 0 ? firstNumTexX : secondNumTexX;
             if (!(i == 0 && tickTimer.getValue() < 10)) {
-                GuiComponent.blit(poseStack, offsetX, offsetY, numTexX, numTexY, width, height);
+                guiGraphics.blit(textureLocation, offsetX, offsetY, numTexX, numTexY, width, height);
             }
             offsetX = offsetX + 6;
         }

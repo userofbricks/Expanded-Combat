@@ -60,12 +60,6 @@ public class CrossBowBuilder extends MaterialBuilder{
                 ingredientMap.put('b', craftedFrom == null ? Ingredient.of(Items.CROSSBOW) : Ingredient.of(craftedFrom.getCrossbowEntry().get()));
                 conditionalShapedRecipe(ctx, prov, new String[]{"ibi", " i "}, ingredientMap, 1, new ICondition[]{enableCrossBows, new NotCondition(isSingleAddition)}, triggerInstance, "");
 
-                //Smithy Crafting
-                //1.19.4 and prior
-                conditionalLegacySmithingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        craftedFrom == null ? Ingredient.of(Items.CROSSBOW) : Ingredient.of(craftedFrom.getCrossbowEntry().get()),
-                        new ICondition[]{enableCrossBows, isSingleAddition}, triggerInstance, "");
-
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,
                         craftedFrom == null ? Ingredient.of(Items.CROSSBOW) : Ingredient.of(craftedFrom.getCrossbowEntry().get()),

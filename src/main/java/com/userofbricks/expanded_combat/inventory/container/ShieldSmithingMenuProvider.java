@@ -21,7 +21,7 @@ public class ShieldSmithingMenuProvider implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory, @Nonnull Player playerEntity) {
-        ContainerLevelAccess containerLevelAccess = ContainerLevelAccess.create(playerEntity.level, playerEntity.blockPosition());
+        ContainerLevelAccess containerLevelAccess = ContainerLevelAccess.create(playerEntity.level(), playerEntity.blockPosition());
         return new ShieldSmithingMenu(i, playerInventory, containerLevelAccess);
     }
 }

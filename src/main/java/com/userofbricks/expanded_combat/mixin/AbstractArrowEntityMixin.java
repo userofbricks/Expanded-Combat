@@ -36,7 +36,7 @@ public abstract class AbstractArrowEntityMixin {
      */
     @Overwrite
     public void playerTouch(Player player) {
-        if (!((AbstractArrow)(Object)this).level.isClientSide && (this.inGround || ((AbstractArrow)(Object)this).isNoPhysics()) && ((AbstractArrow)(Object)this).shakeTime <= 0) {
+        if (!((AbstractArrow)(Object)this).level().isClientSide && (this.inGround || ((AbstractArrow)(Object)this).isNoPhysics()) && ((AbstractArrow)(Object)this).shakeTime <= 0) {
             AtomicBoolean added = new AtomicBoolean(false);
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
                 SlotResult quiverSlot = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);

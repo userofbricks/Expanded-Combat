@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "size": 1,
+  "operation": "SET",
+  "order": 140,
+  "icon": "expanded_combat:slot/empty_quiver_slot",
+  "add_cosmetic": true,
+  "use_native_gui": false,
+  "render_toggle": true
+}

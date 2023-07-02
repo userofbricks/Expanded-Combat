@@ -308,7 +308,7 @@ public class ECConfig implements ConfigData {
         public Defense defense;
         @CollapsibleObject @ConfigName("Crafting")
         public Crafting crafting;
-        @ConfigName("InventorySlots")
+        @ConfigName("InventorySlots") @BoundedDiscrete(min = 1, max = 24)
         public int quiverSlots;
 
         MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, ArrayList<String> repairItem,
@@ -589,51 +589,16 @@ public class ECConfig implements ConfigData {
                 return this;
             }
             public Builder quiverSlots(int slots) {
-                this.quiverSlots = slots;
+                this.quiverSlots = Math.min(slots, 24);
                 return this;
             }
 
             public MaterialConfig build() {
-                ExpandedCombat.maxQuiverSlots = Math.max(quiverSlots, ExpandedCombat.maxQuiverSlots);
                 return new MaterialConfig(toolDurability, addedShieldDurability, bowDurability, offenseEnchantability, defenseEnchantability, equipSound, repairItem,
                 mendingBonus, fireResistant, gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower,
                 velocityMultiplier, gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction,
                 isSingleAddition, onlyReplaceResource, smithingTemplate, quiverSlots);
             }
-        }
-    }
-
-    public static class GauntletConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability Shift") //@Tooltip
-        //@TooltipFrase("Shifts the durability of all gauntlets by this amount")
-        public int durability;
-        @BoundedDiscrete(max = 512) @ConfigName("Armor Amount")
-        public int armorAmount;
-        @ConfigName("Attack Damage")
-        public double attackDamage;
-        @BoundedDiscrete(max = 512) @ConfigName("Enchantability")
-        public int enchantability;
-        @ConfigName("Armor Toughness")
-        public double armorToughness;
-        @ConfigName("Knockback Resistance")
-        public double knockbackResistance;
-        @ConfigName("Repair Item")
-        public ArrayList<String> repairItem;
-        @ConfigName("Mending Bonus")
-        public double mendingBonus;
-        @ConfigName("Fire Resistant")
-        public boolean fireResistant;
-
-        GauntletConfig(int durability, int enchantability, double mendingBonus, int armorAmount, double attackDamage, ArrayList<String> repairItem, double armorToughness, double knockbackResistance, boolean fireResistant) {
-            this.durability =           durability;
-            this.enchantability =       enchantability;
-            this.mendingBonus =         mendingBonus;
-            this.armorAmount =          armorAmount;
-            this.attackDamage =         attackDamage;
-            this.repairItem =           repairItem;
-            this.armorToughness =       armorToughness;
-            this.knockbackResistance =  knockbackResistance;
-            this.fireResistant =        fireResistant;
         }
     }
 
@@ -661,150 +626,10 @@ public class ECConfig implements ConfigData {
         }
     }
 
-    public static class ShieldConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE/5) @ConfigName("Added Durability") @Tooltip
-        @TooltipFrase("this is the amount of durability added, by each of the five sections, onto the base vanilla shield amount of 336")
-        public int baseDurability;
-        @Tooltip(count = 2) @ConfigName("Base Protection Amount")
-        @TooltipFrase("Defines the amount of Damage a shield entirely made of this material will block")
-        @TooltipFrase(line = 1, value = "Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings")
-        public double baseProtectionAmmount;
-        @Tooltip(count = 2) @ConfigName("After Base Percent Protection")
-        @TooltipFrase("Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked")
-        @TooltipFrase(line = 1, value = "Only works if Shield Protection Percentage is enabled in the Shield Protection Settings")
-        public double afterBasePercentReduction;
-        @ConfigName("Repair Item")
-        public ArrayList<String> ingotOrMaterial;
-        @ConfigName("Mending Bonus")
-        public double mendingBonus;
-        @ConfigName("Is Single Addition")
-        public boolean isSingleAddition;
-        @ConfigName("Fire Resistant")
-        public boolean fireResistant;
-        @ConfigName("Required Before This")
-        public ArrayList<String> requiredBeforeResource;
-        @ConfigName("Only Replaced By This")
-        public ArrayList<String> onlyReplaceResource;
-
-        ShieldConfig(double mendingBonus, double baseProtectionAmmount, double afterBasePercentReduction, ArrayList<String> ingotOrMaterial, int baseDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
-            this.mendingBonus =                   mendingBonus;
-            this.baseDurability =                baseDurability;
-            this.baseProtectionAmmount =          baseProtectionAmmount;
-            this.afterBasePercentReduction =      afterBasePercentReduction;
-            this.ingotOrMaterial =                ingotOrMaterial;
-            this.isSingleAddition =               isSingleAddition;
-            this.fireResistant =                  fireResistant;
-            this.requiredBeforeResource =         requiredBeforeResource;
-            this.onlyReplaceResource =            onlyReplaceResource;
-        }
-
-        ShieldConfig(double medingBonus, double baseProtectionAmmount, double afterBasePercentReduction, Ingredient ingotOrMaterial, int baseDurability, boolean isSingleAddition, boolean fireResistant, ArrayList<String> requiredBeforeResource, ArrayList<String> onlyReplaceResource) {
-            this(medingBonus, baseProtectionAmmount, afterBasePercentReduction, IngredientUtil.getItemStringFromIngrediant(ingotOrMaterial), baseDurability, isSingleAddition, fireResistant, requiredBeforeResource, onlyReplaceResource);
-        }
-    }
-
-    public static class BowConfig {
-        @BoundedDiscrete(max = Integer.MAX_VALUE) @ConfigName("Durability")
-        public int durability;
-        @BoundedDiscrete(max = 512) @ConfigName("Enchantability")
-        public int enchantability;
-        @BoundedDiscrete(max = 3) @ConfigName("Multishot Level")
-        public int multishotLevel;
-        @BoundedDiscrete(max = 100) @ConfigName("Base Power level")
-        public int bowPower;
-        @ConfigName("Arrow Velocity Multiplier")
-        public float velocityMultiplyer;
-        @ConfigName("Repair Item")
-        public ArrayList<String> repairItem;
-        @ConfigName("Mending Bonus")
-        public float mendingBonus;
-        @ConfigName("Fire Resistant")
-        public boolean fireResistant;
-        @ConfigName("Smithing Template") @Tooltip
-        @TooltipFrase("1.20 feature")
-        public String smithingTemplate;
-
-        public BowConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, ArrayList<String> repairItem, float mendingBonus, boolean fireResistant, String smithingTemplate) {
-            this.durability = durability;
-            this.enchantability = enchantability;
-            this.multishotLevel = multishotLevel;
-            this.bowPower = bowPower;
-            this.velocityMultiplyer = velocityMultiplyer;
-            this.repairItem = repairItem;
-            this.mendingBonus = mendingBonus;
-            this.fireResistant = fireResistant;
-            this.smithingTemplate = smithingTemplate;
-        }
-
-        public BowConfig(int durability, int enchantability, int multishotLevel, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
-            this(durability,
-                    enchantability,
-                    multishotLevel,
-                    bowPower,
-                    velocityMultiplyer,
-                    IngredientUtil.getItemStringFromIngrediant(repairItem),
-                    mendingBonus,
-                    fireResistant,
-                    Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(smithingTemplate)).toString());
-        }
-
-        public BowConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus, boolean fireResistant, Item smithingTemplate) {
-            this(durability,
-                    enchantability,
-                    0,
-                    bowPower,
-                    velocityMultiplyer,
-                    repairItem,
-                    mendingBonus,
-                    fireResistant,
-                    smithingTemplate);
-        }
-
-        public BowConfig(int durability, int enchantability, int bowPower, float velocityMultiplyer, Ingredient repairItem, float mendingBonus) {
-            this(durability,
-                    enchantability,
-                    bowPower,
-                    velocityMultiplyer,
-                    repairItem,
-                    mendingBonus,
-                    false,
-                    null);
-        }
-    }
-
     public enum BowRecipeType {
         SMITHING_ONLY,
         CRAFTING_TABLE_ONLY,
         CRAFTING_TABLE_AND_SMITHING
-    }
-
-    public static class ArrowMaterialConfig {
-        @ConfigName("Damage")
-        public float damage;
-        @ConfigName("Flaming")
-        public boolean flaming;
-        @ConfigName("Can Be Tipped With Potions")
-        public boolean canBeTipped;
-
-        public ArrowMaterialConfig(float damage, boolean flaming, boolean freezing, boolean canBeTipped) {
-            this.damage = damage;
-            this.flaming = flaming;
-            this.canBeTipped = canBeTipped;
-        }
-
-        public ArrowMaterialConfig(float damage) {
-            this(damage, false, false, true);
-        }
-    }
-
-    public static class QuiverMaterialConfig {
-        @ConfigName("InventorySlots")
-        public int providedSlots;
-
-        public QuiverMaterialConfig(int providedSlots) {
-            this.providedSlots = providedSlots;
-            ExpandedCombat.maxQuiverSlots = Math.max(providedSlots, ExpandedCombat.maxQuiverSlots);
-        }
     }
 
     public static class WeaponMaterialConfig {

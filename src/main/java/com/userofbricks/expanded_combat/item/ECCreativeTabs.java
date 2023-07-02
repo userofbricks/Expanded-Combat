@@ -2,14 +2,16 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.materials.*;
+import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,8 +24,8 @@ import static com.userofbricks.expanded_combat.item.ECItems.*;
 
 @Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECCreativeTabs {
-    public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().buildCreativeModeTab("ec_group",
-            builder -> builder.icon(() -> new ItemStack(getIcon()))
+    public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().defaultCreativeTab("expanded_combat", builder -> {
+            builder.icon(() -> new ItemStack(getIcon()))
                     .displayItems((displayParameters, output) -> {
                         output.accept(LEAD_SWORD.get());
                         output.accept(SILVER_SWORD.get());
@@ -94,8 +96,8 @@ public class ECCreativeTabs {
                             }
                         }
                     })
-                    .build(),
-            "Expanded Combat");
+                    .build();
+        }).register();
 
     private static Item getIcon() {
         if(CONFIG.enableGauntlets) return MaterialInit.DIAMOND.getGauntletEntry().get();
@@ -104,8 +106,8 @@ public class ECCreativeTabs {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void ModifyVanillaCreativeTabs(CreativeModeTabEvent.BuildContents event){
-        CreativeModeTab tab = event.getTab();
+    public static void ModifyVanillaCreativeTabs(BuildCreativeModeTabContentsEvent event){
+        ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             items.putAfter(new ItemStack(Items.NETHERITE_SWORD), new ItemStack(LEAD_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

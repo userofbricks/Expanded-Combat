@@ -99,9 +99,6 @@ public class ECItems
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing_singleton"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "legacy_shield_vanilla_smithing_singleton"));
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
