@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:iron_arrow"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

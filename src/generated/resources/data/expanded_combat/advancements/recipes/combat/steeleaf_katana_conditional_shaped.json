@@ -9,7 +9,7 @@
               "items": [
                 {
                   "items": [
-                    "twilightforest:steeleaf_ingot"
+                    "minecraft:air"
                   ]
                 }
               ]
@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:steeleaf_katana"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

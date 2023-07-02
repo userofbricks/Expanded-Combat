@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:bronze_spear"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

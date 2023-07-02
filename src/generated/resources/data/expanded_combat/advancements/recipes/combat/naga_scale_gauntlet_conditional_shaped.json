@@ -9,7 +9,7 @@
               "items": [
                 {
                   "items": [
-                    "twilightforest:naga_scale"
+                    "minecraft:air"
                   ]
                 }
               ]
@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:naga_scale_gauntlet"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

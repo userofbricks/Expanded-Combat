@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:lead_claymore"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

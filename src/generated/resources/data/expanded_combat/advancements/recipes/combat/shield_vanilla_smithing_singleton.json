@@ -30,5 +30,6 @@
     "recipes": [
       "expanded_combat:shield_vanilla_smithing_singleton"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

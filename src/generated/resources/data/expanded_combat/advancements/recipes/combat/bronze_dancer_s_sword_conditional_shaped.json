@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:bronze_dancer_s_sword"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

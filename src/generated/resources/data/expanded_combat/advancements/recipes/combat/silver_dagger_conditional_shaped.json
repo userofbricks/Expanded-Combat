@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:silver_dagger"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

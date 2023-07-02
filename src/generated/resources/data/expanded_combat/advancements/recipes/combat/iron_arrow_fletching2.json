@@ -30,5 +30,6 @@
     "recipes": [
       "expanded_combat:iron_arrow_fletching2"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "expanded_combat:tipped_arrow_fletching_recipe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

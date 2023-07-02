@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:netherite_quiver"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

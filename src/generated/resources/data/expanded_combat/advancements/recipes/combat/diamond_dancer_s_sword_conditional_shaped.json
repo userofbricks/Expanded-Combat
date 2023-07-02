@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:diamond_dancer_s_sword"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

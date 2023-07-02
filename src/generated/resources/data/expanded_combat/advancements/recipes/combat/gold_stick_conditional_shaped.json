@@ -38,7 +38,8 @@
           "recipes": [
             "expanded_combat:gold_stick"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

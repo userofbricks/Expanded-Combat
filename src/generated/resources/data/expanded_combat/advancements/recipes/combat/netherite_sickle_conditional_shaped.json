@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:netherite_sickle"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

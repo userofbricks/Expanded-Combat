@@ -17,42 +17,42 @@ authors="${mod_authors}" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''${mod_description}'''
 
-[[dependencies.${mod_id}]] #optional
+[[dependencies.${modid}]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="${forge_version_range}" #mandatory
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${modid}]]
     modId="minecraft"
     mandatory=true
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${modid}]]
     modId="curios"
     mandatory=true
     versionRange="[${curios_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${modid}]]
     modId="cloth_config"
     mandatory=true
     versionRange="[${cloth_config_api_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${modid}]]
     modId="twilightforest"
     mandatory=false
     versionRange="[${twilight_forest_version},)"
     ordering="BEFORE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${modid}]]
     modId="bettercombat"
     mandatory=false
     versionRange="[${better_combat_version},)"

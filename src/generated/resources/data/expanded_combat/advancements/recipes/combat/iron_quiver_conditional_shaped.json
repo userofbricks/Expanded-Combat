@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:iron_quiver"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:bronze_cutlass"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

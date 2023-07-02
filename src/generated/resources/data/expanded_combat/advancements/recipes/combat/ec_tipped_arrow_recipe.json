@@ -30,5 +30,6 @@
     "recipes": [
       "expanded_combat:ec_tipped_arrow_recipe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

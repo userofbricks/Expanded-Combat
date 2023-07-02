@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:lead_katana"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

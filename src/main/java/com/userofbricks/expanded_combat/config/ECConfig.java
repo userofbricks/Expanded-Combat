@@ -589,7 +589,8 @@ public class ECConfig implements ConfigData {
                 return this;
             }
             public Builder quiverSlots(int slots) {
-                this.quiverSlots = Math.min(slots, 24);
+                this.quiverSlots = slots;
+                ExpandedCombat.maxQuiverSlots = Math.max(slots, ExpandedCombat.maxQuiverSlots);
                 return this;
             }
 

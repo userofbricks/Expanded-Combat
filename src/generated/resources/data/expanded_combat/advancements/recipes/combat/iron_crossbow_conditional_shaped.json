@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:iron_crossbow"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

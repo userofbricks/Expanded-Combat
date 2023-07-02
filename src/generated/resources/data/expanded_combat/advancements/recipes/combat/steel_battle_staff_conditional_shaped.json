@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:steel_battle_staff"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

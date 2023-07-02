@@ -34,5 +34,6 @@
     [
       "gold_gauntlet"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

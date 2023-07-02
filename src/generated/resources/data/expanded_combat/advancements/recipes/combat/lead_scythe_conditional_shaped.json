@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:lead_scythe"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

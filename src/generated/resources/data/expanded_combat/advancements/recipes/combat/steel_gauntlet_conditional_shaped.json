@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:steel_gauntlet"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

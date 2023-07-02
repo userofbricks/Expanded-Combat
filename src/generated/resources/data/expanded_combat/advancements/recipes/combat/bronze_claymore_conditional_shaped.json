@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:bronze_claymore"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

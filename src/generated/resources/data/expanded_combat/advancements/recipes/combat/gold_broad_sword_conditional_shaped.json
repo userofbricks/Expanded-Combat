@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:gold_broad_sword"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

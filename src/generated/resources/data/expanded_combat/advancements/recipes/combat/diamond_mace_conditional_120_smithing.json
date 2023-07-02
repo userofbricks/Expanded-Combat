@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:diamond_mace"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

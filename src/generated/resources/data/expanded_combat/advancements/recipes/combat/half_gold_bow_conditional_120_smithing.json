@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:half_gold_bow"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

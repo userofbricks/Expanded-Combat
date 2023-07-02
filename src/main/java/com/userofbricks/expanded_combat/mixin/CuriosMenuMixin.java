@@ -38,7 +38,7 @@ public class CuriosMenuMixin {
         CuriosApi.getCuriosHelper().getCuriosHandler(this.player).ifPresent(curios -> {
             ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
             IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-            ((InventoryMenu)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));
+            ((CuriosContainer)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));
             ICurioStacksHandler arrowStacksHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER);
             IDynamicStackHandler arrowStackHandler = arrowStacksHandler.getStacks();
             int x = 176 + 2;
@@ -46,7 +46,7 @@ public class CuriosMenuMixin {
             int row = 1;
             for (int i = 0; i < arrowStackHandler.getSlots(); i++, row++) {
                 int finalI = i;
-                ((InventoryMenu)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y) {
+                ((CuriosContainer)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y) {
                     @Override
                     public boolean mayPlace(@Nonnull ItemStack stack) {
                         if (stackHandler.getStackInSlot(0).getItem() instanceof ECQuiverItem quiverItem) {

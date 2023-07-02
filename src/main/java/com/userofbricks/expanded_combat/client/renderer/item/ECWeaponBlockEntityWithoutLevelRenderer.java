@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,6 +30,9 @@ public class ECWeaponBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
         } else {
             modelStack = new ItemStack(weaponItem.getMaterial().getWeaponGUIModel().get(weaponItem.getWeapon().name()).get());
         }
+
+        PotionUtils.setPotion(modelStack, PotionUtils.getPotion(stack));
+        PotionUtils.setCustomEffects(modelStack, PotionUtils.getCustomEffects(stack));
 
         if (stack.hasFoil()) modelStack.enchant(Enchantments.VANISHING_CURSE, 0);
 

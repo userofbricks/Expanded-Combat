@@ -38,7 +38,8 @@
           "recipes": [
             "expanded_combat:leather_stick"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

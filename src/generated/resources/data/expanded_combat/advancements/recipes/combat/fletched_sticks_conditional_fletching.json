@@ -38,7 +38,8 @@
           "recipes": [
             "expanded_combat:fletched_sticks"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

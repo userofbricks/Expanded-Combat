@@ -146,7 +146,7 @@ dependencies {
 
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
-    implementation fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
+    compileOnly fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
 
     // compile against the JEI API but do not include it at runtime
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
@@ -167,7 +167,7 @@ tasks.named('processResources', ProcessResources).configure {
             minecraft_version: mc_version, minecraft_version_range: mc_version_range,
             forge_version: forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
-            mod_id: modid, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            modid: modid, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
 
             curios_version: curios_version, cloth_config_api_version: cloth_config_api_version,

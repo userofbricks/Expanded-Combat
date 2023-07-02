@@ -43,5 +43,6 @@
     [
       "gauntlet_with_punch_2"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

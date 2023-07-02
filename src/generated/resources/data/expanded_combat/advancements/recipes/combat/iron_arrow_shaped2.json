@@ -40,5 +40,6 @@
     "recipes": [
       "expanded_combat:iron_arrow_shaped2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

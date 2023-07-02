@@ -9,7 +9,7 @@
               "items": [
                 {
                   "items": [
-                    "twilightforest:knightmetal_ingot"
+                    "minecraft:air"
                   ]
                 }
               ]
@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:knight_metal_mace"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

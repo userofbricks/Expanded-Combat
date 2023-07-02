@@ -9,7 +9,7 @@
               "items": [
                 {
                   "items": [
-                    "twilightforest:ironwood_ingot"
+                    "minecraft:air"
                   ]
                 }
               ]
@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:ironwood_great_hammer"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

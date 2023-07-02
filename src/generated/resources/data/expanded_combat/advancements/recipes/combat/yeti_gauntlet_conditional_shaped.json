@@ -9,7 +9,7 @@
               "items": [
                 {
                   "items": [
-                    "twilightforest:alpha_yeti_fur"
+                    "minecraft:air"
                   ]
                 }
               ]
@@ -33,7 +33,8 @@
           "recipes": [
             "expanded_combat:yeti_gauntlet"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

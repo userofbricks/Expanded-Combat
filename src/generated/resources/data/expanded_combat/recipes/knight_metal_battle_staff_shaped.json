@@ -24,9 +24,7 @@
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
-          "i": {
-            "item": "twilightforest:knightmetal_ingot"
-          },
+          "i": [],
           "s": {
             "item": "expanded_combat:leather_stick"
           }

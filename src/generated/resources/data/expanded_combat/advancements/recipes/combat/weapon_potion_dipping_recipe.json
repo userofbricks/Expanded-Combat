@@ -30,5 +30,6 @@
     "recipes": [
       "expanded_combat:weapon_potion_dipping_recipe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }
