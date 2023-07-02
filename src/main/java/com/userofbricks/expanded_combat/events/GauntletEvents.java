@@ -1,9 +1,11 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -25,6 +28,9 @@ import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.SlotTypePreset;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.List;
 
@@ -81,56 +87,24 @@ public class GauntletEvents
         }
     }
 
-    //TODO:does not work and needs its own class
-    /*
-    public void FirstPersonGuantlets(RenderHandEvent event) {
-        AbstractClientPlayer abstractclientplayerentity = Minecraft.getInstance().player;
-        CuriosApi.getCuriosHelper().getCuriosHandler(abstractclientplayerentity).ifPresent(curios -> {
-            ItemStack curiosStack = CuriosApi.getCuriosHelper().findEquippedCurio(ExpandedCombat.hands_predicate, abstractclientplayerentity).map(stringIntegerItemStackImmutableTriple -> stringIntegerItemStackImmutableTriple.right).orElse(ItemStack.EMPTY);
-            if (!(curiosStack.getItem() instanceof GauntletItem)) return;
-            GauntletItem gauntletItem = (GauntletItem) curiosStack.getItem();
-            ItemStack itemStack = event.getItemStack();
-            Hand hand = event.getHand();
-            MatrixStack matrixStack = event.getMatrixStack();
-            boolean flag = hand == Hand.MAIN_HAND;
-            HandSide handside = flag ? abstractclientplayerentity.getMainArm() : abstractclientplayerentity.getMainArm().getOpposite();
-            matrixStack.pushPose();
-            if (itemStack.isEmpty() && (flag && !abstractclientplayerentity.isInvisible())) {
-                IRenderTypeBuffer renderTypeBuffer = event.getBuffers();
-                int light = event.getLight();
-                float equipProgress = event.getEquipProgress();
-                float swingProgress = event.getSwingProgress();
-                renderPlayerGauntlets(matrixStack, renderTypeBuffer, light, equipProgress, swingProgress, handside, gauntletItem);
+    @SubscribeEvent
+    public static void onRenderArm(RenderArmEvent event) {
+        CuriosApi.getCuriosHelper().getCuriosHandler(event.getPlayer()).ifPresent(handler -> {
+            ICurioStacksHandler stacksHandler = handler.getCurios().get(SlotTypePreset.HANDS.getIdentifier());
+            if (stacksHandler != null) {
+                IDynamicStackHandler stacks = stacksHandler.getStacks();
+                IDynamicStackHandler cosmeticStacks = stacksHandler.getCosmeticStacks();
+
+                ItemStack stack = cosmeticStacks.getStackInSlot(0);
+                if (stack.isEmpty() && stacksHandler.getRenders().get(0)) {
+                    stack = stacks.getStackInSlot(0);
+                }
+
+                GauntletRenderer renderer = GauntletRenderer.getGloveRenderer(stack);
+                if (renderer != null) {
+                    renderer.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
+                }
             }
         });
     }
-
-    private void renderPlayerGauntlets(MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, float equipProgress, float swingProgress, HandSide handSide, GauntletItem guantletItem) {
-        boolean flag = handSide != HandSide.LEFT;
-        float f = flag ? 1.0F : -1.0F;
-        float f1 = MathHelper.sqrt(swingProgress);
-        float f2 = -0.3F * MathHelper.sin(f1 * (float)Math.PI);
-        float f3 = 0.4F * MathHelper.sin(f1 * ((float)Math.PI * 2F));
-        float f4 = -0.4F * MathHelper.sin(swingProgress * (float)Math.PI);
-        matrixStack.translate(f * (f2 + 0.64000005F), f3 + -0.6F + equipProgress * -0.6F, (double)(f4 + -0.71999997F));
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(f * 45.0F));
-        float f5 = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
-        float f6 = MathHelper.sin(f1 * (float)Math.PI);
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(f * f6 * 70.0F));
-        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f * f5 * -20.0F));
-        AbstractClientPlayer abstractclientplayerentity = Minecraft.getInstance().player;
-        Minecraft.getInstance().getTextureManager().bind(guantletItem.getGAUNTLET_TEXTURE());
-        matrixStack.translate(f * -1.0F, 3.6F, 3.5D);
-        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f * 120.0F));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(200.0F));
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(f * -135.0F));
-        matrixStack.translate(f * 5.6F, 0.0D, 0.0D);
-        if (flag) {
-            guantletItem.renderRightHand(matrixStack, renderTypeBuffer, light, abstractclientplayerentity, guantletItem.getGAUNTLET_TEXTURE());
-        } else {
-            guantletItem.renderLeftHand(matrixStack, renderTypeBuffer, light, abstractclientplayerentity, guantletItem.getGAUNTLET_TEXTURE());
-        }
-
-    }
-     */
 }

@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="workspace.xml">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed half of scythe render bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECWeaponBlockEntityWithoutLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECWeaponBlockEntityWithoutLevelRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/mods.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pack.mcmeta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +154,7 @@
       <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [build]">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="Expanded-Combat [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -274,8 +273,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [clean]" />
         <item itemvalue="Gradle.Expanded-Combat [assemble]" />
         <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
@@ -291,13 +290,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00042" summary="cleaned up creative tabs">
-      <created>1682181503860</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1682181503860</updated>
     </task>
     <task id="LOCAL-00043" summary="gauntlets now render correctly">
       <created>1682181777285</created>
@@ -635,7 +627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688235519563</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="fixed half of scythe render bug">
+      <created>1688331663025</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1688331663025</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -657,7 +656,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactored config and merged all materials" />
     <MESSAGE value="added weapons back" />
     <MESSAGE value="data gen fixes" />
     <MESSAGE value="item colors now work" />
@@ -682,7 +680,8 @@
     <MESSAGE value="added better combat support" />
     <MESSAGE value="updated README.md and mods.toml" />
     <MESSAGE value="updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
+    <MESSAGE value="fixed half of scythe render bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed half of scythe render bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

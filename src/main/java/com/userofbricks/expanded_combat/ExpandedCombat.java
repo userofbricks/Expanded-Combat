@@ -84,7 +84,7 @@ public class ExpandedCombat {
 
     private void comms(InterModEnqueueEvent event) {
         if (CONFIG.enableGauntlets) {
-            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
+            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).cosmetic().build());
         }
         if (CONFIG.enableQuivers) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(QUIVER_CURIOS_IDENTIFIER)
