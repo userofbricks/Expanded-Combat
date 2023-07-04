@@ -21,7 +21,7 @@ public class Material {
     private final Material craftedFrom;
     @NotNull
     private final ECConfig.MaterialConfig config;
-    public final boolean halfbow, blockWeaponOnly;
+    public final boolean halfbow, blockWeaponOnly, dyeable;
 
     private RegistryEntry<ECArrowItem> arrowEntry = null;
     private RegistryEntry<ECArrowItem> tippedArrowEntry = null;
@@ -39,12 +39,13 @@ public class Material {
     private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
     private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
 
-    public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly) {
+    public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
         this.name = name;
         this.craftedFrom = craftedFrom;
         this.config = config;
         this.halfbow = halfbow;
         this.blockWeaponOnly = blockWeaponOnly;
+        this.dyeable = dyeable;
 
         MaterialInit.materials.add(this);
         if (arrow) MaterialInit.arrowMaterials.add(this);
@@ -273,7 +274,7 @@ public class Material {
         @NotNull
         private final ECConfig.MaterialConfig config;
 
-        private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false;
+        private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
         public Builder(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
             this.name = name;
@@ -317,9 +318,13 @@ public class Material {
             this.blockWeaponOnly = true;
             return this;
         }
+        public Builder dyeable() {
+            this.dyeable = true;
+            return this;
+        }
 
         public Material build() {
-            return new Material(name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly);
+            return new Material(name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly, dyeable);
         }
     }
 }

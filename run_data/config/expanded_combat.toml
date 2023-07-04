@@ -219,6 +219,80 @@ isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
+[wood]
+equipSound = "minecraft:item.armor.equip_generic"
+mendingBonus = 0.0
+fireResistant = false
+quiverSlots = 0
+
+[wood.durability]
+toolDurability = 59
+bowDurability = 0
+addedShieldDurability = 0
+
+[wood.enchanting]
+offenseEnchantability = 15
+defenseEnchantability = 0
+
+[wood.offense]
+addedAttackDamage = 0.0
+arrowDamage = 0.0
+flaming = false
+canBeTipped = true
+multishotLevel = 0
+bowPower = 0
+velocityMultiplier = 1.0
+
+[wood.defense]
+gauntletArmorAmount = 0
+armorToughness = 0.0
+knockbackResistance = 0.0
+baseProtectionAmmount = 0.0
+afterBasePercentReduction = 0.0
+
+[wood.crafting]
+repairItem = ["minecraft:barrier"]
+isSingleAddition = false
+onlyReplaceResource = []
+smithingTemplate = "minecraft:air"
+
+[stone]
+equipSound = "minecraft:item.armor.equip_generic"
+mendingBonus = 0.0
+fireResistant = false
+quiverSlots = 0
+
+[stone.durability]
+toolDurability = 131
+bowDurability = 0
+addedShieldDurability = 0
+
+[stone.enchanting]
+offenseEnchantability = 5
+defenseEnchantability = 0
+
+[stone.offense]
+addedAttackDamage = 1.0
+arrowDamage = 0.0
+flaming = false
+canBeTipped = true
+multishotLevel = 0
+bowPower = 0
+velocityMultiplier = 1.0
+
+[stone.defense]
+gauntletArmorAmount = 0
+armorToughness = 0.0
+knockbackResistance = 0.0
+baseProtectionAmmount = 0.0
+afterBasePercentReduction = 0.0
+
+[stone.crafting]
+repairItem = ["minecraft:barrier"]
+isSingleAddition = false
+onlyReplaceResource = []
+smithingTemplate = "minecraft:air"
+
 [iron]
 equipSound = "minecraft:item.armor.equip_iron"
 mendingBonus = 0.0
