@@ -4,88 +4,120 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="wood and stone materials re added">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather_overlay.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/leather_overlay.png" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="model stuff">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/LowerLeftShieldPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/LowerRightShieldPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/MiddleShieldPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/UpperLeftShieldPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/UpperRightShieldPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PerFaceUVCubeMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/shieldLowerRight.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/shieldLowerRight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/diamond.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/b3377e089cf5b3ef895ae988c4272515301e420c" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/b3377e089cf5b3ef895ae988c4272515301e420c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/leather_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/leather_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/potion_weapons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/potion_weapons.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/bronze_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/bronze_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/bronze_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/bronze_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/bronze_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/diamond_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/diamond_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/diamond_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/diamond_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/diamond_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/fiery_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/fiery_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/fiery_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/fiery_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/fiery_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/gold_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/gold_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/gold_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/gold_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/gold_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/iron_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/iron_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/iron_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/iron_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/iron_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/ironwood_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/ironwood_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/ironwood_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/ironwood_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/ironwood_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/knight_metal_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/knight_metal_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/knight_metal_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/knight_metal_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/knight_metal_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/lead_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/lead_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/lead_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/lead_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/lead_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/naga_scale_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/naga_scale_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/naga_scale_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/naga_scale_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/naga_scale_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/netherite_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/netherite_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/netherite_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/netherite_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/netherite_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/silver_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/silver_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/silver_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/silver_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/silver_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steel_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steel_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steel_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steel_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steel_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steeleaf_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steeleaf_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steeleaf_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steeleaf_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/steeleaf_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/vanilla_dl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/vanilla_dr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/vanilla_m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/vanilla_ul.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/shield_model/vanilla_ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/ECLayerDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/ECLayerDefinitions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/oak_planks.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/wood.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/leather.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/leather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/oak_planks.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/wood.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/oak_planks.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/wood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ShieldBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/fiery.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/fiery.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/ironwood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/ironwood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/knight_metal.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/naga_scale.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/naga_scale.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/shield_base_nopattern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/shield_base_nopattern.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/steeleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/steeleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/shields/vanilla.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/vanilla.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -182,7 +214,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -191,39 +223,39 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expanded_combat.client.model.geom.builders" />
       <recent name="com.userofbricks.expanded_combat.datagen" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.recipes" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.container_handelers" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei" />
-      <recent name="com.userofbricks.expanded_combat.compatability.jei.recipe_category" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet" />
       <recent name="$PROJECT_DIR$/run_server/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/minecraft" />
       <recent name="$PROJECT_DIR$/run/mods" />
-      <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/recipes/bows_arrows" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat" />
       <recent name="$PROJECT_DIR$/run/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/slot" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/quiver" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.client.model.geom.builders" />
       <recent name="com.userofbricks.expanded_combat.compatability.twilight_forest" />
       <recent name="com.userofbricks.expanded_combat.item.recipes.builders" />
       <recent name="com.userofbricks.expanded_combat.item.recipes.conditions" />
       <recent name="com.userofbricks.expanded_combat" />
-      <recent name="com.userofbricks.expandedCombatMelee.values" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.client.model" />
       <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expanded_combat.network.client" />
       <recent name="com.userofbricks.expanded_combat.inventory.container" />
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
-      <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
   <component name="RunManager" selected="Application.runClient">
@@ -362,20 +394,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00045" summary="shield smithing recipe now generates and works">
-      <created>1682198380870</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1682198380870</updated>
-    </task>
-    <task id="LOCAL-00046" summary="fixed crash when combining curses with shields in anvil">
-      <created>1682439719617</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1682439719617</updated>
     </task>
     <task id="LOCAL-00047" summary="fixed crash when combining curses with shields in anvil">
       <created>1682439783934</created>
@@ -706,7 +724,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688443804392</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="leather gauntlets are not dyeable like leather armor">
+      <created>1688448384764</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1688448384764</updated>
+    </task>
+    <task id="LOCAL-00095" summary="model stuff">
+      <created>1688448408433</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1688448408433</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -728,8 +760,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="item colors now work" />
-    <MESSAGE value="fix generated data" />
     <MESSAGE value="added tipped arrow recipe and potion weapon recipe" />
     <MESSAGE value="lots of recipe bug fixing" />
     <MESSAGE value="fixed shield recipes again" />
@@ -753,7 +783,9 @@
     <MESSAGE value="fixed half of scythe render bug" />
     <MESSAGE value="gauntlets now render in first person" />
     <MESSAGE value="wood and stone materials re added" />
-    <option name="LAST_COMMIT_MESSAGE" value="wood and stone materials re added" />
+    <MESSAGE value="leather gauntlets are not dyeable like leather armor" />
+    <MESSAGE value="model stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="model stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

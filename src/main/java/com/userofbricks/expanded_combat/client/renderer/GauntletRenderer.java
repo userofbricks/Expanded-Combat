@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -30,7 +29,6 @@ import javax.annotation.Nullable;
 public class GauntletRenderer implements ICurioRenderer{
 
     private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
-    private ResourceLocation GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
 
     private final GauntletModel model;
 
@@ -50,10 +48,6 @@ public class GauntletRenderer implements ICurioRenderer{
         return null;
     }
 
-    protected static boolean hasSlimArms(Entity entity) {
-        return entity instanceof AbstractClientPlayer player && player.getModelName().equals("slim");
-    }
-
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
@@ -71,7 +65,7 @@ public class GauntletRenderer implements ICurioRenderer{
         ICurioRenderer.followBodyRotations(entity, this.model);
 
         if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
-            GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY();
+            ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY();
             int i = dyeableGauntletItem.getColor(stack);
             float f = (float)(i >> 16 & 255) / 255.0F;
             float f1 = (float)(i >> 8 & 255) / 255.0F;
