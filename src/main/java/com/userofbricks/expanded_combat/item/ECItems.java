@@ -2,14 +2,16 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
-import com.userofbricks.expanded_combat.item.materials.*;
-import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
-import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
+import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialBuilder;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.HardCodedRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
@@ -17,7 +19,10 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
@@ -105,12 +110,17 @@ public class ECItems
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_DECORATION.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.BANNERS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "ec_shield_decoration"));
+
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.POTION_WEAPONS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
+
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
             new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get())
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));

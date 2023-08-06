@@ -1,0 +1,80 @@
+{
+  "sources": [
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:trims/models/gauntlets/coast",
+        "expanded_combat:trims/models/gauntlets/sentry",
+        "expanded_combat:trims/models/gauntlets/dune",
+        "expanded_combat:trims/models/gauntlets/wild",
+        "expanded_combat:trims/models/gauntlets/ward",
+        "expanded_combat:trims/models/gauntlets/eye",
+        "expanded_combat:trims/models/gauntlets/vex",
+        "expanded_combat:trims/models/gauntlets/tide",
+        "expanded_combat:trims/models/gauntlets/snout",
+        "expanded_combat:trims/models/gauntlets/rib",
+        "expanded_combat:trims/models/gauntlets/spire"
+      ],
+      "palette_key": "trims/color_palettes/trim_palette",
+      "permutations": {
+        "quartz": "trims/color_palettes/quartz",
+        "iron": "trims/color_palettes/iron",
+        "gold": "trims/color_palettes/gold",
+        "diamond": "trims/color_palettes/diamond",
+        "netherite": "trims/color_palettes/netherite",
+        "redstone": "trims/color_palettes/redstone",
+        "copper": "trims/color_palettes/copper",
+        "emerald": "trims/color_palettes/emerald",
+        "lapis": "trims/color_palettes/lapis",
+        "amethyst": "trims/color_palettes/amethyst",
+        "iron_darker": "trims/color_palettes/iron_darker",
+        "gold_darker": "trims/color_palettes/gold_darker",
+        "diamond_darker": "trims/color_palettes/diamond_darker",
+        "netherite_darker": "trims/color_palettes/netherite_darker"
+      }
+    },
+
+
+
+    {
+      "__Comment__": "sentry trim m variant",
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:model/shields/sentry/m/m1"
+      ],
+      "palette_key": "expanded_combat:model/shields/sentry/m/m1/template",
+      "permutations": {
+        "gold": "expanded_combat:model/shields/sentry/m/m1/gold",
+        "diamond": "expanded_combat:model/shields/sentry/m/m1/diamond",
+        "netherite": "expanded_combat:model/shields/sentry/m/m1/netherite",
+        "bronze": "expanded_combat:model/shields/sentry/m/m1/bronze",
+        "enderite": "expanded_combat:model/shields/sentry/m/m1/enderite",
+        "lead": "expanded_combat:model/shields/sentry/m/m1/lead",
+        "silver": "expanded_combat:model/shields/sentry/m/m1/silver"
+      }
+    },
+    {
+      "__Comment__": "sentry trim m variant",
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:model/shields/sentry/m/m2"
+      ],
+      "palette_key": "expanded_combat:model/shields/sentry/m/m2/template",
+      "permutations": {
+        "iron": "expanded_combat:model/shields/sentry/m/m2/iron",
+        "vanilla": "expanded_combat:model/shields/sentry/m/m2/vanilla"
+      }
+    },
+    {
+      "__Comment__": "sentry trim m variant",
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:model/shields/sentry/m/mplated"
+      ],
+      "palette_key": "expanded_combat:model/shields/sentry/m/mplated/template",
+      "permutations": {
+        "steel": "expanded_combat:model/shields/sentry/m/mplated/steel"
+      }
+    }
+  ]
+}

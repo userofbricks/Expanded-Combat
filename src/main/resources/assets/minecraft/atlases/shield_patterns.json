@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "expanded_combat:model/shields/shield_base"
+    }
+  ]
+}

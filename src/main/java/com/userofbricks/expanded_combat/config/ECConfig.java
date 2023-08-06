@@ -2,13 +2,15 @@ package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.*;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -17,7 +19,9 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
@@ -26,7 +30,7 @@ import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 public class ECConfig implements ConfigData {
 
     //CLIENTSIDE
-    @Category("Client") @ConfigName("Quiver Hud Anchor Possition")
+    @Category("Client") @ConfigName("Quiver Hud Anchor Position")
     public OverlayAnchorPoss quiverHudAnchor = OverlayAnchorPoss.LEFT_OF_HOTBAR;
     @Category("Client") @ConfigName("Quiver Hud horizontal adjustment")
     public int quiverHudXAdjustment = -40;

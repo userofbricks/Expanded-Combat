@@ -49,7 +49,7 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
                     .filter(this::missing).toList();
 
             if (!list.isEmpty()) {
-                throw new IllegalArgumentException(String.format("Duplicate Crumble Horn Transformations: %s", list.stream().map(Objects::toString).collect(Collectors.joining(", "))));
+                throw new IllegalArgumentException(String.format("Duplicate Weapon Attributes: %s", list.stream().map(Objects::toString).collect(Collectors.joining(", "))));
             } else {
                 JsonObject obj = serializeToJson(transform);
                 Path path = createPath(new ResourceLocation(modId, name));

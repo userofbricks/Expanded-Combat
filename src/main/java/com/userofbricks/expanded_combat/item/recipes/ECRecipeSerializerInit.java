@@ -4,10 +4,7 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBowRecipeTypeCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,6 +27,8 @@ public class ECRecipeSerializerInit {
     public static final RegistryObject<RecipeSerializer<?>> EC_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("upgrading_shields", ShieldUpgradeRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> LEGACY_EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("legacy_shield_smithing_upgrade", LegacyShieldSmithingUpgradeRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("shield_smithing_upgrade", ShieldSmithingUpgradeRecipe.Serializer::new);
+
+    public static final RegistryObject<RecipeSerializer<?>> EC_SHIELD_DECORATION = RECIPE_SERIALIZERS.register("ec_shield_decoration", () -> new SimpleCraftingRecipeSerializer<>(ECShieldDecorationRecipe::new));
 
 
     private static <T extends Recipe<?>> RecipeType<T> register(final String recourceLocation) {

@@ -8,8 +8,7 @@
     "AbstractArrowEntityMixin",
     "CuriosMenuMixin",
     "FletchingTableBlockMixin",
-    "PlayerEntityMixin",
-    "PunchEnchantmentMixin"
+    "PlayerEntityMixin"
   ],
   "client": [
     "AbstractContainerScreenMixin"
