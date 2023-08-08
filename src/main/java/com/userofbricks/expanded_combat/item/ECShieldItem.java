@@ -215,4 +215,13 @@ public class ECShieldItem extends ShieldItem {
     public static String getMiddleMaterial(ItemStack stack) {
         return stack.getOrCreateTag().getString(MMaterialTagName);
     }
+
+    public static ItemStack makeShieldBeMaterial(ItemStack stack, Material material) {
+        stack.getOrCreateTag().putString(ULMaterialTagName, material.getLocationName());
+        stack.getOrCreateTag().putString(URMaterialTagName, material.getLocationName());
+        stack.getOrCreateTag().putString(DLMaterialTagName, material.getLocationName());
+        stack.getOrCreateTag().putString(DRMaterialTagName, material.getLocationName());
+        stack.getOrCreateTag().putString(MMaterialTagName, material.getLocationName());
+        return stack;
+    }
 }
