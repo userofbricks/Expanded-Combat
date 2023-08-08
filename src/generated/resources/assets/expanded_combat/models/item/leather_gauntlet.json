@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "expanded_combat:item/gauntlet/leather"
+    "layer0": "expanded_combat:item/gauntlet/leather",
+    "layer1": "expanded_combat:item/gauntlet/leather_overlay"
   }
 }

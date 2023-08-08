@@ -9,7 +9,9 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
@@ -23,7 +25,11 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class GauntletBuilder extends MaterialBuilder {
     public static RegistryEntry<ECGauntletItem> generateGauntlet(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECGauntletItem, Registrate> itemBuilder = registrate.item(locationName + "_gauntlet", (p) -> new ECGauntletItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/gauntlet/" + locationName)));
+        if (material.dyeable) itemBuilder = registrate.item(locationName + "_gauntlet", (p) -> new ECGauntletItem.Dyeable(material, p));
+        itemBuilder.model((ctx, prov) -> {
+            if (!material.dyeable) prov.generated(ctx, new ResourceLocation(MODID, "item/gauntlet/" + locationName));
+            else prov.generated(ctx, new ResourceLocation(MODID, "item/gauntlet/" + locationName), new ResourceLocation(MODID, "item/gauntlet/" + locationName + "_overlay"));
+        });
         itemBuilder.tag(ECItemTags.GAUNTLETS);
         itemBuilder.recipe((ctx, prov) -> {
 
@@ -46,6 +52,9 @@ public class GauntletBuilder extends MaterialBuilder {
 
             }
         });
+        if (material.dyeable) {
+            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
+        }
         return itemBuilder.register();
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -165,5 +166,18 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
             return true;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);
+    }
+
+    public static class Dyeable extends ECGauntletItem implements DyeableLeatherItem {
+        private final ResourceLocation GAUNTLET_TEXTURE_OVERLAY;
+
+        public Dyeable(Material materialIn, Properties properties) {
+            super(materialIn, properties);
+            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName() + "_overlay" + ".png");
+        }
+
+        public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY() {
+            return GAUNTLET_TEXTURE_OVERLAY;
+        }
     }
 }

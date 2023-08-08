@@ -8,6 +8,7 @@ import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,6 +30,7 @@ import javax.annotation.Nullable;
 public class GauntletRenderer implements ICurioRenderer{
 
     private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
+    private ResourceLocation GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
 
     private final GauntletModel model;
 
@@ -53,11 +55,11 @@ public class GauntletRenderer implements ICurioRenderer{
     }
 
     @Override
-    public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent,
-                                                                          MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks,
+    public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
+                                                                          MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
-        if (stack.getItem() instanceof ECGauntletItem) {
-            GAUNTLET_TEXTURE = ((ECGauntletItem) stack.getItem()).getGAUNTLET_TEXTURE();
+        if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
+            GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE();
         }
         LivingEntity entity = slotContext.entity();
         model.setAllVisible(false);
@@ -67,18 +69,22 @@ public class GauntletRenderer implements ICurioRenderer{
         this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         ICurioRenderer.followBodyRotations(entity, this.model);
-        VertexConsumer vertexconsumer = ItemRenderer
-                .getArmorFoilBuffer(renderTypeBuffer, RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE), false,
-                                    stack.hasFoil());
-        this.model
-                .renderToBuffer(matrixStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F,
-                                1.0F, 1.0F);
+        if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
+            GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY();
+            int i = dyeableGauntletItem.getColor(stack);
+            float f = (float)(i >> 16 & 255) / 255.0F;
+            float f1 = (float)(i >> 8 & 255) / 255.0F;
+            float f2 = (float)(i & 255) / 255.0F;
+            renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, f, f1,f2, GAUNTLET_TEXTURE);
+            renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE_OVERLAY);
+        }
+        else {
+            renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE);
+        }
     }
 
     public void renderFirstPersonArm(ItemStack stack, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, AbstractClientPlayer player, HumanoidArm arm, boolean hasFoil) {
         if (!player.isSpectator()) {
-            boolean hasSlimArms = hasSlimArms(player);
-
             ModelPart modelPart = arm == HumanoidArm.LEFT ? model.leftArm : model.rightArm;
 
             model.setAllVisible(false);
@@ -89,17 +95,29 @@ public class GauntletRenderer implements ICurioRenderer{
             model.setupAnim(player, 0, 0, 0, 0, 0);
             modelPart.xRot = 0;
 
-            renderFirstPersonArm(stack, modelPart, poseStack, multiBufferSource, packedLight, hasSlimArms, hasFoil);
+            if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
+                GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE();
+            }
+
+            RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
+            VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
+
+            if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
+                int i = dyeableGauntletItem.getColor(stack);
+                float f = (float)(i >> 16 & 255) / 255.0F;
+                float f1 = (float)(i >> 8 & 255) / 255.0F;
+                float f2 = (float)(i & 255) / 255.0F;
+                modelPart.render(poseStack, builder, packedLight, OverlayTexture.NO_OVERLAY, f, f1, f2, 1f);
+            }
+            else {
+                modelPart.render(poseStack, builder, packedLight, OverlayTexture.NO_OVERLAY);
+            }
         }
     }
 
-    private void renderFirstPersonArm(ItemStack stack, ModelPart modelPart, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, boolean hasSlimArms, boolean hasFoil) {
-        if (stack.getItem() instanceof ECGauntletItem) {
-            GAUNTLET_TEXTURE = ((ECGauntletItem) stack.getItem()).getGAUNTLET_TEXTURE();
-        }
-
-        RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
-        VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
-        modelPart.render(poseStack, builder, packedLight, OverlayTexture.NO_OVERLAY);
+    private void renderModel(PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, Model model, float f, float f1, float f2, ResourceLocation armorResource) {
+        VertexConsumer vertexconsumer = ItemRenderer
+                .getArmorFoilBuffer(multibuffersource, RenderType.armorCutoutNoCull(armorResource), false, foil);
+        model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
     }
 }
