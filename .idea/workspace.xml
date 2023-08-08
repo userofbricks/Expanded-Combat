@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed half of scythe render bug">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="gauntlets now render in first person">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,13 +287,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00048" summary="fixes and stuff">
-      <created>1682701900185</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1682701900185</updated>
     </task>
     <task id="LOCAL-00049" summary="added bows and fixed a few things">
       <created>1682806760908</created>
@@ -633,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691465950807</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="gauntlets now render in first person">
+      <created>1691466478038</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1691466478038</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -666,7 +664,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="lots of recipe bug fixing" />
     <MESSAGE value="fixed shield recipes again" />
     <MESSAGE value="fixed potion weapon dipping recipe" />
     <MESSAGE value="added non-vanilla swords to proper tags for recipes" />
@@ -691,7 +688,8 @@
     <MESSAGE value="almost missed ECVariables.java" />
     <MESSAGE value="testing looks good proceding with 1.20.1 beta release" />
     <MESSAGE value="fixed half of scythe render bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed half of scythe render bug" />
+    <MESSAGE value="gauntlets now render in first person" />
+    <option name="LAST_COMMIT_MESSAGE" value="gauntlets now render in first person" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

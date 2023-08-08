@@ -38,7 +38,9 @@ public class MaterialInit {
     public static WeaponMaterial SPEAR = new WeaponMaterial.Builder("Spear", CONFIG.spear,                      () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                  new String[]{"p", "s", "s"}).hasLargeModel().build();
 
     public static Material VANILLA =    new Material.Builder("Vanilla",     null, CONFIG.vanilla).shield().build();
-    public static Material LEATHER =    new Material.Builder("Leather",     null, CONFIG.leather).gauntlet().quiver().build();
+    public static Material LEATHER =    new Material.Builder("Leather",     null, CONFIG.leather).gauntlet().dyeable().quiver().build();
+    public static Material WOOD =       new Material.Builder("Wood",     null, CONFIG.wood).weapons().build();
+    public static Material STONE =      new Material.Builder("Stone",     null, CONFIG.stone).weapons().build();
     public static Material IRON =       new Material.Builder("Iron",        null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material GOLD =       new Material.Builder("Gold",        null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();
     public static Material DIAMOND =    new Material.Builder("Diamond",     IRON,            CONFIG.diamond).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().build();

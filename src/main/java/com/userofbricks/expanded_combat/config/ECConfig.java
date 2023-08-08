@@ -163,6 +163,14 @@ public class ECConfig implements ConfigData {
             .quiverSlots(2)
             .build();
 
+    @Category("Materials") @CollapsibleObject @ConfigName("Wood Settings")
+    public MaterialConfig wood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Stone Settings")
+    public MaterialConfig stone = new MaterialConfig.Builder().fromTier(Tiers.STONE)
+            .build();
+
     @Category("Materials") @CollapsibleObject @ConfigName("Iron Settings")
     public MaterialConfig iron = new MaterialConfig.Builder().fromTier(Tiers.IRON).fromArmorMaterial(ArmorMaterials.IRON)
             .addedShieldDurability(150).baseProtectionAmmount(3).afterBasePercentReduction(0.6f)
