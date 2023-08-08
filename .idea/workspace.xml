@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="testing looks good proceding with 1.20.1 beta release" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="testing looks good proceding with 1.20.1 beta release">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -268,11 +271,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [clean]" />
         <item itemvalue="Gradle.Expanded-Combat [assemble]" />
-        <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -641,6 +644,17 @@
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
                   <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="forge-1.20.x" />
+                      </list>
+                    </value>
+                  </entry>
                 </map>
               </option>
             </State>

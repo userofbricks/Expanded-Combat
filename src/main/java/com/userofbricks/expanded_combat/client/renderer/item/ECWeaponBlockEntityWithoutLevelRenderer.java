@@ -32,7 +32,9 @@ public class ECWeaponBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
         }
 
         PotionUtils.setPotion(modelStack, PotionUtils.getPotion(stack));
+        PotionUtils.setPotion(modelStack, PotionUtils.getPotion(modelStack));
         PotionUtils.setCustomEffects(modelStack, PotionUtils.getCustomEffects(stack));
+        PotionUtils.setCustomEffects(modelStack, PotionUtils.getCustomEffects(modelStack));
 
         if (stack.hasFoil()) modelStack.enchant(Enchantments.VANISHING_CURSE, 0);
 
