@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="testing looks good proceding with 1.20.1 beta release">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed half of scythe render bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,13 +289,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00047" summary="fixed crash when combining curses with shields in anvil">
-      <created>1682439783934</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1682439783934</updated>
     </task>
     <task id="LOCAL-00048" summary="fixes and stuff">
       <created>1682701900185</created>
@@ -632,7 +626,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688329772472</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="fixed half of scythe render bug">
+      <created>1691465950807</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1691465950807</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -665,7 +666,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added tipped arrow recipe and potion weapon recipe" />
     <MESSAGE value="lots of recipe bug fixing" />
     <MESSAGE value="fixed shield recipes again" />
     <MESSAGE value="fixed potion weapon dipping recipe" />
@@ -690,7 +690,8 @@
     <MESSAGE value="bulk update to 1.20.1" />
     <MESSAGE value="almost missed ECVariables.java" />
     <MESSAGE value="testing looks good proceding with 1.20.1 beta release" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing looks good proceding with 1.20.1 beta release" />
+    <MESSAGE value="fixed half of scythe render bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed half of scythe render bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

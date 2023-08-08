@@ -88,10 +88,12 @@ public class ExpandedCombat {
         }
         if (CONFIG.enableQuivers) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(QUIVER_CURIOS_IDENTIFIER)
+                    .cosmetic()
                     .icon(new ResourceLocation(MODID, "slot/empty_" + QUIVER_CURIOS_IDENTIFIER + "_slot"))
                     .hide()
                     .build());
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(ARROWS_CURIOS_IDENTIFIER)
+                    .cosmetic()
                     .icon(new ResourceLocation(MODID, "slot/empty_" + ARROWS_CURIOS_IDENTIFIER + "_slot"))
                     .hide()
                     .size(maxQuiverSlots)
