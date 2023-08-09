@@ -10,14 +10,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Objects;
 
 public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
 
@@ -51,11 +48,11 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
-        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
-        Material dl_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
+        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
+        Material dl_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
         Material dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
+        Material m_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
         Material addition_material = Material.valueOfShield(inventory.getItem(3));
         Material result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.getName()) ? addition_material: ul_material;
         Material result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.getName()) ? addition_material: ur_material;
