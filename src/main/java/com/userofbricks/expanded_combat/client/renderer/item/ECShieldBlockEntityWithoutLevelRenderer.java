@@ -2,27 +2,37 @@ package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.ECBaseShieldModel;
+import com.userofbricks.expanded_combat.client.model.ECShieldBanner;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.entity.BannerBlockEntity;
+import net.minecraft.world.level.block.entity.BannerPattern;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import java.util.List;
+
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.item.materials.Material.valueOfShield;
 
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
@@ -39,12 +49,19 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 String sur = stack.getOrCreateTag().getString("UR_Material");
                 String sdl = stack.getOrCreateTag().getString("DL_Material");
                 String sdr = stack.getOrCreateTag().getString("DR_Material");
-                String sm =  stack.getOrCreateTag().getString("M_Material" );
-                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + Material.valueOfShield(sul).getLocationName() + ".png");
-                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + Material.valueOfShield(sur).getLocationName() + ".png");
-                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + Material.valueOfShield(sdl).getLocationName() + ".png");
-                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + Material.valueOfShield(sdr).getLocationName() + ".png");
-                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + Material.valueOfShield(sm).getLocationName() + ".png");
+                String sm =  stack.getOrCreateTag().getString("M_Material" );assert mc.level != null;
+                String trimName = "empty";
+                ArmorTrim trim = ArmorTrim.getTrim(mc.level.registryAccess(), stack).orElse(null);
+                if (trim != null) {
+                    ResourceLocation trimResourceLocation = trim.pattern().get().assetId();
+                    trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
+                }
+                //TODO: need to switch to armor trim texture getting. example fount in HumanoidArmorLayer
+                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield(sul).getLocationName() + ".png");
+                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield(sur).getLocationName() + ".png");
+                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield(sdl).getLocationName() + ".png");
+                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield(sdr).getLocationName() + ".png");
+                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield(sm).getLocationName() + ".png");
 
                 ECBaseShieldModel upperLeft = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_LEFT));
                 ECBaseShieldModel upperRight = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_RIGHT));
@@ -72,6 +89,13 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                     renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), lowerRight, rlDR);
                 }
                 renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), middle, rlM);
+
+                if (BlockItem.getBlockEntityData(stack) != null) {
+                    ECShieldBanner shieldModel = new ECShieldBanner(mc.getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_BANNER));
+                    Material material = new Material(Sheets.SHIELD_SHEET, new ResourceLocation("expanded_combat", "model/shields/shield_base"));
+                    List<Pair<Holder<BannerPattern>, DyeColor>> list = BannerBlockEntity.createPatterns(ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
+                    BannerRenderer.renderPatterns(poseStack, multiBufferSource, combinedLight, combinedOverlay, shieldModel.banner(), material, false, list, stack.hasFoil());
+                }
                 poseStack.popPose();
             }
         }

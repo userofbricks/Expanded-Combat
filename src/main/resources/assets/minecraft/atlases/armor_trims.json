@@ -1,19 +1,19 @@
 {
   "sources": [
     {
-      "type": "directory",
-      "source": "slot",
-      "prefix": "slot/"
-    },
-    {
-      "type": "directory",
-      "source": "item_large",
-      "prefix": "item_large/"
-    },
-    {
       "type": "paletted_permutations",
       "textures": [
-        "expanded_combat:trims/items/gauntlet_trim"
+        "expanded_combat:trims/models/gauntlets/coast",
+        "expanded_combat:trims/models/gauntlets/sentry",
+        "expanded_combat:trims/models/gauntlets/dune",
+        "expanded_combat:trims/models/gauntlets/wild",
+        "expanded_combat:trims/models/gauntlets/ward",
+        "expanded_combat:trims/models/gauntlets/eye",
+        "expanded_combat:trims/models/gauntlets/vex",
+        "expanded_combat:trims/models/gauntlets/tide",
+        "expanded_combat:trims/models/gauntlets/snout",
+        "expanded_combat:trims/models/gauntlets/rib",
+        "expanded_combat:trims/models/gauntlets/spire"
       ],
       "palette_key": "trims/color_palettes/trim_palette",
       "permutations": {

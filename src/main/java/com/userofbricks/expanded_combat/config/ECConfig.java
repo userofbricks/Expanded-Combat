@@ -26,7 +26,7 @@ import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 public class ECConfig implements ConfigData {
 
     //CLIENTSIDE
-    @Category("Client") @ConfigName("Quiver Hud Anchor Possition")
+    @Category("Client") @ConfigName("Quiver Hud Anchor Position")
     public OverlayAnchorPoss quiverHudAnchor = OverlayAnchorPoss.LEFT_OF_HOTBAR;
     @Category("Client") @ConfigName("Quiver Hud horizontal adjustment")
     public int quiverHudXAdjustment = -40;
