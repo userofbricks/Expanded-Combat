@@ -30,11 +30,6 @@ public class Material {
     private RegistryEntry<ECCrossBowItem> crossbowEntry = null;
     private RegistryEntry<ECGauntletItem> gauntletEntry = null;
     private RegistryEntry<ECQuiverItem> quiverEntry = null;
-    private RegistryEntry<Item> ULModel = null;
-    private RegistryEntry<Item> URModel = null;
-    private RegistryEntry<Item> DLModel = null;
-    private RegistryEntry<Item> DRModel = null;
-    private RegistryEntry<Item> MModel = null;
     private final Map<String, RegistryEntry<ECWeaponItem>> weaponEntries = new HashMap<>();
     private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
     private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
@@ -86,13 +81,6 @@ public class Material {
             this.quiverEntry = QuiverBuilder.generateQuiver(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(quiverEntry);
         }
-        if (MaterialInit.shieldMaterials.contains(this)) {
-            this.ULModel = ShieldBuilder.createModelItem(getLocationName(), "ul");
-            this.URModel = ShieldBuilder.createModelItem(getLocationName(), "ur");
-            this.DLModel = ShieldBuilder.createModelItem(getLocationName(), "dl");
-            this.DRModel = ShieldBuilder.createModelItem(getLocationName(), "dr");
-            this.MModel = ShieldBuilder.createModelItem(getLocationName(), "m");
-        }
         if (MaterialInit.weaponMaterials.contains(this)) {
             for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
                 if (!weaponMaterial.isBlockWeapon() && blockWeaponOnly) continue;
@@ -139,26 +127,6 @@ public class Material {
 
     public RegistryEntry<ECQuiverItem> getQuiverEntry() {
         return quiverEntry;
-    }
-
-    public RegistryEntry<Item> getULModel() {
-        return ULModel;
-    }
-
-    public RegistryEntry<Item> getURModel() {
-        return URModel;
-    }
-
-    public RegistryEntry<Item> getDLModel() {
-        return DLModel;
-    }
-
-    public RegistryEntry<Item> getDRModel() {
-        return DRModel;
-    }
-
-    public RegistryEntry<Item> getMModel() {
-        return MModel;
     }
 
     public RegistryEntry<ECWeaponItem> getWeaponEntry(String name) {
