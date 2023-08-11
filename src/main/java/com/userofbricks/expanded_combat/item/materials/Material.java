@@ -1,7 +1,8 @@
 package com.userofbricks.expanded_combat.item.materials;
 
+import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -14,6 +15,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Material {
+    @NotNull
+    private final NonNullSupplier<Registrate> registrate;
     @NotNull
     private final String name;
     @Nullable
@@ -33,7 +36,8 @@ public class Material {
     private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
     private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
 
-    public Material(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
+    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
+        this.registrate = registrate;
         this.name = name;
         this.craftedFrom = craftedFrom;
         this.config = config;
@@ -53,41 +57,41 @@ public class Material {
 
     public void registerElements() {
         if (MaterialInit.arrowMaterials.contains(this)) {
-            this.arrowEntry = ArrowBuilder.generateArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            this.arrowEntry = ArrowBuilder.generateArrow(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(arrowEntry);
             if (config.offense.canBeTipped) {
-                this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+                this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(registrate.get(), getLocationName(), this, craftedFrom);
                 ECItems.ITEMS.add(tippedArrowEntry);
             }
         }
         if (MaterialInit.bowMaterials.contains(this)) {
             if (halfbow) {
-                this.halfBowEntry = BowBuilder.generateHalfBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), this, craftedFrom);
+                this.halfBowEntry = BowBuilder.generateHalfBow(registrate.get(), getLocationName(), this, craftedFrom);
                 ECItems.ITEMS.add(halfBowEntry);
             }
-            this.bowEntry = BowBuilder.generateBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            this.bowEntry = BowBuilder.generateBow(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(bowEntry);
         }
         if (MaterialInit.crossbowMaterials.contains(this)) {
-            this.crossbowEntry = CrossBowBuilder.generateCrossBow(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            this.crossbowEntry = CrossBowBuilder.generateCrossBow(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(crossbowEntry);
         }
         if (MaterialInit.gauntletMaterials.contains(this)) {
-            this.gauntletEntry = GauntletBuilder.generateGauntlet(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            this.gauntletEntry = GauntletBuilder.generateGauntlet(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(gauntletEntry);
         }
         if (MaterialInit.quiverMaterials.contains(this)) {
-            this.quiverEntry = QuiverBuilder.generateQuiver(ExpandedCombat.REGISTRATE.get(), getLocationName(), name, this, craftedFrom);
+            this.quiverEntry = QuiverBuilder.generateQuiver(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(quiverEntry);
         }
         if (MaterialInit.weaponMaterials.contains(this)) {
             for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
                 if (!weaponMaterial.isBlockWeapon() && blockWeaponOnly) continue;
-                RegistryEntry<ECWeaponItem> weapon = WeaponBuilder.generateWeapon(ExpandedCombat.REGISTRATE.get(), name, weaponMaterial, this, craftedFrom);
+                RegistryEntry<ECWeaponItem> weapon = WeaponBuilder.generateWeapon(registrate.get(), name, weaponMaterial, this, craftedFrom);
                 weaponEntries.put(weaponMaterial.name(), weapon);
                 ECItems.ITEMS.add(weapon);
-                weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
-                weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(ExpandedCombat.REGISTRATE.get(), weaponMaterial, this));
+                weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(registrate.get(), weaponMaterial, this));
+                weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(registrate.get(), weaponMaterial, this));
             }
         }
     }
@@ -239,6 +243,8 @@ public class Material {
 
     public static class Builder {
         @NotNull
+        private final NonNullSupplier<Registrate> registrate;
+        @NotNull
         private final String name;
         @Nullable
         private final Material craftedFrom;
@@ -247,7 +253,8 @@ public class Material {
 
         private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
-        public Builder(@NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
+        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
+            this.registrate = registrate;
             this.name = name;
             this.craftedFrom = craftedFrom;
             this.config = config;
@@ -296,7 +303,12 @@ public class Material {
         }
 
         public Material build() {
-            return new Material(name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly, dyeable);
+            return new Material(registrate, name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly, dyeable);
+        }
+
+
+        public String getName() {
+            return name;
         }
     }
 }
