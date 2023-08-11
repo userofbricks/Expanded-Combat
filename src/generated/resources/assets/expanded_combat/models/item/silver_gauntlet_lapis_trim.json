@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "expanded_combat:item/gauntlet/silver",
+    "layer1": "expanded_combat:trims/items/gauntlet_trim_lapis"
+  }
+}

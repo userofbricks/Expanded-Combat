@@ -7,10 +7,7 @@ import com.userofbricks.expanded_combat.compatability.jei.container_handelers.Cu
 import com.userofbricks.expanded_combat.compatability.jei.item_subtype.ShieldSubtypeInterpreter;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.FletchingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory;
-import com.userofbricks.expanded_combat.compatability.jei.recipes.ECFletchingTippedArrowRecipeMaker;
-import com.userofbricks.expanded_combat.compatability.jei.recipes.ECPotionWeaponRecipeMaker;
-import com.userofbricks.expanded_combat.compatability.jei.recipes.ECShieldSmithingRecipeMaker;
-import com.userofbricks.expanded_combat.compatability.jei.recipes.ECTippedArrowRecipeMaker;
+import com.userofbricks.expanded_combat.compatability.jei.recipes.*;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
@@ -27,7 +24,6 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.helpers.IStackHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.common.util.ErrorUtil;
@@ -116,6 +112,7 @@ public class ECJEIPlugin implements IModPlugin {
 
         registration.addRecipes(SHIELD_SMITHING, vanillaRecipes.getShieldSmithingRecipes(shieldSmithingCategory));
         registration.addRecipes(SHIELD_SMITHING, ECShieldSmithingRecipeMaker.createShieldSmithingRecipes(stackHelper));
+        registration.addRecipes(RecipeTypes.CRAFTING, ECShieldDecorationRecipeMaker.createRecipes(stackHelper));
     }
 
     @Override
