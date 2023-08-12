@@ -1,11 +1,10 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -28,7 +27,7 @@ public class ECShieldSmithingRecipeMaker {
         bases.add(new ItemStack(Items.SHIELD));
         if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)) { bases.add(new ItemStack(TFItems.KNIGHTMETAL_SHIELD.get())); }
         for (Material material :
-                MaterialInit.shieldMaterials) {
+                MaterialRegistries.shieldMaterials) {
             ItemStack shield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
             shield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
@@ -39,8 +38,8 @@ public class ECShieldSmithingRecipeMaker {
         }
 
         for (Material material :
-                MaterialInit.shieldMaterials) {
-            if (material != MaterialRegister.VANILLA){
+                MaterialRegistries.shieldMaterials) {
+            if (material != MaterialRegistries.VANILLA.get()){
                 Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
                 if (addition.isEmpty()) continue;
 

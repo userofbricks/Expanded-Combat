@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.item.materials;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
@@ -31,13 +30,13 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class GauntletBuilder extends MaterialBuilder {
     public static final List<TrimModelData> GENERATED_TRIM_MODELS = List.of(
             new TrimModelData("quartz", 0.1F, Map.of()),
-            new TrimModelData("iron", 0.2F, Map.of(MaterialRegister.IRON, "iron_darker")),
-            new TrimModelData("netherite", 0.3F, Map.of(MaterialRegister.NETHERITE, "netherite_darker")),
+            new TrimModelData("iron", 0.2F, Map.of(MaterialRegistries.IRON.get(), "iron_darker")),
+            new TrimModelData("netherite", 0.3F, Map.of(MaterialRegistries.NETHERITE.get(), "netherite_darker")),
             new TrimModelData("redstone", 0.4F, Map.of()),
             new TrimModelData("copper", 0.5F, Map.of()),
-            new TrimModelData("gold", 0.6F, Map.of(MaterialRegister.GOLD, "gold_darker")),
+            new TrimModelData("gold", 0.6F, Map.of(MaterialRegistries.GOLD.get(), "gold_darker")),
             new TrimModelData("emerald", 0.7F, Map.of()),
-            new TrimModelData("diamond", 0.8F, Map.of(MaterialRegister.DIAMOND, "diamond_darker")),
+            new TrimModelData("diamond", 0.8F, Map.of(MaterialRegistries.DIAMOND.get(), "diamond_darker")),
             new TrimModelData("lapis", 0.9F, Map.of()),
             new TrimModelData("amethyst", 1.0F, Map.of()));
 

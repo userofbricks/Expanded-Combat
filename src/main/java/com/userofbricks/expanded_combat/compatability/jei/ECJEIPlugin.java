@@ -14,7 +14,7 @@ import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import mezz.jei.api.IModPlugin;
@@ -62,11 +62,11 @@ public class ECJEIPlugin implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
         for (Material material :
-                MaterialInit.arrowMaterials) {
+                MaterialRegistries.arrowMaterials) {
             registration.registerSubtypeInterpreter(material.getTippedArrowEntry().get(), PotionSubtypeInterpreter.INSTANCE);
         }
         for (Material material :
-                MaterialInit.weaponMaterials) {
+                MaterialRegistries.weaponMaterials) {
             material.getWeapons().forEach((weaponName, registryEntry) -> {
                 if (registryEntry.get() instanceof ECWeaponItem.HasPotion) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
             });
@@ -97,7 +97,7 @@ public class ECJEIPlugin implements IModPlugin {
         IStackHelper stackHelper = jeiHelpers.getStackHelper();
         ECRecipes vanillaRecipes = new ECRecipes(ingredientManager);
         for (Material material :
-                MaterialInit.arrowMaterials) {
+                MaterialRegistries.arrowMaterials) {
             registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(stackHelper, material.getArrowEntry().get()));
         }
 

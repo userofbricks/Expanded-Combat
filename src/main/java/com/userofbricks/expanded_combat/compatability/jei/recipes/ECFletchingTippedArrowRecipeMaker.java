@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.helpers.IStackHelper;
@@ -26,7 +26,7 @@ public class ECFletchingTippedArrowRecipeMaker {
     public static List<IFletchingRecipe> createTippedArrowRecipes(IStackHelper stackHelper) {
         List<IFletchingRecipe> recipes = new ArrayList<>();
         for (Material material :
-                MaterialInit.arrowMaterials) {
+                MaterialRegistries.arrowMaterials) {
             recipes.addAll(createTippedRecipesFor(stackHelper, material.getArrowEntry().get(), material.getTippedArrowEntry().get()));
         }
         recipes.addAll(createTippedRecipesFor(stackHelper, Items.ARROW, Items.TIPPED_ARROW));

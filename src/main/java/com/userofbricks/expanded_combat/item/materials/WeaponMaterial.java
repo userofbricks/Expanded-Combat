@@ -11,7 +11,8 @@ import java.util.function.Supplier;
 public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craftedFrom, @NotNull ECConfig.WeaponMaterialConfig config, boolean potionDippable, boolean dyeable, boolean isBlockWeapon,
                              boolean hasCustomTransforms, boolean hasLargeModel, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
 
-    public WeaponMaterial {MaterialInit.weaponMaterialConfigs.add(this);}
+    public WeaponMaterial {
+        MaterialRegistries.weaponMaterialConfigs.add(this);}
 
     public String getLocationName() {
         return this.name.toLowerCase(Locale.ROOT).replace(' ', '_').replace('\'', '_');

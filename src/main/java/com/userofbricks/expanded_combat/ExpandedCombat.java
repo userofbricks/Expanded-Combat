@@ -22,7 +22,7 @@ import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.LangStrings;
@@ -63,7 +63,7 @@ public class ExpandedCombat {
         LangStrings.registerLang();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        MaterialInit.loadClass();
+        MaterialRegistries.loadClass(bus);
         ECEnchantments.loadClass();
         ECItems.loadClass();
         ECItemTags.loadTags();
@@ -109,10 +109,10 @@ public class ExpandedCombat {
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         
-        for (Material material : MaterialInit.gauntletMaterials) {
+        for (Material material : MaterialRegistries.gauntletMaterials) {
             CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
         }
-        for (Material material : MaterialInit.quiverMaterials) {
+        for (Material material : MaterialRegistries.quiverMaterials) {
             CuriosRendererRegistry.register(material.getQuiverEntry().get(), QuiverRenderer::new);
         }
         ECItemModelsProperties.registerModelOverides();
