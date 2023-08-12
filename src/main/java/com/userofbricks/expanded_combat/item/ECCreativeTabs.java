@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.materials.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
@@ -98,7 +99,7 @@ public class ECCreativeTabs {
             "Expanded Combat");
 
     private static Item getIcon() {
-        if(CONFIG.enableGauntlets) return MaterialInit.DIAMOND.getGauntletEntry().get();
+        if(CONFIG.enableGauntlets) return MaterialRegister.DIAMOND.getGauntletEntry().get();
         return Items.ARROW;
     }
 
@@ -114,15 +115,15 @@ public class ECCreativeTabs {
             items.putAfter(new ItemStack(BRONZE_SWORD.get()), new ItemStack(STEEL_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             if (CONFIG.enableGauntlets) {
                 for (Material material : MaterialInit.gauntletMaterials) {
-                    if (material == MaterialInit.LEATHER) {
+                    if (material == MaterialRegister.LEATHER) {
                         items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == MaterialInit.IRON) {
+                    } else if (material == MaterialRegister.IRON) {
                         items.putBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == MaterialInit.GOLD) {
+                    } else if (material == MaterialRegister.GOLD) {
                         items.putBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == MaterialInit.DIAMOND) {
+                    } else if (material == MaterialRegister.DIAMOND) {
                         items.putBefore(new ItemStack(Items.DIAMOND_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == MaterialInit.NETHERITE) {
+                    } else if (material == MaterialRegister.NETHERITE) {
                         items.putBefore(new ItemStack(Items.NETHERITE_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     } else {
                         items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

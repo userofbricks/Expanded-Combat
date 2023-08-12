@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added banner support on shields, and trim support for gauntlets">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/registering/MaterialRegistryEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/registering/ShieldMaterialsRegistryEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/ShieldToMaterials.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="registering materials can now happen through the forge event system">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/MaterialRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldSmithingRecipeMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldSmithingRecipeMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/twilight_forest/TwilightForestCompatEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/twilight_forest/TwilightForestCompatEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECAdvancementProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECAdvancementProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECBetterCombatWeaponAttributesProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECBetterCombatWeaponAttributesProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/registering/MaterialRegistryEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/events/registering/MaterialRegistryEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/registering/ShieldMaterialsRegistryEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/events/registering/ShieldMaterialsRegistryEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/GauntletBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/MaterialInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponMaterial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +87,8 @@
         <option value="AnnotationType" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -168,7 +177,7 @@
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [genIntellijRuns]">
+  <component name="RunManager" selected="Application.runData">
     <configuration name="Expanded-Combat [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -304,13 +313,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00050" summary="quick netherite bow fix">
-      <created>1682807737690</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1682807737691</updated>
     </task>
     <task id="LOCAL-00051" summary="added missing shield single addition recipes">
       <created>1682822153370</created>
@@ -648,7 +650,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691354825168</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="registering materials can now happen through the forge event system">
+      <created>1691722334446</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1691722334446</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -670,7 +679,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed potion weapon dipping recipe" />
     <MESSAGE value="added non-vanilla swords to proper tags for recipes" />
     <MESSAGE value="added fiery burn and knight metal extra damage based on armor" />
     <MESSAGE value="added weapon large ing hand models" />
@@ -695,7 +703,8 @@
     <MESSAGE value="shields now use entity models instead of item models" />
     <MESSAGE value="fixed shield upgrading bug" />
     <MESSAGE value="added banner support on shields, and trim support for gauntlets" />
-    <option name="LAST_COMMIT_MESSAGE" value="added banner support on shields, and trim support for gauntlets" />
+    <MESSAGE value="registering materials can now happen through the forge event system" />
+    <option name="LAST_COMMIT_MESSAGE" value="registering materials can now happen through the forge event system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.item.ECWeaponBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
@@ -66,7 +66,7 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     @Override
     public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
         boolean result = super.hurtEnemy(weapon, target, attacker);
-        if (this.material == MaterialInit.FIERY) {
+        if (this.material == MaterialRegister.FIERY) {
             if (result && !target.level.isClientSide && !target.fireImmune()) {
                 target.setRemainingFireTicks(15);
             } else {
@@ -102,9 +102,9 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        if (this.material == MaterialInit.FIERY) {
+        if (this.material == MaterialRegister.FIERY) {
             list.add(Component.translatable(LangStrings.FIERY_WEAPON_TOOLTIP));
-        } else if (this.material == MaterialInit.KNIGHTMETAL) {
+        } else if (this.material == MaterialRegister.KNIGHTMETAL) {
             if (this.weapon.isBlockWeapon()) list.add(Component.translatable(LangStrings.KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP));
             else list.add(Component.translatable(LangStrings.KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP));
         }
