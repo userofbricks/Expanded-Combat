@@ -94,6 +94,9 @@ public class Material {
                 weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(registrate.get(), weaponMaterial, this));
             }
         }
+        if (MaterialInit.shieldMaterials.contains(this)) {
+            ExpandedCombat.REGISTRATE.get().addRawLang(LangStrings.SHIELD_MATERIAL_LANG_START + getName(), getName());
+        }
     }
 
     public String getLocationName() {
