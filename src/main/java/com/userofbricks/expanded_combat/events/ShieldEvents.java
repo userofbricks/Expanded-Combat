@@ -36,7 +36,7 @@ public class ShieldEvents {
                 damageLeftToBlock -= damageBlocked;
             }
             if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
-                double damagePercent = MaterialInit.VANILLA.getConfig().defense.afterBasePercentReduction;
+                double damagePercent = CONFIG.vanilla.defense.afterBasePercentReduction;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
                 }else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
@@ -54,7 +54,7 @@ public class ShieldEvents {
         float damageBlocked = 0;
         switch (CONFIG.shieldProtectionConfig.shieldBaseProtectionType) {
             case PREDEFINED_AMMOUNT -> {
-                double protectionAmount = MaterialInit.VANILLA.getConfig().defense.baseProtectionAmmount;
+                double protectionAmount = CONFIG.vanilla.defense.baseProtectionAmmount;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
                 } else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){

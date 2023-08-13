@@ -1,10 +1,5 @@
 {
   "values": [
-    "expanded_combat:leather_gauntlet",
-    "expanded_combat:iron_gauntlet",
-    "expanded_combat:gold_gauntlet",
-    "expanded_combat:diamond_gauntlet",
-    "expanded_combat:netherite_gauntlet",
     "expanded_combat:steel_gauntlet",
     "expanded_combat:bronze_gauntlet",
     "expanded_combat:silver_gauntlet",
@@ -15,6 +10,11 @@
     "expanded_combat:knight_metal_gauntlet",
     "expanded_combat:naga_scale_gauntlet",
     "expanded_combat:yeti_gauntlet",
-    "expanded_combat:arctic_gauntlet"
+    "expanded_combat:arctic_gauntlet",
+    "expanded_combat:leather_gauntlet",
+    "expanded_combat:iron_gauntlet",
+    "expanded_combat:gold_gauntlet",
+    "expanded_combat:diamond_gauntlet",
+    "expanded_combat:netherite_gauntlet"
   ]
 }

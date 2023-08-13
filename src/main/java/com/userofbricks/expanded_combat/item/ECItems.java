@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.HardCodedRecipeBuilder;
@@ -125,18 +126,18 @@ public class ECItems
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
                     .save(recipeProvider, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
 
-            FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, MaterialInit.IRON.getArrowEntry().get(), 2)
+            FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, VanillaECPlugin.IRON.getArrowEntry().get(), 2)
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
                     .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_fletching2"));
             FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.FLINT), RecipeCategory.COMBAT, Items.ARROW, 6)
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
                     .save(recipeProvider, new ResourceLocation(MODID, "gold_arrow_fletching2"));
 
-            FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(MaterialInit.DIAMOND.getTippedArrowEntry().get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, MaterialInit.NETHERITE.getTippedArrowEntry().get(), 32)
+            FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(VanillaECPlugin.DIAMOND.getTippedArrowEntry().get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, VanillaECPlugin.NETHERITE.getTippedArrowEntry().get(), 32)
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
                     .save(recipeProvider, new ResourceLocation(MODID, "netherite_arrow_fletching2"));
 
-            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MaterialInit.IRON.getArrowEntry().get(), 1)
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, VanillaECPlugin.IRON.getArrowEntry().get(), 1)
                     .pattern("N")
                     .pattern("S")
                     .pattern("F")

@@ -1,4 +1,4 @@
-// 1.19.4	2023-08-06T07:12:35.607022	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-08-12T20:35:10.222091	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 df4d34a0d6da232c21779680c917fa2710585465 assets/expanded_combat/lang/en_ud.json
 0d42e92dfc4bd7a23b4c71f93b793bb71e442621 assets/expanded_combat/lang/en_us.json
 3f942342b74434d9448379e19e53f80be4531585 assets/expanded_combat/models/item/arctic_gauntlet.json
@@ -1475,8 +1475,8 @@ f863ea1fbe11adccf12a2f5ce10efb7f730031f8 data/expanded_combat/recipes/wood_mace_
 a5e510bcf687c6087eee85269957523f2a415e56 data/expanded_combat/tags/items/arrows.json
 194dd04e43fe7dfab732f66608a2bb8491f7ce32 data/expanded_combat/tags/items/bows.json
 b45eb971d3976ef4105f4b6c21802a82749d813d data/expanded_combat/tags/items/crossbows.json
-cffa977c7252ef2609b7a3e3807f88f0d245afab data/expanded_combat/tags/items/gauntlets.json
-76fc5dbbc85b7b5da54e5b01eab84e413806771e data/expanded_combat/tags/items/potion_weapons.json
+27ee2b1cfebacc9fa249d538d1638e6ee3fcd9a0 data/expanded_combat/tags/items/gauntlets.json
+3474e33b69b39f7a2a67b69241b69f4d047f20e8 data/expanded_combat/tags/items/potion_weapons.json
 5c4ddacd34dd6a9d3c21e9dd73bdec06b7742eee data/expanded_combat/tags/items/quivers.json
 aea8123d5c0b65810b83279bfc5438104e4c1c67 data/expanded_combat/tags/items/shields.json
 4a7d200ec663a3dbd9de54ec0ce847770cdb59c3 data/forge/tags/items/tools/shields.json
@@ -1493,4 +1493,4 @@ cfd33b79f844da43861884bb2d2665d492b35127 data/forge/tags/items/tools/swords/silv
 13d10104838b7385b74dc2b0b6d0b102effab5a1 data/forge/tags/items/tools/swords/steel.json
 83705248222d9388cf5543592798477fc3a7de01 data/forge/tags/items/tools/swords/steeleaf.json
 a5e510bcf687c6087eee85269957523f2a415e56 data/minecraft/tags/items/arrows.json
-cffa977c7252ef2609b7a3e3807f88f0d245afab data/minecraft/tags/items/trimmable_armor.json
+27ee2b1cfebacc9fa249d538d1638e6ee3fcd9a0 data/minecraft/tags/items/trimmable_armor.json

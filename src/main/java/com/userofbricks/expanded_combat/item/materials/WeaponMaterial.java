@@ -72,5 +72,9 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
         public WeaponMaterial build() {
             return new WeaponMaterial(name, craftedFrom, config, potionDippable, dyeable, isBlockWeapon, hasCustomTransforms, hasLargeModel, recipeIngredients, recipe);
         }
+
+        public String name() {
+            return name;
+        }
     }
 }
