@@ -5,25 +5,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="added banner support on shields, and trim support for gauntlets">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldDecorationRecipeMaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECJEIPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECJEIPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_amethyst.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_amethyst.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_copper.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_copper.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_diamond_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond_darker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_emerald.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_emerald.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_gold_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold_darker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_iron_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron_darker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_lapis.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_lapis.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_netherite_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite_darker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_quartz.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_quartz.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary/gauntlet_trim_redstone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_redstone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/models/blockbench files/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/dragon armor.bbmodel" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/models/blockbench files/dragon armor.bbmodel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/quiver.bbmodel" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/models/blockbench files/quiver.bbmodel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/sentry_armor_trim_shield_patern.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/models/blockbench files/sentry_armor_trim_shield_patern.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench files/shieldLowerRight.bbmodel" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/models/blockbench files/shieldLowerRight.bbmodel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/entity/gauntlet/leather.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/container/shield_smithing.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/gui/container/shield_smithing.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/gui/jei/recipe_backgrounds.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/gui/jei/recipe_backgrounds.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/bow/bows.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/bow/bows.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/crossbow/crossbow.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/crossbow/crossbow.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/hands_slot_items.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/gauntlet/hands_slot_items.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/weapon types/weapon_coloring.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_coloring.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/weapon types/weapon_inventory.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_inventory.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/weapon types/weapon_large.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_large.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/_patern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/_patern.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/fiery.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/fiery.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/ironwood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/ironwood.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/knight_metal.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/knight_metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/m_patern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/m_patern.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/naga_scale.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/naga_scale.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/shield_base.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/shield_base.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/shield_base_nopattern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/shield_base_nopattern.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/steeleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/steeleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/ul_patern.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/ul_patern.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_bronze.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_bronze.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_enderite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_enderite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_lead.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_lead.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_silver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_silver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_1_palete_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_2_palete_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil_palete_steel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil_palete_steel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil_palete_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_anvil_palete_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite_palete_netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite_palete_netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite_palete_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_netherite_palete_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated_palete_iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated_palete_iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated_palete_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/metal_plated_palete_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/unsplit_textures.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/unsplit_textures/unsplit_textures.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/vanilla.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/vanilla.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_amethyst.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_amethyst.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_copper.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_copper.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_diamond_darker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_emerald.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_emerald.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_gold_darker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_iron_darker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_lapis.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_lapis.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite_darker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_netherite_darker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_quartz.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_quartz.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_redstone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/trims/items/gauntlet_trim_redstone.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +114,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
+                <item name="forgegradle runs" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -80,9 +131,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="AnnotationType" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -137,11 +188,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expanded_combat.api.registry" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.recipes" />
       <recent name="com.userofbricks.expanded_combat.client.model.geom.builders" />
       <recent name="com.userofbricks.expanded_combat.datagen" />
       <recent name="com.userofbricks.expanded_combat.compatability.jei.container_handelers" />
-      <recent name="com.userofbricks.expanded_combat.compatability.jei" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items" />
@@ -151,18 +202,18 @@
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/trims/items/datagen_temparary" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/sentry/m/mplated" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/sentry/m/m2" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/sentry/m/palete" />
+      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types" />
+      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item" />
+      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/gauntlet" />
+      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/crossbow" />
+      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/bow" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.item.materials.plugins" />
       <recent name="com.userofbricks.expanded_combat.client.model.geom.builders" />
       <recent name="com.userofbricks.expanded_combat.compatability.twilight_forest" />
       <recent name="com.userofbricks.expanded_combat.item.recipes.builders" />
       <recent name="com.userofbricks.expanded_combat.item.recipes.conditions" />
-      <recent name="com.userofbricks.expanded_combat" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expanded_combat.client.model" />
@@ -172,7 +223,7 @@
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [build]">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [runData]">
     <configuration name="Expanded-Combat [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -215,6 +266,27 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runData" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="reimagined_quiver [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -227,27 +299,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="reimagined_quiver [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -291,11 +342,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.reimagined_quiver [build]" />
+        <item itemvalue="Gradle.Expanded-Combat [runData]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [clean]" />
         <item itemvalue="Gradle.Expanded-Combat [assemble]" />
-        <item itemvalue="Gradle.reimagined_quiver [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -308,13 +359,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00050" summary="quick netherite bow fix">
-      <created>1682807737690</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1682807737691</updated>
     </task>
     <task id="LOCAL-00051" summary="added missing shield single addition recipes">
       <created>1682822153370</created>
@@ -652,7 +696,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691354825168</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="working form of jei registry created and moved onto material additions">
+      <created>1691960368314</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1691960368315</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -674,7 +725,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed potion weapon dipping recipe" />
     <MESSAGE value="added non-vanilla swords to proper tags for recipes" />
     <MESSAGE value="added fiery burn and knight metal extra damage based on armor" />
     <MESSAGE value="added weapon large ing hand models" />
@@ -699,7 +749,8 @@
     <MESSAGE value="shields now use entity models instead of item models" />
     <MESSAGE value="fixed shield upgrading bug" />
     <MESSAGE value="added banner support on shields, and trim support for gauntlets" />
-    <option name="LAST_COMMIT_MESSAGE" value="added banner support on shields, and trim support for gauntlets" />
+    <MESSAGE value="working form of jei registry created and moved onto material additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="working form of jei registry created and moved onto material additions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
