@@ -6,11 +6,6 @@
       "prefix": "slot/"
     },
     {
-      "type": "directory",
-      "source": "item_large",
-      "prefix": "item_large/"
-    },
-    {
       "type": "paletted_permutations",
       "textures": [
         "expanded_combat:trims/items/gauntlet_trim"
@@ -31,6 +26,72 @@
         "gold_darker": "trims/color_palettes/gold_darker",
         "diamond_darker": "trims/color_palettes/diamond_darker",
         "netherite_darker": "trims/color_palettes/netherite_darker"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:item/battle_staff",
+        "expanded_combat:item/broad_sword",
+        "expanded_combat:item/claymore",
+        "expanded_combat:item/cutlass",
+        "expanded_combat:item/dagger",
+        "expanded_combat:item/dancer_s_sword",
+        "expanded_combat:item/glaive",
+        "expanded_combat:item/katana",
+        "expanded_combat:item/scythe",
+        "expanded_combat:item/sickle",
+        "expanded_combat:item/spear"
+      ],
+      "palette_key": "item/color_palettes/template",
+      "permutations": {
+        "bronze": "item/color_palettes/bronze",
+        "netherite": "item/color_palettes/netherite",
+        "stone": "item/color_palettes/stone",
+        "wood": "item/color_palettes/wood",
+        "steeleaf": "item/color_palettes/steeleaf",
+        "steel": "item/color_palettes/steel",
+        "silver": "item/color_palettes/silver",
+        "lead": "item/color_palettes/lead",
+        "ironwood": "item/color_palettes/ironwood",
+        "iron": "item/color_palettes/iron",
+        "gold": "item/color_palettes/gold",
+        "enderite": "item/color_palettes/enderite",
+        "diamond": "item/color_palettes/diamond",
+        "knight_metal": "item/color_palettes/knight_metal"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "expanded_combat:item_large/battle_staff",
+        "expanded_combat:item_large/broad_sword",
+        "expanded_combat:item_large/claymore",
+        "expanded_combat:item_large/cutlass",
+        "expanded_combat:item_large/dagger",
+        "expanded_combat:item_large/dancer_s_sword",
+        "expanded_combat:item_large/glaive",
+        "expanded_combat:item_large/katana",
+        "expanded_combat:item_large/scythe",
+        "expanded_combat:item_large/sickle",
+        "expanded_combat:item_large/spear"
+      ],
+      "palette_key": "item/color_palettes/template",
+      "permutations": {
+        "bronze": "item/color_palettes/bronze",
+        "netherite": "item/color_palettes/netherite",
+        "stone": "item/color_palettes/stone",
+        "wood": "item/color_palettes/wood",
+        "steeleaf": "item/color_palettes/steeleaf",
+        "steel": "item/color_palettes/steel",
+        "silver": "item/color_palettes/silver",
+        "lead": "item/color_palettes/lead",
+        "ironwood": "item/color_palettes/ironwood",
+        "iron": "item/color_palettes/iron",
+        "gold": "item/color_palettes/gold",
+        "enderite": "item/color_palettes/enderite",
+        "diamond": "item/color_palettes/diamond",
+        "knight_metal": "item/color_palettes/knight_metal"
       }
     }
   ]
