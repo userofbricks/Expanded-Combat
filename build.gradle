@@ -83,12 +83,9 @@ minecraft {
             workingDirectory project.file('run_data')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('src/needed_only_for_datagen/resources/')
             mods {
                 expanded_combat {
-                    sourceSets.main.resources {
-                        srcDir 'src/needed_only_for_datagen/resources'
-                    }
                     source sourceSets.main
                 }
             }

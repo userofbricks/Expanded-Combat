@@ -1,6 +1,0 @@
-{
-  "parent": "expanded_combat:item/bases/katana",
-  "textures": {
-    "layer0": "expanded_combat:item_large/katana/wood"
-  }
-}

@@ -174,55 +174,55 @@ public class ECConfig implements ConfigData {
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Oak Wood Settings")
-    public MaterialConfig oakWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig oakPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.OAK_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Acacia Wood Settings")
-    public MaterialConfig acaciaWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig acaciaPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.ACACIA_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Birch Wood Settings")
-    public MaterialConfig birchWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig birchPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.BIRCH_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Dark Oak Wood Settings")
-    public MaterialConfig darkOakWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig darkOakPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.DARK_OAK_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Spruce Wood Settings")
-    public MaterialConfig spruceWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig sprucePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.SPRUCE_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Jungle Wood Settings")
-    public MaterialConfig jungleWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig junglePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.JUNGLE_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Warped Wood Settings")
-    public MaterialConfig warpedWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig warpedPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.WARPED_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Crimson Wood Settings")
-    public MaterialConfig crimsonWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig crimsonPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.CRIMSON_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Mangrove Wood Settings")
-    public MaterialConfig mangroveWood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    public MaterialConfig mangrovePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
             .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
             .repairItem(Ingredient.of(Items.MANGROVE_PLANKS))
             .build();

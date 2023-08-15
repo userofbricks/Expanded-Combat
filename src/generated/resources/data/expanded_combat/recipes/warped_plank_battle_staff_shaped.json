@@ -1,0 +1,46 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "weapon"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Warped Plank"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "i": {
+            "item": "minecraft:warped_planks"
+          },
+          "s": {
+            "item": "expanded_combat:leather_stick"
+          }
+        },
+        "pattern": [
+          "  i",
+          " s ",
+          "i  "
+        ],
+        "result": {
+          "item": "expanded_combat:warped_plank_battle_staff"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

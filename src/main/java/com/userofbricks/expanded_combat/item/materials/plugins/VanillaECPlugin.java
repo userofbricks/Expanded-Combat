@@ -33,15 +33,15 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     public static Material LEATHER;
     public static Material RABBIT_LEATHER;
-    public static Material OAK_WOOD;
-    public static Material ACACIA_WOOD;
-    public static Material BIRCH_WOOD;
-    public static Material DARK_OAK_WOOD;
-    public static Material SPRUCE_WOOD;
-    public static Material JUNGLE_WOOD;
-    public static Material WARPED_WOOD;
-    public static Material CRIMSON_WOOD;
-    public static Material MANGROVE_WOOD;
+    public static Material OAK_PLANK;
+    public static Material ACACIA_PLANK;
+    public static Material BIRCH_PLANK;
+    public static Material DARK_OAK_PLANK;
+    public static Material SPRUCE_PLANK;
+    public static Material JUNGLE_PLANK;
+    public static Material WARPED_PLANK;
+    public static Material CRIMSON_PLANK;
+    public static Material MANGROVE_PLANK;
     public static Material STONE;
     public static Material IRON;
     public static Material GOLD;
@@ -71,16 +71,16 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         SPEAR =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Spear", CONFIG.spear,                  () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"p", "s", "s"}).hasLargeModel());
 
         LEATHER =       registrationHandler.registerMaterial(new Material.Builder("Leather",       null, CONFIG.leather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
-        RABBIT_LEATHER =registrationHandler.registerMaterial(new Material.Builder("Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
-        OAK_WOOD =      registrationHandler.registerMaterial(new Material.Builder("Oak Wood",      null, CONFIG.oakWood).shield().weapons());
-        ACACIA_WOOD =   registrationHandler.registerMaterial(new Material.Builder("Acacia Wood",   null, CONFIG.acaciaWood).shield().weapons());
-        BIRCH_WOOD =    registrationHandler.registerMaterial(new Material.Builder("Birch Wood",    null, CONFIG.birchWood).shield().weapons());
-        DARK_OAK_WOOD = registrationHandler.registerMaterial(new Material.Builder("Dark Oak Wood", null, CONFIG.darkOakWood).shield().weapons());
-        SPRUCE_WOOD =   registrationHandler.registerMaterial(new Material.Builder("Spruce Wood",   null, CONFIG.spruceWood).shield().weapons().alias("ul", "Vanilla").alias("ur", "Vanilla").alias("dl", "Vanilla").alias("dr", "Vanilla"));
-        JUNGLE_WOOD =   registrationHandler.registerMaterial(new Material.Builder("Jungle Wood",   null, CONFIG.jungleWood).shield().weapons());
-        WARPED_WOOD =   registrationHandler.registerMaterial(new Material.Builder("Warped Wood",   null, CONFIG.warpedWood).shield().weapons());
-        CRIMSON_WOOD =  registrationHandler.registerMaterial(new Material.Builder("Crimson Wood",  null, CONFIG.crimsonWood).shield().weapons());
-        MANGROVE_WOOD = registrationHandler.registerMaterial(new Material.Builder("Mangrove Wood", null, CONFIG.mangroveWood).shield().weapons());
+        RABBIT_LEATHER =registrationHandler.registerMaterial(new Material.Builder("Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM));
+        OAK_PLANK =      registrationHandler.registerMaterial(new Material.Builder("Oak Plank",      null, CONFIG.oakPlank).shield().weapons());
+        ACACIA_PLANK =   registrationHandler.registerMaterial(new Material.Builder("Acacia Plank",   null, CONFIG.acaciaPlank).shield().weapons());
+        BIRCH_PLANK =    registrationHandler.registerMaterial(new Material.Builder("Birch Plank",    null, CONFIG.birchPlank).shield().weapons());
+        DARK_OAK_PLANK = registrationHandler.registerMaterial(new Material.Builder("Dark Oak Plank", null, CONFIG.darkOakPlank).shield().weapons());
+        SPRUCE_PLANK =   registrationHandler.registerMaterial(new Material.Builder("Spruce Plank",   null, CONFIG.sprucePlank).shield().weapons().alias("ul", "Vanilla").alias("ur", "Vanilla").alias("dl", "Vanilla").alias("dr", "Vanilla").alias("ul", "Wood").alias("ur", "Wood").alias("m", "Wood").alias("dl", "Wood").alias("dr", "Wood"));
+        JUNGLE_PLANK =   registrationHandler.registerMaterial(new Material.Builder("Jungle Plank",   null, CONFIG.junglePlank).shield().weapons());
+        WARPED_PLANK =   registrationHandler.registerMaterial(new Material.Builder("Warped Plank",   null, CONFIG.warpedPlank).shield().weapons());
+        CRIMSON_PLANK =  registrationHandler.registerMaterial(new Material.Builder("Crimson Plank",  null, CONFIG.crimsonPlank).shield().weapons());
+        MANGROVE_PLANK = registrationHandler.registerMaterial(new Material.Builder("Mangrove Plank", null, CONFIG.mangrovePlank).shield().weapons());
         STONE =         registrationHandler.registerMaterial(new Material.Builder("Stone",         null, CONFIG.stone).weapons());
         IRON =          registrationHandler.registerMaterial(new Material.Builder("Iron",          null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
         GOLD =          registrationHandler.registerMaterial(new Material.Builder("Gold",          null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());
@@ -90,6 +90,6 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     @Override
     public void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {
-        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, OAK_WOOD, OAK_WOOD, IRON, OAK_WOOD, OAK_WOOD));
+        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, OAK_PLANK, OAK_PLANK, IRON, OAK_PLANK, OAK_PLANK));
     }
 }

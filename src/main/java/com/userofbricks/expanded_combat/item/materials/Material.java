@@ -226,7 +226,7 @@ public class Material {
                 MaterialInit.shieldMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return VanillaECPlugin.OAK_WOOD;
+        return VanillaECPlugin.OAK_PLANK;
     }
 
     public static Material valueOfShield(ItemStack itemStack) {
@@ -235,7 +235,7 @@ public class Material {
             if (material.getConfig().crafting.repairItem.isEmpty()) continue;
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
         }
-        return VanillaECPlugin.OAK_WOOD;
+        return VanillaECPlugin.OAK_PLANK;
     }
 
     /**

@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "weapon"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Dark Oak Plank"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "i": {
+            "item": "minecraft:dark_oak_planks"
+          },
+          "p": {
+            "tag": "forge:tools/swords/dark_oak_plank"
+          }
+        },
+        "pattern": [
+          " i ",
+          "ipi"
+        ],
+        "result": {
+          "item": "expanded_combat:dark_oak_plank_broad_sword"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}
