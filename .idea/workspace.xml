@@ -5,800 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/acacia_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/birch_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/crimson_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/dark_oak_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/jungle_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/mangrove_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/oak_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_gauntlet_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_quiver_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/spruce_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_plank_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_claymore_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_cutlass_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_dagger_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_flail_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_glaive_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_katana_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_mace_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_scythe_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_sickle_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/warped_wood_spear_conditional_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/acacia_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/birch_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/crimson_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/dark_oak_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/jungle_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/mangrove_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/oak_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_gauntlet_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_quiver_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/spruce_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_plank_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_battle_staff_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_broad_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_claymore_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_cutlass_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_dagger_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_dancer_s_sword_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_flail_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_glaive_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_great_hammer_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_katana_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_mace_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_scythe_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_sickle_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/warped_wood_spear_shaped.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/rabbit_leather.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/color_palettes/warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/rabbit_leather.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/quiver/rabbit_leather.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/battle_staff_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/broad_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/claymore_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/cutlass_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/dagger_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/dancer_s_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/glaive_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/katana_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/mace.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/scythe_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/sickle_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/spear_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/battle_staff_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/broad_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/claymore_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/dancer_s_sword_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/glaive_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/katana_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/scythe_warped_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_bamboo_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_birch_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_cherry_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_crimson_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_dark_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_jungle_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_mangrove_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_oak_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_spruce_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item_large/spear_warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/rabbit_leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/rabbit_leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/rabbit_leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/rabbit_leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/model/shields/wood_plank.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/gauntlets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/gauntlets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/potion_weapons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/potion_weapons.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/quivers.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/tags/items/quivers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/plugins/VanillaECPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/plugins/VanillaECPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/flail/wood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/great_hammer/wood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/mace/wood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/blocks.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/blocks.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/battle_staff_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/broad_sword_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/claymore_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/cutlass_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dagger_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/dancer_s_sword_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/gauntlet/hands_slot_items.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/gauntlet/hands_slot_items.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/glaive_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/katana_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/scythe_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/sickle_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_wood.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/spear_acacia_plank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_coloring.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_inventory.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/textures/item/weapon types/weapon_large.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/LegacyShieldSmithingUpgradeRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/LegacyShieldSmithingUpgradeRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingRecipie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingUpgradeRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldSmithingUpgradeRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldUpgradeRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/ShieldUpgradeRecipe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -947,28 +237,7 @@
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Expanded-Combat [runData]">
-    <configuration name="Expanded-Combat [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="assemble" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.Expanded-Combat [runClient]">
     <configuration name="Expanded-Combat [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -981,6 +250,27 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Expanded-Combat [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -1066,11 +356,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
         <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
         <item itemvalue="Gradle.reimagined_quiver [build]" />
         <item itemvalue="Gradle.Expanded-Combat [clean]" />
-        <item itemvalue="Gradle.Expanded-Combat [assemble]" />
       </list>
     </recent_temporary>
   </component>
@@ -1083,13 +373,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611115581263</updated>
-    </task>
-    <task id="LOCAL-00053" summary="added crossbows and refactored item texture names">
-      <created>1682888512045</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1682888512045</updated>
     </task>
     <task id="LOCAL-00054" summary="added arrows">
       <created>1683308403841</created>
@@ -1427,7 +710,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691982089844</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="created weapon textures for all vanilla plank types and all rabbit leather textures">
+      <created>1692065097430</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1692065097430</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1449,7 +739,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added weapon large ing hand models" />
     <MESSAGE value="a bunch of tooltip stuff" />
     <MESSAGE value="fixed gauntlet damage when holding weapons" />
     <MESSAGE value="added fletching table functionality and all associated recipes" />
@@ -1474,7 +763,8 @@
     <MESSAGE value="working form of jei registry created and moved onto material additions" />
     <MESSAGE value="created new resource src and moved all files only needed for datagen to it" />
     <MESSAGE value="changed weapon textures to use the paletted permutation form in atlases" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed weapon textures to use the paletted permutation form in atlases" />
+    <MESSAGE value="created weapon textures for all vanilla plank types and all rabbit leather textures" />
+    <option name="LAST_COMMIT_MESSAGE" value="created weapon textures for all vanilla plank types and all rabbit leather textures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

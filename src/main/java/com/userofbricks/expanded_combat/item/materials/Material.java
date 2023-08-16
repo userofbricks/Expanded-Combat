@@ -12,16 +12,13 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class Material {
     @NotNull
     private final String name;
     @Nullable
-    private final Map<String, String> aliases;
+    private final Map<String, List<String>> aliases;
     @Nullable
     private final Material craftedFrom;
     @NotNull
@@ -41,7 +38,7 @@ public class Material {
     private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
 
     @ApiStatus.Internal
-    public Material(@NotNull String name, @Nullable Map<String, String> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
+    public Material(@NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
         this.name = name;
         this.aliases = aliases;
         this.craftedFrom = craftedFrom;
@@ -107,10 +104,6 @@ public class Material {
 
     public String getLocationName() {
         return name.toLowerCase(Locale.ROOT).replace(' ', '_');
-    }
-
-    public @Nullable Map<String, String> getAliases() {
-        return aliases;
     }
 
     public ECConfig.@NotNull MaterialConfig getConfig() {
@@ -221,10 +214,25 @@ public class Material {
         return VanillaECPlugin.LEATHER;
     }
 
-    public static Material valueOfShield(String name) {
+    public static Material valueOfShield(String part,String name) {
         for (Material material :
                 MaterialInit.shieldMaterials) {
             if (material.name.equals(name)) return material;
+            else if (material.aliases != null && !material.aliases.isEmpty()) {
+                List<String> pastNames = new ArrayList<>();
+                if (part.equals("any")) {
+                    for ( List<String> names : material.aliases.values()) {
+                        pastNames.addAll(names);
+                    }
+                } else {
+                    if (material.aliases.containsKey(part)) pastNames.addAll(material.aliases.get(part));
+                }
+                if (!pastNames.isEmpty()) {
+                    for (String alias : pastNames) {
+                        if (material.name.equals(alias)) return material;
+                    }
+                }
+            }
         }
         return VanillaECPlugin.OAK_PLANK;
     }
@@ -250,10 +258,6 @@ public class Material {
         return false;
     }
 
-    public boolean isVanilla() {
-        return this.name.equals("Vanilla");
-    }
-
     public static class Builder {
         @NotNull
         private final String name;
@@ -262,7 +266,7 @@ public class Material {
         @NotNull
         private final ECConfig.MaterialConfig config;
         @Nullable
-        private final Map<String, String> aliases = new Hashtable<>();
+        private final Map<String, List<String>> aliases = new Hashtable<>();
 
         private ShieldUse shieldUse = ShieldUse.ALL;
 
@@ -274,9 +278,9 @@ public class Material {
             this.config = config;
         }
 
-        public Builder alias(String shieldPart, String name) {
+        public Builder alias(String shieldPart, String... names) {
             assert aliases != null;
-            aliases.put(shieldPart, name);
+            aliases.put(shieldPart, Arrays.asList(names));
             return this;
         }
 
@@ -310,6 +314,7 @@ public class Material {
             return this;
         }
         public Builder shield() {
+            this.shieldUse = ShieldUse.ALL;
             this.shield = true;
             return this;
         }
@@ -332,7 +337,7 @@ public class Material {
             return new Material(name, aliases, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable);
         }
 
-        public String getName() {
+        public @NotNull String getName() {
             return name;
         }
     }

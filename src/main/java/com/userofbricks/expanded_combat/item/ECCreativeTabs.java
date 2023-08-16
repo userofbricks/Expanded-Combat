@@ -40,20 +40,18 @@ public class ECCreativeTabs {
                         }
                         if (CONFIG.enableShields) {
                             for (Material material : MaterialInit.shieldMaterials) {
-                                if (!material.isVanilla()) {
-                                    ItemStack stack;
-                                    if (!material.getConfig().fireResistant) {
-                                        stack = SHIELD_TIER_1.get().getDefaultInstance();
-                                    } else {
-                                        stack = SHIELD_TIER_3.get().getDefaultInstance();
-                                    }
-                                    stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
-                                    stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
-                                    stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
-                                    stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                                    stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
-                                    output.accept(stack);
+                                ItemStack stack;
+                                if (!material.getConfig().fireResistant) {
+                                    stack = SHIELD_TIER_1.get().getDefaultInstance();
+                                } else {
+                                    stack = SHIELD_TIER_3.get().getDefaultInstance();
                                 }
+                                stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
+                                stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
+                                stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
+                                stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
+                                stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                                output.accept(stack);
                             }
                         }
                         if (CONFIG.enableBows) {
@@ -133,21 +131,19 @@ public class ECCreativeTabs {
             if (CONFIG.enableShields) {
                 for (int shieldListLocation = MaterialInit.shieldMaterials.size() - 1; shieldListLocation > -1; shieldListLocation--) {
                     Material material = MaterialInit.shieldMaterials.get(shieldListLocation);
-                    if (!material.isVanilla()) {
-                        ItemStack stack;
-                        if (!material.getConfig().fireResistant) {
-                            stack = SHIELD_TIER_1.get().getDefaultInstance();
-                        } else {
-                            stack = SHIELD_TIER_3.get().getDefaultInstance();
-                        }
-                        stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
-                        stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
-                        stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
-                        stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                        stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
-
-                        items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    ItemStack stack;
+                    if (!material.getConfig().fireResistant) {
+                        stack = SHIELD_TIER_1.get().getDefaultInstance();
+                    } else {
+                        stack = SHIELD_TIER_3.get().getDefaultInstance();
                     }
+                    stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
+                    stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
+                    stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
+                    stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
+                    stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+
+                    items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableBows) {

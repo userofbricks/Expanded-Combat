@@ -29,12 +29,12 @@ public class LegacyShieldSmithingUpgradeRecipe extends LegacyUpgradeRecipe {
         ItemStack base = inventory.getItem(0);
         if (!(base.getItem() instanceof ECShieldItem)) return false;
         if (inventory.getItem(1).isEmpty()) return false;
-        Material existing_ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
-        Material existing_ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
+        Material existing_ur_material = Material.valueOfShield("ul", ECShieldItem.getUpperRightMaterial(base));
+        Material existing_ul_material = Material.valueOfShield("ur", ECShieldItem.getUpperLeftMaterial(base));
         Material addition_m_material = Material.valueOfShield(inventory.getItem(1));
-        Material existing_m_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
-        Material existing_dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
-        Material existing_dl_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
+        Material existing_m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
+        Material existing_dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
+        Material existing_dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
         if (!(addition_m_material.getConfig().crafting.isSingleAddition)) return false;
         return addition_m_material.satifiesOnlyReplaceRequirement(existing_ur_material.getName()) ||
                 addition_m_material.satifiesOnlyReplaceRequirement(existing_ul_material.getName()) ||
@@ -46,11 +46,11 @@ public class LegacyShieldSmithingUpgradeRecipe extends LegacyUpgradeRecipe {
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
-        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
-        Material dl_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
-        Material dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
+        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperRightMaterial(base));
+        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperLeftMaterial(base));
+        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getMiddleMaterial(base));
+        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
+        Material m_material = Material.valueOfShield("m", ECShieldItem.getDownLeftMaterial(base));
         Material addition_material = Material.valueOfShield(inventory.getItem(1));
         Material result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.getName()) ? addition_material: ul_material;
         Material result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.getName()) ? addition_material: ur_material;

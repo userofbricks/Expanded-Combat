@@ -12,10 +12,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -40,11 +39,11 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         if (!Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(SHIELDS).contains(base.getItem())) return false;
         if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
                 && inventory.getItem(5).isEmpty()) return false;
-        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
-        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
-        Material dl_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
-        Material dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base));
+        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base));
+        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
+        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
+        Material m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
         Material addition_ul_material = Material.valueOfShield(inventory.getItem(1));
         Material addition_ur_material = Material.valueOfShield(inventory.getItem(2));
         Material addition_dl_material = Material.valueOfShield(inventory.getItem(4));
@@ -53,28 +52,30 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         if (addition_ul_material.getConfig().crafting.isSingleAddition || addition_ur_material.getConfig().crafting.isSingleAddition || addition_dl_material.getConfig().crafting.isSingleAddition
                 || addition_dr_material.getConfig().crafting.isSingleAddition || addition_m_material.getConfig().crafting.isSingleAddition) return false;
 
+        if (addition_m_material.shieldUse != Material.ShieldUse.ALL) return false;
+
         if (!addition_ul_material.satifiesOnlyReplaceRequirement(ul_material.getName())) return false;
         if (!addition_ur_material.satifiesOnlyReplaceRequirement(ur_material.getName())) return false;
         if (!addition_dl_material.satifiesOnlyReplaceRequirement(dl_material.getName())) return false;
         if (!addition_dr_material.satifiesOnlyReplaceRequirement(dr_material.getName())) return false;
         if (!addition_m_material.satifiesOnlyReplaceRequirement(m_material.getName())) return false;
 
-        boolean is_ul = (ul_material != addition_ul_material) || addition_ul_material.isVanilla();
-        boolean is_ur = (ur_material != addition_ur_material) || addition_ur_material.isVanilla();
-        boolean is_dl = (dl_material != addition_dl_material) || addition_dl_material.isVanilla();
-        boolean is_dr = (dr_material != addition_dr_material) || addition_dr_material.isVanilla();
-        boolean is_m = (m_material != addition_m_material) || addition_m_material.isVanilla();
+        boolean is_ul = (ul_material != addition_ul_material) || inventory.getItem(1).getItem() == Items.AIR;
+        boolean is_ur = (ur_material != addition_ur_material) || inventory.getItem(2).getItem() == Items.AIR;
+        boolean is_dl = (dl_material != addition_dl_material) || inventory.getItem(4).getItem() == Items.AIR;
+        boolean is_dr = (dr_material != addition_dr_material) || inventory.getItem(5).getItem() == Items.AIR;
+        boolean is_m = (m_material != addition_m_material) || inventory.getItem(3).getItem() == Items.AIR;
         return is_ul && is_ur && is_dl && is_dr && is_m;
     }
 
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = Material.valueOfShield(ECShieldItem.getUpperLeftMaterial(base));
-        Material ur_material = Material.valueOfShield(ECShieldItem.getUpperRightMaterial(base));
-        Material dl_material = Material.valueOfShield(ECShieldItem.getDownLeftMaterial(base));
-        Material dr_material = Material.valueOfShield(ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield(ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base));
+        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base));
+        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
+        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
+        Material m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
         Material addition_ul_material = Material.valueOfShield(inventory.getItem(1));
         Material addition_ur_material = Material.valueOfShield(inventory.getItem(2));
         Material addition_dl_material = Material.valueOfShield(inventory.getItem(4));
