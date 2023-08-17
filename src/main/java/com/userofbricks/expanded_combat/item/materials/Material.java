@@ -3,12 +3,10 @@ package com.userofbricks.expanded_combat.item.materials;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -96,9 +94,6 @@ public class Material {
                 weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(registrate.get(), weaponMaterial, this));
                 weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(registrate.get(), weaponMaterial, this));
             }
-        }
-        if (MaterialInit.shieldMaterials.contains(this)) {
-            ExpandedCombat.REGISTRATE.get().addRawLang(LangStrings.SHIELD_MATERIAL_LANG_START + getName(), getName());
         }
     }
 
