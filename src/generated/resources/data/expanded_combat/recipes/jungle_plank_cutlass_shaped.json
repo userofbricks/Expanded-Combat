@@ -1,0 +1,46 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "weapon"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Jungle Plank"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "i": {
+            "item": "minecraft:jungle_planks"
+          },
+          "s": {
+            "item": "expanded_combat:gold_stick"
+          }
+        },
+        "pattern": [
+          "i",
+          "i",
+          "s"
+        ],
+        "result": {
+          "item": "expanded_combat:jungle_plank_cutlass"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}
