@@ -27,7 +27,7 @@ public class RegistrationHandler {
 
     public static class ShieldMaterialRegisterator {
         public ShieldToMaterials registerShieldToMaterials(ShieldToMaterials shieldToMaterials) {
-            MaterialInit.shieldToMaterials.add(shieldToMaterials);
+            MaterialInit.shieldToMaterialsList.add(shieldToMaterials);
             return shieldToMaterials;
         }
     }
