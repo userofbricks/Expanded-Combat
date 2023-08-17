@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @ECPlugin
 public class VanillaECPlugin implements IExpandedCombatPlugin {
@@ -50,7 +51,7 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return null;
+        return new ResourceLocation(MODID, "vanilla");
     }
 
     @Override
@@ -90,6 +91,6 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     @Override
     public void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {
-        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, OAK_PLANK, OAK_PLANK, IRON, OAK_PLANK, OAK_PLANK));
+        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, SPRUCE_PLANK, SPRUCE_PLANK, IRON, SPRUCE_PLANK, SPRUCE_PLANK));
     }
 }

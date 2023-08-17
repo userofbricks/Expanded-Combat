@@ -36,6 +36,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
             arg "-mixin.config=${modid}.mixins.json"
+            jvmArg "-XX:+AllowEnhancedClassRedefinition"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', "${modid}"

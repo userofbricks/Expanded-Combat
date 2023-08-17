@@ -39,11 +39,11 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         if (!Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(SHIELDS).contains(base.getItem())) return false;
         if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
                 && inventory.getItem(5).isEmpty()) return false;
-        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base));
-        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base));
-        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
-        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
+        Material ur_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
+        Material dl_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
+        Material dr_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
+        Material m_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
         Material addition_ul_material = Material.valueOfShield(inventory.getItem(1));
         Material addition_ur_material = Material.valueOfShield(inventory.getItem(2));
         Material addition_dl_material = Material.valueOfShield(inventory.getItem(4));
@@ -71,11 +71,11 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base));
-        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base));
-        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
-        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
+        Material ur_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
+        Material dl_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
+        Material dr_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
+        Material m_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
         Material addition_ul_material = Material.valueOfShield(inventory.getItem(1));
         Material addition_ur_material = Material.valueOfShield(inventory.getItem(2));
         Material addition_dl_material = Material.valueOfShield(inventory.getItem(4));

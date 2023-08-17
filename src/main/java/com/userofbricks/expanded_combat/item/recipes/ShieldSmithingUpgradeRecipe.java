@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -31,12 +32,12 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         ItemStack base = inventory.getItem(1);
         if (!(base.getItem() instanceof ECShieldItem)) return false;
         if (inventory.getItem(2).isEmpty()) return false;
-        Material existing_ur_material = Material.valueOfShield("ul", ECShieldItem.getUpperRightMaterial(base));
-        Material existing_ul_material = Material.valueOfShield("ur", ECShieldItem.getUpperLeftMaterial(base));
+        Material existing_ur_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
+        Material existing_ul_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
         Material addition_m_material = Material.valueOfShield(inventory.getItem(2));
-        Material existing_m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
-        Material existing_dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
-        Material existing_dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
+        Material existing_m_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
+        Material existing_dr_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
+        Material existing_dl_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
         if (!(addition_m_material.getConfig().crafting.isSingleAddition)) return false;
         if (inventory.getItem(0).getItem() != ForgeRegistries.ITEMS.getValue(new ResourceLocation(addition_m_material.getConfig().crafting.smithingTemplate))) {
             return false;
@@ -53,11 +54,11 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(1);
-        Material ul_material = Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base));
-        Material ur_material = Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base));
-        Material dl_material = Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base));
-        Material dr_material = Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base));
-        Material m_material = Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base));
+        Material ul_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
+        Material ur_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
+        Material dl_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
+        Material dr_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
+        Material m_material = base.getItem() instanceof ECShieldItem ? Material.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
         Material addition_material = Material.valueOfShield(inventory.getItem(2));
         Material result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.getName()) ? addition_material: ul_material;
         Material result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.getName()) ? addition_material: ur_material;
