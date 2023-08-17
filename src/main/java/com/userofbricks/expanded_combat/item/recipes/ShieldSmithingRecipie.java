@@ -5,7 +5,7 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,7 +13,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -148,7 +150,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
 
     @Override
     public boolean isAdditionIngredient(ItemStack stack) {
-        for (Material material : MaterialRegistries.shieldMaterials) {
+        for (Material material : MaterialInit.shieldMaterials) {
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(stack) && !material.getConfig().crafting.isSingleAddition) {
                 return true;
             }

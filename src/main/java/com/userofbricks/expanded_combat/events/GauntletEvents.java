@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.events;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -60,8 +59,8 @@ public class GauntletEvents
 
             if (!hasWeaponInHand) {
                 float attackDamage = (float) Math.max(gauntlet.getAttackDamage(), 0.5);
-                float nagaDamage = gauntlet.getMaterial() == MaterialRegistries.NAGASCALE.get() ? (float) (attackDamage / 2.0d * 3) : 0;
-                float yetiDamage = gauntlet.getMaterial() == MaterialRegistries.YETI.get() ? (float) (attackDamage / 2.0d) : 0;
+                float nagaDamage = gauntlet.getMaterial() == MaterialRegister.NAGASCALE ? (float) (attackDamage / 2.0d * 3) : 0;
+                float yetiDamage = gauntlet.getMaterial() == MaterialRegister.YETI ? (float) (attackDamage / 2.0d) : 0;
                 ev.setAmount(ev.getAmount() + ((attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, slotResult.stack())) + nagaDamage + yetiDamage)/2));
             }
         });

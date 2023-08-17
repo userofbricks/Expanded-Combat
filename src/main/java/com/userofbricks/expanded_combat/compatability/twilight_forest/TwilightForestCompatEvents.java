@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.compatability.twilight_forest;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +22,7 @@ public class TwilightForestCompatEvents {
     public static void fieryToolSetFire(LivingAttackEvent event) {
         if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)) {
             if (event.getSource().getEntity() instanceof LivingEntity living && !event.getEntity().fireImmune()) {
-                if (living.getMainHandItem().getItem() instanceof ECWeaponItem weaponItem && weaponItem.getMaterial() == MaterialRegistries.FIERY.get()) {
+                if (living.getMainHandItem().getItem() instanceof ECWeaponItem weaponItem && weaponItem.getMaterial() == MaterialRegister.FIERY) {
                     event.getEntity().setSecondsOnFire(1);
                 }
             }
@@ -37,7 +37,7 @@ public class TwilightForestCompatEvents {
             if (!target.getLevel().isClientSide() && event.getSource().getDirectEntity() instanceof LivingEntity living) {
                 ItemStack weapon = living.getMainHandItem();
 
-                if (!weapon.isEmpty() && weapon.getItem() instanceof ECWeaponItem weaponItem && weaponItem.getMaterial() == MaterialRegistries.KNIGHTMETAL.get()) {
+                if (!weapon.isEmpty() && weapon.getItem() instanceof ECWeaponItem weaponItem && weaponItem.getMaterial() == MaterialRegister.KNIGHTMETAL) {
                     if (target.getArmorValue() == 0 && weaponItem.getWeapon().isBlockWeapon()) {
                         event.setAmount(event.getAmount() + KNIGHTMETAL_BONUS_DAMAGE);
                         // enchantment attack sparkles

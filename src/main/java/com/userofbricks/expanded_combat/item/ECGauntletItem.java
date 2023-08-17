@@ -3,8 +3,8 @@ package com.userofbricks.expanded_combat.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialRegistries;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
@@ -142,8 +142,8 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
         if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
             double attackDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
-            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialRegistries.NAGASCALE.get() ? (attackDamage/2.0d*3) : 0;
-            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialRegistries.YETI.get() ? (attackDamage/2.0d) : 0;
+            double nagaDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialRegister.NAGASCALE ? (attackDamage/2.0d*3) : 0;
+            double yetiDamage = ((ECGauntletItem)stack.getItem()).getMaterial() == MaterialRegister.YETI ? (attackDamage/2.0d) : 0;
             int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
             double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.knockbackResistance;
             double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.armorToughness;
