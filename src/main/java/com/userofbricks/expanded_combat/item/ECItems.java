@@ -2,7 +2,6 @@ package com.userofbricks.expanded_combat.item;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.events.registering.ShieldMaterialsRegistryEvent;
 import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
 import com.userofbricks.expanded_combat.item.materials.Material;
@@ -25,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -148,8 +146,6 @@ public class ECItems
                     .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_NUGGET, Items.STICK, Items.FEATHER))
                     .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_shaped2"));
         });
-
-        MinecraftForge.EVENT_BUS.post(new ShieldMaterialsRegistryEvent());
     }
 
     private static RegistryEntry<ECShieldItem> registerShield(String name, boolean fireresistant) {
