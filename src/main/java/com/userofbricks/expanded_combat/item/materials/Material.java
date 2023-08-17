@@ -4,7 +4,6 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.config.ECConfig;
-import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.world.item.ItemStack;
@@ -170,7 +169,7 @@ public class Material {
                 MaterialInit.arrowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.IRON;
+        return MaterialInit.IRON;
     }
 
     @SuppressWarnings("unused")
@@ -179,7 +178,7 @@ public class Material {
                 MaterialInit.bowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.IRON;
+        return MaterialInit.IRON;
     }
 
     @SuppressWarnings("unused")
@@ -188,7 +187,7 @@ public class Material {
                 MaterialInit.crossbowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.IRON;
+        return MaterialInit.IRON;
     }
 
     @SuppressWarnings("unused")
@@ -197,7 +196,7 @@ public class Material {
                 MaterialInit.gauntletMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.LEATHER;
+        return MaterialInit.LEATHER;
     }
 
     @SuppressWarnings("unused")
@@ -206,7 +205,7 @@ public class Material {
                 MaterialInit.quiverMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.LEATHER;
+        return MaterialInit.LEATHER;
     }
 
     public static Material valueOfShield(String name) {
@@ -214,7 +213,7 @@ public class Material {
                 MaterialInit.shieldMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialRegister.VANILLA;
+        return MaterialInit.VANILLA;
     }
 
     public static Material valueOfShield(ItemStack itemStack) {
@@ -223,7 +222,7 @@ public class Material {
             if (material.getConfig().crafting.repairItem.isEmpty()) continue;
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
         }
-        return MaterialRegister.VANILLA;
+        return MaterialInit.VANILLA;
     }
 
     /**

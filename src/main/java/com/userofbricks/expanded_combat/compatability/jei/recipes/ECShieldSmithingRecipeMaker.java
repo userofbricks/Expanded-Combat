@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
@@ -40,7 +39,7 @@ public class ECShieldSmithingRecipeMaker {
 
         for (Material material :
                 MaterialInit.shieldMaterials) {
-            if (material != MaterialRegister.VANILLA){
+            if (material != MaterialInit.VANILLA){
                 Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
                 if (addition.isEmpty()) continue;
 

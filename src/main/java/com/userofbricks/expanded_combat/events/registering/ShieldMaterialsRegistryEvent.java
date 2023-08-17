@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.api.events.registering;
+package com.userofbricks.expanded_combat.events.registering;
 
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.ShieldToMaterials;

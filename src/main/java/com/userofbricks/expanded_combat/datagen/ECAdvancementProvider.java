@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
-import com.userofbricks.expanded_combat.events.MaterialRegister;
 import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -15,8 +15,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
+import twilightforest.data.TFAdvancementGenerator;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -34,7 +36,7 @@ public class ECAdvancementProvider extends ForgeAdvancementProvider {
         public void generate(HolderLookup.Provider registries, Consumer<Advancement> saver, ExistingFileHelper existingFileHelper) {
             Advancement root = Advancement.Builder.advancement().display(
                     //display item
-                    MaterialRegister.LEATHER.getQuiverEntry().get(),
+                    MaterialInit.LEATHER.getQuiverEntry().get(),
                     Component.translatable(LangStrings.createAdvancementLang("root", "Expanded Combat", true)),
                     Component.translatable(LangStrings.createAdvancementLang("root", "Expanded Combat", false)),
                     //background
@@ -46,14 +48,14 @@ public class ECAdvancementProvider extends ForgeAdvancementProvider {
                     .save(saver, MODID + ":root");
 
             Advancement powerGlove = Advancement.Builder.advancement().parent(root).display(
-                            MaterialRegister.GOLD.getGauntletEntry().get(),
+                            MaterialInit.GOLD.getGauntletEntry().get(),
                             Component.translatable(LangStrings.createAdvancementLang("gold_gauntlet", "The Power Glove", true)),
                             Component.translatable(LangStrings.createAdvancementLang("gold_gauntlet", "Snap", false)),
                             null, FrameType.TASK, true, true, true)
-                    .addCriterion("gold_gauntlet", InventoryChangeTrigger.TriggerInstance.hasItems(MaterialRegister.GOLD.getGauntletEntry().get()))
+                    .addCriterion("gold_gauntlet", InventoryChangeTrigger.TriggerInstance.hasItems(MaterialInit.GOLD.getGauntletEntry().get()))
                     .save(saver, MODID + ":gold_gauntlet");
 
-            ItemStack punch2NetheriteGauntlet = new ItemStack(MaterialRegister.NETHERITE.getGauntletEntry().get());
+            ItemStack punch2NetheriteGauntlet = new ItemStack(MaterialInit.NETHERITE.getGauntletEntry().get());
             punch2NetheriteGauntlet.enchant(Enchantments.PUNCH_ARROWS, 2);
             Advancement PunchGauntlet = Advancement.Builder.advancement().parent(root).display(
                             punch2NetheriteGauntlet,
