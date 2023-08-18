@@ -70,22 +70,22 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         SICKLE =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Sickle", CONFIG.sickle,                () -> new RecipeIngredientMapBuilder().put('s', ECItems.GOLD_STICK.get()),                    new String[]{"ii", "s "}).customModelTransforms());
         SPEAR =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Spear", CONFIG.spear,                  () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"p", "s", "s"}).hasLargeModel());
 
-        LEATHER =       registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Leather",       null, CONFIG.leather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
-        RABBIT_LEATHER =registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM));
-        OAK_PLANK =      registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Oak Plank",      null, CONFIG.oakPlank).shield().weapons());
-        ACACIA_PLANK =   registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Acacia Plank",   null, CONFIG.acaciaPlank).shield().weapons());
-        BIRCH_PLANK =    registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Birch Plank",    null, CONFIG.birchPlank).shield().weapons());
-        DARK_OAK_PLANK = registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Dark Oak Plank", null, CONFIG.darkOakPlank).shield().weapons());
-        SPRUCE_PLANK =   registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Spruce Plank",   null, CONFIG.sprucePlank).shield().weapons().alias("ul", "Vanilla").alias("ur", "Vanilla").alias("dl", "Vanilla").alias("dr", "Vanilla").alias("ul", "Wood").alias("ur", "Wood").alias("m", "Wood").alias("dl", "Wood").alias("dr", "Wood"));
-        JUNGLE_PLANK =   registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Jungle Plank",   null, CONFIG.junglePlank).shield().weapons());
-        WARPED_PLANK =   registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Warped Plank",   null, CONFIG.warpedPlank).shield().weapons());
-        CRIMSON_PLANK =  registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Crimson Plank",  null, CONFIG.crimsonPlank).shield().weapons());
-        MANGROVE_PLANK = registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Mangrove Plank", null, CONFIG.mangrovePlank).shield().weapons());
-        STONE =         registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Stone",         null, CONFIG.stone).weapons());
-        IRON =          registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Iron",          null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
-        GOLD =          registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Gold",          null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());
-        DIAMOND =       registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Diamond",       IRON,            CONFIG.diamond).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());
-        NETHERITE =     registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Netherite",     DIAMOND,         CONFIG.netherite).arrow().bow().crossbow().gauntlet().quiver().shield().weapons());
+        LEATHER =       (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Leather",       null, CONFIG.leather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
+        RABBIT_LEATHER =(Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM));
+        OAK_PLANK =     (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Oak Plank",      null, CONFIG.oakPlank).shield().weapons());
+        ACACIA_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Acacia Plank",   null, CONFIG.acaciaPlank).shield().weapons());
+        BIRCH_PLANK =   (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Birch Plank",    null, CONFIG.birchPlank).shield().weapons());
+        DARK_OAK_PLANK =(Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Dark Oak Plank", null, CONFIG.darkOakPlank).shield().weapons());
+        SPRUCE_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Spruce Plank",   null, CONFIG.sprucePlank).shield().weapons().alias("ul", "Vanilla").alias("ur", "Vanilla").alias("dl", "Vanilla").alias("dr", "Vanilla").alias("ul", "Wood").alias("ur", "Wood").alias("m", "Wood").alias("dl", "Wood").alias("dr", "Wood"));
+        JUNGLE_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Jungle Plank",   null, CONFIG.junglePlank).shield().weapons());
+        WARPED_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Warped Plank",   null, CONFIG.warpedPlank).shield().weapons());
+        CRIMSON_PLANK = (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Crimson Plank",  null, CONFIG.crimsonPlank).shield().weapons());
+        MANGROVE_PLANK =(Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Mangrove Plank", null, CONFIG.mangrovePlank).shield().weapons());
+        STONE =         (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Stone",         null, CONFIG.stone).weapons());
+        IRON =          (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Iron",          null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
+        GOLD =          (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Gold",          null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());
+        DIAMOND =       (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Diamond",       IRON,            CONFIG.diamond).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());
+        NETHERITE =     (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Netherite",     DIAMOND,         CONFIG.netherite).arrow().bow().crossbow().gauntlet().quiver().shield().weapons());
     }
 
     @Override

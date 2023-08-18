@@ -65,25 +65,6 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     }
 
     @Override
-    public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-        boolean result = super.hurtEnemy(weapon, target, attacker);
-        if (this.material == TwilightForestPlugin.FIERY) {
-            if (result && !target.level().isClientSide && !target.fireImmune()) {
-                target.setRemainingFireTicks(15);
-            } else {
-                Random random = new Random();
-                for (int var1 = 0; var1 < 20; ++var1) {
-                    double px = target.getX() + random.nextFloat() * target.getBbWidth() * 2.0F - target.getBbWidth();
-                    double py = target.getY() + random.nextFloat() * target.getBbHeight();
-                    double pz = target.getZ() + random.nextFloat() * target.getBbWidth() * 2.0F - target.getBbWidth();
-                    target.level().addParticle(ParticleTypes.FLAME, px, py, pz, 0.02, 0.02, 0.02);
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
     public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot equipmentSlot) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.getDamage(), AttributeModifier.Operation.ADDITION));
@@ -99,16 +80,6 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
 
     public float getXpRepairRatio( ItemStack stack) {
         return 2.0f + getMendingBonus();
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        if (this.material == TwilightForestPlugin.FIERY) {
-            list.add(Component.translatable(LangStrings.FIERY_WEAPON_TOOLTIP));
-        } else if (this.material == TwilightForestPlugin.KNIGHTMETAL) {
-            if (this.weapon.isBlockWeapon()) list.add(Component.translatable(LangStrings.KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP));
-            else list.add(Component.translatable(LangStrings.KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP));
-        }
     }
 
     @Override

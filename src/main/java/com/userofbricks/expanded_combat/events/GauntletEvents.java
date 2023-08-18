@@ -3,9 +3,6 @@ package com.userofbricks.expanded_combat.events;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.plugins.TwilightForestPlugin;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,14 +10,10 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.event.RenderArmEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -66,9 +59,8 @@ public class GauntletEvents
 
             if (!hasWeaponInHand) {
                 float attackDamage = (float) Math.max(gauntlet.getAttackDamage(), 0.5);
-                float nagaDamage = gauntlet.getMaterial() == TwilightForestPlugin.NAGASCALE ? (float) (attackDamage / 2.0d * 3) : 0;
-                float yetiDamage = gauntlet.getMaterial() == TwilightForestPlugin.YETI ? (float) (attackDamage / 2.0d) : 0;
-                ev.setAmount(ev.getAmount() + ((attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, slotResult.stack())) + nagaDamage + yetiDamage)/2));
+                float extraDamage = gauntlet.getMaterial().getAdditionalDamageAfterEnchantments().apply(attackDamage);
+                ev.setAmount(ev.getAmount() + ((attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, slotResult.stack())) + extraDamage)/2));
             }
         });
     }
@@ -88,6 +80,7 @@ public class GauntletEvents
     }
 
     @SubscribeEvent
+    @SuppressWarnings("deprecation")
     public static void onRenderArm(RenderArmEvent event) {
         CuriosApi.getCuriosHelper().getCuriosHandler(event.getPlayer()).ifPresent(handler -> {
             ICurioStacksHandler stacksHandler = handler.getCurios().get(SlotTypePreset.HANDS.getIdentifier());

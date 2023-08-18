@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
@@ -35,7 +36,7 @@ public class ECMaterialBooleanCondition implements ICondition {
     @Override
     public boolean test(IContext context)
     {
-        Material material = Material.valueOf(materialName);
+        Material material = MaterialInit.valueOf(materialName);
 
         Iterator<String> locationIterator = Arrays.stream(locationPath).iterator();
         if (!locationIterator.hasNext()) return false;

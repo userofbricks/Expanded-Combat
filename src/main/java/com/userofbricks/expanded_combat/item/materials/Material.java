@@ -6,19 +6,18 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.*;
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.Function;
 
-public class Material {
+public class Material implements IMaterial{
     @NotNull
-    private final NonNullSupplier<Registrate> registrate;
+    public final NonNullSupplier<Registrate> registrate;
     @NotNull
     private final String name;
     @Nullable
@@ -29,20 +28,21 @@ public class Material {
     private final ECConfig.MaterialConfig config;
     public final boolean halfbow, blockWeaponOnly, dyeable;
     public final ShieldUse shieldUse;
+    private final Function<Float, Float> additionalDamageAfterEnchantments;
 
-    private RegistryEntry<ECArrowItem> arrowEntry = null;
-    private RegistryEntry<ECArrowItem> tippedArrowEntry = null;
-    private RegistryEntry<ECBowItem> bowEntry = null;
-    private RegistryEntry<ECBowItem> halfBowEntry = null;
-    private RegistryEntry<ECCrossBowItem> crossbowEntry = null;
-    private RegistryEntry<ECGauntletItem> gauntletEntry = null;
-    private RegistryEntry<ECQuiverItem> quiverEntry = null;
-    private final Map<String, RegistryEntry<ECWeaponItem>> weaponEntries = new HashMap<>();
-    private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
-    private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
+    public RegistryEntry<? extends Item> arrowEntry = null;
+    public RegistryEntry<? extends Item> tippedArrowEntry = null;
+    public RegistryEntry<? extends Item> bowEntry = null;
+    public RegistryEntry<? extends Item> halfBowEntry = null;
+    public RegistryEntry<? extends Item> crossbowEntry = null;
+    public RegistryEntry<? extends Item> gauntletEntry = null;
+    public RegistryEntry<? extends Item> quiverEntry = null;
+    public final Map<String, RegistryEntry<? extends Item>> weaponEntries = new HashMap<>();
+    public final Map<String, RegistryEntry<? extends Item>> weaponGUIModel = new HashMap<>();
+    public final Map<String, RegistryEntry<? extends Item>> weaponInHandModel = new HashMap<>();
 
     @ApiStatus.Internal
-    public Material(@NotNull NonNullSupplier<Registrate> registrate,  @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
+    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
         this.registrate = registrate;
         this.name = name;
         this.aliases = aliases;
@@ -52,6 +52,7 @@ public class Material {
         this.blockWeaponOnly = blockWeaponOnly;
         this.dyeable = dyeable;
         this.shieldUse = shieldUse;
+        this.additionalDamageAfterEnchantments = additionalDamageAfterEnchantments;
 
         MaterialInit.materials.add(this);
         if (arrow) MaterialInit.arrowMaterials.add(this);
@@ -119,47 +120,47 @@ public class Material {
         return config;
     }
 
-    public RegistryEntry<ECArrowItem> getTippedArrowEntry() {
+    public RegistryEntry<? extends Item> getTippedArrowEntry() {
         return tippedArrowEntry;
     }
 
-    public RegistryEntry<ECArrowItem> getArrowEntry() {
+    public RegistryEntry<? extends Item> getArrowEntry() {
         return arrowEntry;
     }
 
-    public RegistryEntry<ECBowItem> getBowEntry() {
+    public RegistryEntry<? extends Item> getBowEntry() {
         return bowEntry;
     }
 
-    public RegistryEntry<ECCrossBowItem> getCrossbowEntry() {
+    public RegistryEntry<? extends Item> getCrossbowEntry() {
         return crossbowEntry;
     }
 
-    public RegistryEntry<ECBowItem> getHalfBowEntry() {
+    public RegistryEntry<? extends Item> getHalfBowEntry() {
         return halfBowEntry;
     }
 
-    public RegistryEntry<ECGauntletItem> getGauntletEntry() {
+    public RegistryEntry<? extends Item> getGauntletEntry() {
         return gauntletEntry;
     }
 
-    public RegistryEntry<ECQuiverItem> getQuiverEntry() {
+    public RegistryEntry<? extends Item> getQuiverEntry() {
         return quiverEntry;
     }
 
-    public RegistryEntry<ECWeaponItem> getWeaponEntry(String name) {
+    public RegistryEntry<? extends Item> getWeaponEntry(String name) {
         return weaponEntries.get(name);
     }
 
-    public Map<String, RegistryEntry<ECWeaponItem>> getWeapons() {
+    public Map<String, RegistryEntry<? extends Item>> getWeapons() {
         return weaponEntries;
     }
 
-    public Map<String, RegistryEntry<DyableItem>> getWeaponGUIModel() {
+    public Map<String, RegistryEntry<? extends Item>> getWeaponGUIModel() {
         return weaponGUIModel;
     }
 
-    public Map<String, RegistryEntry<DyableItem>> getWeaponInHandModel() {
+    public Map<String, RegistryEntry<? extends Item>> getWeaponInHandModel() {
         return weaponInHandModel;
     }
 
@@ -167,88 +168,12 @@ public class Material {
         return this.name;
     }
 
-    public Material getCraftedFrom() {
+    public @Nullable Material getCraftedFrom() {
         return craftedFrom;
     }
 
-    public static Material valueOf(String name) {
-        for (Material material :
-                MaterialInit.materials) {
-            if (material.name.equals(name)) return material;
-        }
-        return MaterialInit.materials.get(0);
-    }
-
-    public static Material valueOfArrow(String name) {
-        for (Material material :
-                MaterialInit.arrowMaterials) {
-            if (material.name.equals(name)) return material;
-        }
-        return VanillaECPlugin.IRON;
-    }
-
-    public static Material valueOfBow(String name) {
-        for (Material material :
-                MaterialInit.bowMaterials) {
-            if (material.name.equals(name)) return material;
-        }
-        return VanillaECPlugin.IRON;
-    }
-
-    public static Material valueOfCrossBow(String name) {
-        for (Material material :
-                MaterialInit.crossbowMaterials) {
-            if (material.name.equals(name)) return material;
-        }
-        return VanillaECPlugin.IRON;
-    }
-
-    public static Material valueOfGauntlet(String name) {
-        for (Material material :
-                MaterialInit.gauntletMaterials) {
-            if (material.name.equals(name)) return material;
-        }
-        return VanillaECPlugin.LEATHER;
-    }
-
-    public static Material valueOfQuiver(String name) {
-        for (Material material :
-                MaterialInit.quiverMaterials) {
-            if (material.name.equals(name)) return material;
-        }
-        return VanillaECPlugin.LEATHER;
-    }
-
-    public static Material valueOfShield(String part, String name) {
-        for (Material material :
-                MaterialInit.shieldMaterials) {
-            if (material.name.equals(name)) return material;
-            else if (material.aliases != null && !material.aliases.isEmpty()) {
-                List<String> pastNames = new ArrayList<>();
-                if (part.equals("any")) {
-                    for ( List<String> names : material.aliases.values()) {
-                        pastNames.addAll(names);
-                    }
-                } else {
-                    if (material.aliases.containsKey(part)) pastNames.addAll(material.aliases.get(part));
-                }
-                if (!pastNames.isEmpty()) {
-                    for (String alias : pastNames) {
-                        if (material.name.equals(alias)) return material;
-                    }
-                }
-            }
-        }
-        return VanillaECPlugin.OAK_PLANK;
-    }
-
-    public static Material valueOfShield(ItemStack itemStack) {
-        for (Material material :
-                MaterialInit.shieldMaterials) {
-            if (material.getConfig().crafting.repairItem.isEmpty()) continue;
-            if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
-        }
-        return VanillaECPlugin.OAK_PLANK;
+    public Function<Float, Float> getAdditionalDamageAfterEnchantments() {
+        return additionalDamageAfterEnchantments;
     }
 
     /**
@@ -274,8 +199,9 @@ public class Material {
         private final ECConfig.MaterialConfig config;
         @Nullable
         private final Map<String, List<String>> aliases = new Hashtable<>();
-
         private ShieldUse shieldUse = ShieldUse.ALL;
+
+        private Function<Float, Float> additionalDamageAfterEnchantments = (damage) -> damage;
 
         private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
@@ -338,13 +264,82 @@ public class Material {
             return this;
         }
 
+        public Builder setAdditionalDamageAfterEnchantments(Function<Float, Float> additionalDamageAfterEnchantments) {
+            this.additionalDamageAfterEnchantments = additionalDamageAfterEnchantments;
+            return this;
+        }
+
         public Material build() {
-            return new Material(registrate, name, aliases, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable);
+            return new Material(registrate, name, aliases, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable, additionalDamageAfterEnchantments);
         }
 
 
         public @NotNull String getName() {
             return name;
+        }
+
+        public @NotNull NonNullSupplier<Registrate> getRegistrate() {
+            return registrate;
+        }
+
+        public @Nullable Material getCraftedFrom() {
+            return craftedFrom;
+        }
+
+        public ECConfig.@NotNull MaterialConfig getConfig() {
+            return config;
+        }
+
+        public @Nullable Map<String, List<String>> getAliases() {
+            return aliases;
+        }
+
+        public ShieldUse getShieldUse() {
+            return shieldUse;
+        }
+
+        public Function<Float, Float> getAdditionalDamageAfterEnchantments() {
+            return additionalDamageAfterEnchantments;
+        }
+
+        public boolean isHalfbow() {
+            return halfbow;
+        }
+
+        public boolean isArrow() {
+            return arrow;
+        }
+
+        public boolean isBow() {
+            return bow;
+        }
+
+        public boolean isCrossbow() {
+            return crossbow;
+        }
+
+        public boolean isGauntlet() {
+            return gauntlet;
+        }
+
+        public boolean isQuiver() {
+            return quiver;
+        }
+
+        public boolean isShield() {
+            return shield;
+        }
+
+        public boolean isWeapons() {
+            return weapons;
+        }
+
+        public boolean isBlockWeaponOnly() {
+            return blockWeaponOnly;
+        }
+
+        public boolean isDyeable() {
+            return dyeable;
         }
     }
 

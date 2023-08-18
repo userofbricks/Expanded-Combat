@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;
@@ -25,6 +26,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+
+import static com.userofbricks.expanded_combat.item.materials.MaterialInit.getMaterialForShieldPart;
 
 public class ECShieldItem extends ShieldItem {
 
@@ -60,11 +63,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getMaxDamage(ItemStack stack) {
         int durability = 336;
-        int ul = Material.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int ur = Material.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int dl = Material.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int dr = Material.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int m = Material.valueOfShield("m", getMiddleMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().durability.addedShieldDurability;
         return durability + ul + ur + dl + dr + m;
     }
 
@@ -93,7 +96,7 @@ public class ECShieldItem extends ShieldItem {
         String currentSlotMaterial = slotMaterials.get(last);
 
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
-        Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(Material.valueOfShield("any", currentSlotMaterial).getConfig().crafting.repairItem);
+        Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(MaterialInit.valueOfShield("any", currentSlotMaterial).getConfig().crafting.repairItem);
         return !ingredient.isEmpty() && ingredient.test(repair);
     }
 
@@ -118,11 +121,11 @@ public class ECShieldItem extends ShieldItem {
      * @return the mending bonus.
      */
     public float getMendingBonus(ItemStack stack) {
-        float ul = Material.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
-        float ur = Material.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
-        float dl = Material.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
-        float dr = Material.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().mendingBonus/5;
-        float m = Material.valueOfShield("m", getMiddleMaterial(stack)).getConfig().mendingBonus/5;
+        float ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
+        float ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
+        float dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
+        float dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().mendingBonus/5;
+        float m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().mendingBonus/5;
         return ul + ur + dl + dr + m;
     }
 
@@ -152,20 +155,38 @@ public class ECShieldItem extends ShieldItem {
     }
 
     public static double getBaseProtection(ItemStack stack) {
-        double ul = Material.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double ur = Material.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double dl = Material.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double dr = Material.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double m = Material.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
         return ul + ur + dl + dr + m;
     }
 
     public static double getPercentageProtection(ItemStack stack) {
-        double ul = Material.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double ur = Material.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double dl = Material.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double dr = Material.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double m = Material.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        return ul + ur + dl + dr + m;
+    }
+
+    public static double getShieldToMaterialBaseProtection(ItemStack stack) {
+        double ul = getMaterialForShieldPart("ul", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
+        double ur = getMaterialForShieldPart("ur", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
+        double dl = getMaterialForShieldPart("dl", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
+        double dr = getMaterialForShieldPart("dr", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
+        double m = getMaterialForShieldPart("m", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
+        return ul + ur + dl + dr + m;
+    }
+
+    public static double getShieldToMaterialPercentageProtection(ItemStack stack) {
+        double ul = getMaterialForShieldPart("ul", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
+        double ur = getMaterialForShieldPart("ur", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
+        double dl = getMaterialForShieldPart("dl", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
+        double dr = getMaterialForShieldPart("dr", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
+        double m = getMaterialForShieldPart("m", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
         return ul + ur + dl + dr + m;
     }
     @Override
