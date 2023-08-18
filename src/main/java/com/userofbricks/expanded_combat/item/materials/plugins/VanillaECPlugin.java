@@ -71,7 +71,7 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         SPEAR =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Spear", CONFIG.spear,                  () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"p", "s", "s"}).hasLargeModel());
 
         LEATHER =       registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Leather",       null, CONFIG.leather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
-        RABBIT_LEATHER =registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().dyeable().quiver().shield(Material.ShieldUse.NOT_TRIM));
+        RABBIT_LEATHER =registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Rabbit Leather",null, CONFIG.rebbitLeather).gauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM));
         OAK_PLANK =      registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Oak Plank",      null, CONFIG.oakPlank).shield().weapons());
         ACACIA_PLANK =   registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Acacia Plank",   null, CONFIG.acaciaPlank).shield().weapons());
         BIRCH_PLANK =    registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Birch Plank",    null, CONFIG.birchPlank).shield().weapons());

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "expanded_combat:item/dancer_s_sword_dye",
+    "layer1": "expanded_combat:item/dancer_s_sword_handle",
+    "layer2": "expanded_combat:item/dancer_s_sword_oak_plank"
+  }
+}

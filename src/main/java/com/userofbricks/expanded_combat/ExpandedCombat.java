@@ -82,6 +82,7 @@ public class ExpandedCombat {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);
     }
 
+    @SuppressWarnings("deprecation")
     private void comms(InterModEnqueueEvent event) {
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());

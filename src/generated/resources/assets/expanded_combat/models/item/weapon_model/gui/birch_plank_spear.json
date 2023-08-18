@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "expanded_combat:item/spear_handle",
+    "layer1": "expanded_combat:item/spear_birch_plank"
+  }
+}

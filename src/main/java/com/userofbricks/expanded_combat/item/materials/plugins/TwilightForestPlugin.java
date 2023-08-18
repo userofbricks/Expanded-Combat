@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import twilightforest.init.TFItems;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
@@ -37,6 +38,6 @@ public class TwilightForestPlugin implements IExpandedCombatPlugin {
 
     @Override
     public void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {
-        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(TFItems.KNIGHTMETAL_SHIELD::get, KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL));
+        registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> ForgeRegistries.ITEMS.getValue(new ResourceLocation("twilightforest:knightmetal_shield")), KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL, KNIGHTMETAL));
     }
 }

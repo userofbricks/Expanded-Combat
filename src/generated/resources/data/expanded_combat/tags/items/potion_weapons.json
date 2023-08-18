@@ -1,11 +1,5 @@
 {
   "values": [
-    "expanded_combat:wood_scythe",
-    "expanded_combat:stone_scythe",
-    "expanded_combat:iron_scythe",
-    "expanded_combat:gold_scythe",
-    "expanded_combat:diamond_scythe",
-    "expanded_combat:netherite_scythe",
     "expanded_combat:steel_scythe",
     "expanded_combat:bronze_scythe",
     "expanded_combat:silver_scythe",
@@ -13,6 +7,20 @@
     "expanded_combat:ironwood_scythe",
     "expanded_combat:fiery_scythe",
     "expanded_combat:steeleaf_scythe",
-    "expanded_combat:knight_metal_scythe"
+    "expanded_combat:knight_metal_scythe",
+    "expanded_combat:oak_plank_scythe",
+    "expanded_combat:acacia_plank_scythe",
+    "expanded_combat:birch_plank_scythe",
+    "expanded_combat:dark_oak_plank_scythe",
+    "expanded_combat:spruce_plank_scythe",
+    "expanded_combat:jungle_plank_scythe",
+    "expanded_combat:warped_plank_scythe",
+    "expanded_combat:crimson_plank_scythe",
+    "expanded_combat:mangrove_plank_scythe",
+    "expanded_combat:stone_scythe",
+    "expanded_combat:iron_scythe",
+    "expanded_combat:gold_scythe",
+    "expanded_combat:diamond_scythe",
+    "expanded_combat:netherite_scythe"
   ]
 }

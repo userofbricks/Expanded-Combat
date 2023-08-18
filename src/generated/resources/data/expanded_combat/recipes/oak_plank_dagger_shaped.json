@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expanded_combat:config_boolean",
+          "config_entry": "weapon"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "expanded_combat:config_material_boolean",
+            "location_path": [
+              "config",
+              "crafting",
+              "is_single_addition"
+            ],
+            "material": "Oak Plank"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "i": {
+            "item": "minecraft:oak_planks"
+          },
+          "s": {
+            "item": "expanded_combat:iron_stick"
+          }
+        },
+        "pattern": [
+          "i",
+          "s"
+        ],
+        "result": {
+          "item": "expanded_combat:oak_plank_dagger"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "expanded_combat:item/bases/mace",
+  "textures": {
+    "head": "expanded_combat:item/mace/dark_oak_plank"
+  }
+}
