@@ -42,7 +42,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             mods {
-                expanded_combat_melee {
+                expanded_combat {
                     source sourceSets.main
                 }
             }
@@ -57,7 +57,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             mods {
-                expanded_combat_melee {
+                expanded_combat {
                     source sourceSets.main
                 }
             }
@@ -73,7 +73,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', "${modid}"
             mods {
-                expanded_combat_melee {
+                expanded_combat {
                     source sourceSets.main
                 }
             }
@@ -83,9 +83,9 @@ minecraft {
             workingDirectory project.file('run_data')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('src/needed_only_for_datagen/resources/')
             mods {
-                expanded_combat_melee {
+                expanded_combat {
                     source sourceSets.main
                 }
             }

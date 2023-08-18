@@ -3,16 +3,18 @@ package com.userofbricks.expanded_combat.item.materials;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class Material {
     @NotNull
@@ -20,10 +22,13 @@ public class Material {
     @NotNull
     private final String name;
     @Nullable
+    private final Map<String, List<String>> aliases;
+    @Nullable
     private final Material craftedFrom;
     @NotNull
     private final ECConfig.MaterialConfig config;
     public final boolean halfbow, blockWeaponOnly, dyeable;
+    public final ShieldUse shieldUse;
 
     private RegistryEntry<ECArrowItem> arrowEntry = null;
     private RegistryEntry<ECArrowItem> tippedArrowEntry = null;
@@ -36,14 +41,17 @@ public class Material {
     private final Map<String, RegistryEntry<DyableItem>> weaponGUIModel = new HashMap<>();
     private final Map<String, RegistryEntry<DyableItem>> weaponInHandModel = new HashMap<>();
 
-    public Material(@NotNull NonNullSupplier<Registrate> registrate,  @NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
+    @ApiStatus.Internal
+    public Material(@NotNull NonNullSupplier<Registrate> registrate,  @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable) {
         this.registrate = registrate;
         this.name = name;
+        this.aliases = aliases;
         this.craftedFrom = craftedFrom;
         this.config = config;
         this.halfbow = halfbow;
         this.blockWeaponOnly = blockWeaponOnly;
         this.dyeable = dyeable;
+        this.shieldUse = shieldUse;
 
         MaterialInit.materials.add(this);
         if (arrow) MaterialInit.arrowMaterials.add(this);
@@ -101,6 +109,10 @@ public class Material {
 
     public String getLocationName() {
         return name.toLowerCase(Locale.ROOT).replace(' ', '_');
+    }
+
+    public @Nullable Map<String, List<String>> getAliases() {
+        return aliases;
     }
 
     public ECConfig.@NotNull MaterialConfig getConfig() {
@@ -172,7 +184,7 @@ public class Material {
                 MaterialInit.arrowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialInit.IRON;
+        return VanillaECPlugin.IRON;
     }
 
     public static Material valueOfBow(String name) {
@@ -180,7 +192,7 @@ public class Material {
                 MaterialInit.bowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialInit.IRON;
+        return VanillaECPlugin.IRON;
     }
 
     public static Material valueOfCrossBow(String name) {
@@ -188,7 +200,7 @@ public class Material {
                 MaterialInit.crossbowMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialInit.IRON;
+        return VanillaECPlugin.IRON;
     }
 
     public static Material valueOfGauntlet(String name) {
@@ -196,7 +208,7 @@ public class Material {
                 MaterialInit.gauntletMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialInit.LEATHER;
+        return VanillaECPlugin.LEATHER;
     }
 
     public static Material valueOfQuiver(String name) {
@@ -204,15 +216,30 @@ public class Material {
                 MaterialInit.quiverMaterials) {
             if (material.name.equals(name)) return material;
         }
-        return MaterialInit.LEATHER;
+        return VanillaECPlugin.LEATHER;
     }
 
-    public static Material valueOfShield(String name) {
+    public static Material valueOfShield(String part, String name) {
         for (Material material :
                 MaterialInit.shieldMaterials) {
             if (material.name.equals(name)) return material;
+            else if (material.aliases != null && !material.aliases.isEmpty()) {
+                List<String> pastNames = new ArrayList<>();
+                if (part.equals("any")) {
+                    for ( List<String> names : material.aliases.values()) {
+                        pastNames.addAll(names);
+                    }
+                } else {
+                    if (material.aliases.containsKey(part)) pastNames.addAll(material.aliases.get(part));
+                }
+                if (!pastNames.isEmpty()) {
+                    for (String alias : pastNames) {
+                        if (material.name.equals(alias)) return material;
+                    }
+                }
+            }
         }
-        return MaterialInit.VANILLA;
+        return VanillaECPlugin.OAK_PLANK;
     }
 
     public static Material valueOfShield(ItemStack itemStack) {
@@ -221,7 +248,7 @@ public class Material {
             if (material.getConfig().crafting.repairItem.isEmpty()) continue;
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
         }
-        return MaterialInit.VANILLA;
+        return VanillaECPlugin.OAK_PLANK;
     }
 
     /**
@@ -236,10 +263,6 @@ public class Material {
         return false;
     }
 
-    public boolean isVanilla() {
-        return this.name.equals("Vanilla");
-    }
-
     public static class Builder {
         @NotNull
         private final NonNullSupplier<Registrate> registrate;
@@ -249,6 +272,10 @@ public class Material {
         private final Material craftedFrom;
         @NotNull
         private final ECConfig.MaterialConfig config;
+        @Nullable
+        private final Map<String, List<String>> aliases = new Hashtable<>();
+
+        private ShieldUse shieldUse = ShieldUse.ALL;
 
         private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
@@ -257,6 +284,12 @@ public class Material {
             this.name = name;
             this.craftedFrom = craftedFrom;
             this.config = config;
+        }
+
+        public Builder alias(String shieldPart, String... name) {
+            assert aliases != null;
+            aliases.put(shieldPart, List.of(name));
+            return this;
         }
 
         public Builder halfbow() {
@@ -283,6 +316,11 @@ public class Material {
             this.quiver = true;
             return this;
         }
+        public Builder shield(ShieldUse shieldUse) {
+            this.shieldUse = shieldUse;
+            this.shield = true;
+            return this;
+        }
         public Builder shield() {
             this.shield = true;
             return this;
@@ -301,12 +339,17 @@ public class Material {
         }
 
         public Material build() {
-            return new Material(registrate, name, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, weapons, blockWeaponOnly, dyeable);
+            return new Material(registrate, name, aliases, craftedFrom, config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable);
         }
 
 
-        public String getName() {
+        public @NotNull String getName() {
             return name;
         }
+    }
+
+    public enum ShieldUse {
+        ALL,
+        NOT_TRIM
     }
 }

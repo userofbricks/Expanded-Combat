@@ -57,11 +57,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                     trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
                 }
                 //TODO: need to switch to armor trim texture getting. example fount in HumanoidArmorLayer
-                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield(sul).getLocationName() + ".png");
-                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield(sur).getLocationName() + ".png");
-                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield(sdl).getLocationName() + ".png");
-                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield(sdr).getLocationName() + ".png");
-                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield(sm).getLocationName() + ".png");
+                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield("ul", sul).getLocationName() + ".png");
+                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield("ur", sur).getLocationName() + ".png");
+                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield("dl", sdl).getLocationName() + ".png");
+                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield("dr", sdr).getLocationName() + ".png");
+                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield("m", sm).getLocationName() + ".png");
 
                 ECBaseShieldModel upperLeft = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_LEFT));
                 ECBaseShieldModel upperRight = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_RIGHT));

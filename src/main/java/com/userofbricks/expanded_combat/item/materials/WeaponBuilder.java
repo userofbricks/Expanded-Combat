@@ -27,6 +27,8 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 
 import java.util.Map;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+
 public class WeaponBuilder extends MaterialBuilder{
     public static RegistryEntry<ECWeaponItem> generateWeapon(Registrate registrate, String name, WeaponMaterial weapon, Material material, Material craftedFrom) {
         ItemBuilder<ECWeaponItem, Registrate> itemBuilder = registrate.item(material.getLocationName() + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem(material, weapon, p));
@@ -83,10 +85,14 @@ public class WeaponBuilder extends MaterialBuilder{
                 if (weapon.hasCustomTransforms()) itemModelBuilder = getItemBaseModel(prov, weapon, ctx);
 
                 if (weapon.dyeable() || weapon.potionDippable()) {
-                    itemModelBuilder.texture("layer0", prov.modLoc("item/" + weapon.getLocationName() + "/" + "dye"));
-                    itemModelBuilder.texture("layer1", prov.modLoc("item/" + weapon.getLocationName() + "/" + material.getLocationName()));
+                    itemModelBuilder.texture("layer0", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "dye"));
+                    itemModelBuilder.texture("layer1", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "handle"));
+                    itemModelBuilder.texture("layer2", prov.modLoc("item/" + weapon.getLocationName() + "_" + material.getLocationName()));
                 }
-                else itemModelBuilder.texture("layer0", prov.modLoc("item/" + weapon.getLocationName() + "/" + material.getLocationName()));
+                else {
+                    itemModelBuilder.texture("layer0", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "handle"));
+                    itemModelBuilder.texture("layer1", prov.modLoc("item/" + weapon.getLocationName() + "_" + material.getLocationName()));
+                }
             }
         });
 
@@ -106,10 +112,14 @@ public class WeaponBuilder extends MaterialBuilder{
         itemBuilder.model((ctx, prov) -> {
             ItemModelBuilder largeModelbuilder = getItemBaseModel(prov, weapon, ctx);
             if (weapon.dyeable() || weapon.potionDippable()) {
-                largeModelbuilder.texture("layer0", prov.modLoc("item_large/" + weapon.getLocationName() + "/" + "dye"));
-                largeModelbuilder.texture("layer1", prov.modLoc("item_large/" + weapon.getLocationName() + "/" + material.getLocationName()));
+                largeModelbuilder.texture("layer0", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "dye"));
+                largeModelbuilder.texture("layer1", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "handle"));
+                largeModelbuilder.texture("layer2", prov.modLoc("item_large/" + weapon.getLocationName() + "_" + material.getLocationName()));
             }
-            else largeModelbuilder.texture("layer0", prov.modLoc("item_large/" + weapon.getLocationName() + "/" + material.getLocationName()));
+            else {
+                largeModelbuilder.texture("layer0", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "handle"));
+                largeModelbuilder.texture("layer1", prov.modLoc("item_large/" + weapon.getLocationName() + "_" + material.getLocationName()));
+            }
         });
 
         if (weapon.dyeable()) {

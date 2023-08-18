@@ -159,12 +159,68 @@ public class ECConfig implements ConfigData {
 
     @Category("Materials") @CollapsibleObject @ConfigName("Leather Settings")
     public MaterialConfig leather = new MaterialConfig.Builder().fromTier(Tiers.STONE).fromArmorMaterial(ArmorMaterials.LEATHER)
-            .addedShieldDurability(80).baseProtectionAmmount(3).afterBasePercentReduction(0.5f)
+            .addedShieldDurability(80).baseProtectionAmmount(2.75f).afterBasePercentReduction(0.45f)
             .quiverSlots(2)
             .build();
 
-    @Category("Materials") @CollapsibleObject @ConfigName("Wood Settings")
-    public MaterialConfig wood = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+    @Category("Materials") @CollapsibleObject @ConfigName("Rabbit Leather Settings")
+    public MaterialConfig rebbitLeather = new MaterialConfig.Builder().fromTier(Tiers.STONE).fromArmorMaterial(ArmorMaterials.LEATHER)
+            .addedShieldDurability(75).baseProtectionAmmount(2.65f).afterBasePercentReduction(0.5f)
+            .quiverSlots(3)
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Oak Plank Settings")
+    public MaterialConfig oakPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.OAK_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Acacia Plank Settings")
+    public MaterialConfig acaciaPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.ACACIA_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Birch Plank Settings")
+    public MaterialConfig birchPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.BIRCH_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Dark Oak Plank Settings")
+    public MaterialConfig darkOakPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.DARK_OAK_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Spruce Plank Settings")
+    public MaterialConfig sprucePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.SPRUCE_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Jungle Plank Settings")
+    public MaterialConfig junglePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.JUNGLE_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Warped Plank Settings")
+    public MaterialConfig warpedPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.WARPED_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Crimson Plank Settings")
+    public MaterialConfig crimsonPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.CRIMSON_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Mangrove Plank Settings")
+    public MaterialConfig mangrovePlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.MANGROVE_PLANKS))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Stone Settings")

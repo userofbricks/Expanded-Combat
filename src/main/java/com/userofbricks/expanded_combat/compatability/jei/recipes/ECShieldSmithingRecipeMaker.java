@@ -39,33 +39,31 @@ public class ECShieldSmithingRecipeMaker {
 
         for (Material material :
                 MaterialInit.shieldMaterials) {
-            if (material != MaterialInit.VANILLA){
-                Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
-                if (addition.isEmpty()) continue;
+            Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
+            if (addition.isEmpty()) continue;
 
-                ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
-                resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
-                resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
-                resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
-                resultShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+            resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
 
-                ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.shield.smithing." + resultShield.getDescriptionId());
+            ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.shield.smithing." + resultShield.getDescriptionId());
 
-                if (material.getConfig().crafting.isSingleAddition && material.getCraftedFrom() != null) {
-                    ItemStack baseShield = new ItemStack(material.getCraftedFrom().getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
-                    baseShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getCraftedFrom().getName());
-                    baseShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getCraftedFrom().getName());
-                    baseShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getCraftedFrom().getName());
-                    baseShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getCraftedFrom().getName());
-                    baseShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getCraftedFrom().getName());
+            if (material.getConfig().crafting.isSingleAddition && material.getCraftedFrom() != null) {
+                ItemStack baseShield = new ItemStack(material.getCraftedFrom().getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+                baseShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getCraftedFrom().getName());
+                baseShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getCraftedFrom().getName());
+                baseShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getCraftedFrom().getName());
+                baseShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getCraftedFrom().getName());
+                baseShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getCraftedFrom().getName());
 
-                    recipes.add(new StanderStyleShieldSmithingRecipe(id, Ingredient.of(baseShield), Ingredient.EMPTY, Ingredient.EMPTY, addition, Ingredient.EMPTY, Ingredient.EMPTY, resultShield));
-                } else {
-                    Ingredient basesIngrediant = Ingredient.of(bases.stream());
+                recipes.add(new StanderStyleShieldSmithingRecipe(id, Ingredient.of(baseShield), Ingredient.EMPTY, Ingredient.EMPTY, addition, Ingredient.EMPTY, Ingredient.EMPTY, resultShield));
+            } else {
+                Ingredient basesIngrediant = Ingredient.of(bases.stream());
 
-                    recipes.add(new StanderStyleShieldSmithingRecipe(id, basesIngrediant, addition, resultShield));
-                }
+                recipes.add(new StanderStyleShieldSmithingRecipe(id, basesIngrediant, addition, resultShield));
             }
         }
         return recipes;
