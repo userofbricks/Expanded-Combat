@@ -11,6 +11,7 @@ import com.userofbricks.expanded_combat.compatability.jei.recipes.*;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
+import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
@@ -98,7 +99,7 @@ public class ECJEIPlugin implements IModPlugin {
         ECRecipes vanillaRecipes = new ECRecipes(ingredientManager);
         for (Material material :
                 MaterialInit.arrowMaterials) {
-            registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(stackHelper, material.getArrowEntry().get()));
+            registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(stackHelper, (ECArrowItem) material.getArrowEntry().get()));
         }
 
         for (RegistryEntry<? extends Item> item:ECItems.ITEMS) {

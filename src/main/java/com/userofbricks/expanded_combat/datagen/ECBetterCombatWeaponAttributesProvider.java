@@ -23,7 +23,7 @@ public class ECBetterCombatWeaponAttributesProvider extends BetterCombatWeaponAt
         for (Material material :
                 MaterialInit.weaponMaterials) {
             material.getWeapons().values().stream().map(RegistryEntry::get).forEach(weaponItem -> {
-                WeaponMaterial weaponMaterial = weaponItem.getWeapon();
+                WeaponMaterial weaponMaterial = ((ECWeaponItem)weaponItem).getWeapon();
                 add(weaponItem, getAttributesForWeapon(weaponMaterial));
             });
         }
