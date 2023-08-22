@@ -1,0 +1,76 @@
+version = "${mod_version}-${rootProject.mc_version}"
+group = "com.userofbricks.${modid}"
+archivesBaseName = archives_base_name
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+def generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+
+loom {
+    forge {
+        mixinConfig "${modid}.mixins.json"
+    }
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", "${modid}"
+            programArgs "--output", generatedResources.absolutePath
+            programArgs "--existing", file("src/main/resources").absolutePath
+            programArgs "--existing", file("src/needed_only_for_datagen/resources").absolutePath
+        }
+    }
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.mc_version}-${rootProject.forge_version}"
+    //annotationProcessor("org.spongepowered:mixin:${rootProject.mixin_version}:processor")
+
+    include(group: 'com.tterrag.registrate', name: 'Registrate', version: "${rootProject.registrate_mc_version_range}")
+    modImplementation "com.tterrag.registrate:Registrate:${rootProject.registrate_version}"
+
+    modImplementation "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_api_version}"
+
+    modImplementation "top.theillusivec4.curios:curios-forge:${rootProject.curios_version}"
+
+    modCompileOnly "teamtwilight:twilightforest:${twilight_forest_version}:universal"
+
+    // compile against the JEI API but do not include it at runtime
+    modCompileOnly("mezz.jei:jei-${rootProject.mc_version}-common-api:${rootProject.jei_version}")
+    modCompileOnly("mezz.jei:jei-${rootProject.mc_version}-forge-api:${rootProject.jei_version}")
+    // at runtime, use the full JEI jar for Forge
+    modImplementation("mezz.jei:jei-${rootProject.mc_version}-forge:${rootProject.jei_version}")
+
+    modImplementation "maven.modrinth:better-combat:${better_combat_version}+${rootProject.mc_version}-forge"
+    modImplementation "dev.kosmx.player-anim:player-animation-lib-forge:${player_anim_version}"
+}
+
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+// When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
+// See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: rootProject.mc_version, minecraft_version_range: rootProject.mc_version_range,
+            forge_version: rootProject.forge_version, forge_version_range: rootProject.forge_version_range,
+            loader_version_range: rootProject.loader_version_range,
+            modid: modid, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: rootProject.mod_authors, mod_description: mod_description,
+
+            curios_version: rootProject.curios_version, cloth_config_api_version: rootProject.cloth_config_api_version,
+            twilight_forest_version: twilight_forest_version, better_combat_version: better_combat_version,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}

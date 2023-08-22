@@ -1,196 +1,70 @@
-buildscript {
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.3-SNAPSHOT" apply false
+}
+
+architectury {
+    minecraft = rootProject.mc_version
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.mc_version}"
+        mappings loom.officialMojangMappings()
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
     repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
         maven {
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
-            content { includeGroup "org.spongepowered" }
+            // location of the maven that hosts JEI files before January 2023
+            name = "Progwml6's maven"
+            url = "https://dvs1.progwml6.com/files/maven/"
+        }
+        maven {
+            // location of the maven that hosts JEI files since January 2023
+            name = "Jared's maven"
+            url = "https://maven.blamejared.com/"
+        }
+        maven {//JEI
+            name = "ModMaven"
+            url = "https://modmaven.k-4u.nl"
+        }
+        maven {//Registrate
+            name 'tterrag maven'
+            url 'https://maven.tterrag.com'
         }
         mavenCentral()
+        maven { url = "https://maven.theillusivec4.top/" }
 
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradle_version}", changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: "${mixingradle_version}"
-    }
-}
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'maven-publish'
+        maven {url = "https://modmaven.dev/"}
 
-jarJar.enable()
+        maven { url "https://maven.shedaniel.me/" }
 
-version = "${mod_version}-${mc_version}"
-group = "com.userofbricks.${modid}"
-archivesBaseName = "${modid}"
+        maven { url 'https://api.modrinth.com/maven' }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            arg "-mixin.config=${modid}.mixins.json"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', "${modid}"
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            mods {
-                expanded_combat {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run_server')
-            arg "-mixin.config=${modid}.mixins.json"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', "${modid}"
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            mods {
-                expanded_combat {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        // This run config launches GameTestServer and runs all registered gametests, then exits.
-        // By default, the server will crash when no gametests are provided.
-        // The gametest system is also enabled by default for other run configs under the /test command.
-        gameTestServer {
-            workingDirectory project.file('run_test')
-            arg "-mixin.config=${modid}.mixins.json"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', "${modid}"
-            mods {
-                expanded_combat {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run_data')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('src/needed_only_for_datagen/resources/')
-            mods {
-                expanded_combat {
-                    source sourceSets.main
-                }
-            }
+        maven {
+            name "KosmX's maven"
+            url 'https://maven.kosmx.dev/'
         }
     }
-}
 
-mixin {
-    add sourceSets.main, "${modid}.refmap.json"
-}
-
-// Include resources generated by data generators.
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories{
-    flatDir {dir 'libs'}
-    maven {
-        // location of the maven that hosts JEI files before January 2023
-        name = "Progwml6's maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
     }
-    maven {
-        // location of the maven that hosts JEI files since January 2023
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven {//JEI
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
-    }
-    maven {//Registrate
-        name 'tterrag maven'
-        url 'https://maven.tterrag.com'
-    }
-    mavenCentral()
-    maven { url = "https://maven.theillusivec4.top/" }
 
-    maven {url = "https://modmaven.dev/"}
-
-    maven { url "https://maven.shedaniel.me/" }
-
-    maven { url 'https://api.modrinth.com/maven' }
-
-    maven {
-        name "KosmX's maven"
-        url 'https://maven.kosmx.dev/'
-    }
-}
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
-
-    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "${registrate_mc_version_range}")
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-
-    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_api_version}")
-
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-
-    compileOnly fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
-
-    // compile against the JEI API but do not include it at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
-    // at runtime, use the full JEI jar for Forge
-    implementation(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
-
-    implementation fg.deobf("maven.modrinth:better-combat:${better_combat_version}+${mc_version}-forge")
-    implementation fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${player_anim_version}")
-}
-
-// This block of code expands all declared replace properties in the specified resource targets.
-// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
-// When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
-// See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
-tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-            minecraft_version: mc_version, minecraft_version_range: mc_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            modid: modid, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
-
-            curios_version: curios_version, cloth_config_api_version: cloth_config_api_version,
-            twilight_forest_version: twilight_forest_version, better_combat_version: better_combat_version,
-    ]
-    inputs.properties replaceProperties
-
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"       : modid,
-                "Specification-Vendor"      : mod_authors,
-                "Specification-Version"     : "1",
-                "Implementation-Title"      : project.jar.name,
-                "Implementation-Version"    : project.jar.archiveVersion,
-                "Implementation-Vendor"     :mod_authors,
-                "Implementation-Timestamp"  : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"              : "${modid}.mixins.json"
-        ])
+    java {
+        withSourcesJar()
     }
 }
