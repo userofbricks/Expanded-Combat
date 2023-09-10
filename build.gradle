@@ -19,9 +19,9 @@ apply plugin: 'maven-publish'
 
 jarJar.enable()
 
-version = "${mod_version}-${mc_version}"
+version = "${mod_version}"
 group = "com.userofbricks.${modid}"
-archivesBaseName = "${modid}"
+archivesBaseName = "${modid}-${mc_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -146,8 +146,6 @@ dependencies {
 
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
-    compileOnly fg.deobf("teamtwilight:twilightforest:${twilight_forest_version}:universal")
-
     // compile against the JEI API but do not include it at runtime
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
@@ -171,7 +169,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_authors: mod_authors, mod_description: mod_description,
 
             curios_version: curios_version, cloth_config_api_version: cloth_config_api_version,
-            twilight_forest_version: twilight_forest_version, better_combat_version: better_combat_version,
+            better_combat_version: better_combat_version,
     ]
     inputs.properties replaceProperties
 
@@ -194,3 +192,9 @@ jar {
         ])
     }
 }
+
+reobf {
+    jarJar { }
+}
+
+tasks.jarJar.finalizedBy('reobfJarJar')

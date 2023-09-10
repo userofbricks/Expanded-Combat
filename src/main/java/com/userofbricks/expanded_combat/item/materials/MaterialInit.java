@@ -12,11 +12,12 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 @SuppressWarnings("unused")
 public class MaterialInit {
+
+
     public static List<Material> materials = new ArrayList<>();
     public static List<WeaponMaterial> weaponMaterialConfigs = new ArrayList<>();
     public static List<ShieldToMaterials> shieldToMaterialsList = new ArrayList<>();
@@ -35,8 +36,7 @@ public class MaterialInit {
     public static Material LEAD =       new Material.Builder(REGISTRATE, "Lead",        null, CONFIG.lead).gauntlet().shield().weapons().build();
 
     public static void loadClass() {
-        List<IExpandedCombatPlugin> plugins = ECPluginFinder.getECPlugins();
-        for (IExpandedCombatPlugin plugin: plugins) {
+        for (IExpandedCombatPlugin plugin: PLUGINS) {
             plugin.registerMaterials(new RegistrationHandler());
             plugin.registerShieldToMaterials(new RegistrationHandler.ShieldMaterialRegisterator());
         }

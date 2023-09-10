@@ -4,8 +4,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.plugins.TwilightForestPlugin;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.ChatFormatting;

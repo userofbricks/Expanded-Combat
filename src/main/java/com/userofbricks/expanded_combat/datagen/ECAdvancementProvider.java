@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.item.ECItemTags;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.advancements.Advancement;
@@ -16,10 +15,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
-import twilightforest.data.TFAdvancementGenerator;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;

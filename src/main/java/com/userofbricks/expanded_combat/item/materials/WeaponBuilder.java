@@ -134,7 +134,7 @@ public class WeaponBuilder extends MaterialBuilder{
 
 
     private static ItemModelBuilder getItemBaseModel(RegistrateItemModelProvider prov, WeaponMaterial weapon, DataGenContext<Item, ? extends Item> ctx) {
-        return prov.withExistingParent("item/" + ctx.getName(), prov.modLoc("item/bases/" + weapon.getLocationName()));
+        return prov.withExistingParent("item/" + ctx.getName(), new ResourceLocation(MODID, "item/bases/" + weapon.getLocationName()));
     }
 
     private static ResourceLocation getWeaponTexture(RegistrateItemModelProvider prov, String weaponLocation, String textureName) {

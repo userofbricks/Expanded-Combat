@@ -46,15 +46,8 @@ description='''${mod_description}'''
     side="BOTH"
 
 [[dependencies.${modid}]]
-    modId="twilightforest"
-    mandatory=false
-    versionRange="[${twilight_forest_version},)"
-    ordering="BEFORE"
-    side="BOTH"
-
-[[dependencies.${modid}]]
     modId="bettercombat"
     mandatory=false
     versionRange="[${better_combat_version},)"
-    ordering="AFTER"
+    ordering="NONE"
     side="BOTH"

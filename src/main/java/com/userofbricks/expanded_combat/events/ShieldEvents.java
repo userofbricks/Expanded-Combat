@@ -1,12 +1,9 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.plugins.TwilightForestPlugin;
-import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
@@ -17,8 +14,6 @@ import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import twilightforest.item.KnightmetalShieldItem;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
