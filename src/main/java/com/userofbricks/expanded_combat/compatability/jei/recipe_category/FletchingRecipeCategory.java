@@ -79,7 +79,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
 
         //Don't render if number is above maxRecipe Repeats
         if (maxRecipeRepeats/10 < firstNumber) return;
-        if (maxRecipeRepeats/10 == firstNumber && maxRecipeRepeats%10 > secondNumber) return;
+        if (maxRecipeRepeats/10 == firstNumber && maxRecipeRepeats%10 < secondNumber) return;
 
         int width = 8;
         int height = 10;

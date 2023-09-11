@@ -24,10 +24,7 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -50,11 +47,18 @@ public class ArrowBuilder extends MaterialBuilder {
                 recipe.put('Y', Ingredient.of(Items.FEATHER));
                 conditionalShapedRecipe(ctx, prov, new String[]{"X","#","Y"}, recipe, 4, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
 
-                conditionalSmithing120Recipe(ctx, prov,
-                        material.getConfig().crafting.smithingTemplate != null ? Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))) : Ingredient.EMPTY,
-                        IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                        craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
-                        new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
+                if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
+                    conditionalSmithing120Recipe(ctx, prov,
+                            Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
+                            IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                            craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
+                            new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
+                } else {
+                    conditionalSmithingWithoutTemplateRecipe(ctx, prov,
+                            IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                            craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
+                            new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
+                }
 
                 InventoryChangeTrigger.TriggerInstance fletchingTriggerInstance = InventoryChangeTrigger.TriggerInstance.hasItems(ECItems.FLETCHED_STICKS.get());
 

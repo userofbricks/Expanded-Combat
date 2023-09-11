@@ -27,6 +27,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class BowBuilder extends MaterialBuilder {
     public static RegistryEntry<ECBowItem> generateBow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECBowItem, Registrate> itemBuilder = registrate.item(locationName + "_bow", (p) -> new ECBowItem(material, null, p));
+        itemBuilder.properties(properties -> properties.stacksTo(1));
         genModel(itemBuilder, locationName, "");
         itemBuilder.tag(ECItemTags.BOWS);
         itemBuilder.recipe((ctx, prov) -> {

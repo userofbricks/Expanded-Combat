@@ -165,6 +165,7 @@ public class ECConfig implements ConfigData {
 
     @Category("Materials") @CollapsibleObject @ConfigName("Rabbit Leather Settings")
     public MaterialConfig rebbitLeather = new MaterialConfig.Builder().fromTier(Tiers.STONE).fromArmorMaterial(ArmorMaterials.LEATHER)
+            .repairItem(Ingredient.of(Items.RABBIT_HIDE))
             .addedShieldDurability(75).baseProtectionAmmount(2.65f).afterBasePercentReduction(0.5f)
             .quiverSlots(3)
             .build();
@@ -454,7 +455,7 @@ public class ECConfig implements ConfigData {
             private float afterBasePercentReduction = 0;
             private boolean isSingleAddition = false;
             private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
-            private String smithingTemplate = BuiltInRegistries.ITEM.getKey(ItemStack.EMPTY.getItem()).toString();
+            private String smithingTemplate = null;
             private int quiverSlots = 0;
 
 

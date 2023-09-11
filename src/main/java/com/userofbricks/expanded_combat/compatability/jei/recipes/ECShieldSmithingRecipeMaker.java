@@ -36,14 +36,14 @@ public class ECShieldSmithingRecipeMaker {
             shield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-            shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.shieldUse == Material.ShieldUse.NOT_TRIM ? VanillaECPlugin.IRON.getName() : material.getName());
             bases.add(shield);
         }
 
         for (Material material :
                 MaterialInit.shieldMaterials) {
             Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
-            if (addition.isEmpty()) continue;
+            if (addition.isEmpty() || addition.test(ItemStack.EMPTY) || addition.test(new ItemStack(Items.AIR))) continue;
 
             ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
             resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
