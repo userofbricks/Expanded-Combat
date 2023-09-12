@@ -4,17 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed weapon and shield recipes">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/run_server/config/bettercombat/fallback_compatibility.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/config/bettercombat/server.json5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-09-11_21.45.31-fml.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_server/world/data/random_sequences.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dagger.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dagger.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/dancer_s_sword.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive_dye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/glaive_dye.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/katana.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/katana.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe_handle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/scythe_handle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/sickle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/sickle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/spear.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/spear.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/config/fml.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/config/fml.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/server.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/capabilities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/capabilities.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/capabilities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/capabilities.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/advancements/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/raids.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/capabilities.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat_old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat_old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/poi/r.-1.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/serverconfig/curios-server.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_server/world/stats/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +192,7 @@
       <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Application.runServer">
     <configuration name="Expanded-Combat [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -608,7 +653,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -641,7 +686,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="jei support for fletching and quiver not tested yet" />
     <MESSAGE value="jei support for fletching confirmed works" />
     <MESSAGE value="added jei support for Shield smithing" />
     <MESSAGE value="added better combat support" />
@@ -666,7 +710,8 @@
     <MESSAGE value="moved twilight forest compat to seperate mod and fixed ShieldSmithingUpgradeRecipe" />
     <MESSAGE value="lots of bug fixes&#10;- fixed smithing recipes with no template not loading&#10;- non-trim materials now don't glitch out in jei recipes&#10;- bows and crossbows are no longer stackable&#10;- netherite gauntlets are no longer crafted with arrows&#10;- rabbit leather now uses rabit hide instead of leather&#10;- jei fletching counter no longer skips numbers" />
     <MESSAGE value="fixed weapon and shield recipes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed weapon and shield recipes" />
+    <MESSAGE value="fixed weapon textures" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed weapon textures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
