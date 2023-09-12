@@ -24,9 +24,17 @@
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
-          "i": {
-            "item": "minecraft:barrier"
-          },
+          "i": [
+            {
+              "item": "minecraft:cobblestone"
+            },
+            {
+              "item": "minecraft:blackstone"
+            },
+            {
+              "item": "minecraft:cobbled_deepslate"
+            }
+          ],
           "p": {
             "tag": "forge:tools/swords/stone"
           },

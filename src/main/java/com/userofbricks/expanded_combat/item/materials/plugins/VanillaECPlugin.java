@@ -42,6 +42,8 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
     public static Material WARPED_PLANK;
     public static Material CRIMSON_PLANK;
     public static Material MANGROVE_PLANK;
+    public static Material BAMBOO_PLANK;
+    public static Material CHERRY_PLANK;
     public static Material STONE;
     public static Material IRON;
     public static Material GOLD;
@@ -81,6 +83,8 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         WARPED_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Warped Plank",   null, CONFIG.warpedPlank).shield().weapons());
         CRIMSON_PLANK = (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Crimson Plank",  null, CONFIG.crimsonPlank).shield().weapons());
         MANGROVE_PLANK =(Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Mangrove Plank", null, CONFIG.mangrovePlank).shield().weapons());
+        BAMBOO_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Bamboo Plank",   null, CONFIG.bambooPlank).shield().weapons());
+        CHERRY_PLANK =  (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Cherry Plank",   null, CONFIG.cherryPlank).shield().weapons());
         STONE =         (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Stone",         null, CONFIG.stone).weapons());
         IRON =          (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Iron",          null, CONFIG.iron).arrow().bow().halfbow().crossbow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
         GOLD =          (Material) registrationHandler.registerMaterial(new Material.Builder(REGISTRATE, "Gold",          null, CONFIG.gold).bow().halfbow().crossbow().gauntlet().quiver().shield().weapons());

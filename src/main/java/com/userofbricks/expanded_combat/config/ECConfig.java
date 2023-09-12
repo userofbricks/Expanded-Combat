@@ -224,8 +224,21 @@ public class ECConfig implements ConfigData {
             .repairItem(Ingredient.of(Items.MANGROVE_PLANKS))
             .build();
 
+    @Category("Materials") @CollapsibleObject @ConfigName("Bamboo Plank Settings")
+    public MaterialConfig bambooPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.BAMBOO_PLANKS))
+            .build();
+
+    @Category("Materials") @CollapsibleObject @ConfigName("Cherry Plank Settings")
+    public MaterialConfig cherryPlank = new MaterialConfig.Builder().fromTier(Tiers.WOOD)
+            .addedShieldDurability(40).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
+            .repairItem(Ingredient.of(Items.CHERRY_PLANKS))
+            .build();
+
     @Category("Materials") @CollapsibleObject @ConfigName("Stone Settings")
     public MaterialConfig stone = new MaterialConfig.Builder().fromTier(Tiers.STONE)
+            .repairItem(Ingredient.of(Items.COBBLESTONE, Items.BLACKSTONE, Items.COBBLED_DEEPSLATE))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Iron Settings")
@@ -455,7 +468,7 @@ public class ECConfig implements ConfigData {
             private float afterBasePercentReduction = 0;
             private boolean isSingleAddition = false;
             private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
-            private String smithingTemplate = null;
+            private String smithingTemplate = "minecraft:air";
             private int quiverSlots = 0;
 
 

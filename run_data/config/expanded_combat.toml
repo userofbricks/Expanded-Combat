@@ -1,6 +1,6 @@
 quiverHudAnchor = "LEFT_OF_HOTBAR"
 quiverHudXAdjustment = -40
-quiverHudYAdjustment = -30
+quiverHudYAdjustment = -20
 enableArrows = true
 enableBows = true
 enableHalfBows = true
@@ -210,8 +210,8 @@ velocityMultiplier = 1.0
 gauntletArmorAmount = 1
 armorToughness = 0.0
 knockbackResistance = 0.0
-baseProtectionAmmount = 3.0
-afterBasePercentReduction = 0.5
+baseProtectionAmmount = 2.75
+afterBasePercentReduction = 0.45
 
 [leather.crafting]
 repairItem = ["minecraft:leather"]
@@ -251,7 +251,7 @@ baseProtectionAmmount = 2.65
 afterBasePercentReduction = 0.5
 
 [rebbitLeather.crafting]
-repairItem = ["minecraft:leather"]
+repairItem = ["minecraft:rabbit_hide"]
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -589,6 +589,80 @@ isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
 
+[bambooPlank]
+equipSound = "minecraft:item.armor.equip_generic"
+mendingBonus = 0.0
+fireResistant = false
+quiverSlots = 0
+
+[bambooPlank.durability]
+toolDurability = 59
+bowDurability = 0
+addedShieldDurability = 40
+
+[bambooPlank.enchanting]
+offenseEnchantability = 15
+defenseEnchantability = 0
+
+[bambooPlank.offense]
+addedAttackDamage = 0.0
+arrowDamage = 0.0
+flaming = false
+canBeTipped = true
+multishotLevel = 0
+bowPower = 0
+velocityMultiplier = 1.0
+
+[bambooPlank.defense]
+gauntletArmorAmount = 0
+armorToughness = 0.0
+knockbackResistance = 0.0
+baseProtectionAmmount = 2.5
+afterBasePercentReduction = 0.3
+
+[bambooPlank.crafting]
+repairItem = ["minecraft:bamboo_planks"]
+isSingleAddition = false
+onlyReplaceResource = []
+smithingTemplate = "minecraft:air"
+
+[cherryPlank]
+equipSound = "minecraft:item.armor.equip_generic"
+mendingBonus = 0.0
+fireResistant = false
+quiverSlots = 0
+
+[cherryPlank.durability]
+toolDurability = 59
+bowDurability = 0
+addedShieldDurability = 40
+
+[cherryPlank.enchanting]
+offenseEnchantability = 15
+defenseEnchantability = 0
+
+[cherryPlank.offense]
+addedAttackDamage = 0.0
+arrowDamage = 0.0
+flaming = false
+canBeTipped = true
+multishotLevel = 0
+bowPower = 0
+velocityMultiplier = 1.0
+
+[cherryPlank.defense]
+gauntletArmorAmount = 0
+armorToughness = 0.0
+knockbackResistance = 0.0
+baseProtectionAmmount = 2.5
+afterBasePercentReduction = 0.3
+
+[cherryPlank.crafting]
+repairItem = ["minecraft:cherry_planks"]
+isSingleAddition = false
+onlyReplaceResource = []
+smithingTemplate = "minecraft:air"
+
 [stone]
 equipSound = "minecraft:item.armor.equip_generic"
 mendingBonus = 0.0
@@ -621,7 +695,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [stone.crafting]
-repairItem = ["minecraft:barrier"]
+repairItem = ["minecraft:cobblestone", "minecraft:blackstone", "minecraft:cobbled_deepslate"]
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"

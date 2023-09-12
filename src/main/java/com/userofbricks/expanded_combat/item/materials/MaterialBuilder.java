@@ -22,6 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class MaterialBuilder {
     public static InventoryChangeTrigger.TriggerInstance getTriggerInstance(ArrayList<String> locations) {
@@ -54,10 +55,9 @@ public abstract class MaterialBuilder {
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Material material, Ingredient previosItem, ICondition[] conditions, String nameSufix) {
-        Item template = ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate));
-        if (template != null || template != Items.AIR) {
+        if (material.getConfig().crafting.smithingTemplate != null || !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
             conditionalSmithing120Recipe(ctx, prov,
-                    Ingredient.of(template),
+                    Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
                     IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
                     previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
         } else {
