@@ -50,13 +50,10 @@
         "expanded_combat:item_large/battle_staff",
         "expanded_combat:item_large/broad_sword",
         "expanded_combat:item_large/claymore",
-        "expanded_combat:item_large/cutlass",
-        "expanded_combat:item_large/dagger",
         "expanded_combat:item_large/dancer_s_sword",
         "expanded_combat:item_large/glaive",
         "expanded_combat:item_large/katana",
         "expanded_combat:item_large/scythe",
-        "expanded_combat:item_large/sickle",
         "expanded_combat:item_large/spear"
       ],
       "palette_key": "expanded_combat:item/color_palettes/template",

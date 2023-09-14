@@ -4,7 +4,6 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
 import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
-import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -12,8 +11,7 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 @SuppressWarnings("unused")
 public class MaterialInit {
@@ -35,8 +33,7 @@ public class MaterialInit {
     public static Material LEAD =       new Material.Builder(REGISTRATE, "Lead",        null, CONFIG.lead).gauntlet().shield().weapons().build();
 
     public static void loadClass() {
-        List<IExpandedCombatPlugin> plugins = ECPluginFinder.getECPlugins();
-        for (IExpandedCombatPlugin plugin: plugins) {
+        for (IExpandedCombatPlugin plugin: PLUGINS) {
             plugin.registerMaterials(new RegistrationHandler());
             plugin.registerShieldToMaterials(new RegistrationHandler.ShieldMaterialRegisterator());
         }

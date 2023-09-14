@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
@@ -25,6 +26,7 @@ import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
+import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
@@ -44,6 +46,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @Mod(MODID)
@@ -53,11 +58,13 @@ public class ExpandedCombat {
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver";
     public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
     public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
+    public static final List<IExpandedCombatPlugin> PLUGINS = new ArrayList<>();
     public static ECConfig CONFIG;
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
         LangStrings.registerLang();

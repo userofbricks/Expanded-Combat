@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
 import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
@@ -9,24 +10,25 @@ import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.util.ModIDs;
 import mezz.jei.api.helpers.IStackHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fml.ModList;
-import twilightforest.init.TFItems;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.userofbricks.expanded_combat.item.materials.MaterialInit.shieldToMaterialsList;
 
 public class ECShieldSmithingRecipeMaker {
     public static List<IShieldSmithingRecipe> createShieldSmithingRecipes(IStackHelper stackHelper) {
         List<IShieldSmithingRecipe> recipes = new ArrayList<>();
         List<ItemStack> bases = new ArrayList<>();
         bases.add(new ItemStack(Items.SHIELD));
-        if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)) { bases.add(new ItemStack(TFItems.KNIGHTMETAL_SHIELD.get())); }
+        for (ShieldToMaterials shieldToMaterials : shieldToMaterialsList) {
+            bases.add(new ItemStack(shieldToMaterials.itemLikeSupplier().get()));
+        }
         for (Material material :
                 MaterialInit.shieldMaterials) {
             ItemStack shield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());

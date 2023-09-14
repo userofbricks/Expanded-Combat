@@ -41,8 +41,6 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         if (!(addition_m_material.getConfig().crafting.isSingleAddition)) return false;
         if (inventory.getItem(0).getItem() != ForgeRegistries.ITEMS.getValue(new ResourceLocation(addition_m_material.getConfig().crafting.smithingTemplate))) {
             return false;
-        } else if (!(inventory.getItem(0).isEmpty())) {
-            return false;
         }
         return addition_m_material.satifiesOnlyReplaceRequirement(existing_ur_material.getName()) ||
                 addition_m_material.satifiesOnlyReplaceRequirement(existing_ul_material.getName()) ||

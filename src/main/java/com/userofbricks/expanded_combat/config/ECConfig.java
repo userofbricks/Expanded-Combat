@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.util.ModIDs.TwilightForestMOD_ID;
 
 @Config(name = MODID)
 public class ECConfig implements ConfigData {
@@ -295,66 +294,6 @@ public class ECConfig implements ConfigData {
             .addedShieldDurability(350).baseProtectionAmmount(5).afterBasePercentReduction(0.6f)
             .offenseEnchantability(8).defenseEnchantability(8)
             .mendingBonus(0.1f)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Naga Scale Settings")
-    public MaterialConfig nagaScale = new MaterialConfig.Builder()
-            .toolDurability((int)(512 * 1.05)).gauntletArmorAmount(3).gauntletAttackDamage(2.1f).armorToughness(0.5f)
-            .addedShieldDurability(260).baseProtectionAmmount(4).afterBasePercentReduction(0.65f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "naga_scale"))
-            .defenseEnchantability(15)
-            .mendingBonus(0.1f)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Arctic Settings")
-    public MaterialConfig arctic = new MaterialConfig.Builder()
-            .toolDurability(131).gauntletArmorAmount(2).gauntletAttackDamage(2).armorToughness(2)
-            .addedShieldDurability(130).baseProtectionAmmount(3).afterBasePercentReduction(0.55f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "arctic_fur"))
-            .defenseEnchantability(8)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Arctic Settings")
-    public MaterialConfig yeti = new MaterialConfig.Builder()
-            .toolDurability(512).gauntletArmorAmount(3).gauntletAttackDamage(2.5f).armorToughness(3)
-            .addedShieldDurability(250).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.65f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "alpha_yeti_fur"))
-            .defenseEnchantability(15)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Ironwood Settings")
-    public MaterialConfig ironwood = new MaterialConfig.Builder()
-            .toolDurability(512).gauntletArmorAmount(2).gauntletAttackDamage(2f)
-            .addedShieldDurability(250).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.6f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "ironwood_ingot"))
-            .offenseEnchantability(25).defenseEnchantability(15)
-            .mendingBonus(1.5f)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Fiery Settings")
-    public MaterialConfig fiery = new MaterialConfig.Builder()
-            .toolDurability(1024).gauntletArmorAmount(4).gauntletAttackDamage(4f).armorToughness(1.5)
-            .addedShieldDurability(275).baseProtectionAmmount(4.5f).afterBasePercentReduction(0.7f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "fiery_ingot"))
-            .offenseEnchantability(10).defenseEnchantability(10)
-            .flaming()
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Steeleaf Settings")
-    public MaterialConfig steeleaf = new MaterialConfig.Builder()
-            .toolDurability(131).gauntletArmorAmount(3).gauntletAttackDamage(3f)
-            .addedShieldDurability(180).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.6f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "steeleaf_ingot"))
-            .offenseEnchantability(9).defenseEnchantability(9)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Knightmetal Settings")
-    public MaterialConfig knightmetal = new MaterialConfig.Builder()
-            .toolDurability(512).gauntletArmorAmount(3).gauntletAttackDamage(3f).armorToughness(1)
-            .addedShieldDurability(250).baseProtectionAmmount(4).afterBasePercentReduction(0.6f)
-            .repairItem(new ResourceLocation(TwilightForestMOD_ID, "knightmetal_ingot"))
-            .offenseEnchantability(8).defenseEnchantability(8)
-            .equipSound(new ResourceLocation(TwilightForestMOD_ID, "item.twilightforest.armor.equip_knightmetal"))
             .build();
 
 
