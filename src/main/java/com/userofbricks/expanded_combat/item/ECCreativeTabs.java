@@ -50,7 +50,8 @@ public class ECCreativeTabs {
                                 stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
                                 stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
                                 stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                                stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                                if (material.shieldUse == Material.ShieldUse.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                                else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
                                 output.accept(stack);
                             }
                         }
@@ -86,7 +87,7 @@ public class ECCreativeTabs {
                         if (CONFIG.enableWeapons) {
                             for (Material material :
                                     MaterialInit.weaponMaterials) {
-                                for (RegistryEntry<ECWeaponItem> itemRegistry :
+                                for (RegistryEntry<? extends Item> itemRegistry :
                                         material.getWeapons().values()) {
                                     output.accept(itemRegistry.get().getDefaultInstance());
                                 }
@@ -141,7 +142,8 @@ public class ECCreativeTabs {
                     stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
                     stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
                     stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                    stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                    if (material.shieldUse == Material.ShieldUse.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                    else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
 
                     items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
@@ -178,7 +180,7 @@ public class ECCreativeTabs {
             if (CONFIG.enableWeapons) {
                 for (Material material :
                         MaterialInit.weaponMaterials) {
-                    for (RegistryEntry<ECWeaponItem> itemRegistry :
+                    for (RegistryEntry<? extends Item> itemRegistry :
                             material.getWeapons().values()) {
                         items.put(itemRegistry.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }

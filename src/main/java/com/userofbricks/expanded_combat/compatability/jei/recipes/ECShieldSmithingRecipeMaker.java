@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.item.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -33,7 +34,8 @@ public class ECShieldSmithingRecipeMaker {
             shield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-            shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            if (material.shieldUse == Material.ShieldUse.ALL) shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            else shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
             bases.add(shield);
         }
 
@@ -47,7 +49,8 @@ public class ECShieldSmithingRecipeMaker {
             resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-            resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            if (material.shieldUse == Material.ShieldUse.ALL) resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+            else resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
 
             ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.shield.smithing." + resultShield.getDescriptionId());
 
@@ -62,8 +65,10 @@ public class ECShieldSmithingRecipeMaker {
                 recipes.add(new StanderStyleShieldSmithingRecipe(id, Ingredient.of(baseShield), Ingredient.EMPTY, Ingredient.EMPTY, addition, Ingredient.EMPTY, Ingredient.EMPTY, resultShield));
             } else {
                 Ingredient basesIngrediant = Ingredient.of(bases.stream());
+                Ingredient ironIngotIngredient = Ingredient.of(Items.IRON_INGOT);
 
-                recipes.add(new StanderStyleShieldSmithingRecipe(id, basesIngrediant, addition, resultShield));
+                if (material.shieldUse == Material.ShieldUse.ALL) recipes.add(new StanderStyleShieldSmithingRecipe(id, basesIngrediant, addition, resultShield));
+                else recipes.add(new StanderStyleShieldSmithingRecipe(id, basesIngrediant, addition, addition, ironIngotIngredient, addition, addition, resultShield));
             }
         }
         return recipes;

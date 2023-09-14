@@ -6,6 +6,11 @@
       "prefix": "slot/"
     },
     {
+      "type": "directory",
+      "source": "item_large",
+      "prefix": "item_large/"
+    },
+    {
       "type": "paletted_permutations",
       "textures": [
         "expanded_combat:trims/items/gauntlet_trim"
@@ -54,32 +59,29 @@
         "expanded_combat:item_large/sickle",
         "expanded_combat:item_large/spear"
       ],
-      "palette_key": "item/color_palettes/template",
+      "palette_key": "expanded_combat:item/color_palettes/template",
       "permutations": {
-        "bronze": "item/color_palettes/bronze",
-        "netherite": "item/color_palettes/netherite",
-        "stone": "item/color_palettes/stone",
-        "steeleaf": "item/color_palettes/steeleaf",
-        "steel": "item/color_palettes/steel",
-        "silver": "item/color_palettes/silver",
-        "lead": "item/color_palettes/lead",
-        "ironwood": "item/color_palettes/ironwood",
-        "iron": "item/color_palettes/iron",
-        "gold": "item/color_palettes/gold",
-        "enderite": "item/color_palettes/enderite",
-        "diamond": "item/color_palettes/diamond",
-        "knight_metal": "item/color_palettes/knight_metal",
-        "acacia_plank": "item/color_palettes/acacia_plank",
-        "bamboo_plank": "item/color_palettes/bamboo_plank",
-        "birch_plank": "item/color_palettes/birch_plank",
-        "cherry_plank": "item/color_palettes/cherry_plank",
-        "crimson_plank": "item/color_palettes/crimson_plank",
-        "dark_oak_plank": "item/color_palettes/dark_oak_plank",
-        "jungle_plank": "item/color_palettes/jungle_plank",
-        "mangrove_plank": "item/color_palettes/mangrove_plank",
-        "oak_plank": "item/color_palettes/oak_plank",
-        "spruce_plank": "item/color_palettes/spruce_plank",
-        "warped_plank": "item/color_palettes/warped_plank"
+        "bronze": "expanded_combat:item/color_palettes/bronze",
+        "netherite": "expanded_combat:item/color_palettes/netherite",
+        "stone": "expanded_combat:item/color_palettes/stone",
+        "steel": "expanded_combat:item/color_palettes/steel",
+        "silver": "expanded_combat:item/color_palettes/silver",
+        "lead": "expanded_combat:item/color_palettes/lead",
+        "iron": "expanded_combat:item/color_palettes/iron",
+        "gold": "expanded_combat:item/color_palettes/gold",
+        "enderite": "expanded_combat:item/color_palettes/enderite",
+        "diamond": "expanded_combat:item/color_palettes/diamond",
+        "acacia_plank": "expanded_combat:item/color_palettes/acacia_plank",
+        "bamboo_plank": "expanded_combat:item/color_palettes/bamboo_plank",
+        "birch_plank": "expanded_combat:item/color_palettes/birch_plank",
+        "cherry_plank": "expanded_combat:item/color_palettes/cherry_plank",
+        "crimson_plank": "expanded_combat:item/color_palettes/crimson_plank",
+        "dark_oak_plank": "expanded_combat:item/color_palettes/dark_oak_plank",
+        "jungle_plank": "expanded_combat:item/color_palettes/jungle_plank",
+        "mangrove_plank": "expanded_combat:item/color_palettes/mangrove_plank",
+        "oak_plank": "expanded_combat:item/color_palettes/oak_plank",
+        "spruce_plank": "expanded_combat:item/color_palettes/spruce_plank",
+        "warped_plank": "expanded_combat:item/color_palettes/warped_plank"
       }
     }
   ]

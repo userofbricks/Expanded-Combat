@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.datagen;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
@@ -19,7 +20,7 @@ public class ECBetterCombatWeaponAttributesProvider extends BetterCombatWeaponAt
         for (Material material :
                 MaterialInit.weaponMaterials) {
             material.getWeapons().values().stream().map(RegistryEntry::get).forEach(weaponItem -> {
-                WeaponMaterial weaponMaterial = weaponItem.getWeapon();
+                WeaponMaterial weaponMaterial = ((ECWeaponItem)weaponItem).getWeapon();
                 add(weaponItem, getAttributesForWeapon(weaponMaterial));
             });
         }
