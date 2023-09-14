@@ -31,7 +31,7 @@ public class ECPotionWeaponRecipeMaker {
         return potionRegistry.getValues()
                 .<CraftingRecipe>map(potion -> {
                     ItemStack input = PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), potion);
-                    ItemStack output = PotionUtils.setPotion(new ItemStack(weaponItem, 8), potion);
+                    ItemStack output = PotionUtils.setPotion(new ItemStack(weaponItem, 1), potion);
 
                     Ingredient potionIngredient = ingredientHelper.createNbtIngredient(input, stackHelper);
                     NonNullList<Ingredient> inputs = NonNullList.of(Ingredient.EMPTY,

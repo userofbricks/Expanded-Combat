@@ -9,7 +9,17 @@
               "items": [
                 {
                   "items": [
-                    "minecraft:barrier"
+                    "minecraft:cobblestone"
+                  ]
+                },
+                {
+                  "items": [
+                    "minecraft:blackstone"
+                  ]
+                },
+                {
+                  "items": [
+                    "minecraft:cobbled_deepslate"
                   ]
                 }
               ]

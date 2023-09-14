@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
@@ -22,7 +21,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import org.joml.Matrix4f;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -85,7 +83,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
 
         //Don't render if number is above maxRecipe Repeats
         if (maxRecipeRepeats/10 < firstNumber) return;
-        if (maxRecipeRepeats/10 == firstNumber && maxRecipeRepeats%10 > secondNumber) return;
+        if (maxRecipeRepeats/10 == firstNumber && maxRecipeRepeats%10 < secondNumber) return;
 
         int width = 8;
         int height = 10;

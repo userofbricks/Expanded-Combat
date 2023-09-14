@@ -36,7 +36,6 @@ minecraft {
         client {
             workingDirectory project.file('run')
             arg "-mixin.config=${modid}.mixins.json"
-            jvmArg "-XX:+AllowEnhancedClassRedefinition"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', "${modid}"
@@ -182,14 +181,14 @@ tasks.named('processResources', ProcessResources).configure {
 jar {
     manifest {
         attributes([
-                "Specification-Title"       : archivesBaseName,
-                "Specification-Vendor"      : 'userofbricks',
+                "Specification-Title"       : modid,
+                "Specification-Vendor"      : mod_authors,
                 "Specification-Version"     : "1",
-                "Implementation-Title"      : project.jar.baseName,
+                "Implementation-Title"      : project.jar.name,
                 "Implementation-Version"    : project.jar.archiveVersion,
-                "Implementation-Vendor"     :'userofbricks',
+                "Implementation-Vendor"     : mod_authors,
                 "Implementation-Timestamp"  : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"              : "${archivesBaseName}.mixins.json"
+                "MixinConfigs"              : "${modid}.mixins.json"
         ])
     }
 }

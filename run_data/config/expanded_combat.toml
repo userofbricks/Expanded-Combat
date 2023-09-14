@@ -1,6 +1,6 @@
 quiverHudAnchor = "LEFT_OF_HOTBAR"
 quiverHudXAdjustment = -40
-quiverHudYAdjustment = -30
+quiverHudYAdjustment = -20
 enableArrows = true
 enableBows = true
 enableHalfBows = true
@@ -210,8 +210,8 @@ velocityMultiplier = 1.0
 gauntletArmorAmount = 1
 armorToughness = 0.0
 knockbackResistance = 0.0
-baseProtectionAmmount = 3.0
-afterBasePercentReduction = 0.5
+baseProtectionAmmount = 2.75
+afterBasePercentReduction = 0.45
 
 [leather.crafting]
 repairItem = ["minecraft:leather"]
@@ -251,7 +251,7 @@ baseProtectionAmmount = 2.65
 afterBasePercentReduction = 0.5
 
 [rebbitLeather.crafting]
-repairItem = ["minecraft:leather"]
+repairItem = ["minecraft:rabbit_hide"]
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -621,7 +621,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [stone.crafting]
-repairItem = ["minecraft:barrier"]
+repairItem = ["minecraft:cobblestone", "minecraft:blackstone", "minecraft:cobbled_deepslate"]
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
