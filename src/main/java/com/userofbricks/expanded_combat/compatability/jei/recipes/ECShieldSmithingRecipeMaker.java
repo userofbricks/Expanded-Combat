@@ -44,7 +44,7 @@ public class ECShieldSmithingRecipeMaker {
         for (Material material :
                 MaterialInit.shieldMaterials) {
             Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
-            if (addition.isEmpty()) continue;
+            if (addition.isEmpty() || addition.test(ItemStack.EMPTY) || addition.test(new ItemStack(Items.AIR))) continue;
 
             ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
             resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());

@@ -126,7 +126,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
 
     @Override
     public Ingredient getDLAddition() {
-        return null;
+        return Ingredient.EMPTY;
     }
 
     @Override

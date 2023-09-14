@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item.materials;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.SmithingTransformWithoutTemplateRecipeBuilder;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -12,6 +13,7 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.ConditionalAdvancement;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -52,10 +54,17 @@ public abstract class MaterialBuilder {
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Material material, Ingredient previosItem, ICondition[] conditions, String nameSufix) {
-        conditionalSmithing120Recipe(ctx, prov,
-                Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
+        Item template = ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate));
+        if (template != null || template != Items.AIR) {
+            conditionalSmithing120Recipe(ctx, prov,
+                    Ingredient.of(template),
+                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                    previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
+        } else {
+            conditionalSmithingWithoutTemplateRecipe(ctx, prov,
+                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                    previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
+        }
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient template, Ingredient ingredient, Ingredient previosItem, ICondition[] conditions,
@@ -63,6 +72,17 @@ public abstract class MaterialBuilder {
         ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_120_smithing" + nameSufix);
 
         SmithingTransformRecipeBuilder.smithing( template, previosItem, ingredient, RecipeCategory.COMBAT, ctx.get())
+                .unlocks("has_item", triggerInstance)
+                .save(conditionalRecipe::addRecipe, ctx.getId() + "_120_smithing" + nameSufix);
+
+        conditionalRecipe.build(prov, ctx.getId().withSuffix("_120_smithing" + nameSufix));
+    }
+
+    public static void conditionalSmithingWithoutTemplateRecipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Ingredient ingredient, Ingredient previosItem, ICondition[] conditions,
+                                                                InventoryChangeTrigger.TriggerInstance triggerInstance, String nameSufix) {
+        ConditionalRecipe.Builder conditionalRecipe = createConditionalBuilder(ctx, conditions, triggerInstance, "_120_smithing" + nameSufix);
+
+        SmithingTransformWithoutTemplateRecipeBuilder.smithing(previosItem, ingredient, RecipeCategory.COMBAT, ctx.get())
                 .unlocks("has_item", triggerInstance)
                 .save(conditionalRecipe::addRecipe, ctx.getId() + "_120_smithing" + nameSufix);
 

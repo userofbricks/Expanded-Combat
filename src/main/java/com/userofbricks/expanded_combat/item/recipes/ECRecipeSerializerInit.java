@@ -31,6 +31,10 @@ public class ECRecipeSerializerInit {
     public static final RegistryObject<RecipeSerializer<?>> EC_SHIELD_DECORATION = RECIPE_SERIALIZERS.register("ec_shield_decoration", () -> new SimpleCraftingRecipeSerializer<>(ECShieldDecorationRecipe::new));
 
 
+    //vanilla variants
+    public static final RegistryObject<RecipeSerializer<?>> SMITHING_TRANSFORM_WITHOUT_TEMPLATE = RECIPE_SERIALIZERS.register("smithing_transform_without_template", SmithingTransformWithoutTemplateRecipe.Serializer::new);
+
+
     private static <T extends Recipe<?>> RecipeType<T> register(final String recourceLocation) {
         return new RecipeType<>() {
             public String toString() {

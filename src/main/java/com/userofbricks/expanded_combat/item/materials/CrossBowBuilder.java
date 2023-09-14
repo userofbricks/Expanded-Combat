@@ -24,6 +24,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class CrossBowBuilder extends MaterialBuilder{
     public static RegistryEntry<ECCrossBowItem> generateCrossBow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECCrossBowItem, Registrate> itemBuilder = registrate.item(locationName + "_crossbow", (p) -> new ECCrossBowItem(material, p));
+        itemBuilder.properties(properties -> properties.stacksTo(1));
         itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/crossbow/" + locationName))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-90, 0, -60).translation(2, 0.1f, -3f).scale(0.9f).end()

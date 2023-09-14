@@ -11,7 +11,6 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
@@ -166,8 +165,9 @@ public class ECConfig implements ConfigData {
             .quiverSlots(2)
             .build();
 
-    @Category("Materials") @CollapsibleObject @ConfigName("Leather Settings")
+    @Category("Materials") @CollapsibleObject @ConfigName("Rabbit Leather Settings")
     public MaterialConfig rebbitLeather = new MaterialConfig.Builder().fromTier(Tiers.STONE).fromArmorMaterial(ArmorMaterials.LEATHER)
+            .repairItem(Ingredient.of(Items.RABBIT_HIDE))
             .addedShieldDurability(75).baseProtectionAmmount(2.65f).afterBasePercentReduction(0.5f)
             .quiverSlots(3)
             .build();
@@ -457,7 +457,7 @@ public class ECConfig implements ConfigData {
             private float afterBasePercentReduction = 0;
             private boolean isSingleAddition = false;
             private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
-            private String smithingTemplate = BuiltInRegistries.ITEM.getKey(ItemStack.EMPTY.getItem()).toString();
+            private String smithingTemplate = "minecraft:air";
             private int quiverSlots = 0;
 
 
