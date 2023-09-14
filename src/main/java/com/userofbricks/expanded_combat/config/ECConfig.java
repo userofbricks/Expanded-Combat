@@ -228,6 +228,7 @@ public class ECConfig implements ConfigData {
 
     @Category("Materials") @CollapsibleObject @ConfigName("Stone Settings")
     public MaterialConfig stone = new MaterialConfig.Builder().fromTier(Tiers.STONE)
+            .repairItem(Ingredient.of(Items.COBBLESTONE, Items.BLACKSTONE, Items.COBBLED_DEEPSLATE))
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Iron Settings")

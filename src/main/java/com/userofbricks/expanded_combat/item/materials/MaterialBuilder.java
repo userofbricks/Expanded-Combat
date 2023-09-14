@@ -13,7 +13,6 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.ConditionalAdvancement;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -54,10 +53,9 @@ public abstract class MaterialBuilder {
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Material material, Ingredient previosItem, ICondition[] conditions, String nameSufix) {
-        Item template = ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate));
-        if (template != null || template != Items.AIR) {
+        if (material.getConfig().crafting.smithingTemplate != null || !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
             conditionalSmithing120Recipe(ctx, prov,
-                    Ingredient.of(template),
+                    Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
                     IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
                     previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
         } else {

@@ -18,17 +18,16 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:smithing_transform",
+        "type": "expanded_combat:smithing_transform_without_template",
         "addition": {
           "item": "minecraft:diamond"
         },
         "base": {
-          "item": "expanded_combat:iron_arrow"
+          "item": "expanded_combat:iron_gauntlet"
         },
         "result": {
           "item": "expanded_combat:diamond_gauntlet"
-        },
-        "template": []
+        }
       }
     }
   ]
