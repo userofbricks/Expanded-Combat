@@ -82,7 +82,6 @@ public class GauntletEvents
     }
 
     @SubscribeEvent
-    @SuppressWarnings("deprecation")
     @OnlyIn(Dist.CLIENT)
     public static void onRenderArm(RenderArmEvent event) {
         CuriosApi.getCuriosHelper().getCuriosHandler(event.getPlayer()).ifPresent(handler -> {
