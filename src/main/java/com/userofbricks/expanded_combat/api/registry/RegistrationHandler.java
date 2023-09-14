@@ -1,18 +1,19 @@
 package com.userofbricks.expanded_combat.api.registry;
 
+import com.userofbricks.expanded_combat.item.materials.IMaterial;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 
 public class RegistrationHandler {
 
-    public Material registerMaterial(Material.Builder materialBuilder) {
-        for (Material material : MaterialInit.materials) {
-            if (material.getName().equals(materialBuilder.getName())) {
-                throw new IllegalArgumentException("Duplicate Expanded Combat Weapon Material: " + materialBuilder.getName());
+    public IMaterial registerMaterial(Material.Builder builder) {
+        for (IMaterial material : MaterialInit.materials) {
+            if (material.getName().equals(builder.getName())) {
+                throw new IllegalArgumentException("Duplicate Expanded Combat Weapon Material: " + builder.getName());
             }
         }
-        return materialBuilder.build();
+        return builder.build();
     }
 
     public WeaponMaterial registerWeaponMaterial(WeaponMaterial.Builder builder) {

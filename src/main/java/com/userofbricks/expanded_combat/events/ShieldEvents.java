@@ -4,8 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.plugins.TwilightForestPlugin;
-import com.userofbricks.expanded_combat.util.ModIDs;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -18,8 +17,6 @@ import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import twilightforest.item.KnightmetalShieldItem;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
@@ -39,12 +36,10 @@ public class ShieldEvents {
                 double damagePercent = CONFIG.vanilla.defense.afterBasePercentReduction;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
-                }else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
-                    if (shieldItemStack.getItem() instanceof KnightmetalShieldItem) {
-                        damagePercent = TwilightForestPlugin.KNIGHTMETAL.getConfig().defense.afterBasePercentReduction;
-                    }
+                }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                    ECShieldItem.getShieldToMaterialPercentageProtection(shieldItemStack);
                 }
-                damageBlocked += (damageLeftToBlock * damagePercent);
+                damageBlocked += (float) (damageLeftToBlock * damagePercent);
             }
             event.setBlockedDamage(damageBlocked);
         }
@@ -57,10 +52,8 @@ public class ShieldEvents {
                 double protectionAmount = CONFIG.vanilla.defense.baseProtectionAmmount;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
-                } else if (ModList.get().isLoaded(ModIDs.TwilightForestMOD_ID)){
-                    if (shieldItemStack.getItem() instanceof KnightmetalShieldItem) {
-                        protectionAmount = TwilightForestPlugin.KNIGHTMETAL.getConfig().defense.baseProtectionAmmount;
-                    }
+                } else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                    ECShieldItem.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
                 damageBlocked = (float) protectionAmount;
             }

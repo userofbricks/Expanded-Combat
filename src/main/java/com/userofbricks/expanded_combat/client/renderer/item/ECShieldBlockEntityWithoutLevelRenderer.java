@@ -30,7 +30,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.item.materials.Material.valueOfShield;
+import static com.userofbricks.expanded_combat.item.materials.MaterialInit.valueOfShield;
 
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {

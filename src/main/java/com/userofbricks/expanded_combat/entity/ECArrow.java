@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.entity;
 
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -74,7 +75,7 @@ public class ECArrow extends Arrow {
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         if (compound.contains("Material")) {
             String type = compound.getString("Material");
-            this.material = Material.valueOfArrow(type);
+            this.material = MaterialInit.valueOfArrow(type);
         }
     }
 
