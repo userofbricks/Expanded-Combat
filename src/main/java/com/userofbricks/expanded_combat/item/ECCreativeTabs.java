@@ -26,10 +26,6 @@ public class ECCreativeTabs {
     public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().buildCreativeModeTab("ec_group",
             builder -> builder.icon(() -> new ItemStack(getIcon()))
                     .displayItems((displayParameters, output) -> {
-                        output.accept(LEAD_SWORD.get());
-                        output.accept(SILVER_SWORD.get());
-                        output.accept(BRONZE_SWORD.get());
-                        output.accept(STEEL_SWORD.get());
                         output.accept(LEATHER_STICK.get());
                         output.accept(GOLD_STICK.get());
                         output.accept(IRON_STICK.get());
@@ -108,10 +104,6 @@ public class ECCreativeTabs {
         CreativeModeTab tab = event.getTab();
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
-            items.putAfter(new ItemStack(Items.NETHERITE_SWORD), new ItemStack(LEAD_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            items.putAfter(new ItemStack(LEAD_SWORD.get()), new ItemStack(SILVER_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            items.putAfter(new ItemStack(SILVER_SWORD.get()), new ItemStack(BRONZE_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            items.putAfter(new ItemStack(BRONZE_SWORD.get()), new ItemStack(STEEL_SWORD.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             if (CONFIG.enableGauntlets) {
                 for (Material material : MaterialInit.gauntletMaterials) {
                     if (material == VanillaECPlugin.LEATHER) {

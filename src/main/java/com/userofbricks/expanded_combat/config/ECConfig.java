@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.materials.ECSwordTiers;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
@@ -262,39 +261,6 @@ public class ECConfig implements ConfigData {
             .mendingBonus(0.2f)
             .singleAddition().smithingTemplate(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
             .fireResistant()
-            .build();
-
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Steel Settings")
-    public MaterialConfig steel = new MaterialConfig.Builder().fromTier(ECSwordTiers.STEEL)
-            .gauntletArmorAmount(2).armorToughness(1f)
-            .addedShieldDurability(200).baseProtectionAmmount(3.5f).afterBasePercentReduction(0.65f)
-            .offenseEnchantability(9).defenseEnchantability(9)
-            .equipSound(ArmorMaterials.IRON.getEquipSound())
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Bronze Settings")
-    public MaterialConfig bronze = new MaterialConfig.Builder().fromTier(ECSwordTiers.BRONZE)
-            .gauntletArmorAmount(2).armorToughness(0.5f)
-            .addedShieldDurability(125).baseProtectionAmmount(2.75f).afterBasePercentReduction(0.5f)
-            .offenseEnchantability(8).defenseEnchantability(8)
-            .mendingBonus(0.1f)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Silver Settings")
-    public MaterialConfig silver = new MaterialConfig.Builder().fromTier(ECSwordTiers.SILVER)
-            .gauntletArmorAmount(2)
-            .addedShieldDurability(175).baseProtectionAmmount(2.5f).afterBasePercentReduction(0.4f)
-            .offenseEnchantability(18).defenseEnchantability(18)
-            .mendingBonus(1)
-            .build();
-
-    @Category("Materials") @CollapsibleObject @ConfigName("Lead Settings")
-    public MaterialConfig lead = new MaterialConfig.Builder().fromTier(ECSwordTiers.LEAD)
-            .gauntletArmorAmount(3).armorToughness(0.25f).knockbackResistance(0.5)
-            .addedShieldDurability(350).baseProtectionAmmount(5).afterBasePercentReduction(0.6f)
-            .offenseEnchantability(8).defenseEnchantability(8)
-            .mendingBonus(0.1f)
             .build();
 
 

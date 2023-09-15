@@ -27,11 +27,6 @@ public final class ECItemTags {
     public static final TagKey<Item> DIAMOND_SWORD = bindForgeSword("diamond");
     public static final TagKey<Item> NETHERITE_SWORD = bindForgeSword("netherite");
 
-    public static final TagKey<Item> STEEL_SWORD = bindForgeSword("steel");
-    public static final TagKey<Item> SILVER_SWORD = bindForgeSword("silver");
-    public static final TagKey<Item> LEAD_SWORD = bindForgeSword("lead");
-    public static final TagKey<Item> BRONZE_SWORD = bindForgeSword("bronze");
-
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
     }

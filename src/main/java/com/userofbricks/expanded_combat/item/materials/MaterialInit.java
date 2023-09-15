@@ -27,11 +27,6 @@ public class MaterialInit {
     public static List<Material> quiverMaterials = new ArrayList<>();
     public static List<Material> weaponMaterials = new ArrayList<>();
 
-    public static Material STEEL =      new Material.Builder(REGISTRATE, "Steel",       null, CONFIG.steel).gauntlet().shield().weapons().build();
-    public static Material BRONZE =     new Material.Builder(REGISTRATE, "Bronze",      null, CONFIG.bronze).gauntlet().shield().weapons().build();
-    public static Material SILVER =     new Material.Builder(REGISTRATE, "Silver",      null, CONFIG.silver).gauntlet().shield().weapons().build();
-    public static Material LEAD =       new Material.Builder(REGISTRATE, "Lead",        null, CONFIG.lead).gauntlet().shield().weapons().build();
-
     public static void loadClass() {
         for (IExpandedCombatPlugin plugin: PLUGINS) {
             plugin.registerMaterials(new RegistrationHandler());
