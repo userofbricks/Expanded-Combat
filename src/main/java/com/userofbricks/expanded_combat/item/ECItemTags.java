@@ -35,10 +35,10 @@ public final class ECItemTags {
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
     }
-    private static TagKey<Item> bindForge(String name) {
+    public static TagKey<Item> bindForge(String name) {
         return ItemTags.create(new ResourceLocation("forge", name));
     }
-    private static TagKey<Item> bindForgeSword(String materialName) {
+    public static TagKey<Item> bindForgeSword(String materialName) {
         return bindForge("tools/swords/" + materialName);
     }
     public static TagKey<Item> bindForgeStorageBlock(String materialName) {

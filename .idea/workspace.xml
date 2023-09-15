@@ -5,88 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/run_server/config/bettercombat/fallback_compatibility.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_server/config/bettercombat/server.json5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/server.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/advancements/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/data/raids.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/capabilities.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/data/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/entities/r.1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/poi/r.1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.-1.1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.0.1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/dimensions/twilightforest/twilight_forest/region/r.1.1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/level.dat_old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/playerdata/43c883ea-915c-42ea-bdda-cda00b7d13c0.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/poi/r.-1.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/stats/43c883ea-915c-42ea-bdda-cda00b7d13c0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_gauntlet_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_gauntlet_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_quiver_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/rabbit_leather_quiver_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_battle_staff_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_battle_staff_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_broad_sword_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_broad_sword_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_claymore_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_claymore_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_cutlass_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_cutlass_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dagger_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dagger_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dancer_s_sword_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_dancer_s_sword_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_flail_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_flail_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_glaive_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_glaive_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_great_hammer_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_great_hammer_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_katana_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_katana_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_mace_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_mace_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_scythe_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_scythe_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_sickle_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_sickle_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_spear_conditional_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/stone_spear_conditional_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_gauntlet_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_gauntlet_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_quiver_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/rabbit_leather_quiver_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_battle_staff_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_battle_staff_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_broad_sword_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_broad_sword_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_claymore_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_claymore_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_cutlass_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_cutlass_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_dagger_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_dagger_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_katana_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_katana_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_scythe_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_scythe_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_sickle_shaped.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/stone_sickle_shaped.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/FletchingRecipeCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipe_category/FletchingRecipeCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECPotionWeaponRecipeMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECPotionWeaponRecipeMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItemTags.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/LangStrings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,10 +80,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: -1
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": -1
+}]]></component>
   <component name="ProjectId" id="1nJkS9nAmqwXnAmwvmHWi5uz8yr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -170,12 +91,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "forge-1.19.x",
-    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;forge-1.19.x&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.item.recipes.builders" />
@@ -734,7 +655,7 @@
       <option name="project" value="LOCAL" />
       <updated>1692306644670</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -756,7 +677,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added jei support for Shield smithing" />
     <MESSAGE value="added better combat support" />
     <MESSAGE value="updated README.md and mods.toml" />
     <MESSAGE value="updated README.md" />
@@ -781,7 +701,8 @@
     <MESSAGE value="lots of bug fixes&#10;- fixed smithing recipes with no template not loading&#10;- non-trim materials now don't glitch out in jei recipes&#10;- bows and crossbows are no longer stackable&#10;- netherite gauntlets are no longer crafted with arrows&#10;- rabbit leather now uses rabit hide instead of leather&#10;- jei fletching counter no longer skips numbers" />
     <MESSAGE value="fixed weapon and shield recipes" />
     <MESSAGE value="assets" />
-    <option name="LAST_COMMIT_MESSAGE" value="assets" />
+    <MESSAGE value="2.6.0 release" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.6.0 release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

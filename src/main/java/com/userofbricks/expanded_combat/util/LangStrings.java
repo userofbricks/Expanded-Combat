@@ -91,7 +91,7 @@ public class LangStrings {
         REGISTRATE.get().addRawLang(FLETCHING_TABLE_SCREEN_TITLE, "Fletching Table");
     }
 
-    private static String getOrCreateCategoryForField(Registrate registrate, Field field, List<String> alreadyAddedStrings, String configLangStart) {
+    public static String getOrCreateCategoryForField(Registrate registrate, Field field, List<String> alreadyAddedStrings, String configLangStart) {
         String categoryName = "Default";
         if (field.isAnnotationPresent(ConfigEntry.Category.class)) {
             categoryName = field.getAnnotation(ConfigEntry.Category.class).value();
@@ -101,14 +101,14 @@ public class LangStrings {
         return categoryName;
     }
 
-    private static void getOrCreateLang(Registrate registrate, List<String> alreadyAddedStrings, String lang, String Name, String sufix) {
+    public static void getOrCreateLang(Registrate registrate, List<String> alreadyAddedStrings, String lang, String Name, String sufix) {
         if (!alreadyAddedStrings.contains(lang)) {
             alreadyAddedStrings.add(lang);
             registrate.addRawLang(lang, Name + sufix);
         }
     }
 
-    private static void ifNotExcludedRegisterLangs(Registrate registrate, Field field, String configLangStart, List<String> alreadyAddedStrings) {
+    public static void ifNotExcludedRegisterLangs(Registrate registrate, Field field, String configLangStart, List<String> alreadyAddedStrings) {
         if (!field.isAnnotationPresent(ConfigEntry.Gui.Excluded.class)) {
             String optionLang;
             if (configLangStart.contains("option")) {

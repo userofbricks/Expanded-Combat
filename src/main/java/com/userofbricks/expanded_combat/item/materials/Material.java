@@ -16,29 +16,29 @@ import java.util.function.Function;
 
 public class Material implements IMaterial{
     @NotNull
-    private final NonNullSupplier<Registrate> registrate;
+    protected final NonNullSupplier<Registrate> registrate;
     @NotNull
-    private final String name;
+    protected final String name;
     @Nullable
-    private final Map<String, List<String>> aliases;
+    protected final Map<String, List<String>> aliases;
     @Nullable
-    private final Material craftedFrom;
+    protected final Material craftedFrom;
     @NotNull
-    private final ECConfig.MaterialConfig config;
+    protected final ECConfig.MaterialConfig config;
     public final boolean halfbow, blockWeaponOnly, dyeable;
     public final ShieldUse shieldUse;
-    private final Function<Float, Float> additionalDamageAfterEnchantments;
+    protected final Function<Float, Float> additionalDamageAfterEnchantments;
 
-    private RegistryEntry<? extends Item> arrowEntry = null;
-    private RegistryEntry<? extends Item> tippedArrowEntry = null;
-    private RegistryEntry<? extends Item> bowEntry = null;
-    private RegistryEntry<? extends Item> halfBowEntry = null;
-    private RegistryEntry<? extends Item> crossbowEntry = null;
-    private RegistryEntry<? extends Item> gauntletEntry = null;
-    private RegistryEntry<? extends Item> quiverEntry = null;
-    private final Map<String, RegistryEntry<? extends Item>> weaponEntries = new HashMap<>();
-    private final Map<String, RegistryEntry<? extends Item>> weaponGUIModel = new HashMap<>();
-    private final Map<String, RegistryEntry<? extends Item>> weaponInHandModel = new HashMap<>();
+    protected RegistryEntry<? extends Item> arrowEntry = null;
+    protected RegistryEntry<? extends Item> tippedArrowEntry = null;
+    protected RegistryEntry<? extends Item> bowEntry = null;
+    protected RegistryEntry<? extends Item> halfBowEntry = null;
+    protected RegistryEntry<? extends Item> crossbowEntry = null;
+    protected RegistryEntry<? extends Item> gauntletEntry = null;
+    protected RegistryEntry<? extends Item> quiverEntry = null;
+    protected final Map<String, RegistryEntry<? extends Item>> weaponEntries = new HashMap<>();
+    protected final Map<String, RegistryEntry<? extends Item>> weaponGUIModel = new HashMap<>();
+    protected final Map<String, RegistryEntry<? extends Item>> weaponInHandModel = new HashMap<>();
 
     @ApiStatus.Internal
     public Material(@NotNull NonNullSupplier<Registrate> registrate,  @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom,
