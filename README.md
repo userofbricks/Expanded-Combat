@@ -1,25 +1,33 @@
 #this is the branch for 1.19.4
 
-# Expanded Combat
+<div style="text-align: center;">
+<p>
+    <img src="https://cdn-raw.modrinth.com/data/sElBpAJt/images/dc811bce5a70f2a240f411b8a945df54ec3c02a9.png" alt="Expanded Combat" width="600"/>
+</p>
+<p>
+    <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
+        <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_64h.png" alt="CurseForge">
+    </a>
+    <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
+        <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" alt="Modrinth">
+    </a>
+    <a href="https://modrinth.com/mod/cloth-config" rel="noopener nofollow ugc">
+        <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3.1.2/assets/cozy/requires/cloth-config-api_64h.png" alt="Requires Cloth Config API">
+    </a>
+    <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
+        <img src="https://cdn.discordapp.com/attachments/844397409698185227/1152401406247047188/curios_api_64h.png" alt="Requires Cloth Config API">
+    </a>
+</p></div>
+
 
 This Mod Adds A few things to expand the resources you have for combat. Things like a quiver, arrows, shields, 
 gauntlets, more bows, weapons, and more to come.
-### IMPORTANT:
-All versions of this mod rely on the [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) \
-version 2.4.0 requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
-
-version 1.0.0 requires&nbsp;[Mixin Bootstrap](https://www.curseforge.com/minecraft/mc-mods/mixinbootstrap) to work.
-
-Version 1.0.0 does not work with forge versions 31.2.37 and above.
-
-Version 1.0.1 works with forge 31.2.45 and above for minecraft 1.15.x
-
-#
-Fully supported minecraft versions: 1.19.4 \
-dropped support: 1.17.1, 1.16.5
-
-
-Minecraft versions with only part of the mod: 1.15.2, 1.16.4
+> ### IMPORTANT:
+> All versions of this mod rely on the [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) on CurseForge [Curios API](https://modrinth.com/mod/curios) on Modrinth \
+> version 2.4.0 and above require [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config) on CurseForge [Curios API](https://modrinth.com/mod/cloth-config) on Modrinth
+> 
+> Fully supported minecraft versions: 1.19.4, 1.20.1 \
+> For Supported Mods and Plugin Mods adding support look at the bottom of the page
 
 ## Content
 ### Quiver and Arrows
@@ -63,17 +71,17 @@ Nearly everything in this mod is configurable. from item damage amounts to craft
 ###
 Here is a video about my process of making the mod!:
 
-<iframe allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/l5xrhWNCOXQ?wmode=transparent" height="358" width="638"></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/l5xrhWNCOXQ" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
-### Compatability
-- bronze, silver, steel, and lead for most mods
-- [Twilight Forest](https://www.curseforge.com/minecraft/mc-mods/the-twilight-forest)
-- [JEI](https://www.curseforge.com/minecraft/mc-mods/jei)
-- [Better Combat](https://www.curseforge.com/minecraft/mc-mods/better-combat-by-daedelus)
+> ### Compatability
+> - [Twilight Forest](https://www.curseforge.com/minecraft/mc-mods/the-twilight-forest) through a Plugin Mod [not yet released](https://www.curseforge.com/minecraft/mc-mods/ec-twilight-forest-compat)
+> - [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) (Curse Forge) [JEI](https://modrinth.com/mod/jei) (Modrinth)
+> - [Better Combat](https://www.curseforge.com/minecraft/mc-mods/better-combat-by-daedelus) (Curse Forge) [Better Combat](https://modrinth.com/mod/better-combat) (Modrinth)
 
-### Possible Updates:
-- armor update adding a mix and match system similar to shields
-- mod compatibility (mods still to be decided)
+> ### Possible Updates:
+> - armor update adding a mix and match system similar to shields
+> - mod compatibility (mods still to be decided)
 
-Feel free to use this mod in your mod-packs just link back here and don't post your own copy of this mod anywhere else.
+> ### Modpack Usage
+> Feel free to use this mod in your mod-packs just link back here and don't post your own copy of this mod anywhere else.

@@ -70,23 +70,6 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
-    public static final RegistryEntry<SwordItem> STEEL_SWORD = REGISTRATE.get().item("steel_sword", properties -> new SwordItem(ECSwordTiers.STEEL, 3, -2.4F, properties))
-            .tag(ECItemTags.STEEL_SWORD)
-            .model((ctx, prov) -> prov.handheld(ctx, prov.modLoc("item/sword/steel")))
-            .register();
-    public static final RegistryEntry<SwordItem> SILVER_SWORD = REGISTRATE.get().item("silver_sword", properties -> new SwordItem(ECSwordTiers.SILVER, 3, -2.4F, properties))
-            .tag(ECItemTags.SILVER_SWORD)
-            .model((ctx, prov) -> prov.handheld(ctx, prov.modLoc("item/sword/silver")))
-            .register();
-    public static final RegistryEntry<SwordItem> LEAD_SWORD = REGISTRATE.get().item("lead_sword", properties -> new SwordItem(ECSwordTiers.LEAD, 3, -2.4F, properties))
-            .tag(ECItemTags.LEAD_SWORD)
-            .model((ctx, prov) -> prov.handheld(ctx, prov.modLoc("item/sword/lead")))
-            .register();
-    public static final RegistryEntry<SwordItem> BRONZE_SWORD = REGISTRATE.get().item("bronze_sword", properties -> new SwordItem(ECSwordTiers.BRONZE, 3, -2.4F, properties))
-            .tag(ECItemTags.BRONZE_SWORD)
-            .model((ctx, prov) -> prov.handheld(ctx, prov.modLoc("item/sword/bronze")))
-            .register();
-
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);
