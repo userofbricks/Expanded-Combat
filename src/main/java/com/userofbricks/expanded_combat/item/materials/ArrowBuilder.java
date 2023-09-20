@@ -11,27 +11,26 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class ArrowBuilder extends MaterialBuilder {
     public static RegistryEntry<ECArrowItem> generateArrow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECArrowItem, Registrate> itemBuilder = registrate.item(locationName + "_arrow", (p) -> new ECArrowItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/arrow/" + locationName)));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/arrow/" + locationName)));
         itemBuilder.tag(ECItemTags.ARROWS);
         itemBuilder.tag(ItemTags.ARROWS);
         itemBuilder.recipe((ctx, prov) -> {
@@ -75,7 +74,7 @@ public class ArrowBuilder extends MaterialBuilder {
     }
     public static RegistryEntry<ECArrowItem> generateTippedArrow(Registrate registrate, String locationName, Material material, Material craftedFrom) {
         ItemBuilder<ECArrowItem, Registrate> itemBuilder = registrate.item("tipped_" + locationName + "_arrow", (p) -> new ECTippedArrowItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/arrow/" + locationName), new ResourceLocation(MODID, "item/arrow/tipped_head")));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/arrow/" + locationName), new ResourceLocation(MODID, "item/arrow/tipped_head")));
         itemBuilder.tag(ECItemTags.ARROWS);
         itemBuilder.tag(ItemTags.ARROWS);
         itemBuilder.recipe((ctx, prov) -> {

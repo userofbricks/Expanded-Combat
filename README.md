@@ -8,7 +8,7 @@
     <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
         <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_64h.png" alt="CurseForge">
     </a>
-    <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
+    <a href="https://modrinth.com/mod/expanded-combat" rel="noopener nofollow ugc">
         <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png" alt="Modrinth">
     </a>
     <a href="https://modrinth.com/mod/cloth-config" rel="noopener nofollow ugc">

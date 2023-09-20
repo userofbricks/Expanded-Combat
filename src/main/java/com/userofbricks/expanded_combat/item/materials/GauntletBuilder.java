@@ -47,8 +47,8 @@ public class GauntletBuilder extends MaterialBuilder {
         ItemBuilder<ECGauntletItem, Registrate> itemBuilder = registrate.item(locationName + "_gauntlet", (p) -> new ECGauntletItem(material, p));
         if (material.dyeable) itemBuilder = registrate.item(locationName + "_gauntlet", (p) -> new ECGauntletItem.Dyeable(material, p));
         itemBuilder.model((ctx, prov) -> {
-            ResourceLocation main_texture = new ResourceLocation(MODID, "item/gauntlet/" + locationName);
-            ResourceLocation overlay_texture = new ResourceLocation(MODID, "item/gauntlet/" + locationName + "_overlay");
+            ResourceLocation main_texture = new ResourceLocation(registrate.getModid(), "item/gauntlet/" + locationName);
+            ResourceLocation overlay_texture = new ResourceLocation(registrate.getModid(), "item/gauntlet/" + locationName + "_overlay");
             ItemModelBuilder mainModel;
             if (!material.dyeable) mainModel = prov.generated(ctx, main_texture);
             else mainModel = prov.generated(ctx, main_texture, overlay_texture);

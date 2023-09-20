@@ -25,7 +25,7 @@ import static com.userofbricks.expanded_combat.item.ECItems.*;
 
 @Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECCreativeTabs {
-    public static final Supplier<CreativeModeTab> EC_GROUP = REGISTRATE.get().defaultCreativeTab("expanded_combat", builder -> {
+    public static final RegistryEntry<CreativeModeTab> EC_GROUP = REGISTRATE.get().defaultCreativeTab("expanded_combat", builder -> {
             builder.icon(() -> new ItemStack(getIcon()))
                     .displayItems((displayParameters, output) -> {
                         output.accept(LEATHER_STICK.get());
