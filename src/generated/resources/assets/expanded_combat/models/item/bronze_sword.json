@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "expanded_combat:item/sword/bronze"
-  }
-}

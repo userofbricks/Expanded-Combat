@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.tterrag.registrate.providers.ProviderType;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -13,13 +14,13 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 
 public final class ECItemTags {
 
-    public static final TagKey<Item> GAUNTLETS = bind("gauntlets");
+    public static final TagKey<Item> GAUNTLETS = bindCurios("hands");
     public static final TagKey<Item> SHIELDS = bind("shields");
     public static final TagKey<Item> NON_EC_MENDABLE_GOLD = bind("non_ec_mendable_gold");
     public static final TagKey<Item> BOWS = bind("bows");
     public static final TagKey<Item> CROSSBOWS = bind("crossbows");
-    public static final TagKey<Item> ARROWS = bind("arrows");
-    public static final TagKey<Item> QUIVERS = bind("quivers");
+    public static final TagKey<Item> ARROWS = bindCurios("arrows");
+    public static final TagKey<Item> QUIVERS = bindCurios("quiver");
     public static final TagKey<Item> POTION_WEAPONS = bind("potion_weapons");
 
     public static final TagKey<Item> IRON_SWORD = bindForgeSword("iron");
@@ -27,16 +28,15 @@ public final class ECItemTags {
     public static final TagKey<Item> DIAMOND_SWORD = bindForgeSword("diamond");
     public static final TagKey<Item> NETHERITE_SWORD = bindForgeSword("netherite");
 
-    public static final TagKey<Item> STEEL_SWORD = bindForgeSword("steel");
-    public static final TagKey<Item> SILVER_SWORD = bindForgeSword("silver");
-    public static final TagKey<Item> LEAD_SWORD = bindForgeSword("lead");
-    public static final TagKey<Item> BRONZE_SWORD = bindForgeSword("bronze");
 
     private static TagKey<Item> bind(String name) {
         return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
     }
     public static TagKey<Item> bindForge(String name) {
-        return ItemTags.create(new ResourceLocation("forge", name));
+        return ItemTags.create(new ResourceLocation(ModIDs.Forge, name));
+    }
+    public static TagKey<Item> bindCurios(String name) {
+        return ItemTags.create(new ResourceLocation(ModIDs.Curios, name));
     }
     public static TagKey<Item> bindForgeSword(String materialName) {
         return bindForge("tools/swords/" + materialName);
@@ -48,6 +48,7 @@ public final class ECItemTags {
     public static void loadTags() {
         REGISTRATE.get().addDataGenerator(ProviderType.ITEM_TAGS, tagsProvider -> {
             tagsProvider.addTag(SHIELDS).add(Items.SHIELD);
+            tagsProvider.addTag(ARROWS).addTag(ItemTags.ARROWS);
 
             tagsProvider.addTag(bindForgeSword(VanillaECPlugin.STONE.getLocationName())).add(Items.STONE_SWORD);
             tagsProvider.addTag(IRON_SWORD).add(Items.IRON_SWORD);

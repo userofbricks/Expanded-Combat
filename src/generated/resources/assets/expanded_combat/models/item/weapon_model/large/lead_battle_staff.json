@@ -1,8 +1,0 @@
-{
-  "parent": "expanded_combat:item/bases/battle_staff",
-  "textures": {
-    "layer0": "expanded_combat:item_large/battle_staff_dye",
-    "layer1": "expanded_combat:item_large/battle_staff_handle",
-    "layer2": "expanded_combat:item_large/battle_staff_lead"
-  }
-}
