@@ -20,12 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-
 public class QuiverBuilder extends MaterialBuilder{
     public static RegistryEntry<ECQuiverItem> generateQuiver(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECQuiverItem, Registrate> itemBuilder = registrate.item(locationName + "_quiver", (p) -> new ECQuiverItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/quiver/" + locationName)));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/quiver/" + locationName)));
         itemBuilder.tag(ECItemTags.QUIVERS);
         itemBuilder.recipe((ctx, prov) -> {
 

@@ -22,8 +22,6 @@ import net.minecraftforge.common.crafting.conditions.OrCondition;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-
 public class BowBuilder extends MaterialBuilder {
     public static RegistryEntry<ECBowItem> generateBow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECBowItem, Registrate> itemBuilder = registrate.item(locationName + "_bow", (p) -> new ECBowItem(material, null, p));
@@ -114,7 +112,7 @@ public class BowBuilder extends MaterialBuilder {
     }
 
     private static void genModel(ItemBuilder<ECBowItem, Registrate> itemBuilder, String locationName, String prefix) {
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/bow/" + prefix + locationName))
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(itemBuilder.getParent().getModid(), "item/bow/" + prefix + locationName))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-80, 260, -40).translation(-1, -2, 2.5f).scale(0.9f).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-80, -280, 40).translation(-1, -2, 2.5f).scale(0.9f).end()
@@ -122,13 +120,13 @@ public class BowBuilder extends MaterialBuilder {
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 90, -25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .end()
                 .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + prefix + locationName + "_pulling_0"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(itemBuilder.getParent().getModid(), "item/bow/" + prefix + locationName + "_pulling_0"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65f).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + prefix + locationName + "_pulling_1"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(itemBuilder.getParent().getModid(), "item/bow/" + prefix + locationName + "_pulling_1"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9f).model(
-                        prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(MODID, "item/bow/" + prefix + locationName + "_pulling_2"))
+                        prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow")).texture("layer0", new ResourceLocation(itemBuilder.getParent().getModid(), "item/bow/" + prefix + locationName + "_pulling_2"))
                 ).end());
     }
 }

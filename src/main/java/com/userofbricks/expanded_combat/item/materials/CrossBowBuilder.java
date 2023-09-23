@@ -19,13 +19,11 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-
 public class CrossBowBuilder extends MaterialBuilder{
     public static RegistryEntry<ECCrossBowItem> generateCrossBow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECCrossBowItem, Registrate> itemBuilder = registrate.item(locationName + "_crossbow", (p) -> new ECCrossBowItem(material, p));
         itemBuilder.properties(properties -> properties.stacksTo(1));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/crossbow/" + locationName))
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-90, 0, -60).translation(2, 0.1f, -3f).scale(0.9f).end()
                 .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-90, 0, 30).translation(2, 0.1f, -3f).scale(0.9f).end()
@@ -33,19 +31,19 @@ public class CrossBowBuilder extends MaterialBuilder{
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(-90, 0, 35).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .end()
                 .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        prov.withExistingParent(ctx.getName() + "_pulling_0", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + locationName + "_pulling_0"))
+                        prov.withExistingParent(ctx.getName() + "_pulling_0", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName + "_pulling_0"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.58f).model(
-                        prov.withExistingParent(ctx.getName() + "_pulling_1", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + locationName + "_pulling_1"))
+                        prov.withExistingParent(ctx.getName() + "_pulling_1", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName + "_pulling_1"))
                 ).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 1f).model(
-                        prov.withExistingParent(ctx.getName() + "_pulling_2", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + locationName + "_pulling_2"))
+                        prov.withExistingParent(ctx.getName() + "_pulling_2", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName + "_pulling_2"))
                 ).end()
                 .override().predicate(new ResourceLocation("charged"), 1).model(
-                        prov.withExistingParent(ctx.getName() + "_arrow", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + locationName + "_arrow"))
+                        prov.withExistingParent(ctx.getName() + "_arrow", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName + "_arrow"))
                 ).end()
                 .override().predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1).model(
-                        prov.withExistingParent(ctx.getName() + "_firework", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(MODID, "item/crossbow/" + locationName + "_firework"))
+                        prov.withExistingParent(ctx.getName() + "_firework", new ResourceLocation("item/crossbow")).texture("layer0", new ResourceLocation(registrate.getModid(), "item/crossbow/" + locationName + "_firework"))
                 ).end()
         );
         itemBuilder.tag(ECItemTags.CROSSBOWS);

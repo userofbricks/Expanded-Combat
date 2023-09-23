@@ -37,7 +37,7 @@ public class ShieldEvents {
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
                 }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    ECShieldItem.getShieldToMaterialPercentageProtection(shieldItemStack);
+                    damagePercent = ECShieldItem.getShieldToMaterialPercentageProtection(shieldItemStack);
                 }
                 damageBlocked += (float) (damageLeftToBlock * damagePercent);
             }
@@ -53,15 +53,23 @@ public class ShieldEvents {
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
                 } else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    ECShieldItem.getShieldToMaterialBaseProtection(shieldItemStack);
+                    protectionAmount = ECShieldItem.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
                 damageBlocked = (float) protectionAmount;
             }
             case DURABILITY_PERCENTAGE -> {
-                float itemDamageLeft = shieldItemStack.getMaxDamage() - shieldItemStack.getDamageValue();
-                damageBlocked = damageLeftToBlock * (itemDamageLeft / shieldItemStack.getMaxDamage());
+                if (shieldItemStack.getMaxDamage() == 0) damageBlocked = damageLeftToBlock;
+                else {
+                    float itemDamageLeft = shieldItemStack.getMaxDamage() - shieldItemStack.getDamageValue();
+                    damageBlocked = damageLeftToBlock * (itemDamageLeft / shieldItemStack.getMaxDamage());
+                }
             }
-            case INVERTED_DURABILITY_PERCENTAGE -> damageBlocked += damageLeftToBlock * ((float)shieldItemStack.getDamageValue() / (float)shieldItemStack.getMaxDamage());
+            case INVERTED_DURABILITY_PERCENTAGE -> {
+                if (shieldItemStack.getMaxDamage() == 0) damageBlocked = damageLeftToBlock;
+                else {
+                    damageBlocked += damageLeftToBlock * ((float) shieldItemStack.getDamageValue() / (float) shieldItemStack.getMaxDamage());
+                }
+            }
         }
         return damageBlocked;
     }

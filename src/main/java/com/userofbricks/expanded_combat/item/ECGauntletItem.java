@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -49,7 +50,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public ECGauntletItem(Material materialIn, Item.Properties properties) {
         super(properties);
         this.material = materialIn;
-        this.GAUNTLET_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName() + ".png");
+        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/gauntlet/" + materialIn.getLocationName() + ".png");
     }
     
     public Material getMaterial() {

@@ -30,7 +30,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class ArrowBuilder extends MaterialBuilder {
     public static RegistryEntry<ECArrowItem> generateArrow(Registrate registrate, String locationName, String name, Material material, Material craftedFrom) {
         ItemBuilder<ECArrowItem, Registrate> itemBuilder = registrate.item(locationName + "_arrow", (p) -> new ECArrowItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/arrow/" + locationName)));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/arrow/" + locationName)));
         itemBuilder.tag(ECItemTags.ARROWS);
         itemBuilder.tag(ItemTags.ARROWS);
         itemBuilder.recipe((ctx, prov) -> {
@@ -79,7 +79,7 @@ public class ArrowBuilder extends MaterialBuilder {
     }
     public static RegistryEntry<ECArrowItem> generateTippedArrow(Registrate registrate, String locationName, Material material, Material craftedFrom) {
         ItemBuilder<ECArrowItem, Registrate> itemBuilder = registrate.item("tipped_" + locationName + "_arrow", (p) -> new ECTippedArrowItem(material, p));
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(MODID, "item/arrow/" + locationName), new ResourceLocation(MODID, "item/arrow/tipped_head")));
+        itemBuilder.model((ctx, prov) -> prov.generated(ctx, new ResourceLocation(registrate.getModid(), "item/arrow/" + locationName), new ResourceLocation(MODID, "item/arrow/tipped_head")));
         itemBuilder.tag(ECItemTags.ARROWS);
         itemBuilder.tag(ItemTags.ARROWS);
         itemBuilder.recipe((ctx, prov) -> {

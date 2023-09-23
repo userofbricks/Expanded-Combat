@@ -24,7 +24,7 @@ public class Material implements IMaterial{
     @Nullable
     protected final Material craftedFrom;
     @NotNull
-    protected final ECConfig.MaterialConfig config;
+    protected final NonNullSupplier<ECConfig.MaterialConfig> config;
     public final boolean halfbow, blockWeaponOnly, dyeable;
     public final ShieldUse shieldUse;
     protected final Function<Float, Float> additionalDamageAfterEnchantments;
@@ -44,6 +44,12 @@ public class Material implements IMaterial{
     public Material(@NotNull NonNullSupplier<Registrate> registrate,  @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom,
                     @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse,
                     boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
+        this(registrate, name, aliases, craftedFrom, () -> config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable, additionalDamageAfterEnchantments);
+    }
+    @ApiStatus.Internal
+    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom,
+                    @NotNull NonNullSupplier<ECConfig.MaterialConfig> config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield,
+                    ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
         this.registrate = registrate;
         this.name = name;
         this.aliases = aliases;
@@ -69,7 +75,7 @@ public class Material implements IMaterial{
         if (MaterialInit.arrowMaterials.contains(this)) {
             this.arrowEntry = ArrowBuilder.generateArrow(registrate.get(), getLocationName(), name, this, craftedFrom);
             ECItems.ITEMS.add(arrowEntry);
-            if (config.offense.canBeTipped) {
+            if (config.get().offense.canBeTipped) {
                 this.tippedArrowEntry = ArrowBuilder.generateTippedArrow(registrate.get(), getLocationName(), this, craftedFrom);
                 ECItems.ITEMS.add(tippedArrowEntry);
             }
@@ -114,7 +120,7 @@ public class Material implements IMaterial{
     }
 
     public ECConfig.@NotNull MaterialConfig getConfig() {
-        return config;
+        return config.get();
     }
 
     public RegistryEntry<? extends Item> getTippedArrowEntry() {
@@ -177,9 +183,9 @@ public class Material implements IMaterial{
      * used for single additions only
      */
     public boolean satifiesOnlyReplaceRequirement(String shieldMaterialName) {
-        if (this.config.crafting.onlyReplaceResource.isEmpty()) return true;
+        if (this.config.get().crafting.onlyReplaceResource.isEmpty()) return true;
         for (String name :
-                this.config.crafting.onlyReplaceResource) {
+                this.config.get().crafting.onlyReplaceResource) {
             if (name.equals(shieldMaterialName)) return true;
         }
         return false;
@@ -199,7 +205,7 @@ public class Material implements IMaterial{
         @Nullable
         private final Material craftedFrom;
         @NotNull
-        private final ECConfig.MaterialConfig config;
+        private final NonNullSupplier<ECConfig.MaterialConfig> config;
         @Nullable
         private final Map<String, List<String>> aliases = new Hashtable<>();
 
@@ -210,6 +216,12 @@ public class Material implements IMaterial{
         private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
         public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
+            this.registrate = registrate;
+            this.name = name;
+            this.craftedFrom = craftedFrom;
+            this.config = () -> config;
+        }
+        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull NonNullSupplier<ECConfig.MaterialConfig> config) {
             this.registrate = registrate;
             this.name = name;
             this.craftedFrom = craftedFrom;
@@ -292,7 +304,12 @@ public class Material implements IMaterial{
             return craftedFrom;
         }
 
+        @Deprecated
         public ECConfig.@NotNull MaterialConfig getConfig() {
+            return config.get();
+        }
+
+        public NonNullSupplier<ECConfig.@NotNull MaterialConfig> getConfigSupplier() {
             return config;
         }
 

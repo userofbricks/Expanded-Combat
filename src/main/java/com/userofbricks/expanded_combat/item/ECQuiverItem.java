@@ -1,10 +1,10 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +21,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
     public final int providedSlots;
     public ECQuiverItem(Material material, Properties properties) {
         super(properties);
-        this.QUIVER_TEXTURE = new ResourceLocation("expanded_combat", "textures/entity/quiver/" + material.getLocationName() + ".png");
+        this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName() + ".png");
         this.providedSlots = material.getConfig().quiverSlots;
     }
 
