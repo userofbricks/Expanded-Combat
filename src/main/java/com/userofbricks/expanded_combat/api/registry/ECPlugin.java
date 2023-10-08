@@ -6,4 +6,5 @@ package com.userofbricks.expanded_combat.api.registry;
  */
 
 public @interface ECPlugin {
+    String[] required() default "minecraft";
 }

@@ -20,10 +20,12 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDEN
 public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
     public final int providedSlots;
+    public final Material material;
     public ECQuiverItem(Material material, Properties properties) {
         super(properties);
         this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName() + ".png");
         this.providedSlots = material.getConfig().quiverSlots;
+        this.material = material;
     }
 
     public ResourceLocation getQUIVER_TEXTURE() {
@@ -95,6 +97,11 @@ public class ECQuiverItem extends Item implements ICurioItem {
             }
         }
         ECVariables.setArrowSlotTo(livingEntity, arrowSlot);
+    }
+
+    @Override
+    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
+        return this.material.getName().equals("Gold");
     }
 
     /*

@@ -96,4 +96,9 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
     public void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {
         registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, SPRUCE_PLANK, SPRUCE_PLANK, IRON, SPRUCE_PLANK, SPRUCE_PLANK));
     }
+
+    @Override
+    public int loadOrder() {
+        return 0;
+    }
 }

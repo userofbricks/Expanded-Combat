@@ -23,4 +23,6 @@ public interface IExpandedCombatPlugin {
      * using the provided {@link RegistrationHandler.ShieldMaterialRegisterator}
      */
     default void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {}
+
+    default int loadOrder() {return 1;}
 }
