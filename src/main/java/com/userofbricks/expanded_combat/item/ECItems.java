@@ -70,6 +70,8 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
+    public static final RegistryEntry<ECKatanaItem> TESTKATANA = REGISTRATE.get().item("katana", properties -> new ECKatanaItem(VanillaECPlugin.DIAMOND, VanillaECPlugin.KATANA, properties)).register();
+
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);

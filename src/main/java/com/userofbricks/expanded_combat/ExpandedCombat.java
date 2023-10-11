@@ -15,9 +15,7 @@ import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.entity.ECEntities;
-import com.userofbricks.expanded_combat.events.GauntletEvents;
-import com.userofbricks.expanded_combat.events.QuiverEvents;
-import com.userofbricks.expanded_combat.events.ShieldEvents;
+import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.inventory.container.ECContainers;
 import com.userofbricks.expanded_combat.item.ECCreativeTabs;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -84,6 +82,7 @@ public class ExpandedCombat {
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
         MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
+        MinecraftForge.EVENT_BUS.register(KatanaEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
         MinecraftForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);

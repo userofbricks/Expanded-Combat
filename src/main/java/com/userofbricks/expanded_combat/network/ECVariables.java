@@ -37,10 +37,30 @@ public class ECVariables {
     public static int getArrowSlot(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).arrowSlot;
     }
+    public static int getKatanaArrowBlockNumber(Entity entity) {
+        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaArrowBlockNumber;
+    }
+    public static int getKatanaTimeSinceBlock(Entity entity) {
+        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaTimeSinceBlock;
+    }
 
     public static void setArrowSlotTo(LivingEntity entity, int slot) {
         entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
             capability.arrowSlot = slot;
+            capability.syncPlayerVariables(entity);
+        });
+    }
+
+    public static void setKatanaTimeSinceBlock(LivingEntity entity, int ticks) {
+        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            capability.katanaTimeSinceBlock = ticks;
+            capability.syncPlayerVariables(entity);
+        });
+    }
+
+    public static void setKatanaArrowBlockNumber(LivingEntity entity, int arrowBlocks) {
+        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            capability.katanaArrowBlockNumber = arrowBlocks;
             capability.syncPlayerVariables(entity);
         });
     }
@@ -82,6 +102,8 @@ public class ECVariables {
             PlayerVariables original = event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
             PlayerVariables clone = event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
             clone.arrowSlot = original.arrowSlot;
+            clone.katanaArrowBlockNumber = original.katanaArrowBlockNumber;
+            clone.katanaTimeSinceBlock = original.katanaTimeSinceBlock;
         }
     }
 
@@ -117,6 +139,8 @@ public class ECVariables {
 
     public static class PlayerVariables {
         public int arrowSlot = 0;
+        public int katanaArrowBlockNumber = 0;
+        public int katanaTimeSinceBlock = 0;
 
         public void syncPlayerVariables(Entity entity) {
             if (entity instanceof ServerPlayer serverPlayer)
@@ -129,12 +153,16 @@ public class ECVariables {
         public Tag writeNBT() {
             CompoundTag nbt = new CompoundTag();
             nbt.putInt("arrowSlot", arrowSlot);
+            nbt.putInt("katanaArrowBlockNumber", katanaArrowBlockNumber);
+            nbt.putInt("katanaTimeSinceBlock", katanaTimeSinceBlock);
             return nbt;
         }
 
         public void readNBT(Tag Tag) {
             CompoundTag nbt = (CompoundTag) Tag;
             arrowSlot = nbt.getInt("arrowSlot");
+            katanaArrowBlockNumber = nbt.getInt("katanaArrowBlockNumber");
+            katanaTimeSinceBlock = nbt.getInt("katanaTimeSinceBlock");
         }
     }
 
@@ -161,11 +189,15 @@ public class ECVariables {
                     assert Minecraft.getInstance().player != null;
                     PlayerVariables variables = Minecraft.getInstance().player.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
                     variables.arrowSlot = message.data.arrowSlot;
+                    variables.katanaArrowBlockNumber = message.data.katanaArrowBlockNumber;
+                    variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
                 } else {
                     ServerPlayer serverPlayer = context.getSender();
                     assert serverPlayer != null;
                     PlayerVariables variables = serverPlayer.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
                     variables.arrowSlot = message.data.arrowSlot;
+                    variables.katanaArrowBlockNumber = message.data.katanaArrowBlockNumber;
+                    variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
                 }
             });
             context.setPacketHandled(true);

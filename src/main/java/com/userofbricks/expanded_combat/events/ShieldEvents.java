@@ -2,6 +2,8 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
+import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.item.ECKatanaItem;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.client.gui.screens.Screen;
@@ -21,7 +23,10 @@ public class ShieldEvents {
 
     @SubscribeEvent
     public static void ShieldBlockingEvent(ShieldBlockEvent event) {
-        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection) {
+        if (event.getEntity().getUseItem().getItem() instanceof ECKatanaItem) {
+            KatanaEvents.KatanaBlockingEvent(event);
+        }
+        else if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();
@@ -52,17 +57,17 @@ public class ShieldEvents {
                 }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
                     protectionAmount = ECShieldItem.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
-                damageBlocked = (float) protectionAmount;
+                damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
             }
             case DURABILITY_PERCENTAGE -> {
                 if (shieldItemStack.getMaxDamage() == 0) damageBlocked = damageLeftToBlock;
                 else {
-                    float itemDamageLeft = shieldItemStack.getMaxDamage() - shieldItemStack.getDamageValue();
-                    damageBlocked = damageLeftToBlock * (itemDamageLeft / shieldItemStack.getMaxDamage());
+                    float itemDamageLeft = Math.min(shieldItemStack.getMaxDamage(), ((float)shieldItemStack.getMaxDamage() - (float)shieldItemStack.getDamageValue()) + ((float)shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get()) / 10)));
+                    damageBlocked = damageLeftToBlock * (itemDamageLeft / (float)shieldItemStack.getMaxDamage());
                 }
             }
             case INVERTED_DURABILITY_PERCENTAGE -> {
-                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((float) shieldItemStack.getDamageValue() / (float) shieldItemStack.getMaxDamage());
+                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((shieldItemStack.getDamageValue() + (shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get()) / 10))) / (float) shieldItemStack.getMaxDamage());
             }
         }
         return damageBlocked;

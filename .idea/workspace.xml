@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/AgilityEnchantment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/BlockingEnchantment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/EnchantentEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/KatanaEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/VillagerTradeEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECKatanaItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/ECPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/ECPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/IExpandedCombatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/IExpandedCombatPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/plugins/VanillaECPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/plugins/VanillaECPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/ECPluginFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/util/ECPluginFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/ECEnchantments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/ECEnchantments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,11 +113,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.userofbricks.expanded_combat.item" />
+      <recent name="com.userofbricks.expanded_combat.events" />
       <recent name="com.userofbricks.expanded_combat.compatability.twilight_forest" />
       <recent name="com.userofbricks.expanded_combat.util" />
       <recent name="com.userofbricks.expanded_combat.api.registry" />
-      <recent name="com.userofbricks.expanded_combat.item.materials" />
-      <recent name="com.userofbricks.expanded_combat.compatability.jei.recipes" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../EC-L_Enders_Cataclysm/src/main/resources/assets/expanded_combat/textures/entity/quiver" />
@@ -122,11 +127,11 @@
       <recent name="$PROJECT_DIR$/../EC-Create/src/main/resources/assets/expanded_combat/textures/entity/gauntlet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/lang" />
       <recent name="$PROJECT_DIR$/../EC-Twilight-forest/src/main/resources/assets/expanded_combat/textures/entity/gauntlet" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields" />
-      <recent name="$PROJECT_DIR$/src/main/resources/data" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expanded_combat.item.materials.MaterialInit" />
@@ -139,14 +144,14 @@
       <recent name="com.userofbricks.expandedCombatMelee.values" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.enchentments" />
       <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expanded_combat.network.client" />
       <recent name="com.userofbricks.expanded_combat.inventory.container" />
       <recent name="com.userofbricks.expandedcombat.client.renderer" />
-      <recent name="top.theillusivec4.curios.client.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.reimagined_quiver [build]">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="Expanded-Combat [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -631,7 +636,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -664,9 +669,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated README.md and mods.toml" />
-    <MESSAGE value="updated gradle stuff" />
-    <MESSAGE value="updated coding environment to 1.20.1" />
     <MESSAGE value="bulk update to 1.20.1" />
     <MESSAGE value="almost missed ECVariables.java" />
     <MESSAGE value="testing looks good proceding with 1.20.1 beta release" />
@@ -689,7 +691,10 @@
     <MESSAGE value="updated README.md" />
     <MESSAGE value="fixed critical error bug where if a shield had a max durability of 0 the player would bugout and would not be able to continue playing that world." />
     <MESSAGE value="version 2.6.1 possibly" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 2.6.1 possibly" />
+    <MESSAGE value="moved zh_cn.json to proper folder so it doesn't get errased when generating data" />
+    <MESSAGE value="update 2.6.2" />
+    <MESSAGE value="update 2.6.2 modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 2.6.2 modifications" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
