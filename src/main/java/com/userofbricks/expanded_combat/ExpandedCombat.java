@@ -83,6 +83,7 @@ public class ExpandedCombat {
         MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
         MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
         MinecraftForge.EVENT_BUS.register(KatanaEvents.class);
+        MinecraftForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
         MinecraftForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);

@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.network;
 
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.NetworkDirection;

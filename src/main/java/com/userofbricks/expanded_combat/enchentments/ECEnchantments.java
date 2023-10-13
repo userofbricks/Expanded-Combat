@@ -21,6 +21,8 @@ public class ECEnchantments
     public static final RegistryEntry<BlockingEnchantment> BLOCKING = REGISTRATE.get().enchantment("blocking",
             EnchantmentCategory.create("blocking", item -> item.canPerformAction(new ItemStack(item), ToolActions.SHIELD_BLOCK) || item instanceof ECKatanaItem), BlockingEnchantment::new)
             .rarity(Enchantment.Rarity.VERY_RARE).addSlots(MAINHAND, OFFHAND).register();
+    public static final RegistryEntry<AgilityEnchantment> AGILITY = REGISTRATE.get().enchantment("agility", EnchantmentCategory.create("all_armor", item -> GAUNTLET.canEnchant(item) || EnchantmentCategory.ARMOR.canEnchant(item)), AgilityEnchantment::new)
+            .rarity(Enchantment.Rarity.UNCOMMON).addArmorSlots().register();
 
     public static void loadClass() {}
 }
