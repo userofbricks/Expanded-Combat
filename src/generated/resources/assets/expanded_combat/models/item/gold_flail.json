@@ -1,4 +1,6 @@
 {
-  "parent": "minecraft:builtin/entity",
-  "gui_light": "front"
+  "parent": "expanded_combat:item/bases/flail",
+  "textures": {
+    "head": "expanded_combat:item/flail/gold"
+  }
 }

@@ -1,4 +1,6 @@
 {
-  "parent": "minecraft:builtin/entity",
-  "gui_light": "front"
+  "parent": "expanded_combat:item/bases/great_hammer",
+  "textures": {
+    "head": "expanded_combat:item/great_hammer/birch_plank"
+  }
 }

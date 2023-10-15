@@ -2,13 +2,11 @@ package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.client.renderer.item.ECWeaponBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,15 +17,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 import static com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin.*;
 
-import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     private final Material material;
@@ -74,16 +69,6 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
 
     public float getXpRepairRatio( ItemStack stack) {
         return 2.0f + getMendingBonus();
-    }
-
-    @Override
-    public void initializeClient(@Nonnull Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return new ECWeaponBlockEntityWithoutLevelRenderer();
-            }
-        });
     }
 
     @Override

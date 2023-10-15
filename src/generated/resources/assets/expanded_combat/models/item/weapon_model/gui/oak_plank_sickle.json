@@ -1,7 +1,0 @@
-{
-  "parent": "expanded_combat:item/bases/sickle",
-  "textures": {
-    "layer0": "expanded_combat:item/sickle_handle",
-    "layer1": "expanded_combat:item/sickle_oak_plank"
-  }
-}

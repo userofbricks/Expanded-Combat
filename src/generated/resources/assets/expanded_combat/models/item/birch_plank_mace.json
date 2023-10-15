@@ -1,4 +1,6 @@
 {
-  "parent": "minecraft:builtin/entity",
-  "gui_light": "front"
+  "parent": "expanded_combat:item/bases/mace",
+  "textures": {
+    "head": "expanded_combat:item/mace/birch_plank"
+  }
 }

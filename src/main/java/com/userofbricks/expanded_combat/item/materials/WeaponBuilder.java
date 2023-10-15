@@ -5,9 +5,8 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.item.DyableItem;
-import com.userofbricks.expanded_combat.item.ECItemTags;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
@@ -18,10 +17,12 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 
@@ -31,17 +32,21 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class WeaponBuilder extends MaterialBuilder{
     public static RegistryEntry<ECWeaponItem> generateWeapon(Registrate registrate, String name, WeaponMaterial weapon, Material material, Material craftedFrom) {
-        ItemBuilder<ECWeaponItem, Registrate> itemBuilder = registrate.item(material.getLocationName() + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem(material, weapon, p));
-        if (weapon.dyeable() && weapon.potionDippable()) itemBuilder = registrate.item(material.getLocationName() + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.HasPotionAndIsDyeable(material, weapon, p));
-        else if (weapon.dyeable()) itemBuilder = registrate.item(material.getLocationName() + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.Dyeable(material, weapon, p));
-        else if (weapon.potionDippable()) itemBuilder = registrate.item(material.getLocationName() + "_" + weapon.getLocationName(), (p) -> new ECWeaponItem.HasPotion(material, weapon, p));
+        String locationName = material.getLocationName() + "_" + weapon.getLocationName();
+        ItemBuilder<ECWeaponItem, Registrate> itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem(material, weapon, p));
+        if (weapon.dyeable() && weapon.potionDippable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.HasPotionAndIsDyeable(material, weapon, p));
+        else if (weapon.dyeable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.Dyeable(material, weapon, p));
+        else if (weapon.potionDippable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.HasPotion(material, weapon, p));
+        if (weapon == VanillaECPlugin.KATANA) itemBuilder = registrate.item(locationName, p -> new ECKatanaItem(material, weapon, p));
+        if (weapon == VanillaECPlugin.GREAT_HAMMER) itemBuilder = registrate.item(locationName, p -> new ECHammerWeaponItem(material, weapon, p));
+
 
         if (weapon.potionDippable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
 
         itemBuilder.lang(name + " " + weapon.name());
 
         //MODEL
-        itemBuilder.model((ctx, prov) -> prov.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).guiLight(BlockModel.GuiLight.FRONT));
+        itemBuilder.model((ctx, prov) -> generateModel(ctx, prov, weapon, material));
         itemBuilder.recipe((ctx, prov) -> {
             if (!material.getConfig().crafting.repairItem.isEmpty()) {
                 InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
@@ -74,67 +79,43 @@ public class WeaponBuilder extends MaterialBuilder{
         return itemBuilder.register();
     }
 
-    public static RegistryEntry<DyableItem> generateGuiModel(Registrate registrate, WeaponMaterial weapon, Material material) {
-        ItemBuilder<DyableItem, Registrate> itemBuilder = registrate.item("weapon_model/gui/" + material.getLocationName() + "_" + weapon.getLocationName(), DyableItem::new);
+    public static void generateModel(DataGenContext<Item, ECWeaponItem> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material) {
 
-        itemBuilder.model((ctx, prov) -> {
-            if (weapon.isBlockWeapon()) {
-                getItemBaseModel(prov, weapon, ctx).texture("head", getWeaponTexture(prov, weapon.getLocationName(), material.getLocationName()));
-            } else {
-                ItemModelBuilder itemModelBuilder = prov.getBuilder("item/" + ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"));
-                if (weapon.hasCustomTransforms()) itemModelBuilder = getItemBaseModel(prov, weapon, ctx);
+        if (weapon.hasLargeModel() && !weapon.isBlockWeapon()) {
+            SeparateTransformsModelBuilder<ItemModelBuilder> modelFileBuilder = prov.getBuilder("item/" + ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/handheld")).customLoader(SeparateTransformsModelBuilder::begin);
 
-                if (weapon.dyeable() || weapon.potionDippable()) {
-                    itemModelBuilder.texture("layer0", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "dye"));
-                    itemModelBuilder.texture("layer1", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "handle"));
-                    itemModelBuilder.texture("layer2", prov.modLoc("item/" + weapon.getLocationName() + "_" + material.getLocationName()));
-                }
-                else {
-                    itemModelBuilder.texture("layer0", new ResourceLocation(MODID, "item/" + weapon.getLocationName() + "_" + "handle"));
-                    itemModelBuilder.texture("layer1", prov.modLoc("item/" + weapon.getLocationName() + "_" + material.getLocationName()));
-                }
-            }
-        });
-
-        if (weapon.dyeable()) {
-            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack));
-        } else if (weapon.potionDippable()) {
-            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack));
+            modelFileBuilder.base(generateInHandModel(ctx, prov, weapon, material, "item_large/", "_base"));
+            ItemModelBuilder guiModel = generateInHandModel(ctx, prov, weapon, material, "item/", "_gui");
+            modelFileBuilder.perspective(ItemDisplayContext.GUI, guiModel);
+            modelFileBuilder.perspective(ItemDisplayContext.GROUND, guiModel);
+            modelFileBuilder.perspective(ItemDisplayContext.FIXED, guiModel);
+            modelFileBuilder.end();
+        } else if (!weapon.hasLargeModel() && weapon.isBlockWeapon()) {
+            getItemBaseModel(prov, weapon, ctx, "").texture("head", getWeaponTexture(prov, weapon.getLocationName(), material.getLocationName()));
+        } else {
+            generateInHandModel(ctx, prov, weapon, material, "item/", "");
         }
-
-        return itemBuilder.register();
     }
 
-    public static RegistryEntry<DyableItem> generateInHandModel(Registrate registrate, WeaponMaterial weapon, Material material) {
-        if (!weapon.hasLargeModel() || weapon.isBlockWeapon()) return null;
-        ItemBuilder<DyableItem, Registrate> itemBuilder = registrate.item("weapon_model/large/" + material.getLocationName() + "_" + weapon.getLocationName(), DyableItem::new);
-
-        itemBuilder.model((ctx, prov) -> {
-            ItemModelBuilder largeModelbuilder = getItemBaseModel(prov, weapon, ctx);
-            if (weapon.dyeable() || weapon.potionDippable()) {
-                largeModelbuilder.texture("layer0", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "dye"));
-                largeModelbuilder.texture("layer1", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "handle"));
-                largeModelbuilder.texture("layer2", prov.modLoc("item_large/" + weapon.getLocationName() + "_" + material.getLocationName()));
-            }
-            else {
-                largeModelbuilder.texture("layer0", new ResourceLocation(MODID, "item_large/" + weapon.getLocationName() + "_" + "handle"));
-                largeModelbuilder.texture("layer1", prov.modLoc("item_large/" + weapon.getLocationName() + "_" + material.getLocationName()));
-            }
-        });
-
-        if (weapon.dyeable()) {
-            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack));
-        } else if (weapon.potionDippable()) {
-            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack));
+    public static ItemModelBuilder generateInHandModel(DataGenContext<Item, ECWeaponItem> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String directory, String suffix) {
+        ItemModelBuilder itemModelBuilder = prov.getBuilder("item/" + ctx.getName() + suffix).parent(new ModelFile.UncheckedModelFile("item/generated"));
+        if (weapon.hasCustomTransforms() || (weapon.hasLargeModel() && directory.equals("item_large/"))) {
+            itemModelBuilder = getItemBaseModel(prov, weapon, ctx, suffix);
+        }
+        if (!weapon.dyeable() && !weapon.potionDippable()) {
+            itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer1",  new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_" + material.getLocationName()));
+        } else {
+            itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_dye"));
+            itemModelBuilder.texture("layer1", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer2",  new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_" + material.getLocationName()));
         }
 
-        return itemBuilder.register();
+        return itemModelBuilder;
     }
 
-
-
-    private static ItemModelBuilder getItemBaseModel(RegistrateItemModelProvider prov, WeaponMaterial weapon, DataGenContext<Item, ? extends Item> ctx) {
-        return prov.withExistingParent("item/" + ctx.getName(), new ResourceLocation(MODID, "item/bases/" + weapon.getLocationName()));
+    private static ItemModelBuilder getItemBaseModel(RegistrateItemModelProvider prov, WeaponMaterial weapon, DataGenContext<Item, ? extends Item> ctx, String suffix) {
+        return prov.withExistingParent("item/" + ctx.getName() + suffix, new ResourceLocation("expanded_combat", "item/bases/" + weapon.getLocationName()));
     }
 
     private static ResourceLocation getWeaponTexture(RegistrateItemModelProvider prov, String weaponLocation, String textureName) {

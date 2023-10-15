@@ -104,8 +104,6 @@ public class Material implements IMaterial{
                 RegistryEntry<ECWeaponItem> weapon = WeaponBuilder.generateWeapon(registrate.get(), name, weaponMaterial, this, craftedFrom);
                 weaponEntries.put(weaponMaterial.name(), weapon);
                 ECItems.ITEMS.add(weapon);
-                weaponGUIModel.put(weaponMaterial.name(), WeaponBuilder.generateGuiModel(registrate.get(), weaponMaterial, this));
-                weaponInHandModel.put(weaponMaterial.name(), WeaponBuilder.generateInHandModel(registrate.get(), weaponMaterial, this));
             }
         }
         if (MaterialInit.shieldMaterials.contains(this)) {
