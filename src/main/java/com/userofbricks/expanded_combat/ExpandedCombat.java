@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
+import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
@@ -128,5 +129,6 @@ public class ExpandedCombat {
         ECItemModelsProperties.registerModelOverides();
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
+        EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
     }
 }

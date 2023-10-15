@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.item.ECWeaponBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
+import static com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin.*;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
@@ -32,6 +34,8 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     private final WeaponMaterial weapon;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
+
+    public int hitsTillSlam = 0;
 
     public ECWeaponItem(Material material, WeaponMaterial weapon, Properties properties) {
         super(new Tier() {
@@ -80,6 +84,22 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
                 return new ECWeaponBlockEntityWithoutLevelRenderer();
             }
         });
+    }
+
+    @Override
+    public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
+        if (this.getWeapon() == GREAT_HAMMER || this.getWeapon() == BROAD_SWORD || this.getWeapon() == CLAYMORE) {
+            hitsTillSlam++;
+            int slamLevel = weapon.getEnchantmentLevel(ECEnchantments.GROUND_SLAM.get());
+            if (hitsTillSlam >= 10 - (slamLevel / 2)) {
+                hitsTillSlam = 0;
+                int range = 2 + Math.round(slamLevel / 3f);
+                for (int rDistance = 2; rDistance <= range; rDistance++) {
+                    ECHammerWeaponItem.GroundSlam(1.25f, rDistance, 1f, 0.0f, true, 0.1f, attacker, slamLevel);
+                }
+            }
+        }
+        return super.hurtEnemy(weapon, target, attacker);
     }
 
     public static class Dyeable extends ECWeaponItem implements DyeableLeatherItem

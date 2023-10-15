@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -72,7 +73,7 @@ public class EnchantentEvents {
             //double move = 10.0 / agility;
             //double xMove = entity.getRandom().nextInt(0, 1) == 1 ? 0-move : move;
             //double yMove = entity.getRandom().nextInt(0, 1) == 1 ? 0-move : move;
-            //entity.move(MoverType.SELF, new Vec3(entity.getRandom().nextInt(0, 1) == 1 ? xMove  : 0, 0.1, entity.getRandom().nextInt(0, 1) == 1 ? yMove  : 0));
+            //entity.push(entity.getRandom().nextInt(0, 1) == 1 ? xMove  : 0, 0.1, entity.getRandom().nextInt(0, 1) == 1 ? yMove  : 0);
             event.setCanceled(true);
         }
     }

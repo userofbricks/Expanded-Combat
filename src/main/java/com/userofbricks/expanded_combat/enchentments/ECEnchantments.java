@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.enchentments;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECKatanaItem;
+import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -23,6 +25,9 @@ public class ECEnchantments
             .rarity(Enchantment.Rarity.VERY_RARE).addSlots(MAINHAND, OFFHAND).register();
     public static final RegistryEntry<AgilityEnchantment> AGILITY = REGISTRATE.get().enchantment("agility", EnchantmentCategory.create("all_armor", item -> GAUNTLET.canEnchant(item) || EnchantmentCategory.ARMOR.canEnchant(item)), AgilityEnchantment::new)
             .rarity(Enchantment.Rarity.UNCOMMON).addArmorSlots().register();
+    public static final RegistryEntry<GroundSlamEnchantment> GROUND_SLAM = REGISTRATE.get().enchantment("ground_slam",
+            EnchantmentCategory.create("slam_weapon", item -> item instanceof ECWeaponItem weaponItem && (weaponItem.getWeapon() == VanillaECPlugin.GREAT_HAMMER || weaponItem.getWeapon() == VanillaECPlugin.BROAD_SWORD || weaponItem.getWeapon() == VanillaECPlugin.CLAYMORE)),
+            GroundSlamEnchantment::new).rarity(Enchantment.Rarity.RARE).addSlots(MAINHAND, OFFHAND).register();
 
     public static void loadClass() {}
 }
