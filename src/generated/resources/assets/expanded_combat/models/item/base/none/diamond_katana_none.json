@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:item/handheld",
+  "base": {
+    "parent": "expanded_combat:item/bases/katana_none",
+    "textures": {
+      "layer0": "expanded_combat:item_large/katana_handle",
+      "layer1": "expanded_combat:item_large/katana_diamond"
+    }
+  },
+  "loader": "forge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana_diamond"
+      }
+    },
+    "ground": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana_diamond"
+      }
+    },
+    "gui": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana_diamond"
+      }
+    }
+  }
+}

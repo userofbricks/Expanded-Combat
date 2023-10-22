@@ -8,6 +8,40 @@
     }
   },
   "loader": "forge:separate_transforms",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/base/block_1/diamond_katana_block_1",
+      "predicate": {
+        "minecraft:block_pos": 0.1,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/base/block_2/diamond_katana_block_2",
+      "predicate": {
+        "minecraft:block_pos": 0.2,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/base/block_3/diamond_katana_block_3",
+      "predicate": {
+        "minecraft:block_pos": 0.3,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/base/none/diamond_katana_none",
+      "predicate": {
+        "minecraft:block_pos": 0.4,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
   "perspectives": {
     "fixed": {
       "parent": "minecraft:item/generated",

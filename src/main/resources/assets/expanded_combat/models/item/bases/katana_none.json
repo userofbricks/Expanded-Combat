@@ -1,0 +1,30 @@
+{
+	"credit": "Made by Userofbricks",
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "expanded_combat:katana_diamond"
+	},
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-106, 180, -10],
+			"translation": [-4.75, -2.75, -2.25],
+			"scale": [1.5, 1.5, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-106, 0, 10],
+			"translation": [-4.75, -2.75, -2.25],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -15, 170],
+			"translation": [0.25, 0, 0],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [180, 15, 10],
+			"translation": [0.25, 0, 0],
+			"scale": [1.5, 1.5, 1]
+		}
+	}
+}

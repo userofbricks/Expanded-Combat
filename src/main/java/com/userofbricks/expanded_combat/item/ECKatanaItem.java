@@ -3,7 +3,10 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
+import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,9 +14,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.function.Consumer;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -23,10 +29,35 @@ public class ECKatanaItem extends ECWeaponItem{
     }
 
     public static int getMaxBlocksInARow(ItemStack katanaStack) {
-        return 2 + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+        if (katanaStack.getItem() instanceof ECKatanaItem) {
+            return 2 + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+        }
+        return 0;
     }
 
-    public UseAnim getUseAnimation(ItemStack stack) {
+    public static boolean blockedRecently(LivingEntity livingEntity) {
+        int timeSinceBlock = ECVariables.getKatanaTimeSinceBlock(livingEntity);
+        return timeSinceBlock < 20;
+    }
+
+    public static float blockPosition(ItemStack itemStack) {
+        if (itemStack.getOrCreateTag().contains("BlockingPos")) {
+            return itemStack.getOrCreateTag().getFloat("BlockingPos");
+        }
+        return 0;
+    }
+
+    public UseAnim getUseAnimation(ItemStack itemStack) {
+        CompoundTag compoundtag = itemStack.getOrCreateTag();
+        if (compoundtag.contains("BlockingPos")) {
+            float pos = compoundtag.getFloat("BlockingPos");
+            if (pos == 0) return UseAnim.BLOCK;
+            if (pos == 0.1) return UseAnim.BLOCK;
+            if (pos == 0.2) return UseAnim.BLOCK;
+            if (pos == 0.3) return UseAnim.BLOCK;
+            if (pos == 0.4) return UseAnim.NONE;
+        }
+
         return UseAnim.BLOCK;
     }
 

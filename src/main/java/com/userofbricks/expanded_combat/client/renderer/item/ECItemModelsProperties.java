@@ -1,20 +1,12 @@
 package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.item.ECBowItem;
-import com.userofbricks.expanded_combat.item.ECCrossBowItem;
-import com.userofbricks.expanded_combat.item.ECItems;
-import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ECItemModelsProperties {
     public static void registerModelOverides() {
@@ -35,6 +27,10 @@ public class ECItemModelsProperties {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("pulling"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("charged"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
+            } else if (registryEntry.get() instanceof ECKatanaItem) {
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("blocked_recently"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && ECKatanaItem.blockedRecently(livingEntity) ? 1.0F : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ECKatanaItem.blockPosition(itemStack) : 0.0F);
             }
         }
     }
