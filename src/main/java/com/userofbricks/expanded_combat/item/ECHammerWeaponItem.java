@@ -19,6 +19,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 public class ECHammerWeaponItem extends ECWeaponItem{
     public ECHammerWeaponItem(Material material, WeaponMaterial weapon, Properties properties) {
         super(material, weapon, properties);
@@ -27,7 +29,7 @@ public class ECHammerWeaponItem extends ECWeaponItem{
     @Override
     public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
 
-        return super.getEnchantmentLevel(stack, enchantment) + (enchantment instanceof GroundSlamEnchantment ? 2 : 0);
+        return super.getEnchantmentLevel(stack, enchantment) + (enchantment instanceof GroundSlamEnchantment ? CONFIG.enchantmentLevels.baseHammerSlamLevel : 0);
     }
 
     protected static void GroundSlam(float spreadarc, int distance, float maxy, float vec, boolean grab, float airborne, @NotNull LivingEntity attacker, int slamLevel) {

@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.MaterialConfig;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import net.minecraft.resources.ResourceLocation;
@@ -45,13 +45,13 @@ public class ECMaterialBooleanCondition implements ICondition {
             default -> result = false;
             case "halfbow" -> result = material.halfbow;
             case "config" -> {
-                ECConfig.MaterialConfig config = material.getConfig();
+                MaterialConfig config = material.getConfig();
                 if (!locationIterator.hasNext()) return false;
                 switch (locationIterator.next()) {
                     default -> result = false;
                     case "fire_resistant" -> result = config.fireResistant;
                     case "offense" -> {
-                        ECConfig.MaterialConfig.Offense offense = config.offense;
+                        MaterialConfig.Offense offense = config.offense;
                         if (!locationIterator.hasNext()) return false;
                         switch (locationIterator.next()) {
                             default -> result = false;
@@ -60,7 +60,7 @@ public class ECMaterialBooleanCondition implements ICondition {
                         }
                     }
                     case "crafting" -> {
-                        ECConfig.MaterialConfig.Crafting crafting = config.crafting;
+                        MaterialConfig.Crafting crafting = config.crafting;
                         if (!locationIterator.hasNext()) return false;
                         if ("is_single_addition".equals(locationIterator.next())) {
                             result = crafting.isSingleAddition;

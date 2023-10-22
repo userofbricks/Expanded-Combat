@@ -7,6 +7,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.common.ToolActions;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 /**
  * An Enchantment that increases the number of arrows and increases the blocking ability of shields
  */
@@ -25,6 +27,6 @@ public class AgilityEnchantment extends Enchantment
     }
     
     public int getMaxLevel() {
-        return 2;
+        return CONFIG.enchantmentLevels.maxAgilityLevel;
     }
 }

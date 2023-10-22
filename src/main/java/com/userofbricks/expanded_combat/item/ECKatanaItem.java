@@ -21,6 +21,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class ECKatanaItem extends ECWeaponItem{
@@ -30,7 +32,7 @@ public class ECKatanaItem extends ECWeaponItem{
 
     public static int getMaxBlocksInARow(ItemStack katanaStack) {
         if (katanaStack.getItem() instanceof ECKatanaItem) {
-            return 2 + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+            return CONFIG.enchantmentLevels.baseKatanaArrowBlocks + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
         }
         return 0;
     }

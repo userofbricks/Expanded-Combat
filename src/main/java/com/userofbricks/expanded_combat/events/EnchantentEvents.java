@@ -11,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -41,7 +40,7 @@ public class EnchantentEvents {
      */
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void agilityDashingEvent(ItemAttributeModifierEvent event) {
+    public static void agilityMovementEvent(ItemAttributeModifierEvent event) {
         EquipmentSlot equipmentSlot = event.getSlotType();
         ItemStack stack = event.getItemStack();
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
@@ -58,7 +57,7 @@ public class EnchantentEvents {
     public static void miningSpeed(PlayerEvent.BreakSpeed event) {
         float speedIncrease = 0;
         for (SlotResult slotResult : CuriosApi.getCuriosHelper().findCurios(event.getEntity(), stack -> stack.getItem() instanceof ECGauntletItem)) {
-            speedIncrease += slotResult.stack().getEnchantmentLevel(ECEnchantments.AGILITY.get());// * 0.1f;
+            speedIncrease += slotResult.stack().getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.2f;
         }
         event.setNewSpeed(event.getOriginalSpeed() - speedIncrease);
     }

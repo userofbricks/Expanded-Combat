@@ -19,6 +19,14 @@ EnableShieldBaseProtection = true
 shieldBaseProtectionType = "DURABILITY_PERCENTAGE"
 EnableShieldProtectionPercentage = true
 
+[enchantmentLevels]
+maxKnockbackResistanceLevel = 5
+maxGroundSlamLevel = 6
+baseHammerSlamLevel = 2
+maxBlockingLevel = 5
+baseKatanaArrowBlocks = 2
+maxAgilityLevel = 2
+
 [battlestaff]
 durabilityMultiplier = 0.9
 baseAttackDamage = -2

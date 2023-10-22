@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item.materials;
 
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.WeaponMaterialConfig;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Locale;
 import java.util.function.Supplier;
 
-public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craftedFrom, @NotNull ECConfig.WeaponMaterialConfig config, boolean potionDippable, boolean dyeable, boolean isBlockWeapon,
+public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craftedFrom, @NotNull WeaponMaterialConfig config, boolean potionDippable, boolean dyeable, boolean isBlockWeapon,
                              boolean hasCustomTransforms, boolean hasLargeModel, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
 
     public WeaponMaterial {MaterialInit.weaponMaterialConfigs.add(this);}
@@ -28,7 +28,7 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
     public static class Builder {
         private final String name;
         private WeaponMaterial craftedFrom = null;
-        private final ECConfig.WeaponMaterialConfig config;
+        private final WeaponMaterialConfig config;
         private boolean potionDippable = false;
         private boolean dyeable = false;
         private boolean isBlockWeapon = false;
@@ -37,7 +37,7 @@ public record WeaponMaterial(@NotNull String name, @Nullable WeaponMaterial craf
         private final Supplier<RecipeIngredientMapBuilder> recipeIngredients;
         private final String[] recipe;
 
-        public Builder(String name, ECConfig.WeaponMaterialConfig config, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
+        public Builder(String name, WeaponMaterialConfig config, Supplier<RecipeIngredientMapBuilder> recipeIngredients, String[] recipe) {
             this.name = name;
             this.config = config;
             this.recipeIngredients = recipeIngredients;

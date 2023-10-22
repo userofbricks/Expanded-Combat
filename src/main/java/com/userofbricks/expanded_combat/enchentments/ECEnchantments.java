@@ -24,7 +24,7 @@ public class ECEnchantments
             EnchantmentCategory.create("blocking", item -> item.canPerformAction(new ItemStack(item), ToolActions.SHIELD_BLOCK) || item instanceof ECKatanaItem), BlockingEnchantment::new)
             .rarity(Enchantment.Rarity.VERY_RARE).addSlots(MAINHAND, OFFHAND).register();
     public static final RegistryEntry<AgilityEnchantment> AGILITY = REGISTRATE.get().enchantment("agility", EnchantmentCategory.create("all_armor", item -> GAUNTLET.canEnchant(item) || EnchantmentCategory.ARMOR.canEnchant(item)), AgilityEnchantment::new)
-            .rarity(Enchantment.Rarity.UNCOMMON).addArmorSlots().register();
+            .rarity(Enchantment.Rarity.UNCOMMON).addSlots(CHEST, LEGS, FEET).register();
     public static final RegistryEntry<GroundSlamEnchantment> GROUND_SLAM = REGISTRATE.get().enchantment("ground_slam",
             EnchantmentCategory.create("slam_weapon", item -> item instanceof ECWeaponItem weaponItem && (weaponItem.getWeapon() == VanillaECPlugin.GREAT_HAMMER || weaponItem.getWeapon() == VanillaECPlugin.BROAD_SWORD || weaponItem.getWeapon() == VanillaECPlugin.CLAYMORE)),
             GroundSlamEnchantment::new).rarity(Enchantment.Rarity.RARE).addSlots(MAINHAND, OFFHAND).register();

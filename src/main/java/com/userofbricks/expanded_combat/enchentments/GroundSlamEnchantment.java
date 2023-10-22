@@ -11,6 +11,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.jetbrains.annotations.NotNull;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 public class GroundSlamEnchantment extends Enchantment {
     public GroundSlamEnchantment(Rarity rarity, EnchantmentCategory type, EquipmentSlot... slots) {
         super(rarity, type, slots);
@@ -25,7 +27,7 @@ public class GroundSlamEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 6;
+        return CONFIG.enchantmentLevels.maxGroundSlamLevel;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item.materials;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.MaterialConfig;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,7 +14,7 @@ public interface IMaterial {
     void registerElements();
     String getLocationName();
     @Nullable Map<String, List<String>> getAliases();
-    ECConfig.@NotNull MaterialConfig getConfig();
+    @NotNull MaterialConfig getConfig();
     RegistryEntry<? extends Item> getTippedArrowEntry();
     RegistryEntry<? extends Item> getArrowEntry();
     RegistryEntry<? extends Item> getBowEntry();

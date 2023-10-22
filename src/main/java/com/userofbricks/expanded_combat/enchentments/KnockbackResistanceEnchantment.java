@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 public class KnockbackResistanceEnchantment extends Enchantment
 {
     public KnockbackResistanceEnchantment(Enchantment.Rarity rarity, EnchantmentCategory type, EquipmentSlot... slots) {
@@ -32,7 +34,7 @@ public class KnockbackResistanceEnchantment extends Enchantment
     }
     
     public int getMaxLevel() {
-        return 5;
+        return CONFIG.enchantmentLevels.maxKnockbackResistanceLevel;
     }
     
     public boolean canApplyAtEnchantingTable(ItemStack stack) {

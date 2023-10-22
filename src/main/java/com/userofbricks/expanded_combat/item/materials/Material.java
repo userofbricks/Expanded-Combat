@@ -4,7 +4,7 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.MaterialConfig;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.util.LangStrings;
 import net.minecraft.world.item.Item;
@@ -14,7 +14,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class Material implements IMaterial{
     @NotNull
@@ -26,7 +25,7 @@ public class Material implements IMaterial{
     @Nullable
     private final Material craftedFrom;
     @NotNull
-    private final NonNullSupplier<ECConfig.MaterialConfig> config;
+    private final NonNullSupplier<MaterialConfig> config;
     public final boolean halfbow, blockWeaponOnly, dyeable;
     public final ShieldUse shieldUse;
     private final Function<Float, Float> additionalDamageAfterEnchantments;
@@ -43,11 +42,11 @@ public class Material implements IMaterial{
     protected final Map<String, RegistryEntry<? extends Item>> weaponInHandModel = new HashMap<>();
 
     @ApiStatus.Internal
-    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
+    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull MaterialConfig config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
         this(registrate, name, aliases, craftedFrom, () -> config, arrow, bow, halfbow, crossbow, gauntlet, quiver, shield, shieldUse, weapons, blockWeaponOnly, dyeable, additionalDamageAfterEnchantments);
     }
     @ApiStatus.Internal
-    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull NonNullSupplier<ECConfig.MaterialConfig> config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
+    public Material(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Map<String, List<String>> aliases, @Nullable Material craftedFrom, @NotNull NonNullSupplier<MaterialConfig> config, boolean arrow, boolean bow, boolean halfbow, boolean crossbow, boolean gauntlet, boolean quiver, boolean shield, ShieldUse shieldUse, boolean weapons, boolean blockWeaponOnly, boolean dyeable, Function<Float, Float> additionalDamageAfterEnchantments) {
         this.registrate = registrate;
         this.name = name;
         this.aliases = aliases;
@@ -119,7 +118,7 @@ public class Material implements IMaterial{
         return aliases;
     }
 
-    public ECConfig.@NotNull MaterialConfig getConfig() {
+    public @NotNull MaterialConfig getConfig() {
         return config.get();
     }
 
@@ -199,7 +198,7 @@ public class Material implements IMaterial{
         @Nullable
         private final Material craftedFrom;
         @NotNull
-        private final NonNullSupplier<ECConfig.MaterialConfig> config;
+        private final NonNullSupplier<MaterialConfig> config;
         @Nullable
         private final Map<String, List<String>> aliases = new Hashtable<>();
         private ShieldUse shieldUse = ShieldUse.ALL;
@@ -208,13 +207,13 @@ public class Material implements IMaterial{
 
         private boolean halfbow = false, arrow = false, bow = false, crossbow = false, gauntlet = false, quiver = false, shield = false, weapons = false, blockWeaponOnly = false, dyeable = false;
 
-        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull ECConfig.MaterialConfig config) {
+        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull MaterialConfig config) {
             this.registrate = registrate;
             this.name = name;
             this.craftedFrom = craftedFrom;
             this.config = () -> config;
         }
-        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull NonNullSupplier<ECConfig.MaterialConfig> config) {
+        public Builder(@NotNull NonNullSupplier<Registrate> registrate, @NotNull String name, @Nullable Material craftedFrom, @NotNull NonNullSupplier<MaterialConfig> config) {
             this.registrate = registrate;
             this.name = name;
             this.craftedFrom = craftedFrom;
@@ -296,11 +295,11 @@ public class Material implements IMaterial{
         }
 
         @Deprecated
-        public ECConfig.@NotNull MaterialConfig getConfig() {
+        public @NotNull MaterialConfig getConfig() {
             return config.get();
         }
 
-        public NonNullSupplier<ECConfig.@NotNull MaterialConfig> getConfigSupplier() {
+        public NonNullSupplier<@NotNull MaterialConfig> getConfigSupplier() {
             return config;
         }
 

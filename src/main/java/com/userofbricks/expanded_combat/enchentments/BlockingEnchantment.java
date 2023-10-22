@@ -15,6 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+
 /**
  * An Enchantment that increases the number of arrows and increases the blocking ability of shields
  */
@@ -33,7 +35,7 @@ public class BlockingEnchantment extends Enchantment
     }
     
     public int getMaxLevel() {
-        return 5;
+        return CONFIG.enchantmentLevels.maxBlockingLevel;
     }
 
     public boolean isTreasureOnly() {
