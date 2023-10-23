@@ -113,7 +113,7 @@ public class WeaponBuilder extends MaterialBuilder{
     public static ItemModelBuilder generateModel(DataGenContext<Item, ECWeaponItem> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String baseModelSuffix) {
 
         if (weapon.hasLargeModel() && !weapon.isBlockWeapon()) {
-            SeparateTransformsModelBuilder<ItemModelBuilder> modelFileBuilder = prov.getBuilder(!baseModelSuffix.isBlank() ? ("item/base/" + baseModelSuffix + "/" + ctx.getName() + "_" + baseModelSuffix) : ("item/" + ctx.getName())).parent(new ModelFile.UncheckedModelFile("item/handheld")).customLoader(SeparateTransformsModelBuilder::begin);
+            SeparateTransformsModelBuilder<ItemModelBuilder> modelFileBuilder = prov.getBuilder(!baseModelSuffix.isBlank() ? ("item/non_gui_model_predicates/" + ctx.getName() + "_" + baseModelSuffix) : ("item/" + ctx.getName())).parent(new ModelFile.UncheckedModelFile("item/handheld")).customLoader(SeparateTransformsModelBuilder::begin);
 
             modelFileBuilder.base(generateModel(ctx, prov, weapon, material, "item_large/", "base/" + (!baseModelSuffix.isBlank() ? (baseModelSuffix + "/") : ""), !baseModelSuffix.isBlank() ? baseModelSuffix : ""));
             ItemModelBuilder guiModel = generateModel(ctx, prov, weapon, material, "item/", "gui/", "");

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "expanded_combat:item/battle_staff_dye",
-    "layer1": "expanded_combat:item/battle_staff_handle",
-    "layer2": "expanded_combat:item/battle_staff_warped_plank"
-  }
-}

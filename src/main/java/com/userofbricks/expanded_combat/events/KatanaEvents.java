@@ -19,6 +19,7 @@ public class KatanaEvents {
     @SubscribeEvent
     public static void KatanaBlockingEvent(LivingAttackEvent event) {
         ItemStack katanaStack = event.getEntity().getUseItem();
+        if (!(katanaStack.getItem() instanceof ECKatanaItem)) return;
         if (isArrowDamageSourceBlockable(event.getSource(), event.getEntity()) &&
                 ECVariables.getKatanaTimeSinceBlock(event.getEntity()) > 0 &&
                 ECVariables.getKatanaArrowBlockNumber(event.getEntity()) <= ECKatanaItem.getMaxBlocksInARow(katanaStack)) {

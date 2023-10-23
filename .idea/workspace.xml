@@ -6,8 +6,411 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/acacia_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/acacia_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/bamboo_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/bamboo_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/acacia_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/bamboo_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/birch_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/acacia_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/acacia_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/bamboo_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/bamboo_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/birch_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/birch_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/cherry_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/cherry_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/crimson_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/crimson_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/dark_oak_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/dark_oak_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/diamond_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/diamond_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/gold_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/gold_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/iron_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/iron_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/jungle_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/jungle_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/mangrove_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/mangrove_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/netherite_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/netherite_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/oak_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/oak_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/spruce_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/spruce_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/stone_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/stone_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_1/warped_plank_katana_block_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/warped_plank_katana_block_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/acacia_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/acacia_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/bamboo_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/bamboo_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/birch_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/birch_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/cherry_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/cherry_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/crimson_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/crimson_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/dark_oak_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/dark_oak_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/diamond_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/diamond_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/gold_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/gold_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/iron_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/iron_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/jungle_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/jungle_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/mangrove_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/mangrove_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/netherite_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/netherite_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/oak_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/oak_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/spruce_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/spruce_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/stone_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/stone_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_2/warped_plank_katana_block_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/warped_plank_katana_block_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/acacia_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/acacia_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/bamboo_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/bamboo_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/birch_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/birch_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/cherry_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/cherry_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/crimson_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/crimson_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/dark_oak_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/dark_oak_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/diamond_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/diamond_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/gold_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/gold_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/iron_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/iron_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/jungle_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/jungle_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/mangrove_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/mangrove_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/netherite_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/netherite_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/oak_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/oak_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/spruce_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/spruce_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/stone_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/stone_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/block_3/warped_plank_katana_block_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/warped_plank_katana_block_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/cherry_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/crimson_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/dark_oak_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/diamond_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/gold_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/iron_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/jungle_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/mangrove_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/netherite_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/acacia_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/acacia_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/bamboo_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/bamboo_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/birch_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/birch_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/cherry_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/cherry_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/crimson_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/crimson_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/dark_oak_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/dark_oak_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/diamond_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/diamond_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/gold_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/gold_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/iron_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/iron_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/jungle_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/jungle_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/mangrove_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/mangrove_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/netherite_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/netherite_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/oak_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/oak_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/spruce_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/spruce_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/stone_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/stone_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/none/warped_plank_katana_none.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/non_gui_model_predicates/warped_plank_katana_none.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/oak_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/spruce_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/stone_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/base/warped_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/birch_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/birch_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/cherry_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/cherry_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/crimson_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/crimson_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/dark_oak_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/dark_oak_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/diamond_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gold_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/acacia_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/bamboo_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/birch_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/cherry_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/crimson_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/dark_oak_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/diamond_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/gold_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/iron_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/jungle_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/mangrove_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/netherite_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/oak_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/spruce_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/stone_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_battle_staff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_broad_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_claymore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_dancer_s_sword.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_glaive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_katana.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_scythe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gui/warped_plank_spear.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/iron_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/jungle_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/jungle_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/mangrove_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/mangrove_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/netherite_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/oak_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/oak_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/spruce_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/spruce_plank_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/stone_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/stone_katana.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/warped_plank_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/warped_plank_katana.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/KatanaEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/KatanaEvents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -631,7 +1034,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -664,7 +1067,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added banner support on shields, and trim support for gauntlets" />
     <MESSAGE value="update 2.5.0" />
     <MESSAGE value="brought up to speed with the 1.19.x Merge Pull Request #28" />
     <MESSAGE value="datagen sync" />
@@ -689,7 +1091,8 @@
     <MESSAGE value="blend files for player animation integration" />
     <MESSAGE value="new katana arrow blocking anims" />
     <MESSAGE value="added enchantment stuff to Config" />
-    <option name="LAST_COMMIT_MESSAGE" value="added enchantment stuff to Config" />
+    <MESSAGE value="moved katana block to attack event and played with its sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved katana block to attack event and played with its sound" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

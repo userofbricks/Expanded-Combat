@@ -23,7 +23,7 @@ public class ShieldEvents {
 
     @SubscribeEvent
     public static void ShieldBlockingEvent(ShieldBlockEvent event) {
-        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection) {
+        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection && !(event.getEntity().getUseItem().getItem() instanceof ECKatanaItem)) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();
