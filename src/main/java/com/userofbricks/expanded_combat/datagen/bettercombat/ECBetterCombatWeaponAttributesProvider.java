@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.datagen;
+package com.userofbricks.expanded_combat.datagen.bettercombat;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
@@ -7,11 +7,8 @@ import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
 import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
-
-import java.util.concurrent.CompletableFuture;
 
 public class ECBetterCombatWeaponAttributesProvider extends BetterCombatWeaponAttributesProvider{
     public ECBetterCombatWeaponAttributesProvider(PackOutput output, ExistingFileHelper helper) {

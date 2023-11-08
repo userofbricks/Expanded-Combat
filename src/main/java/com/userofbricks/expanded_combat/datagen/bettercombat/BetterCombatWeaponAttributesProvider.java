@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.datagen;
+package com.userofbricks.expanded_combat.datagen.bettercombat;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;

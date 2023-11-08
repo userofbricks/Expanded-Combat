@@ -27,7 +27,6 @@ import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import com.userofbricks.expanded_combat.util.LangStrings;
-import com.userofbricks.expanded_combat.util.ModIDs;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.gui.screens.MenuScreens;

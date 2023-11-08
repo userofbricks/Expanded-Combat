@@ -1,4 +1,4 @@
-#this is the branch for 1.19.4
+#this is the branch for 1.20.x
 
 <div style="text-align: center;">
 <p>
@@ -60,10 +60,17 @@ materials in each slot causes the bow to shoot suboptimally.
 
 ### Melee Weapons
 There are a vast number of weapons in this mod ranging from swords and scythes to hammers and maces. All the different 
-types have varying strengths and weaknesses that are all(with one exception) viewable in the tooltips of the items. There 
-are many attributes to each including damage, range, attack speed, and rate of repair for mending. The one weapon 
-who's greatest strength is not shown in a tool tip is the Scythe which similarly to arrows you can craft with potions, and it 
-will deal out that potion on hit.
+types have varying strengths and weaknesses that are viewable in the tooltips of the items. There are many attributes to 
+each including damage, range, attack speed, and rate of repair for mending. 
+#### Unique Weapon Mechanics
+The Scythe has an ability which similarly to arrows you can craft with potions, and it will deal out that potion on hit. \
+The Katana can block a certain number of arrows in a row. this number is normally 2 but that will grow with each level of the blocking enchantment \
+The Hammer, Broad sword, and claymore can be enchanted with ground slam which causes entities within range to be damaged. The hammer gets an additional 2 levels of ground slam on top of the enchanted amount.
+
+### Enchantments
+- Knockback Resistance can be applied to gauntlets and just as it is named resists knockback. this is not compatible with knockback.
+- Agility can be applied to gauntlets, chestplates, leggings, and boots giving a different effect based on the type of item. this ranges from attack speed to jump boost and dodging.
+- Blocking can be applied to katanas and shields. while on katanas it increases the blockable arrows, on shields it increases their effectiveness.
 
 ### Configurability
 Nearly everything in this mod is configurable. from item damage amounts to crafting type to enchantability.

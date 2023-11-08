@@ -135,11 +135,11 @@ public class WeaponBuilder extends MaterialBuilder{
         }
         if (!weapon.dyeable() && !weapon.potionDippable()) {
             itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
-            itemModelBuilder.texture("layer1",  new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_" + material.getLocationName()));
+            itemModelBuilder.texture("layer1",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "_" + material.getLocationName()));
         } else {
             itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_dye"));
             itemModelBuilder.texture("layer1", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
-            itemModelBuilder.texture("layer2",  new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_" + material.getLocationName()));
+            itemModelBuilder.texture("layer2",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "_" + material.getLocationName()));
         }
 
         return itemModelBuilder;
