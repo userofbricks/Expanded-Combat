@@ -28,6 +28,9 @@ public class ECEnchantments
     public static final RegistryEntry<GroundSlamEnchantment> GROUND_SLAM = REGISTRATE.get().enchantment("ground_slam",
             EnchantmentCategory.create("slam_weapon", item -> item instanceof ECWeaponItem weaponItem && (weaponItem.getWeapon() == VanillaECPlugin.GREAT_HAMMER || weaponItem.getWeapon() == VanillaECPlugin.BROAD_SWORD || weaponItem.getWeapon() == VanillaECPlugin.CLAYMORE)),
             GroundSlamEnchantment::new).rarity(Enchantment.Rarity.RARE).addSlots(MAINHAND, OFFHAND).register();
+    public static final RegistryEntry<MultiSlashEnchantment> MULTI_SLASH = REGISTRATE.get().enchantment("multi_slash",
+            EnchantmentCategory.create("slash_weapon", MultiSlashEnchantment::canApplyAtEnchantingTable),
+            MultiSlashEnchantment::new).rarity(Enchantment.Rarity.RARE).addSlots(MAINHAND).register();
 
     public static void loadClass() {}
 }

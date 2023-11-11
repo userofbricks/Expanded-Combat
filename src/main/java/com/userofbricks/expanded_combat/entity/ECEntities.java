@@ -13,4 +13,5 @@ public class ECEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
     public static final RegistryObject<EntityType<ECArrow>> EC_ARROW = ENTITIES.register("ec_arrow", () -> EntityType.Builder.<ECArrow>of(ECArrow::new, MobCategory.MISC).updateInterval(20).clientTrackingRange(4).sized(0.5f, 0.5f).build("ec_arrow"));
     public static final RegistryObject<EntityType<ECFallingBlockEntity>> EC_FALLING_BLOCK = ENTITIES.register("ec_falling_block", () -> EntityType.Builder.<ECFallingBlockEntity>of(ECFallingBlockEntity::new, MobCategory.MISC).sized(0.98f, 0.98f).clientTrackingRange(10).updateInterval(20).build("ec_falling_block"));
+    public static final RegistryObject<EntityType<MultiSlashEntity>> MULTI_SLASH_ENTITY = ENTITIES.register("multi_slash", () -> EntityType.Builder.of(MultiSlashEntity::new, MobCategory.MISC).sized(1.5f, 1f).clientTrackingRange(10).updateInterval(1).build("multi_slash"));
 }

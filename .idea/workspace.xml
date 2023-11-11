@@ -5,16 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/particles/MultiSlashParticle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/particles/MultiSlashParticleOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/particles/ParticleInit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/MultiSlashRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/MultiSlashEnchantment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/MultiSlashEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/entity/ShockWave.ajmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/entity/ShockWave.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/particles/multi_slash.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle/multi_slash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle/multi_slash.png.mcmeta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/BetterCombatWeaponAttributesProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/bettercombat/BetterCombatWeaponAttributesProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/DataGenerators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/DataGenerators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECBetterCombatWeaponAttributesProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/bettercombat/ECBetterCombatWeaponAttributesProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/materials/WeaponBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword_dye.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large/broad_sword_dye.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/ECEnchantments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/enchentments/ECEnchantments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/ECEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/ECEntities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/EnchantentEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/EnchantentEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +69,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="neoforge-1.20.x" />
+        <entry key="$PROJECT_DIR$" value="forge-1.20.1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,20 +103,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaClassFindUsagesOptions.isMethodsUsages&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;forge-1.20.x&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/EC-L_Enders_Cataclysm/src/main/resources/assets/expanded_combat/textures/entity/quiver&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaClassFindUsagesOptions.isMethodsUsages": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "forge-1.20.1-multislash",
+    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/assets/expanded_combat/textures/particle/enchantment",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.compatability.epicfight" />
@@ -119,18 +126,18 @@
       <recent name="com.userofbricks.expanded_combat.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle/enchantment" />
       <recent name="$PROJECT_DIR$/../EC-L_Enders_Cataclysm/src/main/resources/assets/expanded_combat/textures/entity/quiver" />
       <recent name="$PROJECT_DIR$/../EC-L_Enders_Cataclysm/src/main/resources/assets/expanded_combat/textures/entity/projectiles" />
       <recent name="$PROJECT_DIR$/../EC-Create/src/main/resources/assets/expanded_combat/textures/entity/projectiles" />
       <recent name="$PROJECT_DIR$/../EC-L_Enders_Cataclysm/src/main/resources/assets/expanded_combat/textures/entity/gauntlet" />
-      <recent name="$PROJECT_DIR$/../EC-Create/src/main/resources/assets/expanded_combat/textures/entity/gauntlet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle" />
       <recent name="$PROJECT_DIR$/libs" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/player_animation_blend_files" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/player_animation" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat" />
-      <recent name="$PROJECT_DIR$/src/needed_only_for_datagen/resources/assets/expanded_combat/player_animation" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.userofbricks.expanded_combat.item.materials.MaterialInit" />
@@ -146,8 +153,8 @@
       <recent name="com.userofbricks.expanded_combat.config" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.userofbricks.expanded_combat.datagen" />
       <recent name="com.userofbricks.expanded_combat.enchentments" />
+      <recent name="com.userofbricks.expanded_combat.datagen" />
       <recent name="com.userofbricks.expanded_combat.item.recipes" />
       <recent name="com.userofbricks.expanded_combat.network.client" />
       <recent name="com.userofbricks.expanded_combat.inventory.container" />

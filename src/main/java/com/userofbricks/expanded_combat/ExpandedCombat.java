@@ -5,10 +5,8 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
-import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
-import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
-import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
-import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
+import com.userofbricks.expanded_combat.client.particles.ParticleInit;
+import com.userofbricks.expanded_combat.client.renderer.*;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
@@ -79,6 +77,7 @@ public class ExpandedCombat {
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
+        ParticleInit.PARTICLES.register(bus);
         ECEntities.ENTITIES.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
@@ -131,5 +130,6 @@ public class ExpandedCombat {
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
+        EntityRenderers.register(ECEntities.MULTI_SLASH_ENTITY.get(), MultiSlashRenderer::new);
     }
 }

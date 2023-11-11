@@ -1,9 +1,13 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.entity.ECEntities;
+import com.userofbricks.expanded_combat.entity.MultiSlashEntity;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,6 +15,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -74,6 +80,26 @@ public class EnchantentEvents {
             //double yMove = entity.getRandom().nextInt(0, 1) == 1 ? 0-move : move;
             //entity.push(entity.getRandom().nextInt(0, 1) == 1 ? xMove  : 0, 0.1, entity.getRandom().nextInt(0, 1) == 1 ? yMove  : 0);
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void MultiSlash(LivingAttackEvent event) {
+        LivingEntity entity = (LivingEntity) event.getSource().getDirectEntity();
+        if (entity == null) return;
+        ItemStack weapon = entity.getItemBySlot(EquipmentSlot.MAINHAND);
+        int multiSlashLevel = weapon.getEnchantmentLevel(ECEnchantments.MULTI_SLASH.get());
+        Level level = event.getEntity().level();
+        if (!weapon.isEmpty() && multiSlashLevel > 0 && level instanceof ServerLevel serverLevel) {
+            Vec3 attackersPos = entity.getEyePosition();
+            Vec3 defenderPos = event.getEntity().getEyePosition();
+            Vec3 multiSlashPos = defenderPos.lerp(attackersPos, 0.5);
+
+            MultiSlashEntity multiSlash = new MultiSlashEntity(ECEntities.MULTI_SLASH_ENTITY.get(), serverLevel)
+                    .setOwner(entity).setDamage(event.getAmount()).setSlashesLeft(multiSlashLevel).setDirection(event.getEntity().blockPosition().above((int)Math.floor(event.getEntity().getEyeHeight())));
+            multiSlash.moveTo(multiSlashPos);
+            multiSlash.setYRot(entity.getYRot());
+
         }
     }
 }

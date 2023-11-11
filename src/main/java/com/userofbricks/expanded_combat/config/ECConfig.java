@@ -326,6 +326,10 @@ public class ECConfig implements ConfigData {
         @TooltipFrase(line = 3, value = "When on leggings, adds 0.1 jump strength per level")
         @TooltipFrase(line = 4, value = "When on boots, adds 0.1 movement speed per level")
         public int maxAgilityLevel = 2;
+        @RequiresRestart @ConfigName("Max Multi Slash Level")
+        @Tooltip()
+        @TooltipFrase(value = "can be applied to vanilla swords, dancer's swords, daggers, sickles, cutlasses, and katanas")
+        public int maxMultiSlashLevel = 2;
 
     }
 }
