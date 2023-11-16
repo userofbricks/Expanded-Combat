@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:jigsaw",
+  "start_pool": "expanded_combat:gas_cloud/start_pool",
+  "size": 1,
+  "max_distance_from_center": 80,
+  "biomes": "#expanded_combat:has_structure/gas_cloud",
+  "step": "surface_structures",
+  "start_height": {
+    "absolute": 300
+  },
+  "use_expansion_hack": false,
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

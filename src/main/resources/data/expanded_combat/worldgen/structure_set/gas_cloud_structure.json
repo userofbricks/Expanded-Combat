@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "expanded_combat:gas_cloud",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1646207471,
+    "separation": 20,
+    "spacing": 80
+  }
+}

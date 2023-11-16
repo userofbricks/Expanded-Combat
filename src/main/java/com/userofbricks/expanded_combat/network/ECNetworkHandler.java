@@ -1,13 +1,12 @@
 package com.userofbricks.expanded_combat.network;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.network.client.*;
-//import com.userofbricks.expanded_combat.network.variables.PlayerVariablesSyncMessage;
+import com.userofbricks.expanded_combat.network.client.CPacketOpenShieldSmithing;
+import com.userofbricks.expanded_combat.network.client.CPacketOpenSmithing;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
@@ -23,7 +22,7 @@ public class ECNetworkHandler {
 
     private static final String PTC_VERSION = "1";
 
-    public static final PacketDistributor<LocalPlayer> LOCAL_PLAYER = new PacketDistributor<LocalPlayer>(ECNetworkHandler::playerConsumer, NetworkDirection.PLAY_TO_SERVER);
+    public static final PacketDistributor<LocalPlayer> LOCAL_PLAYER = new PacketDistributor<>(ECNetworkHandler::playerConsumer, NetworkDirection.PLAY_TO_SERVER);
 
     public static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ExpandedCombat.MODID, "main"))
             .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)

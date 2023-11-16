@@ -46,11 +46,11 @@ public class LangStrings {
     private static final BiFunction<String, String, String> categoryFunction = (baseI13n, categoryName) -> String.format("%s.category.%s", baseI13n, categoryName);
     private static final BiFunction<String, Field, String> optionFunction = (baseI13n, field) -> String.format("%s.option.%s", baseI13n, field.getName());
 
-    private static final List<Pair<String, String>> advancementList = new ArrayList<>();
+    private static final List<Pair<String, String>> autoGeneratePairList = new ArrayList<>();
 
     public static void registerLang() {
         //Advancements
-        for (Pair<String, String> stringPair: advancementList){
+        for (Pair<String, String> stringPair: autoGeneratePairList){
             REGISTRATE.get().addRawLang(stringPair.getLeft(), stringPair.getRight());
         }
 
@@ -159,7 +159,17 @@ public class LangStrings {
 
     public static String createAdvancementLang(String advancementName, String englishLang, boolean tittle) {
         String lang = "advancements." + MODID + "." + advancementName + "." + (tittle ? "title" : "description");
-        advancementList.add(new Pair<>() {
+        autoGeneratePairList.add(new Pair<>() {
+            @Override public String getLeft() {return lang;}
+            @Override public String getRight() {return englishLang;}
+            @Override public String setValue(String value) {return null;}
+        });
+        return lang;
+    }
+
+    public static String createCommandLang(String command, boolean pass, String identifier, String englishLang) {
+        String lang = "commands." + command + "." + (pass ? "success" : "failed") + "." + identifier;
+        autoGeneratePairList.add(new Pair<>() {
             @Override public String getLeft() {return lang;}
             @Override public String getRight() {return englishLang;}
             @Override public String setValue(String value) {return null;}

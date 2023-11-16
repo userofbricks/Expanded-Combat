@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 2.0,
+  "ingredient": {
+    "item": "expanded_combat:gas_bottle"
+  },
+  "result": "expanded_combat:purified_gas_bottle"
+}

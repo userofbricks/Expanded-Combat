@@ -6,6 +6,7 @@
   "priority": 0,
   "mixins": [
     "AbstractArrowEntityMixin",
+    "BottleItemMixin",
     "CuriosMenuMixin",
     "FletchingTableBlockMixin",
     "PlayerEntityMixin"

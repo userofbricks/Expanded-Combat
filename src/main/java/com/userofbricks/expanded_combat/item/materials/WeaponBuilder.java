@@ -37,7 +37,7 @@ public class WeaponBuilder extends MaterialBuilder{
         if (weapon.dyeable() && weapon.potionDippable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.HasPotionAndIsDyeable(material, weapon, p));
         else if (weapon.dyeable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.Dyeable(material, weapon, p));
         else if (weapon.potionDippable()) itemBuilder = registrate.item(locationName, (p) -> new ECWeaponItem.HasPotion(material, weapon, p));
-        if (weapon == VanillaECPlugin.KATANA) itemBuilder = registrate.item(locationName, p -> new ECKatanaItem(material, weapon, p));
+        if (weapon == VanillaECPlugin.KATANA) itemBuilder = registrate.item(locationName, p -> new ECKatanaItem(material, p));
         if (weapon == VanillaECPlugin.GREAT_HAMMER) itemBuilder = registrate.item(locationName, p -> new ECHammerWeaponItem(material, weapon, p));
 
 
@@ -145,7 +145,7 @@ public class WeaponBuilder extends MaterialBuilder{
         return itemModelBuilder;
     }
 
-    private static ItemModelBuilder getItemBaseModel(RegistrateItemModelProvider prov, WeaponMaterial weapon, DataGenContext<Item, ? extends Item> ctx, String returningModelfolder, String parentSuffix) {
+    public static ItemModelBuilder getItemBaseModel(RegistrateItemModelProvider prov, WeaponMaterial weapon, DataGenContext<Item, ? extends Item> ctx, String returningModelfolder, String parentSuffix) {
         return prov.withExistingParent("item/" + returningModelfolder + ctx.getName(), new ResourceLocation("expanded_combat", "item/bases/" + weapon.getLocationName() + (!parentSuffix.isBlank() ? "_" + parentSuffix : "")));
     }
 

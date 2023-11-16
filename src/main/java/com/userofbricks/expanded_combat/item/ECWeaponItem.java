@@ -33,6 +33,10 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
     public int hitsTillSlam = 0;
 
     public ECWeaponItem(Material material, WeaponMaterial weapon, Properties properties) {
+        this(material, weapon, properties, 0);
+    }
+
+    public ECWeaponItem(Material material, WeaponMaterial weapon, Properties properties, int addedDmg) {
         super(new Tier() {
             @Override public int getUses() {return (int) (material.getConfig().durability.toolDurability * weapon.config().durabilityMultiplier);}
             @Override public float getSpeed() {return 0;} //means nothing to weapons
@@ -40,7 +44,7 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
             @Override public int getLevel() {return 0;} //means nothing to weapons TODO: might want to add this though seems as though other mods use this value for sorting and such
             @Override public int getEnchantmentValue() {return material.getConfig().enchanting.offenseEnchantability;}
             @Override public @NotNull Ingredient getRepairIngredient() {return IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);}
-        }, 3 + weapon.config().baseAttackDamage, weapon.config().attackSpeed, properties);
+        }, 3 + weapon.config().baseAttackDamage + addedDmg, weapon.config().attackSpeed, properties);
         this.material = material;
         this.weapon = weapon;
     }

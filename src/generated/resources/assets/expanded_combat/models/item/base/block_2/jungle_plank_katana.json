@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/katana_block_2",
+  "textures": {
+    "layer0": "expanded_combat:item_large/katana_handle",
+    "layer1": "expanded_combat:item_large/katana_jungle_plank"
+  }
+}

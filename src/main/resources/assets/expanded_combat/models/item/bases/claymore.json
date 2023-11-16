@@ -2,8 +2,7 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/claymore_dye",
-		"layer1": "expanded_combat:item_large/claymore_wood"
+		"layer0": "expanded_combat:item_large/claymore_dye"
 	},
 	"gui_light": "front",
 	"display": {

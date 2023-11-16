@@ -66,6 +66,11 @@ each including damage, range, attack speed, and rate of repair for mending.
 The Scythe has an ability which similarly to arrows you can craft with potions, and it will deal out that potion on hit. \
 The Katana can block a certain number of arrows in a row. this number is normally 2 but that will grow with each level of the blocking enchantment \
 The Hammer, Broad sword, and claymore can be enchanted with ground slam which causes entities within range to be damaged. The hammer gets an additional 2 levels of ground slam on top of the enchanted amount.
+#### HeartStealer
+the heart stealer is a unary unique weapon, meaning there will only ever be one of these in the world unless there is cheating. 
+This Dangerous weapon can be very rarely found in Ancient Cities. It has the ability to steal hearts, although you should be careful with this ability
+for if you are ever without this weapon in your inventory you will take damage. Additionally, if the wielder gets extra greedy you will take damage in the 
+sun like undead mobs, the more you use this weapon the more consequences will come. there are cures to this, but you will also lose much of the stolen health gained in the process.
 
 ### Enchantments
 - Knockback Resistance can be applied to gauntlets and just as it is named resists knockback. this is not compatible with knockback.

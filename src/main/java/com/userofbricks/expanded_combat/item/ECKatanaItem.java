@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
 import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
+import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.model.HumanoidModel;
@@ -26,8 +27,8 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class ECKatanaItem extends ECWeaponItem{
-    public ECKatanaItem(Material material, WeaponMaterial weapon, Properties properties) {
-        super(material, weapon, properties);
+    public ECKatanaItem(Material material, Properties properties) {
+        super(material, VanillaECPlugin.KATANA, properties);
     }
 
     public static int getMaxBlocksInARow(ItemStack katanaStack) {

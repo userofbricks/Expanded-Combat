@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/spear",
+  "textures": {
+    "layer0": "expanded_combat:item_large/spear_handle",
+    "layer1": "expanded_combat:item_large/spear_gold"
+  }
+}

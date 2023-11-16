@@ -33,5 +33,14 @@ public class ECItemModelsProperties {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ECKatanaItem.blockPosition(itemStack) : 0.0F);
             }
         }
+
+        ItemProperties.register(ECItems.HEARTSTEALER.get(), new ResourceLocation("stage"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+            int charge = itemStack.getOrCreateTag().getInt(HeartStealerItem.chargeString);
+            if (charge >= 490) return 1f;
+            if (charge >= 336) return 0.8f;
+            if (charge >= 173) return 0.6f;
+            if (charge > 10) return 0.4f;
+            return 0;
+        });
     }
 }

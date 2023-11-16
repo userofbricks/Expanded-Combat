@@ -1,0 +1,32 @@
+{
+  "parent": "expanded_combat:item/bases/claymore",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/heartstealer/stage2_heartstealer",
+      "predicate": {
+        "minecraft:stage": 0.4
+      }
+    },
+    {
+      "model": "expanded_combat:item/heartstealer/stage3_heartstealer",
+      "predicate": {
+        "minecraft:stage": 0.6
+      }
+    },
+    {
+      "model": "expanded_combat:item/heartstealer/stage4_heartstealer",
+      "predicate": {
+        "minecraft:stage": 0.8
+      }
+    },
+    {
+      "model": "expanded_combat:item/heartstealer/stage5_heartstealer",
+      "predicate": {
+        "minecraft:stage": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "expanded_combat:item_large/heartstealer/stage1"
+  }
+}

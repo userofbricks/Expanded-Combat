@@ -1,0 +1,15 @@
+{
+  "name": "expanded_combat:ancient_city/weaponry_vault",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "expanded_combat:ancient_city/weaponry_vault",
+        "processors": "minecraft:ancient_city_generic_degradation",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

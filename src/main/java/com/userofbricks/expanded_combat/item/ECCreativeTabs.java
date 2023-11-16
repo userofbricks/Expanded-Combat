@@ -84,6 +84,7 @@ public class ECCreativeTabs {
                             }
                         }
                         if (CONFIG.enableWeapons) {
+                            output.accept(HEARTSTEALER.get().getDefaultInstance());
                             for (Material material :
                                     MaterialInit.weaponMaterials) {
                                 for (RegistryEntry<? extends Item> itemRegistry :

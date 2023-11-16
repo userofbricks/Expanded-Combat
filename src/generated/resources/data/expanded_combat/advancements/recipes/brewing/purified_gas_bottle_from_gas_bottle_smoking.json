@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gas_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "expanded_combat:gas_bottle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expanded_combat:purified_gas_bottle_from_gas_bottle_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_gas_bottle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expanded_combat:purified_gas_bottle_from_gas_bottle_smoking"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
+import com.userofbricks.expanded_combat.block.ECBlocks;
 import com.userofbricks.expanded_combat.client.ECKeyRegistry;
 import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
@@ -34,10 +35,11 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -46,8 +48,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -72,6 +77,7 @@ public class ExpandedCombat {
         bus.addListener(this::clientSetup);
         MaterialInit.loadClass();
         ECEnchantments.loadClass();
+        ECBlocks.register();
         ECItems.loadClass();
         ECItemTags.loadTags();
         ECCreativeTabs.loadClass();
@@ -113,6 +119,7 @@ public class ExpandedCombat {
 
     private void setup(FMLCommonSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(new ECItems());
+        MinecraftForge.EVENT_BUS.register(new GeneralEvents());
         ECNetworkHandler.register();
     }
 
@@ -131,5 +138,24 @@ public class ExpandedCombat {
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
+    }
+
+    private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
+
+    public static void queueServerWork(int tick, Runnable action) {
+        workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
+    }
+    @SubscribeEvent
+    public void tick(TickEvent.ServerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
+            workQueue.forEach(work -> {
+                work.setValue(work.getValue() - 1);
+                if (work.getValue() == 0)
+                    actions.add(work);
+            });
+            actions.forEach(e -> e.getKey().run());
+            workQueue.removeAll(actions);
+        }
     }
 }
