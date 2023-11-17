@@ -40,6 +40,9 @@ public class LangStrings {
     public static final String CYCLE_QUIVER_RIGHT = "key.expanded_combat.cycle_quiver_right";
     public static final String CYCLE_QUIVER_LEFT = "key.expanded_combat.cycle_quiver_left";
     public static final String KEY_CATEGORY = "key.expanded_combat.category";
+    public static final String CONSUMES_CURSES_LANG = "tooltip.expanded_combat.consumes_curses";
+    public static final String EDIBLE = "tooltip.expanded_combat.edible";
+    public static final String FOUND_AT_HEIGHT_LIMIT = "tooltip.expanded_combat.found_at_height_limit";
 
     //Config
     private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
@@ -89,6 +92,9 @@ public class LangStrings {
         REGISTRATE.get().addRawLang(KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP, "Extra damage to armored targets");
         REGISTRATE.get().addRawLang(KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP, "Extra damage to unarmored targets");
         REGISTRATE.get().addRawLang(FLETCHING_TABLE_SCREEN_TITLE, "Fletching Table");
+        REGISTRATE.get().addRawLang(CONSUMES_CURSES_LANG, "Consumes Curses");
+        REGISTRATE.get().addRawLang(EDIBLE, "Smells Delectable");
+        REGISTRATE.get().addRawLang(FOUND_AT_HEIGHT_LIMIT, "Block can be found at world height limit");
     }
 
     public static String getOrCreateCategoryForField(Registrate registrate, Field field, List<String> alreadyAddedStrings, String configLangStart) {

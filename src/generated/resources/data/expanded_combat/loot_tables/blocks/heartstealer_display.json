@@ -11,16 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "expanded_combat:heartstealer_display",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "part": "right"
-              }
-            }
-          ],
-          "name": "expanded_combat:heartstealer"
+          "name": "expanded_combat:heartstealer_display"
         }
       ],
       "rolls": 1.0

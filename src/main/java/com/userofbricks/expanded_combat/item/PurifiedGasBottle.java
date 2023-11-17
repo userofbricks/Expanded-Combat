@@ -2,11 +2,14 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.block.ECBlocks;
 import com.userofbricks.expanded_combat.block.PurifiedGasBlock;
+import com.userofbricks.expanded_combat.util.LangStrings;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -34,6 +37,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -97,6 +101,14 @@ public class PurifiedGasBottle extends Item implements DispensibleContainerItem 
             }
         }
 
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> componentList, TooltipFlag tooltipFlag) {
+        if(tooltipFlag.isAdvanced() && block.get() == ECBlocks.GAS_BLOCK.get()) {
+            componentList.add(Component.translatable(LangStrings.FOUND_AT_HEIGHT_LIMIT).withStyle(ChatFormatting.GRAY));
+        }
+        super.appendHoverText(stack, level, componentList, tooltipFlag);
     }
 
     protected void playEmptySound(@Nullable Player p_40696_, LevelAccessor p_40697_, BlockPos p_40698_) {
