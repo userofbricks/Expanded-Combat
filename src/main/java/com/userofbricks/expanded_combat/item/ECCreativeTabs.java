@@ -31,6 +31,9 @@ public class ECCreativeTabs {
                         output.accept(LEATHER_STICK.get());
                         output.accept(GOLD_STICK.get());
                         output.accept(IRON_STICK.get());
+                        output.accept(GAS_BOTTLE.get());
+                        output.accept(PURIFIED_GAS_BOTTLE.get());
+                        output.accept(SOLIDIFIED_PURIFICATION.get());
                         if (CONFIG.enableGauntlets) {
                             for (Material material : MaterialInit.gauntletMaterials) {
                                 output.accept(material.getGauntletEntry().get());

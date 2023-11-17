@@ -2,7 +2,7 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/claymore_dye"
+		"layer0": "expanded_combat:item_large/heartstealer/stage1"
 	},
 	"gui_light": "front",
 	"display": {
@@ -12,7 +12,7 @@
 			"scale": [2, 2, 0.68]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [90, 90, -45],
+			"rotation": [0, 90, -45],
 			"translation": [0, 6.5, 1.5],
 			"scale": [2, 2, 0.68]
 		},
@@ -22,9 +22,19 @@
 			"scale": [2, 2, 0.68]
 		},
 		"firstperson_lefthand": {
-			"rotation": [90, 90, -35],
+			"rotation": [0, 90, -35],
 			"translation": [2, 6, 0],
 			"scale": [2, 2, 0.68]
+		},
+		"ground": {
+			"scale": [1.25, 1.25, 0.5]
+		},
+		"gui": {
+			"translation": [-0.5, -0.5, 0],
+			"scale": [1.4, 1.4, 0.6]
+		},
+		"fixed": {
+			"scale": [1.5, 1.5, 0.6]
 		}
 	}
 }

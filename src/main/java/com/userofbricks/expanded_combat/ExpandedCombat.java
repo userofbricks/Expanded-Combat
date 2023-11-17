@@ -13,6 +13,7 @@ import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
+import com.userofbricks.expanded_combat.client.renderer.particle.ECParticles;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
@@ -76,6 +77,7 @@ public class ExpandedCombat {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         MaterialInit.loadClass();
+        ECParticles.PARTICLE_OPTIONS.register(bus);
         ECEnchantments.loadClass();
         ECBlocks.register();
         ECItems.loadClass();

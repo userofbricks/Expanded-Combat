@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.block;
 
+import com.userofbricks.expanded_combat.client.renderer.particle.ECParticles;
 import com.userofbricks.expanded_combat.item.ECItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -15,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class PurifiedGasBlock extends AbstractGasBlock {
     public PurifiedGasBlock(Properties properties) {
-        super(properties.replaceable(), () -> ParticleTypes.MYCELIUM);
+        super(properties.replaceable(), ECParticles.PURIFIED_GAS::get);
     }
 
     public boolean blockCatalistItemConversions(BlockState thisState, BlockState catalystState, ServerLevel world, BlockPos thisPos, BlockPos catalystPos, RandomSource random) {

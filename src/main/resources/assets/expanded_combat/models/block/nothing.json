@@ -1,3 +1,6 @@
 {
-	"credit": "Made By Userofbricks"
+	"credit": "Made By Userofbricks",
+	"textures": {
+		"particle": "block/netherite_block"
+	}
 }
