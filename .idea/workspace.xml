@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/particle/ECParticles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/block/PurifiedGasBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/block/PurifiedGasBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCreativeTabs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/heartstealer.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/heartstealer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/heartstealer_display.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/heartstealer_display.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/nothing.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/block/nothing.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/bases/claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle/pure_gas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/particle/pure_gas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +146,29 @@
       <recent name="com.userofbricks.expanded_combat.item.recipes" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
+    <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Expanded-Combat [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -221,28 +235,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="reimagined_quiver [build]" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="reimagined_quiver [genIntellijRuns]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -270,7 +262,7 @@
       <item itemvalue="Application.runData" />
       <item itemvalue="Application.runGameTestServer" />
       <item itemvalue="Application.runServer" />
-      <item itemvalue="Gradle.reimagined_quiver [build]" />
+      <item itemvalue="Gradle.Expanded-Combat [build]" />
       <item itemvalue="Gradle.Expanded-Combat [jar]" />
       <item itemvalue="Gradle.Expanded-Combat [runClient]" />
       <item itemvalue="Gradle.Expanded-Combat [runData]" />
@@ -639,7 +631,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -672,7 +664,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved twilight forest compat to seperate mod and fixed ShieldSmithingUpgradeRecipe" />
     <MESSAGE value="lots of bug fixes&#10;- fixed smithing recipes with no template not loading&#10;- non-trim materials now don't glitch out in jei recipes&#10;- bows and crossbows are no longer stackable&#10;- netherite gauntlets are no longer crafted with arrows&#10;- rabbit leather now uses rabit hide instead of leather&#10;- jei fletching counter no longer skips numbers" />
     <MESSAGE value="fixed weapon and shield recipes" />
     <MESSAGE value="fixed weapon textures" />
@@ -697,7 +688,8 @@
     <MESSAGE value="first attempt, particle doesn't show and entity doesn't spawn" />
     <MESSAGE value="first Complete version of HeartStealer and associated blocks, items and structure." />
     <MESSAGE value="added some tooltips to help with gas and purification" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some tooltips to help with gas and purification" />
+    <MESSAGE value="a few visual changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="a few visual changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
