@@ -1,6 +1,6 @@
 #this is the branch for 1.20.x
 
-<div style="text-align: center;">
+<center>
 <p>
     <img src="https://cdn-raw.modrinth.com/data/sElBpAJt/images/dc811bce5a70f2a240f411b8a945df54ec3c02a9.png" alt="Expanded Combat" width="600"/>
 </p>
@@ -17,7 +17,7 @@
     <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
         <img src="https://cdn.discordapp.com/attachments/844397409698185227/1152401406247047188/curios_api_64h.png" alt="Requires Cloth Config API">
     </a>
-</p></div>
+</p></center>
 
 
 This Mod Adds A few things to expand the resources you have for combat. Things like a quiver, arrows, shields, 
