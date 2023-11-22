@@ -85,6 +85,6 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
     }
 
     public void add(Item weapon, String weaponAtrributesParent) {
-        add(weapon, new ResourceLocation(ModIDs.BetterCombatMOD_ID, weaponAtrributesParent));
+        add(weapon, new ResourceLocation(ModIDs.betterCombat, weaponAtrributesParent));
     }
 }

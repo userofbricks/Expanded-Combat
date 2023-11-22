@@ -80,7 +80,7 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
         if (this.getWeapon() == GREAT_HAMMER || this.getWeapon() == BROAD_SWORD || this.getWeapon() == CLAYMORE) {
             hitsTillSlam++;
             int slamLevel = weapon.getEnchantmentLevel(ECEnchantments.GROUND_SLAM.get());
-            if (hitsTillSlam >= 10 - (slamLevel / 2)) {
+            if (hitsTillSlam >= 10 - (slamLevel / 2) && slamLevel > 0) {
                 hitsTillSlam = 0;
                 int range = 2 + Math.round(slamLevel / 3f);
                 for (int rDistance = 2; rDistance <= range; rDistance++) {

@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.registry.ApiHelper;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,9 @@ import net.minecraft.world.level.block.FletchingTableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -40,17 +43,18 @@ public class FletchingTableBlockMixin extends CraftingTableBlock {
      * @author Userofbricks
      * @reason for some odd reason couldn't get it to work with Events so...
      */
-    @Overwrite
-    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult blockRayTraceResult) {
-        if (ExpandedCombat.CONFIG.enableArrows){
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
+    public void use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult blockRayTraceResult, CallbackInfoReturnable<InteractionResult> cir) {
+        if (ApiHelper.doesAnyPluginDenyFletchingTableGui(ExpandedCombat.PLUGINS)) {}
+        else if (!ExpandedCombat.CONFIG.enableArrows) {
+            cir.setReturnValue(InteractionResult.PASS);
+        } else {
             if (world.isClientSide) {
-                return InteractionResult.SUCCESS;
+                cir.setReturnValue(InteractionResult.SUCCESS);
             } else {
                 playerEntity.openMenu(blockState.getMenuProvider(world, pos));
-                return InteractionResult.CONSUME;
+                cir.setReturnValue(InteractionResult.CONSUME);
             }
-        } else {
-            return InteractionResult.PASS;
         }
     }
 }

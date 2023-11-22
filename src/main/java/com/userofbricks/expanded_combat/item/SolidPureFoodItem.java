@@ -24,8 +24,8 @@ public class SolidPureFoodItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-        if(ECVariables.getStolenHealth(p_41411_) > 0) {
-            ECVariables.addToStolenHealth(p_41411_, 2);
+        if(ECVariables.getStolenHealth(p_41411_) > 2) {
+            ECVariables.addToStolenHealth(p_41411_, -2);
         }
         return super.finishUsingItem(p_41409_, p_41410_, p_41411_);
     }

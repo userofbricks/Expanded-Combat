@@ -58,7 +58,7 @@ public class GauntletRenderer implements ICurioRenderer{
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
         if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-            GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE();
+            GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE(stack);
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -68,7 +68,7 @@ public class GauntletRenderer implements ICurioRenderer{
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             ICurioRenderer.followBodyRotations(entity, this.model);
             if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
-                ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY();
+                ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY(stack);
                 int i = dyeableGauntletItem.getColor(stack);
                 float f = (float)(i >> 16 & 255) / 255.0F;
                 float f1 = (float)(i >> 8 & 255) / 255.0F;
@@ -98,7 +98,7 @@ public class GauntletRenderer implements ICurioRenderer{
             modelPart.xRot = 0;
 
             if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-                GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE();
+                GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE(stack);
 
                 RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
                 VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);

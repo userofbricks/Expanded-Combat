@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.client.renderer.particle;
 import net.minecraft.client.particle.SuspendedTownParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,6 +21,7 @@ public class ECParticles {
     public static final RegistryObject<SimpleParticleType> PURIFIED_GAS = PARTICLE_OPTIONS.register("pure_gas", () -> new SimpleParticleType(false));
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     public static void registerToParticleEngine(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(PURIFIED_GAS.get(), SuspendedTownParticle.Provider::new);
     }

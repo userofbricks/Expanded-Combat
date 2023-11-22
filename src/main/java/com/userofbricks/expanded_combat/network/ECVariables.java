@@ -65,7 +65,7 @@ public class ECVariables {
     public static void reduceAddedHealth(LivingEntity entity, int health) {
         entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
             capability.addedHealth -= health;
-            capability.stolenHealth = Math.max(capability.stolenHealth - health/4, 0);
+            capability.stolenHealth = Math.max(capability.stolenHealth - health/2, 0);
             capability.syncPlayerVariables(entity);
         });
     }

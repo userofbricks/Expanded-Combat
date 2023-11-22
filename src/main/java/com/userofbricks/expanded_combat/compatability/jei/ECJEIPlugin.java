@@ -18,6 +18,7 @@ import com.userofbricks.expanded_combat.item.materials.Material;
 import com.userofbricks.expanded_combat.item.materials.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
+import com.userofbricks.expanded_combat.util.ModIDs;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -34,6 +35,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
@@ -82,15 +84,14 @@ public class ECJEIPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IJeiHelpers jeiHelpers = registration.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-        registration.addRecipeCategories(
-                fletchingCategory = new FletchingRecipeCategory(guiHelper),
-                shieldSmithingCategory = new ShieldSmithingRecipeCategory(guiHelper)
-        );
+        registration.addRecipeCategories(shieldSmithingCategory = new ShieldSmithingRecipeCategory(guiHelper));
+        if (!ModList.get().isLoaded(ModIDs.apotheosis)) {
+            registration.addRecipeCategories(fletchingCategory = new FletchingRecipeCategory(guiHelper));
+        }
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        ErrorUtil.checkNotNull(fletchingCategory, "fletchingCategory");
         ErrorUtil.checkNotNull(shieldSmithingCategory, "shieldSmithingCategory");
 
         IIngredientManager ingredientManager = registration.getIngredientManager();
@@ -108,9 +109,10 @@ public class ECJEIPlugin implements IModPlugin {
             }
         }
 
-        registration.addRecipes(FLETCHING, vanillaRecipes.getFletchingRecipes(fletchingCategory));
-        registration.addRecipes(FLETCHING, ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes(stackHelper));
-
+        if (fletchingCategory != null) {
+            registration.addRecipes(FLETCHING, vanillaRecipes.getFletchingRecipes(fletchingCategory));
+            registration.addRecipes(FLETCHING, ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes(stackHelper));
+        }
         registration.addRecipes(SHIELD_SMITHING, vanillaRecipes.getShieldSmithingRecipes(shieldSmithingCategory));
         registration.addRecipes(SHIELD_SMITHING, ECShieldSmithingRecipeMaker.createShieldSmithingRecipes(stackHelper));
         registration.addRecipes(RecipeTypes.CRAFTING, ECShieldDecorationRecipeMaker.createRecipes(stackHelper));
@@ -118,18 +120,18 @@ public class ECJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(FletchingTableMenu.class, ECContainers.FLETCHING.get(), FLETCHING, 0, 2, 3, 36);
+        if (fletchingCategory != null) registration.addRecipeTransferHandler(FletchingTableMenu.class, ECContainers.FLETCHING.get(), FLETCHING, 0, 2, 3, 36);
         registration.addRecipeTransferHandler(ShieldSmithingMenu.class, ECContainers.SHIELD_SMITHING.get(), SHIELD_SMITHING, 0, 6, 7, 36);
     }
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(Blocks.FLETCHING_TABLE), FLETCHING);
+        if (fletchingCategory != null) registration.addRecipeCatalyst(new ItemStack(Blocks.FLETCHING_TABLE), FLETCHING);
         registration.addRecipeCatalyst(new ItemStack(Blocks.SMITHING_TABLE), SHIELD_SMITHING);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(FletchingTableScreen.class, 102, 48, 22, 15, FLETCHING);
+        if (fletchingCategory != null) registration.addRecipeClickArea(FletchingTableScreen.class, 102, 48, 22, 15, FLETCHING);
         registration.addRecipeClickArea(ShieldSmithingTableScreen.class, 102, 48, 22, 15, SHIELD_SMITHING);
         registration.addGuiContainerHandler(CuriosScreen.class, new CuriosContainerHandler());
     }

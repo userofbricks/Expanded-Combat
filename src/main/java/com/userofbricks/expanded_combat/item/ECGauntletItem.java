@@ -162,9 +162,13 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public double getAttackDamage() {
         return this.material.getConfig().offense.addedAttackDamage;
     }
-    
+
+    @Deprecated(since = "2.8.1", forRemoval = true)
     public ResourceLocation getGAUNTLET_TEXTURE() {
         return this.GAUNTLET_TEXTURE;
+    }
+    public ResourceLocation getGAUNTLET_TEXTURE(ItemStack stack) {
+        return this.getGAUNTLET_TEXTURE();
     }
 
     @Override
@@ -218,8 +222,13 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
             this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName() + "_overlay" + ".png");
         }
 
+        @Deprecated(since = "2.8.1", forRemoval = true)
         public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY() {
             return GAUNTLET_TEXTURE_OVERLAY;
+        }
+
+        public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY(ItemStack stack) {
+            return this.getGAUNTLET_TEXTURE_OVERLAY();
         }
     }
 }
