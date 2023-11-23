@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/broad_sword_dye",
       "layer1": "expanded_combat:item_large/broad_sword_handle",
-      "layer2": "expanded_combat:item_large/broad_sword_mangrove_plank"
+      "layer2": "expanded_combat:item_large/broad_sword/mangrove_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_mangrove_plank"
+        "layer2": "expanded_combat:item/broad_sword/mangrove_plank"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_mangrove_plank"
+        "layer2": "expanded_combat:item/broad_sword/mangrove_plank"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_mangrove_plank"
+        "layer2": "expanded_combat:item/broad_sword/mangrove_plank"
       }
     }
   }

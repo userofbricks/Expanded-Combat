@@ -4,7 +4,7 @@
     "parent": "expanded_combat:item/bases/katana_none",
     "textures": {
       "layer0": "expanded_combat:item_large/katana_handle",
-      "layer1": "expanded_combat:item_large/katana_mangrove_plank"
+      "layer1": "expanded_combat:item_large/katana/mangrove_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -13,21 +13,21 @@
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_mangrove_plank"
+        "layer1": "expanded_combat:item/katana/mangrove_plank"
       }
     },
     "ground": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_mangrove_plank"
+        "layer1": "expanded_combat:item/katana/mangrove_plank"
       }
     },
     "gui": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_mangrove_plank"
+        "layer1": "expanded_combat:item/katana/mangrove_plank"
       }
     }
   }

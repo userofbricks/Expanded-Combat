@@ -2,6 +2,6 @@
   "parent": "expanded_combat:item/bases/cutlass",
   "textures": {
     "layer0": "expanded_combat:item/cutlass_handle",
-    "layer1": "expanded_combat:item/cutlass_spruce_plank"
+    "layer1": "expanded_combat:item/cutlass/spruce_plank"
   }
 }

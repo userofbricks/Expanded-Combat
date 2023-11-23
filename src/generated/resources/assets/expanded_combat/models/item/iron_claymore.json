@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/claymore_dye",
       "layer1": "expanded_combat:item_large/claymore_handle",
-      "layer2": "expanded_combat:item_large/claymore_iron"
+      "layer2": "expanded_combat:item_large/claymore/iron"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_iron"
+        "layer2": "expanded_combat:item/claymore/iron"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_iron"
+        "layer2": "expanded_combat:item/claymore/iron"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_iron"
+        "layer2": "expanded_combat:item/claymore/iron"
       }
     }
   }

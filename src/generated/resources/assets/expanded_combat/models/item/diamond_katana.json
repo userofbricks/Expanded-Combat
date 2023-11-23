@@ -4,7 +4,7 @@
     "parent": "expanded_combat:item/bases/katana",
     "textures": {
       "layer0": "expanded_combat:item_large/katana_handle",
-      "layer1": "expanded_combat:item_large/katana_diamond"
+      "layer1": "expanded_combat:item_large/katana/diamond"
     }
   },
   "loader": "forge:separate_transforms",
@@ -47,21 +47,21 @@
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_diamond"
+        "layer1": "expanded_combat:item/katana/diamond"
       }
     },
     "ground": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_diamond"
+        "layer1": "expanded_combat:item/katana/diamond"
       }
     },
     "gui": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_diamond"
+        "layer1": "expanded_combat:item/katana/diamond"
       }
     }
   }

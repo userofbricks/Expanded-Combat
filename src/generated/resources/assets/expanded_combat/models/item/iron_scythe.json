@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/scythe_dye",
       "layer1": "expanded_combat:item_large/scythe_handle",
-      "layer2": "expanded_combat:item_large/scythe_iron"
+      "layer2": "expanded_combat:item_large/scythe/iron"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_iron"
+        "layer2": "expanded_combat:item/scythe/iron"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_iron"
+        "layer2": "expanded_combat:item/scythe/iron"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_iron"
+        "layer2": "expanded_combat:item/scythe/iron"
       }
     }
   }

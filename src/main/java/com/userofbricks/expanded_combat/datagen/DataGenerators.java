@@ -24,5 +24,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, helper));
+
+        generator.addProvider(event.includeClient(), new ECSpriteScourceProvider(output, helper));
     }
 }

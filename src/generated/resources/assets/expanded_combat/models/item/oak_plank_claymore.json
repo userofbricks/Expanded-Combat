@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/claymore_dye",
       "layer1": "expanded_combat:item_large/claymore_handle",
-      "layer2": "expanded_combat:item_large/claymore_oak_plank"
+      "layer2": "expanded_combat:item_large/claymore/oak_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_oak_plank"
+        "layer2": "expanded_combat:item/claymore/oak_plank"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_oak_plank"
+        "layer2": "expanded_combat:item/claymore/oak_plank"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/claymore_dye",
         "layer1": "expanded_combat:item/claymore_handle",
-        "layer2": "expanded_combat:item/claymore_oak_plank"
+        "layer2": "expanded_combat:item/claymore/oak_plank"
       }
     }
   }

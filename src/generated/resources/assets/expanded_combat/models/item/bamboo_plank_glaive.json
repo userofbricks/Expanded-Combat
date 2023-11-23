@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/glaive_dye",
       "layer1": "expanded_combat:item_large/glaive_handle",
-      "layer2": "expanded_combat:item_large/glaive_bamboo_plank"
+      "layer2": "expanded_combat:item_large/glaive/bamboo_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/glaive_dye",
         "layer1": "expanded_combat:item/glaive_handle",
-        "layer2": "expanded_combat:item/glaive_bamboo_plank"
+        "layer2": "expanded_combat:item/glaive/bamboo_plank"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/glaive_dye",
         "layer1": "expanded_combat:item/glaive_handle",
-        "layer2": "expanded_combat:item/glaive_bamboo_plank"
+        "layer2": "expanded_combat:item/glaive/bamboo_plank"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/glaive_dye",
         "layer1": "expanded_combat:item/glaive_handle",
-        "layer2": "expanded_combat:item/glaive_bamboo_plank"
+        "layer2": "expanded_combat:item/glaive/bamboo_plank"
       }
     }
   }

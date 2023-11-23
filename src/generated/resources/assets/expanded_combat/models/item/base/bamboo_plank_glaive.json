@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "expanded_combat:item_large/glaive_dye",
     "layer1": "expanded_combat:item_large/glaive_handle",
-    "layer2": "expanded_combat:item_large/glaive_bamboo_plank"
+    "layer2": "expanded_combat:item_large/glaive/bamboo_plank"
   }
 }

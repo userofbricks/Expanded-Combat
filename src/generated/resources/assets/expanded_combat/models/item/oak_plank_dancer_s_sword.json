@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/dancer_s_sword_dye",
       "layer1": "expanded_combat:item_large/dancer_s_sword_handle",
-      "layer2": "expanded_combat:item_large/dancer_s_sword_oak_plank"
+      "layer2": "expanded_combat:item_large/dancer_s_sword/oak_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/dancer_s_sword_dye",
         "layer1": "expanded_combat:item/dancer_s_sword_handle",
-        "layer2": "expanded_combat:item/dancer_s_sword_oak_plank"
+        "layer2": "expanded_combat:item/dancer_s_sword/oak_plank"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/dancer_s_sword_dye",
         "layer1": "expanded_combat:item/dancer_s_sword_handle",
-        "layer2": "expanded_combat:item/dancer_s_sword_oak_plank"
+        "layer2": "expanded_combat:item/dancer_s_sword/oak_plank"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/dancer_s_sword_dye",
         "layer1": "expanded_combat:item/dancer_s_sword_handle",
-        "layer2": "expanded_combat:item/dancer_s_sword_oak_plank"
+        "layer2": "expanded_combat:item/dancer_s_sword/oak_plank"
       }
     }
   }

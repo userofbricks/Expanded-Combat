@@ -2,6 +2,6 @@
   "parent": "expanded_combat:item/bases/dagger",
   "textures": {
     "layer0": "expanded_combat:item/dagger_handle",
-    "layer1": "expanded_combat:item/dagger_birch_plank"
+    "layer1": "expanded_combat:item/dagger/birch_plank"
   }
 }

@@ -4,7 +4,7 @@
     "parent": "expanded_combat:item/bases/katana_block_3",
     "textures": {
       "layer0": "expanded_combat:item_large/katana_handle",
-      "layer1": "expanded_combat:item_large/katana_acacia_plank"
+      "layer1": "expanded_combat:item_large/katana/acacia_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -13,21 +13,21 @@
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_acacia_plank"
+        "layer1": "expanded_combat:item/katana/acacia_plank"
       }
     },
     "ground": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_acacia_plank"
+        "layer1": "expanded_combat:item/katana/acacia_plank"
       }
     },
     "gui": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/katana_handle",
-        "layer1": "expanded_combat:item/katana_acacia_plank"
+        "layer1": "expanded_combat:item/katana/acacia_plank"
       }
     }
   }

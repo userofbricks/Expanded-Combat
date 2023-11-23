@@ -2,6 +2,6 @@
   "parent": "expanded_combat:item/bases/katana_block_1",
   "textures": {
     "layer0": "expanded_combat:item_large/katana_handle",
-    "layer1": "expanded_combat:item_large/katana_gold"
+    "layer1": "expanded_combat:item_large/katana/gold"
   }
 }

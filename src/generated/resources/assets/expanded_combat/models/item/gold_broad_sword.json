@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/broad_sword_dye",
       "layer1": "expanded_combat:item_large/broad_sword_handle",
-      "layer2": "expanded_combat:item_large/broad_sword_gold"
+      "layer2": "expanded_combat:item_large/broad_sword/gold"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_gold"
+        "layer2": "expanded_combat:item/broad_sword/gold"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_gold"
+        "layer2": "expanded_combat:item/broad_sword/gold"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/broad_sword_dye",
         "layer1": "expanded_combat:item/broad_sword_handle",
-        "layer2": "expanded_combat:item/broad_sword_gold"
+        "layer2": "expanded_combat:item/broad_sword/gold"
       }
     }
   }

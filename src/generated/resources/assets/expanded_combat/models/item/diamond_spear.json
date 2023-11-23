@@ -4,7 +4,7 @@
     "parent": "expanded_combat:item/bases/spear",
     "textures": {
       "layer0": "expanded_combat:item_large/spear_handle",
-      "layer1": "expanded_combat:item_large/spear_diamond"
+      "layer1": "expanded_combat:item_large/spear/diamond"
     }
   },
   "loader": "forge:separate_transforms",
@@ -13,21 +13,21 @@
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_diamond"
+        "layer1": "expanded_combat:item/spear/diamond"
       }
     },
     "ground": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_diamond"
+        "layer1": "expanded_combat:item/spear/diamond"
       }
     },
     "gui": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_diamond"
+        "layer1": "expanded_combat:item/spear/diamond"
       }
     }
   }

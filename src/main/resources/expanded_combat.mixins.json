@@ -11,8 +11,7 @@
     "FletchingTableBlockMixin",
     "PlayerEntityMixin"
   ],
-  "client": [
-  ],
+  "client": [],
   "server": [],
   "injectors": {
     "defaultRequire": 1

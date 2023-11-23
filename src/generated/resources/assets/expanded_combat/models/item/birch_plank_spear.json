@@ -4,7 +4,7 @@
     "parent": "expanded_combat:item/bases/spear",
     "textures": {
       "layer0": "expanded_combat:item_large/spear_handle",
-      "layer1": "expanded_combat:item_large/spear_birch_plank"
+      "layer1": "expanded_combat:item_large/spear/birch_plank"
     }
   },
   "loader": "forge:separate_transforms",
@@ -13,21 +13,21 @@
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_birch_plank"
+        "layer1": "expanded_combat:item/spear/birch_plank"
       }
     },
     "ground": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_birch_plank"
+        "layer1": "expanded_combat:item/spear/birch_plank"
       }
     },
     "gui": {
       "parent": "minecraft:item/generated",
       "textures": {
         "layer0": "expanded_combat:item/spear_handle",
-        "layer1": "expanded_combat:item/spear_birch_plank"
+        "layer1": "expanded_combat:item/spear/birch_plank"
       }
     }
   }

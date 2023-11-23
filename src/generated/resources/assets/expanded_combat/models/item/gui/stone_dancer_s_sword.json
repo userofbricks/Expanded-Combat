@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "expanded_combat:item/dancer_s_sword_dye",
     "layer1": "expanded_combat:item/dancer_s_sword_handle",
-    "layer2": "expanded_combat:item/dancer_s_sword_stone"
+    "layer2": "expanded_combat:item/dancer_s_sword/stone"
   }
 }

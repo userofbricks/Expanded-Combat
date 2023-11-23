@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -61,6 +62,7 @@ public class ExpandedCombat {
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat() {
+        SpriteSourceTypes.load();
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);

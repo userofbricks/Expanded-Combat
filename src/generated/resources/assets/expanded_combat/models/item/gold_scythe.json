@@ -5,7 +5,7 @@
     "textures": {
       "layer0": "expanded_combat:item_large/scythe_dye",
       "layer1": "expanded_combat:item_large/scythe_handle",
-      "layer2": "expanded_combat:item_large/scythe_gold"
+      "layer2": "expanded_combat:item_large/scythe/gold"
     }
   },
   "loader": "forge:separate_transforms",
@@ -15,7 +15,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_gold"
+        "layer2": "expanded_combat:item/scythe/gold"
       }
     },
     "ground": {
@@ -23,7 +23,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_gold"
+        "layer2": "expanded_combat:item/scythe/gold"
       }
     },
     "gui": {
@@ -31,7 +31,7 @@
       "textures": {
         "layer0": "expanded_combat:item/scythe_dye",
         "layer1": "expanded_combat:item/scythe_handle",
-        "layer2": "expanded_combat:item/scythe_gold"
+        "layer2": "expanded_combat:item/scythe/gold"
       }
     }
   }
