@@ -46,6 +46,7 @@ public class ECPluginFinder {
     }
 
     @NotNull
+    @SuppressWarnings("unchecked")
     private static Set<String> getPluginClassNames(Type annotationType) {
         List<ModFileScanData> allScanData = ModList.get().getAllScanData();
         Set<String> pluginClassNames = new LinkedHashSet<>();

@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei;
 
-import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import mezz.jei.api.recipe.category.IRecipeCategory;

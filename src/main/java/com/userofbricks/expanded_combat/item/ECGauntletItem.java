@@ -3,10 +3,11 @@ package com.userofbricks.expanded_combat.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -18,7 +19,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -39,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -46,6 +47,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
@@ -86,11 +88,11 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
 
 
     @ParametersAreNonnullByDefault
-    public ECGauntletItem(Material materialIn, Item.Properties properties) {
+    public ECGauntletItem(Properties properties, Material materialIn) {
         super(properties);
         this.material = materialIn;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
-        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/gauntlet/" + materialIn.getLocationName() + ".png");
+        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/gauntlet/" + materialIn.getLocationName().getPath() + ".png");
     }
     
     public Material getMaterial() {
@@ -170,6 +172,9 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public ResourceLocation getGAUNTLET_TEXTURE(ItemStack stack) {
         return this.getGAUNTLET_TEXTURE();
     }
+    public Supplier<ICurioRenderer> getGauntletRenderer() {
+        return GauntletRenderer::new;
+    }
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
@@ -217,9 +222,9 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public static class Dyeable extends ECGauntletItem implements DyeableLeatherItem {
         private final ResourceLocation GAUNTLET_TEXTURE_OVERLAY;
 
-        public Dyeable(Material materialIn, Properties properties) {
-            super(materialIn, properties);
-            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName() + "_overlay" + ".png");
+        public Dyeable(Properties properties, Material materialIn) {
+            super(properties, materialIn);
+            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
         }
 
         @Deprecated(since = "2.8.1", forRemoval = true)

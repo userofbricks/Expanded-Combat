@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +26,9 @@ public class HeartStealerItem extends ECWeaponItem{
         if (charge >= 500 && target.getMaxHealth() >= this.getDamage() && attacker.level().random.nextInt((int)(Math.round(Math.sqrt(ECVariables.getAddedHealth(attacker)^3)))+1) == 0) {
             stack.getOrCreateTag().putInt(chargeString, 0);
             ECVariables.addToStolenHealth(attacker, 1);
+            if (target instanceof Player) {
+                ECVariables.reduceAddedHealth(target, 1);
+            }
         } else {
             stack.getOrCreateTag().putInt(chargeString, charge + 1);
         }

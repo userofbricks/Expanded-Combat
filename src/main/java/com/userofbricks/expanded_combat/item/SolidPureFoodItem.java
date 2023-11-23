@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.network.ECVariables;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;

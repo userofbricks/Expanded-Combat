@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;

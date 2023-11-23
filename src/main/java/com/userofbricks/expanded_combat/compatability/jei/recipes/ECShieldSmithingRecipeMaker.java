@@ -2,11 +2,11 @@ package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
-import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.MaterialInit;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -19,7 +19,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.item.materials.MaterialInit.shieldToMaterialsList;
+import static com.userofbricks.expanded_combat.init.MaterialInit.shieldToMaterialsList;
 
 public class ECShieldSmithingRecipeMaker {
     public static List<IShieldSmithingRecipe> createShieldSmithingRecipes(IStackHelper stackHelper) {

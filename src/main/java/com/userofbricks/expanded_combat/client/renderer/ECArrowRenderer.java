@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.client.renderer;
 
 import com.userofbricks.expanded_combat.entity.ECArrow;
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.TippableArrowRenderer;

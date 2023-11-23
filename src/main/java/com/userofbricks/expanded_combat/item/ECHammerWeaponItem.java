@@ -1,9 +1,9 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.enchentments.GroundSlamEnchantment;
+import com.userofbricks.expanded_combat.enchantments.GroundSlamEnchantment;
 import com.userofbricks.expanded_combat.entity.ECFallingBlockEntity;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSources;
@@ -22,8 +22,8 @@ import java.util.List;
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECHammerWeaponItem extends ECWeaponItem{
-    public ECHammerWeaponItem(Material material, WeaponMaterial weapon, Properties properties) {
-        super(material, weapon, properties);
+    public ECHammerWeaponItem(Material material, Properties properties) {
+        super(material, VanillaECPlugin.GREAT_HAMMER, properties);
     }
 
     @Override

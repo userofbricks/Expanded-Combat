@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.entity.ECArrow;
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class ECArrowItem extends ArrowItem {
     private final Material material;
 
-    public ECArrowItem(Material material, Item.Properties properties) {
+    public ECArrowItem(Item.Properties properties, Material material) {
         super(properties);
         this.material = material;
     }

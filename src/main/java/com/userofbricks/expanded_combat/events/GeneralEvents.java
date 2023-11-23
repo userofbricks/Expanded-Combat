@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.commands.ModCommands;
+import com.userofbricks.expanded_combat.init.ModCommands;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 

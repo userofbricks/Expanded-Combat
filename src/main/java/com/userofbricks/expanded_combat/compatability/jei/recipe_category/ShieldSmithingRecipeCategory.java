@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
+import com.userofbricks.expanded_combat.init.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.ECBaseShieldModel;
 import com.userofbricks.expanded_combat.client.model.ECShieldBanner;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
@@ -31,7 +31,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.item.materials.MaterialInit.valueOfShield;
+import static com.userofbricks.expanded_combat.init.MaterialInit.valueOfShield;
 
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
@@ -56,11 +56,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                     trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
                 }
                 //TODO: need to switch to armor trim texture getting. example fount in HumanoidArmorLayer
-                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield("ul", sul).getLocationName() + ".png");
-                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield("ur", sur).getLocationName() + ".png");
-                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield("dl", sdl).getLocationName() + ".png");
-                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield("dr", sdr).getLocationName() + ".png");
-                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield("m", sm).getLocationName() + ".png");
+                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield("ul", sul).getLocationName().getPath() + ".png");
+                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield("ur", sur).getLocationName().getPath() + ".png");
+                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield("dl", sdl).getLocationName().getPath() + ".png");
+                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield("dr", sdr).getLocationName().getPath() + ".png");
+                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield("m", sm).getLocationName().getPath() + ".png");
 
                 ECBaseShieldModel upperLeft = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_LEFT));
                 ECBaseShieldModel upperRight = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_RIGHT));

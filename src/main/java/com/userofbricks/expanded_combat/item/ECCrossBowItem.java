@@ -1,14 +1,11 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.Lists;
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.util.LangStrings;
-import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -44,7 +41,7 @@ public class ECCrossBowItem extends CrossbowItem implements ISimpleMaterialItem 
     private boolean startSoundPlayed = false;
     private boolean midLoadSoundPlayed = false;
 
-    public ECCrossBowItem(Material material, Item.Properties builder) {
+    public ECCrossBowItem(Item.Properties builder, Material material) {
         super(builder);
         this.material = material;
     }

@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.api.registry;
 
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import net.minecraft.resources.ResourceLocation;
 
 public interface IExpandedCombatPlugin {

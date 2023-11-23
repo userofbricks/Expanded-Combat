@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.google.gson.JsonObject;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {

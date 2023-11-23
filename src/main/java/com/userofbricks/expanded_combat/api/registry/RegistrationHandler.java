@@ -1,21 +1,19 @@
 package com.userofbricks.expanded_combat.api.registry;
 
-import com.userofbricks.expanded_combat.item.materials.IMaterial;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.materials.WeaponMaterial;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
+import com.userofbricks.expanded_combat.init.MaterialInit;
+import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
+import org.jetbrains.annotations.ApiStatus;
 
 public class RegistrationHandler {
 
-    public IMaterial registerMaterial(Material.Builder builder) {
-        for (IMaterial material : MaterialInit.materials) {
-            if (material.getName().equals(builder.getName())) {
-                throw new IllegalArgumentException("Duplicate Expanded Combat Weapon Material: " + builder.getName());
-            }
-        }
+    public Material registerMaterial(MaterialBuilder builder) {
         return builder.build();
     }
 
+    @ApiStatus.Internal
+    //don't use as models and textures for other ec plugins won't be generated
     public WeaponMaterial registerWeaponMaterial(WeaponMaterial.Builder builder) {
         for (WeaponMaterial material :
                 MaterialInit.weaponMaterialConfigs) {

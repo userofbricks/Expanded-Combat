@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;

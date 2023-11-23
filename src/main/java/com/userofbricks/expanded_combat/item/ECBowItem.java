@@ -1,9 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -15,21 +13,17 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 public class ECBowItem extends BowItem implements ISimpleMaterialItem {
     public final Material material;
     @Nullable
     public final Material previosMaterial;
 
-    public ECBowItem(Material material, @Nullable Material previosMaterial, Item.Properties builder) {
+    public ECBowItem(Item.Properties builder, Material material, @Nullable Material previosMaterial) {
         super(builder);
         this.material = material;
         this.previosMaterial = previosMaterial;

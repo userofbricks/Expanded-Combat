@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
-import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECContainers;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
-import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipie;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;

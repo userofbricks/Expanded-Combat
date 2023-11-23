@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.entity;
 
+import com.userofbricks.expanded_combat.init.ECEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;

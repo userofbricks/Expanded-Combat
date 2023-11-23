@@ -2,17 +2,15 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.ISimpleMaterialItem;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -24,7 +22,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
 
 import java.util.List;
-import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GoldMending

@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;

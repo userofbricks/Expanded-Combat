@@ -1,9 +1,8 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.block.AbstractGasBlock;
-import com.userofbricks.expanded_combat.block.ECBlocks;
-import com.userofbricks.expanded_combat.block.PurifiedGasBlock;
-import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.init.ECBlocks;
+import com.userofbricks.expanded_combat.init.ECItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

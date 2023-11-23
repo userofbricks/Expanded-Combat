@@ -1,16 +1,10 @@
 package com.userofbricks.expanded_combat.compatability.jei.item_subtype;
 
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
 import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class ShieldSubtypeInterpreter implements IIngredientSubtypeInterpreter<ItemStack> {
     public static final ShieldSubtypeInterpreter INSTANCE = new ShieldSubtypeInterpreter();

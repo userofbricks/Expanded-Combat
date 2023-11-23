@@ -1,10 +1,10 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.userofbricks.expanded_combat.item.materials.MaterialInit.getMaterialForShieldPart;
+import static com.userofbricks.expanded_combat.init.MaterialInit.getMaterialForShieldPart;
 
 public class ECShieldItem extends ShieldItem {
 
@@ -238,11 +238,11 @@ public class ECShieldItem extends ShieldItem {
     }
 
     public static ItemStack makeShieldBeMaterial(ItemStack stack, Material material) {
-        stack.getOrCreateTag().putString(ULMaterialTagName, material.getLocationName());
-        stack.getOrCreateTag().putString(URMaterialTagName, material.getLocationName());
-        stack.getOrCreateTag().putString(DLMaterialTagName, material.getLocationName());
-        stack.getOrCreateTag().putString(DRMaterialTagName, material.getLocationName());
-        stack.getOrCreateTag().putString(MMaterialTagName, material.getLocationName());
+        stack.getOrCreateTag().putString(ULMaterialTagName, material.getLocationName().toString());
+        stack.getOrCreateTag().putString(URMaterialTagName, material.getLocationName().toString());
+        stack.getOrCreateTag().putString(DLMaterialTagName, material.getLocationName().toString());
+        stack.getOrCreateTag().putString(DRMaterialTagName, material.getLocationName().toString());
+        stack.getOrCreateTag().putString(MMaterialTagName, material.getLocationName().toString());
         return stack;
     }
 }

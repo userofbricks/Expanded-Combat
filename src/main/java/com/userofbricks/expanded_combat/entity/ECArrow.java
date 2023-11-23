@@ -1,8 +1,9 @@
 package com.userofbricks.expanded_combat.entity;
 
+import com.userofbricks.expanded_combat.init.ECEntities;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;

@@ -1,7 +1,8 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;

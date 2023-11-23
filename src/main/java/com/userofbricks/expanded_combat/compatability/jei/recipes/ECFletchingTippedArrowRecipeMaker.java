@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.helpers.IStackHelper;

@@ -23,7 +23,7 @@
           "item": "minecraft:netherite_ingot"
         },
         "base": {
-          "item": "expanded_combat:diamond_arrow"
+          "item": "minecraft:arrow"
         },
         "max_output_repeat": 32,
         "result": {

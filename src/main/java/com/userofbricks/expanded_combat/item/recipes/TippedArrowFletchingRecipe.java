@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;

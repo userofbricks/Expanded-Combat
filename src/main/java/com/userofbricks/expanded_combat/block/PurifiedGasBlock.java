@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.block;
 
-import com.userofbricks.expanded_combat.client.renderer.particle.ECParticles;
-import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.init.ECParticles;
+import com.userofbricks.expanded_combat.init.ECItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;

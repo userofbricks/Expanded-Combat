@@ -1,19 +1,23 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.client.ECKeyRegistry;
-import com.userofbricks.expanded_combat.item.materials.Material;
+import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
+import com.userofbricks.expanded_combat.init.ECKeyRegistry;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
+
+import java.util.function.Supplier;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 
@@ -21,15 +25,18 @@ public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
     public final int providedSlots;
     public final Material material;
-    public ECQuiverItem(Material material, Properties properties) {
+    public ECQuiverItem(Properties properties, Material material) {
         super(properties);
-        this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName() + ".png");
+        this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName().getPath() + ".png");
         this.providedSlots = material.getConfig().quiverSlots;
         this.material = material;
     }
 
     public ResourceLocation getQUIVER_TEXTURE() {
         return this.QUIVER_TEXTURE;
+    }
+    public Supplier<ICurioRenderer> getQuiverRenderer() {
+        return QuiverRenderer::new;
     }
 
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {

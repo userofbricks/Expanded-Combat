@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.item.ECItemTags;
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
-import com.userofbricks.expanded_combat.util.LangStrings;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.*;

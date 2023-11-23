@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.google.gson.JsonObject;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;

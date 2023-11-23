@@ -1,9 +1,9 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
+import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.item.materials.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;

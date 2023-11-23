@@ -3,9 +3,7 @@ package com.userofbricks.expanded_combat;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
-import com.userofbricks.expanded_combat.block.ECBlocks;
-import com.userofbricks.expanded_combat.client.ECKeyRegistry;
-import com.userofbricks.expanded_combat.client.ECLayerDefinitions;
+import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
@@ -13,26 +11,20 @@ import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
-import com.userofbricks.expanded_combat.client.renderer.particle.ECParticles;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
-import com.userofbricks.expanded_combat.enchentments.ECEnchantments;
-import com.userofbricks.expanded_combat.entity.ECEntities;
 import com.userofbricks.expanded_combat.events.*;
-import com.userofbricks.expanded_combat.inventory.container.ECContainers;
-import com.userofbricks.expanded_combat.item.ECCreativeTabs;
+import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECItemTags;
-import com.userofbricks.expanded_combat.item.ECItems;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
-import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
-import com.userofbricks.expanded_combat.util.LangStrings;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -131,10 +123,12 @@ public class ExpandedCombat {
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         
         for (Material material : MaterialInit.gauntletMaterials) {
-            CuriosRendererRegistry.register(material.getGauntletEntry().get(), GauntletRenderer::new);
+            ECGauntletItem gauntletItem = (ECGauntletItem) material.getGauntletEntry().get();
+            CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
         }
         for (Material material : MaterialInit.quiverMaterials) {
-            CuriosRendererRegistry.register(material.getQuiverEntry().get(), QuiverRenderer::new);
+            ECQuiverItem quiverItem = (ECQuiverItem) material.getQuiverEntry().get();
+            CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelsProperties.registerModelOverides();
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);

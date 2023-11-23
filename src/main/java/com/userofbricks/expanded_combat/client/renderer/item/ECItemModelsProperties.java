@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.client.renderer.item;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;

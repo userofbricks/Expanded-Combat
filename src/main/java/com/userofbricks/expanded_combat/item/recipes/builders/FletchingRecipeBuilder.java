@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item.recipes.builders;
 
 import com.google.gson.JsonObject;
-import com.userofbricks.expanded_combat.item.recipes.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;

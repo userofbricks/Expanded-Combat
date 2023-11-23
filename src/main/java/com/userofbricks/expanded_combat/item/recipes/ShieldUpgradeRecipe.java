@@ -1,10 +1,11 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.google.gson.JsonObject;
-import com.userofbricks.expanded_combat.item.ECItems;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.materials.Material;
-import com.userofbricks.expanded_combat.item.materials.MaterialInit;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
