@@ -5,34 +5,153 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/minecraft/atlases/shield_patterns.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/sprites/AlphaMaskFolderPermutations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/acacia_plank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/acacia_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/bamboo_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/birch_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/cherry_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/crimson_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/dark_oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/diamond.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/iron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/jungle_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/mangrove_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/netherite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/oak_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/rabbit_leather.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/spruce_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/vanilla.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/bases/warped_plank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/m.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/e32e43aa0b3ff6dbc16521d7b6a19c4e5d68fbe4" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/e32e43aa0b3ff6dbc16521d7b6a19c4e5d68fbe4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/ECBaseShieldModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/ECBaseShieldModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/minecraft/atlases/shield_patterns.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/minecraft/atlases/shield_patterns.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/item/ECShieldBlockEntityWithoutLevelRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/sprites/AlphaMaskFolderPermutations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/sprites/AlphaMaskFolderPermutations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECSpriteScourceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/ECSpriteScourceProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/SpriteSourceTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/SpriteSourceTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/acacia_plank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/bronze.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/enderite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/fiery.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/ironwood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/knight_metal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/lead.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/naga_scale.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/steeleaf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/acacia_plank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/acacia_plank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/acacia_plank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/armor_trims.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/armor_trims.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/atlases/shield_patterns.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/acacia_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/bamboo_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/birch_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/cherry_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/crimson_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/dark_oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/jungle_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/mangrove_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/rabbit_leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/spruce_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/vanilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dl/warped_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/bamboo_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/birch_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/cherry_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/crimson_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/dark_oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/jungle_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/knight_metal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/mangrove_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/naga_scale.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/rabbit_leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/spruce_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/vanilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/dr/warped_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/acacia_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/bamboo_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/birch_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/cherry_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/crimson_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/dark_oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/jungle_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/knight_metal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/mangrove_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/naga_scale.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/spruce_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/vanilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/m/warped_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/bamboo_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/birch_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/cherry_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/crimson_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/dark_oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/jungle_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/knight_metal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/mangrove_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/naga_scale.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/rabbit_leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/spruce_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/vanilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ul/warped_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/bamboo_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/birch_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/bronze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/cherry_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/crimson_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/dark_oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/enderite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/fiery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/ironwood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/jungle_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/knight_metal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/lead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/mangrove_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/naga_scale.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/netherite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/oak_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/rabbit_leather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/spruce_plank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/steeleaf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/vanilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty/ur/warped_plank.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -658,7 +777,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -691,7 +810,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed critical error bug where if a shield had a max durability of 0 the player would bugout and would not be able to continue playing that world." />
     <MESSAGE value="version 2.6.1 possibly" />
     <MESSAGE value="moved zh_cn.json to proper folder so it doesn't get errased when generating data" />
     <MESSAGE value="update 2.6.2" />
@@ -716,7 +834,8 @@
     <MESSAGE value="update to README.md" />
     <MESSAGE value="overhauled material builder to be more robust and flexible" />
     <MESSAGE value="added custom sprite source provider enabling all weapon textures to use the same folder structure weapon_name/material_name even if they are paletted permutations" />
-    <option name="LAST_COMMIT_MESSAGE" value="added custom sprite source provider enabling all weapon textures to use the same folder structure weapon_name/material_name even if they are paletted permutations" />
+    <MESSAGE value="added custom alpha mask sprite source provider enabling shields to make one texture and create permutations for each needed shield part" />
+    <option name="LAST_COMMIT_MESSAGE" value="added custom alpha mask sprite source provider enabling shields to make one texture and create permutations for each needed shield part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

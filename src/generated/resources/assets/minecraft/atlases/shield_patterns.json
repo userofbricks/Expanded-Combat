@@ -16,11 +16,10 @@
         "expanded_combat:model/shields/empty/dl",
         "expanded_combat:model/shields/empty/dr",
         "expanded_combat:model/shields/empty/ul",
-        "expanded_combat:model/shields/empty/ur"
+        "expanded_combat:model/shields/empty/ur",
+        "expanded_combat:model/shields/m"
       ],
-      "textures": {
-        "acacia_plank": "expanded_combat:model/shields/acacia_plank"
-      }
+      "source": "model/shields/bases"
     }
   ]
 }

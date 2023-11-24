@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -24,6 +25,7 @@ import org.slf4j.Logger;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @ParametersAreNonnullByDefault
@@ -33,16 +35,16 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
     public static final Codec<AlphaMaskFolderPermutations> CODEC = RecordCodecBuilder.create((p_266838_) ->
             p_266838_.group(Codec.list(ResourceLocation.CODEC).fieldOf("permutations").forGetter((p_267300_) -> p_267300_.permutations),
                             Codec.BOOL.fieldOf("mask_name_as_folder").forGetter(palette -> palette.maskNameAsFolder),
-                            Codec.unboundedMap(Codec.STRING, ResourceLocation.CODEC).fieldOf("textures").forGetter((p_267234_) -> p_267234_.textures))
+                            Codec.STRING.fieldOf("source").forGetter((p_261592_) -> p_261592_.sourcePath))
                     .apply(p_266838_, AlphaMaskFolderPermutations::new));
     private final List<ResourceLocation> permutations;
-    private final Map<String, ResourceLocation> textures;
+    private final String sourcePath;
     private final boolean maskNameAsFolder;
 
-    public AlphaMaskFolderPermutations(List<ResourceLocation> permutations, boolean maskNameAsFolder, Map<String, ResourceLocation> textures) {
+    public AlphaMaskFolderPermutations(List<ResourceLocation> permutations, boolean maskNameAsFolder, String sourcePath) {
         this.permutations = permutations;
         this.maskNameAsFolder = maskNameAsFolder;
-        this.textures = textures;
+        this.sourcePath = sourcePath;
     }
 
     @Override
@@ -53,22 +55,32 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
             if (optionalMaskResource.isEmpty()) {
                 LOGGER.warn("Unable to find mask texture {}", maskFileLocation);
             } else {
-                LazyLoadedImage lazyMaskImage = new LazyLoadedImage(maskFileLocation, optionalMaskResource.get(), textures.size());
 
-                for(Map.Entry<String, ResourceLocation> entry : textures.entrySet()) {
-                    ResourceLocation textureFileLocation = TEXTURE_ID_CONVERTER.idToFile(entry.getValue());
-                    Optional<Resource> optionalTextureResource = resourceManager.getResource(textureFileLocation);
-                    if (optionalTextureResource.isEmpty()) {
-                        LOGGER.warn("Unable to find texture {}", textureFileLocation);
-                    } else {
-                        LazyLoadedImage lazyBaseImage = new LazyLoadedImage(textureFileLocation, optionalTextureResource.get(), 1);
+                FileToIdConverter filetoidconverter = new FileToIdConverter("textures/" + this.sourcePath, ".png");
+                Map<ResourceLocation, Resource> foundTextures = filetoidconverter.listMatchingResources(resourceManager);
 
-                        ResourceLocation finalSpriteLocation = maskSpriteLocation.withSuffix((maskNameAsFolder ? "/" : "_") + entry.getKey());
-                        output.add(finalSpriteLocation, new MaskedSpriteSupplier(lazyBaseImage, lazyMaskImage, finalSpriteLocation));
+                LazyLoadedImage lazyMaskImage = new LazyLoadedImage(maskFileLocation, optionalMaskResource.get(), foundTextures.size());
+
+                foundTextures.forEach((textureFileLocation, resource) -> {
+
+                    try (InputStream inputstream = resource.open()) {
+                        NativeImage baseImage = NativeImage.read(inputstream);
+
+                        ResourceLocation finalSpriteLocation = maskSpriteLocation.withSuffix((maskNameAsFolder ? "/" : "_") + getTextureFileName(textureFileLocation));
+                        output.add(finalSpriteLocation, new MaskedSpriteSupplier(baseImage, lazyMaskImage, finalSpriteLocation));
+                    } catch (IOException ioexception) {
+                        LOGGER.error("Using missing texture, unable to load {}", filetoidconverter.fileToId(textureFileLocation).withPrefix(this.sourcePath + "/"), ioexception);
                     }
-                }
+                });
             }
         }
+    }
+
+    private String getTextureFileName(ResourceLocation fileLocation) {
+        String path = fileLocation.getPath();
+        String[] splitPath = path.split("/");
+        String suffixedName = splitPath[splitPath.length-1];
+        return suffixedName.substring(0, suffixedName.length() - ".png".length());
     }
 
     @Override
@@ -77,11 +89,10 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
     }
 
     @OnlyIn(Dist.CLIENT)
-    record MaskedSpriteSupplier(LazyLoadedImage baseImage, LazyLoadedImage maskImage, ResourceLocation permutationLocation) implements SpriteSupplier {
+    record MaskedSpriteSupplier(NativeImage baseNative, LazyLoadedImage maskImage, ResourceLocation permutationLocation) implements SpriteSupplier {
         @Nullable
         public SpriteContents get() {
             try {
-                NativeImage baseNative = baseImage.get();
                 int width = baseNative.getWidth();
                 int height = baseNative.getHeight();
                 NativeImage nativeimage = new NativeImage(width, height, false);
@@ -100,14 +111,12 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
             } catch (IllegalArgumentException | IOException ioexception) {
                 LOGGER.error("unable to apply alpha mask to {}", this.permutationLocation, ioexception);
             } finally {
-                this.baseImage.release();
                 this.maskImage.release();
             }
 
             return null;
         }
         public void discard() {
-            this.baseImage.release();
             this.maskImage.release();
         }
     }

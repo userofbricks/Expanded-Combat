@@ -61,7 +61,7 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 ResourceLocation rlUR = valueOfShield("ur", sur).getLocationName().withPrefix("model/shields/" + trimName + "/ur/");
                 ResourceLocation rlDL = valueOfShield("dl", sdl).getLocationName().withPrefix("model/shields/" + trimName + "/dl/");
                 ResourceLocation rlDR = valueOfShield("dr", sdr).getLocationName().withPrefix("model/shields/" + trimName + "/dr/");
-                ResourceLocation rlM = valueOfShield("m", sm).getLocationName().withPrefix("model/shields/" + trimName + "/m/");
+                ResourceLocation rlM = valueOfShield("m", sm).getLocationName().withPrefix("model/shields/m/");
 
                 ECBaseShieldModel upperLeft = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_LEFT));
                 ECBaseShieldModel upperRight = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_RIGHT));

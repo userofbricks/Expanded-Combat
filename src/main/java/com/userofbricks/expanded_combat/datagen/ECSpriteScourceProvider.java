@@ -97,13 +97,12 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
 
         atlas(SHIELD_PATTERNS_ATLAS).addSource(new DirectoryLister("model/shields", "model/shields/"));
 
-        Map<String, ResourceLocation> shieldTextures = new HashMap<>();
-        shieldTextures.put("acacia_plank", modLoc( "model/shields/acacia_plank"));
 
         atlas(SHIELD_PATTERNS_ATLAS).addSource(new AlphaMaskFolderPermutations(
                 List.of(modLoc( "model/shields/empty/dl"),
                         modLoc( "model/shields/empty/dr"),
                         modLoc( "model/shields/empty/ul"),
-                        modLoc( "model/shields/empty/ur")), true, shieldTextures));
+                        modLoc( "model/shields/empty/ur"),
+                        modLoc( "model/shields/m")), true, "model/shields/bases"));
     }
 }
