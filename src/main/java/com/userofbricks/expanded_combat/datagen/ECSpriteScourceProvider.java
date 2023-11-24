@@ -1,8 +1,10 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.client.sprites.AlphaMaskFolderPermutations;
 import com.userofbricks.expanded_combat.client.sprites.PalettedFolderPermutations;
 import net.minecraft.client.renderer.texture.atlas.sources.DirectoryLister;
+import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -10,10 +12,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SpriteSourceProvider;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @OnlyIn(Dist.CLIENT)
 public class ECSpriteScourceProvider extends SpriteSourceProvider {
@@ -23,8 +24,8 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
 
     @Override
     protected void addSources() {
-        atlas(SpriteSourceProvider.BLOCKS_ATLAS).addSource(new DirectoryLister("item_large", "item_large/"));
-        atlas(SpriteSourceProvider.BLOCKS_ATLAS).addSource(new DirectoryLister("slot", "slot/"));
+        atlas(BLOCKS_ATLAS).addSource(new DirectoryLister("item_large", "item_large/"));
+        atlas(BLOCKS_ATLAS).addSource(new DirectoryLister("slot", "slot/"));
 
 
         Map<String, ResourceLocation> gauntletTrimPermutations = new HashMap<>();
@@ -43,53 +44,66 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
         gauntletTrimPermutations.put("diamond_darker", new ResourceLocation("trims/color_palettes/diamond_darker"));
         gauntletTrimPermutations.put("netherite_darker", new ResourceLocation("trims/color_palettes/netherite_darker"));
 
-        atlas(SpriteSourceProvider.BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
-                List.of(new ResourceLocation(ExpandedCombat.MODID, "trims/items/gauntlet_trim")),
+        atlas(BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
+                List.of(modLoc( "trims/items/gauntlet_trim")),
                 new ResourceLocation("item/color_palettes/trim_template"),
                 false,
                 gauntletTrimPermutations));
 
 
         Map<String, ResourceLocation> weaponPermutations = new HashMap<>();
-        weaponPermutations.put("netherite", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/netherite"));
-        weaponPermutations.put("stone", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/stone"));
-        weaponPermutations.put("iron", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/iron"));
-        weaponPermutations.put("gold", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/gold"));
-        weaponPermutations.put("diamond", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/diamond"));
-        weaponPermutations.put("acacia_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/acacia_plank"));
-        weaponPermutations.put("bamboo_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/bamboo_plank"));
-        weaponPermutations.put("birch_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/birch_plank"));
-        weaponPermutations.put("cherry_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/cherry_plank"));
-        weaponPermutations.put("crimson_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/crimson_plank"));
-        weaponPermutations.put("dark_oak_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/dark_oak_plank"));
-        weaponPermutations.put("jungle_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/jungle_plank"));
-        weaponPermutations.put("mangrove_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/mangrove_plank"));
-        weaponPermutations.put("oak_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/oak_plank"));
-        weaponPermutations.put("spruce_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/spruce_plank"));
-        weaponPermutations.put("warped_plank", new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/warped_plank"));
+        weaponPermutations.put("netherite", modLoc( "item/color_palettes/netherite"));
+        weaponPermutations.put("stone", modLoc( "item/color_palettes/stone"));
+        weaponPermutations.put("iron", modLoc( "item/color_palettes/iron"));
+        weaponPermutations.put("gold", modLoc( "item/color_palettes/gold"));
+        weaponPermutations.put("diamond", modLoc( "item/color_palettes/diamond"));
+        weaponPermutations.put("acacia_plank", modLoc( "item/color_palettes/acacia_plank"));
+        weaponPermutations.put("bamboo_plank", modLoc( "item/color_palettes/bamboo_plank"));
+        weaponPermutations.put("birch_plank", modLoc( "item/color_palettes/birch_plank"));
+        weaponPermutations.put("cherry_plank", modLoc( "item/color_palettes/cherry_plank"));
+        weaponPermutations.put("crimson_plank", modLoc( "item/color_palettes/crimson_plank"));
+        weaponPermutations.put("dark_oak_plank", modLoc( "item/color_palettes/dark_oak_plank"));
+        weaponPermutations.put("jungle_plank", modLoc( "item/color_palettes/jungle_plank"));
+        weaponPermutations.put("mangrove_plank", modLoc( "item/color_palettes/mangrove_plank"));
+        weaponPermutations.put("oak_plank", modLoc( "item/color_palettes/oak_plank"));
+        weaponPermutations.put("spruce_plank", modLoc( "item/color_palettes/spruce_plank"));
+        weaponPermutations.put("warped_plank", modLoc( "item/color_palettes/warped_plank"));
 
-        atlas(SpriteSourceProvider.BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
-                Arrays.asList(new ResourceLocation(ExpandedCombat.MODID, "item/battle_staff"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/broad_sword"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/claymore"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/cutlass"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/dagger"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/dancer_s_sword"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/glaive"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/katana"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/scythe"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/sickle"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item/spear"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/battle_staff"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/broad_sword"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/claymore"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/dancer_s_sword"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/glaive"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/katana"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/scythe"),
-                        new ResourceLocation(ExpandedCombat.MODID, "item_large/spear")),
-                new ResourceLocation(ExpandedCombat.MODID, "item/color_palettes/template"),
+        atlas(BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
+                Arrays.asList(modLoc( "item/battle_staff"),
+                        modLoc( "item/broad_sword"),
+                        modLoc( "item/claymore"),
+                        modLoc( "item/cutlass"),
+                        modLoc( "item/dagger"),
+                        modLoc( "item/dancer_s_sword"),
+                        modLoc( "item/glaive"),
+                        modLoc( "item/katana"),
+                        modLoc( "item/scythe"),
+                        modLoc( "item/sickle"),
+                        modLoc( "item/spear"),
+                        modLoc( "item_large/battle_staff"),
+                        modLoc( "item_large/broad_sword"),
+                        modLoc( "item_large/claymore"),
+                        modLoc( "item_large/dancer_s_sword"),
+                        modLoc( "item_large/glaive"),
+                        modLoc( "item_large/katana"),
+                        modLoc( "item_large/scythe"),
+                        modLoc( "item_large/spear")),
+                modLoc( "item/color_palettes/template"),
                 true,
                 weaponPermutations));
+
+        atlas(SHIELD_PATTERNS_ATLAS).addSource(new SingleFile(modLoc( "model/shields/shield_base"), Optional.empty()));
+
+        atlas(SHIELD_PATTERNS_ATLAS).addSource(new DirectoryLister("model/shields", "model/shields/"));
+
+        Map<String, ResourceLocation> shieldTextures = new HashMap<>();
+        shieldTextures.put("acacia_plank", modLoc( "model/shields/acacia_plank"));
+
+        atlas(SHIELD_PATTERNS_ATLAS).addSource(new AlphaMaskFolderPermutations(
+                List.of(modLoc( "model/shields/empty/dl"),
+                        modLoc( "model/shields/empty/dr"),
+                        modLoc( "model/shields/empty/ul"),
+                        modLoc( "model/shields/empty/ur")), true, shieldTextures));
     }
 }

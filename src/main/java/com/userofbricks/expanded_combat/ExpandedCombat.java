@@ -156,4 +156,8 @@ public class ExpandedCombat {
             workQueue.removeAll(actions);
         }
     }
+
+    public static ResourceLocation modLoc(String path) {
+        return new ResourceLocation(MODID, path);
+    }
 }

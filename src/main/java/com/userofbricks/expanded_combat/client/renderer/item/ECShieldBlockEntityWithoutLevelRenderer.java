@@ -11,6 +11,7 @@ import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -48,19 +49,19 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 String sur = stack.getOrCreateTag().getString("UR_Material");
                 String sdl = stack.getOrCreateTag().getString("DL_Material");
                 String sdr = stack.getOrCreateTag().getString("DR_Material");
-                String sm =  stack.getOrCreateTag().getString("M_Material" );assert mc.level != null;
+                String sm =  stack.getOrCreateTag().getString("M_Material" );
+                assert mc.level != null;
                 String trimName = "empty";
                 ArmorTrim trim = ArmorTrim.getTrim(mc.level.registryAccess(), stack).orElse(null);
                 if (trim != null) {
                     ResourceLocation trimResourceLocation = trim.pattern().get().assetId();
                     trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
                 }
-                //TODO: need to switch to armor trim texture getting. example fount in HumanoidArmorLayer
-                ResourceLocation rlUL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ul/" + valueOfShield("ul", sul).getLocationName().getPath() + ".png");
-                ResourceLocation rlUR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/ur/" + valueOfShield("ur", sur).getLocationName().getPath() + ".png");
-                ResourceLocation rlDL = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dl/" + valueOfShield("dl", sdl).getLocationName().getPath() + ".png");
-                ResourceLocation rlDR = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/dr/" + valueOfShield("dr", sdr).getLocationName().getPath() + ".png");
-                ResourceLocation rlM = new ResourceLocation(MODID, "textures/model/shields/" + trimName + "/m/" + valueOfShield("m", sm).getLocationName().getPath() + ".png");
+                ResourceLocation rlUL = valueOfShield("ul", sul).getLocationName().withPrefix("model/shields/" + trimName + "/ul/");
+                ResourceLocation rlUR = valueOfShield("ur", sur).getLocationName().withPrefix("model/shields/" + trimName + "/ur/");
+                ResourceLocation rlDL = valueOfShield("dl", sdl).getLocationName().withPrefix("model/shields/" + trimName + "/dl/");
+                ResourceLocation rlDR = valueOfShield("dr", sdr).getLocationName().withPrefix("model/shields/" + trimName + "/dr/");
+                ResourceLocation rlM = valueOfShield("m", sm).getLocationName().withPrefix("model/shields/" + trimName + "/m/");
 
                 ECBaseShieldModel upperLeft = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_LEFT));
                 ECBaseShieldModel upperRight = new ECBaseShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.SHIELD_UPPER_RIGHT));
@@ -71,8 +72,8 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 poseStack.pushPose();
                 poseStack.translate(0, -1f - ((1f/16f)*5f), 1f / 16f);
                 poseStack.rotateAround(Axis.ZP.rotationDegrees(180), 0.0F, 1f + ((1f/16f)*5f), -1f / 16f);
-                if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
-                    int i = dyeableGauntletItem.getColor(stack);
+                if (stack.getItem() instanceof DyeableLeatherItem dyeableLeatherItem) {
+                    int i = dyeableLeatherItem.getColor(stack);
                     float f = (float)(i >> 16 & 255) / 255.0F;
                     float f1 = (float)(i >> 8 & 255) / 255.0F;
                     float f2 = (float)(i & 255) / 255.0F;
@@ -100,13 +101,12 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
         }
     }
 
-    private void renderModel(PoseStack poseStack, MultiBufferSource multiBufferSource, int light, boolean foil, Model model, ResourceLocation shieldResource) {
+    private void renderModel(PoseStack poseStack, MultiBufferSource multiBufferSource, int light, boolean foil, ECBaseShieldModel model, ResourceLocation shieldResource) {
         renderModel(poseStack, multiBufferSource, light, foil, model, 1f, 1f, 1f, shieldResource);
     }
 
-    private void renderModel(PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, Model model, float f, float f1, float f2, ResourceLocation shieldResource) {
-        VertexConsumer vertexconsumer = ItemRenderer
-                .getArmorFoilBuffer(multibuffersource, RenderType.armorCutoutNoCull(shieldResource), false, foil);
-        model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
+    private void renderModel(PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, ECBaseShieldModel model, float f, float f1, float f2, ResourceLocation shieldResource) {
+        Material material = new Material(Sheets.SHIELD_SHEET, shieldResource);
+        model.renderToBuffer(poseStack, material.buffer(multibuffersource, RenderType::armorCutoutNoCull, foil), light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
     }
 }
