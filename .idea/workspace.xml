@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -631,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -664,7 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added vanilla weapon like trades for weapons" />
     <MESSAGE value="added agility enchantment" />
     <MESSAGE value="added gauntlet dispense behavior but doesn't seem to work for mobs" />
     <MESSAGE value="added Ground slam Enchantment for great hammers, Broad swords, and Claymores" />
@@ -689,7 +691,8 @@
     <MESSAGE value="moved ArrowCurio to api folder" />
     <MESSAGE value="added a bunch of entity attributes and added a few shield trim alpha masks" />
     <MESSAGE value="refactored gauntlet attributes to include the added without weapon dmg attribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored gauntlet attributes to include the added without weapon dmg attribute" />
+    <MESSAGE value="event for causing dmg without a weapon in hand now uses attribute instead of calculation and no longer relies on gauntlets to function." />
+    <option name="LAST_COMMIT_MESSAGE" value="event for causing dmg without a weapon in hand now uses attribute instead of calculation and no longer relies on gauntlets to function." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

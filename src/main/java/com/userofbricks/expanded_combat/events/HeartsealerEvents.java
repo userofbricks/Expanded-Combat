@@ -69,7 +69,7 @@ public class HeartsealerEvents {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     //not working for some reason
-    public static void renderPlayerStolenHearts(RenderPlayerEvent event) {
+    public static void renderPlayerStolenHearts(RenderPlayerEvent.Post event) {
         ClientLevel level = (ClientLevel) event.getEntity().level();
         Vec3 location = event.getEntity().position();
         RandomSource random = level.random;

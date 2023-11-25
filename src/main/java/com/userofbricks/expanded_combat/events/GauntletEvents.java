@@ -12,11 +12,10 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderArmEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,7 +33,7 @@ import java.util.List;
 public class GauntletEvents
 {
     @SubscribeEvent
-    public static void onEquipmentChange(LivingHurtEvent ev) {
+    public static void weaponlessDmg(LivingAttackEvent ev) {
         Entity entity = ev.getSource().getEntity();
         if (!(entity instanceof LivingEntity causingEntity)) return;
         Entity directEntity = ev.getSource().getDirectEntity();
@@ -59,7 +58,7 @@ public class GauntletEvents
 
 
         if (!hasWeaponInHand) {
-            ev.setAmount(ev.getAmount() + (float) (causingEntity.getAttributeValue(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get())));
+            ev.getEntity().hurt(ev.getSource(), (float) causingEntity.getAttributeValue(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get()));
         }
     }
 
