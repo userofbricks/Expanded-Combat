@@ -66,7 +66,7 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
                     try (InputStream inputstream = resource.open()) {
                         NativeImage baseImage = NativeImage.read(inputstream);
 
-                        ResourceLocation finalSpriteLocation = maskSpriteLocation.withSuffix((maskNameAsFolder ? "/" : "_") + getTextureFileName(textureFileLocation));
+                        ResourceLocation finalSpriteLocation = textureFileLocation.withPath(maskSpriteLocation.withSuffix((maskNameAsFolder ? "/" : "_") + getTextureFileName(textureFileLocation)).getPath());
                         output.add(finalSpriteLocation, new MaskedSpriteSupplier(baseImage, lazyMaskImage, finalSpriteLocation));
                     } catch (IOException ioexception) {
                         LOGGER.error("Using missing texture, unable to load {}", filetoidconverter.fileToId(textureFileLocation).withPrefix(this.sourcePath + "/"), ioexception);
