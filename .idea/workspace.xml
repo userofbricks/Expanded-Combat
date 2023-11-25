@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -633,7 +631,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -666,7 +664,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added katana abitily to block arrows along with an enchantment to increase the number of consecutive blocks" />
     <MESSAGE value="added vanilla weapon like trades for weapons" />
     <MESSAGE value="added agility enchantment" />
     <MESSAGE value="added gauntlet dispense behavior but doesn't seem to work for mobs" />
@@ -691,7 +688,8 @@
     <MESSAGE value="made alpha mask source use namespace of the shield texture instead of the mask" />
     <MESSAGE value="moved ArrowCurio to api folder" />
     <MESSAGE value="added a bunch of entity attributes and added a few shield trim alpha masks" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a bunch of entity attributes and added a few shield trim alpha masks" />
+    <MESSAGE value="refactored gauntlet attributes to include the added without weapon dmg attribute" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored gauntlet attributes to include the added without weapon dmg attribute" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

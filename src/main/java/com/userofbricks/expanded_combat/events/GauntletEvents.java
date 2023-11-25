@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -39,32 +40,27 @@ public class GauntletEvents
         Entity directEntity = ev.getSource().getDirectEntity();
         if (entity != directEntity) return;
 
-        CuriosApi.getCuriosHelper().findFirstCurio(causingEntity, stack -> stack.getItem() instanceof ECGauntletItem).ifPresent(slotResult -> {
-            ECGauntletItem gauntlet = (ECGauntletItem) slotResult.stack().getItem();
-            boolean hasWeaponInHand = false;
-            Multimap<Attribute, AttributeModifier> mainHandAttributes = causingEntity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
-            Multimap<Attribute, AttributeModifier> offHandAttributes = causingEntity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
+        boolean hasWeaponInHand = false;
+        Multimap<Attribute, AttributeModifier> mainHandAttributes = causingEntity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
+        Multimap<Attribute, AttributeModifier> offHandAttributes = causingEntity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
 
-            if (mainHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
-                for (AttributeModifier modifier :
-                        mainHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                    if (modifier.getAmount() > 1) hasWeaponInHand = true;
-                }
+        if (mainHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
+            for (AttributeModifier modifier :
+                    mainHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
+                if (modifier.getAmount() > 1) hasWeaponInHand = true;
             }
-            if (offHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
-                for (AttributeModifier modifier :
-                        offHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                    if (modifier.getAmount() > 1) hasWeaponInHand = true;
-                }
+        }
+        if (offHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
+            for (AttributeModifier modifier :
+                    offHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
+                if (modifier.getAmount() > 1) hasWeaponInHand = true;
             }
+        }
 
 
-            if (!hasWeaponInHand) {
-                float attackDamage = (float) Math.max(gauntlet.getAttackDamage(), 0.5);
-                float extraDamage = gauntlet.getMaterial().getAdditionalDamageAfterEnchantments().apply(attackDamage);
-                ev.setAmount(ev.getAmount() + ((attackDamage + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, slotResult.stack())) + extraDamage)/2));
-            }
-        });
+        if (!hasWeaponInHand) {
+            ev.setAmount(ev.getAmount() + (float) (causingEntity.getAttributeValue(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get())));
+        }
     }
 
     public static void DamageGauntletEvent(AttackEntityEvent event) {
