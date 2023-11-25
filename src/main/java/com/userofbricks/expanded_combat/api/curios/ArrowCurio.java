@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.item.curios;
+package com.userofbricks.expanded_combat.api.curios;
 
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.world.entity.LivingEntity;

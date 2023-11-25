@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.item.*;
-import com.userofbricks.expanded_combat.item.curios.ArrowCurio;
+import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.MaterialItemBuilder;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
