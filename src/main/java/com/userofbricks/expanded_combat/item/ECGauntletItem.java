@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
@@ -164,13 +165,8 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public double getAttackDamage() {
         return this.material.getConfig().offense.addedAttackDamage;
     }
-
-    @Deprecated(since = "2.8.1", forRemoval = true)
-    public ResourceLocation getGAUNTLET_TEXTURE() {
-        return this.GAUNTLET_TEXTURE;
-    }
     public ResourceLocation getGAUNTLET_TEXTURE(ItemStack stack) {
-        return this.getGAUNTLET_TEXTURE();
+        return GAUNTLET_TEXTURE;
     }
     public Supplier<ICurioRenderer> getGauntletRenderer() {
         return GauntletRenderer::new;
@@ -187,22 +183,27 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        String identifier = slotContext.identifier();
         Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
-        if (CuriosApi.getCuriosHelper().getCurioTags(stack.getItem()).contains(identifier) && stack.getItem() instanceof ECGauntletItem) {
-            double attackDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
-            float extraDamage = ((ECGauntletItem)stack.getItem()).getMaterial().getAdditionalDamageAfterEnchantments().apply((float) attackDamage);
-            int armorAmount = ((ECGauntletItem)stack.getItem()).getArmorAmount();
-            double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.knockbackResistance;
-            double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.armorToughness;
-            atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", ((attackDamage / 2.0d) + Math.round(attackDamage / 2.0d * EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack)) + extraDamage)/2, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", armorAmount, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", (knockbackResistance + EnchantmentHelper.getTagEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get(), stack) / 5.0f), AttributeModifier.Operation.ADDITION));
-            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", EnchantmentHelper.getTagEnchantmentLevel(Enchantments.KNOCKBACK, stack), AttributeModifier.Operation.ADDITION));
-            if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
-                atts.put(Attributes.ATTACK_SPEED, new AttributeModifier("Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
-            }
+
+        double totalBaseDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
+        float totalExtraDamage = ((ECGauntletItem)stack.getItem()).getMaterial().getAdditionalDamageAfterEnchantments().apply((float) totalBaseDamage);
+        double totalEnchantedDamage = stack.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
+
+        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADDITION));
+        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get(), new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADDITION));
+
+        atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", ((ECGauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADDITION));
+
+        double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.armorToughness;
+        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
+
+        double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.knockbackResistance;
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + (stack.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get()) / 5.0f), AttributeModifier.Operation.ADDITION));
+
+        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADDITION));
+
+        if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier("Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }
@@ -226,14 +227,8 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
             super(properties, materialIn);
             this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
         }
-
-        @Deprecated(since = "2.8.1", forRemoval = true)
-        public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY() {
-            return GAUNTLET_TEXTURE_OVERLAY;
-        }
-
         public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY(ItemStack stack) {
-            return this.getGAUNTLET_TEXTURE_OVERLAY();
+            return GAUNTLET_TEXTURE_OVERLAY;
         }
     }
 }

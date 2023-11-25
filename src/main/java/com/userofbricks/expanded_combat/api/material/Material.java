@@ -31,7 +31,7 @@ public class Material {
     public ShieldUse shieldUse = ShieldUse.ALL;
     @NotNull
     private final NonNullSupplier<MaterialConfig> config;
-    protected Function<Float, Float> additionalDamageAfterEnchantments = (damage) -> damage;
+    protected Function<Float, Float> additionalDamageAfterEnchantments = (damage) -> 0f;
 
     protected RegistryEntry<? extends ArrowItem> arrowEntry = null;
     protected RegistryEntry<? extends ArrowItem> tippedArrowEntry = null;
