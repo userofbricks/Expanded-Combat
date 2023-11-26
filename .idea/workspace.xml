@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/LangStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/LangStrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/HeartStealerItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/HeartStealerItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SolidPureFoodItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SolidPureFoodItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -632,7 +635,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -665,7 +668,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change weapon render method to forges model by view type" />
     <MESSAGE value="blend files for player animation integration" />
     <MESSAGE value="new katana arrow blocking anims" />
     <MESSAGE value="added enchantment stuff to Config" />
@@ -690,7 +692,8 @@
     <MESSAGE value="added event for causing cold, heat, and void dmg from respective attributes" />
     <MESSAGE value="created unique gauntlet" />
     <MESSAGE value="changed gauntlet renderer registry to pull from ECItems instead of just materialInit.gauntletMaterials as some gauntlets don't show up there" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed gauntlet renderer registry to pull from ECItems instead of just materialInit.gauntletMaterials as some gauntlets don't show up there" />
+    <MESSAGE value="cleaned up LangStrings" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up LangStrings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,8 +1,10 @@
 package com.userofbricks.expanded_combat.network;
 
+import com.userofbricks.expanded_combat.init.ECItems;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -45,6 +47,9 @@ public class ECVariables {
     public static int getAddedHealth(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).addedHealth;
     }
+    public static ItemStack getTheirHeartStealer(Entity entity) {
+        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).playersHeartStealer;
+    }
     public static int getArrowSlot(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).arrowSlot;
     }
@@ -55,17 +60,21 @@ public class ECVariables {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaTimeSinceBlock;
     }
 
-    public static void addToStolenHealth(LivingEntity entity, int health) {
+    public static void setTheirHeartStealer(LivingEntity entity, ItemStack stack) {
         entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.stolenHealth += health;
-            capability.addedHealth += health;
+            capability.playersHeartStealer = stack;
             capability.syncPlayerVariables(entity);
         });
     }
-    public static void reduceAddedHealth(LivingEntity entity, int health) {
+    public static void changeStolenHealth(LivingEntity entity, int health) {
         entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.addedHealth -= health;
-            capability.stolenHealth -= health;
+            capability.stolenHealth += health;
+            capability.syncPlayerVariables(entity);
+        });
+    }
+    public static void changeAddedHealth(LivingEntity entity, int health) {
+        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            capability.addedHealth += health;
             capability.syncPlayerVariables(entity);
         });
     }
@@ -132,7 +141,6 @@ public class ECVariables {
             if (!event.getEntity().level().isClientSide()) {
                 PlayerVariables player = event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
                 player.stolenHealth = Math.max(player.stolenHealth - 10, 0);
-                player.addedHealth = 0;
                 player.syncPlayerVariables(event.getEntity());
             }
 
@@ -158,6 +166,7 @@ public class ECVariables {
             clone.katanaTimeSinceBlock = original.katanaTimeSinceBlock;
             clone.stolenHealth = original.stolenHealth;
             clone.addedHealth = original.addedHealth;
+            clone.playersHeartStealer = original.playersHeartStealer;
         }
     }
 
@@ -197,6 +206,7 @@ public class ECVariables {
         public int katanaTimeSinceBlock = 0;
         public int stolenHealth = 0;
         public int addedHealth = 0;
+        public ItemStack playersHeartStealer = new ItemStack(ECItems.HEARTSTEALER.get());
 
         public void syncPlayerVariables(Entity entity) {
             if (entity instanceof ServerPlayer serverPlayer)
@@ -213,6 +223,7 @@ public class ECVariables {
             nbt.putInt("katanaTimeSinceBlock", katanaTimeSinceBlock);
             nbt.putInt("stolenHealth", stolenHealth);
             nbt.putInt("addedHealth", addedHealth);
+            nbt.put("playersHeartStealer", playersHeartStealer.serializeNBT());
             return nbt;
         }
 
@@ -223,6 +234,7 @@ public class ECVariables {
             katanaTimeSinceBlock = nbt.getInt("katanaTimeSinceBlock");
             stolenHealth = nbt.getInt("stolenHealth");
             addedHealth = nbt.getInt("addedHealth");
+            playersHeartStealer = ItemStack.of(nbt.getCompound("playersHeartStealer"));
         }
     }
 
@@ -298,6 +310,7 @@ public class ECVariables {
                     variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
                     variables.stolenHealth = message.data.stolenHealth;
                     variables.addedHealth = message.data.addedHealth;
+                    variables.playersHeartStealer = message.data.playersHeartStealer;
                 } else {
                     ServerPlayer serverPlayer = context.getSender();
                     assert serverPlayer != null;
@@ -307,6 +320,7 @@ public class ECVariables {
                     variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
                     variables.stolenHealth = message.data.stolenHealth;
                     variables.addedHealth = message.data.addedHealth;
+                    variables.playersHeartStealer = message.data.playersHeartStealer;
                 }
             });
             context.setPacketHandled(true);

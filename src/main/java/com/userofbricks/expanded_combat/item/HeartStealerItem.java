@@ -23,11 +23,11 @@ public class HeartStealerItem extends ECWeaponItem{
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return false;
         int charge = stack.getOrCreateTag().getInt(chargeString);
-        if (charge >= 500 && target.getMaxHealth() >= this.getDamage() && attacker.level().random.nextInt((int)(Math.round(Math.sqrt(ECVariables.getAddedHealth(attacker)^3)))+1) == 0) {
+        if (charge >= 500 && target.getMaxHealth() >= this.getDamage() && attacker.level().random.nextInt((int)(Math.round(Math.sqrt((ECVariables.getAddedHealth(attacker)+ECVariables.getStolenHealth(attacker))^3)))+1) == 0) {
             stack.getOrCreateTag().putInt(chargeString, 0);
-            ECVariables.addToStolenHealth(attacker, 1);
+            ECVariables.changeStolenHealth(attacker, 1);
             if (target instanceof Player) {
-                ECVariables.reduceAddedHealth(target, 1);
+                ECVariables.changeAddedHealth(target, -1);
             }
         } else {
             stack.getOrCreateTag().putInt(chargeString, charge + 1);

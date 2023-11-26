@@ -33,26 +33,21 @@ public class HeartsealerEvents {
         if (event.phase == TickEvent.Phase.START) {
             float stolenHearts = ECVariables.getStolenHealth(player)/2f;
             int time = Math.round(player.level().getDayTime() % 24000L);
-            //penalty of not having the heartstealer
-            if (!player.getInventory().hasAnyMatching(stack -> stack.getItem() instanceof HeartStealerItem)) {
-                boolean hurtTime = time % 200 == 0;
-                if (stolenHearts >= 50 && hurtTime) {
-                    ECVariables.reduceAddedHealth(player, 10);
-                    player.hurt(player.damageSources().magic(), 10);
-                } else if (stolenHearts >= 25 && hurtTime) {
-                    ECVariables.reduceAddedHealth(player, 5);
-                    player.hurt(player.damageSources().magic(), 5);
-                } else if (stolenHearts >= 5 && hurtTime) {
-                    ECVariables.reduceAddedHealth(player, 1);
+            //penalty of not having their heart stealer
+            if (!player.getInventory().hasAnyMatching(stack -> stack.getItem() instanceof HeartStealerItem) && !(player.getInventory().hasAnyMatching(stack -> stack == ECVariables.getTheirHeartStealer(player)))) {
+                if ((stolenHearts >= 50 && (time % 100)==0) || (stolenHearts >= 25 && (time % 200)==0) || (stolenHearts >= 5 && (time % 400)==0)) {
+                    ECVariables.changeStolenHealth(player, -1);
                     player.hurt(player.damageSources().magic(), 1);
                 }
             }
             //penalty of using too much
-            if (player.level().canSeeSky(player.blockPosition()) && time % 20 == 0 && !player.level().isNight()) {
-                if (stolenHearts >= 80) player.hurt(player.damageSources().onFire(), 16);
-                else if (stolenHearts >= 60) player.hurt(player.damageSources().onFire(), 8);
-                else if (stolenHearts >= 40) player.hurt(player.damageSources().onFire(), 4);
-                else if (stolenHearts >= 20) player.hurt(player.damageSources().onFire(), 2);
+            if (player.level().canSeeSky(player.blockPosition()) && !player.level().isNight()) {
+                if ((stolenHearts >= 80 && (time % 20)==0) ||
+                        (stolenHearts >= 60 && (time % 40)==0) ||
+                        (stolenHearts >= 40 && (time % 80)==0) ||
+                        (stolenHearts >= 20 && (time % 160)==0)) {
+                    player.hurt(player.damageSources().onFire(), 1);
+                }
             }
         }
         if (event.phase == TickEvent.Phase.END) {
@@ -62,7 +57,8 @@ public class HeartsealerEvents {
 
     public static @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull Player player) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.fromString("803f1818-3e4f-4605-8b1a-04d0c1c9f97d"), "Heartstealer modifier", ECVariables.getAddedHealth(player), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.fromString("803f1818-3e4f-4605-8b1a-04d0c1c9f97d"), "Heartstealer Stolen modifier", ECVariables.getStolenHealth(player), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.fromString("f7d9fc3d-4517-4e35-bcf3-12ce2d0a2457"), "Heartstealer Added modifier", ECVariables.getAddedHealth(player), AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 
