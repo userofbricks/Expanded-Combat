@@ -119,6 +119,7 @@ public class ECItems
             })
             .register();
     public static final RegistryEntry<UniqueStandardGaunlet> GAUNTLET = REGISTRATE.get().item("gauntlet", UniqueStandardGaunlet::new)
+            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
             .model((ctx, prov) -> {
                 ResourceLocation main_texture = new ResourceLocation(REGISTRATE.get().getModid(), "item/gauntlet/gauntlet");
                 ItemModelBuilder mainModel = prov.generated(ctx, main_texture);
@@ -147,6 +148,7 @@ public class ECItems
         ITEMS.add(SHIELD_TIER_3);
         ITEMS.add(SHIELD_TIER_4);
         ITEMS.add(HEARTSTEALER);
+        ITEMS.add(GAUNTLET);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
             if (material.getTippedArrowEntry() != null) ITEMS.add(material.getTippedArrowEntry());

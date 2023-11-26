@@ -36,6 +36,7 @@ public class ECCreativeTabs {
                             for (Material material : MaterialInit.gauntletMaterials) {
                                 output.accept(material.getGauntletEntry().get());
                             }
+                            output.accept(GAUNTLET.get());
                         }
                         if (CONFIG.enableShields) {
                             for (Material material : MaterialInit.shieldMaterials) {
@@ -110,6 +111,7 @@ public class ECCreativeTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             if (CONFIG.enableGauntlets) {
+                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 for (Material material : MaterialInit.gauntletMaterials) {
                     if (material == VanillaECPlugin.LEATHER) {
                         items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -176,6 +178,7 @@ public class ECCreativeTabs {
                 }
             }
             if (CONFIG.enableWeapons) {
+                items.put(new ItemStack(GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 for (Material material :
                         MaterialInit.weaponMaterials) {
                     for (RegistryEntry<? extends Item> itemRegistry :

@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat;
 
 import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.init.*;
@@ -26,6 +27,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -125,9 +127,9 @@ public class ExpandedCombat {
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         
-        for (Material material : MaterialInit.gauntletMaterials) {
-            ECGauntletItem gauntletItem = (ECGauntletItem) material.getGauntletEntry().get();
-            CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
+        for (RegistryEntry<? extends Item> registryEntry: ECItems.ITEMS) {
+            if (registryEntry.get() instanceof ECGauntletItem gauntletItem)
+                CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
         }
         for (Material material : MaterialInit.quiverMaterials) {
             ECQuiverItem quiverItem = (ECQuiverItem) material.getQuiverEntry().get();

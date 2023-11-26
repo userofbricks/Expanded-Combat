@@ -144,19 +144,6 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public float getXpRepairRatio( ItemStack stack) {
         return 2f + getMendingBonus();
     }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        if (getAttackDamage() != 0){
-            list.add(Component.translatable(LangStrings.WHEN_HANDS_EMPTY).withStyle(ChatFormatting.GOLD));
-            list.add(
-                    Component.literal((getAttackDamage() > 0 ? ChatFormatting.BLUE + " +" : ChatFormatting.RED + " ") +
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(this.getAttackDamage() / 2) + " ")
-                            .append(Component.translatable(Attributes.ATTACK_DAMAGE.getDescriptionId()).withStyle(getAttackDamage() > 0 ? ChatFormatting.BLUE : ChatFormatting.RED))
-            );
-            list.add(Component.empty());
-        }
-    }
     
     public int getArmorAmount() {
         return this.material.getConfig().defense.gauntletArmorAmount;
@@ -225,7 +212,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
 
         public Dyeable(Properties properties, Material materialIn) {
             super(properties, materialIn);
-            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/entity/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
+            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/model/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
         }
         public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY(ItemStack stack) {
             return GAUNTLET_TEXTURE_OVERLAY;

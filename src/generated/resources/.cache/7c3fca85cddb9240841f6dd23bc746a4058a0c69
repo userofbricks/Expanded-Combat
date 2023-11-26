@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-25T19:26:56.850709	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-11-25T19:51:44.948641	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
 f73cf8763a712a18477cadd180d788b6d59fa6b9 assets/expanded_combat/lang/en_ud.json
 c8bf4e5a3af791b3d7fa30cfe345cbe678a90657 assets/expanded_combat/lang/en_us.json
@@ -773,7 +773,7 @@ dbdbca91f5b7ebae6935c4dcae0ba9a2df161fe1 assets/expanded_combat/models/item/warp
 ddd14edf9de7d5cc9f3127f15165e57e34a59062 assets/expanded_combat/models/item/warped_plank_sickle.json
 dde4f9631e0a9d5ed3c0afa27f37c6464f0dd9be assets/expanded_combat/models/item/warped_plank_spear.json
 d576b7bc2c344f48ca5e3520601d0e00f75fcc9b data/curios/tags/items/arrows.json
-c420a99f37b25fbacb67054a737b9e5aa2c335ca data/curios/tags/items/hands.json
+c3c96a05ef29cb35b3451beb8ffb7ddfdaa7cee1 data/curios/tags/items/hands.json
 b29952dd867ac5fb31737ab43b4d2059d1a7fc0b data/curios/tags/items/quiver.json
 b7c2c65b5a65e27dcd54ed0879fd9700459a0600 data/expanded_combat/advancements/recipes/brewing/purified_gas_bottle_from_gas_bottle_smoking.json
 0934b5796fc0e2152229ad6e5f4e8012acd5866f data/expanded_combat/advancements/recipes/combat/acacia_plank_battle_staff_conditional_shaped.json
@@ -1398,4 +1398,4 @@ a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/spru
 b8f829d76a32bd83bf8b7e1da67f32af411f3570 data/forge/tags/items/tools/swords/stone.json
 a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/warped_plank.json
 a5e510bcf687c6087eee85269957523f2a415e56 data/minecraft/tags/items/arrows.json
-c420a99f37b25fbacb67054a737b9e5aa2c335ca data/minecraft/tags/items/trimmable_armor.json
+c3c96a05ef29cb35b3451beb8ffb7ddfdaa7cee1 data/minecraft/tags/items/trimmable_armor.json

@@ -12,8 +12,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
@@ -45,6 +47,11 @@ public class UniqueStandardGaunlet extends ECGauntletItem{
             atts.put(Attributes.ATTACK_SPEED, new AttributeModifier("Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
         }
         return atts;
+    }
+
+    @Override
+    public Supplier<ICurioRenderer> getGauntletRenderer() {
+        return super.getGauntletRenderer();
     }
 
     @Override

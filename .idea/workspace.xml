@@ -5,54 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_amethyst_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_copper_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_diamond_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_emerald_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gold_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_iron_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_lapis_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_netherite_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_quartz_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_redstone_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/UniqueStandardGaunlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/gauntlet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/gauntlet.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/bronze.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/diamond.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/enderite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/gold.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/iron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/iron.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/lead.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/leather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/leather_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/leather_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/netherite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/netherite.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/rabbit_leather.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/rabbit_leather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/silver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/entity/gauntlet/steel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/arctic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/bronze.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/enderite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/fiery.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/fiery.png.mcmeta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/ironwood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/knight_metal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/lead.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/naga_scale.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/silver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/steel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/steeleaf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/yeti.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/UniqueStandardGaunlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/UniqueStandardGaunlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/gauntlet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/gauntlet.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -678,7 +640,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -711,7 +673,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added gauntlet dispense behavior but doesn't seem to work for mobs" />
     <MESSAGE value="added Ground slam Enchantment for great hammers, Broad swords, and Claymores" />
     <MESSAGE value="change weapon render method to forges model by view type" />
     <MESSAGE value="blend files for player animation integration" />
@@ -736,7 +697,8 @@
     <MESSAGE value="refactored gauntlet attributes to include the added without weapon dmg attribute" />
     <MESSAGE value="event for causing dmg without a weapon in hand now uses attribute instead of calculation and no longer relies on gauntlets to function." />
     <MESSAGE value="added event for causing cold, heat, and void dmg from respective attributes" />
-    <option name="LAST_COMMIT_MESSAGE" value="added event for causing cold, heat, and void dmg from respective attributes" />
+    <MESSAGE value="created unique gauntlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="created unique gauntlet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
