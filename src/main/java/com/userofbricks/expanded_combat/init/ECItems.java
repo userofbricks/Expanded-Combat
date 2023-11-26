@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.init;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.api.material.Material;
@@ -15,6 +16,7 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
+import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -44,6 +47,7 @@ import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder.GENERATED_TRIM_MODELS;
 import static com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder.getItemBaseModel;
 
 public class ECItems
@@ -112,6 +116,22 @@ public class ECItems
                         .predicate(new ResourceLocation("stage"), 1f)
                         .model(stage5Builder)
                         .end();
+            })
+            .register();
+    public static final RegistryEntry<UniqueStandardGaunlet> GAUNTLET = REGISTRATE.get().item("gauntlet", UniqueStandardGaunlet::new)
+            .model((ctx, prov) -> {
+                ResourceLocation main_texture = new ResourceLocation(REGISTRATE.get().getModid(), "item/gauntlet/gauntlet");
+                ItemModelBuilder mainModel = prov.generated(ctx, main_texture);
+
+                for (GauntletItemBuilder.TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
+                    ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name(VanillaECPlugin.LEATHER));
+
+                    ItemModelBuilder trimModel = prov.getBuilder(prov.name(ctx) + "_" + trimModelData.name(VanillaECPlugin.LEATHER) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
+                    trimModel.texture("layer0", main_texture);
+                    trimModel.texture("layer1", trim_texture);
+                    mainModel.override().predicate(ItemModelGenerators.TRIM_TYPE_PREDICATE_ID, trimModelData.itemModelIndex())
+                            .model(trimModel);
+                }
             })
             .register();
 

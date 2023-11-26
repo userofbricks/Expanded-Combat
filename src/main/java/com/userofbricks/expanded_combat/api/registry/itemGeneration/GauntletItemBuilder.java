@@ -24,6 +24,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -109,8 +110,11 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
     }
 
     public record TrimModelData(String name, float itemModelIndex, Map<String, String> overrideMaterials) {
-        public String name(Material p_268105_) {
-            return this.overrideMaterials.getOrDefault(p_268105_.getName(), this.name);
+        public String name(@Nullable Material p_268105_) {
+            if (p_268105_ != null) {
+                return this.overrideMaterials.getOrDefault(p_268105_.getName(), this.name);
+            }
+            return this.name;
         }
     }
 }

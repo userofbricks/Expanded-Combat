@@ -1,7 +1,7 @@
-// 1.20.1	2023-11-23T12:54:08.869446	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-11-25T19:26:56.850709	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
-d26610cc6af87f2912466006ba5def970af4f7ca assets/expanded_combat/lang/en_ud.json
-098e14ba2e1f11773679fe7a02252537b970f969 assets/expanded_combat/lang/en_us.json
+f73cf8763a712a18477cadd180d788b6d59fa6b9 assets/expanded_combat/lang/en_ud.json
+c8bf4e5a3af791b3d7fa30cfe345cbe678a90657 assets/expanded_combat/lang/en_us.json
 12853864a79548a62425238cd60c04204f93aae8 assets/expanded_combat/models/item/acacia_plank_battle_staff.json
 4e3a1e52cb5f621d1b23e62b8c495e6828fe1fad assets/expanded_combat/models/item/acacia_plank_broad_sword.json
 14d7e6641e5b1b954b68647891af85ceb54b7226 assets/expanded_combat/models/item/acacia_plank_claymore.json
@@ -317,6 +317,17 @@ ea0a848b224d9deb828fed1c6553aeaa57a08cdb assets/expanded_combat/models/item/diam
 6ec2a92f502e026112a973744a36f9d9a1cbd765 assets/expanded_combat/models/item/diamond_spear.json
 4322e6eb23416cf46b2559bbb20834ff9cb6841b assets/expanded_combat/models/item/fletched_sticks.json
 5b42439d297c8703e60023ba22068c27b77360b6 assets/expanded_combat/models/item/gas_bottle.json
+a2d27b985ed3c8e6a74312e8d0867cfe7e87d7a4 assets/expanded_combat/models/item/gauntlet.json
+10d07caf61bd71721763e5e473fe122a8c73830d assets/expanded_combat/models/item/gauntlet_amethyst_trim.json
+216f84d77064a96e274a6fcb0511443e1cf93c7d assets/expanded_combat/models/item/gauntlet_copper_trim.json
+a42bd69a551da6530204713d836c4d763fd4cfea assets/expanded_combat/models/item/gauntlet_diamond_trim.json
+94b4b47c5584e0d4db79daa06e554bea7681fa49 assets/expanded_combat/models/item/gauntlet_emerald_trim.json
+7ed27f6880ef97e4c4e552fd505d88dd6fa4bc76 assets/expanded_combat/models/item/gauntlet_gold_trim.json
+3b8bb109c3d309deefdd527a9c92e66c11dc5ce0 assets/expanded_combat/models/item/gauntlet_iron_trim.json
+b016a64c7425d1ac22d16a75a21c5aa9db854928 assets/expanded_combat/models/item/gauntlet_lapis_trim.json
+a0f2e35e76f64d420b8ca7ced190537d3691ad57 assets/expanded_combat/models/item/gauntlet_netherite_trim.json
+acccdb72b074361291b741b91318601a5a4f2c7d assets/expanded_combat/models/item/gauntlet_quartz_trim.json
+2d14496dbb61240378a535e803e9cf1dee18ff2e assets/expanded_combat/models/item/gauntlet_redstone_trim.json
 fec205f8424a92186ab4f3ad13aa2224d60881a0 assets/expanded_combat/models/item/gold_battle_staff.json
 f499329994500050150d32d413f88fdba1a3b53b assets/expanded_combat/models/item/gold_bow.json
 b8a611e5ad80026a45ff5cb1cd8d2d71df975966 assets/expanded_combat/models/item/gold_bow_pulling_0.json

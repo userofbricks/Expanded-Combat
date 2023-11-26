@@ -72,6 +72,7 @@ public class ExpandedCombat {
         bus.addListener(this::clientSetup);
         MaterialInit.loadClass();
         ECParticles.PARTICLE_OPTIONS.register(bus);
+        ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.loadClass();
         ECBlocks.register();
         ECItems.loadClass();

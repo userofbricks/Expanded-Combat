@@ -54,10 +54,10 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
     private final Material material;
-    private static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
-    private static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
-    private static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
-    private static final UUID KNOCKBACK_UUID = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
+    protected static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
+    protected static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
+    protected static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
+    protected static final UUID KNOCKBACK_UUID = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
         protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack itemStack) {
@@ -93,7 +93,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         super(properties);
         this.material = materialIn;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
-        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/gauntlet/" + materialIn.getLocationName().getPath() + ".png");
+        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/model/gauntlet/" + materialIn.getLocationName().getPath() + ".png");
     }
     
     public Material getMaterial() {

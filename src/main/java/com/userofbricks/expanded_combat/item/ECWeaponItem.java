@@ -41,7 +41,7 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
             @Override public int getUses() {return (int) (material.getConfig().durability.toolDurability * weapon.config().durabilityMultiplier);}
             @Override public float getSpeed() {return 0;} //means nothing to weapons
             @Override public float getAttackDamageBonus() {return (float) material.getConfig().offense.addedAttackDamage;}
-            @Override public int getLevel() {return 0;} //means nothing to weapons TODO: might want to add this though seems as though other mods use this value for sorting and such
+            @Override public int getLevel() {return 0;} //means nothing to weapons
             @Override public int getEnchantmentValue() {return material.getConfig().enchanting.offenseEnchantability;}
             @Override public @NotNull Ingredient getRepairIngredient() {return IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);}
         }, 3 + weapon.config().baseAttackDamage + addedDmg, weapon.config().attackSpeed, properties);
