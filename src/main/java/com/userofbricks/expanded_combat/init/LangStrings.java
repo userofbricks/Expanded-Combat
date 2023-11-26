@@ -21,10 +21,6 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 public class LangStrings {
     public static final String GOLD_MENDING_TOOLTIP = "tooltip.expanded_combat.mending_bonus";
-    public static final String WHEN_HANDS_EMPTY = "tooltip.expanded_combat.when_both_hands_empty";
-    public static final String FIERY_WEAPON_TOOLTIP = "tooltip.expanded_combat.fiery.weapon";
-    public static final String KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_armored";
-    public static final String KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP = "tooltip.expanded_combat.knightly.weapon_unarmored";
     public static final String FLETCHING_TABLE_SCREEN_TITLE = "container.expanded_combat.fletching";
     //Shield lang
     public static final String UPPER_LEFT_MATERIAL = "tooltip.expanded_combat.shield_material.upper_left";
@@ -52,6 +48,10 @@ public class LangStrings {
     private static final List<Pair<String, String>> autoGeneratePairList = new ArrayList<>();
 
     public static void registerLang() {
+        createAttributeDescriptionLang("dmg_no_weapon", "Added Weaponless Damage");
+        createAttributeDescriptionLang("heat_dmg", "Heat Damage");
+        createAttributeDescriptionLang("cold_dmg", "Cold Damage");
+        createAttributeDescriptionLang("void_dmg", "Void Damage");
         //Advancements
         for (Pair<String, String> stringPair: autoGeneratePairList){
             REGISTRATE.get().addRawLang(stringPair.getLeft(), stringPair.getRight());
@@ -87,10 +87,6 @@ public class LangStrings {
                 .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(REGISTRATE.get(), field, configLangStart, alreadyAddedStrings)));
 
         REGISTRATE.get().addRawLang(GOLD_MENDING_TOOLTIP, "Mending Bonus");
-        REGISTRATE.get().addRawLang(WHEN_HANDS_EMPTY, "When Not Holding Weapon");
-        REGISTRATE.get().addRawLang(FIERY_WEAPON_TOOLTIP, "Burns targets");
-        REGISTRATE.get().addRawLang(KNIGHTMETAL_ARMORED_WEAPON_TOOLTIP, "Extra damage to armored targets");
-        REGISTRATE.get().addRawLang(KNIGHTMETAL_UNARMORED_WEAPON_TOOLTIP, "Extra damage to unarmored targets");
         REGISTRATE.get().addRawLang(FLETCHING_TABLE_SCREEN_TITLE, "Fletching Table");
         REGISTRATE.get().addRawLang(CONSUMES_CURSES_LANG, "Consumes Curses");
         REGISTRATE.get().addRawLang(EDIBLE, "Smells Delectable");
@@ -175,6 +171,16 @@ public class LangStrings {
 
     public static String createCommandLang(String command, boolean pass, String identifier, String englishLang) {
         String lang = "commands." + command + "." + (pass ? "success" : "failed") + "." + identifier;
+        autoGeneratePairList.add(new Pair<>() {
+            @Override public String getLeft() {return lang;}
+            @Override public String getRight() {return englishLang;}
+            @Override public String setValue(String value) {return null;}
+        });
+        return lang;
+    }
+
+    public static String createAttributeDescriptionLang(String command, String englishLang) {
+        String lang = "attribute.expanded_combat." + command + ".desc";
         autoGeneratePairList.add(new Pair<>() {
             @Override public String getLeft() {return lang;}
             @Override public String getRight() {return englishLang;}

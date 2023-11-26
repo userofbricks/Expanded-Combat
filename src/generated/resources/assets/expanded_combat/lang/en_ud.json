@@ -20,6 +20,10 @@
   "arrow.expanded_combat.effect.water": "ɹǝʇɐM ɟo ",
   "arrow.expanded_combat.effect.water_breathing": "buıɥʇɐǝɹᗺ ɹǝʇɐM ɟo ",
   "arrow.expanded_combat.effect.weakness": "ssǝuʞɐǝM ɟo ",
+  "attribute.expanded_combat.cold_dmg.desc": "ǝbɐɯɐᗡ pןoƆ",
+  "attribute.expanded_combat.dmg_no_weapon.desc": "ǝbɐɯɐᗡ ssǝןuodɐǝM pǝppⱯ",
+  "attribute.expanded_combat.heat_dmg.desc": "ǝbɐɯɐᗡ ʇɐǝH",
+  "attribute.expanded_combat.void_dmg.desc": "ǝbɐɯɐᗡ pıoΛ",
   "block.expanded_combat.gas": "sɐ⅁",
   "block.expanded_combat.heartstealer_display": "ʎɐןdsıᗡ ɹǝןɐǝʇsʇɹɐǝH",
   "block.expanded_combat.purified_gas": "sɐ⅁ pǝıɟıɹnԀ",
@@ -1289,10 +1293,7 @@
   "text.autoconfig.expanded_combat.title": "sbuıʇʇǝS ʇɐqɯoƆ pǝpuɐdxƎ",
   "tooltip.expanded_combat.consumes_curses": "sǝsɹnƆ sǝɯnsuoƆ",
   "tooltip.expanded_combat.edible": "ǝןqɐʇɔǝןǝᗡ sןןǝɯS",
-  "tooltip.expanded_combat.fiery.weapon": "sʇǝbɹɐʇ suɹnᗺ",
   "tooltip.expanded_combat.found_at_height_limit": "ʇıɯıן ʇɥbıǝɥ pןɹoʍ ʇɐ punoɟ ǝq uɐɔ ʞɔoןᗺ",
-  "tooltip.expanded_combat.knightly.weapon_armored": "sʇǝbɹɐʇ pǝɹoɯɹɐ oʇ ǝbɐɯɐp ɐɹʇxƎ",
-  "tooltip.expanded_combat.knightly.weapon_unarmored": "sʇǝbɹɐʇ pǝɹoɯɹɐun oʇ ǝbɐɯɐp ɐɹʇxƎ",
   "tooltip.expanded_combat.mending_bonus": "snuoᗺ buıpuǝW",
   "tooltip.expanded_combat.shield_material.Acacia Plank": "ʞuɐןԀ ɐıɔɐɔⱯ",
   "tooltip.expanded_combat.shield_material.Bamboo Plank": "ʞuɐןԀ ooqɯɐᗺ",
@@ -1315,6 +1316,5 @@
   "tooltip.expanded_combat.shield_material.lower_right": " :ʇɥbıᴚ ɹǝʍoꞀ",
   "tooltip.expanded_combat.shield_material.pegs_trim": " :ɯıɹ⟘ & sbǝԀ",
   "tooltip.expanded_combat.shield_material.upper_left": " :ʇɟǝꞀ ɹǝdd∩",
-  "tooltip.expanded_combat.shield_material.upper_right": " :ʇɥbıᴚ ɹǝdd∩",
-  "tooltip.expanded_combat.when_both_hands_empty": "uodɐǝM buıpןoH ʇoN uǝɥM"
+  "tooltip.expanded_combat.shield_material.upper_right": " :ʇɥbıᴚ ɹǝdd∩"
 }

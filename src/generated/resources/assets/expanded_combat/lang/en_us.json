@@ -20,6 +20,10 @@
   "arrow.expanded_combat.effect.water": " of Water",
   "arrow.expanded_combat.effect.water_breathing": " of Water Breathing",
   "arrow.expanded_combat.effect.weakness": " of Weakness",
+  "attribute.expanded_combat.cold_dmg.desc": "Cold Damage",
+  "attribute.expanded_combat.dmg_no_weapon.desc": "Added Weaponless Damage",
+  "attribute.expanded_combat.heat_dmg.desc": "Heat Damage",
+  "attribute.expanded_combat.void_dmg.desc": "Void Damage",
   "block.expanded_combat.gas": "Gas",
   "block.expanded_combat.heartstealer_display": "Heartstealer Display",
   "block.expanded_combat.purified_gas": "Purified Gas",
@@ -1289,10 +1293,7 @@
   "text.autoconfig.expanded_combat.title": "Expanded Combat Settings",
   "tooltip.expanded_combat.consumes_curses": "Consumes Curses",
   "tooltip.expanded_combat.edible": "Smells Delectable",
-  "tooltip.expanded_combat.fiery.weapon": "Burns targets",
   "tooltip.expanded_combat.found_at_height_limit": "Block can be found at world height limit",
-  "tooltip.expanded_combat.knightly.weapon_armored": "Extra damage to armored targets",
-  "tooltip.expanded_combat.knightly.weapon_unarmored": "Extra damage to unarmored targets",
   "tooltip.expanded_combat.mending_bonus": "Mending Bonus",
   "tooltip.expanded_combat.shield_material.Acacia Plank": "Acacia Plank",
   "tooltip.expanded_combat.shield_material.Bamboo Plank": "Bamboo Plank",
@@ -1315,6 +1316,5 @@
   "tooltip.expanded_combat.shield_material.lower_right": "Lower Right: ",
   "tooltip.expanded_combat.shield_material.pegs_trim": "Pegs & Trim: ",
   "tooltip.expanded_combat.shield_material.upper_left": "Upper Left: ",
-  "tooltip.expanded_combat.shield_material.upper_right": "Upper Right: ",
-  "tooltip.expanded_combat.when_both_hands_empty": "When Not Holding Weapon"
+  "tooltip.expanded_combat.shield_material.upper_right": "Upper Right: "
 }
