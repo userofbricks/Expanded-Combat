@@ -57,7 +57,7 @@ public class ECShieldDecorationRecipeMaker {
 
         ItemStack output = createOutput(banner, shieldStack.copy());
 
-        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.getLocationName());
+        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.getLocationName().getNamespace() + "_" + shieldMaterial.getLocationName().getPath());
         return new ShapelessRecipe(id, "jei.ec_shield.decoration", CraftingBookCategory.MISC, output, inputs);
     }
 
