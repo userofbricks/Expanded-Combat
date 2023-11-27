@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import static com.userofbricks.expanded_combat.init.ECAttributes.*;
 
-@Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GeneralModEventBusEvents {
     @SubscribeEvent
     public static void existingEntityAttributes(EntityAttributeModificationEvent event) {
@@ -40,18 +40,18 @@ public class GeneralModEventBusEvents {
                 EntityType.ZOMBIFIED_PIGLIN,
                 EntityType.PLAYER
         )) {
-            //if (!event.has(entityType, GAUNTLET_DMG_WITHOUT_WEAPON.get())) {
+            if (!event.has(entityType, GAUNTLET_DMG_WITHOUT_WEAPON.get())) {
                 event.add(entityType, GAUNTLET_DMG_WITHOUT_WEAPON.get());
-            //}
-            //if (!event.has(entityType, HEAT_DMG.get())) {
+            }
+            if (!event.has(entityType, HEAT_DMG.get())) {
                 event.add(entityType, HEAT_DMG.get());
-            //}
-            //if (!event.has(entityType, COLD_DMG.get())) {
+            }
+            if (!event.has(entityType, COLD_DMG.get())) {
                 event.add(entityType, COLD_DMG.get());
-            //}
-            //if (!event.has(entityType, VOID_DMG.get())) {
+            }
+            if (!event.has(entityType, VOID_DMG.get())) {
                 event.add(entityType, VOID_DMG.get());
-            //}
+            }
         }
     }
 }

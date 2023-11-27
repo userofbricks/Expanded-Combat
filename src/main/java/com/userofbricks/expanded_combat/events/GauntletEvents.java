@@ -33,36 +33,6 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
 {
-    @SubscribeEvent
-    public static void weaponlessDmg(LivingAttackEvent ev) {
-        Entity entity = ev.getSource().getEntity();
-        if (!(entity instanceof Player causingEntity)) return;
-        Entity directEntity = ev.getSource().getDirectEntity();
-        if (entity != directEntity) return;
-
-        boolean hasWeaponInHand = false;
-        Multimap<Attribute, AttributeModifier> mainHandAttributes = causingEntity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
-        Multimap<Attribute, AttributeModifier> offHandAttributes = causingEntity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
-
-        if (mainHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
-            for (AttributeModifier modifier :
-                    mainHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                if (modifier.getAmount() > 1) hasWeaponInHand = true;
-            }
-        }
-        if (offHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
-            for (AttributeModifier modifier :
-                    offHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                if (modifier.getAmount() > 1) hasWeaponInHand = true;
-            }
-        }
-
-
-        if (!hasWeaponInHand) {
-            ev.getEntity().hurt(ev.getSource(), (float) causingEntity.getAttributeValue(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get()));
-        }
-    }
-
     public static void DamageGauntletEvent(AttackEntityEvent event) {
         Player player = event.getEntity();
         if (player.isCreative()) return;
