@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import static com.userofbricks.expanded_combat.init.ECAttributes.*;
 
-//@Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GeneralModEventBusEvents {
     @SubscribeEvent
     public static void existingEntityAttributes(EntityAttributeModificationEvent event) {
