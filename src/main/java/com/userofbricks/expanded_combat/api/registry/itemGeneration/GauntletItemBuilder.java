@@ -2,7 +2,10 @@ package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -32,6 +35,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 
 public class GauntletItemBuilder extends MaterialItemBuilder {
     public static final List<TrimModelData> GENERATED_TRIM_MODELS = List.of(
@@ -107,6 +111,21 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
             itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
         }
         return itemBuilder.register();
+    }
+
+    public static void generateGauntletModel(String registryName, Material closesedMaterial, DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov) {
+        ResourceLocation main_texture = new ResourceLocation(REGISTRATE.get().getModid(), "item/gauntlet/"+registryName);
+        ItemModelBuilder mainModel = prov.generated(ctx, main_texture);
+
+        for (GauntletItemBuilder.TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
+            ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name(closesedMaterial));
+
+            ItemModelBuilder trimModel = prov.getBuilder(prov.name(ctx) + "_" + trimModelData.name(closesedMaterial) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
+            trimModel.texture("layer0", main_texture);
+            trimModel.texture("layer1", trim_texture);
+            mainModel.override().predicate(ItemModelGenerators.TRIM_TYPE_PREDICATE_ID, trimModelData.itemModelIndex())
+                    .model(trimModel);
+        }
     }
 
     public record TrimModelData(String name, float itemModelIndex, Map<String, String> overrideMaterials) {

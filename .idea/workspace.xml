@@ -5,11 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_amethyst_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_copper_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_diamond_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_emerald_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gold_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_iron_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_lapis_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_netherite_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_quartz_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_redstone_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/model/MaulersModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/MaulersRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralForgeEventBusEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/Mawlers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench/maulers.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/maulers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/gauntlet/maulers.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/HeartsealerEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/HeartStealerItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/HeartStealerItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SolidPureFoodItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SolidPureFoodItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/network/ECVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECLayerDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECLayerDefinitions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,18 +164,19 @@
       <recent name="com.userofbricks.expandedCombatMelee.values" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.events" />
       <recent name="com.userofbricks.expanded_combat.api.material" />
       <recent name="com.userofbricks.expanded_combat.config" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.userofbricks.expanded_combat.client.renderer" />
       <recent name="com.userofbricks.expanded_combat.client.sprites" />
       <recent name="com.userofbricks.expanded_combat.block" />
       <recent name="com.userofbricks.expanded_combat.item" />
       <recent name="com.userofbricks.expanded_combat.datagen" />
-      <recent name="com.userofbricks.expanded_combat.enchentments" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runData">
+  <component name="RunManager" selected="Application.runClient">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -635,7 +661,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +694,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="blend files for player animation integration" />
     <MESSAGE value="new katana arrow blocking anims" />
     <MESSAGE value="added enchantment stuff to Config" />
     <MESSAGE value="moved katana block to attack event and played with its sound" />
@@ -693,7 +718,8 @@
     <MESSAGE value="created unique gauntlet" />
     <MESSAGE value="changed gauntlet renderer registry to pull from ECItems instead of just materialInit.gauntletMaterials as some gauntlets don't show up there" />
     <MESSAGE value="cleaned up LangStrings" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up LangStrings" />
+    <MESSAGE value="changed heart stealer system to use stolen hearts as stolen health and added health as the purified stolen health that is gained through eating solidified Purity" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed heart stealer system to use stolen hearts as stolen health and added health as the purified stolen health that is gained through eating solidified Purity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

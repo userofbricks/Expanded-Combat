@@ -1,8 +1,11 @@
 package com.userofbricks.expanded_combat.init;
 
+import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.ProviderType;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
@@ -120,20 +123,12 @@ public class ECItems
             .register();
     public static final RegistryEntry<UniqueStandardGaunlet> GAUNTLET = REGISTRATE.get().item("gauntlet", UniqueStandardGaunlet::new)
             .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
-            .model((ctx, prov) -> {
-                ResourceLocation main_texture = new ResourceLocation(REGISTRATE.get().getModid(), "item/gauntlet/gauntlet");
-                ItemModelBuilder mainModel = prov.generated(ctx, main_texture);
+            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
+            .register();
 
-                for (GauntletItemBuilder.TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
-                    ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name(VanillaECPlugin.LEATHER));
-
-                    ItemModelBuilder trimModel = prov.getBuilder(prov.name(ctx) + "_" + trimModelData.name(VanillaECPlugin.LEATHER) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
-                    trimModel.texture("layer0", main_texture);
-                    trimModel.texture("layer1", trim_texture);
-                    mainModel.override().predicate(ItemModelGenerators.TRIM_TYPE_PREDICATE_ID, trimModelData.itemModelIndex())
-                            .model(trimModel);
-                }
-            })
+    public static final RegistryEntry<Mawlers> MAULERS = REGISTRATE.get().item("maulers", Mawlers::new)
+            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
+            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("maulers", VanillaECPlugin.LEATHER, ctx, prov))
             .register();
 
     public static void loadClass() {
@@ -149,6 +144,7 @@ public class ECItems
         ITEMS.add(SHIELD_TIER_4);
         ITEMS.add(HEARTSTEALER);
         ITEMS.add(GAUNTLET);
+        ITEMS.add(MAULERS);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
             if (material.getTippedArrowEntry() != null) ITEMS.add(material.getTippedArrowEntry());

@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.client.renderer.MaulersRenderer;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import net.minecraft.world.entity.Entity;
@@ -35,7 +36,7 @@ public class GauntletEvents
     @SubscribeEvent
     public static void weaponlessDmg(LivingAttackEvent ev) {
         Entity entity = ev.getSource().getEntity();
-        if (!(entity instanceof LivingEntity causingEntity)) return;
+        if (!(entity instanceof Player causingEntity)) return;
         Entity directEntity = ev.getSource().getDirectEntity();
         if (entity != directEntity) return;
 
@@ -93,6 +94,11 @@ public class GauntletEvents
                 GauntletRenderer renderer = GauntletRenderer.getGloveRenderer(stack);
                 if (renderer != null) {
                     renderer.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
+                }
+
+                MaulersRenderer maulers = MaulersRenderer.getGloveRenderer(stack);
+                if (maulers != null) {
+                    maulers.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
                 }
             }
         });
