@@ -4,7 +4,10 @@ import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.MaulersRenderer;
 import com.userofbricks.expanded_combat.init.ECAttributes;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,6 +32,7 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
@@ -43,6 +47,20 @@ public class GauntletEvents
             SlotContext slotContext = slotResult.slotContext();
             if (stack.getItem() instanceof ECGauntletItem) {
                 stack.hurtAndBreak(1, (LivingEntity) player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(slotContext));
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void moreDamageSources(LivingAttackEvent ev) {
+        LivingEntity target = ev.getEntity();
+        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(target, ECItems.MAULERS.get());
+        if (optionalSlotResult.isPresent()) {
+            SlotResult slotResult = optionalSlotResult.get();
+            int charge = slotResult.stack().getOrCreateTag().getInt("charge");
+            if (charge >= 20) {
+                target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5*20, 2));
+            } else {
+                slotResult.stack().getOrCreateTag().putInt("charge", charge + 1);
             }
         }
     }

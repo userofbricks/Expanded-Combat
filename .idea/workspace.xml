@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralForgeEventBusEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralForgeEventBusEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/Mawlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/Mawlers.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -636,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -669,8 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved katana block to attack event and played with its sound" />
-    <MESSAGE value="2.7.0" />
     <MESSAGE value="first attempt, particle doesn't show and entity doesn't spawn" />
     <MESSAGE value="first Complete version of HeartStealer and associated blocks, items and structure." />
     <MESSAGE value="added some tooltips to help with gas and purification" />
@@ -694,7 +690,9 @@
     <MESSAGE value="changed heart stealer system to use stolen hearts as stolen health and added health as the purified stolen health that is gained through eating solidified Purity" />
     <MESSAGE value="fixed maulers rendering/model issues" />
     <MESSAGE value="adjusted jei ec shield decoration recipe ids to include the namespace of the material" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjusted jei ec shield decoration recipe ids to include the namespace of the material" />
+    <MESSAGE value="fixed infinite event triggering loop with damaging events" />
+    <MESSAGE value="cleaned up attribute event registry" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up attribute event registry" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
