@@ -5,46 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/evil_soul.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/good_soul.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_amethyst_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_copper_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_diamond_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_emerald_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_gold_darker_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_iron_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_lapis_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_netherite_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_quartz_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_redstone_trim.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/misc/good_soul.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_mob.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_mob.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/good_soul.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/AllayItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/blockbench/model.bbmodel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/models/item/allay.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/allay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/entity/attributes/RandedDamageAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ElementalWeapon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/e32e43aa0b3ff6dbc16521d7b6a19c4e5d68fbe4" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/e32e43aa0b3ff6dbc16521d7b6a19c4e5d68fbe4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/minecraft/atlases/blocks.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/minecraft/atlases/blocks.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SoulFist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SoulFist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECWeaponItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -671,7 +636,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -704,7 +669,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="a few visual changes" />
     <MESSAGE value="2.8.0" />
     <MESSAGE value="2.8.1 going to 2.8.2" />
     <MESSAGE value="update to README.md" />
@@ -729,7 +693,8 @@
     <MESSAGE value="finished maulers implementation with 5 seconds of strength 2 every 20 attacks received by the wearer" />
     <MESSAGE value="finished fighter's gauntlet. couldn't get a glowing layer to work but a bright texture works too" />
     <MESSAGE value="soul fist and souls added" />
-    <option name="LAST_COMMIT_MESSAGE" value="soul fist and souls added" />
+    <MESSAGE value="finished implementing allay from souls stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished implementing allay from souls stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

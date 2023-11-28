@@ -125,11 +125,4 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
             return PotionUtils.setPotion(super.getDefaultInstance(), Potions.EMPTY);
         }
     }
-
-    public static class HasPotionAndIsDyeable extends HasPotion implements DyeableLeatherItem
-    {
-        public HasPotionAndIsDyeable(Material material, WeaponMaterial weapon, Item.Properties builderIn) {
-            super(material, weapon, builderIn);
-        }
-    }
 }
