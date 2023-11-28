@@ -1,11 +1,8 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.ProviderType;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
@@ -19,7 +16,6 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
-import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +26,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -50,7 +45,6 @@ import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
-import static com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder.GENERATED_TRIM_MODELS;
 import static com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder.getItemBaseModel;
 
 public class ECItems
@@ -131,6 +125,11 @@ public class ECItems
             .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("maulers", VanillaECPlugin.LEATHER, ctx, prov))
             .register();
 
+    public static final RegistryEntry<FightersBindings> FIGHTERS_GAUNTLET = REGISTRATE.get().item("fighters_gauntlet", FightersBindings::new)
+            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
+            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("fighters_gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
+            .register();
+
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);
@@ -145,6 +144,7 @@ public class ECItems
         ITEMS.add(HEARTSTEALER);
         ITEMS.add(GAUNTLET);
         ITEMS.add(MAULERS);
+        ITEMS.add(FIGHTERS_GAUNTLET);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
             if (material.getTippedArrowEntry() != null) ITEMS.add(material.getTippedArrowEntry());

@@ -55,7 +55,7 @@ public class UniqueStandardGaunlet extends ECGauntletItem{
     }
 
     @Override
-    public ResourceLocation getGAUNTLET_TEXTURE(ItemStack stack) {
+    public ResourceLocation getGauntletTexture(ItemStack stack) {
         return modLoc("textures/model/gauntlet/gauntlet.png");
     }
 }

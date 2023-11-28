@@ -8,13 +8,10 @@ import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
-import com.userofbricks.expanded_combat.init.LangStrings;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
@@ -28,11 +25,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -152,11 +146,17 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public double getAttackDamage() {
         return this.material.getConfig().offense.addedAttackDamage;
     }
-    public ResourceLocation getGAUNTLET_TEXTURE(ItemStack stack) {
+    public ResourceLocation getGauntletTexture(ItemStack stack) {
         return GAUNTLET_TEXTURE;
     }
+    public boolean hasEmissiveTexture(ItemStack stack) {
+        return false;
+    }
+    public ResourceLocation getEmissiveTexture(ItemStack stack) {
+        return new ResourceLocation("null");
+    }
     public Supplier<ICurioRenderer> getGauntletRenderer() {
-        return GauntletRenderer::new;
+        return () -> new GauntletRenderer();
     }
 
     @Override

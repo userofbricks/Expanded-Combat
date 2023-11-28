@@ -1,7 +1,7 @@
-// 1.20.1	2023-11-26T09:48:47.052533	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-11-27T15:38:26.255805	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
-1a6589ad0e89eb9b27b0ee86b6d817ec5be1ee23 assets/expanded_combat/lang/en_ud.json
-346ab1ab5d9715d98397b896c55e830198d71576 assets/expanded_combat/lang/en_us.json
+17eacd783fa24682b841076a6bafbc8613b2c798 assets/expanded_combat/lang/en_ud.json
+c562bd94abefd9ccbfe6e87870ea16675ba4b537 assets/expanded_combat/lang/en_us.json
 12853864a79548a62425238cd60c04204f93aae8 assets/expanded_combat/models/item/acacia_plank_battle_staff.json
 4e3a1e52cb5f621d1b23e62b8c495e6828fe1fad assets/expanded_combat/models/item/acacia_plank_broad_sword.json
 14d7e6641e5b1b954b68647891af85ceb54b7226 assets/expanded_combat/models/item/acacia_plank_claymore.json
@@ -315,6 +315,17 @@ d481f60f711553f982b9045f609921f187aebdd4 assets/expanded_combat/models/item/diam
 ea0a848b224d9deb828fed1c6553aeaa57a08cdb assets/expanded_combat/models/item/diamond_scythe.json
 99586f8d656ae8a8318d54520995217ab05a99d4 assets/expanded_combat/models/item/diamond_sickle.json
 6ec2a92f502e026112a973744a36f9d9a1cbd765 assets/expanded_combat/models/item/diamond_spear.json
+aab20b46b81424ac1e88fb48323799050435d956 assets/expanded_combat/models/item/fighters_gauntlet.json
+2100a08b84c8ad9c4e69332281fb9885d6711d5e assets/expanded_combat/models/item/fighters_gauntlet_amethyst_trim.json
+3612760be8e6e84abe58384f296652aa731c3ab0 assets/expanded_combat/models/item/fighters_gauntlet_copper_trim.json
+657c4de0aa1be71f0149a8b19449a1cd9e3aa626 assets/expanded_combat/models/item/fighters_gauntlet_diamond_trim.json
+dff7652ac23df80c50abac880a35b93b5663f213 assets/expanded_combat/models/item/fighters_gauntlet_emerald_trim.json
+6513e4a2bc7dbc098875053ae3956b498e7f2a2c assets/expanded_combat/models/item/fighters_gauntlet_gold_trim.json
+698076535ff5633447dd4781dce0717bad074c4b assets/expanded_combat/models/item/fighters_gauntlet_iron_trim.json
+73369ffccb86038ba87c49cee46153295bf73671 assets/expanded_combat/models/item/fighters_gauntlet_lapis_trim.json
+aa6c8d0c3bd25c7ab2bf6b19059c3fc4a917f38c assets/expanded_combat/models/item/fighters_gauntlet_netherite_trim.json
+ef19bf77a8ce60113028c646a10a462b86f959e7 assets/expanded_combat/models/item/fighters_gauntlet_quartz_trim.json
+1aa51c991e3a7887f874842000866731c0e31915 assets/expanded_combat/models/item/fighters_gauntlet_redstone_trim.json
 4322e6eb23416cf46b2559bbb20834ff9cb6841b assets/expanded_combat/models/item/fletched_sticks.json
 5b42439d297c8703e60023ba22068c27b77360b6 assets/expanded_combat/models/item/gas_bottle.json
 a2d27b985ed3c8e6a74312e8d0867cfe7e87d7a4 assets/expanded_combat/models/item/gauntlet.json
@@ -784,7 +795,7 @@ dbdbca91f5b7ebae6935c4dcae0ba9a2df161fe1 assets/expanded_combat/models/item/warp
 ddd14edf9de7d5cc9f3127f15165e57e34a59062 assets/expanded_combat/models/item/warped_plank_sickle.json
 dde4f9631e0a9d5ed3c0afa27f37c6464f0dd9be assets/expanded_combat/models/item/warped_plank_spear.json
 d576b7bc2c344f48ca5e3520601d0e00f75fcc9b data/curios/tags/items/arrows.json
-afbddfd42c794b133a3e01be0cbf5dcd9044d070 data/curios/tags/items/hands.json
+29bdb2bf366fe3663d7e986348eb7428ed490336 data/curios/tags/items/hands.json
 b29952dd867ac5fb31737ab43b4d2059d1a7fc0b data/curios/tags/items/quiver.json
 b7c2c65b5a65e27dcd54ed0879fd9700459a0600 data/expanded_combat/advancements/recipes/brewing/purified_gas_bottle_from_gas_bottle_smoking.json
 0934b5796fc0e2152229ad6e5f4e8012acd5866f data/expanded_combat/advancements/recipes/combat/acacia_plank_battle_staff_conditional_shaped.json
@@ -1409,4 +1420,4 @@ a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/spru
 b8f829d76a32bd83bf8b7e1da67f32af411f3570 data/forge/tags/items/tools/swords/stone.json
 a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/warped_plank.json
 a5e510bcf687c6087eee85269957523f2a415e56 data/minecraft/tags/items/arrows.json
-afbddfd42c794b133a3e01be0cbf5dcd9044d070 data/minecraft/tags/items/trimmable_armor.json
+29bdb2bf366fe3663d7e986348eb7428ed490336 data/minecraft/tags/items/trimmable_armor.json

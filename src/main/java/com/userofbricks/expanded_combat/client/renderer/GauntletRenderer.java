@@ -56,7 +56,7 @@ public class GauntletRenderer implements ICurioRenderer{
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
         if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-            GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE(stack);
+            GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -96,7 +96,7 @@ public class GauntletRenderer implements ICurioRenderer{
             modelPart.xRot = 0;
 
             if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-                GAUNTLET_TEXTURE = ecGauntletItem.getGAUNTLET_TEXTURE(stack);
+                GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
 
                 RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
                 VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);

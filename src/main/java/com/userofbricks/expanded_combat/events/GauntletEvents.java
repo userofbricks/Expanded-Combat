@@ -1,11 +1,14 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.MaulersRenderer;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -16,23 +19,29 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderArmEvent;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 
 @Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GauntletEvents
@@ -62,6 +71,34 @@ public class GauntletEvents
             } else {
                 slotResult.stack().getOrCreateTag().putInt("charge", charge + 1);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void pulOutArrow(PlayerInteractEvent.RightClickEmpty event) {
+        Player player = event.getEntity();
+        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, ECItems.FIGHTERS_GAUNTLET.get());
+        if (optionalSlotResult.isPresent() && player.getArrowCount() >= 1) {
+            LazyOptional<ICuriosItemHandler> lazyOptional = CuriosApi.getCuriosHelper().getCuriosHandler(player);
+            Optional<SlotResult> optionalQuiverSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> stack.getItem() instanceof ECQuiverItem);
+            if (lazyOptional.resolve().isPresent() && optionalQuiverSlotResult.isPresent()) {
+                ECQuiverItem quiverItem = (ECQuiverItem) optionalQuiverSlotResult.get().stack().getItem();
+                IDynamicStackHandler arrowStackHandler = lazyOptional.resolve().get().getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+                int slots = arrowStackHandler.getSlots();
+                boolean found = false;
+                for (int s = 0; s < slots; s++) {
+                    ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
+                    if ((currentStack.getItem() == Items.ARROW || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
+                        found = arrowStackHandler.insertItem(s, new ItemStack(Items.ARROW), false).isEmpty();
+                    }
+                }
+                if (!found) {
+                    player.getInventory().placeItemBackInInventory(new ItemStack(Items.ARROW));
+                }
+            } else {
+                player.getInventory().placeItemBackInInventory(new ItemStack(Items.ARROW));
+            }
+            player.setArrowCount(player.getArrowCount() - 1);
         }
     }
 

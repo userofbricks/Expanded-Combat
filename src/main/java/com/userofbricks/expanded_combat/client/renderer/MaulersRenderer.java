@@ -39,6 +39,7 @@ public class MaulersRenderer extends GauntletRenderer{
     private final MaulersModel model;
 
     public MaulersRenderer() {
+        super();
         this.model = new MaulersModel(
                 Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.MAULERS));
     }
