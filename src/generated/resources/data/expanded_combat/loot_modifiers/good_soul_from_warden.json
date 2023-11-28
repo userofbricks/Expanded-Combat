@@ -1,0 +1,15 @@
+{
+  "type": "expanded_combat:add_item_from_gauntlet",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/warden"
+    },
+    {
+      "chance": 0.1,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "gauntlet": "expanded_combat:soul_fist",
+  "loot_item": "expanded_combat:good_soul"
+}

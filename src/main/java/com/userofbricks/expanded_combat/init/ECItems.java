@@ -16,11 +16,15 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagFile;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,8 +48,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 import static com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder.getItemBaseModel;
 
 public class ECItems
@@ -79,9 +82,24 @@ public class ECItems
                     .alwaysEat().nutrition(0).saturationMod(0)
                     .build()))
             .register();
-    public static final RegistryEntry<Item> BAD_SOUL = REGISTRATE.get().item("bad_soul", Item::new).register();
+    public static final RegistryEntry<Item> BAD_SOUL = REGISTRATE.get().item("evil_soul", Item::new).register();
     public static final RegistryEntry<Item> GOOD_SOUL = REGISTRATE.get().item("good_soul", Item::new)
-            .recipe((ctx, prov) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get()).requires(SOLIDIFIED_PURIFICATION.get(), 2))
+            .recipe((ctx, prov) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
+                    .requires(SOLIDIFIED_PURIFICATION.get(), 2)
+                    .unlockedBy("has_items", InventoryChangeTrigger.TriggerInstance.hasItems(BAD_SOUL.get(), SOLIDIFIED_PURIFICATION.get()))
+                    .save(prov))
+            .register();
+    public static final RegistryEntry<AllayItem> ALLAY_ITEM = REGISTRATE.get().item("allay", AllayItem::new)
+            .model((c, p) -> {})
+            .recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                    .pattern("pap")
+                    .pattern("psp")
+                    .pattern("pap")
+                    .define('p', SOLIDIFIED_PURIFICATION.get())
+                    .define('a', Items.AMETHYST_SHARD)
+                    .define('s', GOOD_SOUL.get())
+                    .unlockedBy("has_items", InventoryChangeTrigger.TriggerInstance.hasItems(GOOD_SOUL.get(), SOLIDIFIED_PURIFICATION.get(), Items.AMETHYST_SHARD))
+                    .save(prov))
             .register();
 
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_1 = registerShield("shield_1", false);
@@ -140,6 +158,9 @@ public class ECItems
             .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("soul_fist", VanillaECPlugin.GOLD, ctx, prov))
             .register();
 
+
+    //public static final TagKey<EntityType<?>>
+
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);
@@ -156,6 +177,7 @@ public class ECItems
         ITEMS.add(MAULERS);
         ITEMS.add(FIGHTERS_GAUNTLET);
         ITEMS.add(SOUL_FIST_GAUNTLETS);
+        ITEMS.add(ALLAY_ITEM);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
             if (material.getTippedArrowEntry() != null) ITEMS.add(material.getTippedArrowEntry());
@@ -216,6 +238,10 @@ public class ECItems
                     .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_NUGGET, Items.STICK, Items.FEATHER))
                     .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_shaped2"));
         });
+
+        REGISTRATE.get().addDataGenerator(ProviderType.ENTITY_TAGS, tagProvider -> {
+            //tagProvider.addTag()
+        });
     }
 
     private static RegistryEntry<ECShieldItem> registerShield(String name, boolean fireresistant) {
@@ -245,5 +271,10 @@ public class ECItems
                 }
             });
         }
+    }
+
+    public static TagKey<EntityType<?>> modTag(String name)
+    {
+        return TagKey.create(Registries.ENTITY_TYPE, modLoc(name));
     }
 }

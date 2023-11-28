@@ -16,7 +16,7 @@ import static com.userofbricks.expanded_combat.init.ECAttributes.*;
 public class GeneralModEventBusEvents {
     @SubscribeEvent
     public static void existingEntityAttributes(EntityAttributeModificationEvent event) {
-        for (EntityType<? extends LivingEntity> entityType : Arrays.asList(
+        for (EntityType<? extends LivingEntity> entityType : event.getTypes() /*Arrays.asList(
                 EntityType.ALLAY,
                 EntityType.DROWNED,
                 EntityType.ENDERMAN,
@@ -39,7 +39,7 @@ public class GeneralModEventBusEvents {
                 EntityType.ZOMBIE_VILLAGER,
                 EntityType.ZOMBIFIED_PIGLIN,
                 EntityType.PLAYER
-        )) {
+        )*/) {
             if (!event.has(entityType, GAUNTLET_DMG_WITHOUT_WEAPON.get())) {
                 event.add(entityType, GAUNTLET_DMG_WITHOUT_WEAPON.get());
             }

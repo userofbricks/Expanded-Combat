@@ -32,6 +32,7 @@ public class ECCreativeTabs {
                         output.accept(GAS_BOTTLE.get());
                         output.accept(PURIFIED_GAS_BOTTLE.get());
                         output.accept(SOLIDIFIED_PURIFICATION.get());
+                        output.accept(ALLAY_ITEM.get());
                         if (CONFIG.enableGauntlets) {
                             for (Material material : MaterialInit.gauntletMaterials) {
                                 output.accept(material.getGauntletEntry().get());
@@ -197,6 +198,13 @@ public class ECCreativeTabs {
             event.getEntries().putAfter(new ItemStack(Items.STICK), new ItemStack(LEATHER_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.getEntries().putAfter(new ItemStack(LEATHER_STICK.get()), new ItemStack(GOLD_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.getEntries().putAfter(new ItemStack(GOLD_STICK.get()), new ItemStack(IRON_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(ALLAY_ITEM.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(BAD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GOOD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(SOLIDIFIED_PURIFICATION.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(PURIFIED_GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "expanded_combat:solidified_purification"
+    },
+    {
+      "item": "expanded_combat:solidified_purification"
+    }
+  ],
+  "result": {
+    "item": "expanded_combat:good_soul"
+  }
+}

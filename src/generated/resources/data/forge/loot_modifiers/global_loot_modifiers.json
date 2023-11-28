@@ -1,0 +1,12 @@
+{
+  "entries": [
+    "expanded_combat:bad_soul_from_mob",
+    "expanded_combat:good_soul_from_warden",
+    "expanded_combat:bad_soul_from_elder_guardian",
+    "expanded_combat:bad_soul_from_wither",
+    "expanded_combat:bad_soul_from_warden",
+    "expanded_combat:good_soul_from_wither",
+    "expanded_combat:good_soul_from_mob"
+  ],
+  "replace": false
+}

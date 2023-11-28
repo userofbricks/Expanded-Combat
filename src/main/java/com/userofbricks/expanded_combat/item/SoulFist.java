@@ -13,6 +13,6 @@ public class SoulFist extends ECGauntletItem{
     }
     @Override
     public ResourceLocation getGauntletTexture(ItemStack stack) {
-        return modLoc("textures/model/gauntlet/gauntlet.png");
+        return modLoc("textures/model/gauntlet/soul_fist.png");
     }
 }
