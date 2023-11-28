@@ -18,6 +18,7 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
@@ -75,8 +76,12 @@ public class ECItems
 
     public static final RegistryEntry<SolidPureFoodItem> SOLIDIFIED_PURIFICATION = REGISTRATE.get().item("solidified_purification", SolidPureFoodItem::new)
             .initialProperties(() -> new Item.Properties().food( new FoodProperties.Builder()
-                            .alwaysEat().nutrition(0).saturationMod(0)
+                    .alwaysEat().nutrition(0).saturationMod(0)
                     .build()))
+            .register();
+    public static final RegistryEntry<Item> BAD_SOUL = REGISTRATE.get().item("bad_soul", Item::new).register();
+    public static final RegistryEntry<Item> GOOD_SOUL = REGISTRATE.get().item("good_soul", Item::new)
+            .recipe((ctx, prov) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get()).requires(SOLIDIFIED_PURIFICATION.get(), 2))
             .register();
 
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_1 = registerShield("shield_1", false);
@@ -130,6 +135,11 @@ public class ECItems
             .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("fighters_gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
             .register();
 
+    public static final RegistryEntry<SoulFist> SOUL_FIST_GAUNTLETS = REGISTRATE.get().item("soul_fist", SoulFist::new)
+            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
+            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("soul_fist", VanillaECPlugin.GOLD, ctx, prov))
+            .register();
+
     public static void loadClass() {
         ITEMS.add(LEATHER_STICK);
         ITEMS.add(GOLD_STICK);
@@ -145,6 +155,7 @@ public class ECItems
         ITEMS.add(GAUNTLET);
         ITEMS.add(MAULERS);
         ITEMS.add(FIGHTERS_GAUNTLET);
+        ITEMS.add(SOUL_FIST_GAUNTLETS);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
             if (material.getTippedArrowEntry() != null) ITEMS.add(material.getTippedArrowEntry());

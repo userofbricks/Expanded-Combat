@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.datagen.bettercombat.ECBetterCombatWeaponAttributesProvider;
+import com.userofbricks.expanded_combat.datagen.loot.ECGlobalLootModifiersProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -26,5 +27,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, helper));
 
         generator.addProvider(event.includeClient(), new ECSpriteScourceProvider(output, helper));
+
+        generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output));
     }
 }

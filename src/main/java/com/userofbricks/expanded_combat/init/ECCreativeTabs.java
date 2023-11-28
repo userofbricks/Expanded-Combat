@@ -37,6 +37,9 @@ public class ECCreativeTabs {
                                 output.accept(material.getGauntletEntry().get());
                             }
                             output.accept(GAUNTLET.get());
+                            output.accept(MAULERS.get());
+                            output.accept(FIGHTERS_GAUNTLET.get());
+                            output.accept(SOUL_FIST_GAUNTLETS.get());
                         }
                         if (CONFIG.enableShields) {
                             for (Material material : MaterialInit.shieldMaterials) {
@@ -112,6 +115,9 @@ public class ECCreativeTabs {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             if (CONFIG.enableGauntlets) {
                 items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(MAULERS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(FIGHTERS_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(SOUL_FIST_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 for (Material material : MaterialInit.gauntletMaterials) {
                     if (material == VanillaECPlugin.LEATHER) {
                         items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

@@ -85,6 +85,7 @@ public class ExpandedCombat {
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
         ECEntities.ENTITIES.register(bus);
+        ECLootModifiers.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         bus.addListener(this::comms);
         MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
