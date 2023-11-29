@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "p": {
+      "item": "expanded_combat:solidified_purification"
+    },
+    "s": {
+      "item": "expanded_combat:good_soul"
+    }
+  },
+  "pattern": [
+    "pap",
+    "psp",
+    "pap"
+  ],
+  "result": {
+    "item": "expanded_combat:allay"
+  },
+  "show_notification": true
+}

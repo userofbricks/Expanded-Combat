@@ -11,10 +11,6 @@
       "source": "slot"
     },
     {
-      "type": "minecraft:single",
-      "resource": "expanded_combat:item/allay"
-    },
-    {
       "type": "minecraft:ec_paletted_folder_permutations",
       "palette_key": "minecraft:item/color_palettes/trim_template",
       "permutations": {

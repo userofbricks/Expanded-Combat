@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/spear_wood"
+		"particle": "#layer0",
+		"layer0": "expanded_combat:item_large/spear/diamond"
 	},
 	"gui_light": "front",
 	"display": {
@@ -23,6 +24,21 @@
 		"firstperson_lefthand": {
 			"rotation": [0, 90, 0],
 			"scale": [2, 2, 1]
+		},
+		"ground": {
+			"rotation": [0, 0, -13],
+			"scale": [0.75, 0.75, 0.375]
+		},
+		"gui": {
+			"scale": [1.25, 1.25, 1]
+		},
+		"head": {
+			"rotation": [162, -73, 53],
+			"translation": [0, -33, 0],
+			"scale": [2, 2, 1]
+		},
+		"fixed": {
+			"scale": [1.5, 1.5, 0.75]
 		}
 	}
 }

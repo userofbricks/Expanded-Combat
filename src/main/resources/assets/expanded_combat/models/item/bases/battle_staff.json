@@ -2,30 +2,38 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/battle_staff/dye",
-		"layer1": "expanded_combat:item_large/battle_staff/diamond"
+		"particle": "#layer0",
+		"layer0": "expanded_combat:item_large/battle_staff/diamond"
 	},
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 45],
 			"translation": [0, -1.5, 1],
-			"scale": [1.5, 1.5, 0.68]
+			"scale": [2, 2, 1]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [90, 90, -45],
+			"rotation": [0, 90, -45],
 			"translation": [0, -1.5, 1],
-			"scale": [1.5, 1.5, 0.68]
+			"scale": [2, 2, 1]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 90, 50],
 			"translation": [1, 0, 0],
-			"scale": [1.5, 1.5, 0.68]
+			"scale": [2, 2, 1]
 		},
 		"firstperson_lefthand": {
-			"rotation": [90, 90, -40],
+			"rotation": [0, -90, -50],
 			"translation": [1, 0, 0],
-			"scale": [1.5, 1.5, 0.68]
+			"scale": [2, 2, 1]
+		},
+		"head": {
+			"rotation": [0, -40, 45],
+			"translation": [0, -25.75, 0],
+			"scale": [2, 2, 1]
+		},
+		"fixed": {
+			"scale": [1, 1, 0.5]
 		}
 	}
 }

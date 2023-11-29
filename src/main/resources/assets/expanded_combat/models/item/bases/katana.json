@@ -2,7 +2,8 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/katana_wood"
+		"particle": "#layer0",
+		"layer0": "expanded_combat:item_large/katana/diamond"
 	},
 	"gui_light": "front",
 	"display": {
@@ -26,10 +27,21 @@
 			"translation": [0.75, 3.5, 0],
 			"scale": [1.5, 1.5, 1]
 		},
+		"ground": {
+			"rotation": [0, 0, -13],
+			"scale": [0.75, 0.75, 0.375]
+		},
+		"gui": {
+			"translation": [-0.75, 0.25, 0]
+		},
 		"head": {
 			"rotation": [-11, 0, -115],
 			"translation": [-2.75, -28.5, -2.25],
 			"scale": [2, 2, 1]
+		},
+		"fixed": {
+			"translation": [-1.25, 0, 0],
+			"scale": [1.5, 1.5, 0.75]
 		}
 	}
 }

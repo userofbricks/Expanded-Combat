@@ -2,6 +2,7 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
+		"particle": "#layer0",
 		"layer0": "expanded_combat:item/cutlass_wood"
 	},
 	"gui_light": "front",

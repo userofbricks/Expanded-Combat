@@ -2,7 +2,8 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item/sickle_ironwood"
+		"particle": "#layer0",
+		"layer0": "expanded_combat:item/sickle/diamond"
 	},
 	"gui_light": "front",
 	"display": {
@@ -24,6 +25,10 @@
 		},
 		"ground": {
 			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"rotation": [0, -45, -72],
+			"translation": [-4, -39, -3.5]
 		},
 		"fixed": {
 			"scale": [0.75, 0.75, 0.75]

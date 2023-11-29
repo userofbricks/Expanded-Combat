@@ -15,6 +15,9 @@
     "expanded_combat:iron_scythe",
     "expanded_combat:gold_scythe",
     "expanded_combat:diamond_scythe",
-    "expanded_combat:netherite_scythe"
+    "expanded_combat:netherite_scythe",
+    "expanded_combat:heat_scythe",
+    "expanded_combat:frost_scythe",
+    "expanded_combat:soul_scythe"
   ]
 }

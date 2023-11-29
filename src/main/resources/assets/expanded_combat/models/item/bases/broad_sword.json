@@ -2,8 +2,8 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "expanded_combat:item_large/broad_sword/dye",
-		"layer1": "expanded_combat:item_large/broad_sword/diamond"
+		"particle": "#layer0",
+		"layer0": "expanded_combat:item_large/broad_sword/diamond"
 	},
 	"gui_light": "front",
 	"display": {
@@ -26,6 +26,21 @@
 			"rotation": [90, 90, -45],
 			"translation": [0, 5, 0],
 			"scale": [2, 2, 1]
+		},
+		"ground": {
+			"scale": [0.75, 0.75, 0.375]
+		},
+		"gui": {
+			"translation": [0, -1, 0],
+			"scale": [1.25, 1.25, 1]
+		},
+		"head": {
+			"rotation": [-11, -29, -122],
+			"translation": [-1.75, -22, -2.25],
+			"scale": [2, 2, 1]
+		},
+		"fixed": {
+			"scale": [1.5, 1.5, 0.75]
 		}
 	}
 }
