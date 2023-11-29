@@ -1,11 +1,14 @@
 package com.userofbricks.expanded_combat.api.material;
 
 import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriFunction;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.*;
 import com.userofbricks.expanded_combat.config.MaterialConfig;
@@ -232,42 +235,42 @@ public class MaterialBuilder {
         return shield(Material.ShieldUse.ALL, null);
     }
 
-    public MaterialBuilder greatHammer(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return weapon(VanillaECPlugin.GREAT_HAMMER, craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties), generateRecipes, null);
+    public MaterialBuilder greatHammer(@Nullable Material craftedFrom) {
+        return weaponBuilder(VanillaECPlugin.GREAT_HAMMER, craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties)).build();
     }
 
-    public MaterialBuilder katana(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return weapon(VanillaECPlugin.KATANA, craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties), generateRecipes, null);
+    public MaterialBuilder katana(@Nullable Material craftedFrom) {
+        return weaponBuilder(VanillaECPlugin.KATANA, craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties)).build();
     }
 
-    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, boolean generateRecipes) {
+    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (!weaponMaterial.isBlockWeapon()) continue;
-            if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, generateRecipes);
-            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes, null);
-            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes, null);
-            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes, null);
+            if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom);
+            else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new).build();
+            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new).build();
+            else weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem::new).build();
 
         }
         return this;
     }
     public MaterialBuilder weapons() {
-        return weapons(null, true);
+        return weapons(null);
     }
 
-    public MaterialBuilder weapons(@Nullable Material craftedFrom, boolean generateRecipes) {
+    public MaterialBuilder weapons(@Nullable Material craftedFrom) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
-            if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom, generateRecipes);
-            else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, generateRecipes);
-            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes, null);
-            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes, null);
-            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes, null);
+            if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom);
+            else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom);
+            else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new).build();
+            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new).build();
+            else weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem::new).build();
         }
         return this;
     }
 
-    public MaterialBuilder weapon(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean generateRecipes, @Nullable String englishName) {
-        return weapon(weaponMaterial, (material) -> WeaponItemBuilder.generateWeapon(registrate.get(), weaponMaterial, material, craftedFrom, constructor, generateRecipes, englishName));
+    public WeaponItemBuilder weaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+        return new WeaponItemBuilder(this, registrate.get(), weaponMaterial, material, craftedFrom, constructor);
     }
 
     public MaterialBuilder weapon(WeaponMaterial weaponMaterial, NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {

@@ -1,5 +1,11 @@
 package com.userofbricks.expanded_combat.plugins;
 
+import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
+import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
+import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
@@ -7,6 +13,7 @@ import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.api.registry.ECPlugin;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
+import com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.item.ElementalWeapon;
 import com.userofbricks.expanded_combat.item.HeartStealerItem;
@@ -64,38 +71,41 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                         })
                         .register()));
 
+        NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> noRecipes = (a, b, c, d) -> {};
+        NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> noColor = (a, b, c) -> {};
         NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> heatConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.HEAT_DMG);
+        NonNullQuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder = (ctx, prov, m, w) -> WeaponItemBuilder.generateModel(ctx, prov, w, m, "item_large/", "", "", true);
 
         HEAT_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Heat", CONFIG.netherite)
-                .weapon(VanillaECPlugin.KATANA, null, heatConstructor, false, "Sun Master's Katana")
-                .weapon(VanillaECPlugin.MACE, null, heatConstructor, false, "Sun's Firebrand")
-                .weapon(VanillaECPlugin.SCYTHE, null, heatConstructor, false, "Sun's Grace")
-                .weapon(VanillaECPlugin.GLAIVE, null, heatConstructor, false, "Grave Bane"));
+                .weaponBuilder(VanillaECPlugin.KATANA, null, heatConstructor).lang("Sun Master's Katana").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.MACE, null, heatConstructor).lang("Sun's Firebrand").recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.SCYTHE, null, heatConstructor).lang("Sun's Grace").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.GLAIVE, null, heatConstructor).lang("Grave Bane").model(modelBuilder).recipes(noRecipes).colors(noColor).build());
 
 
         NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> coldConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.COLD_DMG);
 
         COLD_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Frost", CONFIG.diamond)
-                .weapon(VanillaECPlugin.DAGGER, null, coldConstructor, false, "Fang Of Frost")
-                .weapon(VanillaECPlugin.SCYTHE, null, coldConstructor, false, null)
-                .weapon(VanillaECPlugin.CLAYMORE, null, coldConstructor, false, "Frost Slayer"));
+                .weaponBuilder(VanillaECPlugin.DAGGER, null, coldConstructor).lang("Fang Of Frost").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.SCYTHE, null, coldConstructor).model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.CLAYMORE, null, coldConstructor).lang("Frost Slayer").model(modelBuilder).recipes(noRecipes).colors(noColor).build());
 
 
         NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> voidConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.VOID_DMG);
 
         VOID_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Void Touched", CONFIG.diamond)
-                .weapon(VanillaECPlugin.CLAYMORE, null, voidConstructor, false, null)
-                .weapon(VanillaECPlugin.DAGGER, null, voidConstructor, false, "Void Touched Blade")
-                .weapon(VanillaECPlugin.CUTLASS, null, voidConstructor, false, "Nameless Blade")
-                .weapon(VanillaECPlugin.GREAT_HAMMER, null, voidConstructor, false, null));
+                .weaponBuilder(VanillaECPlugin.CLAYMORE, null, voidConstructor).model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.DAGGER, null, voidConstructor).lang("Void Touched Blade").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.CUTLASS, null, voidConstructor).lang("Nameless Blade").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.GREAT_HAMMER, null, voidConstructor).recipes(noRecipes).colors(noColor).build());
 
 
         NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> soulConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.SOUL_DMG);
 
         SOUL_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Soul", CONFIG.diamond)
-                .weapon(VanillaECPlugin.KATANA, null, soulConstructor, false, "Dark Katana")
-                .weapon(VanillaECPlugin.DAGGER, null, soulConstructor, false, "Eternal Soul Knife")
-                .weapon(VanillaECPlugin.SCYTHE, null, soulConstructor, false, null));
+                .weaponBuilder(VanillaECPlugin.KATANA, null, soulConstructor).lang("Dark Katana").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.DAGGER, null, soulConstructor).lang("Eternal Soul Knife").model(modelBuilder).recipes(noRecipes).colors(noColor).build()
+                .weaponBuilder(VanillaECPlugin.SCYTHE, null, soulConstructor).model(modelBuilder).recipes(noRecipes).colors(noColor).build());
     }
 
     @Override
