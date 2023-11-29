@@ -52,6 +52,9 @@ public class GeneralModEventBusEvents {
             if (!event.has(entityType, VOID_DMG.get())) {
                 event.add(entityType, VOID_DMG.get());
             }
+            if (!event.has(entityType, SOUL_DMG.get())) {
+                event.add(entityType, SOUL_DMG.get());
+            }
         }
     }
 }

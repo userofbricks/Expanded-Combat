@@ -24,7 +24,7 @@ public interface IExpandedCombatPlugin {
      */
     default void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {}
 
-    default int loadOrder() {return 1;}
+    default int loadOrder() {return 2;}
 
     default boolean addFletchingTableGui() { return true;}
 }

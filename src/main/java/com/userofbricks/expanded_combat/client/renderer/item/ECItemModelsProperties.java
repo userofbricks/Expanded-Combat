@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.client.renderer.item;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
@@ -35,7 +37,7 @@ public class ECItemModelsProperties {
             }
         }
 
-        ItemProperties.register(ECItems.HEARTSTEALER.get(), new ResourceLocation("stage"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+        ItemProperties.register(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get(), new ResourceLocation("stage"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
             int charge = itemStack.getOrCreateTag().getInt(HeartStealerItem.chargeString);
             if (charge >= 490) return 1f;
             if (charge >= 336) return 0.8f;

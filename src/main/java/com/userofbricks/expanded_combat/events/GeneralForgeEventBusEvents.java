@@ -33,6 +33,7 @@ public class GeneralForgeEventBusEvents {
         double coldDmg = causingEntity.getAttributeValue(COLD_DMG.get());
         double heatDmg = causingEntity.getAttributeValue(HEAT_DMG.get());
         double voidDmg = causingEntity.getAttributeValue(VOID_DMG.get());
+        double soulDmg = causingEntity.getAttributeValue(SOUL_DMG.get());
 
         if (noRecurse) return;
         noRecurse = true;
@@ -43,6 +44,8 @@ public class GeneralForgeEventBusEvents {
         if (heatDmg > 0) ev.getEntity().hurt(causingEntity.damageSources().dryOut(), (float) heatDmg);
         ev.getEntity().invulnerableTime = 0;
         if (voidDmg > 0) ev.getEntity().hurt(causingEntity.damageSources().fellOutOfWorld(), (float) voidDmg);
+        ev.getEntity().invulnerableTime = 0;
+        if (soulDmg > 0) ev.getEntity().hurt(causingEntity.damageSources().magic(), (float) soulDmg);
         ev.getEntity().invulnerableTime = 0;
         if (!entityHoldingWeapon(causingEntity)) ev.getEntity().hurt(ev.getSource(), (float) causingEntity.getAttributeValue(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get()));
         ev.getEntity().invulnerableTime = time;

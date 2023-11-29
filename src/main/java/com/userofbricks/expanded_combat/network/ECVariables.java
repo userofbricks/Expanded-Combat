@@ -1,6 +1,8 @@
 package com.userofbricks.expanded_combat.network;
 
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -206,7 +208,7 @@ public class ECVariables {
         public int katanaTimeSinceBlock = 0;
         public int stolenHealth = 0;
         public int addedHealth = 0;
-        public ItemStack playersHeartStealer = new ItemStack(ECItems.HEARTSTEALER.get());
+        public ItemStack playersHeartStealer = new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get());
 
         public void syncPlayerVariables(Entity entity) {
             if (entity instanceof ServerPlayer serverPlayer)

@@ -53,7 +53,7 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(MODID, "vanilla");
+        return modLoc("vanilla");
     }
 
     @Override

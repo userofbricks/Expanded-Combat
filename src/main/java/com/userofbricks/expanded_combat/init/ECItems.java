@@ -107,37 +107,6 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
-    public static final RegistryEntry<HeartStealerItem> HEARTSTEALER = REGISTRATE.get().item("heartstealer", HeartStealerItem::new)
-            .model((ctx, prov) -> {
-                ItemModelBuilder stage1Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "", "")
-                        .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage1"));
-                ItemModelBuilder stage2Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage2_", "")
-                        .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage2"));
-                ItemModelBuilder stage3Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage3_", "")
-                        .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage3"));
-                ItemModelBuilder stage4Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage4_", "")
-                        .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage4"));
-                ItemModelBuilder stage5Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage5_", "")
-                        .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage5"));
-
-                stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.4f)
-                        .model(stage2Builder)
-                        .end();
-                stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.6f)
-                        .model(stage3Builder)
-                        .end();
-                stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.8f)
-                        .model(stage4Builder)
-                        .end();
-                stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 1f)
-                        .model(stage5Builder)
-                        .end();
-            })
-            .register();
     public static final RegistryEntry<UniqueStandardGaunlet> GAUNTLET = REGISTRATE.get().item("gauntlet", UniqueStandardGaunlet::new)
             .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
             .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
@@ -172,7 +141,6 @@ public class ECItems
         ITEMS.add(SHIELD_TIER_2);
         ITEMS.add(SHIELD_TIER_3);
         ITEMS.add(SHIELD_TIER_4);
-        ITEMS.add(HEARTSTEALER);
         ITEMS.add(GAUNTLET);
         ITEMS.add(MAULERS);
         ITEMS.add(FIGHTERS_GAUNTLET);

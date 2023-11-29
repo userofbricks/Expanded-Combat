@@ -27,18 +27,19 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
 public class WeaponItemBuilder extends MaterialItemBuilder {
-    public static RegistryEntry<? extends Item> generateWeapon(Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean generateRecipes) {
+    public static RegistryEntry<? extends Item> generateWeapon(Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean generateRecipes, @Nullable String englishName) {
         String locationName = material.getLocationName().getPath() + "_" + weapon.getLocationName();
         String name = material.getName();
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(locationName, (p) -> constructor.apply(material, weapon, p));
 
         if (weapon.potionDippable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
 
-        itemBuilder.lang(name + " " + weapon.name());
+        itemBuilder.lang(englishName != null ? englishName : name + " " + weapon.name());
 
         //MODEL
         itemBuilder.model((ctx, prov) -> generateModel(ctx, prov, weapon, material));

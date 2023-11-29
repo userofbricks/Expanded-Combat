@@ -2,6 +2,8 @@ package com.userofbricks.expanded_combat.block;
 
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.network.ECVariables;
+import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -117,7 +119,7 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
             return Collections.emptyList();
         } else {
             ECVariables.WorldVariables.increaseHeartStealerCount(builder.getLevel());
-            return List.of(new ItemStack(ECItems.HEARTSTEALER.get()));
+            return List.of(new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get()));
         }
     }
 

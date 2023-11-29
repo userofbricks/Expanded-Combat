@@ -233,20 +233,20 @@ public class MaterialBuilder {
     }
 
     public MaterialBuilder greatHammer(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return weapon(VanillaECPlugin.GREAT_HAMMER, craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties), generateRecipes);
+        return weapon(VanillaECPlugin.GREAT_HAMMER, craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties), generateRecipes, null);
     }
 
     public MaterialBuilder katana(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return weapon(VanillaECPlugin.KATANA, craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties), generateRecipes);
+        return weapon(VanillaECPlugin.KATANA, craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties), generateRecipes, null);
     }
 
     public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, boolean generateRecipes) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (!weaponMaterial.isBlockWeapon()) continue;
             if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, generateRecipes);
-            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes);
-            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes);
-            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes);
+            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes, null);
+            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes, null);
+            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes, null);
 
         }
         return this;
@@ -259,15 +259,15 @@ public class MaterialBuilder {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom, generateRecipes);
             else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, generateRecipes);
-            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes);
-            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes);
-            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes);
+            else if (weaponMaterial.dyeable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new, generateRecipes, null);
+            else if (weaponMaterial.potionDippable()) weapon(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new, generateRecipes, null);
+            else weapon(weaponMaterial, craftedFrom, ECWeaponItem::new, generateRecipes, null);
         }
         return this;
     }
 
-    public MaterialBuilder weapon(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean generateRecipes) {
-        return weapon(weaponMaterial, (material) -> WeaponItemBuilder.generateWeapon(registrate.get(), weaponMaterial, material, craftedFrom, constructor, generateRecipes));
+    public MaterialBuilder weapon(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean generateRecipes, @Nullable String englishName) {
+        return weapon(weaponMaterial, (material) -> WeaponItemBuilder.generateWeapon(registrate.get(), weaponMaterial, material, craftedFrom, constructor, generateRecipes, englishName));
     }
 
     public MaterialBuilder weapon(WeaponMaterial weaponMaterial, NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {
