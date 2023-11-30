@@ -186,21 +186,19 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder quiver(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return quiver(craftedFrom, ECQuiverItem::new, generateRecipes);
+    public MaterialBuilder quiver(@Nullable Material craftedFrom, boolean dyeable) {
+        return quiver(craftedFrom, ECQuiverItem::new).build(dyeable);
     }
 
     public MaterialBuilder quiver(@Nullable Material craftedFrom) {
-        return quiver(craftedFrom, ECQuiverItem::new, true);
+        return quiver(craftedFrom, ECQuiverItem::new).build(false);
     }
     public MaterialBuilder quiver() {
-        return quiver(null, ECQuiverItem::new, true);
+        return quiver(null, ECQuiverItem::new).build(false);
     }
 
-    public MaterialBuilder quiver(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor, boolean generateRecipes) {
-        if (!MaterialInit.quiverMaterials.contains(material)) MaterialInit.quiverMaterials.add(material);
-        material.quiverEntry = QuiverItemBuilder.generateQuiver(registrate.get(), material, craftedFrom, constructor, generateRecipes);
-        return this;
+    public QuiverItemBuilder quiver(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
+        return new QuiverItemBuilder(this, registrate.get(), material, craftedFrom, constructor);
     }
 
     public MaterialBuilder quiver(NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {

@@ -91,6 +91,11 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
         return this;
     }
 
+    public GauntletItemBuilder color(NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder) {
+        this.colorBuilder = colorBuilder;
+        return this;
+    }
+
     public MaterialBuilder build(boolean dyeable) {
         itemBuilder.lang(lang);
         modelBuilder.apply(itemBuilder, material, dyeable);

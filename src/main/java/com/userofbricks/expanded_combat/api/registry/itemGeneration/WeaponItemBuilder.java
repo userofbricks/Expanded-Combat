@@ -39,7 +39,7 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
     public final MaterialBuilder materialBuilder;
-    private String lang = "";
+    private String lang;
     private NonNullQuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder;
     private NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, @Nullable Material> recipeBuilder;
     private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder;
