@@ -86,31 +86,23 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder arrow(@Nullable Material craftedFrom, boolean generateRecipes, boolean tipped) {
-        if (tipped) {
-            return arrow(craftedFrom, ECArrowItem::new, ECTippedArrowItem::new, generateRecipes);
-        }
-        return arrow(craftedFrom, ECArrowItem::new, generateRecipes);
-    }
-
     public MaterialBuilder arrow(@Nullable Material craftedFrom, boolean tipped) {
-        return arrow(craftedFrom, true, tipped);
+        if (tipped) {
+            return arrow(craftedFrom, ECArrowItem::new, ECTippedArrowItem::new).build();
+        }
+        return arrow(craftedFrom, ECArrowItem::new);
     }
 
     public MaterialBuilder arrow() {
-        return arrow(null, true, true);
+        return arrow(null, true);
     }
 
-    public MaterialBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor, boolean generateRecipes) {
-        return arrow(craftedFrom, arrowConstructor, null, generateRecipes);
+    public MaterialBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor) {
+        return arrow(craftedFrom, arrowConstructor, null).build();
     }
 
-    public MaterialBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor, @Nullable NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> tippedArrowConstructor, boolean generateRecipes) {
-        if (!MaterialInit.arrowMaterials.contains(material)) MaterialInit.arrowMaterials.add(material);
-        material.arrowEntry = ArrowItemBuilder.generateArrow(registrate.get(), material, craftedFrom, arrowConstructor, generateRecipes);
-        if (material.getConfig().offense.canBeTipped && tippedArrowConstructor != null)
-            material.tippedArrowEntry = ArrowItemBuilder.generateTippedArrow(registrate.get(), material, tippedArrowConstructor);
-        return this;
+    public ArrowItemBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor, @Nullable NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> tippedArrowConstructor) {
+        return new ArrowItemBuilder(this, registrate.get(), material, craftedFrom, arrowConstructor, tippedArrowConstructor);
     }
 
     public MaterialBuilder arrow(NonNullFunction<Material, RegistryEntry<? extends ArrowItem>> arrowEntryFunction) {
