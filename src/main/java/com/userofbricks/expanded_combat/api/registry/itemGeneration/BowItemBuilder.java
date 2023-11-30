@@ -57,7 +57,7 @@ public class BowItemBuilder extends MaterialItemBuilder {
 
     public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> halfConstructor) {
         ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
-        ItemBuilder<? extends BowItem, Registrate> halfItemBuilder = registrate.item("half_" + material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
+        ItemBuilder<? extends BowItem, Registrate> halfItemBuilder = registrate.item("half_" + material.getLocationName().getPath() + "_bow", (p) -> halfConstructor.apply(p, material, craftedFrom));
 
         itemBuilder.properties(properties -> properties.stacksTo(1));
         halfItemBuilder.properties(properties -> properties.stacksTo(1));
@@ -69,11 +69,11 @@ public class BowItemBuilder extends MaterialItemBuilder {
         this.halfItemBuilder = halfItemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Gauntlet";
+        lang = material.getName() + " Bow";
         modelBuilder = (registrateItemBuilder, material1, aBoolean) -> genModel(itemBuilder, material.getLocationName().getPath(), "", aBoolean);
         recipeBuilder = BowItemBuilder::generateRecipes;
         colorBuilder = BowItemBuilder::colors;
-        halfModelBuilder = (registrateItemBuilder, material1, aBoolean) -> genModel(itemBuilder, material.getLocationName().getPath(), "half_", aBoolean);
+        halfModelBuilder = (registrateItemBuilder, material1, aBoolean) -> genModel(halfItemBuilder, material.getLocationName().getPath(), "half_", aBoolean);
         halfRecipeBuilder = BowItemBuilder::generateHalfRecipes;
         halfColorBuilder = BowItemBuilder::colors;
     }
@@ -111,11 +111,11 @@ public class BowItemBuilder extends MaterialItemBuilder {
     public MaterialBuilder build(boolean dyeable) {
         if (halfItemBuilder != null) {
             halfItemBuilder.lang(lang);
-            halfModelBuilder.apply(itemBuilder, material, dyeable);
-            halfRecipeBuilder.apply(itemBuilder, material, craftedFrom);
-            if (dyeable) halfColorBuilder.accept(itemBuilder);
+            halfModelBuilder.apply(halfItemBuilder, material, dyeable);
+            halfRecipeBuilder.apply(halfItemBuilder, material, craftedFrom);
+            if (dyeable) halfColorBuilder.accept(halfItemBuilder);
 
-            materialBuilder.halfbow(m -> itemBuilder.register());
+            materialBuilder.halfbow(m -> halfItemBuilder.register());
         }
 
         itemBuilder.lang(lang);

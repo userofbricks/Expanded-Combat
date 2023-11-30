@@ -87,7 +87,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
             if (tippedBuilder != null)tippedBuilder.lang(lang);
         }
         modelBuilder.accept(itemBuilder, material);
-        if (tippedBuilder != null) tippedModelBuilder.accept(itemBuilder, material);
+        if (tippedBuilder != null) tippedModelBuilder.accept(tippedBuilder, material);
         recipeBuilder.apply(itemBuilder, material, craftedFrom);
 
         materialBuilder.arrow(m -> itemBuilder.register());

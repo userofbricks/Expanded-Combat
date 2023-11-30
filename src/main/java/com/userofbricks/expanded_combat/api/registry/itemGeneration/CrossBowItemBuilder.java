@@ -41,7 +41,7 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Gauntlet";
+        lang = material.getName() + " Crossbow";
         modelBuilder = CrossBowItemBuilder::generateModel;
         recipeBuilder = CrossBowItemBuilder::generateRecipes;
         colorBuilder = CrossBowItemBuilder::colors;

@@ -52,7 +52,7 @@ public class QuiverItemBuilder extends MaterialItemBuilder {
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Gauntlet";
+        lang = material.getName() + " Quiver";
         modelBuilder = QuiverItemBuilder::generateModel;
         recipeBuilder = QuiverItemBuilder::generateRecipes;
         colorBuilder = QuiverItemBuilder::colors;

@@ -1,7 +1,7 @@
-// 1.20.1	2023-11-29T17:51:05.524558	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-11-30T13:35:37.562917	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
-88efbe42595317f0370a1df5de58d0c6a75080fa assets/expanded_combat/lang/en_ud.json
-191f1cff5f63842d3890fad020b57baa5071a9c9 assets/expanded_combat/lang/en_us.json
+be3003101128415c239189865babe105ea268fee assets/expanded_combat/lang/en_ud.json
+ad94ff6b218106d85d93f61306d7890c7868f08a assets/expanded_combat/lang/en_us.json
 12853864a79548a62425238cd60c04204f93aae8 assets/expanded_combat/models/item/acacia_plank_battle_staff.json
 4e3a1e52cb5f621d1b23e62b8c495e6828fe1fad assets/expanded_combat/models/item/acacia_plank_broad_sword.json
 14d7e6641e5b1b954b68647891af85ceb54b7226 assets/expanded_combat/models/item/acacia_plank_claymore.json
@@ -821,7 +821,7 @@ dbdbca91f5b7ebae6935c4dcae0ba9a2df161fe1 assets/expanded_combat/models/item/warp
 3fcb73732aa3e013b9f4d2f3e8605edc8d172378 assets/expanded_combat/models/item/warped_plank_scythe.json
 ddd14edf9de7d5cc9f3127f15165e57e34a59062 assets/expanded_combat/models/item/warped_plank_sickle.json
 dde4f9631e0a9d5ed3c0afa27f37c6464f0dd9be assets/expanded_combat/models/item/warped_plank_spear.json
-d576b7bc2c344f48ca5e3520601d0e00f75fcc9b data/curios/tags/items/arrows.json
+992ec18736c109c6b2601ce7742862a0ac5ed16a data/curios/tags/items/arrows.json
 f6e5d8f2812a4c9ceccf651540549c8385c05310 data/curios/tags/items/hands.json
 b29952dd867ac5fb31737ab43b4d2059d1a7fc0b data/curios/tags/items/quiver.json
 b7c2c65b5a65e27dcd54ed0879fd9700459a0600 data/expanded_combat/advancements/recipes/brewing/purified_gas_bottle_from_gas_bottle_smoking.json
@@ -1425,7 +1425,7 @@ a5fac2ece9e06ad2fac1170fc30e697735e63296 data/expanded_combat/recipes/warped_pla
 d9be841faf3cb48b766a8feba1d818d5214ec7ee data/expanded_combat/recipes/warped_plank_sickle_shaped.json
 fbde775bbdf3ed31e29dada1f610fe1871321262 data/expanded_combat/recipes/warped_plank_spear_shaped.json
 04b5780d5a7216035dc324856644ac5f67d01191 data/expanded_combat/recipes/weapon_potion_dipping_recipe.json
-194dd04e43fe7dfab732f66608a2bb8491f7ce32 data/expanded_combat/tags/items/bows.json
+577f10c630128a27389f969629664b6dcedf462b data/expanded_combat/tags/items/bows.json
 b45eb971d3976ef4105f4b6c21802a82749d813d data/expanded_combat/tags/items/crossbows.json
 dd825c20dd9f5a6125b6505e3c0b35f28f77d12d data/expanded_combat/tags/items/potion_weapons.json
 d2fdd71596f7dad5610ea7eb23221e90a3aa67b0 data/expanded_combat/tags/items/shields.json
@@ -1458,5 +1458,5 @@ a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/oak_
 a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/spruce_plank.json
 b8f829d76a32bd83bf8b7e1da67f32af411f3570 data/forge/tags/items/tools/swords/stone.json
 a2d6180b9966ff2f766188f4a27b3a4ffc5d1783 data/forge/tags/items/tools/swords/warped_plank.json
-a5e510bcf687c6087eee85269957523f2a415e56 data/minecraft/tags/items/arrows.json
+9e19d62412fb5c425457cf7cb53748d46fef68bb data/minecraft/tags/items/arrows.json
 f6e5d8f2812a4c9ceccf651540549c8385c05310 data/minecraft/tags/items/trimmable_armor.json
