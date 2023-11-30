@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class SoulFist extends ECGauntletItem{
-    public SoulFist(Properties properties) {
-        super(properties, VanillaECPlugin.NETHERITE);
+    public SoulFist(Properties properties, Material materialIn) {
+        super(properties, materialIn);
     }
     @Override
     public ResourceLocation getGauntletTexture(ItemStack stack) {

@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
@@ -20,8 +21,8 @@ import java.util.function.Supplier;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class UniqueStandardGaunlet extends ECGauntletItem{
-    public UniqueStandardGaunlet(Properties properties) {
-        super(properties, VanillaECPlugin.NETHERITE);
+    public UniqueStandardGaunlet(Properties properties, Material material) {
+        super(properties, material);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {

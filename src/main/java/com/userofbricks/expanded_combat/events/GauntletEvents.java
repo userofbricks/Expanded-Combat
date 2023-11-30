@@ -8,6 +8,7 @@ import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -62,7 +63,7 @@ public class GauntletEvents
     @SubscribeEvent
     public static void moreDamageSources(LivingAttackEvent ev) {
         LivingEntity target = ev.getEntity();
-        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(target, ECItems.MAULERS.get());
+        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(target, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get());
         if (optionalSlotResult.isPresent()) {
             SlotResult slotResult = optionalSlotResult.get();
             int charge = slotResult.stack().getOrCreateTag().getInt("charge");
@@ -77,7 +78,7 @@ public class GauntletEvents
     @SubscribeEvent
     public static void pulOutArrow(PlayerInteractEvent.RightClickEmpty event) {
         Player player = event.getEntity();
-        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, ECItems.FIGHTERS_GAUNTLET.get());
+        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get());
         if (optionalSlotResult.isPresent() && player.getArrowCount() >= 1) {
             LazyOptional<ICuriosItemHandler> lazyOptional = CuriosApi.getCuriosHelper().getCuriosHandler(player);
             Optional<SlotResult> optionalQuiverSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> stack.getItem() instanceof ECQuiverItem);

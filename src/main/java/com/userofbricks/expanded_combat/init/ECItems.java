@@ -107,26 +107,6 @@ public class ECItems
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_3 = registerShield("shield_3", true);
     public static final RegistryEntry<ECShieldItem> SHIELD_TIER_4 = registerShield("shield_4", true);
 
-    public static final RegistryEntry<UniqueStandardGaunlet> GAUNTLET = REGISTRATE.get().item("gauntlet", UniqueStandardGaunlet::new)
-            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
-            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
-            .register();
-
-    public static final RegistryEntry<Mawlers> MAULERS = REGISTRATE.get().item("maulers", Mawlers::new)
-            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
-            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("maulers", VanillaECPlugin.LEATHER, ctx, prov))
-            .register();
-
-    public static final RegistryEntry<FightersBindings> FIGHTERS_GAUNTLET = REGISTRATE.get().item("fighters_gauntlet", FightersBindings::new)
-            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
-            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("fighters_gauntlet", VanillaECPlugin.LEATHER, ctx, prov))
-            .register();
-
-    public static final RegistryEntry<SoulFist> SOUL_FIST_GAUNTLETS = REGISTRATE.get().item("soul_fist", SoulFist::new)
-            .tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR)
-            .model((ctx, prov) -> GauntletItemBuilder.generateGauntletModel("soul_fist", VanillaECPlugin.GOLD, ctx, prov))
-            .register();
-
 
     //public static final TagKey<EntityType<?>>
 
@@ -141,10 +121,6 @@ public class ECItems
         ITEMS.add(SHIELD_TIER_2);
         ITEMS.add(SHIELD_TIER_3);
         ITEMS.add(SHIELD_TIER_4);
-        ITEMS.add(GAUNTLET);
-        ITEMS.add(MAULERS);
-        ITEMS.add(FIGHTERS_GAUNTLET);
-        ITEMS.add(SOUL_FIST_GAUNTLETS);
         ITEMS.add(ALLAY_ITEM);
         for (Material material : MaterialInit.materials) {
             if (material.getArrowEntry() != null) ITEMS.add(material.getArrowEntry());
