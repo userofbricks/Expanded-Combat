@@ -1,12 +1,31 @@
 {
   "entries": [
-    "expanded_combat:bad_soul_from_mob",
-    "expanded_combat:good_soul_from_warden",
+    "expanded_combat:bad_soul_from_evoker",
+    "expanded_combat:bad_soul_from_wither_skeleton",
+    "expanded_combat:bad_soul_from_magma_cube",
     "expanded_combat:bad_soul_from_elder_guardian",
-    "expanded_combat:bad_soul_from_wither",
+    "expanded_combat:bad_soul_from_ravager",
+    "expanded_combat:bad_soul_from_piglin",
+    "expanded_combat:good_soul_from_mob",
+    "expanded_combat:good_soul_from_warden",
+    "expanded_combat:bad_soul_from_piglin_brute",
+    "expanded_combat:bad_soul_from_cave_spider",
+    "expanded_combat:bad_soul_from_ender_dragon",
+    "expanded_combat:bad_soul_from_hoglin",
+    "expanded_combat:bad_soul_from_spider",
+    "expanded_combat:bad_soul_from_silverfish",
+    "expanded_combat:bad_soul_from_vindicator",
     "expanded_combat:bad_soul_from_warden",
     "expanded_combat:good_soul_from_wither",
-    "expanded_combat:good_soul_from_mob"
+    "expanded_combat:bad_soul_from_endermite",
+    "expanded_combat:bad_soul_from_illusioner",
+    "expanded_combat:bad_soul_from_witch",
+    "expanded_combat:bad_soul_from_slime",
+    "expanded_combat:bad_soul_from_guardian",
+    "expanded_combat:bad_soul_from_wither",
+    "expanded_combat:bad_soul_from_creeper",
+    "expanded_combat:bad_soul_from_blaze",
+    "expanded_combat:bad_soul_from_pillager"
   ],
   "replace": false
 }

@@ -6,8 +6,37 @@
       "loot_table_id": "minecraft:entities/elder_guardian"
     },
     {
-      "chance": 0.1,
-      "condition": "minecraft:random_chance"
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "chance": 0.1,
+          "condition": "minecraft:random_chance"
+        },
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "killer",
+              "predicate": {
+                "equipment": {
+                  "mainhand": {
+                    "items": [
+                      "expanded_combat:soul_katana",
+                      "expanded_combat:soul_scythe",
+                      "expanded_combat:soul_dagger"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "chance": 0.2,
+              "condition": "minecraft:random_chance"
+            }
+          ]
+        }
+      ]
     }
   ],
   "gauntlet": "expanded_combat:soul_gauntlet",

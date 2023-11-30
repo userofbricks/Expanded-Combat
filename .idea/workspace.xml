@@ -5,7 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/ArrowItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/ArrowItemBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_blaze.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_cave_spider.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_creeper.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ender_dragon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_endermite.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_evoker.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_guardian.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_hoglin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_illusioner.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_magma_cube.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_brute.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_pillager.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ravager.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_silverfish.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_slime.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_spider.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_vindicator.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_witch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_skeleton.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_mob.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_mob.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_mob.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +177,7 @@
       <recent name="com.userofbricks.expanded_combat.item" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Application.runData">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -632,7 +662,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -665,7 +695,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="created unique gauntlet" />
     <MESSAGE value="changed gauntlet renderer registry to pull from ECItems instead of just materialInit.gauntletMaterials as some gauntlets don't show up there" />
     <MESSAGE value="cleaned up LangStrings" />
     <MESSAGE value="changed heart stealer system to use stolen hearts as stolen health and added health as the purified stolen health that is gained through eating solidified Purity" />
@@ -690,7 +719,8 @@
     <MESSAGE value="finished transferring BowItemBuilder to the new builder system" />
     <MESSAGE value="transferred ArrowItemBuilder to the new builder system" />
     <MESSAGE value="fixed data gen errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed data gen errors" />
+    <MESSAGE value="tipped arrows have correct colors again" />
+    <option name="LAST_COMMIT_MESSAGE" value="tipped arrows have correct colors again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
