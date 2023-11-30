@@ -138,21 +138,19 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder crossBow(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return crossBow(craftedFrom, ECCrossBowItem::new, generateRecipes);
+    public MaterialBuilder crossBow(@Nullable Material craftedFrom, boolean dyeable) {
+        return crossBow(craftedFrom, ECCrossBowItem::new).build(dyeable);
     }
 
     public MaterialBuilder crossBow(@Nullable Material craftedFrom) {
-        return crossBow(craftedFrom, ECCrossBowItem::new, true);
+        return crossBow(craftedFrom, ECCrossBowItem::new).build(false);
     }
     public MaterialBuilder crossBow() {
-        return crossBow(null, ECCrossBowItem::new, true);
+        return crossBow(null, ECCrossBowItem::new).build(false);
     }
 
-    public MaterialBuilder crossBow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> crossBowConstructor, boolean generateRecipes) {
-        if (!MaterialInit.crossbowMaterials.contains(material)) MaterialInit.crossbowMaterials.add(material);
-        material.crossbowEntry = CrossBowItemBuilder.generateCrossBow(registrate.get(), material, craftedFrom, crossBowConstructor, generateRecipes);
-        return this;
+    public CrossBowItemBuilder crossBow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> crossBowConstructor) {
+        return new CrossBowItemBuilder(this, registrate.get(), material, craftedFrom, crossBowConstructor);
     }
 
     public MaterialBuilder crossBow(NonNullFunction<Material, RegistryEntry<? extends CrossbowItem>> crossBowEntryFunction) {
