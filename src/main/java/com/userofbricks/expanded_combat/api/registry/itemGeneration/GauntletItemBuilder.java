@@ -7,7 +7,12 @@ import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
+import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
+import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
+import com.userofbricks.expanded_combat.api.NonNullTriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
+import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
@@ -50,13 +55,52 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
             new TrimModelData("lapis", 0.9F, Map.of()),
             new TrimModelData("amethyst", 1.0F, Map.of()));
 
-    public static RegistryEntry<? extends Item> generateGauntlet(Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> gauntletConstructor, boolean generateRecipes, boolean dyeable) {
+    public final MaterialBuilder materialBuilder;
+    public final Material material, craftedFrom;
+    public final ItemBuilder<? extends Item, Registrate> itemBuilder;
+    private String lang = "";
+    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
+    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
+
+    public GauntletItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
+        ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_gauntlet", (p) -> constructor.apply(p, material));
+
+        itemBuilder.tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR);
+
+        this.material = material;
+        this.itemBuilder = itemBuilder;
+        this.materialBuilder = materialBuilder;
+        this.craftedFrom = craftedFrom;
+        lang = material.getName() + " Gauntlet";
+        modelBuilder = GauntletItemBuilder::generateModel;
+        recipeBuilder = GauntletItemBuilder::generateRecipes;
+    }
+    public GauntletItemBuilder lang(String englishName) {
+        lang = englishName;
+        return this;
+    }
+    public GauntletItemBuilder model(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
+        this.modelBuilder = modelBuilder;
+        return this;
+    }
+    public GauntletItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
+        this.recipeBuilder = recipeBuilder;
+        return this;
+    }
+
+    public MaterialBuilder build(boolean dyeable) {
+        itemBuilder.lang(lang);
+        itemBuilder.model((ctx, prov) -> modelBuilder.apply(itemBuilder, material, dyeable));
+        recipeBuilder.apply(itemBuilder, material, craftedFrom);
+
+        materialBuilder.gauntlet(m -> itemBuilder.register());
+        return materialBuilder;
+    }
+    public static void generateModel(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, boolean dyeable) {
         String locationName = material.getLocationName().getPath();
-        String name = material.getName();
-        ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(locationName + "_gauntlet", (p) -> gauntletConstructor.apply(p, material));
         itemBuilder.model((ctx, prov) -> {
-            ResourceLocation main_texture = new ResourceLocation(registrate.getModid(), "item/gauntlet/" + locationName);
-            ResourceLocation overlay_texture = new ResourceLocation(registrate.getModid(), "item/gauntlet/" + locationName + "_overlay");
+            ResourceLocation main_texture = new ResourceLocation(material.getLocationName().getNamespace(), "item/gauntlet/" + locationName);
+            ResourceLocation overlay_texture = new ResourceLocation(material.getLocationName().getNamespace(), "item/gauntlet/" + locationName + "_overlay");
             ItemModelBuilder mainModel;
             if (!dyeable) mainModel = prov.generated(ctx, main_texture);
             else mainModel = prov.generated(ctx, main_texture, overlay_texture);
@@ -78,54 +122,38 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
                         .model(trimModel);
             }
         });
-        itemBuilder.tag(ECItemTags.GAUNTLETS, ItemTags.TRIMMABLE_ARMOR);
-        if (generateRecipes) {
-            itemBuilder.recipe((ctx, prov) -> {
-                if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                    InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
-                    ECConfigBooleanCondition enableGauntlets = new ECConfigBooleanCondition("gauntlet");
-                    ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(name, "config", "crafting", "is_single_addition");
-
-                    Map<Character, Ingredient> recipe = new HashMap<>();
-                    recipe.put('b', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
-                    conditionalShapedRecipe(ctx, prov, new String[]{"bb","b "}, recipe, 1, new ICondition[]{enableGauntlets, new NotCondition(isSingleAddition)}, triggerInstance, "");
-
-                    if (craftedFrom != null) {
-                        if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
-                            conditionalSmithing120Recipe(ctx, prov,
-                                    Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                                    Ingredient.of(craftedFrom.getGauntletEntry().get()),
-                                    new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
-                        } else {
-                            conditionalSmithingWithoutTemplateRecipe(ctx, prov,
-                                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                                    Ingredient.of(craftedFrom.getGauntletEntry().get()),
-                                    new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
-                        }
-                    }
-                }
-            });
-        }
         if (dyeable) {
             itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
         }
-        return itemBuilder.register();
     }
+    public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
+        String name = material.getName();
+        itemBuilder.recipe((ctx, prov) -> {
+            if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+                ECConfigBooleanCondition enableGauntlets = new ECConfigBooleanCondition("gauntlet");
+                ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(name, "config", "crafting", "is_single_addition");
 
-    public static void generateGauntletModel(String registryName, Material closesedMaterial, DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov) {
-        ResourceLocation main_texture = new ResourceLocation(REGISTRATE.get().getModid(), "item/gauntlet/"+registryName);
-        ItemModelBuilder mainModel = prov.generated(ctx, main_texture);
+                Map<Character, Ingredient> recipe = new HashMap<>();
+                recipe.put('b', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
+                conditionalShapedRecipe(ctx, prov, new String[]{"bb","b "}, recipe, 1, new ICondition[]{enableGauntlets, new NotCondition(isSingleAddition)}, triggerInstance, "");
 
-        for (GauntletItemBuilder.TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
-            ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name(closesedMaterial));
-
-            ItemModelBuilder trimModel = prov.getBuilder(prov.name(ctx) + "_" + trimModelData.name(closesedMaterial) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
-            trimModel.texture("layer0", main_texture);
-            trimModel.texture("layer1", trim_texture);
-            mainModel.override().predicate(ItemModelGenerators.TRIM_TYPE_PREDICATE_ID, trimModelData.itemModelIndex())
-                    .model(trimModel);
-        }
+                if (craftedFrom != null) {
+                    if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
+                        conditionalSmithing120Recipe(ctx, prov,
+                                Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
+                                IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                                Ingredient.of(craftedFrom.getGauntletEntry().get()),
+                                new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
+                    } else {
+                        conditionalSmithingWithoutTemplateRecipe(ctx, prov,
+                                IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                                Ingredient.of(craftedFrom.getGauntletEntry().get()),
+                                new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
+                    }
+                }
+            }
+        });
     }
 
     public record TrimModelData(String name, float itemModelIndex, Map<String, String> overrideMaterials) {

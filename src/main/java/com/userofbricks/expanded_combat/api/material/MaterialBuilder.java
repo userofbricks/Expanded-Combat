@@ -161,33 +161,23 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder gauntlet(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return gauntlet(craftedFrom, ECGauntletItem::new, generateRecipes, false);
-    }
-
     public MaterialBuilder gauntlet(@Nullable Material craftedFrom) {
-        return gauntlet(craftedFrom, ECGauntletItem::new, true, false);
+        return gauntlet(craftedFrom, ECGauntletItem::new).build(false);
     }
     public MaterialBuilder gauntlet() {
-        return gauntlet(null, ECGauntletItem::new, true, false);
-    }
-
-    public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new, generateRecipes, true);
+        return gauntlet(null, ECGauntletItem::new).build(false);
     }
 
     public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom) {
-        return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new, true, true);
+        return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new).build(true);
     }
 
     public MaterialBuilder dyeableGauntlet() {
-        return gauntlet(null, ECGauntletItem.Dyeable::new, true, true);
+        return gauntlet(null, ECGauntletItem.Dyeable::new).build(true);
     }
 
-    public MaterialBuilder gauntlet(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor, boolean generateRecipes, boolean dyeable) {
-        if (!MaterialInit.gauntletMaterials.contains(material)) MaterialInit.gauntletMaterials.add(material);
-        material.gauntletEntry = GauntletItemBuilder.generateGauntlet(registrate.get(), material, craftedFrom, constructor, generateRecipes, dyeable);
-        return this;
+    public GauntletItemBuilder gauntlet(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
+        return new GauntletItemBuilder(this, registrate.get(), material, craftedFrom, constructor);
     }
 
     public MaterialBuilder gauntlet(NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {
