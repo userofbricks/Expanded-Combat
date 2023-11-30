@@ -38,8 +38,8 @@ public class BowItemBuilder extends MaterialItemBuilder {
     private NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, @Nullable Material> recipeBuilder, halfRecipeBuilder;
     private NonNullConsumer<ItemBuilder<? extends BowItem, Registrate>> colorBuilder, halfColorBuilder;
 
-    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends BowItem> constructor) {
-        ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material));
+    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor) {
+        ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
 
         itemBuilder.properties(properties -> properties.stacksTo(1));
         itemBuilder.tag(ECItemTags.BOWS);
@@ -55,9 +55,9 @@ public class BowItemBuilder extends MaterialItemBuilder {
         colorBuilder = BowItemBuilder::colors;
     }
 
-    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends BowItem> constructor, NonNullBiFunction<Item.Properties, Material, ? extends BowItem> halfConstructor) {
-        ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material));
-        ItemBuilder<? extends BowItem, Registrate> halfItemBuilder = registrate.item("half_" + material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material));
+    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> halfConstructor) {
+        ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
+        ItemBuilder<? extends BowItem, Registrate> halfItemBuilder = registrate.item("half_" + material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
 
         itemBuilder.properties(properties -> properties.stacksTo(1));
         halfItemBuilder.properties(properties -> properties.stacksTo(1));

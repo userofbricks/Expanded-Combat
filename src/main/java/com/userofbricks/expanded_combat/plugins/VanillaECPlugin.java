@@ -88,10 +88,10 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         BAMBOO_PLANK =   registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Bamboo Plank",  CONFIG.bambooPlank).shield().weapons());
         CHERRY_PLANK =   registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Cherry Plank",  CONFIG.cherryPlank).shield().weapons());
         STONE =          registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Stone",         CONFIG.stone).weapons());
-        IRON =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Iron",          CONFIG.iron).arrow().halfbow().bow().crossBow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
-        GOLD =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Gold",          CONFIG.gold).halfbow().bow().crossBow().gauntlet().quiver().shield().weapons());
-        DIAMOND =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Diamond",       CONFIG.diamond).arrow().halfbow(IRON).bow(IRON).crossBow(IRON).gauntlet().quiver().shield().weapons());
-        NETHERITE =      registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Netherite",     CONFIG.netherite).arrow().bow(DIAMOND).crossBow(DIAMOND).gauntlet().quiver().shield().weapons());
+        IRON =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Iron",          CONFIG.iron).arrow().bowAndHalfBow().crossBow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
+        GOLD =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Gold",          CONFIG.gold).bowAndHalfBow().crossBow().gauntlet().quiver().shield().weapons());
+        DIAMOND =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Diamond",       CONFIG.diamond).arrow().bowAndHalfBow(IRON).crossBow(IRON).gauntlet().quiver().shield().weapons());
+        NETHERITE =      registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Netherite",     CONFIG.netherite).arrow().bow(DIAMOND, false).crossBow(DIAMOND).gauntlet().quiver().shield().weapons());
     }
 
     @Override

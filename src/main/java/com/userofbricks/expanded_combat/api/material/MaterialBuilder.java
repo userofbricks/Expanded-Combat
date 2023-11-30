@@ -51,21 +51,31 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder halfbow(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return halfbow(craftedFrom, ECBowItem::new, generateRecipes);
+    public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo, boolean dyeable) {
+        return bow(craftedFrom, ECBowItem::new, halfToo).build(dyeable);
     }
 
-    public MaterialBuilder halfbow(@Nullable Material craftedFrom) {
-        return halfbow(craftedFrom, ECBowItem::new, true);
+    public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo) {
+        return bow(craftedFrom, ECBowItem::new, halfToo).build(false);
     }
-    public MaterialBuilder halfbow() {
-        return halfbow(null, ECBowItem::new, true);
+    public MaterialBuilder bowAndHalfBow(@Nullable Material craftedFrom) {
+        return bow(craftedFrom, ECBowItem::new, true).build(false);
+    }
+    public MaterialBuilder bowAndHalfBow() {
+        return bow(null, ECBowItem::new, true).build(false);
     }
 
-    public MaterialBuilder halfbow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, boolean generateRecipes) {
+    public BowItemBuilder bow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, boolean halfToo) {
+        return halfToo ? new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, bowConstructor)
+                : new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor);
+    }
+    public BowItemBuilder bowWithHalfBow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> halfBowConstructor) {
+        return new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, halfBowConstructor);
+    }
+
+    public MaterialBuilder bow(NonNullFunction<Material, RegistryEntry<? extends BowItem>> bowEntryFunction) {
         if (!MaterialInit.bowMaterials.contains(material)) MaterialInit.bowMaterials.add(material);
-        material.halfbow = true;
-        material.halfBowEntry = BowItemBuilder.generateHalfBow(registrate.get(), material, craftedFrom, bowConstructor, generateRecipes);
+        material.bowEntry = bowEntryFunction.apply(material);
         return this;
     }
 
@@ -73,29 +83,6 @@ public class MaterialBuilder {
         if (!MaterialInit.bowMaterials.contains(material)) MaterialInit.bowMaterials.add(material);
         material.halfbow = true;
         material.halfBowEntry = bowEntryFunction.apply(material);
-        return this;
-    }
-
-    public MaterialBuilder bow(@Nullable Material craftedFrom, boolean generateRecipes) {
-        return bow(craftedFrom, ECBowItem::new, generateRecipes);
-    }
-
-    public MaterialBuilder bow(@Nullable Material craftedFrom) {
-        return bow(craftedFrom, ECBowItem::new, true);
-    }
-    public MaterialBuilder bow() {
-        return bow(null, ECBowItem::new, true);
-    }
-
-    public MaterialBuilder bow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, boolean generateRecipes) {
-        if (!MaterialInit.bowMaterials.contains(material)) MaterialInit.bowMaterials.add(material);
-        material.bowEntry = BowItemBuilder.generateBow(registrate.get(), material, craftedFrom, bowConstructor, generateRecipes);
-        return this;
-    }
-
-    public MaterialBuilder bow(NonNullFunction<Material, RegistryEntry<? extends BowItem>> bowEntryFunction) {
-        if (!MaterialInit.bowMaterials.contains(material)) MaterialInit.bowMaterials.add(material);
-        material.bowEntry = bowEntryFunction.apply(material);
         return this;
     }
 
