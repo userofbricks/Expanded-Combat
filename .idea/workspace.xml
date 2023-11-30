@@ -5,21 +5,109 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_amethyst_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_copper_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_diamond_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_emerald_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_gold_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_iron_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_lapis_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_netherite_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_quartz_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gauntlet_redstone_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_amethyst_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_copper_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_diamond_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_emerald_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_gold_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_iron_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_lapis_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_netherite_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_quartz_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gauntlet_redstone_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_amethyst_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_copper_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_diamond_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_emerald_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_gold_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_iron_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_lapis_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_netherite_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_quartz_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_gauntlet_redstone_trim.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/fighters_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/gauntlet_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/maulers_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/advancements/recipes/combat/soul_gauntlet_conditional_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/fighters_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/gauntlet_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/maulers_gauntlet_shaped.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/recipes/soul_gauntlet_shaped.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" afterPath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_ud.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_amethyst_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_amethyst_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_copper_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_copper_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_diamond_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_diamond_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_emerald_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_emerald_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_gold_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_gold_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_iron_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_iron_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_lapis_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_lapis_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_netherite_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_netherite_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_quartz_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_quartz_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_redstone_trim.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/fighters_gauntlet_redstone_trim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_amethyst_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_copper_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_diamond_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_emerald_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_gold_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_iron_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_lapis_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_netherite_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_quartz_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/gauntlet_redstone_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_amethyst_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_copper_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_diamond_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_emerald_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_gold_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_iron_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_lapis_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_netherite_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_quartz_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/maulers_redstone_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_amethyst_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_copper_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_diamond_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_emerald_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_gold_darker_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_iron_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_lapis_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_netherite_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_quartz_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/assets/expanded_combat/models/item/soul_fist_redstone_trim.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/curios/tags/items/hands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_mob.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_mob.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_mob.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_mob.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/minecraft/tags/items/trimmable_armor.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/WeaponItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/WeaponItemBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECCreativeTabs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/FightersBindings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/FightersBindings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/Mawlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/Mawlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SoulFist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/SoulFist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/UniqueStandardGaunlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/UniqueStandardGaunlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/plugins/CustomWeaponsPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/plugins/CustomWeaponsPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/fighters_gauntlet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/fighters.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/soul_fist.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item/gauntlet/soul.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +249,7 @@
       <recent name="com.userofbricks.expanded_combat.item" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Application.runData">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -646,7 +734,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -679,8 +767,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added custom sprite source provider enabling all weapon textures to use the same folder structure weapon_name/material_name even if they are paletted permutations" />
-    <MESSAGE value="added custom alpha mask sprite source provider enabling shields to make one texture and create permutations for each needed shield part" />
     <MESSAGE value="changed alpha mask source provider to a directory listener so every pack that puts shield textures in model/shields/bases will automatically get split into the needed parts." />
     <MESSAGE value="made alpha mask source use namespace of the shield texture instead of the mask" />
     <MESSAGE value="moved ArrowCurio to api folder" />
@@ -704,7 +790,9 @@
     <MESSAGE value="started the process of CustomWeaponsPlugin with element damage weapons" />
     <MESSAGE value="modified WeaponItemBuilder to be an actual builder that is used inline with the main material builder" />
     <MESSAGE value="tested and ran data for element weapons" />
-    <option name="LAST_COMMIT_MESSAGE" value="tested and ran data for element weapons" />
+    <MESSAGE value="made GauntletItemBuilder an actual builder inline with main Material builder" />
+    <MESSAGE value="moved custom gauntlets to CustomWeaponsPlugin" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved custom gauntlets to CustomWeaponsPlugin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

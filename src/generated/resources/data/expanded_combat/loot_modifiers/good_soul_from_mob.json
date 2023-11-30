@@ -10,6 +10,6 @@
       "condition": "minecraft:random_chance"
     }
   ],
-  "gauntlet": "expanded_combat:soul_fist",
+  "gauntlet": "expanded_combat:soul_gauntlet",
   "loot_item": "expanded_combat:good_soul"
 }

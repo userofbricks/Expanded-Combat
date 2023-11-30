@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "expanded_combat:item/gauntlet/soul_fist",
+    "layer0": "expanded_combat:item/gauntlet/soul",
     "layer1": "expanded_combat:trims/items/gauntlet_trim_iron"
   }
 }

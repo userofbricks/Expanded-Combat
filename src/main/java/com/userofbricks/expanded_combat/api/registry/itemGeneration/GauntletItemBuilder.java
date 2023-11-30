@@ -7,6 +7,7 @@ import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
+import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriFunction;
@@ -61,6 +62,7 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
     private String lang = "";
     private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
     private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
+    private NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder;
 
     public GauntletItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_gauntlet", (p) -> constructor.apply(p, material));
@@ -74,6 +76,7 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
         lang = material.getName() + " Gauntlet";
         modelBuilder = GauntletItemBuilder::generateModel;
         recipeBuilder = GauntletItemBuilder::generateRecipes;
+        colorBuilder = GauntletItemBuilder::colors;
     }
     public GauntletItemBuilder lang(String englishName) {
         lang = englishName;
@@ -90,11 +93,16 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
 
     public MaterialBuilder build(boolean dyeable) {
         itemBuilder.lang(lang);
-        itemBuilder.model((ctx, prov) -> modelBuilder.apply(itemBuilder, material, dyeable));
+        modelBuilder.apply(itemBuilder, material, dyeable);
         recipeBuilder.apply(itemBuilder, material, craftedFrom);
+        if (dyeable) colorBuilder.accept(itemBuilder);
 
         materialBuilder.gauntlet(m -> itemBuilder.register());
         return materialBuilder;
+    }
+
+    public static void colors(ItemBuilder<? extends Item, Registrate> itemBuilder) {
+        itemBuilder.color(() -> () -> (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
     }
     public static void generateModel(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, boolean dyeable) {
         String locationName = material.getLocationName().getPath();
@@ -122,9 +130,6 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
                         .model(trimModel);
             }
         });
-        if (dyeable) {
-            itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
-        }
     }
     public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         String name = material.getName();

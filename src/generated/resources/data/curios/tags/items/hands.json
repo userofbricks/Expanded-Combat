@@ -6,9 +6,9 @@
     "expanded_combat:gold_gauntlet",
     "expanded_combat:diamond_gauntlet",
     "expanded_combat:netherite_gauntlet",
-    "expanded_combat:gauntlet",
-    "expanded_combat:maulers",
+    "expanded_combat:soul_gauntlet",
     "expanded_combat:fighters_gauntlet",
-    "expanded_combat:soul_fist"
+    "expanded_combat:maulers_gauntlet",
+    "expanded_combat:gauntlet_gauntlet"
   ]
 }

@@ -88,14 +88,12 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
 
 
 
-    public static RegistryEntry<? extends Item> weaponColors(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon) {
+    public static void weaponColors(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon) {
         if (weapon.dyeable()) {
             itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : ((DyeableLeatherItem)stack.getItem()).getColor(stack));
         } else if (weapon.potionDippable()) {
             itemBuilder.color(() -> () -> (ItemColor) (stack, itemLayer) -> (itemLayer > 0) ? -1 : PotionUtils.getColor(stack));
         }
-
-        return itemBuilder.register();
     }
 
     public static void generateRecipies(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
