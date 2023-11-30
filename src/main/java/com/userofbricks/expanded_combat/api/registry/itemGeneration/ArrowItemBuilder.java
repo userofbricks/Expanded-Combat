@@ -48,7 +48,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         if (tippedConstructor != null) {
             ItemBuilder<? extends ArrowItem, Registrate> tippedBuilder = registrate.item("tipped_" + material.getLocationName().getPath() + "_arrow", (p) -> tippedConstructor.apply(p, material));
             tippedBuilder.tag(ECItemTags.ARROWS, ItemTags.ARROWS);
-            itemBuilder.color(() -> () -> (ItemColor) (itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1);
+            tippedBuilder.color(() -> () -> (ItemColor) (itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1);
             this.tippedBuilder = tippedBuilder;
         }
         else this.tippedBuilder = null;
