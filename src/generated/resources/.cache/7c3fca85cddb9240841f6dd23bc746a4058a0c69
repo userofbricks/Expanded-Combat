@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-30T13:35:37.562917	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-11-30T17:26:15.896474	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
 be3003101128415c239189865babe105ea268fee assets/expanded_combat/lang/en_ud.json
 ad94ff6b218106d85d93f61306d7890c7868f08a assets/expanded_combat/lang/en_us.json
@@ -1124,7 +1124,7 @@ b0a8f843cd977be828da127f3c970fd103afb515 data/expanded_combat/advancements/recip
 74bdd37f2f165c4aaddf2faec61bc75adb2126c2 data/expanded_combat/advancements/recipes/misc/allay.json
 12b72858391d901da690ab47e6fba13d054fefc5 data/expanded_combat/advancements/recipes/misc/good_soul.json
 a41d0ee85ff0817c0be9671d14d3a9350af0c7a0 data/expanded_combat/loot_tables/blocks/gas.json
-c06802dd3f74dda2d22eca5820452879a33f9057 data/expanded_combat/loot_tables/blocks/heartstealer_display.json
+df530d00b68f0b6cd4e3e09efe1efa0ebf8efb7f data/expanded_combat/loot_tables/blocks/heartstealer_display.json
 7397a7a79319a7e18c995d691f5af5c776ad9998 data/expanded_combat/loot_tables/blocks/purified_gas.json
 7a969756808661fa94fd1262102ea48ff340e77b data/expanded_combat/recipes/acacia_plank_battle_staff_shaped.json
 c905e97e353ed73bb2358997179241743fc9619a data/expanded_combat/recipes/acacia_plank_broad_sword_shaped.json

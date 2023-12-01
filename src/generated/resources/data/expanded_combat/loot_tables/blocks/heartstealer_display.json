@@ -5,13 +5,76 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
           "name": "expanded_combat:heartstealer_display"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "expanded_combat:soul_katana",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "expanded_combat:netherite_katana",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "expanded_combat:soul_dagger",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "expanded_combat:netherite_dagger",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "expanded_combat:netherite_claymore",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 9
         }
       ],
       "rolls": 1.0

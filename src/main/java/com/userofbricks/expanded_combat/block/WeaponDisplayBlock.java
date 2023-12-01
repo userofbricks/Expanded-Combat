@@ -7,6 +7,8 @@ import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +24,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -31,6 +37,8 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -115,11 +123,20 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
 
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        if (ECVariables.WorldVariables.getHeartStealerCount(builder.getLevel()) != 0) {
+        ResourceLocation resourcelocation = this.getLootTable();
+        if (resourcelocation == BuiltInLootTables.EMPTY) {
             return Collections.emptyList();
         } else {
-            ECVariables.WorldVariables.increaseHeartStealerCount(builder.getLevel());
-            return List.of(new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get()));
+            LootParams lootparams = builder.withParameter(LootContextParams.BLOCK_STATE, state).create(LootContextParamSets.BLOCK);
+            ServerLevel serverlevel = lootparams.getLevel();
+            LootTable loottable = serverlevel.getServer().getLootData().getLootTable(resourcelocation);
+
+            if (ECVariables.WorldVariables.getHeartStealerCount(builder.getLevel()) != 0 && serverlevel.random.nextInt(10) != 0) {
+                return loottable.getRandomItems(lootparams);
+            } else {
+                ECVariables.WorldVariables.increaseHeartStealerCount(builder.getLevel());
+                return List.of(new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get()));
+            }
         }
     }
 
