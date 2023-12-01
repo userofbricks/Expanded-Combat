@@ -30,6 +30,43 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     @Override
     protected void start() {
         generateSoulLootModifiers();
+        generateCustomWeaponLootModifiers();
+    }
+
+    private void generateCustomWeaponLootModifiers() {
+        for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.VOID_MATERIAL.getWeapons().entrySet()) {
+            add("end_city_treasure_void_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+                    new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "end_city_treasure")).build(),
+                    LootItemRandomChanceCondition.randomChance(0.05f).build()
+            }, entry.getValue().get()));
+        }
+
+        for (String chestLoot : Arrays.asList("shipwreck_treasure", "underwater_ruin_big", "woodland_mansion", "buried_treasure")) {
+            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.COLD_MATERIAL.getWeapons().entrySet()) {
+                add(chestLoot + "_cold_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                }, entry.getValue().get()));
+            }
+        }
+
+        for (String chestLoot : Arrays.asList("desert_pyramid", "bastion_treasure", "woodland_mansion", "buried_treasure")) {
+            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.HEAT_MATERIAL.getWeapons().entrySet()) {
+                add(chestLoot + "_heat_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                }, entry.getValue().get()));
+            }
+        }
+
+        for (String chestLoot : Arrays.asList("ancient_city", "bastion_treasure", "woodland_mansion", "buried_treasure")) {
+            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.SOUL_MATERIAL.getWeapons().entrySet()) {
+                add(chestLoot + "_soul_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                }, entry.getValue().get()));
+            }
+        }
     }
 
     private void generateSoulLootModifiers() {
