@@ -51,3 +51,73 @@ description='''${mod_description}'''
     versionRange="[${better_combat_version},)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_apotheosis_plugin"
+    mandatory=false
+    versionRange="[1.0.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_create_plugin"
+    mandatory=false
+    versionRange="[1.0.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_es_plugin"
+    mandatory=false
+    versionRange="[1.0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_ef_plugin"
+    mandatory=false
+    versionRange="[1.0.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_aquaculture_plugin"
+    mandatory=false
+    versionRange="[1.0.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_cje_plugin"
+    mandatory=false
+    versionRange="[1.0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_cjgn_plugin"
+    mandatory=false
+    versionRange="[1.0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_lec_plugin"
+    mandatory=false
+    versionRange="[1.0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+    modId="ec_tf_plugin"
+    mandatory=false
+    versionRange="[1.0.4,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}]]
+modId="ec_an_plugin"
+mandatory=false
+versionRange="[1.0.1,)"
+ordering="NONE"
+side="BOTH"

@@ -46,7 +46,7 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
 
         atlas(BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
                 List.of(modLoc( "trims/items/gauntlet_trim")),
-                new ResourceLocation("item/color_palettes/trim_template"),
+                new ResourceLocation("trims/color_palettes/trim_palette"),
                 false,
                 gauntletTrimPermutations));
 

@@ -12,7 +12,7 @@
     },
     {
       "type": "minecraft:ec_paletted_folder_permutations",
-      "palette_key": "minecraft:item/color_palettes/trim_template",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
       "permutations": {
         "amethyst": "minecraft:trims/color_palettes/amethyst",
         "copper": "minecraft:trims/color_palettes/copper",
