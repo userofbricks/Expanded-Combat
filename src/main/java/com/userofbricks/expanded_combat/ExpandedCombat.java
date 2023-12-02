@@ -23,6 +23,7 @@ import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
@@ -64,7 +65,7 @@ public class ExpandedCombat {
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat() {
-        SpriteSourceTypes.load();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> SpriteSourceTypes::load);
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
