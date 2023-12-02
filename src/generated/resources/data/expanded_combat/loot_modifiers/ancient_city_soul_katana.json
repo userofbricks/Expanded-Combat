@@ -1,0 +1,14 @@
+{
+  "type": "expanded_combat:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/ancient_city"
+    },
+    {
+      "chance": 0.05,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "loot_item": "expanded_combat:soul_katana"
+}

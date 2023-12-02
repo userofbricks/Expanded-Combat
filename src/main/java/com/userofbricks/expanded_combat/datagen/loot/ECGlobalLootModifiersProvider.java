@@ -59,7 +59,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             }
         }
 
-        for (String chestLoot : Arrays.asList("ancient_city", "bastion_treasure", "woodland_mansion", "buried_treasure")) {
+        for (String chestLoot : Arrays.asList("ancient_city", "bastion_treasure", "woodland_mansion")) {
             for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.SOUL_MATERIAL.getWeapons().entrySet()) {
                 add(chestLoot + "_soul_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
@@ -67,6 +67,23 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 }, entry.getValue().get()));
             }
         }
+
+        add("bastion_treasure" + "_fighters_gauntlet", new AddItemModifier(new LootItemCondition[]{
+                new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "bastion_treasure")).build(),
+                LootItemRandomChanceCondition.randomChance(0.05f).build()
+        }, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get()));
+        add("woodland_mansion" + "_gauntlet", new AddItemModifier(new LootItemCondition[]{
+                new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "woodland_mansion")).build(),
+                LootItemRandomChanceCondition.randomChance(0.05f).build()
+        }, CustomWeaponsPlugin.GAUNTLET.getGauntletEntry().get()));
+        add("pillager_outpost" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
+                new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "pillager_outpost")).build(),
+                LootItemRandomChanceCondition.randomChance(0.05f).build()
+        }, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get()));
+        add("ancient_city" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
+                new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "ancient_city")).build(),
+                LootItemRandomChanceCondition.randomChance(0.05f).build()
+        }, CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
     }
 
     private void generateSoulLootModifiers() {
