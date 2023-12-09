@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed gauntlet overlay texture getter methods name being all caps&#10;keeped old method to keep compatability till 4.0.0 release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/GauntletRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -635,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,9 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="soul fist and souls added" />
-    <MESSAGE value="finished implementing allay from souls stuff" />
-    <MESSAGE value="created ElementalWeapon base class for cold, heat, and void weapon types" />
     <MESSAGE value="started the process of CustomWeaponsPlugin with element damage weapons" />
     <MESSAGE value="modified WeaponItemBuilder to be an actual builder that is used inline with the main material builder" />
     <MESSAGE value="tested and ran data for element weapons" />
@@ -693,7 +689,10 @@
     <MESSAGE value="Mod now safely runs on servers" />
     <MESSAGE value="made all plugins require an update" />
     <MESSAGE value="3.0.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.0" />
+    <MESSAGE value="misc" />
+    <MESSAGE value="added convenience weapon building methods" />
+    <MESSAGE value="fixed bow generation without half generating wrong name for item lang" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bow generation without half generating wrong name for item lang" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

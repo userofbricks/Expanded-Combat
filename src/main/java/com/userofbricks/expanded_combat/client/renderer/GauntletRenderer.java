@@ -66,7 +66,7 @@ public class GauntletRenderer implements ICurioRenderer{
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             ICurioRenderer.followBodyRotations(entity, this.model);
             if (stack.getItem() instanceof ECGauntletItem.Dyeable dyeableGauntletItem) {
-                ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGAUNTLET_TEXTURE_OVERLAY(stack);
+                ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGauntletTextureOverlay(stack);
                 int i = dyeableGauntletItem.getColor(stack);
                 float f = (float)(i >> 16 & 255) / 255.0F;
                 float f1 = (float)(i >> 8 & 255) / 255.0F;

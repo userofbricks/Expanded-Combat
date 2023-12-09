@@ -214,8 +214,12 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
             super(properties, materialIn);
             this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/model/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
         }
+        @Deprecated(forRemoval = true, since = "3.0.1 will be removed in 4.0.0")
         public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY(ItemStack stack) {
             return GAUNTLET_TEXTURE_OVERLAY;
+        }
+        public ResourceLocation getGauntletTextureOverlay(ItemStack stack) {
+            return getGAUNTLET_TEXTURE_OVERLAY(stack);
         }
     }
 }
