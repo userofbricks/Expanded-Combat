@@ -156,7 +156,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         return new ResourceLocation("null");
     }
     public Supplier<ICurioRenderer> getGauntletRenderer() {
-        return () -> new GauntletRenderer();
+        return GauntletRenderer::new;
     }
 
     @Override

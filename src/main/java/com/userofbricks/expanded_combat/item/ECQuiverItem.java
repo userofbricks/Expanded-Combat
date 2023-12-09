@@ -1,10 +1,9 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
-import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
