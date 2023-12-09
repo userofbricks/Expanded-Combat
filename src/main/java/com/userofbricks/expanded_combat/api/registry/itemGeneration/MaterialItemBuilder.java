@@ -54,7 +54,7 @@ public abstract class MaterialItemBuilder {
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Material material, Ingredient previosItem, ICondition[] conditions, String nameSufix) {
-        if (material.getConfig().crafting.smithingTemplate != null || !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
+        if (material.getConfig().crafting.smithingTemplate != null && !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
             conditionalSmithing120Recipe(ctx, prov,
                     Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
                     IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),

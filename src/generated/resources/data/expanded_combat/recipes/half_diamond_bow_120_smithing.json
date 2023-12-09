@@ -4,19 +4,6 @@
     {
       "conditions": [
         {
-          "type": "forge:or",
-          "values": [
-            {
-              "type": "expanded_combat:config_bow_recipe_type",
-              "crafting_type": "SMITHING_ONLY"
-            },
-            {
-              "type": "expanded_combat:config_bow_recipe_type",
-              "crafting_type": "CRAFTING_TABLE_AND_SMITHING"
-            }
-          ]
-        },
-        {
           "type": "expanded_combat:config_boolean",
           "config_entry": "bow"
         },
@@ -26,7 +13,7 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:smithing_transform",
+        "type": "expanded_combat:smithing_transform_without_template",
         "addition": {
           "item": "minecraft:diamond"
         },
@@ -35,8 +22,7 @@
         },
         "result": {
           "item": "expanded_combat:half_diamond_bow"
-        },
-        "template": []
+        }
       }
     }
   ]

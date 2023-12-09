@@ -2,22 +2,17 @@ package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
 import com.userofbricks.expanded_combat.api.NonNullTriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
-import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBowRecipeTypeCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -138,11 +133,6 @@ public class BowItemBuilder extends MaterialItemBuilder {
 
                 ECConfigBooleanCondition enableBows = new ECConfigBooleanCondition("bow");
                 ECConfigBooleanCondition enableHalfBows = new ECConfigBooleanCondition("half_bow");
-                ECConfigBowRecipeTypeCondition smithingOnly = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.SMITHING_ONLY);
-                ECConfigBowRecipeTypeCondition craftingOnly = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.CRAFTING_TABLE_ONLY);
-                ECConfigBowRecipeTypeCondition craftingAndSmithing = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.CRAFTING_TABLE_AND_SMITHING);
-                OrCondition smithing_or_both = new OrCondition(smithingOnly, craftingAndSmithing);
-                OrCondition crafting_or_both = new OrCondition(craftingOnly, craftingAndSmithing);
                 ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(material.getName(), "config", "crafting", "is_single_addition");
 
                 //Shaped Crafting
@@ -150,19 +140,19 @@ public class BowItemBuilder extends MaterialItemBuilder {
                 ingredientMap.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
                 if (material.halfbow) {
                     ingredientMap.put('b', material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()));
-                    conditionalShapedRecipe(ctx, prov, new String[]{"i", "b"}, ingredientMap, 1, new ICondition[]{crafting_or_both, enableBows, enableHalfBows}, triggerInstance, "");
+                    conditionalShapedRecipe(ctx, prov, new String[]{"i", "b"}, ingredientMap, 1, new ICondition[]{enableBows, enableHalfBows}, triggerInstance, "");
                 }
                 ingredientMap.remove('b');
                 ingredientMap.put('b', craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()));
-                conditionalShapedRecipe(ctx, prov, new String[]{"i", "b", "i"}, ingredientMap, 1, new ICondition[]{crafting_or_both, enableBows}, triggerInstance, "_skip");
+                conditionalShapedRecipe(ctx, prov, new String[]{"i", "b", "i"}, ingredientMap, 1, new ICondition[]{enableBows}, triggerInstance, "_skip");
 
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,
                         material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows, new NotCondition(isSingleAddition)}, "");
+                        new ICondition[]{enableBows, enableHalfBows, new NotCondition(isSingleAddition)}, "");
                 conditionalSmithing120Recipe(ctx, prov, material,
                         craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, new OrCondition(new NotCondition(enableHalfBows), isSingleAddition)}, "_singleton");
+                        new ICondition[]{enableBows, new OrCondition(new NotCondition(enableHalfBows), isSingleAddition)}, "_singleton");
             }
         });
     }
@@ -173,22 +163,17 @@ public class BowItemBuilder extends MaterialItemBuilder {
 
                 ECConfigBooleanCondition enableBows = new ECConfigBooleanCondition("bow");
                 ECConfigBooleanCondition enableHalfBows = new ECConfigBooleanCondition("half_bow");
-                ECConfigBowRecipeTypeCondition smithingOnly = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.SMITHING_ONLY);
-                ECConfigBowRecipeTypeCondition craftingOnly = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.CRAFTING_TABLE_ONLY);
-                ECConfigBowRecipeTypeCondition craftingAndSmithing = new ECConfigBowRecipeTypeCondition(ECConfig.BowRecipeType.CRAFTING_TABLE_AND_SMITHING);
-                OrCondition smithing_or_both = new OrCondition(smithingOnly, craftingAndSmithing);
-                OrCondition crafting_or_both = new OrCondition(craftingOnly, craftingAndSmithing);
 
                 //Shaped Crafting
                 Map<Character, Ingredient> ingredientMap = new HashMap<>();
                 ingredientMap.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
                 ingredientMap.put('b', material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()));
-                conditionalShapedRecipe(ctx, prov, new String[]{"b", "i"}, ingredientMap, 1, new ICondition[]{crafting_or_both, enableBows, enableHalfBows}, triggerInstance, "");
+                conditionalShapedRecipe(ctx, prov, new String[]{"b", "i"}, ingredientMap, 1, new ICondition[]{enableBows, enableHalfBows}, triggerInstance, "");
 
                 //1.20
                 conditionalSmithing120Recipe(ctx, prov, material,
                         craftedFrom == null ? Ingredient.of(Items.BOW) : Ingredient.of(craftedFrom.getBowEntry().get()),
-                        new ICondition[]{smithing_or_both, enableBows, enableHalfBows}, "");
+                        new ICondition[]{enableBows, enableHalfBows}, "");
             }
         });
     }

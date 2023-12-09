@@ -48,8 +48,6 @@ public class ECConfig implements ConfigData {
     @Category("Item Types") @CollapsibleObject @ConfigName("Shield Protection Settings")
     public ShieldProtectionConfig shieldProtectionConfig = new ShieldProtectionConfig();
 
-    @Category("Item Types") @RequiresRestart @ConfigName("Bow Crafting Type")
-    public BowRecipeType bowRecipeType = BowRecipeType.SMITHING_ONLY;
     @Category("Item Types") @RequiresRestart @ConfigName("Enable Fletching Table")
     public boolean enableFletchingTable = true;
 
@@ -308,12 +306,6 @@ public class ECConfig implements ConfigData {
             INVERTED_DURABILITY_PERCENTAGE,
             PREDEFINED_AMMOUNT
         }
-    }
-
-    public enum BowRecipeType {
-        SMITHING_ONLY,
-        CRAFTING_TABLE_ONLY,
-        CRAFTING_TABLE_AND_SMITHING
     }
 
     public static class EnchantmentLevels {

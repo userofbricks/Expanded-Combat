@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.init;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBowRecipeTypeCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -50,7 +49,6 @@ public class ECRecipeSerializerInit {
     public static void registerConditions(RegisterEvent event) {
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
             CraftingHelper.register(ECConfigBooleanCondition.Serializer.INSTANCE);
-            CraftingHelper.register(ECConfigBowRecipeTypeCondition.Serializer.INSTANCE);
             CraftingHelper.register(ECMaterialBooleanCondition.Serializer.INSTANCE);
         }
     }

@@ -18,7 +18,7 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:smithing_transform",
+        "type": "expanded_combat:smithing_transform_without_template",
         "addition": {
           "item": "minecraft:gold_ingot"
         },
@@ -27,8 +27,7 @@
         },
         "result": {
           "item": "expanded_combat:gold_crossbow"
-        },
-        "template": []
+        }
       }
     }
   ]
