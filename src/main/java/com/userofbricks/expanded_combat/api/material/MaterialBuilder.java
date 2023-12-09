@@ -200,27 +200,57 @@ public class MaterialBuilder {
         return shield(Material.ShieldUse.ALL, null);
     }
 
+    public MaterialBuilder greatHammer(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+        return weaponBuilder(VanillaECPlugin.GREAT_HAMMER, craftedFrom, constructor).build();
+    }
+
+    public MaterialBuilder katana(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+        return weaponBuilder(VanillaECPlugin.KATANA, craftedFrom, constructor).build();
+    }
+
     public MaterialBuilder greatHammer(@Nullable Material craftedFrom) {
-        return weaponBuilder(VanillaECPlugin.GREAT_HAMMER, craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties)).build();
+        return greatHammer(craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties));
     }
 
     public MaterialBuilder katana(@Nullable Material craftedFrom) {
-        return weaponBuilder(VanillaECPlugin.KATANA, craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties)).build();
+        return katana(craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties));
     }
 
-    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom) {
+    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
+                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
+                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
+                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (!weaponMaterial.isBlockWeapon()) continue;
-            if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom);
-            else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new).build();
-            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new).build();
-            else weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem::new).build();
+            if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, greatHammerConstructor);
+            else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, dyeableConstructor).build();
+            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, hasPotionConstructor).build();
+            else weaponBuilder(weaponMaterial, craftedFrom, constructor).build();
 
         }
         return this;
     }
+
+    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom) {
+        return blockWeapons(craftedFrom, ECWeaponItem::new, ECWeaponItem.Dyeable::new, ECWeaponItem.HasPotion::new, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties));
+    }
     public MaterialBuilder weapons() {
         return weapons(null);
+    }
+
+    public MaterialBuilder weapons(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
+                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
+                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
+                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor,
+                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> katanaConstructor) {
+        for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
+            if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom, katanaConstructor);
+            else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, greatHammerConstructor);
+            else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, dyeableConstructor).build();
+            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, hasPotionConstructor).build();
+            else weaponBuilder(weaponMaterial, craftedFrom, constructor).build();
+        }
+        return this;
     }
 
     public MaterialBuilder weapons(@Nullable Material craftedFrom) {
