@@ -49,7 +49,7 @@ public class BowItemBuilder extends MaterialItemBuilder {
         this.halfItemBuilder = null;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Gauntlet";
+        lang = material.getName() + " Bow";
         modelBuilder = (registrateItemBuilder, material1, aBoolean) -> genModel(itemBuilder, material.getLocationName().getPath(), "", aBoolean);
         recipeBuilder = BowItemBuilder::generateRecipes;
         colorBuilder = BowItemBuilder::colors;
