@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.model.MaulersModel;
 import com.userofbricks.expanded_combat.init.ECLayerDefinitions;
@@ -32,9 +33,9 @@ import javax.annotation.Nullable;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
-public class MaulersRenderer extends GauntletRenderer{
+public class MaulersRenderer implements IGauntletRenderer {
 
-    private final ResourceLocation GAUNTLET_TEXTURE = modLoc("textures/model/gauntlet/maulers.png");
+    private ResourceLocation GAUNTLET_TEXTURE = modLoc("textures/model/gauntlet/maulers.png");
 
     private final MaulersModel model;
 
@@ -44,22 +45,12 @@ public class MaulersRenderer extends GauntletRenderer{
                 Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.MAULERS));
     }
 
-    @Nullable
-    public static MaulersRenderer getGloveRenderer(ItemStack stack) {
-        if (!stack.isEmpty()) {
-            return CuriosRendererRegistry.getRenderer(stack.getItem())
-                    .filter(MaulersRenderer.class::isInstance)
-                    .map(MaulersRenderer.class::cast)
-                    .orElse(null);
-        }
-        return null;
-    }
-
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
         if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
+            GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -88,6 +79,7 @@ public class MaulersRenderer extends GauntletRenderer{
             modelPart.xRot = 0;
 
             if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
+                GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
 
                 RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
                 VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);

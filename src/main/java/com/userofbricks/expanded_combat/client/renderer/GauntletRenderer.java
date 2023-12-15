@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.init.ECLayerDefinitions;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
@@ -29,7 +30,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 import javax.annotation.Nullable;
 
-public class GauntletRenderer implements ICurioRenderer{
+public class GauntletRenderer implements IGauntletRenderer {
 
     private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
 
@@ -38,17 +39,6 @@ public class GauntletRenderer implements ICurioRenderer{
     public GauntletRenderer() {
         this.model = new GauntletModel(
                 Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.GAUNTLET));
-    }
-
-    @Nullable
-    public static GauntletRenderer getGloveRenderer(ItemStack stack) {
-        if (!stack.isEmpty()) {
-            return CuriosRendererRegistry.getRenderer(stack.getItem())
-                    .filter(GauntletRenderer.class::isInstance)
-                    .map(GauntletRenderer.class::cast)
-                    .orElse(null);
-        }
-        return null;
     }
 
     @Override

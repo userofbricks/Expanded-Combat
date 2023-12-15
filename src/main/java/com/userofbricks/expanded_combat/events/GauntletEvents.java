@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.client.renderer.MaulersRenderer;
 import com.userofbricks.expanded_combat.init.ECAttributes;
@@ -35,6 +36,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
@@ -117,14 +119,11 @@ public class GauntletEvents
                     stack = stacks.getStackInSlot(0);
                 }
 
-                GauntletRenderer renderer = GauntletRenderer.getGloveRenderer(stack);
-                if (renderer != null) {
-                    renderer.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
-                }
-
-                MaulersRenderer maulers = MaulersRenderer.getGloveRenderer(stack);
-                if (maulers != null) {
-                    maulers.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
+                if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
+                    ICurioRenderer iCurioRenderer = ecGauntletItem.getGauntletRenderer().get();
+                    if (iCurioRenderer instanceof IGauntletRenderer gauntletRenderer) {
+                        gauntletRenderer.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
+                    }
                 }
             }
         });
