@@ -7,8 +7,10 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +142,10 @@ public class MaterialInit {
     public static Material valueOfShield(ItemStack itemStack) {
         for (Material material :
                 shieldMaterials) {
+            if (!material.getConfig().crafting.craftingItem.isEmpty()) {
+                if (ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)) == itemStack.getItem()) return material;
+                else continue;
+            }
             if (material.getConfig().crafting.repairItem.isEmpty()) continue;
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(itemStack)) return material;
         }
