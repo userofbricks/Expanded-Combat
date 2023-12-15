@@ -29,9 +29,7 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -105,13 +103,24 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
     public static void generateRecipes(ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, Material material, Material craftedFrom) {
         String name = material.getName();
         itemBuilder.recipe((ctx, prov) -> {
-            if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            Ingredient craftingIngredient = null;
+            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            if (useCraftingItem) {
+                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            }
+            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            }
+
+            if (craftingIngredient != null) {
                 ECConfigBooleanCondition enableArrows = new ECConfigBooleanCondition("arrow");
                 ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(name, "config", "crafting", "is_single_addition");
 
                 Map<Character, Ingredient> recipe = new HashMap<>();
-                recipe.put('X', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
+                recipe.put('X', craftingIngredient);
                 recipe.put('#', Ingredient.of(Items.STICK));
                 recipe.put('Y', Ingredient.of(Items.FEATHER));
                 conditionalShapedRecipe(ctx, prov, new String[]{"X","#","Y"}, recipe, 4, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
@@ -119,22 +128,22 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
                 if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
                     conditionalSmithing120Recipe(ctx, prov,
                             Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                            IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                            craftingIngredient,
                             craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
                             new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
                 } else {
                     conditionalSmithingWithoutTemplateRecipe(ctx, prov,
-                            IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                            craftingIngredient,
                             craftedFrom == null ? Ingredient.of(Items.ARROW) : Ingredient.of(craftedFrom.getArrowEntry().get()),
                             new ICondition[]{enableArrows, isSingleAddition}, triggerInstance, "");
                 }
 
                 InventoryChangeTrigger.TriggerInstance fletchingTriggerInstance = InventoryChangeTrigger.TriggerInstance.hasItems(ECItems.FLETCHED_STICKS.get());
 
-                conditionalFletchingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem), Ingredient.of(ECItems.FLETCHED_STICKS.get()),
+                conditionalFletchingRecipe(ctx, prov, craftingIngredient, Ingredient.of(ECItems.FLETCHED_STICKS.get()),
                         new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, fletchingTriggerInstance, "", 6);
 
-                conditionalVariableFletchingRecipe(ctx, prov, IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem), Ingredient.of(craftedFrom != null ? craftedFrom.getArrowEntry().get() : Items.ARROW),
+                conditionalVariableFletchingRecipe(ctx, prov, craftingIngredient, Ingredient.of(craftedFrom != null ? craftedFrom.getArrowEntry().get() : Items.ARROW),
                         new ICondition[]{enableArrows, isSingleAddition}, fletchingTriggerInstance, "", 32);
             }
         });

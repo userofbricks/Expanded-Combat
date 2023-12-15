@@ -27,9 +27,7 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -100,13 +98,24 @@ public class QuiverItemBuilder extends MaterialItemBuilder {
     public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         String name = material.getName();
         itemBuilder.recipe((ctx, prov) -> {
-            if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            Ingredient craftingIngredient = null;
+            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            if (useCraftingItem) {
+                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            }
+            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            }
+
+            if (craftingIngredient != null) {
                 ECConfigBooleanCondition enableGauntlets = new ECConfigBooleanCondition("arrow");
                 ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(name, "config", "crafting", "is_single_addition");
 
                 Map<Character, Ingredient> recipe = new HashMap<>();
-                recipe.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
+                recipe.put('i', craftingIngredient);
                 recipe.put('l', IngredientUtil.getTagedIngredientOrEmpty("forge", "leather"));
                 recipe.put('s', IngredientUtil.getTagedIngredientOrEmpty("forge", "string"));
                 conditionalShapedRecipe(ctx, prov, new String[]{"sl ","l l", "il "}, recipe, 1, new ICondition[]{enableGauntlets, new NotCondition(isSingleAddition)}, triggerInstance, "");
@@ -115,12 +124,12 @@ public class QuiverItemBuilder extends MaterialItemBuilder {
                     if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
                         conditionalSmithing120Recipe(ctx, prov,
                                 Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                                IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                                craftingIngredient,
                                 Ingredient.of(craftedFrom.getQuiverEntry().get()),
                                 new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
                     } else {
                         conditionalSmithingWithoutTemplateRecipe(ctx, prov,
-                                IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
+                                craftingIngredient,
                                 Ingredient.of(craftedFrom.getQuiverEntry().get()),
                                 new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
                     }

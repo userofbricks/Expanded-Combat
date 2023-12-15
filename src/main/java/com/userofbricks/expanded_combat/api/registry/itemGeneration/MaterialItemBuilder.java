@@ -21,6 +21,7 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public abstract class MaterialItemBuilder {
@@ -54,15 +55,28 @@ public abstract class MaterialItemBuilder {
     }
 
     public static void conditionalSmithing120Recipe(DataGenContext<Item,? extends Item> ctx, RegistrateRecipeProvider prov, Material material, Ingredient previosItem, ICondition[] conditions, String nameSufix) {
-        if (material.getConfig().crafting.smithingTemplate != null && !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
-            conditionalSmithing120Recipe(ctx, prov,
-                    Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                    previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
-        } else {
-            conditionalSmithingWithoutTemplateRecipe(ctx, prov,
-                    IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem),
-                    previosItem, conditions, getTriggerInstance(material.getConfig().crafting.repairItem), nameSufix);
+        Ingredient craftingIngredient = null;
+        InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+        boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+        if (useCraftingItem) {
+            craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+            triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+        }
+        else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+            craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+            triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+        }
+        if (craftingIngredient != null) {
+            if (material.getConfig().crafting.smithingTemplate != null && !material.getConfig().crafting.smithingTemplate.equals("minecraft:air")) {
+                conditionalSmithing120Recipe(ctx, prov,
+                        Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
+                        craftingIngredient,
+                        previosItem, conditions, triggerInstance, nameSufix);
+            } else {
+                conditionalSmithingWithoutTemplateRecipe(ctx, prov,
+                        craftingIngredient,
+                        previosItem, conditions, triggerInstance, nameSufix);
+            }
         }
     }
 

@@ -466,7 +466,6 @@
   "text.autoconfig.expanded_combat.option.birchPlank.offense.velocityMultiplier": "Arrow Velocity Multiplier",
   "text.autoconfig.expanded_combat.option.birchPlank.offense.velocityMultiplier.@Tooltip": "used when firing a bow or crossbow",
   "text.autoconfig.expanded_combat.option.birchPlank.quiverSlots": "InventorySlots",
-  "text.autoconfig.expanded_combat.option.bowRecipeType": "Bow Crafting Type",
   "text.autoconfig.expanded_combat.option.broadsword": "Broad Sword",
   "text.autoconfig.expanded_combat.option.broadsword.attackRange": "Added Attack Range",
   "text.autoconfig.expanded_combat.option.broadsword.attackRange.@Tooltip": "In Blocks",

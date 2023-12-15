@@ -19,8 +19,11 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.crafting.conditions.OrCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -127,9 +130,19 @@ public class BowItemBuilder extends MaterialItemBuilder {
     }
     public static void generateRecipes(ItemBuilder<? extends BowItem, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         itemBuilder.recipe((ctx, prov) -> {
+            Ingredient craftingIngredient = null;
+            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            if (useCraftingItem) {
+                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            }
+            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            }
 
-            if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            if (craftingIngredient != null) {
 
                 ECConfigBooleanCondition enableBows = new ECConfigBooleanCondition("bow");
                 ECConfigBooleanCondition enableHalfBows = new ECConfigBooleanCondition("half_bow");
@@ -137,7 +150,7 @@ public class BowItemBuilder extends MaterialItemBuilder {
 
                 //Shaped Crafting
                 Map<Character, Ingredient> ingredientMap = new HashMap<>();
-                ingredientMap.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
+                ingredientMap.put('i', craftingIngredient);
                 if (material.halfbow) {
                     ingredientMap.put('b', material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()));
                     conditionalShapedRecipe(ctx, prov, new String[]{"i", "b"}, ingredientMap, 1, new ICondition[]{enableBows, enableHalfBows}, triggerInstance, "");
@@ -158,15 +171,26 @@ public class BowItemBuilder extends MaterialItemBuilder {
     }
     public static void generateHalfRecipes(ItemBuilder<? extends BowItem, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         itemBuilder.recipe((ctx, prov) -> {
-            if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            Ingredient craftingIngredient = null;
+            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            if (useCraftingItem) {
+                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            }
+            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            }
+
+            if (craftingIngredient != null) {
 
                 ECConfigBooleanCondition enableBows = new ECConfigBooleanCondition("bow");
                 ECConfigBooleanCondition enableHalfBows = new ECConfigBooleanCondition("half_bow");
 
                 //Shaped Crafting
                 Map<Character, Ingredient> ingredientMap = new HashMap<>();
-                ingredientMap.put('i', IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem));
+                ingredientMap.put('i', craftingIngredient);
                 ingredientMap.put('b', material.getHalfBowEntry() == null ? Ingredient.of(Items.BOW) : Ingredient.of(material.getHalfBowEntry().get()));
                 conditionalShapedRecipe(ctx, prov, new String[]{"b", "i"}, ingredientMap, 1, new ICondition[]{enableBows, enableHalfBows}, triggerInstance, "");
 

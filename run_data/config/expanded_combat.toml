@@ -10,7 +10,6 @@ enableQuivers = true
 enableShields = true
 enableWeapons = true
 crossbowVelocityBonus = 0.5
-bowRecipeType = "SMITHING_ONLY"
 enableFletchingTable = true
 
 [shieldProtectionConfig]
@@ -186,6 +185,7 @@ afterBasePercentReduction = 0.3
 
 [vanilla.crafting]
 repairItem = ["minecraft:barrier"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -223,6 +223,7 @@ afterBasePercentReduction = 0.45
 
 [leather.crafting]
 repairItem = ["minecraft:leather"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -260,6 +261,7 @@ afterBasePercentReduction = 0.5
 
 [rebbitLeather.crafting]
 repairItem = ["minecraft:rabbit_hide"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -297,6 +299,7 @@ afterBasePercentReduction = 0.3
 
 [oakPlank.crafting]
 repairItem = ["minecraft:oak_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -334,6 +337,7 @@ afterBasePercentReduction = 0.3
 
 [acaciaPlank.crafting]
 repairItem = ["minecraft:acacia_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -371,6 +375,7 @@ afterBasePercentReduction = 0.3
 
 [birchPlank.crafting]
 repairItem = ["minecraft:birch_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -408,6 +413,7 @@ afterBasePercentReduction = 0.3
 
 [darkOakPlank.crafting]
 repairItem = ["minecraft:dark_oak_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -445,6 +451,7 @@ afterBasePercentReduction = 0.3
 
 [sprucePlank.crafting]
 repairItem = ["minecraft:spruce_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -482,6 +489,7 @@ afterBasePercentReduction = 0.3
 
 [junglePlank.crafting]
 repairItem = ["minecraft:jungle_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -519,6 +527,7 @@ afterBasePercentReduction = 0.3
 
 [warpedPlank.crafting]
 repairItem = ["minecraft:warped_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -556,6 +565,7 @@ afterBasePercentReduction = 0.3
 
 [crimsonPlank.crafting]
 repairItem = ["minecraft:crimson_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -593,6 +603,7 @@ afterBasePercentReduction = 0.3
 
 [mangrovePlank.crafting]
 repairItem = ["minecraft:mangrove_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -630,6 +641,7 @@ afterBasePercentReduction = 0.3
 
 [bambooPlank.crafting]
 repairItem = ["minecraft:bamboo_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -667,6 +679,7 @@ afterBasePercentReduction = 0.3
 
 [cherryPlank.crafting]
 repairItem = ["minecraft:cherry_planks"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -704,6 +717,7 @@ afterBasePercentReduction = 0.0
 
 [stone.crafting]
 repairItem = ["minecraft:cobblestone", "minecraft:blackstone", "minecraft:cobbled_deepslate"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -741,6 +755,7 @@ afterBasePercentReduction = 0.6
 
 [iron.crafting]
 repairItem = ["minecraft:iron_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -778,6 +793,7 @@ afterBasePercentReduction = 0.4
 
 [gold.crafting]
 repairItem = ["minecraft:gold_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -815,6 +831,7 @@ afterBasePercentReduction = 0.75
 
 [diamond.crafting]
 repairItem = ["minecraft:diamond"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -852,6 +869,7 @@ afterBasePercentReduction = 0.85
 
 [netherite.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = true
 onlyReplaceResource = ["Diamond"]
 smithingTemplate = "minecraft:netherite_upgrade_smithing_template"
@@ -889,6 +907,7 @@ afterBasePercentReduction = 0.0
 
 [heartStealer.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -926,6 +945,7 @@ afterBasePercentReduction = 0.0
 
 [heat.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -963,6 +983,7 @@ afterBasePercentReduction = 0.0
 
 [frost.crafting]
 repairItem = ["minecraft:diamond"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -1000,6 +1021,7 @@ afterBasePercentReduction = 0.0
 
 [voidTouched.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -1037,6 +1059,7 @@ afterBasePercentReduction = 0.0
 
 [soul.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -1074,6 +1097,7 @@ afterBasePercentReduction = 0.0
 
 [fighters.crafting]
 repairItem = ["minecraft:diamond"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -1111,6 +1135,7 @@ afterBasePercentReduction = 0.0
 
 [maulers.crafting]
 repairItem = ["minecraft:diamond"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"
@@ -1148,6 +1173,7 @@ afterBasePercentReduction = 0.0
 
 [gauntlet.crafting]
 repairItem = ["minecraft:netherite_ingot"]
+craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
 smithingTemplate = "minecraft:air"

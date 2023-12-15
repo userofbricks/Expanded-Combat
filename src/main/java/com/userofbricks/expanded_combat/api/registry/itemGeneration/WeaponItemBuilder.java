@@ -30,8 +30,11 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public class WeaponItemBuilder extends MaterialItemBuilder {
@@ -98,12 +101,23 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
 
     public static void generateRecipies(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
         itemBuilder.recipe((ctx, prov) -> {
-            if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                InventoryChangeTrigger.TriggerInstance triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            Ingredient craftingIngredient = null;
+            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
+            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            if (useCraftingItem) {
+                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
+                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            }
+            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
+                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
+                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+            }
+
+            if (craftingIngredient != null) {
                 ECConfigBooleanCondition enableArrows = new ECConfigBooleanCondition("weapon");
                 ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(material.getName(), "config", "crafting", "is_single_addition");
 
-                Map<Character, Ingredient> ingredientMap = new RecipeIngredientMapBuilder().put('i', material.getConfig().crafting.repairItem).build();
+                Map<Character, Ingredient> ingredientMap = new RecipeIngredientMapBuilder().put('i', craftingIngredient).build();
                 if (weapon.recipeIngredients() != null) {
                     if (!weapon.recipeContains("i")) ingredientMap.remove('i');
                     ingredientMap.putAll(weapon.recipeIngredients().get().build());

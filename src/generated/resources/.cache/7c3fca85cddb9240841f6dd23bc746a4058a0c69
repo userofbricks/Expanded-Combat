@@ -1,7 +1,7 @@
-// 1.20.1	2023-12-09T16:07:27.019161	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2023-12-15T14:11:27.279234	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
-b9e568a450e7a4f7424aa16e8558205b8d43ff59 assets/expanded_combat/lang/en_ud.json
-10debe3d601f542b185a579fe9dc195aa78c5817 assets/expanded_combat/lang/en_us.json
+20554b9ffc300cd8c1717f31bc392b089c48fc40 assets/expanded_combat/lang/en_ud.json
+471921034a042d99ca34b500f42aeb35b1e5d171 assets/expanded_combat/lang/en_us.json
 12853864a79548a62425238cd60c04204f93aae8 assets/expanded_combat/models/item/acacia_plank_battle_staff.json
 4e3a1e52cb5f621d1b23e62b8c495e6828fe1fad assets/expanded_combat/models/item/acacia_plank_broad_sword.json
 14d7e6641e5b1b954b68647891af85ceb54b7226 assets/expanded_combat/models/item/acacia_plank_claymore.json

@@ -44,8 +44,8 @@ public class MaterialConfig {
     public int quiverSlots;
 
     MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, ArrayList<String> repairItem,
-                   float mendingBonus, boolean fireResistant, double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower,
-                   float velocityMultiplier, int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction,
+                   String craftingItem, float mendingBonus, boolean fireResistant, double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel,
+                   int bowPower, float velocityMultiplier, int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction,
                    boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
         this.durability = new Durability(toolDurability, addedShieldDurability, bowDurability);
         this.enchanting = new Enchanting(offenseEnchantability, defenseEnchantability);
@@ -54,7 +54,7 @@ public class MaterialConfig {
         this.fireResistant = fireResistant;
         this.offense = new Offense(gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower, velocityMultiplier);
         this.defense = new Defense(gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction);
-        this.crafting = new Crafting(repairItem, isSingleAddition, onlyReplaceResource, smithingTemplate);
+        this.crafting = new Crafting(repairItem, isSingleAddition, onlyReplaceResource, smithingTemplate, craftingItem);
         this.quiverSlots = quiverSlots;
     }
 
@@ -158,15 +158,22 @@ public class MaterialConfig {
     }
 
     public static class Crafting {
-        public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate) {
+        public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate, String craftingItem) {
             this.repairItem = repairItem;
             this.isSingleAddition = isSingleAddition;
             this.onlyReplaceResource = onlyReplaceResource;
             this.smithingTemplate = smithingTemplate;
+            this.craftingItem = craftingItem;
         }
 
         @ConfigName("Repair Item")
         public ArrayList<String> repairItem;
+        @ConfigName("Crafting Item")
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        @TooltipFrase("If left empty will use repair item")
+        @TooltipFrase(line = 1, value = "Only changes anything in a MDK when running a datagen process")
+        @ConfigEntry.Gui.Excluded
+        public String craftingItem;
         @ConfigName("Is Single Addition")
         public boolean isSingleAddition;
         @ConfigName("Only Replaced On Shield By This")
@@ -186,6 +193,7 @@ public class MaterialConfig {
         private int defenseEnchantability = 0;
         private String equipSound = new ResourceLocation("item.armor.equip_generic").toString();
         private ArrayList<String> repairItem = new ArrayList<>();
+        private String craftingItem = "";
         private float mendingBonus = 0;
         private boolean fireResistant = false;
         private float gauntletAttackDamage = 0;
@@ -259,6 +267,16 @@ public class MaterialConfig {
 
         public Builder equipSound(SoundEvent equipSound) {
             this.equipSound = equipSound.getLocation().toString();
+            return this;
+        }
+
+        public Builder craftingItem(String item) {
+            this.craftingItem = item;
+            return this;
+        }
+
+        public Builder craftingItem(ResourceLocation item) {
+            this.craftingItem = item.toString();
             return this;
         }
 
@@ -379,7 +397,7 @@ public class MaterialConfig {
         }
 
         public MaterialConfig build() {
-            return new MaterialConfig(toolDurability, addedShieldDurability, bowDurability, offenseEnchantability, defenseEnchantability, equipSound, repairItem,
+            return new MaterialConfig(toolDurability, addedShieldDurability, bowDurability, offenseEnchantability, defenseEnchantability, equipSound, repairItem, craftingItem,
                     mendingBonus, fireResistant, gauntletAttackDamage, arrowDamage, flaming, canBeTipped, multishotLevel, bowPower,
                     velocityMultiplier, gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction,
                     isSingleAddition, onlyReplaceResource, smithingTemplate, quiverSlots);
