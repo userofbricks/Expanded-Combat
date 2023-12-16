@@ -19,7 +19,7 @@ public interface IExpandedCombatPlugin {
     default void registerMaterials(RegistrationHandler registrationHandler) {}
 
     /**
-     * register your {@link ShieldToMaterials}s here
+     * register your {@link ShieldToMaterials}s and {@link ShieldMaterialUseTick}s here
      * using the provided {@link RegistrationHandler.ShieldMaterialRegisterator}
      */
     default void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {}

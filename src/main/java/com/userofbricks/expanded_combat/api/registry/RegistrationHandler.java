@@ -29,5 +29,9 @@ public class RegistrationHandler {
             MaterialInit.shieldToMaterialsList.add(shieldToMaterials);
             return shieldToMaterials;
         }
+        public ShieldMaterialUseTick registerShieldMaterialUseTick(ShieldMaterialUseTick shieldToMaterials) {
+            MaterialInit.shieldMaterialUseTickList.add(shieldToMaterials);
+            return shieldToMaterials;
+        }
     }
 }

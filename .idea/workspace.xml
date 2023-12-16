@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/NonNullPentaConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/ShieldMaterialUseTick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/material/MaterialBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/IExpandedCombatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/IExpandedCombatPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/RegistrationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/RegistrationHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/MaterialInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECShieldItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +54,7 @@
         <option value="Enum" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -140,14 +148,14 @@
       <recent name="com.userofbricks.expanded_combat.config" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.userofbricks.expanded_combat.loot" />
       <recent name="com.userofbricks.expanded_combat.api" />
+      <recent name="com.userofbricks.expanded_combat.loot" />
       <recent name="com.userofbricks.expanded_combat.client.renderer" />
       <recent name="com.userofbricks.expanded_combat.client.sprites" />
       <recent name="com.userofbricks.expanded_combat.block" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runData">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -632,7 +640,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -665,7 +673,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="transfered QuiverItemBuilder to the new builder system" />
     <MESSAGE value="transfered CrossBowItemBuilder to the new builder system" />
     <MESSAGE value="modified BowItemBuilder to be a builder.&#10;still need to modify material builder to match" />
     <MESSAGE value="finished transferring BowItemBuilder to the new builder system" />
@@ -690,7 +697,8 @@
     <MESSAGE value="3.0.1" />
     <MESSAGE value="rearranged Gauntlet rendering in first person on hand" />
     <MESSAGE value="made crafting item separate from repair item with the fallback of repair item when generating recipes" />
-    <option name="LAST_COMMIT_MESSAGE" value="made crafting item separate from repair item with the fallback of repair item when generating recipes" />
+    <MESSAGE value="shield crafting now uses crafting item a default with repair as backup" />
+    <option name="LAST_COMMIT_MESSAGE" value="shield crafting now uses crafting item a default with repair as backup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

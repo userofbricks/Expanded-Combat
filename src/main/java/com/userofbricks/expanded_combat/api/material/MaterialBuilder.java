@@ -188,7 +188,7 @@ public class MaterialBuilder {
         if (!MaterialInit.shieldMaterials.contains(material)) MaterialInit.shieldMaterials.add(material);
         material.shieldUse = shieldUse;
         material.craftedFrom = craftedFrom;
-        ExpandedCombat.REGISTRATE.get().addRawLang(LangStrings.SHIELD_MATERIAL_LANG_START + material.getName(), material.getName());
+        registrate.get().addRawLang(LangStrings.SHIELD_MATERIAL_LANG_START + material.getName(), material.getName());
         return this;
     }
 

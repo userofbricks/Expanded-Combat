@@ -1,13 +1,16 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -24,11 +27,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.userofbricks.expanded_combat.init.MaterialInit.getMaterialForShieldPart;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class ECShieldItem extends ShieldItem {
 
     public static final String ULMaterialTagName = "UL_Material";
@@ -81,7 +88,6 @@ public class ECShieldItem extends ShieldItem {
      * @param repair the material being repaired with
      * @return weather the repair material is the correct type
      */
-    @ParametersAreNonnullByDefault
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (repair.getItem() instanceof EnchantedBookItem) return  false;
@@ -98,11 +104,6 @@ public class ECShieldItem extends ShieldItem {
         toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
         Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(MaterialInit.valueOfShield("any", currentSlotMaterial).getConfig().crafting.repairItem);
         return !ingredient.isEmpty() && ingredient.test(repair);
-    }
-
-    @Override
-    public boolean canPerformAction(@NotNull ItemStack stack, @NotNull ToolAction toolAction) {
-        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
     }
 
     /**
@@ -130,7 +131,6 @@ public class ECShieldItem extends ShieldItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @ParametersAreNonnullByDefault
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
         String ul = getUpperLeftMaterial(stack);
         String ur = getUpperRightMaterial(stack);
@@ -190,7 +190,7 @@ public class ECShieldItem extends ShieldItem {
         return ul + ur + dl + dr + m;
     }
     @Override
-    public void initializeClient(@Nonnull Consumer<IClientItemExtensions> consumer) {
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
@@ -200,21 +200,27 @@ public class ECShieldItem extends ShieldItem {
     }
 
     @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack p_41452_) {
-        return UseAnim.BLOCK;
-    }
-
-    @Override
-    public int getUseDuration(@NotNull ItemStack p_43107_) {
-        return 72000;
-    }
-
-    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         if (enchantment == Enchantments.BINDING_CURSE) {
             return false;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);
+    }
+
+    @Override
+    public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int timeUsing) {
+        super.onUseTick(level, livingEntity, itemStack, timeUsing);
+        Map<Material, Integer> materials = new HashMap<>();
+        for (Material material : Arrays.asList(MaterialInit.valueOfShield("ul", getUpperLeftMaterial(itemStack)), MaterialInit.valueOfShield("ur", getUpperRightMaterial(itemStack)), MaterialInit.valueOfShield("m", getMiddleMaterial(itemStack)),
+                MaterialInit.valueOfShield("dl", getDownLeftMaterial(itemStack)), MaterialInit.valueOfShield("dr", getDownRightMaterial(itemStack))))
+        {
+            if (materials.containsKey(material)) materials.replace(material, materials.get(material) + 1);
+            else materials.put(material, 1);
+        }
+        for (Map.Entry<Material, Integer> material : materials.entrySet()) {
+            ShieldMaterialUseTick useTick = MaterialInit.getShieldHaveUseTickEntry(material.getKey());
+            if (useTick != null) useTick.onUseTick().apply(level, livingEntity, itemStack, timeUsing, material.getValue());
+        }
     }
 
     public static String getUpperLeftMaterial(ItemStack stack) {

@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
+import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
@@ -11,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ public class MaterialInit {
     public static List<Material> materials = new ArrayList<>();
     public static List<WeaponMaterial> weaponMaterialConfigs = new ArrayList<>();
     public static List<ShieldToMaterials> shieldToMaterialsList = new ArrayList<>();
+    public static List<ShieldMaterialUseTick> shieldMaterialUseTickList = new ArrayList<>();
 
     public static List<Material> gauntletMaterials = new ArrayList<>();
     public static List<Material> shieldMaterials = new ArrayList<>();
@@ -66,6 +69,15 @@ public class MaterialInit {
             }
         }
         return false;
+    }
+
+    public static @Nullable ShieldMaterialUseTick getShieldHaveUseTickEntry(Material material) {
+        for (ShieldMaterialUseTick shieldMaterialUseTick : shieldMaterialUseTickList) {
+            if (material == shieldMaterialUseTick.material()) {
+                return shieldMaterialUseTick;
+            }
+        }
+        return null;
     }
 
     public static Material valueOf(String name) {
