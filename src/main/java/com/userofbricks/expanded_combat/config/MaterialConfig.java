@@ -281,11 +281,21 @@ public class MaterialConfig {
         }
 
         public Builder repairItem(String... items) {
+            this.repairItem = (ArrayList<String>) Arrays.asList(items);
+            return this;
+        }
+
+        public Builder repairAddItem(String... items) {
             this.repairItem.addAll(Arrays.asList(items));
             return this;
         }
 
         public Builder repairItem(ResourceLocation... items) {
+            this.repairItem = (ArrayList<String>) Arrays.stream(items).map(ResourceLocation::toString).toList();
+            return this;
+        }
+
+        public Builder repairAddItem(ResourceLocation... items) {
             this.repairItem.addAll(Arrays.stream(items).map(ResourceLocation::toString).toList());
             return this;
         }
