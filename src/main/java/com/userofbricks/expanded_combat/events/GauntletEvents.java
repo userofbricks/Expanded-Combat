@@ -1,37 +1,34 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
-import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
-import com.userofbricks.expanded_combat.client.renderer.MaulersRenderer;
-import com.userofbricks.expanded_combat.init.ECAttributes;
-import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
-import net.minecraft.stats.Stats;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderArmEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Cancelable;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.ApiStatus;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -115,9 +112,12 @@ public class GauntletEvents
                 IDynamicStackHandler stacks = stacksHandler.getStacks();
                 IDynamicStackHandler cosmeticStacks = stacksHandler.getCosmeticStacks();
                 ItemStack stack = cosmeticStacks.getStackInSlot(0);
+                boolean cosmetic = true;
                 if (stack.isEmpty() && stacksHandler.getRenders().get(0)) {
                     stack = stacks.getStackInSlot(0);
+                    cosmetic = false;
                 }
+                if (!MinecraftForge.EVENT_BUS.post(new GauntletRenderFirstPersonEvent(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack, cosmetic))) return;
 
                 if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
                     ICurioRenderer iCurioRenderer = ecGauntletItem.getGauntletRenderer().get();
@@ -127,5 +127,95 @@ public class GauntletEvents
                 }
             }
         });
+    }
+
+
+
+    /**
+     * Fired before the player's gauntlet is rendered in first person. This is a more targeted version of {@link RenderArmEvent},
+     * and can be used to replace the rendering of the player's gauntlet.
+     *
+     * <p>This event is {@linkplain Cancelable cancellable}, and does not {@linkplain HasResult have a result}.
+     * If this event is cancelled, then the gauntlet will not be rendered, however unlike in {@link RenderArmEvent} the arm will still render.</p>
+     *
+     * <p>This event is fired on the {@linkplain MinecraftForge#EVENT_BUS main Forge event bus},
+     * only on the {@linkplain LogicalSide#CLIENT logical client}.</p>
+     */
+    @Cancelable
+    public static class GauntletRenderFirstPersonEvent extends Event {
+        private final PoseStack poseStack;
+        private final MultiBufferSource multiBufferSource;
+        private final int packedLight;
+        private final AbstractClientPlayer player;
+        private final HumanoidArm arm;
+        private final ItemStack gauntlet;
+        private final boolean cosmetic;
+
+        @ApiStatus.Internal
+        public GauntletRenderFirstPersonEvent(PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, AbstractClientPlayer player, HumanoidArm arm, ItemStack gauntlet, boolean cosmetic)
+        {
+            this.poseStack = poseStack;
+            this.multiBufferSource = multiBufferSource;
+            this.packedLight = packedLight;
+            this.player = player;
+            this.arm = arm;
+            this.gauntlet = gauntlet;
+            this.cosmetic = cosmetic;
+        }
+
+        /**
+         * {@return the arm being rendered}
+         */
+        public HumanoidArm getArm()
+        {
+            return arm;
+        }
+
+        /**
+         * {@return the pose stack used for rendering}
+         */
+        public PoseStack getPoseStack()
+        {
+            return poseStack;
+        }
+
+        /**
+         * {@return the source of rendering buffers}
+         */
+        public MultiBufferSource getMultiBufferSource()
+        {
+            return multiBufferSource;
+        }
+
+        /**
+         * {@return the amount of packed (sky and block) light for rendering}
+         *
+         * @see LightTexture
+         */
+        public int getPackedLight()
+        {
+            return packedLight;
+        }
+
+        /**
+         * {@return the client player that is having their arm rendered} In general, this will be the same as
+         * {@link net.minecraft.client.Minecraft#player}.
+         */
+        public AbstractClientPlayer getPlayer()
+        {
+            return player;
+        }
+        /**
+         * {@return the gauntlet ItemStack being rendering}
+         */
+        public ItemStack getGauntlet() {
+            return gauntlet;
+        }
+        /**
+         * {@return weather the gauntlet ItemStack being rendering is cosmetic or not}
+         */
+        public boolean isCosmetic() {
+            return cosmetic;
+        }
     }
 }
