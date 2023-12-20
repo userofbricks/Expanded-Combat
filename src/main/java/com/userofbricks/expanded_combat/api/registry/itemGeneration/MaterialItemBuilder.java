@@ -22,10 +22,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public abstract class MaterialItemBuilder {
-    public static InventoryChangeTrigger.TriggerInstance getTriggerInstance(ArrayList<String> locations) {
+    public static InventoryChangeTrigger.TriggerInstance getTriggerInstance(List<String> locations) {
         return InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(locations));
     }
 
@@ -60,7 +61,7 @@ public abstract class MaterialItemBuilder {
         boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
         if (useCraftingItem) {
             craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
-            triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+            triggerInstance = getTriggerInstance(Collections.singletonList(material.getConfig().crafting.craftingItem));
         }
         else if (!material.getConfig().crafting.repairItem.isEmpty()) {
             craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
