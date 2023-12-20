@@ -48,7 +48,7 @@ public class IngredientUtil {
         return list;
     }
 
-    public static ItemLike[] toItemLikeArray(ArrayList<String> locations) {
+    public static ItemLike[] toItemLikeArray(List<String> locations) {
         ItemLike[] list =  new ItemLike[locations.size()];
 
         for (int i = 0; i < locations.size(); i++) {
@@ -61,9 +61,9 @@ public class IngredientUtil {
      * takes an Ingredient and returns a string representing every item in it with notation: domain:item1,domain:item2,domain2:item3
      * @return a string containing all items in @ingredient
      */
-    public static ArrayList<String> getItemStringFromIngrediant(Ingredient ingredient) {
+    public static List<String> getItemStringFromIngrediant(Ingredient ingredient) {
         ItemStack[] items = ingredient.getItems();
-        ArrayList<String> itemStrings = new ArrayList<>();
+        List<String> itemStrings = new ArrayList<>();
         for (ItemStack item : items) {
             itemStrings.add(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.getItem()), "ItemStack has no item in Ingredient").toString());
         }
@@ -74,9 +74,9 @@ public class IngredientUtil {
      * takes a string of notation: domain:item1,domain:item2,domain2:item3 and turns it into an Ingrediant object
      * @return an Ingrediant Object containing all items listed in the string
      */
-    public static Ingredient getIngrediantFromItemString(ArrayList<String> itemList) {
+    public static Ingredient getIngrediantFromItemString(List<String> itemList) {
         if(itemList == null) return Ingredient.EMPTY;
-        ArrayList<Item> items = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
         for (String itemString : itemList) {
             if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation(itemString))) {
                 items.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemString)));

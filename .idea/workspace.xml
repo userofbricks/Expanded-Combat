@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/MaterialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/MaterialConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -634,7 +631,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <option name="localTasksCounter" value="196" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -667,7 +664,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="tipped arrows have correct colors again" />
     <MESSAGE value="updated soul looting to increase soul chance by 20% if holding weapon in main hand" />
     <MESSAGE value="added" />
     <MESSAGE value="added soul and netherite weapons to the drops of the weapon display and made heartstealer a 1 time 10% drop" />
@@ -692,7 +688,8 @@
     <MESSAGE value="fixed gauntlet trim render issue" />
     <MESSAGE value="modified MaterialConfig to replace repair items by default" />
     <MESSAGE value="fixed attribute stacking bug causing agility attributes to grow over and over" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed attribute stacking bug causing agility attributes to grow over and over" />
+    <MESSAGE value="fixed casting bug hopefully" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed casting bug hopefully" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
