@@ -21,6 +21,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
+import java.util.UUID;
+
 public class EnchantentEvents {
 
     //TODO: when mobs can use mods weapons as well
@@ -46,8 +48,8 @@ public class EnchantentEvents {
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
             int level = stack.getEnchantmentLevel(ECEnchantments.AGILITY.get());
             switch (equipmentSlot) {
-                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier("Movement Speed", level * 0.1, AttributeModifier.Operation.ADDITION));
-                case LEGS -> event.addModifier(Attributes.JUMP_STRENGTH, new AttributeModifier("Jump Strength", level * 0.1, AttributeModifier.Operation.ADDITION));
+                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Movement Speed", level * 0.1, AttributeModifier.Operation.ADDITION));
+                case LEGS -> event.addModifier(Attributes.JUMP_STRENGTH, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Jump Strength", level * 0.1, AttributeModifier.Operation.ADDITION));
                 default -> {}
             }
         }

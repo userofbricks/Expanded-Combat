@@ -190,7 +190,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADDITION));
 
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier("Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
         }
         return atts;
     }
