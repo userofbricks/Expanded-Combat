@@ -61,8 +61,7 @@ public class MaulersRenderer implements IGauntletRenderer {
             ICurioRenderer.followBodyRotations(entity, this.model);
             renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE);
 
-            ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) ->
-                    this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+            //ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
         }
     }
 
@@ -86,8 +85,7 @@ public class MaulersRenderer implements IGauntletRenderer {
 
                 modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
 
-                ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) ->
-                        this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+                //ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
             }
         }
     }

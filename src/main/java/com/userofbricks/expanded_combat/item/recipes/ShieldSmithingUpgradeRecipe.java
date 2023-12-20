@@ -91,7 +91,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     public boolean isAdditionIngredient(@NotNull ItemStack stack) {
-        return MaterialInit.valueOfShield(stack).getConfig().crafting.isSingleAddition;
+        return false; //MaterialInit.valueOfShield(stack).getConfig().crafting.isSingleAddition;
     }
 
     @Override

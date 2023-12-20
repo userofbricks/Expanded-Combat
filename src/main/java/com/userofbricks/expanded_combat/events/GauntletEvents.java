@@ -117,7 +117,7 @@ public class GauntletEvents
                     stack = stacks.getStackInSlot(0);
                     cosmetic = false;
                 }
-                if (!MinecraftForge.EVENT_BUS.post(new GauntletRenderFirstPersonEvent(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack, cosmetic))) return;
+                if (MinecraftForge.EVENT_BUS.post(new GauntletRenderFirstPersonEvent(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack, cosmetic))) return;
 
                 if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
                     ICurioRenderer iCurioRenderer = ecGauntletItem.getGauntletRenderer().get();

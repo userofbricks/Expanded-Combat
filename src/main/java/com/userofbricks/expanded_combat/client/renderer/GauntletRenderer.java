@@ -102,8 +102,12 @@ public class GauntletRenderer implements IGauntletRenderer {
                     modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
                 }
 
-                ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) ->
-                        this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+                ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent(
+                        (armorTrim) -> {
+                            VertexConsumer vertexConsumer = getTrimVertexConsumer(ecGauntletItem, multiBufferSource, armorTrim, hasFoil);
+                            modelPart.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+                        }
+                );
             }
         }
     }
@@ -115,6 +119,11 @@ public class GauntletRenderer implements IGauntletRenderer {
     }
 
     private void renderTrim(ECGauntletItem ecGauntletItem, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, boolean foil) {
+        VertexConsumer vertexconsumer = getTrimVertexConsumer(ecGauntletItem, multiBufferSource, armorTrim, foil);
+        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+    private VertexConsumer getTrimVertexConsumer(ECGauntletItem ecGauntletItem, MultiBufferSource multiBufferSource, ArmorTrim armorTrim, boolean foil) {
         String materialSuffix = armorTrim.material().get().assetName();
 
         if (materialSuffix.equals(ecGauntletItem.getMaterial().getLocationName())) {
@@ -125,7 +134,6 @@ public class GauntletRenderer implements IGauntletRenderer {
 
 
         TextureAtlasSprite textureatlassprite = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET).getSprite(trimTexture);
-        VertexConsumer vertexconsumer = textureatlassprite.wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, Sheets.armorTrimsSheet(), true, foil));
-        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
+        return textureatlassprite.wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, Sheets.armorTrimsSheet(), true, foil));
     }
 }
