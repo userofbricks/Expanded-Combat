@@ -14,6 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class MaterialConfig {
@@ -43,10 +44,10 @@ public class MaterialConfig {
     @ConfigEntry.BoundedDiscrete(min = 1, max = 24)
     public int quiverSlots;
 
-    MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, ArrayList<String> repairItem,
+    MaterialConfig(int toolDurability, int addedShieldDurability, int bowDurability, int offenseEnchantability, int defenseEnchantability, String equipSound, List<String> repairItem,
                    String craftingItem, float mendingBonus, boolean fireResistant, double gauntletAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel,
                    int bowPower, float velocityMultiplier, int gauntletArmorAmount, double armorToughness, double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction,
-                   boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
+                   boolean isSingleAddition, List<String> onlyReplaceResource, String smithingTemplate, int quiverSlots) {
         this.durability = new Durability(toolDurability, addedShieldDurability, bowDurability);
         this.enchanting = new Enchanting(offenseEnchantability, defenseEnchantability);
         this.equipSound = equipSound;
@@ -158,7 +159,7 @@ public class MaterialConfig {
     }
 
     public static class Crafting {
-        public Crafting(ArrayList<String> repairItem, boolean isSingleAddition, ArrayList<String> onlyReplaceResource, String smithingTemplate, String craftingItem) {
+        public Crafting(List<String> repairItem, boolean isSingleAddition, List<String> onlyReplaceResource, String smithingTemplate, String craftingItem) {
             this.repairItem = repairItem;
             this.isSingleAddition = isSingleAddition;
             this.onlyReplaceResource = onlyReplaceResource;
@@ -167,7 +168,7 @@ public class MaterialConfig {
         }
 
         @ConfigName("Repair Item")
-        public ArrayList<String> repairItem;
+        public List<String> repairItem;
         @ConfigName("Crafting Item")
         @ConfigEntry.Gui.Tooltip(count = 2)
         @TooltipFrase("If left empty will use repair item")
@@ -177,7 +178,7 @@ public class MaterialConfig {
         @ConfigName("Is Single Addition")
         public boolean isSingleAddition;
         @ConfigName("Only Replaced On Shield By This")
-        public ArrayList<String> onlyReplaceResource;
+        public List<String> onlyReplaceResource;
         @ConfigName("Smithing Template")
         @ConfigEntry.Gui.Tooltip(count = 2)
         @TooltipFrase("1.20 feature")
@@ -192,7 +193,7 @@ public class MaterialConfig {
         private int offenseEnchantability = 0;
         private int defenseEnchantability = 0;
         private String equipSound = new ResourceLocation("item.armor.equip_generic").toString();
-        private ArrayList<String> repairItem = new ArrayList<>();
+        private List<String> repairItem = new ArrayList<>();
         private String craftingItem = "";
         private float mendingBonus = 0;
         private boolean fireResistant = false;
@@ -209,7 +210,7 @@ public class MaterialConfig {
         private float baseProtectionAmmount = 0;
         private float afterBasePercentReduction = 0;
         private boolean isSingleAddition = false;
-        private final ArrayList<String> onlyReplaceResource = new ArrayList<>();
+        private final List<String> onlyReplaceResource = new ArrayList<>();
         private String smithingTemplate = "minecraft:air";
         private int quiverSlots = 0;
 
@@ -281,7 +282,7 @@ public class MaterialConfig {
         }
 
         public Builder repairItem(String... items) {
-            this.repairItem = (ArrayList<String>) Arrays.asList(items);
+            this.repairItem = Arrays.asList(items);
             return this;
         }
 
@@ -291,7 +292,7 @@ public class MaterialConfig {
         }
 
         public Builder repairItem(ResourceLocation... items) {
-            this.repairItem = (ArrayList<String>) Arrays.stream(items).map(ResourceLocation::toString).toList();
+            this.repairItem = Arrays.stream(items).map(ResourceLocation::toString).toList();
             return this;
         }
 
