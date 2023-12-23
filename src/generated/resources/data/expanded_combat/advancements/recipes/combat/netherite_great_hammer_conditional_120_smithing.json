@@ -18,7 +18,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "expanded_combat:netherite_mace"
+              "recipe": "expanded_combat:netherite_great_hammer"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -31,7 +31,7 @@
         ],
         "rewards": {
           "recipes": [
-            "expanded_combat:netherite_mace"
+            "expanded_combat:netherite_great_hammer"
           ]
         },
         "sends_telemetry_event": true
@@ -40,18 +40,6 @@
         {
           "type": "expanded_combat:config_boolean",
           "config_entry": "weapon"
-        },
-        {
-          "type": "forge:not",
-          "value": {
-            "type": "expanded_combat:config_material_boolean",
-            "location_path": [
-              "config",
-              "crafting",
-              "is_single_addition"
-            ],
-            "material": "Netherite"
-          }
         }
       ]
     }

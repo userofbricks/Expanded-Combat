@@ -47,7 +47,7 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
     private NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, @Nullable Material> recipeBuilder;
     private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder;
 
-    public WeaponItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+    public WeaponItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean shaped) {
         String locationName = material.getLocationName().getPath() + "_" + weapon.getLocationName();
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(locationName, (p) -> constructor.apply(material, weapon, p));
 
@@ -59,7 +59,7 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         this.craftedFrom = craftedFrom;
         lang = material.getName() + " " + weapon.name();
         modelBuilder = WeaponItemBuilder::generateModel;
-        recipeBuilder = WeaponItemBuilder::generateRecipies;
+        recipeBuilder = shaped ? WeaponItemBuilder::generateShapedRecipes : WeaponItemBuilder::generateSmithingRecipes;
         colorBuilder = (i, w, m) -> WeaponItemBuilder.weaponColors(i, w);
     }
     public WeaponItemBuilder lang(String englishName) {
@@ -99,7 +99,7 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         }
     }
 
-    public static void generateRecipies(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
+    public static void generateShapedRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
         itemBuilder.recipe((ctx, prov) -> {
             Ingredient craftingIngredient = null;
             InventoryChangeTrigger.TriggerInstance triggerInstance = null;
@@ -115,7 +115,6 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
 
             if (craftingIngredient != null) {
                 ECConfigBooleanCondition enableArrows = new ECConfigBooleanCondition("weapon");
-                ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(material.getName(), "config", "crafting", "is_single_addition");
 
                 Map<Character, Ingredient> ingredientMap = new RecipeIngredientMapBuilder().put('i', craftingIngredient).build();
                 if (weapon.recipeIngredients() != null) {
@@ -127,11 +126,17 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
                     }
                     if(ingredientMap.get('b') == null && weapon.recipeContains("b")) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty("forge", "storage_blocks/" + material.getLocationName().getPath()));
 
-                    conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows, new NotCondition(isSingleAddition)}, triggerInstance, "");
+                    conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows}, triggerInstance, "");
                 }
-                if (craftedFrom != null){
-                    conditionalSmithing120Recipe(ctx, prov, material, Ingredient.of(craftedFrom.getWeaponEntry(weapon.name()).get()), new ICondition[]{enableArrows, isSingleAddition}, "");
-                }
+            }
+        });
+    }
+
+    public static void generateSmithingRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
+        itemBuilder.recipe((ctx, prov) -> {
+            ECConfigBooleanCondition enableWeapons = new ECConfigBooleanCondition("weapon");
+            if (craftedFrom != null){
+                conditionalSmithing120Recipe(ctx, prov, material, Ingredient.of(craftedFrom.getWeaponEntry(weapon.name()).get()), new ICondition[]{enableWeapons}, "");
             }
         });
     }

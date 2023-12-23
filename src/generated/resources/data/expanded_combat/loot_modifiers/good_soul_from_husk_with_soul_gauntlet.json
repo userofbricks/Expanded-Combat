@@ -22,9 +22,9 @@
                 "equipment": {
                   "mainhand": {
                     "items": [
-                      "expanded_combat:soul_katana",
                       "expanded_combat:soul_scythe",
-                      "expanded_combat:soul_dagger"
+                      "expanded_combat:soul_dagger",
+                      "expanded_combat:soul_katana"
                     ]
                   }
                 }

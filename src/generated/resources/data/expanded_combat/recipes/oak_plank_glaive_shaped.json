@@ -6,18 +6,6 @@
         {
           "type": "expanded_combat:config_boolean",
           "config_entry": "weapon"
-        },
-        {
-          "type": "forge:not",
-          "value": {
-            "type": "expanded_combat:config_material_boolean",
-            "location_path": [
-              "config",
-              "crafting",
-              "is_single_addition"
-            ],
-            "material": "Oak Plank"
-          }
         }
       ],
       "recipe": {

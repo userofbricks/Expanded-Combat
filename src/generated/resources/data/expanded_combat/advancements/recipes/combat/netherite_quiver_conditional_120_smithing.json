@@ -18,7 +18,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "expanded_combat:netherite_dancer_s_sword"
+              "recipe": "expanded_combat:netherite_quiver"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -31,7 +31,7 @@
         ],
         "rewards": {
           "recipes": [
-            "expanded_combat:netherite_dancer_s_sword"
+            "expanded_combat:netherite_quiver"
           ]
         },
         "sends_telemetry_event": true
@@ -39,19 +39,16 @@
       "conditions": [
         {
           "type": "expanded_combat:config_boolean",
-          "config_entry": "weapon"
+          "config_entry": "arrow"
         },
         {
-          "type": "forge:not",
-          "value": {
-            "type": "expanded_combat:config_material_boolean",
-            "location_path": [
-              "config",
-              "crafting",
-              "is_single_addition"
-            ],
-            "material": "Netherite"
-          }
+          "type": "expanded_combat:config_material_boolean",
+          "location_path": [
+            "config",
+            "crafting",
+            "is_single_addition"
+          ],
+          "material": "Netherite"
         }
       ]
     }

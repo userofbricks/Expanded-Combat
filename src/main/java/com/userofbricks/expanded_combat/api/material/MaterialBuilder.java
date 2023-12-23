@@ -265,7 +265,7 @@ public class MaterialBuilder {
     }
 
     public WeaponItemBuilder weaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
-        return new WeaponItemBuilder(this, registrate.get(), weaponMaterial, material, craftedFrom, constructor);
+        return new WeaponItemBuilder(this, registrate.get(), weaponMaterial, material, craftedFrom, constructor, !this.material.getConfig().crafting.isSingleAddition);
     }
 
     public MaterialBuilder weapon(WeaponMaterial weaponMaterial, NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {
