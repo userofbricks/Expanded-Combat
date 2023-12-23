@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/MaterialInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/MaterialInit.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -631,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -664,8 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated soul looting to increase soul chance by 20% if holding weapon in main hand" />
-    <MESSAGE value="added" />
     <MESSAGE value="added soul and netherite weapons to the drops of the weapon display and made heartstealer a 1 time 10% drop" />
     <MESSAGE value="added without soul gauntlet drops for souls" />
     <MESSAGE value="added custom weapon chest loot modifiers" />
@@ -689,7 +690,9 @@
     <MESSAGE value="modified MaterialConfig to replace repair items by default" />
     <MESSAGE value="fixed attribute stacking bug causing agility attributes to grow over and over" />
     <MESSAGE value="fixed casting bug hopefully" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed casting bug hopefully" />
+    <MESSAGE value="fixed IngredientUtil ArrayList Usages" />
+    <MESSAGE value="fixed Ingredient ArrayList Usages in automatic recipe gen" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed Ingredient ArrayList Usages in automatic recipe gen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

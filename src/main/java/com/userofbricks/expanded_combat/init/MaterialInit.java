@@ -154,7 +154,7 @@ public class MaterialInit {
     public static Material valueOfShield(ItemStack itemStack) {
         for (Material material :
                 shieldMaterials) {
-            if (!material.getConfig().crafting.craftingItem.isEmpty()) {
+            if (material.getConfig().crafting.craftingItem != null && !material.getConfig().crafting.craftingItem.isEmpty()) {
                 if (ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)) == itemStack.getItem()) return material;
                 else continue;
             }
