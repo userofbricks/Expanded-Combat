@@ -191,6 +191,6 @@ public class LangStrings {
 
 
     public static String getLocationPathVersion(String string) {
-        return string.toLowerCase(Locale.ROOT).replace(' ', '_');
+        return string.toLowerCase(Locale.ROOT).replace(' ', '_').replace("'", "_");
     }
 }
