@@ -221,11 +221,24 @@ public class MaterialConfig {
                     .repairItem(tier.getRepairIngredient())
                     .gauntletAttackDamage(tier.getAttackDamageBonus());
         }
+        public Builder fromTierNoIngredient(Tier tier) {
+            return this.toolDurability(tier.getUses())
+                    .offenseEnchantability(tier.getEnchantmentValue())
+                    .gauntletAttackDamage(tier.getAttackDamageBonus());
+        }
 
         public Builder fromArmorMaterial(ArmorMaterial armorMaterial) {
             return this.defenseEnchantability(armorMaterial.getEnchantmentValue())
                     .equipSound(armorMaterial.getEquipSound())
                     .repairItem(armorMaterial.getRepairIngredient())
+                    .gauntletArmorAmount(armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS))
+                    .armorToughness(armorMaterial.getToughness())
+                    .knockbackResistance(armorMaterial.getKnockbackResistance());
+        }
+
+        public Builder fromArmorMaterialNoIngredient(ArmorMaterial armorMaterial) {
+            return this.defenseEnchantability(armorMaterial.getEnchantmentValue())
+                    .equipSound(armorMaterial.getEquipSound())
                     .gauntletArmorAmount(armorMaterial.getDefenseForType(ArmorItem.Type.BOOTS))
                     .armorToughness(armorMaterial.getToughness())
                     .knockbackResistance(armorMaterial.getKnockbackResistance());
