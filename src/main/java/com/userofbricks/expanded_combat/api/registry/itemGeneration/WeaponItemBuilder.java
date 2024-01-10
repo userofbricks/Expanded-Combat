@@ -142,43 +142,49 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
     }
 
     public static void generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, Material material, WeaponMaterial weapon) {
-        ItemModelBuilder mainModelBuilder = generateModel(ctx, prov, weapon, material, "");
+        generateModel(ctx, prov, material, weapon, false, false, false);
+    }
+    public static void generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, Material material, WeaponMaterial weapon, boolean customTexture, boolean customHandleTex, boolean customDyeTex) {
+        ItemModelBuilder mainModelBuilder = generateModel(ctx, prov, weapon, material, "", customTexture, customHandleTex, customDyeTex);
         if (weapon == VanillaECPlugin.KATANA) {
             mainModelBuilder.override()
                     .predicate(new ResourceLocation("blocking"), 1f)
                     .predicate(new ResourceLocation("blocked_recently"), 1f)
                     .predicate(new ResourceLocation("block_pos"), 0.1f)
-                    .model(generateModel(ctx, prov, weapon, material, "block_1"))
+                    .model(generateModel(ctx, prov, weapon, material, "block_1", customTexture, customHandleTex, customDyeTex))
                     .end();
             mainModelBuilder.override()
                     .predicate(new ResourceLocation("blocking"), 1f)
                     .predicate(new ResourceLocation("blocked_recently"), 1f)
                     .predicate(new ResourceLocation("block_pos"), 0.2f)
-                    .model(generateModel(ctx, prov, weapon, material, "block_2"))
+                    .model(generateModel(ctx, prov, weapon, material, "block_2", customTexture, customHandleTex, customDyeTex))
                     .end();
             mainModelBuilder.override()
                     .predicate(new ResourceLocation("blocking"), 1f)
                     .predicate(new ResourceLocation("blocked_recently"), 1f)
                     .predicate(new ResourceLocation("block_pos"), 0.3f)
-                    .model(generateModel(ctx, prov, weapon, material, "block_3"))
+                    .model(generateModel(ctx, prov, weapon, material, "block_3", customTexture, customHandleTex, customDyeTex))
                     .end();
             mainModelBuilder.override()
                     .predicate(new ResourceLocation("blocking"), 1f)
                     .predicate(new ResourceLocation("blocked_recently"), 1f)
                     .predicate(new ResourceLocation("block_pos"), 0.4f)
-                    .model(generateModel(ctx, prov, weapon, material, "none"))
+                    .model(generateModel(ctx, prov, weapon, material, "none", customTexture, customHandleTex, customDyeTex))
                     .end();
         }
     }
 
 
     public static ItemModelBuilder generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String baseModelSuffix) {
+        return generateModel(ctx, prov, weapon, material, baseModelSuffix, false, false, false);
+    }
+    public static ItemModelBuilder generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String baseModelSuffix, boolean customTexture, boolean customHandleTex, boolean customDyeTex) {
 
         if (weapon.hasLargeModel() && !weapon.isBlockWeapon()) {
             SeparateTransformsModelBuilder<ItemModelBuilder> modelFileBuilder = prov.getBuilder(!baseModelSuffix.isBlank() ? ("item/non_gui_model_predicates/" + ctx.getName() + "_" + baseModelSuffix) : ("item/" + ctx.getName())).parent(new ModelFile.UncheckedModelFile("item/handheld")).customLoader(SeparateTransformsModelBuilder::begin);
 
-            modelFileBuilder.base(generateModel(ctx, prov, weapon, material, "item_large/", "base/" + (!baseModelSuffix.isBlank() ? (baseModelSuffix + "/") : ""), !baseModelSuffix.isBlank() ? baseModelSuffix : "", false));
-            ItemModelBuilder guiModel = generateModel(ctx, prov, weapon, material, "item/", "gui/", "", false);
+            modelFileBuilder.base(generateModel(ctx, prov, weapon, material, "item_large/", "base/" + (!baseModelSuffix.isBlank() ? (baseModelSuffix + "/") : ""), !baseModelSuffix.isBlank() ? baseModelSuffix : "", customTexture, customHandleTex, customDyeTex));
+            ItemModelBuilder guiModel = generateModel(ctx, prov, weapon, material, "item/", "gui/", "", customTexture, customHandleTex, customDyeTex);
             modelFileBuilder.perspective(ItemDisplayContext.GUI, guiModel);
             modelFileBuilder.perspective(ItemDisplayContext.GROUND, guiModel);
             modelFileBuilder.perspective(ItemDisplayContext.FIXED, guiModel);
@@ -186,11 +192,14 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         } else if (!weapon.hasLargeModel() && weapon.isBlockWeapon()) {
             return getItemBaseModel(prov, weapon, ctx, "", "").texture("head", getWeaponTexture(prov, weapon.getLocationName(), material.getLocationName().getPath()));
         } else {
-            return generateModel(ctx, prov, weapon, material, "item/", "", "", false);
+            return generateModel(ctx, prov, weapon, material, "item/", "", "", customTexture, customHandleTex, customDyeTex);
         }
     }
 
     public static ItemModelBuilder generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String directory, String returningModelfolder, String parentSuffix, boolean customTexture) {
+        return generateModel(ctx, prov, weapon, material, directory, returningModelfolder, parentSuffix, customTexture, false, false);
+    }
+    public static ItemModelBuilder generateModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov, WeaponMaterial weapon, Material material, String directory, String returningModelfolder, String parentSuffix, boolean customTexture, boolean customHandleTex, boolean customDyeTex) {
         ItemModelBuilder itemModelBuilder = prov.getBuilder("item/" + returningModelfolder + ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"));
         if (weapon.hasCustomTransforms() || (weapon.hasLargeModel() && directory.equals("item_large/"))) {
             itemModelBuilder = getItemBaseModel(prov, weapon, ctx, returningModelfolder, parentSuffix);
@@ -198,11 +207,17 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         if (customTexture) {
             itemModelBuilder.texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
         } else if (!weapon.dyeable() && !weapon.potionDippable()) {
-            itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer0", customHandleTex ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath() + "_handle") :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
             itemModelBuilder.texture("layer1",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
         } else {
-            itemModelBuilder.texture("layer0", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_dye"));
-            itemModelBuilder.texture("layer1", new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer0", customDyeTex ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath() + "_dye") :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_dye"));
+            itemModelBuilder.texture("layer1", customHandleTex ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath() + "_handle") :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
             itemModelBuilder.texture("layer2",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
         }
 
