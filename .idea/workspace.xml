@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/WeaponItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/WeaponItemBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -634,7 +633,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -667,7 +666,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="made all plugins require an update" />
     <MESSAGE value="3.0.0" />
     <MESSAGE value="misc" />
     <MESSAGE value="added convenience weapon building methods" />
@@ -692,7 +690,8 @@
     <MESSAGE value="3.0.5" />
     <MESSAGE value="added MaterialConfig builder from tier/armorMaterial methods without ingredient part as it can sometimes cause crashing if items are not yet registered" />
     <MESSAGE value="updated version to 3.0.6 for previous commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated version to 3.0.6 for previous commit" />
+    <MESSAGE value="added weapon model additions for custom handle and dye textures" />
+    <option name="LAST_COMMIT_MESSAGE" value="added weapon model additions for custom handle and dye textures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
