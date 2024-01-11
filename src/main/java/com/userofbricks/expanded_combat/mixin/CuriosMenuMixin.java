@@ -25,7 +25,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDEN
 
 @Mixin({CuriosContainer.class})
 public class CuriosMenuMixin {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     public Player player;
 

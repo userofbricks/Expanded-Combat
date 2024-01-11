@@ -264,6 +264,10 @@ public class MaterialBuilder {
         return this;
     }
 
+    public MultiWeaponBuilder multiWeaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom) {
+        return new MultiWeaponBuilder(this, registrate.get(), material, craftedFrom, !this.material.getConfig().crafting.isSingleAddition);
+    }
+
     public WeaponItemBuilder weaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
         return new WeaponItemBuilder(this, registrate.get(), weaponMaterial, material, craftedFrom, constructor, !this.material.getConfig().crafting.isSingleAddition);
     }
