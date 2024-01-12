@@ -206,17 +206,19 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         }
         if (customTexture) {
             itemModelBuilder.texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
+        } else if (!weapon.dyeable() && !weapon.potionDippable()) {
+            itemModelBuilder.texture("layer0", !customHandleTex.isEmpty() ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + customHandleTex) :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer1",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
         } else {
-            String handleTex = customHandleTex.isEmpty() ? "_handle" : ("/" + customHandleTex);
-            String dyeTex = customDyeTex.isEmpty() ? "_dye" : ("/" + customDyeTex);
-            if (!weapon.dyeable() && !weapon.potionDippable()) {
-                itemModelBuilder.texture("layer0", new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + handleTex));
-                itemModelBuilder.texture("layer1",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
-            } else {
-                itemModelBuilder.texture("layer0", new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + dyeTex));
-                itemModelBuilder.texture("layer1", new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + handleTex));
-                itemModelBuilder.texture("layer2",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
-            }
+            itemModelBuilder.texture("layer0", !customDyeTex.isEmpty() ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + customDyeTex) :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_dye"));
+            itemModelBuilder.texture("layer1", !customHandleTex.isEmpty() ?
+                    new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + customHandleTex) :
+                    new ResourceLocation("expanded_combat", directory + weapon.getLocationName() + "_handle"));
+            itemModelBuilder.texture("layer2",  new ResourceLocation(ctx.getId().getNamespace(), directory + weapon.getLocationName() + "/" + material.getLocationName().getPath()));
         }
 
         return itemModelBuilder;
