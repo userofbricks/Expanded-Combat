@@ -182,10 +182,6 @@ public class ECItems
                     .unlockedBy("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_NUGGET, Items.STICK, Items.FEATHER))
                     .save(recipeProvider, new ResourceLocation(MODID, "iron_arrow_shaped2"));
         });
-
-        REGISTRATE.get().addDataGenerator(ProviderType.ENTITY_TAGS, tagProvider -> {
-            //tagProvider.addTag()
-        });
     }
 
     private static RegistryEntry<ECShieldItem> registerShield(String name, boolean fireresistant) {

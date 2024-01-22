@@ -110,16 +110,16 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                 .weaponBuilder(VanillaECPlugin.KATANA, null, soulConstructor).lang("Dark Katana").model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build()
                 .weaponBuilder(VanillaECPlugin.DAGGER, null, soulConstructor).lang("Eternal Soul Knife").model(modelBuilder.apply("item/")).recipes(noRecipes).colors(noColor).build()
                 .weaponBuilder(VanillaECPlugin.SCYTHE, null, soulConstructor).model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build()
-                .gauntlet(null, SoulFist::new).lang("Soul Fist").build(false));
+                .gauntlet(null, SoulFist::new).lang("Soul Fist").recipes((a,b,c) ->{}).build(false));
 
         FIGHTER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Fighters", CONFIG.fighters)
-                .gauntlet(null, FightersBindings::new).lang("Fighters Bindings").build(false));
+                .gauntlet(null, FightersBindings::new).lang("Fighters Bindings").recipes((a,b,c) ->{}).build(false));
 
         MAULERS = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Maulers", CONFIG.maulers)
-                .gauntlet(null, Mawlers::new).lang("Maulers").build(false));
+                .gauntlet(null, Mawlers::new).lang("Maulers").recipes((a,b,c) ->{}).build(false));
 
         GAUNTLET = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Gauntlet", CONFIG.gauntlet)
-                .gauntlet(null, UniqueStandardGaunlet::new).lang("Gauntlet").build(false));
+                .gauntlet(null, UniqueStandardGaunlet::new).lang("Gauntlet").recipes((a,b,c) ->{}).build(false));
     }
 
     @Override

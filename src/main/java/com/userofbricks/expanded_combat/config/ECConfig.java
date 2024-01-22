@@ -267,21 +267,21 @@ public class ECConfig implements ConfigData {
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Heart Stealer Settings")
-    public MaterialConfig heartStealer = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fireResistant().build();
+    public MaterialConfig heartStealer = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fireResistant().build();
     @Category("Materials") @CollapsibleObject @ConfigName("Heat Settings")
-    public MaterialConfig heat = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fireResistant().build();
+    public MaterialConfig heat = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fireResistant().build();
     @Category("Materials") @CollapsibleObject @ConfigName("Frost Settings")
-    public MaterialConfig frost = new MaterialConfig.Builder().fromTier(Tiers.DIAMOND).build();
+    public MaterialConfig frost = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Void Touched Settings")
-    public MaterialConfig voidTouched = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).build();
+    public MaterialConfig voidTouched = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Soul Settings")
-    public MaterialConfig soul = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE).build();
+    public MaterialConfig soul = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Fighters Settings")
-    public MaterialConfig fighters = new MaterialConfig.Builder().fromTier(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND).build();
+    public MaterialConfig fighters = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Maulers Settings")
-    public MaterialConfig maulers = new MaterialConfig.Builder().fromTier(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND).build();
+    public MaterialConfig maulers = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).fromArmorMaterial(ArmorMaterials.DIAMOND).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Unique Gauntlet Settings")
-    public MaterialConfig gauntlet = new MaterialConfig.Builder().fromTier(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE).build();
+    public MaterialConfig gauntlet = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fromArmorMaterial(ArmorMaterials.NETHERITE).build();
 
 
     public static class ShieldProtectionConfig {
