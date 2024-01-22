@@ -8,6 +8,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -48,8 +49,8 @@ public class EnchantentEvents {
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
             int level = stack.getEnchantmentLevel(ECEnchantments.AGILITY.get());
             switch (equipmentSlot) {
-                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Movement Speed", level * 0.1, AttributeModifier.Operation.ADDITION));
-                case LEGS -> event.addModifier(Attributes.JUMP_STRENGTH, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Jump Strength", level * 0.1, AttributeModifier.Operation.ADDITION));
+                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Movement Speed", 1 + (level * 0.1), AttributeModifier.Operation.MULTIPLY_BASE));
+                case LEGS -> event.addModifier(Attributes.JUMP_STRENGTH, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Jump Strength", 1 + (level * 0.1), AttributeModifier.Operation.MULTIPLY_BASE));
                 default -> {}
             }
         }
@@ -71,10 +72,11 @@ public class EnchantentEvents {
         int agility = chestplate.getEnchantmentLevel(ECEnchantments.AGILITY.get());
         if (!chestplate.isEmpty() && agility > 0 && entity.getRandom().nextIntBetweenInclusive(1, Math.round((20 + agility)-(10 * ((float)Math.sqrt(agility)-1)))) == 1) {
             //TODO: movement when
-            //double move = 10.0 / agility;
-            //double xMove = entity.getRandom().nextInt(0, 1) == 1 ? 0-move : move;
-            //double yMove = entity.getRandom().nextInt(0, 1) == 1 ? 0-move : move;
+            float move = 0.5f / agility;
+            double xMove = entity.getRandom().nextInt(0, 1) == 1 ? -1 : 1;
+            double yMove = entity.getRandom().nextInt(0, 1) == 1 ? -1 : 1;
             //entity.push(entity.getRandom().nextInt(0, 1) == 1 ? xMove  : 0, 0.1, entity.getRandom().nextInt(0, 1) == 1 ? yMove  : 0);
+            entity.moveRelative(move, entity.position().add(xMove, 0.5d, yMove));
             event.setCanceled(true);
         }
     }
