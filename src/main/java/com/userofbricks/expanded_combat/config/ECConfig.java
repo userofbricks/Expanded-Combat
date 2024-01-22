@@ -310,7 +310,7 @@ public class ECConfig implements ConfigData {
 
     public static class EnchantmentLevels {
         @RequiresRestart @ConfigName("Max Knockback Resistance Level")
-        public int maxKnockbackResistanceLevel = 5;
+        public int maxKnockbackResistanceLevel = 4;
         @RequiresRestart @ConfigName("Max Ground Slam Level")
         @ConfigEntry.Gui.Tooltip(count = 3)
         @TooltipFrase(value = "For every level the dmg percentage grows by 5% of standard hit dmg. Allowed to go above 100%, the base dmg for slam is 90% of standard hit")
