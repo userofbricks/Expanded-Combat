@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -106,10 +107,12 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
 
         @Override
         public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-            if (PotionUtils.getPotion(weapon) != Potions.EMPTY) {
+            CompoundTag compoundTag = weapon.getOrCreateTag();
+            int potionUses = compoundTag.getInt("PotionUses");
+            if (PotionUtils.getPotion(weapon) != Potions.EMPTY && potionUses >= 1) {
+                compoundTag.putInt("PotionUses", potionUses - 1);
                 for ( MobEffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
-                    MobEffectInstance potionEffect = new MobEffectInstance(effectInstance.getEffect(), effectInstance.getDuration() / 2, effectInstance.getAmplifier(), effectInstance.isAmbient(), effectInstance.isVisible());
-                    target.addEffect(potionEffect);
+                    target.addEffect(effectInstance);
                     Collection<MobEffectInstance> collection = PotionUtils.getCustomEffects(weapon);
                     if (!collection.isEmpty()) {
                         for(MobEffectInstance mobeffectinstance : collection) {

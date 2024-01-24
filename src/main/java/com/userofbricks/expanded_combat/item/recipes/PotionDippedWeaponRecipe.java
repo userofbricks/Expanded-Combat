@@ -67,6 +67,7 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         String potionName = ForgeRegistries.POTIONS.getKey(potion).getPath();
         int potionUses = potionName.contains("strong_") || potionName.contains("long_") ? 90 : 200;
         compoundTag.putInt("PotionUses", potionUses);
+        compoundTag.putInt("MaxPotionUses", potionUses);
 
         return potionWeaponItem;
     }
