@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/KatanaEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/KatanaEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/PotionDippedWeaponRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/PotionDippedWeaponRecipe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -633,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="212" />
+    <option name="localTasksCounter" value="214" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -666,8 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="rearranged Gauntlet rendering in first person on hand" />
-    <MESSAGE value="made crafting item separate from repair item with the fallback of repair item when generating recipes" />
     <MESSAGE value="shield crafting now uses crafting item a default with repair as backup" />
     <MESSAGE value="added new shield material use tick function for each material" />
     <MESSAGE value="added new first person gauntlet render event" />
@@ -691,7 +690,9 @@
     <MESSAGE value="re-added doge movement see if works later" />
     <MESSAGE value="fixed kb resist maxes" />
     <MESSAGE value="fixed speed amounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed speed amounts" />
+    <MESSAGE value="tweaked katana blocking" />
+    <MESSAGE value="bumped to 3.1.0 due to scythes potion ability being altered" />
+    <option name="LAST_COMMIT_MESSAGE" value="bumped to 3.1.0 due to scythes potion ability being altered" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
