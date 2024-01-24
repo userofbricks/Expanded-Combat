@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/ECConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECGauntletItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/EnchantentEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/EnchantentEvents.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -635,7 +634,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +667,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added missing rabbit leather texture" />
     <MESSAGE value="3.0.1" />
     <MESSAGE value="rearranged Gauntlet rendering in first person on hand" />
     <MESSAGE value="made crafting item separate from repair item with the fallback of repair item when generating recipes" />
@@ -693,7 +691,8 @@
     <MESSAGE value="more of the same modifications" />
     <MESSAGE value="bumped to 3.0.7, updated custom weapons plugin to remove recipes from gauntlets" />
     <MESSAGE value="re-added doge movement see if works later" />
-    <option name="LAST_COMMIT_MESSAGE" value="re-added doge movement see if works later" />
+    <MESSAGE value="fixed kb resist maxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed kb resist maxes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

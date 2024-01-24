@@ -8,12 +8,14 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -38,19 +40,16 @@ public class EnchantentEvents {
     }
 
 
-    /**
-     * Might wnat agility to require presurized air or xp
-     */
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void agilityMovementEvent(ItemAttributeModifierEvent event) {
         EquipmentSlot equipmentSlot = event.getSlotType();
         ItemStack stack = event.getItemStack();
-        if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
+        if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0 && Mob.getEquipmentSlotForItem(stack) == equipmentSlot) {
             int level = stack.getEnchantmentLevel(ECEnchantments.AGILITY.get());
             switch (equipmentSlot) {
-                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Movement Speed", 1 + (level * 0.1), AttributeModifier.Operation.MULTIPLY_BASE));
-                case LEGS -> event.addModifier(Attributes.JUMP_STRENGTH, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Jump Strength", 1 + (level * 0.1), AttributeModifier.Operation.MULTIPLY_BASE));
+                case FEET -> event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Movement Speed", (level * 0.2), AttributeModifier.Operation.MULTIPLY_BASE));
+                case LEGS -> event.addModifier(ForgeMod.SWIM_SPEED.get(), new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Jump Strength", (level * 0.2), AttributeModifier.Operation.MULTIPLY_BASE));
                 default -> {}
             }
         }
