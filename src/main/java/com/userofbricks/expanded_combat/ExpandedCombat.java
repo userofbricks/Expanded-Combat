@@ -126,6 +126,7 @@ public class ExpandedCombat {
 
     @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(ClientEvents.class);
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         

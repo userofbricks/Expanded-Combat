@@ -163,4 +163,12 @@ public class MaterialInit {
         }
         return VanillaECPlugin.OAK_PLANK;
     }
+
+    public static @Nullable WeaponMaterial valueOfWeapon(String name) {
+        for (WeaponMaterial weaponMaterial :
+                weaponMaterialConfigs) {
+            if (weaponMaterial.name().equals(name)) return weaponMaterial;
+        }
+        return null;
+    }
 }
