@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
@@ -11,11 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ContainerScreenEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
 
@@ -89,6 +93,30 @@ public class QuiverEvents {
             });
         }
     }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public static void moveEffectRenderingStack(ScreenEvent.RenderInventoryMobEffects event) {
+        Screen screen = event.getScreen();
+
+        name:
+        if (screen instanceof CuriosScreen curiosScreen) {
+            ICuriosItemHandler curios = CuriosApi.getCuriosHelper().getCuriosHandler(curiosScreen.getMenu().player).resolve().orElse(null);
+            if (curios == null) break name;
+
+            Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
+            int curiosSlots = 0;
+            if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
+
+            if (curiosSlots <= 0) break name;
+
+            int columns = roundToNearest8(curiosSlots) / 8;
+            int shift = (columns * 18) + 8;
+            event.addHorizontalOffset(shift);
+        }
+    }
+
+
 
     public static int roundToNearest8(int original) {
         int modulus = original % 8;

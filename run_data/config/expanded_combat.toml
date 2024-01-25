@@ -19,7 +19,7 @@ shieldBaseProtectionType = "DURABILITY_PERCENTAGE"
 EnableShieldProtectionPercentage = true
 
 [enchantmentLevels]
-maxKnockbackResistanceLevel = 5
+maxKnockbackResistanceLevel = 4
 maxGroundSlamLevel = 6
 baseHammerSlamLevel = 2
 maxBlockingLevel = 5
@@ -906,7 +906,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [heartStealer.crafting]
-repairItem = ["minecraft:netherite_ingot"]
+repairItem = []
 craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
@@ -944,7 +944,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [heat.crafting]
-repairItem = ["minecraft:netherite_ingot"]
+repairItem = []
 craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
@@ -982,7 +982,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [frost.crafting]
-repairItem = ["minecraft:diamond"]
+repairItem = []
 craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
@@ -1020,7 +1020,7 @@ baseProtectionAmmount = 0.0
 afterBasePercentReduction = 0.0
 
 [voidTouched.crafting]
-repairItem = ["minecraft:netherite_ingot"]
+repairItem = []
 craftingItem = ""
 isSingleAddition = false
 onlyReplaceResource = []
