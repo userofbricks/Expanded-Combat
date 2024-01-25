@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.config.WeaponMaterialConfig;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
@@ -20,9 +21,14 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
+
+import static com.userofbricks.expanded_combat.item.ECShieldItem.*;
 import static com.userofbricks.expanded_combat.plugins.VanillaECPlugin.*;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
@@ -110,6 +116,10 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
             CompoundTag compoundTag = weapon.getOrCreateTag();
             int potionUses = compoundTag.getInt("PotionUses");
             if (PotionUtils.getPotion(weapon) != Potions.EMPTY && potionUses >= 1) {
+                if (potionUses == 1) {
+                    PotionUtils.setPotion(weapon, Potions.EMPTY);
+                    PotionUtils.setCustomEffects(weapon, Lists.newArrayList());
+                }
                 compoundTag.putInt("PotionUses", potionUses - 1);
                 for ( MobEffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
                     target.addEffect(effectInstance);
@@ -120,12 +130,18 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
                         }
                     }
                 }
+            } else {
+                PotionUtils.setPotion(weapon, Potions.EMPTY);
+                PotionUtils.setCustomEffects(weapon, Lists.newArrayList());
             }
             return super.hurtEnemy(weapon, target, attacker);
         }
 
         public @NotNull ItemStack getDefaultInstance() {
-            return PotionUtils.setPotion(super.getDefaultInstance(), Potions.EMPTY);
+            ItemStack stack = PotionUtils.setPotion(super.getDefaultInstance(), Potions.EMPTY);
+            stack.getOrCreateTag().putInt("PotionUses", 0);
+            stack.getOrCreateTag().putInt("MaxPotionUses", 0);
+            return stack;
         }
     }
 }
