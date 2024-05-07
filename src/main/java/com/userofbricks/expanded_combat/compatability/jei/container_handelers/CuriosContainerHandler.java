@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
+import top.theillusivec4.curios.client.gui.CuriosScreenV2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,9 +18,9 @@ import java.util.List;
 import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.events.QuiverEvents.roundToNearest8;
 
-public class CuriosContainerHandler implements IGuiContainerHandler<CuriosScreen> {
+public class CuriosContainerHandler implements IGuiContainerHandler<CuriosScreenV2> {
     @Override
-    public @NotNull List<Rect2i> getGuiExtraAreas(CuriosScreen containerScreen) {
+    public @NotNull List<Rect2i> getGuiExtraAreas(CuriosScreenV2 containerScreen) {
         Player player = containerScreen.getMinecraft().player;
 
         if (player != null) {

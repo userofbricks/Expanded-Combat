@@ -13,7 +13,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +20,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
+import top.theillusivec4.curios.client.gui.CuriosScreenV2;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
@@ -59,7 +58,7 @@ public class QuiverEvents {
     @SubscribeEvent
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
-        if (screen instanceof CuriosScreen curiosScreen) {
+        if (screen instanceof CuriosScreenV2 curiosScreen) {
             ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();
@@ -100,7 +99,7 @@ public class QuiverEvents {
         Screen screen = event.getScreen();
 
         name:
-        if (screen instanceof CuriosScreen curiosScreen) {
+        if (screen instanceof CuriosScreenV2 curiosScreen) {
             ICuriosItemHandler curios = CuriosApi.getCuriosHelper().getCuriosHandler(curiosScreen.getMenu().player).resolve().orElse(null);
             if (curios == null) break name;
 

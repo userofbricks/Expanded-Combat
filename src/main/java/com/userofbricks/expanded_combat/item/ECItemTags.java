@@ -20,7 +20,7 @@ public final class ECItemTags {
     public static final TagKey<Item> BOWS = bind("bows");
     public static final TagKey<Item> CROSSBOWS = bind("crossbows");
     public static final TagKey<Item> ARROWS = bindCurios("arrows");
-    public static final TagKey<Item> QUIVERS = bindCurios("quiver");
+    public static final TagKey<Item> QUIVERS = bindCurios("quiver_ec");
     public static final TagKey<Item> POTION_WEAPONS = bind("potion_weapons");
 
     public static final TagKey<Item> IRON_SWORD = bindForgeSword("iron");

@@ -7,8 +7,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
@@ -27,16 +29,20 @@ public abstract class AbstractArrowEntityMixin {
 
     @Shadow public AbstractArrow.Pickup pickup;
 
-    @Shadow protected abstract boolean tryPickup(Player p_150121_);
-
     /**
+     * Changed Version
+     * author: Skijearz;
+     * reason: changed the mixin from a overwrite to inject in order to keep compatibility with other mods and mixins. needs to be cancellable, if a arrow is pickedup into the quiver it cancels the vanilla behaviour so the arrow isnt duped. Otherwise if the quiver is not equipped just dont cancel the vanilla behavior so it will be picked up into the inventory.
+     *
+     *
      * @author Userofbricks and theNyfaria for the original overwrite of this method
      * (this is now so heavily modified that I don't know if any of theNyfaria's work even exists in it anymore)
      * @reason need this to check the arrow slots if a quiver exists.
      */
-    @Overwrite
-    public void playerTouch(Player player) {
+    @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
+    public void playerTouch(Player player,CallbackInfo callback) {
         if (!((AbstractArrow)(Object)this).level().isClientSide && (this.inGround || ((AbstractArrow)(Object)this).isNoPhysics()) && ((AbstractArrow)(Object)this).shakeTime <= 0) {
+            ItemStack pickupItem = this.getPickupItem();
             AtomicBoolean added = new AtomicBoolean(false);
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
                 SlotResult quiverSlot = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);
@@ -58,12 +64,10 @@ public abstract class AbstractArrowEntityMixin {
                         }
                     }
                 });
-                if (added.get()) return;
-            }
 
-            if (this.tryPickup(player) && !added.get()) {
-                player.take(((AbstractArrow)(Object)this), 1);
-                ((AbstractArrow)(Object)this).discard();
+                if (added.get()){
+                    callback.cancel();
+                }
             }
         }
     }

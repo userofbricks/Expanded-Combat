@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
+import top.theillusivec4.curios.client.gui.CuriosScreenV2;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -133,6 +133,6 @@ public class ECJEIPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         if (fletchingCategory != null) registration.addRecipeClickArea(FletchingTableScreen.class, 102, 48, 22, 15, FLETCHING);
         registration.addRecipeClickArea(ShieldSmithingTableScreen.class, 102, 48, 22, 15, SHIELD_SMITHING);
-        registration.addGuiContainerHandler(CuriosScreen.class, new CuriosContainerHandler());
+        registration.addGuiContainerHandler(CuriosScreenV2.class, new CuriosContainerHandler());
     }
 }

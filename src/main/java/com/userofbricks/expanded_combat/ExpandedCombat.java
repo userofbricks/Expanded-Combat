@@ -57,7 +57,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class ExpandedCombat {
     public static final String MODID = "expanded_combat";
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
-    public static final String QUIVER_CURIOS_IDENTIFIER = "quiver";
+    public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
     public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
     public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
     public static final List<IExpandedCombatPlugin> PLUGINS = new ArrayList<>();
