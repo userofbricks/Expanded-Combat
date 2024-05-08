@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/bow",
-  "textures": {
-    "layer0": "expanded_combat:item/bow/diamond_pulling_0"
-  }
-}
