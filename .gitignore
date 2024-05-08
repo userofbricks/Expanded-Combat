@@ -5,7 +5,6 @@ out
 *.iml
 *.xml
 .idea
-.idea/workspace.xml
 
 # Compiled class file
 *.class
@@ -25,12 +24,13 @@ hs_err_pid*
 logs
 build
 run
+run_data
+run_server
+run_test
 */.DS_Store
 .DS_Store
+repo
 
 # Files from Forge MDK
 forge*changelog.txt
-/Users/
-/src/main/resources/assets/expanded_combat/models/item/01_temp/
-/src/main/java/com/userofbricks/expandedcombat/todo.java
 /src/generated/
