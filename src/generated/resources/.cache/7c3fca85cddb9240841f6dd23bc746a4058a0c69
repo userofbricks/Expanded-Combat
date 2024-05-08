@@ -1,7 +1,7 @@
-// 1.20.1	2024-01-22T14:56:48.428299	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-05-07T18:05:41.670054	Registrate Provider for expanded_combat [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 573a949cb70c33365f55ffa324292f677003221d assets/expanded_combat/blockstates/heartstealer_display.json
-20554b9ffc300cd8c1717f31bc392b089c48fc40 assets/expanded_combat/lang/en_ud.json
-471921034a042d99ca34b500f42aeb35b1e5d171 assets/expanded_combat/lang/en_us.json
+8b0fe21c263de92f7c2e72d9e426dca3b7a8700e assets/expanded_combat/lang/en_ud.json
+4671ef523be405516a0f66ac18aa12b6387c9d22 assets/expanded_combat/lang/en_us.json
 12853864a79548a62425238cd60c04204f93aae8 assets/expanded_combat/models/item/acacia_plank_battle_staff.json
 4e3a1e52cb5f621d1b23e62b8c495e6828fe1fad assets/expanded_combat/models/item/acacia_plank_broad_sword.json
 14d7e6641e5b1b954b68647891af85ceb54b7226 assets/expanded_combat/models/item/acacia_plank_claymore.json
@@ -823,7 +823,7 @@ ddd14edf9de7d5cc9f3127f15165e57e34a59062 assets/expanded_combat/models/item/warp
 dde4f9631e0a9d5ed3c0afa27f37c6464f0dd9be assets/expanded_combat/models/item/warped_plank_spear.json
 992ec18736c109c6b2601ce7742862a0ac5ed16a data/curios/tags/items/arrows.json
 f6e5d8f2812a4c9ceccf651540549c8385c05310 data/curios/tags/items/hands.json
-b29952dd867ac5fb31737ab43b4d2059d1a7fc0b data/curios/tags/items/quiver.json
+b29952dd867ac5fb31737ab43b4d2059d1a7fc0b data/curios/tags/items/quiver_ec.json
 b7c2c65b5a65e27dcd54ed0879fd9700459a0600 data/expanded_combat/advancements/recipes/brewing/purified_gas_bottle_from_gas_bottle_smoking.json
 f6fd3a7138b7d3a5ab340e134075f11cad60ede6 data/expanded_combat/advancements/recipes/combat/acacia_plank_battle_staff_conditional_shaped.json
 296bcf9952f4b05fb5ed5eb36c01bd3340e9ecec data/expanded_combat/advancements/recipes/combat/acacia_plank_broad_sword_conditional_shaped.json
