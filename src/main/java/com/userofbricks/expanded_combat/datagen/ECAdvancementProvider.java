@@ -4,7 +4,7 @@ import com.userofbricks.expanded_combat.item.ECItemTags;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.ForgeAdvancementProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.AdvancementProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -23,15 +23,15 @@ import java.util.function.Consumer;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
-public class ECAdvancementProvider extends ForgeAdvancementProvider {
+public class ECAdvancementProvider extends AdvancementProvider {
     public ECAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
         super(output, provider, existingFileHelper, List.of(new ECAdvancementGenerator()));
     }
 
     @ParametersAreNonnullByDefault
-    private static class ECAdvancementGenerator implements ForgeAdvancementProvider.AdvancementGenerator{
+    private static class ECAdvancementGenerator implements AdvancementProvider.AdvancementGenerator{
         @Override
-        public void generate(HolderLookup.Provider registries, Consumer<Advancement> saver, ExistingFileHelper existingFileHelper) {
+        public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
             Advancement root = Advancement.Builder.advancement().display(
                     //display item
                     VanillaECPlugin.LEATHER.getQuiverEntry().get(),
