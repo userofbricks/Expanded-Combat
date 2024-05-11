@@ -1,8 +1,6 @@
 package com.userofbricks.expanded_combat;
 
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.mojang.logging.LogUtils;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
@@ -29,19 +27,22 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.common.MinecraftForge;
+import net.neoforged.event.TickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.DistExecutor;
+import net.neoforged.fml.InterModComms;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.common.NeoForge;
+import org.slf4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -56,17 +57,17 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 @Mod(MODID)
 public class ExpandedCombat {
     public static final String MODID = "expanded_combat";
+    private static final Logger LOGGER = LogUtils.getLogger();
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
     public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
-    public static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MODID));
     public static final List<IExpandedCombatPlugin> PLUGINS = new ArrayList<>();
     public static ECConfig CONFIG;
     public static int maxQuiverSlots = 0;
 
-    public ExpandedCombat() {
+    public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> SpriteSourceTypes::load);
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
@@ -77,7 +78,7 @@ public class ExpandedCombat {
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.loadClass();
-        ECBlocks.register();
+        ECBlocks.BLOCKS.register(bus);
         ECItems.loadClass();
         ECItemTags.loadTags();
         ECCreativeTabs.loadClass();
@@ -88,13 +89,13 @@ public class ExpandedCombat {
         ECEntities.ENTITIES.register(bus);
         ECLootModifiers.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         bus.addListener(this::comms);
-        MinecraftForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
-        MinecraftForge.EVENT_BUS.register(QuiverEvents.class);
-        MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
-        MinecraftForge.EVENT_BUS.register(KatanaEvents.class);
-        MinecraftForge.EVENT_BUS.register(EnchantentEvents.class);
+        NeoForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
+        NeoForge.EVENT_BUS.register(QuiverEvents.class);
+        NeoForge.EVENT_BUS.register(ShieldEvents.class);
+        NeoForge.EVENT_BUS.register(KatanaEvents.class);
+        NeoForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);
     }
 

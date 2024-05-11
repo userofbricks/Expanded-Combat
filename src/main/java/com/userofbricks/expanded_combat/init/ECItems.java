@@ -39,6 +39,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
@@ -53,7 +54,7 @@ import static com.userofbricks.expanded_combat.api.registry.itemGeneration.Weapo
 
 public class ECItems
 {
-    public static ArrayList<RegistryEntry<? extends Item>> ITEMS = new ArrayList<>();
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 
     public static final RegistryEntry<Item> LEATHER_STICK = REGISTRATE.get().item("leather_stick", Item::new).recipe((ctx, prov) -> MaterialItemBuilder
             .conditionalShapedRecipe(ctx, prov, new String[]{"  s", " l ", "s  "}, new RecipeIngredientMapBuilder().put('s', Items.STICK).put('l', Items.LEATHER).build(), 4,

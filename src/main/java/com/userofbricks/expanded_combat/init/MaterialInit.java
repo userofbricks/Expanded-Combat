@@ -11,7 +11,6 @@ import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -155,7 +154,7 @@ public class MaterialInit {
         for (Material material :
                 shieldMaterials) {
             if (material.getConfig().crafting.craftingItem != null && !material.getConfig().crafting.craftingItem.isEmpty()) {
-                if (ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)) == itemStack.getItem()) return material;
+                if (Registries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)) == itemStack.getItem()) return material;
                 else continue;
             }
             if (material.getConfig().crafting.repairItem.isEmpty()) continue;
