@@ -4,50 +4,48 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
+import net.minecraft.core.Holder;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
+@ParametersAreNonnullByDefault
 public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
     private final ResourceLocation GAUNTLET_TEXTURE;
-    private final Material material;
+    private final Holder.Reference<Material> material;
     protected static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
     protected static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
     protected static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
@@ -59,19 +57,23 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         }
     };
 
+    //TODO: need to change the entity selector to use some sort of curios check for the gauntlet slot existing on the entity
     public static boolean dispenseGauntlet(BlockSource blockSource, ItemStack stack) {
-        BlockPos blockpos = blockSource.getPos().relative(blockSource.getBlockState().getValue(DispenserBlock.FACING));
-        List<LivingEntity> list = blockSource.getLevel().getEntitiesOfClass(LivingEntity.class, new AABB(blockpos), EntitySelector.NO_SPECTATORS.and(new EntitySelector.MobCanWearArmorEntitySelector(stack)));
+        BlockPos blockpos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
+        List<LivingEntity> list = blockSource.level()
+                .getEntitiesOfClass(
+                        LivingEntity.class, new AABB(blockpos), EntitySelector.NO_SPECTATORS.and(new EntitySelector.MobCanWearArmorEntitySelector(stack))
+                );
         if (list.isEmpty()) {
             return false;
         } else {
             LivingEntity livingentity = list.get(0);
-            Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findCurio(livingentity, ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0);
+            Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosInventory(livingentity).flatMap(curiosInventory -> curiosInventory.findCurio(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0));
 
             if (optionalSlotResult.isPresent() && !optionalSlotResult.get().stack().isEmpty()) return false;
 
             ItemStack itemstack = stack.split(1);
-            CuriosApi.getCuriosHelper().setEquippedCurio(livingentity, ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0, itemstack);
+            CuriosApi.getCuriosInventory(livingentity).get().setEquippedCurio(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0, itemstack);
 
             if (livingentity instanceof Mob) {
                 ((Mob)livingentity).setPersistenceRequired();
@@ -81,70 +83,40 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         }
     }
 
-
-    @ParametersAreNonnullByDefault
-    public ECGauntletItem(Properties properties, Material materialIn) {
-        super(properties);
+    public ECGauntletItem(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
+        super(
+                properties.durability(materialIn.value().durabilities().gauntletDurability())
+        );
         this.material = materialIn;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
-        this.GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/model/gauntlet/" + materialIn.getLocationName().getPath() + ".png");
-    }
-    
-    public Material getMaterial() {
-        return this.material;
-    }
 
+        ResourceLocation materialLoc = materialIn.key().location();
+        this.GAUNTLET_TEXTURE = new ResourceLocation(materialLoc.getNamespace(), "textures/model/gauntlet/" + materialLoc.getPath() + ".png");
+    }
+    public Material getMaterial() {
+        return this.material.value();
+    }
     @Override
     public int getEnchantmentValue(ItemStack stack) {
-        return (this.material.getConfig().enchanting.offenseEnchantability/2) + (this.material.getConfig().enchanting.defenseEnchantability/2);
+        return (getMaterial().enchantingRelated().offenseEnchantability()/2) + (getMaterial().enchantingRelated().defenseEnchantability()/2);
     }
-
     @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return IngredientUtil.getIngrediantFromItemString(this.material.getConfig().crafting.repairItem).test(repair) || super.isValidRepairItem(toRepair, repair);
+        return getMaterial().repairItem().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
-
-    @Override
-    public int getMaxStackSize(ItemStack stack) {
-        return 1;
-    }
-
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return this.material.getConfig().durability.toolDurability;
-    }
-
-    @Override
-    public boolean canBeDepleted() {
-        return true;
-    }
-
-    @Override
-    public boolean isFireResistant() {
-        return this.material.getConfig().fireResistant;
-    }
-
-    @Override
-    public boolean canBeHurtBy(@NotNull DamageSource damageSource) {
-        return !this.material.getConfig().fireResistant || !damageSource.is(DamageTypeTags.IS_FIRE);
-    }
-
     @Override
     public float getMendingBonus() {
-        return material.getConfig().mendingBonus;
+        return getMaterial().enchantingRelated().mendingBonus();
     }
-
     @Override
     public float getXpRepairRatio( ItemStack stack) {
         return 2f + getMendingBonus();
     }
-    
     public int getArmorAmount() {
-        return this.material.getConfig().defense.gauntletArmorAmount;
+        return getMaterial().defense().gauntletArmorAmount();
     }
-    
     public double getAttackDamage() {
-        return this.material.getConfig().offense.addedAttackDamage;
+        return getMaterial().offense().addedAttackDamage();
     }
     public ResourceLocation getGauntletTexture(ItemStack stack) {
         return GAUNTLET_TEXTURE;
@@ -158,68 +130,88 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public Supplier<ICurioRenderer> getGauntletRenderer() {
         return GauntletRenderer::new;
     }
-
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return ((ECGauntletItem) stack.getItem()).getMaterial().getName().equals("Gold");
+        return ((ECGauntletItem) stack.getItem()).getMaterial().defense().makesPiglinsNeutral();
     }
-
-    public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
-        LivingEntity livingEntity = slotContext.entity();
-        livingEntity.level().playSound(null, livingEntity.blockPosition(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(this.material.getConfig().equipSound))), SoundSource.NEUTRAL, 1.0f, 1.0f);
+    @NotNull
+    @Override
+    public ICurio.SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack) {
+        ECGauntletItem gauntletItem = (ECGauntletItem) stack.getItem();
+        return new ICurio.SoundInfo(BuiltInRegistries.SOUND_EVENT.get(gauntletItem.getMaterial().defense().equipSound()), 1.0f, 1.0f);
     }
-
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        Multimap<Attribute, AttributeModifier> atts = HashMultimap.create();
+    @Override
+    public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+        Multimap<Holder<Attribute>, AttributeModifier> atts = HashMultimap.create();
 
         double totalBaseDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
-        float totalExtraDamage = ((ECGauntletItem)stack.getItem()).getMaterial().getAdditionalDamageAfterEnchantments().apply((float) totalBaseDamage);
-        double totalEnchantedDamage = stack.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
+        double totalExtraDamage = getAdditionalDamageAfterEnchantments(totalBaseDamage);
+        double totalEnchantedDamage = stack.getEnchantmentLevel(Enchantments.PUNCH);
 
-        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADDITION));
-        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON.get(), new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
+        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", ((ECGauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", ((ECGauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADD_VALUE));
 
-        double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.armorToughness;
-        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADDITION));
+        double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().defense().armorToughness();
+        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADD_VALUE));
 
-        double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().getConfig().defense.knockbackResistance;
-        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + (stack.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get()) / 10f), AttributeModifier.Operation.ADDITION));
+        double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + (stack.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get()) / 10f), AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADD_VALUE));
 
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADDITION));
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADD_VALUE));
         }
         return atts;
+    }
+
+    private double getAdditionalDamageAfterEnchantments(double totalBaseDamage) {
+        return 0;
     }
 
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
     }
 
+    //TODO Move to tag system
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.KNOCKBACK || enchantment == Enchantments.PUNCH_ARROWS) {
+        if (enchantment == Enchantments.KNOCKBACK || enchantment == Enchantments.PUNCH) {
             return true;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);
     }
 
-    public static class Dyeable extends ECGauntletItem implements DyeableLeatherItem {
-        private final ResourceLocation GAUNTLET_TEXTURE_OVERLAY;
+    public static final class Layer {
+        private final String suffix;
+        private final boolean dyeable;
+        private final Function<ResourceLocation, ResourceLocation> texture;
 
-        public Dyeable(Properties properties, Material materialIn) {
-            super(properties, materialIn);
-            this.GAUNTLET_TEXTURE_OVERLAY = new ResourceLocation("expanded_combat", "textures/model/gauntlet/" + materialIn.getLocationName().getPath() + "_overlay" + ".png");
+        public Layer(String suffix, boolean pDyeable) {
+            this.suffix = suffix;
+            this.dyeable = pDyeable;
+            this.texture = this.resolveTexture();
         }
-        @Deprecated(forRemoval = true, since = "3.0.1 will be removed in 4.0.0")
-        public ResourceLocation getGAUNTLET_TEXTURE_OVERLAY(ItemStack stack) {
-            return GAUNTLET_TEXTURE_OVERLAY;
+
+        public Layer(String suffix) {
+            this(suffix, false);
         }
-        public ResourceLocation getGauntletTextureOverlay(ItemStack stack) {
-            return getGAUNTLET_TEXTURE_OVERLAY(stack);
+        public Layer() {
+            this("", false);
+        }
+
+        private Function<ResourceLocation, ResourceLocation> resolveTexture() {
+            return assetName -> assetName.withPath(p_324187_ -> "textures/models/gauntlet/" + assetName.getPath() + "_" + suffix + ".png");
+        }
+
+        public ResourceLocation texture(ResourceLocation material) {
+            return texture.apply(material);
+        }
+
+        public boolean dyeable() {
+            return this.dyeable;
         }
     }
 }

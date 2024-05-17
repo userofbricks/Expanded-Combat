@@ -10,8 +10,10 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class ItemGenerationTypes {
     //Gauntlets
     public static final DeferredRegister<GauntletType> GAUNTLET_TYPES = DeferredRegister.create(Registries.GAUNTLET_TYPE_REGISTRY, MODID);
-    public static final DeferredHolder<GauntletType, GauntletType> STANDARD_GAUNTLET = GAUNTLET_TYPES.register("standard", () -> new GauntletType(ECGauntletItem::new));
-    public static final DeferredHolder<GauntletType, GauntletType> DYEABLE_GAUNTLET = GAUNTLET_TYPES.register("dyeable", () -> new GauntletType(ECGauntletItem.Dyeable::new));
+    public static final DeferredHolder<GauntletType, GauntletType> STANDARD_GAUNTLET = GAUNTLET_TYPES.register("standard",
+            () -> new GauntletType(ECGauntletItem::new));
+    public static final DeferredHolder<GauntletType, GauntletType> DYEABLE_GAUNTLET = GAUNTLET_TYPES.register("dyeable",
+            () -> new GauntletType(ECGauntletItem::new, new ECGauntletItem.Layer("", true), new ECGauntletItem.Layer("overlay")));
 
     //Bows
     public static final DeferredRegister<BowType> BOW_TYPES = DeferredRegister.create(Registries.BOW_TYPE_REGISTRY, MODID);

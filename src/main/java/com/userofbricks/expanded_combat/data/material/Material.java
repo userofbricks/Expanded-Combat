@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public record Material(
         EnchantingRelated enchantingRelated,
         Offense offense,
         Defense defense,
-        ExtraCodecs.TagOrElementLocation repairItem,
+        Ingredient repairItem,
         boolean isSingleAddition,
         Optional<List<ResourceLocation>> onlyReplaceResource,
         ResourceLocation smithingTemplate,
@@ -34,7 +35,7 @@ public record Material(
                     EnchantingRelated.CODEC.optionalFieldOf("enchant_related", EnchantingRelated.DEFAULT).forGetter(Material::enchantingRelated),
                     Offense.CODEC.optionalFieldOf("offence", Offense.DEFAULT).forGetter(Material::offense),
                     Defense.CODEC.optionalFieldOf("defence", Defense.DEFAULT).forGetter(Material::defense),
-                    ExtraCodecs.TAG_OR_ELEMENT_ID.fieldOf("repair_item").forGetter(Material::repairItem),
+                    Ingredient.CODEC.fieldOf("repair_item").forGetter(Material::repairItem),
                     Codec.BOOL.optionalFieldOf("is_single_addition", false).forGetter(Material::isSingleAddition),
                     Codec.optionalField("only_replace", ResourceLocation.CODEC.listOf(), false).forGetter(Material::onlyReplaceResource),
                     ResourceLocation.CODEC.optionalFieldOf("smithing_template", new ResourceLocation("air")).forGetter(Material::smithingTemplate),
@@ -117,14 +118,15 @@ public record Material(
      * @param baseProtectionAmmount Defines the amount of Damage a shield entirely made of this material will block. Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings.
      * @param afterBasePercentReduction Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked. Only works if Shield Protection Percentage is enabled in the Shield Protection Settings
      */
-    public record Defense(PlacementInShield placementInShield, ResourceLocation equipSound, boolean fireResistant, int gauntletArmorAmount, double armorToughness,
+    public record Defense(PlacementInShield placementInShield, ResourceLocation equipSound, boolean fireResistant, boolean makesPiglinsNeutral, int gauntletArmorAmount, double armorToughness,
                           double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction) {
-        public static final Defense DEFAULT = new Defense(PlacementInShield.ALL, new ResourceLocation("item.armor.equip_generic"), false, 0, 0d, 0d, 0f, 0f);
+        public static final Defense DEFAULT = new Defense(PlacementInShield.ALL, new ResourceLocation("item.armor.equip_generic"), false, false, 0, 0d, 0d, 0f, 0f);
         public static final Codec<Defense> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         PlacementInShield.CODEC.optionalFieldOf("placement_in_shield", PlacementInShield.ALL).forGetter(Defense::placementInShield),
                         ResourceLocation.CODEC.optionalFieldOf("equip_sound", new ResourceLocation("item.armor.equip_generic")).forGetter(Defense::equipSound),
                         Codec.BOOL.optionalFieldOf("fire_resistant", false).forGetter(Defense::fireResistant),
+                        Codec.BOOL.optionalFieldOf("makes_piglins_neutral", false).forGetter(Defense::makesPiglinsNeutral),
                         Codec.intRange(0, 128).optionalFieldOf("gauntlet_armor", 0).forGetter(Defense::gauntletArmorAmount),
                         Codec.DOUBLE.optionalFieldOf("armor_toughness", 0d).forGetter(Defense::armorToughness),
                         Codec.DOUBLE.optionalFieldOf("knockback_resistance", 0d).forGetter(Defense::knockbackResistance),
