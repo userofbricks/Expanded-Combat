@@ -1,37 +1,42 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.enchantments.AgilityEnchantment;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.enchantments.BlockingEnchantment;
 import com.userofbricks.expanded_combat.enchantments.GroundSlamEnchantment;
 import com.userofbricks.expanded_combat.enchantments.KnockbackResistanceEnchantment;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.ECKatanaItem;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 import static net.minecraft.world.entity.EquipmentSlot.*;
 
-@Mod.EventBusSubscriber(modid = "expanded_combat")
 public class ECEnchantments
 {
-    public static final EnchantmentCategory GAUNTLET = EnchantmentCategory.create("gauntlet", item -> item instanceof ECGauntletItem);
+    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(BuiltInRegistries.ENCHANTMENT, ExpandedCombat.MODID);
 
-    public static final RegistryEntry<KnockbackResistanceEnchantment> KNOCKBACK_RESISTANCE = REGISTRATE.get().enchantment("knockback_resistance", GAUNTLET, KnockbackResistanceEnchantment::new).rarity(Enchantment.Rarity.UNCOMMON).register();
-    public static final RegistryEntry<BlockingEnchantment> BLOCKING = REGISTRATE.get().enchantment("blocking",
-            EnchantmentCategory.create("blocking", item -> item.canPerformAction(new ItemStack(item), ToolActions.SHIELD_BLOCK) || item instanceof ECKatanaItem), BlockingEnchantment::new)
-            .rarity(Enchantment.Rarity.VERY_RARE).addSlots(MAINHAND, OFFHAND).register();
-    public static final RegistryEntry<AgilityEnchantment> AGILITY = REGISTRATE.get().enchantment("agility", EnchantmentCategory.create("all_armor", item -> GAUNTLET.canEnchant(item) || EnchantmentCategory.ARMOR.canEnchant(item)), AgilityEnchantment::new)
-            .rarity(Enchantment.Rarity.UNCOMMON).addSlots(CHEST, LEGS, FEET).register();
-    public static final RegistryEntry<GroundSlamEnchantment> GROUND_SLAM = REGISTRATE.get().enchantment("ground_slam",
-            EnchantmentCategory.create("slam_weapon", item -> item instanceof ECWeaponItem weaponItem && (weaponItem.getWeapon() == VanillaECPlugin.GREAT_HAMMER || weaponItem.getWeapon() == VanillaECPlugin.BROAD_SWORD || weaponItem.getWeapon() == VanillaECPlugin.CLAYMORE)),
-            GroundSlamEnchantment::new).rarity(Enchantment.Rarity.RARE).addSlots(MAINHAND, OFFHAND).register();
-
-    public static void loadClass() {}
+    public static final DeferredHolder<Enchantment, KnockbackResistanceEnchantment> KNOCKBACK_RESISTANCE =
+            ENCHANTMENTS.register("knockback_resistance", () -> new KnockbackResistanceEnchantment(Enchantment.definition(
+                    ECItemTags.GAUNTLET_ENCHANTABLE, 5, 4,
+                    Enchantment.dynamicCost(1, 10), Enchantment.dynamicCost(30, 10),
+                    2
+            )));
+    public static final DeferredHolder<Enchantment, BlockingEnchantment> BLOCKING =
+            ENCHANTMENTS.register("blocking", () -> new BlockingEnchantment(Enchantment.definition(
+                    ECItemTags.BLOCKING_ENCHANTABLE, 2, 2,
+                    Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25),
+                    4, MAINHAND, OFFHAND
+            )));
+    public static final DeferredHolder<Enchantment, Enchantment> AGILITY =
+            ENCHANTMENTS.register("agility", () -> new Enchantment(Enchantment.definition(
+                    ECItemTags.AGILITY_ENCHANTABLE, 3, 2,
+                    Enchantment.dynamicCost(15, 15), Enchantment.dynamicCost(45, 15),
+                    3, CHEST, LEGS, FEET
+            )));
+    public static final DeferredHolder<Enchantment, GroundSlamEnchantment> GROUND_SLAM =
+            ENCHANTMENTS.register("ground_slam", () -> new GroundSlamEnchantment(Enchantment.definition(
+                    ECItemTags.GROUND_SLAM, 3, 6,
+                    Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
+                    2, MAINHAND, OFFHAND
+            )));
 }

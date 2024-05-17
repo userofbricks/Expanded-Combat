@@ -310,24 +310,27 @@ public class ECConfig implements ConfigData {
     }
 
     public static class EnchantmentLevels {
-        @RequiresRestart @ConfigName("Max Knockback Resistance Level")
-        public int maxKnockbackResistanceLevel = 4;
+        /*
         @RequiresRestart @ConfigName("Max Ground Slam Level")
         @ConfigEntry.Gui.Tooltip(count = 3)
         @TooltipFrase(value = "For every level the dmg percentage grows by 5% of standard hit dmg. Allowed to go above 100%, the base dmg for slam is 90% of standard hit")
         @TooltipFrase(line = 1, value = "For every 2 levels the number of hits between each slam gets reduced by one")
         @TooltipFrase(line = 2, value = "For every 3 levels the range gets extended by one block")
         public int maxGroundSlamLevel = 6;
+         */
         @RequiresRestart @ConfigName("Hammer Added Slam level")
         public int baseHammerSlamLevel = 2;
+        /*
         @RequiresRestart @ConfigName("Max Blocking Level")
         @ConfigEntry.Gui.Tooltip(count = 3)
         @TooltipFrase(value = "Can be applied to katanas and shields")
         @TooltipFrase(line = 1, value = "When on katanas, the number of consecutive blocked arrows increases by 1 for each level")
         @TooltipFrase(line = 2, value = "When on shields, their blocking gets increased. different amounts for each shield blocking type. does nothing when on vanilla shield mechanics")
         public int maxBlockingLevel = 5;
+         */
         @RequiresRestart @ConfigName("Katana Base Number of block-able arrows")
         public int baseKatanaArrowBlocks = 2;
+        /*
         @RequiresRestart @ConfigName("Max Agility Level")
         @ConfigEntry.Gui.Tooltip(count = 5)
         @TooltipFrase(value = "Can be applied to gauntlets, chestplate, leggings, and boots")
@@ -336,6 +339,7 @@ public class ECConfig implements ConfigData {
         @TooltipFrase(line = 3, value = "When on leggings, adds 0.1 jump strength per level")
         @TooltipFrase(line = 4, value = "When on boots, adds 0.1 movement speed per level")
         public int maxAgilityLevel = 2;
+        */
 
     }
 }

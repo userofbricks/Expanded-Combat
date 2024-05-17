@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.item.ISimpleMaterialItem;
 import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.ChatFormatting;

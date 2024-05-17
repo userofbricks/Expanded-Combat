@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
-import static com.userofbricks.expanded_combat.item.ECItemTags.SHIELDS;
+import static com.userofbricks.expanded_combat.init.ECItemTags.SHIELDS;
 
 public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");

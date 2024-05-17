@@ -13,7 +13,7 @@ import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
-import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
@@ -70,7 +70,7 @@ public class ExpandedCombat {
         MaterialInit.loadClass();
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
-        ECEnchantments.loadClass();
+        ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
         ECItems.loadClass();
         ECItemTags.loadTags();

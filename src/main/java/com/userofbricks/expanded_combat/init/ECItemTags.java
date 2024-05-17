@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.item;
+package com.userofbricks.expanded_combat.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.userofbricks.expanded_combat.ExpandedCombat;
@@ -27,6 +27,12 @@ public final class ECItemTags {
     public static final TagKey<Item> GOLD_SWORD = bindForgeSword("gold");
     public static final TagKey<Item> DIAMOND_SWORD = bindForgeSword("diamond");
     public static final TagKey<Item> NETHERITE_SWORD = bindForgeSword("netherite");
+
+    //Enchantment Tags
+    public static final TagKey<Item> GAUNTLET_ENCHANTABLE = bind("enchantable/gauntlet");
+    public static final TagKey<Item> BLOCKING_ENCHANTABLE = bind("enchantable/blocking");
+    public static final TagKey<Item> AGILITY_ENCHANTABLE = bind("enchantable/agility");
+    public static final TagKey<Item> GROUND_SLAM = bind("enchantable/ground_slam");
 
 
     private static TagKey<Item> bind(String name) {
