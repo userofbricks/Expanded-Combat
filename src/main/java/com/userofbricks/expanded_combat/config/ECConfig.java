@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.config;
 
+import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -59,83 +60,83 @@ public class ECConfig implements ConfigData {
 
     //Weapon Types
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Battle Staff")
-    public WeaponMaterialConfig battlestaff = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+    public WeaponMaterialConfig battlestaff = new WeaponMaterialConfig.Builder(GripType.TWOHANDED)
             .durabilityMultiplier(0.9)
             .baseAttackDamage(-2).attackSpeed(-1.4f).attackRange(1.5).knockback(1).mendingBonus(0.1f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Broad Sword")
-    public WeaponMaterialConfig broadsword = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig broadsword = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .durabilityMultiplier(1.1)
             .baseAttackDamage(3).attackSpeed(-3.0f).attackRange(0.5)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Claymore")
-    public WeaponMaterialConfig claymore = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+    public WeaponMaterialConfig claymore = new WeaponMaterialConfig.Builder(GripType.TWOHANDED)
             .durabilityMultiplier(1.1)
             .baseAttackDamage(2).attackSpeed(-3f).attackRange(1)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Cutlass")
-    public WeaponMaterialConfig cutlass = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig cutlass = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .baseAttackDamage(0).attackSpeed(-2.2f).mendingBonus(0.2f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Dagger")
-    public WeaponMaterialConfig dagger = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.DUALWIELD)
+    public WeaponMaterialConfig dagger = new WeaponMaterialConfig.Builder(GripType.DUALWIELD)
             .durabilityMultiplier(0.75)
             .baseAttackDamage(-1).attackSpeed(-1.2f).mendingBonus(0.1f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Dancer's Sword")
-    public WeaponMaterialConfig dancers_sword = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig dancers_sword = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .durabilityMultiplier(1.3)
             .baseAttackDamage(2).attackSpeed(-1.8f).mendingBonus(0.2f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Flail")
-    public WeaponMaterialConfig flail = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig flail = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .durabilityMultiplier(1.1)
             .baseAttackDamage(4).attackSpeed(-3.4f).attackRange(1).knockback(0.5f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Glaive")
-    public WeaponMaterialConfig glaive = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+    public WeaponMaterialConfig glaive = new WeaponMaterialConfig.Builder(GripType.TWOHANDED)
             .baseAttackDamage(3).attackSpeed(-3.2f).attackRange(2).knockback(0.5f).mendingBonus(0.1f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Great Hammer")
-    public WeaponMaterialConfig great_hammer = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig great_hammer = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .durabilityMultiplier(1.5)
             .baseAttackDamage(5).attackSpeed(-3.3f).knockback(1)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Katana")
-    public WeaponMaterialConfig katana = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig katana = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .baseAttackDamage(2).attackSpeed(-2.4f).attackRange(0.5)
             .hasLargeModel()
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Mace")
-    public WeaponMaterialConfig mace = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.ONEHANDED)
+    public WeaponMaterialConfig mace = new WeaponMaterialConfig.Builder(GripType.ONEHANDED)
             .durabilityMultiplier(1.1)
             .baseAttackDamage(4).attackSpeed(-3.2f).knockback(0.5f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Scythe")
-    public WeaponMaterialConfig scythe = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+    public WeaponMaterialConfig scythe = new WeaponMaterialConfig.Builder(GripType.TWOHANDED)
             .durabilityMultiplier(1.2)
             .baseAttackDamage(4).attackSpeed(-3.4f).attackRange(2).knockback(1.0f).mendingBonus(0.1f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Sickle")
-    public WeaponMaterialConfig sickle = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.DUALWIELD)
+    public WeaponMaterialConfig sickle = new WeaponMaterialConfig.Builder(GripType.DUALWIELD)
             .durabilityMultiplier(0.8)
             .baseAttackDamage(0).attackSpeed(-1.8f).mendingBonus(0.2f)
             .build();
 
     @Category("Weapon Types") @CollapsibleObject @ConfigName("Spear")
-    public WeaponMaterialConfig spear = new WeaponMaterialConfig.Builder(WeaponMaterialConfig.WieldingType.TWOHANDED)
+    public WeaponMaterialConfig spear = new WeaponMaterialConfig.Builder(GripType.TWOHANDED)
             .baseAttackDamage(3).attackSpeed(-3.4f).attackRange(2).knockback(0.5f).mendingBonus(0.1f)
             .hasLargeModel()
             .build();

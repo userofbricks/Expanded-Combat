@@ -3,8 +3,8 @@ package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriFunction;
+import com.userofbricks.expanded_combat.api.TriConsumer;
+import com.userofbricks.expanded_combat.api.TriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -32,11 +32,11 @@ public class BowItemBuilder extends MaterialItemBuilder {
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends BowItem, Registrate> itemBuilder, halfItemBuilder;
     private String lang = "";
-    private NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder, halfModelBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, @Nullable Material> recipeBuilder, halfRecipeBuilder;
+    private TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder, halfModelBuilder;
+    private TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, @Nullable Material> recipeBuilder, halfRecipeBuilder;
     private NonNullConsumer<ItemBuilder<? extends BowItem, Registrate>> colorBuilder, halfColorBuilder;
 
-    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor) {
+    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, TriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor) {
         ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
 
         itemBuilder.properties(properties -> properties.stacksTo(1));
@@ -53,7 +53,7 @@ public class BowItemBuilder extends MaterialItemBuilder {
         colorBuilder = BowItemBuilder::colors;
     }
 
-    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> halfConstructor) {
+    public BowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, TriFunction<Item.Properties, Material, Material, ? extends BowItem> constructor, TriFunction<Item.Properties, Material, Material, ? extends BowItem> halfConstructor) {
         ItemBuilder<? extends BowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_bow", (p) -> constructor.apply(p, material, craftedFrom));
         ItemBuilder<? extends BowItem, Registrate> halfItemBuilder = registrate.item("half_" + material.getLocationName().getPath() + "_bow", (p) -> halfConstructor.apply(p, material, craftedFrom));
 
@@ -79,11 +79,11 @@ public class BowItemBuilder extends MaterialItemBuilder {
         lang = englishName;
         return this;
     }
-    public BowItemBuilder model(NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder) {
+    public BowItemBuilder model(TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder) {
         this.modelBuilder = modelBuilder;
         return this;
     }
-    public BowItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Material> recipeBuilder) {
+    public BowItemBuilder recipes(TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }
@@ -92,11 +92,11 @@ public class BowItemBuilder extends MaterialItemBuilder {
         this.colorBuilder = colorBuilder;
         return this;
     }
-    public BowItemBuilder halfModel(NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder) {
+    public BowItemBuilder halfModel(TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Boolean> modelBuilder) {
         this.halfModelBuilder = modelBuilder;
         return this;
     }
-    public BowItemBuilder halfRecipes(NonNullTriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Material> recipeBuilder) {
+    public BowItemBuilder halfRecipes(TriConsumer<ItemBuilder<? extends BowItem, Registrate>, Material, Material> recipeBuilder) {
         this.halfRecipeBuilder = recipeBuilder;
         return this;
     }

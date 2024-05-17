@@ -1,8 +1,7 @@
 package com.userofbricks.expanded_combat.api.material;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.userofbricks.expanded_combat.config.MaterialConfig;
+import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArrowItem;
@@ -14,23 +13,32 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 
 public class Material {
     @NotNull
+    //Move to data generator for material
     private final String name;
     @NotNull
+    //No longer needed? due to this being a file name instead
     private final ResourceLocation id;
+
+    //Move to data generator for material
     public boolean halfbow;
+
+    //Move to data generator for material
     public Material craftedFrom;
     @Nullable
+    //TODO Turn Into a Data-Map?
     protected Map<String, List<String>> aliases = new HashMap<>();
 
-    public ShieldUse shieldUse = ShieldUse.ALL;
+    public PlacementInShield shieldUse = PlacementInShield.ALL;
     @NotNull
     private final NonNullSupplier<MaterialConfig> config;
+
+
+    //TODO Turn Into a Data-Map
     protected Function<Float, Float> additionalDamageAfterEnchantments = (damage) -> 0f;
 
     protected RegistryEntry<? extends ArrowItem> arrowEntry = null;
@@ -124,8 +132,4 @@ public class Material {
         return false;
     }
 
-    public enum ShieldUse {
-        ALL,
-        NOT_TRIM
-    }
 }

@@ -6,7 +6,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
+import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -39,7 +39,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
     public final ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, tippedBuilder;
     private String lang = "";
     private NonNullBiConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material> modelBuilder, tippedModelBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
+    private TriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
 
     public ArrowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> constructor, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> tippedConstructor) {
         ItemBuilder<? extends ArrowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_arrow", (p) -> constructor.apply(p, material));
@@ -74,7 +74,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         this.tippedModelBuilder = modelBuilder;
         return this;
     }
-    public ArrowItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, Material> recipeBuilder) {
+    public ArrowItemBuilder recipes(TriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }

@@ -7,11 +7,10 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriFunction;
+import com.userofbricks.expanded_combat.api.TriFunction;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.*;
 import com.userofbricks.expanded_combat.config.MaterialConfig;
+import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
@@ -25,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class MaterialBuilder {
@@ -51,27 +51,12 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo, boolean dyeable) {
-        return bow(craftedFrom, ECBowItem::new, halfToo).build(dyeable);
-    }
-
-    public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo) {
-        return bow(craftedFrom, ECBowItem::new, halfToo).build(false);
-    }
-    public MaterialBuilder bowAndHalfBow(@Nullable Material craftedFrom) {
-        return bow(craftedFrom, ECBowItem::new, true).build(false);
-    }
-    public MaterialBuilder bowAndHalfBow() {
-        return bow(null, ECBowItem::new, true).build(false);
-    }
-
-    public BowItemBuilder bow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, boolean halfToo) {
-        return halfToo ? new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, bowConstructor)
-                : new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor);
-    }
-    public BowItemBuilder bowWithHalfBow(@Nullable Material craftedFrom, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, NonNullTriFunction<Item.Properties, Material, Material, ? extends BowItem> halfBowConstructor) {
-        return new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, halfBowConstructor);
-    }
+    //public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo, boolean dyeable) {return bow(craftedFrom, ECBowItem::new, halfToo).build(dyeable);}
+    //public MaterialBuilder bow(@Nullable Material craftedFrom, boolean halfToo) {return bow(craftedFrom, ECBowItem::new, halfToo).build(false);}
+    //public MaterialBuilder bowAndHalfBow(@Nullable Material craftedFrom) {return bow(craftedFrom, ECBowItem::new, true).build(false);}
+    //public MaterialBuilder bowAndHalfBow() {return bow(null, ECBowItem::new, true).build(false);}
+    //public BowItemBuilder bow(@Nullable Material craftedFrom, TriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, boolean halfToo) {return halfToo ? new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, bowConstructor) : new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor);}
+    //public BowItemBuilder bowWithHalfBow(@Nullable Material craftedFrom, TriFunction<Item.Properties, Material, Material, ? extends BowItem> bowConstructor, TriFunction<Item.Properties, Material, Material, ? extends BowItem> halfBowConstructor) {return new BowItemBuilder(this, registrate.get(), material, craftedFrom, bowConstructor, halfBowConstructor);}
 
     public MaterialBuilder bow(NonNullFunction<Material, RegistryEntry<? extends BowItem>> bowEntryFunction) {
         if (!MaterialInit.bowMaterials.contains(material)) MaterialInit.bowMaterials.add(material);
@@ -86,24 +71,10 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder arrow(@Nullable Material craftedFrom, boolean tipped) {
-        if (tipped) {
-            return arrow(craftedFrom, ECArrowItem::new, ECTippedArrowItem::new).build();
-        }
-        return arrow(craftedFrom, ECArrowItem::new);
-    }
-
-    public MaterialBuilder arrow() {
-        return arrow(null, true);
-    }
-
-    public MaterialBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor) {
-        return arrow(craftedFrom, arrowConstructor, null).build();
-    }
-
-    public ArrowItemBuilder arrow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor, @Nullable NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> tippedArrowConstructor) {
-        return new ArrowItemBuilder(this, registrate.get(), material, craftedFrom, arrowConstructor, tippedArrowConstructor);
-    }
+    //public MaterialBuilder arrow(@Nullable Material craftedFrom, boolean tipped) {if (tipped) {return arrow(craftedFrom, ECArrowItem::new, ECTippedArrowItem::new).build();}return arrow(craftedFrom, ECArrowItem::new);}
+    //public MaterialBuilder arrow() {return arrow(null, true);    }
+    //public MaterialBuilder arrow(@Nullable Material craftedFrom, BiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor) {return arrow(craftedFrom, arrowConstructor, null).build();}
+    //public ArrowItemBuilder arrow(@Nullable Material craftedFrom, BiFunction<Item.Properties, Material, ? extends ArrowItem> arrowConstructor, @Nullable BiFunction<Item.Properties, Material, ? extends ArrowItem> tippedArrowConstructor) {return new ArrowItemBuilder(this, registrate.get(), material, craftedFrom, arrowConstructor, tippedArrowConstructor);}
 
     public MaterialBuilder arrow(NonNullFunction<Material, RegistryEntry<? extends ArrowItem>> arrowEntryFunction) {
         if (!MaterialInit.arrowMaterials.contains(material)) MaterialInit.arrowMaterials.add(material);
@@ -117,20 +88,10 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder crossBow(@Nullable Material craftedFrom, boolean dyeable) {
-        return crossBow(craftedFrom, ECCrossBowItem::new).build(dyeable);
-    }
-
-    public MaterialBuilder crossBow(@Nullable Material craftedFrom) {
-        return crossBow(craftedFrom, ECCrossBowItem::new).build(false);
-    }
-    public MaterialBuilder crossBow() {
-        return crossBow(null, ECCrossBowItem::new).build(false);
-    }
-
-    public CrossBowItemBuilder crossBow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> crossBowConstructor) {
-        return new CrossBowItemBuilder(this, registrate.get(), material, craftedFrom, crossBowConstructor);
-    }
+    //public MaterialBuilder crossBow(@Nullable Material craftedFrom, boolean dyeable) {return crossBow(craftedFrom, ECCrossBowItem::new).build(dyeable);}
+    //public MaterialBuilder crossBow(@Nullable Material craftedFrom) {return crossBow(craftedFrom, ECCrossBowItem::new).build(false);}
+    //public MaterialBuilder crossBow() {return crossBow(null, ECCrossBowItem::new).build(false);}
+    //public CrossBowItemBuilder crossBow(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> crossBowConstructor) {return new CrossBowItemBuilder(this, registrate.get(), material, craftedFrom, crossBowConstructor);}
 
     public MaterialBuilder crossBow(NonNullFunction<Material, RegistryEntry<? extends CrossbowItem>> crossBowEntryFunction) {
         if (!MaterialInit.crossbowMaterials.contains(material)) MaterialInit.crossbowMaterials.add(material);
@@ -138,21 +99,10 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder gauntlet(@Nullable Material craftedFrom) {
-        return gauntlet(craftedFrom, ECGauntletItem::new).build(false);
-    }
-    public MaterialBuilder gauntlet() {
-        return gauntlet(null, ECGauntletItem::new).build(false);
-    }
-
-    public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom) {
-        return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new).build(true);
-    }
-
-    public MaterialBuilder dyeableGauntlet() {
-        return gauntlet(null, ECGauntletItem.Dyeable::new).build(true);
-    }
-
+    //public MaterialBuilder gauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, ECGauntletItem::new).build(false);}
+    //public MaterialBuilder gauntlet() {return gauntlet(null, ECGauntletItem::new).build(false);}
+    //public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new).build(true);}
+    //public MaterialBuilder dyeableGauntlet() {return gauntlet(null, ECGauntletItem.Dyeable::new).build(true);}
     public GauntletItemBuilder gauntlet(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
         return new GauntletItemBuilder(this, registrate.get(), material, craftedFrom, constructor);
     }
@@ -163,20 +113,10 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder quiver(@Nullable Material craftedFrom, boolean dyeable) {
-        return quiver(craftedFrom, ECQuiverItem::new).build(dyeable);
-    }
-
-    public MaterialBuilder quiver(@Nullable Material craftedFrom) {
-        return quiver(craftedFrom, ECQuiverItem::new).build(false);
-    }
-    public MaterialBuilder quiver() {
-        return quiver(null, ECQuiverItem::new).build(false);
-    }
-
-    public QuiverItemBuilder quiver(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
-        return new QuiverItemBuilder(this, registrate.get(), material, craftedFrom, constructor);
-    }
+    //public MaterialBuilder quiver(@Nullable Material craftedFrom, boolean dyeable) {return quiver(craftedFrom, ECQuiverItem::new).build(dyeable);}
+    //public MaterialBuilder quiver(@Nullable Material craftedFrom) {return quiver(craftedFrom, ECQuiverItem::new).build(false);}
+    //public MaterialBuilder quiver() {return quiver(null, ECQuiverItem::new).build(false);}
+    //public QuiverItemBuilder quiver(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {return new QuiverItemBuilder(this, registrate.get(), material, craftedFrom, constructor);}
 
     public MaterialBuilder quiver(NonNullFunction<Material, RegistryEntry<? extends Item>> constructor) {
         if (!MaterialInit.quiverMaterials.contains(material)) MaterialInit.quiverMaterials.add(material);
@@ -184,7 +124,7 @@ public class MaterialBuilder {
         return this;
     }
 
-    public MaterialBuilder shield(Material.ShieldUse shieldUse, @Nullable Material craftedFrom) {
+    public MaterialBuilder shield(PlacementInShield shieldUse, @Nullable Material craftedFrom) {
         if (!MaterialInit.shieldMaterials.contains(material)) MaterialInit.shieldMaterials.add(material);
         material.shieldUse = shieldUse;
         material.craftedFrom = craftedFrom;
@@ -193,18 +133,18 @@ public class MaterialBuilder {
     }
 
     public MaterialBuilder shield(@Nullable Material craftedFrom) {
-        return shield(Material.ShieldUse.ALL, craftedFrom);
+        return shield(PlacementInShield.ALL, craftedFrom);
     }
 
     public MaterialBuilder shield() {
-        return shield(Material.ShieldUse.ALL, null);
+        return shield(PlacementInShield.ALL, null);
     }
 
-    public MaterialBuilder greatHammer(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+    public MaterialBuilder greatHammer(@Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
         return weaponBuilder(VanillaECPlugin.GREAT_HAMMER, craftedFrom, constructor).build();
     }
 
-    public MaterialBuilder katana(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+    public MaterialBuilder katana(@Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
         return weaponBuilder(VanillaECPlugin.KATANA, craftedFrom, constructor).build();
     }
 
@@ -216,10 +156,10 @@ public class MaterialBuilder {
         return katana(craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties));
     }
 
-    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
-                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
-                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
-                                        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor) {
+    public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
+                                        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
+                                        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
+                                        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (!weaponMaterial.isBlockWeapon()) continue;
             if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, greatHammerConstructor);
@@ -238,11 +178,11 @@ public class MaterialBuilder {
         return weapons(null);
     }
 
-    public MaterialBuilder weapons(@Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
-                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
-                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
-                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor,
-                                   NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> katanaConstructor) {
+    public MaterialBuilder weapons(@Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,
+                                   TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> dyeableConstructor,
+                                   TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> hasPotionConstructor,
+                                   TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> greatHammerConstructor,
+                                   TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> katanaConstructor) {
         for (WeaponMaterial weaponMaterial : MaterialInit.weaponMaterialConfigs) {
             if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom, katanaConstructor);
             else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom, greatHammerConstructor);
@@ -268,7 +208,7 @@ public class MaterialBuilder {
         return new MultiWeaponBuilder(this, registrate.get(), material, craftedFrom, !this.material.getConfig().crafting.isSingleAddition);
     }
 
-    public WeaponItemBuilder weaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
+    public WeaponItemBuilder weaponBuilder(WeaponMaterial weaponMaterial, @Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor) {
         return new WeaponItemBuilder(this, registrate.get(), weaponMaterial, material, craftedFrom, constructor, !this.material.getConfig().crafting.isSingleAddition);
     }
 

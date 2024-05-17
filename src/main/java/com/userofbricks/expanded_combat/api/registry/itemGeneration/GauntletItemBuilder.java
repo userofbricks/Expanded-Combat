@@ -1,44 +1,28 @@
 package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.builders.ItemBuilder;
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import com.tterrag.registrate.util.nullness.NonNullBiFunction;
-import com.tterrag.registrate.util.nullness.NonNullConsumer;
-import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriFunction;
+import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
-import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.item.ECItemTags;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.NotCondition;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 
 public class GauntletItemBuilder extends MaterialItemBuilder {
     public static final List<TrimModelData> GENERATED_TRIM_MODELS = List.of(
@@ -57,8 +41,8 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
     private String lang = "";
-    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
+    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
+    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
     private NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder;
 
     public GauntletItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
@@ -79,11 +63,11 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
         lang = englishName;
         return this;
     }
-    public GauntletItemBuilder model(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
+    public GauntletItemBuilder model(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
         this.modelBuilder = modelBuilder;
         return this;
     }
-    public GauntletItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
+    public GauntletItemBuilder recipes(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }

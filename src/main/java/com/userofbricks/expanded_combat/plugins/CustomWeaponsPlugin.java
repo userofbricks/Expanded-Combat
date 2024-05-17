@@ -4,9 +4,9 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriFunction;
+import com.userofbricks.expanded_combat.api.QuadConsumer;
+import com.userofbricks.expanded_combat.api.TriConsumer;
+import com.userofbricks.expanded_combat.api.TriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
@@ -75,10 +75,10 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                         })
                         .register()));
 
-        NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> noRecipes = (a, b, c, d) -> {};
-        NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> noColor = (a, b, c) -> {};
-        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> heatConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.HEAT_DMG);
-        Function<String, NonNullQuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial>> modelBuilder = (s) ->(ctx, prov, m, w) -> WeaponItemBuilder.generateModel(ctx, prov, w, m, s, "", "", true);
+        QuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> noRecipes = (a, b, c, d) -> {};
+        TriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> noColor = (a, b, c) -> {};
+        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> heatConstructor = (m, w, p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.HEAT_DMG);
+        Function<String, QuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial>> modelBuilder = (s) ->(ctx, prov, m, w) -> WeaponItemBuilder.generateModel(ctx, prov, w, m, s, "", "", true);
 
         HEAT_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Heat", CONFIG.heat)
                 .weaponBuilder(VanillaECPlugin.KATANA, null, heatConstructor).lang("Sun Master's Katana").model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build()
@@ -87,7 +87,7 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                 .weaponBuilder(VanillaECPlugin.GLAIVE, null, heatConstructor).lang("Grave Bane").model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build());
 
 
-        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> coldConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.COLD_DMG);
+        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> coldConstructor = (m, w, p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.COLD_DMG);
 
         COLD_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Frost", CONFIG.frost)
                 .weaponBuilder(VanillaECPlugin.DAGGER, null, coldConstructor).lang("Fang Of Frost").model(modelBuilder.apply("item/")).recipes(noRecipes).colors(noColor).build()
@@ -95,7 +95,7 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                 .weaponBuilder(VanillaECPlugin.CLAYMORE, null, coldConstructor).lang("Frost Slayer").model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build());
 
 
-        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> voidConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.VOID_DMG);
+        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> voidConstructor = (m, w, p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.VOID_DMG);
 
         VOID_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Void Touched", CONFIG.voidTouched)
                 .weaponBuilder(VanillaECPlugin.CLAYMORE, null, voidConstructor).model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build()
@@ -104,7 +104,7 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                 .weaponBuilder(VanillaECPlugin.GREAT_HAMMER, null, voidConstructor).recipes(noRecipes).colors(noColor).build());
 
 
-        NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> soulConstructor = (m,w,p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.SOUL_DMG);
+        TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> soulConstructor = (m, w, p) -> new ElementalWeapon(m, w, p, 2, ECAttributes.SOUL_DMG);
 
         SOUL_MATERIAL = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Soul", CONFIG.soul)
                 .weaponBuilder(VanillaECPlugin.KATANA, null, soulConstructor).lang("Dark Katana").model(modelBuilder.apply("item_large/")).recipes(noRecipes).colors(noColor).build()

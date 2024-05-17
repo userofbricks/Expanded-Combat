@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.config.WeaponMaterialConfig;
+import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
@@ -22,13 +22,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
-import static com.userofbricks.expanded_combat.item.ECShieldItem.*;
 import static com.userofbricks.expanded_combat.plugins.VanillaECPlugin.*;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.UUID;
 
 public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
@@ -72,7 +68,7 @@ public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
         builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", this.weapon.config().knockback, AttributeModifier.Operation.ADDITION));
         builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", this.weapon.config().attackRange, AttributeModifier.Operation.ADDITION));
         if (equipmentSlot == EquipmentSlot.MAINHAND) return builder.build();
-        else if (this.weapon.config().wieldType == WeaponMaterialConfig.WieldingType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND) return builder.build();
+        else if (this.weapon.config().wieldType == GripType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND) return builder.build();
         return super.getDefaultAttributeModifiers(equipmentSlot);
     }
 

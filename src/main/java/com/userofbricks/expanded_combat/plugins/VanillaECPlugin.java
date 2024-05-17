@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.api.registry.ECPlugin;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
+import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
@@ -73,9 +74,9 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         SICKLE =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Sickle", CONFIG.sickle,                () -> new RecipeIngredientMapBuilder().put('s', ECItems.GOLD_STICK.get()),                    new String[]{"ii", "s "}).customModelTransforms());
         SPEAR =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Spear", CONFIG.spear,                  () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"p", "s", "s"}).hasLargeModel());
 
-        LEATHER =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Leather",       CONFIG.leather).dyeableGauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM, null));
+        LEATHER =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Leather",       CONFIG.leather).dyeableGauntlet().quiver().shield(PlacementInShield.NOT_TRIM, null));
 
-        RABBIT_LEATHER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Rabbit Leather",CONFIG.rebbitLeather).gauntlet().quiver().shield(Material.ShieldUse.NOT_TRIM, null));
+        RABBIT_LEATHER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Rabbit Leather",CONFIG.rebbitLeather).gauntlet().quiver().shield(PlacementInShield.NOT_TRIM, null));
         OAK_PLANK =      registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Oak Plank",     CONFIG.oakPlank).shield().weapons());
         ACACIA_PLANK =   registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Acacia Plank",  CONFIG.acaciaPlank).shield().weapons());
         BIRCH_PLANK =    registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Birch Plank",   CONFIG.birchPlank).shield().weapons());

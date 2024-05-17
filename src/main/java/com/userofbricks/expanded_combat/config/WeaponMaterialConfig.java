@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.config;
 
+import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 public class WeaponMaterialConfig {
@@ -20,9 +21,9 @@ public class WeaponMaterialConfig {
     @TooltipFrase("In Blocks")
     public double attackRange;
     @ConfigName("Grip Type")
-    public WieldingType wieldType;
+    public GripType wieldType;
 
-    WeaponMaterialConfig(double durabilityMultiplier, int baseAttackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, WieldingType wieldType) {
+    WeaponMaterialConfig(double durabilityMultiplier, int baseAttackDamage, float attackSpeed, double attackRange, float knockback, float mendingBonus, GripType wieldType) {
         this.durabilityMultiplier = durabilityMultiplier;
         this.baseAttackDamage = baseAttackDamage;
         this.attackSpeed = attackSpeed;
@@ -30,12 +31,6 @@ public class WeaponMaterialConfig {
         this.mendingBonus = mendingBonus;
         this.knockback = knockback;
         this.wieldType = wieldType;
-    }
-
-    public enum WieldingType {
-        ONEHANDED,
-        TWOHANDED,
-        DUALWIELD
     }
 
     public static class Builder {
@@ -46,9 +41,9 @@ public class WeaponMaterialConfig {
         private float mendingBonus = 0;
         private float knockback = 0;
         private double attackRange = 0;
-        private final WieldingType wieldType;
+        private final GripType wieldType;
 
-        public Builder(WieldingType wieldType) {
+        public Builder(GripType wieldType) {
             this.wieldType = wieldType;
         }
 

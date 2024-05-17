@@ -5,7 +5,7 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
+import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -13,9 +13,7 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -29,16 +27,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-
 public class QuiverItemBuilder extends MaterialItemBuilder {
 
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
     private String lang = "";
-    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
+    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
+    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
     private NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder;
 
     public QuiverItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
@@ -59,11 +55,11 @@ public class QuiverItemBuilder extends MaterialItemBuilder {
         lang = englishName;
         return this;
     }
-    public QuiverItemBuilder model(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
+    public QuiverItemBuilder model(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
         this.modelBuilder = modelBuilder;
         return this;
     }
-    public QuiverItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
+    public QuiverItemBuilder recipes(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }

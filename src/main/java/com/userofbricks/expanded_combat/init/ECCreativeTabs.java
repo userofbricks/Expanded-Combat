@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.init;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.resources.ResourceKey;
@@ -50,7 +51,7 @@ public class ECCreativeTabs {
                                 stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
                                 stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
                                 stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                                if (material.shieldUse == Material.ShieldUse.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                                if (material.shieldUse == PlacementInShield.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
                                 else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
                                 output.accept(stack);
 
@@ -139,7 +140,7 @@ public class ECCreativeTabs {
                     stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
                     stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
                     stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                    if (material.shieldUse == Material.ShieldUse.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
+                    if (material.shieldUse == PlacementInShield.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
                     else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
 
                     items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

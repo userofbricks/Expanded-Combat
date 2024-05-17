@@ -4,7 +4,7 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
+import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -30,8 +30,8 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder;
     private String lang = "";
-    private NonNullTriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
+    private TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder;
+    private TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
     private NonNullConsumer<ItemBuilder<? extends CrossbowItem, Registrate>> colorBuilder;
 
     public CrossBowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> constructor) {
@@ -53,11 +53,11 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
         lang = englishName;
         return this;
     }
-    public CrossBowItemBuilder model(NonNullTriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder) {
+    public CrossBowItemBuilder model(TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder) {
         this.modelBuilder = modelBuilder;
         return this;
     }
-    public CrossBowItemBuilder recipes(NonNullTriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Material> recipeBuilder) {
+    public CrossBowItemBuilder recipes(TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }

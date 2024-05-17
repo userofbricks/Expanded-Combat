@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
-import com.userofbricks.expanded_combat.config.WeaponMaterialConfig;
+import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import com.userofbricks.expanded_combat.entity.attributes.RandedDamageAttribute;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -45,7 +45,7 @@ public class ElementalWeapon extends ECWeaponItem {
         builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", this.getWeapon().config().knockback, AttributeModifier.Operation.ADDITION));
         builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", this.getWeapon().config().attackRange, AttributeModifier.Operation.ADDITION));
         if (equipmentSlot == EquipmentSlot.MAINHAND) return builder.build();
-        else if (this.getWeapon().config().wieldType == WeaponMaterialConfig.WieldingType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND) return builder.build();
+        else if (this.getWeapon().config().wieldType == GripType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND) return builder.build();
         return super.getDefaultAttributeModifiers(equipmentSlot);
     }
 

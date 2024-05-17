@@ -5,9 +5,9 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.api.NonNullQuadConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriConsumer;
-import com.userofbricks.expanded_combat.api.NonNullTriFunction;
+import com.userofbricks.expanded_combat.api.QuadConsumer;
+import com.userofbricks.expanded_combat.api.TriConsumer;
+import com.userofbricks.expanded_combat.api.TriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.item.ECItemTags;
@@ -15,7 +15,6 @@ import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.client.color.item.ItemColor;
@@ -33,7 +32,6 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
@@ -43,11 +41,11 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
     public final MaterialBuilder materialBuilder;
     private String lang;
-    private NonNullQuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder;
-    private NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, @Nullable Material> recipeBuilder;
-    private NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder;
+    private QuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder;
+    private QuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, @Nullable Material> recipeBuilder;
+    private TriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder;
 
-    public WeaponItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, NonNullTriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean shaped) {
+    public WeaponItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean shaped) {
         String locationName = material.getLocationName().getPath() + "_" + weapon.getLocationName();
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(locationName, (p) -> constructor.apply(material, weapon, p));
 
@@ -66,15 +64,15 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
         lang = englishName;
         return this;
     }
-    public WeaponItemBuilder model(NonNullQuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder) {
+    public WeaponItemBuilder model(QuadConsumer<DataGenContext<Item, ? extends Item>, RegistrateItemModelProvider, Material, WeaponMaterial> modelBuilder) {
         this.modelBuilder = modelBuilder;
         return this;
     }
-    public WeaponItemBuilder recipes(NonNullQuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> recipeBuilder) {
+    public WeaponItemBuilder recipes(QuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }
-    public WeaponItemBuilder colors(NonNullTriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder) {
+    public WeaponItemBuilder colors(TriConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material> colorBuilder) {
         this.colorBuilder = colorBuilder;
         return this;
     }
