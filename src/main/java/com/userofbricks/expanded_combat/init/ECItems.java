@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.init;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.api.registry.itemGeneration.GauntletItemBuilder;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.api.material.Material;
@@ -22,7 +21,6 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagFile;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
@@ -45,12 +43,10 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
-import static com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder.getItemBaseModel;
 
 public class ECItems
 {

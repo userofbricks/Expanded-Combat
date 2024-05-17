@@ -10,7 +10,7 @@ import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.TriFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
-import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;

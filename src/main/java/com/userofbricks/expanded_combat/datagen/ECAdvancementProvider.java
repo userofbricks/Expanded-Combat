@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.datagen;
 
-import com.userofbricks.expanded_combat.item.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.init.LangStrings;
 import net.minecraft.advancements.Advancement;
