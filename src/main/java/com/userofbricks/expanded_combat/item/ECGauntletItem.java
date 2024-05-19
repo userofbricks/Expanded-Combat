@@ -27,6 +27,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.Curios;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -57,12 +58,16 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         }
     };
 
-    //TODO: need to change the entity selector to use some sort of curios check for the gauntlet slot existing on the entity
     public static boolean dispenseGauntlet(BlockSource blockSource, ItemStack stack) {
         BlockPos blockpos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
         List<LivingEntity> list = blockSource.level()
                 .getEntitiesOfClass(
-                        LivingEntity.class, new AABB(blockpos), EntitySelector.NO_SPECTATORS.and(new EntitySelector.MobCanWearArmorEntitySelector(stack))
+                        LivingEntity.class, new AABB(blockpos), EntitySelector.NO_SPECTATORS.and(entity -> {
+                            if(entity instanceof LivingEntity livingEntity) {
+                                return CuriosApi.getEntitySlots(livingEntity).containsKey(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER);
+                            }
+                            return false;
+                        })
                 );
         if (list.isEmpty()) {
             return false;
