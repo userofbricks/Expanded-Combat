@@ -44,7 +44,7 @@ import java.util.function.Supplier;
 @ParametersAreNonnullByDefault
 public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
-    private final ResourceLocation GAUNTLET_TEXTURE;
+    public final Layer[] GAUNTLET_TEXTURE_LAYERS;
     private final Holder.Reference<Material> material;
     protected static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
     protected static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
@@ -88,10 +88,8 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
                 properties.durability(materialIn.value().durabilities().gauntletDurability())
         );
         this.material = materialIn;
+        this.GAUNTLET_TEXTURE_LAYERS = layers;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
-
-        ResourceLocation materialLoc = materialIn.key().location();
-        this.GAUNTLET_TEXTURE = new ResourceLocation(materialLoc.getNamespace(), "textures/model/gauntlet/" + materialLoc.getPath() + ".png");
     }
     public Material getMaterial() {
         return this.material.value();
@@ -117,9 +115,6 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     }
     public double getAttackDamage() {
         return getMaterial().offense().addedAttackDamage();
-    }
-    public ResourceLocation getGauntletTexture(ItemStack stack) {
-        return GAUNTLET_TEXTURE;
     }
     public boolean hasEmissiveTexture(ItemStack stack) {
         return false;
