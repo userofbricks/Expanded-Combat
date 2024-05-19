@@ -42,7 +42,7 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@ParametersAreNonnullByDefault
+
 public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
@@ -100,6 +100,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         return this.material.value();
     }
     @Override
+    @ParametersAreNonnullByDefault
     public int getEnchantmentValue(ItemStack stack) {
         return (getMaterial().enchantingRelated().offenseEnchantability()/2) + (getMaterial().enchantingRelated().defenseEnchantability()/2);
     }
@@ -112,6 +113,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         return getMaterial().enchantingRelated().mendingBonus();
     }
     @Override
+    @ParametersAreNonnullByDefault
     public float getXpRepairRatio( ItemStack stack) {
         return 2f + getMendingBonus();
     }
@@ -121,16 +123,11 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     public double getAttackDamage() {
         return getMaterial().offense().addedAttackDamage();
     }
-    public boolean hasEmissiveTexture(ItemStack stack) {
-        return false;
-    }
-    public ResourceLocation getEmissiveTexture(ItemStack stack) {
-        return new ResourceLocation("null");
-    }
     public Supplier<ICurioRenderer> getGauntletRenderer() {
         return GauntletRenderer::new;
     }
     @Override
+    @ParametersAreNonnullByDefault
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
         return ((ECGauntletItem) stack.getItem()).getMaterial().defense().makesPiglinsNeutral();
     }
@@ -177,6 +174,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
 
     //TODO Move to tag system
     @Override
+    @ParametersAreNonnullByDefault
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         if (enchantment == Enchantments.KNOCKBACK || enchantment == Enchantments.PUNCH) {
             return true;
