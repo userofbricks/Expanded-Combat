@@ -5,25 +5,27 @@ import com.userofbricks.expanded_combat.client.sprites.AlphaMaskFolderPermutatio
 import com.userofbricks.expanded_combat.client.sprites.PalettedFolderPermutations;
 import net.minecraft.client.renderer.texture.atlas.sources.DirectoryLister;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.SpriteSourceProvider;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.SpriteSourceProvider;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @OnlyIn(Dist.CLIENT)
 public class ECSpriteScourceProvider extends SpriteSourceProvider {
-    public ECSpriteScourceProvider(PackOutput output, ExistingFileHelper fileHelper) {
-        super(output, fileHelper, ExpandedCombat.MODID);
+    public ECSpriteScourceProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper fileHelper) {
+        super(output, lookupProvider, ExpandedCombat.MODID, fileHelper);
     }
 
     @Override
-    protected void addSources() {
+    protected void gather() {
         atlas(BLOCKS_ATLAS).addSource(new DirectoryLister("item_large", "item_large/"));
         atlas(BLOCKS_ATLAS).addSource(new DirectoryLister("slot", "slot/"));
 
