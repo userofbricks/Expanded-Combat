@@ -12,7 +12,7 @@ import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.GauntletItem;
 import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
@@ -125,7 +125,7 @@ public class ExpandedCombat {
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         
         for (RegistryEntry<? extends Item> registryEntry: ECItems.ITEMS) {
-            if (registryEntry.get() instanceof ECGauntletItem gauntletItem)
+            if (registryEntry.get() instanceof GauntletItem gauntletItem)
                 CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
         }
         for (Material material : MaterialInit.quiverMaterials) {

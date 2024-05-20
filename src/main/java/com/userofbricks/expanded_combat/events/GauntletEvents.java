@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.GauntletItem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -49,12 +49,12 @@ public class GauntletEvents
     public static void DamageGauntletEvent(AttackEntityEvent event) {
         Player player = event.getEntity();
         if (player.isCreative()) return;
-        List<SlotResult> slotResults = CuriosApi.getCuriosHelper().findCurios(player, itemStack -> itemStack.getItem() instanceof ECGauntletItem);
+        List<SlotResult> slotResults = CuriosApi.getCuriosHelper().findCurios(player, itemStack -> itemStack.getItem() instanceof GauntletItem);
         if (slotResults.isEmpty()) return;
         for (SlotResult slotResult : slotResults) {
             ItemStack stack = slotResult.stack();
             SlotContext slotContext = slotResult.slotContext();
-            if (stack.getItem() instanceof ECGauntletItem) {
+            if (stack.getItem() instanceof GauntletItem) {
                 stack.hurtAndBreak(1, (LivingEntity) player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(slotContext));
             }
         }
@@ -119,8 +119,8 @@ public class GauntletEvents
                 }
                 if (MinecraftForge.EVENT_BUS.post(new GauntletRenderFirstPersonEvent(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack, cosmetic))) return;
 
-                if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-                    ICurioRenderer iCurioRenderer = ecGauntletItem.getGauntletRenderer().get();
+                if (stack.getItem() instanceof GauntletItem gauntletItem) {
+                    ICurioRenderer iCurioRenderer = gauntletItem.getGauntletRenderer().get();
                     if (iCurioRenderer instanceof IGauntletRenderer gauntletRenderer) {
                         gauntletRenderer.renderFirstPersonArm(stack, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPlayer(), event.getArm(), stack.hasFoil());
                     }

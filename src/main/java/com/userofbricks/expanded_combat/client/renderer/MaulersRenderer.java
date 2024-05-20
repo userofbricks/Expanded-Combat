@@ -7,7 +7,7 @@ import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.client.model.GauntletModel;
 import com.userofbricks.expanded_combat.client.model.MaulersModel;
 import com.userofbricks.expanded_combat.init.ECLayerDefinitions;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.GauntletItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.Model;
@@ -26,10 +26,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.armortrim.ArmorTrim;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
-
-import javax.annotation.Nullable;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
@@ -49,8 +46,8 @@ public class MaulersRenderer implements IGauntletRenderer {
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
-        if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-            GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
+        if (stack.getItem() instanceof GauntletItem gauntletItem) {
+            GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -61,7 +58,7 @@ public class MaulersRenderer implements IGauntletRenderer {
             ICurioRenderer.followBodyRotations(entity, this.model);
             renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE);
 
-            //ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+            //ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(gauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
         }
     }
 
@@ -77,15 +74,15 @@ public class MaulersRenderer implements IGauntletRenderer {
             model.setupAnim(player, 0, 0, 0, 0, 0);
             modelPart.xRot = 0;
 
-            if (stack.getItem() instanceof ECGauntletItem ecGauntletItem) {
-                GAUNTLET_TEXTURE = ecGauntletItem.getGauntletTexture(stack);
+            if (stack.getItem() instanceof GauntletItem gauntletItem) {
+                GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
 
                 RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
                 VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
 
                 modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
 
-                //ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(ecGauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+                //ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(gauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
             }
         }
     }
@@ -96,10 +93,10 @@ public class MaulersRenderer implements IGauntletRenderer {
         model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
     }
 
-    private void renderTrim(ECGauntletItem ecGauntletItem, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, boolean foil) {
+    private void renderTrim(GauntletItem gauntletItem, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, boolean foil) {
         String materialSuffix = armorTrim.material().get().assetName();
 
-        if (materialSuffix.equals(ecGauntletItem.getMaterial().getLocationName())) {
+        if (materialSuffix.equals(gauntletItem.getMaterial().getLocationName())) {
             materialSuffix = materialSuffix + "_darker";
         }
 

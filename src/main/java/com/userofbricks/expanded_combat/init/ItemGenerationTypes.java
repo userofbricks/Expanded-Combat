@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.init;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.item.generators.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -11,9 +12,17 @@ public class ItemGenerationTypes {
     //Gauntlets
     public static final DeferredRegister<GauntletType> GAUNTLET_TYPES = DeferredRegister.create(Registries.GAUNTLET_TYPE_REGISTRY, MODID);
     public static final DeferredHolder<GauntletType, GauntletType> STANDARD_GAUNTLET = GAUNTLET_TYPES.register("standard",
-            () -> new GauntletType(ECGauntletItem::new));
+            () -> new GauntletType(GauntletItem::new));
     public static final DeferredHolder<GauntletType, GauntletType> DYEABLE_GAUNTLET = GAUNTLET_TYPES.register("dyeable",
-            () -> new GauntletType(ECGauntletItem::new, new ECGauntletItem.Layer("", true), new ECGauntletItem.Layer("overlay")));
+            () -> new GauntletType(GauntletItem::new, new GauntletItem.Layer("", true), new GauntletItem.Layer("overlay")));
+    public static final DeferredHolder<GauntletType, GauntletType> FIGHTERS_BINDINGS = GAUNTLET_TYPES.register("fighters_bindings",
+            () -> new GauntletType(GauntletItem::new, new GauntletItem.Layer(ExpandedCombat.modLoc("fighters_bindings"), false)));
+    public static final DeferredHolder<GauntletType, GauntletType> SOUL_FIST = GAUNTLET_TYPES.register("soul_fist",
+            () -> new GauntletType(GauntletItem::new, new GauntletItem.Layer(ExpandedCombat.modLoc("soul_fist"), false)));
+    public static final DeferredHolder<GauntletType, GauntletType> BERSERK_GAUNTLET = GAUNTLET_TYPES.register("berserk_gauntlet",
+            () -> new GauntletType(GauntletBerserk::new, new GauntletItem.Layer(ExpandedCombat.modLoc("berserk_gauntlet"), false)));
+    public static final DeferredHolder<GauntletType, GauntletType> BRAWLERS_GAUNTLET = GAUNTLET_TYPES.register("brawlers_gauntlet",
+            () -> new GauntletType(GauntletBrawlers::new, new GauntletItem.Layer(ExpandedCombat.modLoc("brawlers_gauntlet"), false)));
 
     //Bows
     public static final DeferredRegister<BowType> BOW_TYPES = DeferredRegister.create(Registries.BOW_TYPE_REGISTRY, MODID);

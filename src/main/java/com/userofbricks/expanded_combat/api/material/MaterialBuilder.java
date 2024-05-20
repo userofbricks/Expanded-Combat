@@ -99,10 +99,10 @@ public class MaterialBuilder {
         return this;
     }
 
-    //public MaterialBuilder gauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, ECGauntletItem::new).build(false);}
-    //public MaterialBuilder gauntlet() {return gauntlet(null, ECGauntletItem::new).build(false);}
-    //public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, ECGauntletItem.Dyeable::new).build(true);}
-    //public MaterialBuilder dyeableGauntlet() {return gauntlet(null, ECGauntletItem.Dyeable::new).build(true);}
+    //public MaterialBuilder gauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, GauntletItem::new).build(false);}
+    //public MaterialBuilder gauntlet() {return gauntlet(null, GauntletItem::new).build(false);}
+    //public MaterialBuilder dyeableGauntlet(@Nullable Material craftedFrom) {return gauntlet(craftedFrom, GauntletItem.Dyeable::new).build(true);}
+    //public MaterialBuilder dyeableGauntlet() {return gauntlet(null, GauntletItem.Dyeable::new).build(true);}
     public GauntletItemBuilder gauntlet(@Nullable Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
         return new GauntletItemBuilder(this, registrate.get(), material, craftedFrom, constructor);
     }

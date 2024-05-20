@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.init.ECEnchantments;
-import com.userofbricks.expanded_combat.item.ECGauntletItem;
+import com.userofbricks.expanded_combat.item.GauntletItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.world.damagesource.DamageSource;
@@ -9,7 +9,6 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -58,7 +57,7 @@ public class EnchantentEvents {
     @SubscribeEvent
     public static void miningSpeed(PlayerEvent.BreakSpeed event) {
         float speedIncrease = 0;
-        for (SlotResult slotResult : CuriosApi.getCuriosHelper().findCurios(event.getEntity(), stack -> stack.getItem() instanceof ECGauntletItem)) {
+        for (SlotResult slotResult : CuriosApi.getCuriosHelper().findCurios(event.getEntity(), stack -> stack.getItem() instanceof GauntletItem)) {
             speedIncrease += slotResult.stack().getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.2f;
         }
         event.setNewSpeed(event.getOriginalSpeed() - speedIncrease);

@@ -116,10 +116,10 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
                 .gauntlet(null, FightersBindings::new).lang("Fighters Bindings").recipes((a,b,c) ->{}).build(false));
 
         MAULERS = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Maulers", CONFIG.maulers)
-                .gauntlet(null, Mawlers::new).lang("Maulers").recipes((a,b,c) ->{}).build(false));
+                .gauntlet(null, GauntletBerserk::new).lang("Maulers").recipes((a, b, c) ->{}).build(false));
 
         GAUNTLET = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Gauntlet", CONFIG.gauntlet)
-                .gauntlet(null, UniqueStandardGaunlet::new).lang("Gauntlet").recipes((a,b,c) ->{}).build(false));
+                .gauntlet(null, GauntletBrawlers::new).lang("Gauntlet").recipes((a, b, c) ->{}).build(false));
     }
 
     @Override

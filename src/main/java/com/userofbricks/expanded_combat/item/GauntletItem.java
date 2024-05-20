@@ -27,7 +27,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
-import top.theillusivec4.curios.Curios;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -43,18 +42,14 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
+public class GauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
     private final Holder.Reference<Material> material;
-    protected static final UUID ATTACK_UUID = UUID.fromString("7ce10414-adcc-4bf2-8804-f5dbd39fadaf");
-    protected static final UUID ARMOR_UUID = UUID.fromString("38faf191-bf78-4654-b349-cc1f4f1143bf");
-    protected static final UUID KNOCKBACK_RESISTANCE_UUID = UUID.fromString("b64fd3d6-a9fe-46a1-a972-90e4b0849678");
-    protected static final UUID KNOCKBACK_UUID = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
         protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack itemStack) {
-            return ECGauntletItem.dispenseGauntlet(blockSource, itemStack) ? itemStack : super.execute(blockSource, itemStack);
+            return GauntletItem.dispenseGauntlet(blockSource, itemStack) ? itemStack : super.execute(blockSource, itemStack);
         }
     };
 
@@ -88,7 +83,7 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         }
     }
 
-    public ECGauntletItem(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
+    public GauntletItem(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
         super(
                 properties.durability(materialIn.value().durabilities().gauntletDurability())
         );
@@ -129,42 +124,42 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
     @Override
     @ParametersAreNonnullByDefault
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return ((ECGauntletItem) stack.getItem()).getMaterial().defense().makesPiglinsNeutral();
+        return ((GauntletItem) stack.getItem()).getMaterial().defense().makesPiglinsNeutral();
     }
     @NotNull
     @Override
     public ICurio.SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack) {
-        ECGauntletItem gauntletItem = (ECGauntletItem) stack.getItem();
+        GauntletItem gauntletItem = (GauntletItem) stack.getItem();
         return new ICurio.SoundInfo(BuiltInRegistries.SOUND_EVENT.get(gauntletItem.getMaterial().defense().equipSound()), 1.0f, 1.0f);
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> atts = HashMultimap.create();
 
-        double totalBaseDamage = Math.max(((ECGauntletItem)stack.getItem()).getAttackDamage(), 0.5);
+        double totalBaseDamage = Math.max(((GauntletItem)stack.getItem()).getAttackDamage(), 0.5);
         double totalExtraDamage = getAdditionalDamageAfterEnchantments(totalBaseDamage);
         double totalEnchantedDamage = stack.getEnchantmentLevel(Enchantments.PUNCH);
 
-        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
-        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(ECGauntletItem.ATTACK_UUID, "Attack damage bonus", ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "Attack damage bonus", (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
+        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(uuid, "Attack damage bonus", ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ARMOR, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor bonus", ((ECGauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor bonus", ((GauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADD_VALUE));
 
-        double toughness = ((ECGauntletItem)stack.getItem()).getMaterial().defense().armorToughness();
-        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ECGauntletItem.ARMOR_UUID, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADD_VALUE));
+        double toughness = ((GauntletItem)stack.getItem()).getMaterial().defense().armorToughness();
+        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor Toughness bonus", toughness, AttributeModifier.Operation.ADD_VALUE));
 
-        double knockbackResistance = ((ECGauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
-        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ECGauntletItem.KNOCKBACK_RESISTANCE_UUID, "Knockback resistance bonus", knockbackResistance + (stack.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get()) / 10f), AttributeModifier.Operation.ADD_VALUE));
+        double knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Knockback resistance bonus", knockbackResistance + (stack.getEnchantmentLevel(ECEnchantments.KNOCKBACK_RESISTANCE.get()) / 10f), AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ECGauntletItem.KNOCKBACK_UUID, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, "Knockback bonus", stack.getEnchantmentLevel(Enchantments.KNOCKBACK), AttributeModifier.Operation.ADD_VALUE));
 
         if (stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("33dad864-864b-4dbd-acae-88b72cc358cf"), "Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADD_VALUE));
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Agility Attack Speed", stack.getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.02, AttributeModifier.Operation.ADD_VALUE));
         }
         return atts;
     }
 
-    private double getAdditionalDamageAfterEnchantments(double totalBaseDamage) {
+    public double getAdditionalDamageAfterEnchantments(double totalBaseDamage) {
         return 0;
     }
 
@@ -198,6 +193,11 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
         }
         public Layer() {
             this("", false);
+        }
+        public Layer(ResourceLocation relativeTexture, boolean pDyeable){
+            this.suffix = "";
+            this.dyeable = pDyeable;
+            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/models/gauntlet/" + relativeTexture.getPath() + ".png");
         }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
