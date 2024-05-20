@@ -14,7 +14,7 @@ import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
-import com.userofbricks.expanded_combat.init.LangStrings;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.BowItem;
@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class MaterialBuilder {

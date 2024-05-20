@@ -5,7 +5,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
-import static com.userofbricks.expanded_combat.init.LangStrings.*;
+import static com.userofbricks.expanded_combat.datagen.LangStrings.*;
 
 public class ECKeyRegistry {
 

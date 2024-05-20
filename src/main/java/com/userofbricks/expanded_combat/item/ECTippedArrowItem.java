@@ -1,9 +1,12 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.api.material.Material;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -11,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.init.LangStrings.TIPPED_ARROW_POTION_ENDING;
+import static com.userofbricks.expanded_combat.datagen.LangStrings.TIPPED_ARROW_POTION_ENDING;
 
 public class ECTippedArrowItem extends ECArrowItem{
     public ECTippedArrowItem(Properties properties, Material material) {
@@ -34,6 +37,6 @@ public class ECTippedArrowItem extends ECArrowItem{
     }
 
     public String getPotionId(ItemStack stack) {
-        return PotionUtils.getPotion(stack).getName(TIPPED_ARROW_POTION_ENDING);
+        return Potion.getName(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).potion(), TIPPED_ARROW_POTION_ENDING);
     }
 }

@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.item.ISimpleMaterialItem;
-import com.userofbricks.expanded_combat.init.LangStrings;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;

@@ -10,6 +10,7 @@ import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.Shi
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;

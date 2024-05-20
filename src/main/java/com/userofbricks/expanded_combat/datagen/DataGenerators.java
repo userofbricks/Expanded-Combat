@@ -23,13 +23,12 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
-        generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
-        generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, helper));
-
+        generator.addProvider(event.includeClient(), new LangStrings(output));
         generator.addProvider(event.includeClient(), new ECSpriteScourceProvider(output, helper));
 
+        generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
+        generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, helper));
         generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output));
-
         generator.addProvider(event.includeServer(), new ECDamageTypeTagsProvider(output, provider, helper));
     }
 }
