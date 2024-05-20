@@ -6,34 +6,36 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ECBetterCombatWeaponAttributesProvider extends BetterCombatWeaponAttributesProvider{
-    public ECBetterCombatWeaponAttributesProvider(PackOutput output, ExistingFileHelper helper) {
-        super(output, ExpandedCombat.MODID, helper);
+    public ECBetterCombatWeaponAttributesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
+        super(output, provider, ExpandedCombat.MODID, helper);
     }
 
     @Override
-    public void registerTransforms() {
-        for (Material material :
-                MaterialInit.weaponMaterials) {
-            material.getWeapons().values().stream().map(RegistryEntry::get).forEach(weaponItem -> {
-                WeaponMaterial weaponMaterial = ((ECWeaponItem)weaponItem).getWeapon();
-                add(weaponItem, getAttributesForWeapon(weaponMaterial));
-            });
-        }
+    public void registerTransforms(CompletableFuture<HolderLookup.Provider> provider) {
+        //for (Material material :
+        //        MaterialInit.weaponMaterials) {
+        //    material.getWeapons().values().stream().map(RegistryEntry::get).forEach(weaponItem -> {
+        //        WeaponMaterial weaponMaterial = ((ECWeaponItem)weaponItem).getWeapon();
+        //        add(weaponItem, getAttributesForWeapon(weaponMaterial));
+        //    });
+        //}
     }
 
-    private String getAttributesForWeapon(WeaponMaterial weaponMaterial) {
+    /*private String getAttributesForWeapon(WeaponMaterial weaponMaterial) {
         if (weaponMaterial == VanillaECPlugin.BATTLE_STAFF) return "battlestaff";
         //need to add custom attributes for the hand hold for this
-        /*
             "attributes": {
                 "pose": "bettercombat:pose_two_handed_katana",
                 "two_handed": true
             }
-         */
+
         if (weaponMaterial == VanillaECPlugin.BROAD_SWORD) return "claymore";
         if (weaponMaterial == VanillaECPlugin.CLAYMORE) return "claymore";
         if (weaponMaterial == VanillaECPlugin.CUTLASS) return "cutlass";
@@ -48,5 +50,5 @@ public class ECBetterCombatWeaponAttributesProvider extends BetterCombatWeaponAt
         if (weaponMaterial == VanillaECPlugin.SICKLE) return "sickle";
         if (weaponMaterial == VanillaECPlugin.SPEAR) return "spear";
         return "sword";
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.datagen.loot;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.loot.AddItemFromGauntletModifier;
 import com.userofbricks.expanded_combat.loot.AddItemModifier;
@@ -11,8 +10,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import net.minecraftforge.common.data.GlobalLootModifierProvider;
-import net.minecraftforge.common.loot.LootTableIdCondition;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 import java.util.Arrays;
 import java.util.List;
