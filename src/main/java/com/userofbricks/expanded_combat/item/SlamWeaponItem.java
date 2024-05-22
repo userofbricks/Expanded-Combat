@@ -1,10 +1,15 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.enchantments.GroundSlamEnchantment;
 import com.userofbricks.expanded_combat.entity.ECFallingBlockEntity;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,27 +17,57 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
-
-public class ECHammerWeaponItem extends ECWeaponItem{
-    public ECHammerWeaponItem(Material material, Properties properties) {
-        super(material, VanillaECPlugin.GREAT_HAMMER, properties);
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class SlamWeaponItem extends ECWeaponItem{
+    private final int extraSlamLvl;
+    public SlamWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int extraSlamLvl) {
+        super(material, weapon, properties);
+        this.extraSlamLvl = extraSlamLvl;
     }
 
     @Override
     public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
-
-        return super.getEnchantmentLevel(stack, enchantment) + (enchantment instanceof GroundSlamEnchantment ? CONFIG.enchantmentLevels.baseHammerSlamLevel : 0);
+        ItemEnchantments itemenchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        return itemenchantments.getLevel(enchantment) + (enchantment instanceof GroundSlamEnchantment ? extraSlamLvl : 0);
     }
 
-    protected static void GroundSlam(float spreadarc, int distance, float maxy, float vec, boolean grab, float airborne, @NotNull LivingEntity attacker, int slamLevel) {
+    @Override
+    public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
+        super.hurtEnemy(weapon, target, attacker);
+        int hitsTillSlam = weapon.get(ItemDataComponents.HITS_TILL_SLAM);
+        hitsTillSlam++;
+        int slamLevel = weapon.getEnchantmentLevel(ECEnchantments.GROUND_SLAM.get());
+        if (hitsTillSlam >= 10 - (slamLevel / 2) && slamLevel > 0) {
+            weapon.set(ItemDataComponents.HITS_TILL_SLAM, 0);
+            int range = 2 + Math.round(slamLevel / 3f);
+            for (int rDistance = 2; rDistance <= range; rDistance++) {
+                SlamWeaponItem.groundSlam(1.25f, rDistance, 1f, 0.0f, true, 0.1f, attacker, slamLevel);
+            }
+        }
+        return true;
+    }
+
+
+    @Override
+    public ItemStack getDefaultInstance() {
+        ItemStack defaultInstance = super.getDefaultInstance();
+
+        defaultInstance.set(ItemDataComponents.HITS_TILL_SLAM, 0);
+
+        return defaultInstance;
+    }
+
+    protected static void groundSlam(float spreadarc, int distance, float maxy, float vec, boolean grab, float airborne, @NotNull LivingEntity attacker, int slamLevel) {
         float dmg = (float) (attacker.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.9);
         dmg += (dmg * 0.05f) * (slamLevel - 1);
 

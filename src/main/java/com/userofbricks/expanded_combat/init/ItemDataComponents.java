@@ -19,4 +19,7 @@ public class ItemDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> POTION_USES = DATA_COMPONENTS.registerComponentType(
             "potion_uses", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> HITS_TILL_SLAM = DATA_COMPONENTS.registerComponentType(
+            "hits_till_slam", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
 }

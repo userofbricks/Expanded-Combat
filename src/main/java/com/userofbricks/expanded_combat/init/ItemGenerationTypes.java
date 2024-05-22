@@ -45,4 +45,8 @@ public class ItemGenerationTypes {
     public static final DeferredRegister<WeaponGenerator> WEAPON_GENERATORS = DeferredRegister.create(Registries.WEAPON_GENERATOR_REGISTRY, MODID);
     public static final DeferredHolder<WeaponGenerator, WeaponGenerator> STANDARD_WEAPON = WEAPON_GENERATORS.register("standard", () -> new WeaponGenerator(ECWeaponItem::new));
     public static final DeferredHolder<WeaponGenerator, WeaponGenerator> POTION_WEAPON = WEAPON_GENERATORS.register("potion_dippable", () -> new WeaponGenerator(PotionWeaponItem::new));
+    public static final DeferredHolder<WeaponGenerator, WeaponGenerator> SLAM_WEAPON = WEAPON_GENERATORS.register("slam_weapon",
+            () -> new WeaponGenerator((materialReference, weaponTypeReference, properties) -> new SlamWeaponItem(materialReference, weaponTypeReference, properties, 0)));
+    public static final DeferredHolder<WeaponGenerator, WeaponGenerator> HAMMER_WEAPON = WEAPON_GENERATORS.register("hammer",
+            () -> new WeaponGenerator((materialReference, weaponTypeReference, properties) -> new SlamWeaponItem(materialReference, weaponTypeReference, properties, 2)));
 }
