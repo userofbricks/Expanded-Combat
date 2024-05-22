@@ -18,9 +18,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class ElementalWeapon extends ECWeaponItem {
     public final Holder<Attribute> damageAttributeRegistryObject;
-    public ElementalWeapon(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, Holder<Attribute> damageAttributeRegistryObject) {
-        this(material, weapon, properties, 0, damageAttributeRegistryObject);
-    }
 
     public ElementalWeapon(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int addedDmg, Holder<Attribute> damageAttributeRegistryObject) {
         super(material, weapon, properties, addedDmg);
