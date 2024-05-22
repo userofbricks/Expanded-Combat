@@ -49,7 +49,10 @@ public class WeaponTypes {
 
 
     public static final RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder()
-            .add(Registries.MATERIAL_REGISTRY_KEY, bootstrap -> {
+            .add(Registries.WEAPON_TYPE_REGISTRY_KEY, bootstrap -> {
+                BATTLE_STAFF = bootstrap.register(BATTLE_STAFF_KEY,
+                        new WeaponType(false, )
+                        );
             });
     public static ResourceKey<WeaponType> createWeaponTypeKey(ResourceLocation id) {
         return ResourceKey.create(
