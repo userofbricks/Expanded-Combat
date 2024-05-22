@@ -80,6 +80,7 @@ public class ExpandedCombat {
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
+        ItemDataComponents.DATA_COMPONENTS.register(bus);
         ECEntities.ENTITIES.register(bus);
         ECLootModifiers.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         bus.addListener(this::comms);

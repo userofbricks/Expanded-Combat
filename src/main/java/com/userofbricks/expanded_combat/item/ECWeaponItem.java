@@ -1,143 +1,135 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.GripType;
+import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
-import net.minecraft.nbt.CompoundTag;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
+import java.util.UUID;
 
 import static com.userofbricks.expanded_combat.plugins.VanillaECPlugin.*;
 
-import java.util.Collection;
-import java.util.UUID;
-
-public class ECWeaponItem extends SwordItem implements ISimpleMaterialItem {
-    private final Material material;
-    private final WeaponMaterial weapon;
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class ECWeaponItem extends Item implements ISimpleMaterialItem {
+    private final Holder.Reference<Material> material;
+    private final Holder.Reference<WeaponType> weapon;
+    public final int addedDmg;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
 
-    public int hitsTillSlam = 0;
-
-    public ECWeaponItem(Material material, WeaponMaterial weapon, Properties properties) {
+    public ECWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties) {
         this(material, weapon, properties, 0);
     }
 
-    public ECWeaponItem(Material material, WeaponMaterial weapon, Properties properties, int addedDmg) {
-        super(new Tier() {
-            @Override public int getUses() {return (int) (material.getConfig().durability.toolDurability * weapon.config().durabilityMultiplier);}
-            @Override public float getSpeed() {return 0;} //means nothing to weapons
-            @Override public float getAttackDamageBonus() {return (float) material.getConfig().offense.addedAttackDamage;}
-            @Override public int getLevel() {return 0;} //means nothing to weapons
-            @Override public int getEnchantmentValue() {return material.getConfig().enchanting.offenseEnchantability;}
-            @Override public @NotNull Ingredient getRepairIngredient() {return IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);}
-        }, 3 + weapon.config().baseAttackDamage + addedDmg, weapon.config().attackSpeed, properties);
+    public ECWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int addedDmg) {
+        super(properties.stacksTo(1).component(DataComponents.DAMAGE, 0).component(DataComponents.TOOL, createToolProperties()));
         this.material = material;
         this.weapon = weapon;
+        this.addedDmg = addedDmg;
+    }
+
+    private static Tool createToolProperties() {
+        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
     }
 
     public Material getMaterial() {
-        return this.material;
+        return this.material.value();
     }
 
-    public WeaponMaterial getWeapon() {
-        return this.weapon;
+    public WeaponType getWeapon() {
+        return this.weapon.value();
     }
 
-    @Override
-    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot equipmentSlot) {
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.getDamage(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", this.weapon.config().attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", this.weapon.config().knockback, AttributeModifier.Operation.ADDITION));
-        builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", this.weapon.config().attackRange, AttributeModifier.Operation.ADDITION));
-        if (equipmentSlot == EquipmentSlot.MAINHAND) return builder.build();
-        else if (this.weapon.config().wieldType == GripType.DUALWIELD && equipmentSlot == EquipmentSlot.OFFHAND) return builder.build();
-        return super.getDefaultAttributeModifiers(equipmentSlot);
+    //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
+    //might move to default instance if it works for max dmg
+    public ItemAttributeModifiers getAttributeModifiers(ItemStack stack) {
+        EquipmentSlotGroup slotGroup = getWeapon().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
+
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+        builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", getDamage(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", getWeapon().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", getWeapon().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", getWeapon().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        return builder.build();
     }
 
-    public float getMendingBonus() {return this.material.getConfig().mendingBonus + this.weapon.config().mendingBonus;}
+    public double getDamage() {
+        return 3 + getMaterial().offense().addedAttackDamage() + getWeapon().baseAttackDamage() + addedDmg;
+    }
+
+    public float getMendingBonus() {return getMaterial().enchantingRelated().mendingBonus() + getWeapon().mendingBonus();}
 
     public float getXpRepairRatio( ItemStack stack) {
-        return 2.0f + getMendingBonus();
+        return super.getXpRepairRatio(stack) + getMendingBonus();
     }
 
     @Override
-    public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-        if (this.getWeapon() == GREAT_HAMMER || this.getWeapon() == BROAD_SWORD || this.getWeapon() == CLAYMORE) {
-            hitsTillSlam++;
-            int slamLevel = weapon.getEnchantmentLevel(ECEnchantments.GROUND_SLAM.get());
-            if (hitsTillSlam >= 10 - (slamLevel / 2) && slamLevel > 0) {
-                hitsTillSlam = 0;
-                int range = 2 + Math.round(slamLevel / 3f);
-                for (int rDistance = 2; rDistance <= range; rDistance++) {
-                    ECHammerWeaponItem.GroundSlam(1.25f, rDistance, 1f, 0.0f, true, 0.1f, attacker, slamLevel);
-                }
-            }
-        }
-        return super.hurtEnemy(weapon, target, attacker);
+    public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
+        super.hurtEnemy(weapon, target, attacker);
+        weapon.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
+        return true;
     }
 
-    public static class Dyeable extends ECWeaponItem implements DyeableLeatherItem
-    {
-        public Dyeable(Material material, WeaponMaterial weapon, Item.Properties builderIn) {
-            super(material, weapon, builderIn);
-        }
+
+    @Override
+    public ItemStack getDefaultInstance() {
+        ItemStack defaultInstance = super.getDefaultInstance();
+
+        defaultInstance.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()));
+
+        return defaultInstance;
     }
 
-    public static class HasPotion extends ECWeaponItem
-    {
-        public HasPotion(Material material, WeaponMaterial weapon, Item.Properties builderIn) {
-            super(material, weapon, builderIn);
-        }
-
-        @Override
-        public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-            CompoundTag compoundTag = weapon.getOrCreateTag();
-            int potionUses = compoundTag.getInt("PotionUses");
-            if (PotionUtils.getPotion(weapon) != Potions.EMPTY && potionUses >= 1) {
-                if (potionUses == 1) {
-                    PotionUtils.setPotion(weapon, Potions.EMPTY);
-                    PotionUtils.setCustomEffects(weapon, Lists.newArrayList());
-                }
-                compoundTag.putInt("PotionUses", potionUses - 1);
-                for ( MobEffectInstance effectInstance : PotionUtils.getPotion(weapon).getEffects()) {
-                    target.addEffect(effectInstance);
-                    Collection<MobEffectInstance> collection = PotionUtils.getCustomEffects(weapon);
-                    if (!collection.isEmpty()) {
-                        for(MobEffectInstance mobeffectinstance : collection) {
-                            target.addEffect(new MobEffectInstance(mobeffectinstance));
-                        }
-                    }
-                }
-            } else {
-                PotionUtils.setPotion(weapon, Potions.EMPTY);
-                PotionUtils.setCustomEffects(weapon, Lists.newArrayList());
-            }
-            return super.hurtEnemy(weapon, target, attacker);
-        }
-
-        public @NotNull ItemStack getDefaultInstance() {
-            ItemStack stack = PotionUtils.setPotion(super.getDefaultInstance(), Potions.EMPTY);
-            stack.getOrCreateTag().putInt("PotionUses", 0);
-            stack.getOrCreateTag().putInt("MaxPotionUses", 0);
-            return stack;
-        }
+    //TODO: find out weather max dmg is needed here or can be put in the default instance method
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return stack.getOrDefault(DataComponents.MAX_DAMAGE, 0);
     }
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return getMaterial().enchantingRelated().offenseEnchantability();
+    }
+    @Override
+    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+        return getMaterial().repairItem().test(pRepair) || super.isValidRepairItem(pToRepair, pRepair);
+    }
+
+    @Override
+    public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
+        return !pPlayer.isCreative();
+    }
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
+        return ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
+    }
+
 }
