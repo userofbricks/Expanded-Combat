@@ -30,10 +30,10 @@ public class ECItemModelsProperties {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("pulling"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("charged"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
-            } else if (registryEntry.get() instanceof ECKatanaItem) {
+            } else if (registryEntry.get() instanceof ArrowBlockWeaponItem) {
                 ItemProperties.register(registryEntry.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-                ItemProperties.register(registryEntry.get(), new ResourceLocation("blocked_recently"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && ECKatanaItem.blockedRecently(livingEntity) ? 1.0F : 0.0F);
-                ItemProperties.register(registryEntry.get(), new ResourceLocation("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ECKatanaItem.blockPosition(itemStack) : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("blocked_recently"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && ArrowBlockWeaponItem.blockedRecently(livingEntity) ? 1.0F : 0.0F);
+                ItemProperties.register(registryEntry.get(), new ResourceLocation("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ArrowBlockWeaponItem.blockPosition(itemStack) : 0.0F);
             }
         }
 

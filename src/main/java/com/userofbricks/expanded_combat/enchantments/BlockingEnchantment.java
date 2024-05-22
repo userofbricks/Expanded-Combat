@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.enchantments;
 
-import com.userofbricks.expanded_combat.item.ECKatanaItem;
+import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.ToolActions;
@@ -19,6 +19,6 @@ public class BlockingEnchantment extends Enchantment
     }
 
     public boolean canEnchant(ItemStack itemStack) {
-        return itemStack.getItem() instanceof ECKatanaItem || itemStack.canPerformAction(ToolActions.SHIELD_BLOCK);
+        return itemStack.getItem() instanceof ArrowBlockWeaponItem || itemStack.canPerformAction(ToolActions.SHIELD_BLOCK);
     }
 }

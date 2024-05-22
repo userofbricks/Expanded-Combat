@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
-import com.userofbricks.expanded_combat.item.ECKatanaItem;
+import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.client.gui.screens.Screen;
@@ -23,7 +23,7 @@ public class ShieldEvents {
 
     @SubscribeEvent
     public static void ShieldBlockingEvent(ShieldBlockEvent event) {
-        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection && !(event.getEntity().getUseItem().getItem() instanceof ECKatanaItem)) {
+        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection && !(event.getEntity().getUseItem().getItem() instanceof ArrowBlockWeaponItem)) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();

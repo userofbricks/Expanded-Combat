@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.init;
 
+import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
@@ -21,5 +22,8 @@ public class ItemDataComponents {
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> HITS_TILL_SLAM = DATA_COMPONENTS.registerComponentType(
             "hits_till_slam", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockWeaponAnim>> BLOCK_WEAPON_ANIM = DATA_COMPONENTS.registerComponentType(
+            "hits_till_slam", p_331382_ -> p_331382_.persistent(BlockWeaponAnim.CODEC).networkSynchronized(BlockWeaponAnim.STREAM_CODEC)
     );
 }

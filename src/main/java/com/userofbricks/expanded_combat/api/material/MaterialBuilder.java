@@ -152,7 +152,7 @@ public class MaterialBuilder {
     }
 
     public MaterialBuilder katana(@Nullable Material craftedFrom) {
-        return katana(craftedFrom, (material1, weaponMaterial, properties) -> new ECKatanaItem(material1, properties));
+        return katana(craftedFrom, (material1, weaponMaterial, properties) -> new ArrowBlockWeaponItem(material1, properties));
     }
 
     public MaterialBuilder blockWeapons(@Nullable Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor,

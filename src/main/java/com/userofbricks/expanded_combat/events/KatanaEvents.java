@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.item.ECKatanaItem;
+import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -19,10 +19,10 @@ public class KatanaEvents {
     @SubscribeEvent
     public static void KatanaBlockingEvent(LivingAttackEvent event) {
         ItemStack katanaStack = event.getEntity().getUseItem();
-        if (!(katanaStack.getItem() instanceof ECKatanaItem)) return;
+        if (!(katanaStack.getItem() instanceof ArrowBlockWeaponItem)) return;
         if (isArrowDamageSourceBlockable(event.getSource(), event.getEntity()) &&
                 ECVariables.getKatanaTimeSinceBlock(event.getEntity()) > 0 &&
-                ECVariables.getKatanaArrowBlockNumber(event.getEntity()) <= ECKatanaItem.getMaxBlocksInARow(katanaStack)) {
+                ECVariables.getKatanaArrowBlockNumber(event.getEntity()) <= ArrowBlockWeaponItem.getMaxBlocksInARow(katanaStack)) {
             //Animate
             if (ECVariables.getKatanaTimeSinceBlock(event.getEntity()) >= 10) {
                 int blockAnim = event.getEntity().getRandom().nextIntBetweenInclusive(1, 4);
@@ -41,7 +41,7 @@ public class KatanaEvents {
         if (ECVariables.getKatanaArrowBlockNumber(event.player) > 0) {
             int ticksPassed = ECVariables.getKatanaTimeSinceBlock(event.player);
             //Animate
-            if (ticksPassed >= 30 && event.player.getUseItem().getItem() instanceof ECKatanaItem && event.player.isUsingItem()) {
+            if (ticksPassed >= 30 && event.player.getUseItem().getItem() instanceof ArrowBlockWeaponItem && event.player.isUsingItem()) {
                 event.player.getUseItem().getOrCreateTag().putFloat("BlockingPos", 0);
             }
 
