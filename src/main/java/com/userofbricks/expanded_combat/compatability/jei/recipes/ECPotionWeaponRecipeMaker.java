@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import mezz.jei.api.helpers.IStackHelper;
 import mezz.jei.common.platform.IPlatformIngredientHelper;
 import mezz.jei.common.platform.IPlatformRegistry;
@@ -21,7 +21,7 @@ import net.minecraft.world.item.crafting.ShapelessRecipe;
 import java.util.List;
 
 public class ECPotionWeaponRecipeMaker {
-    public static List<CraftingRecipe> createRecipes(IStackHelper stackHelper, ECWeaponItem.HasPotion weaponItem) {
+    public static List<CraftingRecipe> createRecipes(IStackHelper stackHelper, PotionWeaponItem weaponItem) {
         String group = "jei.dipped.weapon";
         ItemStack weaponStack = new ItemStack(weaponItem);
         Ingredient weaponIngredient = Ingredient.of(weaponStack);

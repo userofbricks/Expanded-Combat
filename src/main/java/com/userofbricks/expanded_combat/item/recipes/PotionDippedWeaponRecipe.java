@@ -1,9 +1,8 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -30,7 +29,7 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
 
         for(int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack itemstack = inv.getItem(i);
-            if (itemstack.getItem() instanceof ECWeaponItem.HasPotion) {
+            if (itemstack.getItem() instanceof PotionWeaponItem) {
                 if(numPotionWeapons > 0) return false;
                 else numPotionWeapons++;
             } else if (itemstack.is(Items.LINGERING_POTION)) {
@@ -48,7 +47,7 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         for(int i = 0; i < inv.getContainerSize(); i++) {
             ItemStack stack = inv.getItem(i);
             Item item = stack.getItem();
-            if(item instanceof ECWeaponItem.HasPotion) {
+            if(item instanceof PotionWeaponItem) {
                 if (potionWeaponItem != ItemStack.EMPTY) return ItemStack.EMPTY;
                 potionWeaponItem = stack.copy();
             }

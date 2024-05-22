@@ -148,7 +148,7 @@ public class MaterialBuilder {
     }
 
     public MaterialBuilder greatHammer(@Nullable Material craftedFrom) {
-        return greatHammer(craftedFrom, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties));
+        return greatHammer(craftedFrom, (material1, weaponMaterial, properties) -> new SlamWeaponItem(material1, properties));
     }
 
     public MaterialBuilder katana(@Nullable Material craftedFrom) {
@@ -171,7 +171,7 @@ public class MaterialBuilder {
     }
 
     public MaterialBuilder blockWeapons(@Nullable Material craftedFrom) {
-        return blockWeapons(craftedFrom, ECWeaponItem::new, ECWeaponItem.Dyeable::new, ECWeaponItem.HasPotion::new, (material1, weaponMaterial, properties) -> new ECHammerWeaponItem(material1, properties));
+        return blockWeapons(craftedFrom, ECWeaponItem::new, ECWeaponItem.Dyeable::new, PotionWeaponItem::new, (material1, weaponMaterial, properties) -> new SlamWeaponItem(material1, properties));
     }
     public MaterialBuilder weapons() {
         return weapons(null);
@@ -197,7 +197,7 @@ public class MaterialBuilder {
             if (weaponMaterial == VanillaECPlugin.KATANA) katana(craftedFrom);
             else if (weaponMaterial == VanillaECPlugin.GREAT_HAMMER) greatHammer(craftedFrom);
             else if (weaponMaterial.dyeable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.Dyeable::new).build();
-            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem.HasPotion::new).build();
+            else if (weaponMaterial.potionDippable()) weaponBuilder(weaponMaterial, craftedFrom, PotionWeaponItem::new).build();
             else weaponBuilder(weaponMaterial, craftedFrom, ECWeaponItem::new).build();
         }
         return this;

@@ -44,4 +44,5 @@ public class ItemGenerationTypes {
     //Weapons
     public static final DeferredRegister<WeaponGenerator> WEAPON_GENERATORS = DeferredRegister.create(Registries.WEAPON_GENERATOR_REGISTRY, MODID);
     public static final DeferredHolder<WeaponGenerator, WeaponGenerator> STANDARD_WEAPON = WEAPON_GENERATORS.register("standard", () -> new WeaponGenerator(ECWeaponItem::new));
+    public static final DeferredHolder<WeaponGenerator, WeaponGenerator> POTION_WEAPON = WEAPON_GENERATORS.register("potion_dippable", () -> new WeaponGenerator(PotionWeaponItem::new));
 }

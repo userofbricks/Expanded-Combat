@@ -13,4 +13,10 @@ public class ItemDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> CHARGE = DATA_COMPONENTS.registerComponentType(
             "charge", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAX_POTION_USES = DATA_COMPONENTS.registerComponentType(
+            "max_potion_uses", p_335177_ -> p_335177_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> POTION_USES = DATA_COMPONENTS.registerComponentType(
+            "potion_uses", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
 }

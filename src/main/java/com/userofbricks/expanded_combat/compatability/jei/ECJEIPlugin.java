@@ -13,9 +13,9 @@ import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.MaterialInit;
+import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.util.ModIDs;
@@ -71,7 +71,7 @@ public class ECJEIPlugin implements IModPlugin {
         for (Material material :
                 MaterialInit.weaponMaterials) {
             material.getWeapons().forEach((weaponName, registryEntry) -> {
-                if (registryEntry.get() instanceof ECWeaponItem.HasPotion) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
+                if (registryEntry.get() instanceof PotionWeaponItem) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
             });
         }
         registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_1.get(), ShieldSubtypeInterpreter.INSTANCE);
@@ -104,8 +104,8 @@ public class ECJEIPlugin implements IModPlugin {
         }
 
         for (RegistryEntry<? extends Item> item:ECItems.ITEMS) {
-            if (item.get() instanceof ECWeaponItem.HasPotion) {
-                registration.addRecipes(RecipeTypes.CRAFTING, ECPotionWeaponRecipeMaker.createRecipes(stackHelper, (ECWeaponItem.HasPotion) item.get()));
+            if (item.get() instanceof PotionWeaponItem) {
+                registration.addRecipes(RecipeTypes.CRAFTING, ECPotionWeaponRecipeMaker.createRecipes(stackHelper, (PotionWeaponItem) item.get()));
             }
         }
 
