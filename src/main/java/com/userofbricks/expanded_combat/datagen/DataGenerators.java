@@ -1,7 +1,8 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.datagen.loot.ECGlobalLootModifiersProvider;
-import com.userofbricks.expanded_combat.init.MaterialsAndWeaponTypes;
+import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -38,7 +39,15 @@ public class DataGenerators {
                 (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
                         output1,
                         provider,
-                        MaterialsAndWeaponTypes.registrySetBuilder,
+                        Materials.registrySetBuilder,
+                        Set.of(MODID)
+                )
+        );
+        generator.addProvider(event.includeServer(),
+                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
+                        output1,
+                        provider,
+                        WeaponTypes.registrySetBuilder,
                         Set.of(MODID)
                 )
         );
