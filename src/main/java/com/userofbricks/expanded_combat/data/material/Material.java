@@ -4,10 +4,13 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 /**
  * @param durabilities {@link Durabilities Durabilities}
@@ -25,8 +28,7 @@ public record Material(
         Ingredient repairItem,
         boolean isSingleAddition,
         Optional<List<ResourceLocation>> onlyReplaceResource,
-        ResourceLocation smithingTemplate,
-        ItemGeneration itemGeneration
+        ResourceLocation smithingTemplate
 
 ) {
     public static final Codec<Material> CODEC = RecordCodecBuilder.create(
@@ -35,14 +37,22 @@ public record Material(
                     EnchantingRelated.CODEC.optionalFieldOf("enchant_related", EnchantingRelated.DEFAULT).forGetter(Material::enchantingRelated),
                     Offense.CODEC.optionalFieldOf("offence", Offense.DEFAULT).forGetter(Material::offense),
                     Defense.CODEC.optionalFieldOf("defence", Defense.DEFAULT).forGetter(Material::defense),
-                    Ingredient.CODEC.fieldOf("repair_item").forGetter(Material::repairItem),
+                    Ingredient.CODEC.optionalFieldOf("repair_item", Ingredient.of(Items.AIR)).forGetter(Material::repairItem),
                     Codec.BOOL.optionalFieldOf("is_single_addition", false).forGetter(Material::isSingleAddition),
                     Codec.optionalField("only_replace", ResourceLocation.CODEC.listOf(), false).forGetter(Material::onlyReplaceResource),
-                    ResourceLocation.CODEC.optionalFieldOf("smithing_template", new ResourceLocation("air")).forGetter(Material::smithingTemplate),
-                    ItemGeneration.CODEC.fieldOf("auto_generate").forGetter(Material::itemGeneration)
+                    ResourceLocation.CODEC.optionalFieldOf("smithing_template", new ResourceLocation("air")).forGetter(Material::smithingTemplate)
             ).apply(instance, Material::new)
     );
     public static final Codec<Material> CODEC_CLIENT_SYNC = CODEC;
+
+    public Material(
+            Durabilities durabilities,
+            EnchantingRelated enchantingRelated,
+            Offense offense,
+            Defense defense,
+            Ingredient repairItem) {
+        this(durabilities, enchantingRelated, offense, defense, repairItem, false, Optional.empty(), modLoc("air"));
+    }
 
     /**
      * @param toolBaseDurability This is used as the base durability for weapons, which is added to the weapons durability adjustment to get the final durability
@@ -51,16 +61,22 @@ public record Material(
      * @param addedShieldDurability this is the amount of durability added by each of the five sections of a shield
      */
     public record Durabilities(int toolBaseDurability, int gauntletDurability, int bowCrossbowDurability, int addedShieldDurability) {
-        public static final Durabilities DEFAULT = new Durabilities(1,1,1,1);
+        public static final Durabilities DEFAULT = new Durabilities(0,0,0,0);
         public static final Codec<Durabilities> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
-                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("tool_base", 1).forGetter(Durabilities::toolBaseDurability),
-                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("gauntlet", 1).forGetter(Durabilities::gauntletDurability),
-                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("bow_and_crossbow", 1).forGetter(Durabilities::bowCrossbowDurability),
-                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("added_to_shield", 1).forGetter(Durabilities::addedShieldDurability)
+                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("tool_base", 0).forGetter(Durabilities::toolBaseDurability),
+                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("gauntlet", 0).forGetter(Durabilities::gauntletDurability),
+                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("bow_and_crossbow", 0).forGetter(Durabilities::bowCrossbowDurability),
+                                Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("added_to_shield", 0).forGetter(Durabilities::addedShieldDurability)
                 )
                 .apply(instance, Durabilities::new)
         );
+        public static Durabilities shieldGauntlet(int gauntletDurability, int addedShieldDurability) {
+            return new Durabilities(0, gauntletDurability, 0, addedShieldDurability);
+        }
+        public static Durabilities weapons(int toolBaseDurability, int bowCrossbowDurability) {
+            return new Durabilities(toolBaseDurability, 0, bowCrossbowDurability, 0);
+        }
     }
 
     /**
@@ -89,8 +105,8 @@ public record Material(
      * @param bowPower what level of power the bow and crossbow naturally have
      * @param velocityMultiplier multiplies the base velocity of an arrow when shot from the bow or crossbow of the material
      */
-    public record Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier) {
-        public static final Offense DEFAULT = new Offense(0,0,false, true, 0, 0, 1f);
+    public record Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier, int quiverSlots) {
+        public static final Offense DEFAULT = new Offense(0,0,false, true, 0, 0, 1f, 0);
         public static final Codec<Offense> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         Codec.doubleRange(0d, Double.MAX_VALUE).optionalFieldOf("added_attack_damage", 0d).forGetter(Offense::addedAttackDamage),
@@ -102,7 +118,8 @@ public record Material(
                         //move power to its own bow/crossbow type(s) or json value for type
                         Codec.intRange(0, 100).optionalFieldOf("base_bow_power", 0).forGetter(Offense::bowPower),
                         //might want to change to an arrow gravity value that gets set by the bow (in other words how strait the arrow flies)
-                        Codec.FLOAT.optionalFieldOf("arrow_velocity_multiplier", 0f).forGetter(Offense::velocityMultiplier)
+                        Codec.FLOAT.optionalFieldOf("arrow_velocity_multiplier", 0f).forGetter(Offense::velocityMultiplier),
+                        Codec.intRange(0, 32).optionalFieldOf("quiver_slots", 0).forGetter(Offense::quiverSlots)
                 )
                 .apply(instance, Offense::new)
         );
@@ -120,10 +137,10 @@ public record Material(
      */
     public record Defense(PlacementInShield placementInShield, ResourceLocation equipSound, boolean fireResistant, boolean makesPiglinsNeutral, int gauntletArmorAmount, double armorToughness,
                           double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction) {
-        public static final Defense DEFAULT = new Defense(PlacementInShield.ALL, new ResourceLocation("item.armor.equip_generic"), false, false, 0, 0d, 0d, 0f, 0f);
+        public static final Defense DEFAULT = new Defense(PlacementInShield.NONE, new ResourceLocation("item.armor.equip_generic"), false, false, 0, 0d, 0d, 0f, 0f);
         public static final Codec<Defense> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
-                        PlacementInShield.CODEC.optionalFieldOf("placement_in_shield", PlacementInShield.ALL).forGetter(Defense::placementInShield),
+                        PlacementInShield.CODEC.optionalFieldOf("placement_in_shield", PlacementInShield.NONE).forGetter(Defense::placementInShield),
                         ResourceLocation.CODEC.optionalFieldOf("equip_sound", new ResourceLocation("item.armor.equip_generic")).forGetter(Defense::equipSound),
                         Codec.BOOL.optionalFieldOf("fire_resistant", false).forGetter(Defense::fireResistant),
                         Codec.BOOL.optionalFieldOf("makes_piglins_neutral", false).forGetter(Defense::makesPiglinsNeutral),
@@ -135,5 +152,10 @@ public record Material(
                 )
                 .apply(instance, Defense::new)
         );
+
+        public Defense(PlacementInShield placementInShield, boolean fireResistant, boolean makesPiglinsNeutral, int gauntletArmorAmount, double armorToughness,
+                       double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction) {
+            this(placementInShield, DEFAULT.equipSound, fireResistant, makesPiglinsNeutral, gauntletArmorAmount, armorToughness, knockbackResistance, baseProtectionAmmount, afterBasePercentReduction);
+        }
     }
 }

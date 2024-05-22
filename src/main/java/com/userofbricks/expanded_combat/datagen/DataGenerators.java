@@ -1,19 +1,23 @@
 package com.userofbricks.expanded_combat.datagen;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.datagen.bettercombat.ECBetterCombatWeaponAttributesProvider;
 import com.userofbricks.expanded_combat.datagen.loot.ECGlobalLootModifiersProvider;
+import com.userofbricks.expanded_combat.init.MaterialsAndWeaponTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD)
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+
+@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 
     @SubscribeEvent
@@ -30,5 +34,13 @@ public class DataGenerators {
         //generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output));
         generator.addProvider(event.includeServer(), new ECDamageTypeTagsProvider(output, provider, helper));
+        generator.addProvider(event.includeServer(),
+                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
+                        output1,
+                        provider,
+                        MaterialsAndWeaponTypes.registrySetBuilder,
+                        Set.of(MODID)
+                )
+        );
     }
 }
