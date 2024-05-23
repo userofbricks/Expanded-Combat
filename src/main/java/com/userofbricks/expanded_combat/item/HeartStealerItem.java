@@ -1,5 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -7,43 +9,55 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
+import static com.userofbricks.expanded_combat.init.DataAttachments.ADDED_HEALTH;
+import static com.userofbricks.expanded_combat.init.DataAttachments.STOLEN_HEALTH;
+import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
+
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
+@EventBusSubscriber
 public class HeartStealerItem extends ECWeaponItem{
     public static final String chargeString = "charge";
     public HeartStealerItem(Properties properties) {
-        super(VanillaECPlugin.NETHERITE, VanillaECPlugin.CLAYMORE, properties, 2);
+        super(Materials.HEART_STEALER, WeaponTypes.CLAYMORE, properties.component(CHARGE, 0), 2);
     }
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return false;
-        int charge = stack.getOrCreateTag().getInt(chargeString);
+        int charge = stack.get(CHARGE);
         if (charge >= 500 && target.getMaxHealth() >= this.getDamage() && attacker.level().random.nextInt((int)(Math.round(Math.sqrt((ECVariables.getAddedHealth(attacker)+ECVariables.getStolenHealth(attacker))^3)))+1) == 0) {
-            stack.getOrCreateTag().putInt(chargeString, 0);
-            ECVariables.changeStolenHealth(attacker, 1);
-            if (target instanceof Player) {
-                ECVariables.changeAddedHealth(target, -1);
+            stack.set(CHARGE, 0);
+            attacker.setData(STOLEN_HEALTH, attacker.getData(STOLEN_HEALTH) + 1);
+            if (target instanceof Player && (target.getMaxHealth() + target.getData(ADDED_HEALTH) > 10)) {
+                attacker.setData(ADDED_HEALTH, attacker.getData(ADDED_HEALTH) - 1);
             }
         } else {
-            stack.getOrCreateTag().putInt(chargeString, charge + 1);
+            stack.set(CHARGE, charge + 1);
         }
         return super.hurtEnemy(stack, target, attacker);
     }
     @Override
-    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity, Runnable onBroken) {
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return 0;
         return super.damageItem(stack, amount, entity, onBroken);
     }
-    public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
-        if (entity.getAge() != -32768) entity.setUnlimitedLifetime();
-        return false;
-    }
     public boolean onDroppedByPlayer(ItemStack item, Player player) {
-        return ECVariables.getStolenHealth(player) <= 10;
+        return player.getData(STOLEN_HEALTH) <= 5;
+    }
+
+    @SubscribeEvent
+    public static void onItemExpire(ItemExpireEvent event) {
+        if (event.getEntity().getItem().getItem() instanceof HeartStealerItem) {
+            event.setCanceled(true);
+        }
     }
 }
