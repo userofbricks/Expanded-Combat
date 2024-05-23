@@ -94,7 +94,9 @@ public class ExpandedCombat {
         NeoForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
         NeoForge.EVENT_BUS.register(this);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ECConfigGUIRegister::registerModsPage);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            ECConfigGUIRegister.registerModsPage();
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -141,25 +143,6 @@ public class ExpandedCombat {
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
-    }
-
-    private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
-
-    public static void queueServerWork(int tick, Runnable action) {
-        workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
-    }
-    @SubscribeEvent
-    public void tick(TickEvent.ServerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
-            workQueue.forEach(work -> {
-                work.setValue(work.getValue() - 1);
-                if (work.getValue() == 0)
-                    actions.add(work);
-            });
-            actions.forEach(e -> e.getKey().run());
-            workQueue.removeAll(actions);
-        }
     }
 
     public static ResourceLocation modLoc(String path) {

@@ -94,11 +94,11 @@ public class PurifiedGasBottle extends Item implements DispensibleContainerItem 
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> componentList, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> componentList, TooltipFlag tooltipFlag) {
         if(tooltipFlag.isAdvanced() && block.get() == ECBlocks.GAS_BLOCK.get()) {
             componentList.add(Component.translatable(LangStrings.FOUND_AT_HEIGHT_LIMIT).withStyle(ChatFormatting.GRAY));
         }
-        super.appendHoverText(stack, level, componentList, tooltipFlag);
+        super.appendHoverText(stack, context, componentList, tooltipFlag);
     }
 
     protected void playEmptySound(@Nullable Player p_40696_, LevelAccessor p_40697_, BlockPos p_40698_) {
