@@ -1,11 +1,15 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.network.ECVariables;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
+import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -15,6 +19,9 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.init.DataAttachments.ADDED_HEALTH;
+import static com.userofbricks.expanded_combat.init.DataAttachments.STOLEN_HEALTH;
+
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class SolidPureFoodItem extends Item {
@@ -23,20 +30,36 @@ public class SolidPureFoodItem extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-        if(ECVariables.getStolenHealth(p_41411_) > 2) {
-            ECVariables.changeStolenHealth(p_41411_, -2);
-            ECVariables.changeAddedHealth(p_41411_, 1);
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
+        FoodProperties foodproperties = itemstack.getFoodProperties(pPlayer);
+        if (foodproperties != null && pPlayer.getData(STOLEN_HEALTH) > 2) {
+            if (pPlayer.canEat(foodproperties.canAlwaysEat())) {
+                pPlayer.startUsingItem(pUsedHand);
+                return InteractionResultHolder.consume(itemstack);
+            } else {
+                return InteractionResultHolder.fail(itemstack);
+            }
+        } else {
+            return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
         }
-        return super.finishUsingItem(p_41409_, p_41410_, p_41411_);
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> componentList, TooltipFlag tooltipFlag) {
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+        if(livingEntity.getData(STOLEN_HEALTH) > 2) {
+            livingEntity.setData(STOLEN_HEALTH, livingEntity.getData(STOLEN_HEALTH) - 2);
+            livingEntity.setData(ADDED_HEALTH, livingEntity.getData(ADDED_HEALTH) + 1);
+        }
+        return super.finishUsingItem(stack, level, livingEntity);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext pContext, List<Component> componentList, TooltipFlag tooltipFlag) {
         componentList.add(Component.translatable(LangStrings.EDIBLE).withStyle(ChatFormatting.GRAY));
         if(tooltipFlag.isAdvanced()) {
             componentList.add(Component.translatable(LangStrings.CONSUMES_CURSES_LANG).withStyle(ChatFormatting.AQUA));
         }
-        super.appendHoverText(stack, level, componentList, tooltipFlag);
+        super.appendHoverText(stack, pContext, componentList, tooltipFlag);
     }
 }
