@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.init.ECItemTags;
-import com.userofbricks.expanded_combat.item.ISimpleMaterialItem;
+import com.userofbricks.expanded_combat.item.IMendingBonusItem;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -57,7 +57,7 @@ public class GoldMending
             list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)
                     .append(Component.literal(ChatFormatting.BLUE + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
-        if (itemStack.getItem() instanceof ISimpleMaterialItem simpleMaterialItem) {
+        if (itemStack.getItem() instanceof IMendingBonusItem simpleMaterialItem) {
             if (simpleMaterialItem.getMendingBonus() != 0.0f) {
                 if (simpleMaterialItem.getMendingBonus() > 0.0f) {
                     list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)

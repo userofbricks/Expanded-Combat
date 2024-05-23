@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class ECBowItem extends BowItem implements ISimpleMaterialItem {
+public class ECBowItem extends BowItem implements IMendingBonusItem {
     public final Material material;
     @Nullable
     public final Material previosMaterial;

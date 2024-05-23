@@ -42,7 +42,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class GauntletItem extends Item implements ICurioItem, ISimpleMaterialItem
+public class GauntletItem extends Item implements ICurioItem, IMendingBonusItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
     private final Holder.Reference<Material> material;

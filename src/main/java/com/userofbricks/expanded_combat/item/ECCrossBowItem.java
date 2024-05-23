@@ -35,7 +35,7 @@ import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
-public class ECCrossBowItem extends CrossbowItem implements ISimpleMaterialItem {
+public class ECCrossBowItem extends CrossbowItem implements IMendingBonusItem {
     public final Material material;
 
     private boolean startSoundPlayed = false;

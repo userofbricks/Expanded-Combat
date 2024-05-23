@@ -30,7 +30,7 @@ import java.util.UUID;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ECWeaponItem extends Item implements ISimpleMaterialItem {
+public class ECWeaponItem extends Item implements IMendingBonusItem {
     private final Holder.Reference<Material> material;
     private final Holder.Reference<WeaponType> weapon;
     public final int addedDmg;
