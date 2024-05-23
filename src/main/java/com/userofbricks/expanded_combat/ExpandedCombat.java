@@ -34,6 +34,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -59,16 +60,18 @@ public class ExpandedCombat {
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> SpriteSourceTypes::load);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            SpriteSourceTypes.load();
+        }
 
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
-        LangStrings.registerLang();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         ItemGenerationTypes.GAUNTLET_TYPES.register(bus);
         MaterialInit.loadClass();
+        DataAttachments.ATTACHMENT_TYPES.register(bus);
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
