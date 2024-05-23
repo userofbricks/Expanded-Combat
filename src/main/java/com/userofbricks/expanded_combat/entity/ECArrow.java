@@ -13,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +25,8 @@ public class ECArrow extends Arrow {
     public ECArrow(EntityType<? extends Entity> entityEntityType, Level level) {
         super((EntityType<? extends ECArrow>) entityEntityType, level);
     }
-    public ECArrow(Level level, double x, double y, double z) {
-        this(ECEntities.EC_ARROW.get(), level);
-        this.setPos(x, y, z);
+    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack) {
+        super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
     }
 
     public ECArrow(Level level, LivingEntity shooter, Material material) {
