@@ -1,13 +1,15 @@
 package com.userofbricks.expanded_combat.config;
 
-import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.*;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
@@ -53,20 +55,6 @@ public class ECConfig implements ConfigData {
     public boolean enableFletchingTable = true;
 
 
-    //Specific Weapon and Enchantment configs
-    @Category("Enchantment values") @CollapsibleObject @RequiresRestart @ConfigName("Enchantment Levels")
-    public EnchantmentLevels enchantmentLevels = new EnchantmentLevels();
-
-
-
-    //Materials
-    @Category("Materials") @CollapsibleObject @ConfigName("Vanilla Settings")
-    public MaterialConfig vanilla = new MaterialConfig.Builder().fromArmorMaterial(ArmorMaterials.LEATHER).fromTier(Tiers.WOOD)
-            .baseProtectionAmmount(2.5f).afterBasePercentReduction(0.3f)
-            .repairItem(Ingredient.of(ItemTags.PLANKS))
-            .build();
-
-
     public static class ShieldProtectionConfig {
         @ConfigName("Enable Vanilla Style Shield Protection")
         public boolean EnableVanillaStyleShieldProtection = false;
@@ -100,8 +88,6 @@ public class ECConfig implements ConfigData {
         @TooltipFrase(line = 2, value = "For every 3 levels the range gets extended by one block")
         public int maxGroundSlamLevel = 6;
          */
-        @RequiresRestart @ConfigName("Hammer Added Slam level")
-        public int baseHammerSlamLevel = 2;
         /*
         @RequiresRestart @ConfigName("Max Blocking Level")
         @ConfigEntry.Gui.Tooltip(count = 3)
@@ -110,8 +96,6 @@ public class ECConfig implements ConfigData {
         @TooltipFrase(line = 2, value = "When on shields, their blocking gets increased. different amounts for each shield blocking type. does nothing when on vanilla shield mechanics")
         public int maxBlockingLevel = 5;
          */
-        @RequiresRestart @ConfigName("Katana Base Number of block-able arrows")
-        public int baseKatanaArrowBlocks = 2;
         /*
         @RequiresRestart @ConfigName("Max Agility Level")
         @ConfigEntry.Gui.Tooltip(count = 5)

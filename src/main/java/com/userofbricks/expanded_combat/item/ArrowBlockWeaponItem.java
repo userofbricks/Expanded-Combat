@@ -25,13 +25,15 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class ArrowBlockWeaponItem extends ECWeaponItem{
-    public ArrowBlockWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties) {
+    private final int baseBlockCount;
+    public ArrowBlockWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int baseBlockCount) {
         super(material, weapon, properties);
+        this.baseBlockCount = baseBlockCount;
     }
 
     public static int getMaxBlocksInARow(ItemStack katanaStack) {
-        if (katanaStack.getItem() instanceof ArrowBlockWeaponItem) {
-            return CONFIG.enchantmentLevels.baseKatanaArrowBlocks + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+        if (katanaStack.getItem() instanceof ArrowBlockWeaponItem arrowBlockWeaponItem) {
+            return arrowBlockWeaponItem.baseBlockCount + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
         }
         return 0;
     }

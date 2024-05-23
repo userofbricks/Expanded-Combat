@@ -18,6 +18,8 @@ import java.util.Optional;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class Materials {
+    public static Holder.Reference<Material> VANILLA;
+    public static final ResourceKey<Material> VANILLA_KEY = createMaterialKey(modLoc("vanilla"));
     public static Holder.Reference<Material> LEATHER;
     public static final ResourceKey<Material> LEATHER_KEY = createMaterialKey(modLoc("leather"));
     public static Holder.Reference<Material> RABBIT_LEATHER;
@@ -54,6 +56,13 @@ public class Materials {
 
     public static final RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder()
             .add(Registries.MATERIAL_REGISTRY_KEY, bootstrap -> {
+                VANILLA = bootstrap.register(VANILLA_KEY, new Material(
+                        Material.Durabilities.shieldGauntlet(0, 0),
+                        new Material.EnchantingRelated(0, 0, 0),
+                        new Material.Offense(0, 0, false, true, 0, 0, 1, 0),
+                        new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 2.5f, 0.3f),
+                        Ingredient.of(Items.AIR)
+                ));
                 LEATHER = bootstrap.register(LEATHER_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(131, 80),
                         new Material.EnchantingRelated(5, 15, 0),

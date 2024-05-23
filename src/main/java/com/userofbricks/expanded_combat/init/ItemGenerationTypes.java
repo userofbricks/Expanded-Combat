@@ -49,5 +49,5 @@ public class ItemGenerationTypes {
             () -> new WeaponGenerator((materialReference, weaponTypeReference, properties) -> new SlamWeaponItem(materialReference, weaponTypeReference, properties, 0)));
     public static final DeferredHolder<WeaponGenerator, WeaponGenerator> HAMMER_WEAPON = WEAPON_GENERATORS.register("hammer",
             () -> new WeaponGenerator((materialReference, weaponTypeReference, properties) -> new SlamWeaponItem(materialReference, weaponTypeReference, properties, 2)));
-    public static final DeferredHolder<WeaponGenerator, WeaponGenerator> ARROW_BLOCKING_WEAPON = WEAPON_GENERATORS.register("arrow_blocking", () -> new WeaponGenerator(ArrowBlockWeaponItem::new));
+    public static final DeferredHolder<WeaponGenerator, WeaponGenerator> ARROW_BLOCKING_WEAPON = WEAPON_GENERATORS.register("arrow_blocking", () -> new WeaponGenerator((material, weapon, properties) -> new ArrowBlockWeaponItem(material, weapon, properties, baseBlockCount)));
 }
