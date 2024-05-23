@@ -7,18 +7,19 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class AllayItem extends ForgeSpawnEggItem {
-    public AllayItem(Properties p_43210_) {
+public class AllayItem extends DeferredSpawnEggItem {
+    public AllayItem(Item.Properties p_43210_) {
         super(() -> EntityType.ALLAY, 0, 0, p_43210_);
     }
 
@@ -40,7 +41,7 @@ public class AllayItem extends ForgeSpawnEggItem {
                 blockpos1 = blockpos.relative(direction);
             }
 
-            EntityType<?> entitytype = this.getType(itemstack.getTag());
+            EntityType<?> entitytype = this.getType(itemstack);
             if (entitytype.spawn((ServerLevel)level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
                 itemstack.shrink(1);
                 level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
@@ -53,7 +54,7 @@ public class AllayItem extends ForgeSpawnEggItem {
     @Override
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         if (stack.getCount() >= 1 && entity.level() instanceof ServerLevel level) {
-            EntityType<?> entitytype = this.getType(stack.getTag());
+            EntityType<?> entitytype = this.getType(stack);
             if (entitytype.spawn(level, entity.blockPosition(), MobSpawnType.SPAWN_EGG) != null) {
                 stack.shrink(1);
                 level.gameEvent(entity, GameEvent.ENTITY_PLACE, entity.blockPosition());
