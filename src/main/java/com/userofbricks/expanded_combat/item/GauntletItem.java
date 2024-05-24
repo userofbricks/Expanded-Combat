@@ -42,7 +42,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class GauntletItem extends Item implements ICurioItem, IMendingBonusItem
+public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
     private final Holder.Reference<Material> material;
@@ -99,19 +99,6 @@ public class GauntletItem extends Item implements ICurioItem, IMendingBonusItem
     public int getEnchantmentValue(ItemStack stack) {
         return (getMaterial().enchantingRelated().offenseEnchantability()/2) + (getMaterial().enchantingRelated().defenseEnchantability()/2);
     }
-    @Override
-    public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
-        return getMaterial().repairItem().test(repair) || super.isValidRepairItem(toRepair, repair);
-    }
-    @Override
-    public float getMendingBonus() {
-        return getMaterial().enchantingRelated().mendingBonus();
-    }
-    @Override
-    @ParametersAreNonnullByDefault
-    public float getXpRepairRatio( ItemStack stack) {
-        return 2f + getMendingBonus();
-    }
     public int getArmorAmount() {
         return getMaterial().defense().gauntletArmorAmount();
     }
@@ -120,11 +107,6 @@ public class GauntletItem extends Item implements ICurioItem, IMendingBonusItem
     }
     public Supplier<ICurioRenderer> getGauntletRenderer() {
         return GauntletRenderer::new;
-    }
-    @Override
-    @ParametersAreNonnullByDefault
-    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return ((GauntletItem) stack.getItem()).getMaterial().defense().makesPiglinsNeutral();
     }
     @NotNull
     @Override
