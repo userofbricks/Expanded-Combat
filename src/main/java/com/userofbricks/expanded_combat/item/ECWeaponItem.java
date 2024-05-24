@@ -6,8 +6,10 @@ import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +32,7 @@ import java.util.UUID;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ECWeaponItem extends Item implements IMendingBonusItem {
+public class ECWeaponItem extends Item implements IMaterialItem {
     private final Holder.Reference<Material> material;
     private final Holder.Reference<WeaponType> weapon;
     public final int addedDmg;
@@ -48,6 +50,19 @@ public class ECWeaponItem extends Item implements IMendingBonusItem {
         this.addedDmg = addedDmg;
     }
 
+    protected DataComponentMap.Builder componentBuilder() {
+        DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
+
+        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()));
+        components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+
+        return components;
+    }
+    public DataComponentMap components() {
+        return Item.Properties.validateComponents(componentBuilder().build());
+    }
+
     private static Tool createToolProperties() {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
     }
@@ -61,8 +76,7 @@ public class ECWeaponItem extends Item implements IMendingBonusItem {
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
-    //might move to default instance if it works for max dmg
-    public ItemAttributeModifiers getAttributeModifiers(ItemStack stack) {
+    public ItemAttributeModifiers getAttributeModifiers() {
         EquipmentSlotGroup slotGroup = getWeapon().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
@@ -79,39 +93,11 @@ public class ECWeaponItem extends Item implements IMendingBonusItem {
 
     public float getMendingBonus() {return getMaterial().enchantingRelated().mendingBonus() + getWeapon().mendingBonus();}
 
-    public float getXpRepairRatio( ItemStack stack) {
-        return super.getXpRepairRatio(stack) + getMendingBonus();
-    }
-
     @Override
     public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
         super.hurtEnemy(weapon, target, attacker);
         weapon.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         return true;
-    }
-
-
-    @Override
-    public ItemStack getDefaultInstance() {
-        ItemStack defaultInstance = super.getDefaultInstance();
-
-        defaultInstance.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()));
-
-        return defaultInstance;
-    }
-
-    //TODO: find out weather max dmg is needed here or can be put in the default instance method
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return stack.getOrDefault(DataComponents.MAX_DAMAGE, 0);
-    }
-    @Override
-    public int getEnchantmentValue(ItemStack stack) {
-        return getMaterial().enchantingRelated().offenseEnchantability();
-    }
-    @Override
-    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
-        return getMaterial().repairItem().test(pRepair) || super.isValidRepairItem(pToRepair, pRepair);
     }
 
     @Override

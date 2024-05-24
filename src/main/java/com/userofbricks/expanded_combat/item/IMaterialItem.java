@@ -13,6 +13,8 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default float getXpRepairRatio(@NotNull ItemStack stack) {
         return 2.0f + getMendingBonus();
     }
+
+    //Need to override for defence enchantability
     default int getEnchantmentValue(@NotNull ItemStack stack) {
         return getMaterial().enchantingRelated().offenseEnchantability();
     }

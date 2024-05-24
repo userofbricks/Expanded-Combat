@@ -28,7 +28,7 @@ public class ElementalWeapon extends ECWeaponItem {
         return getMaterial().offense().addedAttackDamage() + getWeapon().baseAttackDamage();
     }
 
-    public ItemAttributeModifiers getAttributeModifiers(ItemStack stack) {
+    public ItemAttributeModifiers getAttributeModifiers() {
         EquipmentSlotGroup slotGroup = getWeapon().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();

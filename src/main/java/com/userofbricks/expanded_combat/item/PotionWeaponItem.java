@@ -4,7 +4,9 @@ import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PotionWeaponItem extends ECWeaponItem {
     public PotionWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties builderIn) {
-        super(material, weapon, builderIn);
+        super(material, weapon, builderIn.component(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER)));
     }
 
     @Override

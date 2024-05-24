@@ -31,7 +31,7 @@ import java.util.List;
 public class SlamWeaponItem extends ECWeaponItem{
     private final int extraSlamLvl;
     public SlamWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int extraSlamLvl) {
-        super(material, weapon, properties);
+        super(material, weapon, properties.component(ItemDataComponents.HITS_TILL_SLAM, 0));
         this.extraSlamLvl = extraSlamLvl;
     }
 
@@ -55,16 +55,6 @@ public class SlamWeaponItem extends ECWeaponItem{
             }
         }
         return true;
-    }
-
-
-    @Override
-    public ItemStack getDefaultInstance() {
-        ItemStack defaultInstance = super.getDefaultInstance();
-
-        defaultInstance.set(ItemDataComponents.HITS_TILL_SLAM, 0);
-
-        return defaultInstance;
     }
 
     protected static void groundSlam(float spreadarc, int distance, float maxy, float vec, boolean grab, float airborne, @NotNull LivingEntity attacker, int slamLevel) {
