@@ -59,63 +59,63 @@ public class Materials {
                 VANILLA = bootstrap.register(VANILLA_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(0, 0),
                         new Material.EnchantingRelated(0, 0, 0),
-                        new Material.Offense(0, 0, false, true, 0, 0, 1, 0),
+                        new Material.Offense(0, 0, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 2.5f, 0.3f),
                         Ingredient.of(Items.AIR)
                 ));
                 LEATHER = bootstrap.register(LEATHER_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(131, 80),
                         new Material.EnchantingRelated(5, 15, 0),
-                        new Material.Offense(1, 0, false, true, 0, 0, 1, 2),
+                        new Material.Offense(1, 0, false, true, 1, 2),
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 1, 0, 0, 2.75f, 0.45f),
                         Ingredient.of(Items.LEATHER)
                 ));
                 RABBIT_LEATHER = bootstrap.register(RABBIT_LEATHER_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(110, 75),
                         new Material.EnchantingRelated(5, 15, 0),
-                        new Material.Offense(1, 0, false, true, 0, 0, 1, 3),
+                        new Material.Offense(1, 0, false, true, 1, 3),
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 1, 0, 0, 2.65f, 0.5f),
                         Ingredient.of(Items.RABBIT_HIDE)
                 ));
                 WOOD_PLANK = bootstrap.register(WOOD_PLANK_KEY, new Material(
                         new Material.Durabilities(59, 0, 0, 40),
                         new Material.EnchantingRelated(15, 0, 0),
-                        new Material.Offense(0, 0, false, true, 0, 0, 1, 0),
+                        new Material.Offense(0, 0, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.ALL, false, false, 0, 0, 0, 2.5f, 0.3f),
                         Ingredient.of(ItemTags.PLANKS)
                 ));
                 STONE = bootstrap.register(STONE_KEY, new Material(
                         new Material.Durabilities(131, 0, 0, 0),
                         new Material.EnchantingRelated(5, 0, 0),
-                        new Material.Offense(1, 0, false, true, 0, 0, 1, 0),
+                        new Material.Offense(1, 0, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
                         Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)
                 ));
                 IRON = bootstrap.register(IRON_KEY, new Material(
                         new Material.Durabilities(250, 250, 480, 150),
                         new Material.EnchantingRelated(14, 9, 0),
-                        new Material.Offense(2, 3, false, true, 0, 0, 1.5f, 4),
+                        new Material.Offense(2, 3, false, true, 1.5f, 4),
                         new Material.Defense(PlacementInShield.ALL, false, false, 2, 0, 0, 3f, 0.6f),
                         Ingredient.of(Items.IRON_INGOT)
                 ));
                 GOLD = bootstrap.register(GOLD_KEY, new Material(
                         new Material.Durabilities(32, 91, 395, 40),
                         new Material.EnchantingRelated(22, 25, 2),
-                        new Material.Offense(0, 2, false, true, 0, 0, 1.05f, 6),
+                        new Material.Offense(0, 2, false, true, 1.05f, 6),
                         new Material.Defense(PlacementInShield.ALL, false, true, 1, 0, 0, 3f, 0.4f),
                         Ingredient.of(Items.GOLD_INGOT)
                 ));
                 DIAMOND = bootstrap.register(DIAMOND_KEY, new Material(
                         new Material.Durabilities(1561, 1561, 672, 300),
                         new Material.EnchantingRelated(10, 10, -0.1f),
-                        new Material.Offense(3, 3.75f, false, true, 0, 0, 1.75f, 8),
+                        new Material.Offense(3, 3.75f, false, true, 1.75f, 8),
                         new Material.Defense(PlacementInShield.ALL, false, false, 3, 2, 0, 5f, 0.75f),
                         Ingredient.of(Items.DIAMOND)
                 ));
                 NETHERITE = bootstrap.register(NETHERITE_KEY, new Material(
                         new Material.Durabilities(2031, 2031, 768, 375),
                         new Material.EnchantingRelated(15, 15, 0.2f),
-                        new Material.Offense(4, 4.5f, false, true, 0, 0, 2, 10),
+                        new Material.Offense(4, 4.5f, false, true, 2, 10),
                         new Material.Defense(PlacementInShield.ALL, true, false, 3, 3, 0.1, 6f, 0.85f),
                         Ingredient.of(Items.NETHERITE_INGOT),
                         true, Optional.of(List.of(DIAMOND.key().location())),
@@ -124,56 +124,56 @@ public class Materials {
                 HEART_STEALER = bootstrap.register(HEART_STEALER_KEY, new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
-                        new Material.Offense(4.5, 0f, false, true, 0, 0, 1, 0),
+                        new Material.Offense(4.5, 0f, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, true, false, 0, 0, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 HEAT = bootstrap.register(HEAT_KEY, new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 0, 0f),
-                        new Material.Offense(4, 0f, false, true, 0, 0, 1, 0),
+                        new Material.Offense(4, 0f, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, true, false, 0, 0, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 FROST = bootstrap.register(FROST_KEY, new Material(
                         new Material.Durabilities(1561, 0, 0, 0),
                         new Material.EnchantingRelated(10, 0, 0f),
-                        new Material.Offense(3, 0f, false, true, 0, 0, 1f, 0),
+                        new Material.Offense(3, 0f, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 VOID_TOUCHED = bootstrap.register(VOID_TOUCHED_KEY, new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 0, 0f),
-                        new Material.Offense(4, 0f, false, true, 0, 0, 1, 0),
+                        new Material.Offense(4, 0f, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 SOUL = bootstrap.register(SOUL_KEY, new Material(
                         new Material.Durabilities(2031, 2031, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
-                        new Material.Offense(4, 0f, false, true, 0, 0, 1, 0),
+                        new Material.Offense(4, 0f, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0, 0f, 0f),
                         Ingredient.of(ECItems.GOOD_SOUL, ECItems.BAD_SOUL)
                 ));
                 FIGHTERS = bootstrap.register(FIGHTERS_KEY, new Material(
                         new Material.Durabilities(0, 1561, 0, 0),
                         new Material.EnchantingRelated(10, 10, 0f),
-                        new Material.Offense(3.5, 0f, false, true, 0, 0, 1f, 0),
+                        new Material.Offense(3.5, 0f, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0.05, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 BERSERK = bootstrap.register(BERSERK_KEY, new Material(
                         new Material.Durabilities(0, 1561, 0, 0),
                         new Material.EnchantingRelated(10, 10, 0f),
-                        new Material.Offense(3.5, 0f, false, true, 0, 0, 1f, 0),
+                        new Material.Offense(3.5, 0f, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0.05, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
                 BRAWLERS = bootstrap.register(BRAWLERS_KEY, new Material(
                         new Material.Durabilities(0, 2031, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
-                        new Material.Offense(4, 0f, false, true, 0, 0, 1, 0),
+                        new Material.Offense(4, 0f, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));

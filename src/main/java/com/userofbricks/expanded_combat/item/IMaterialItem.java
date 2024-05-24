@@ -20,12 +20,10 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
         return getMaterial().repairItem().test(repair);
     }
-
     default boolean isRepairable(@NotNull ItemStack stack) {
         return stack.getItem().isDamageable(stack);
     }
     Material getMaterial();
-
     default boolean makesPiglinsNeutral(@NotNull ItemStack stack, @NotNull LivingEntity wearer) {
         IMaterialItem materialItem = ((IMaterialItem) stack.getItem());
         return materialItem.getMaterial().defense().makesPiglinsNeutral();

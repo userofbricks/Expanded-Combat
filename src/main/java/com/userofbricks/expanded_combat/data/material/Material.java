@@ -74,9 +74,6 @@ public record Material(
         public static Durabilities shieldGauntlet(int gauntletDurability, int addedShieldDurability) {
             return new Durabilities(0, gauntletDurability, 0, addedShieldDurability);
         }
-        public static Durabilities weapons(int toolBaseDurability, int bowCrossbowDurability) {
-            return new Durabilities(toolBaseDurability, 0, bowCrossbowDurability, 0);
-        }
     }
 
     /**
@@ -101,22 +98,16 @@ public record Material(
      * @param arrowDamage the Damage an arrow of the material does
      * @param flaming weather the arrow for the material act like it has the flame enchantment all the time
      * @param canBeTipped weather the arrow can be tipped with potions
-     * @param multishotLevel what level of multishot the bow and crossbow naturally have
-     * @param bowPower what level of power the bow and crossbow naturally have
      * @param velocityMultiplier multiplies the base velocity of an arrow when shot from the bow or crossbow of the material
      */
-    public record Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, int multishotLevel, int bowPower, float velocityMultiplier, int quiverSlots) {
-        public static final Offense DEFAULT = new Offense(0,0,false, true, 0, 0, 1f, 0);
+    public record Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, float velocityMultiplier, int quiverSlots) {
+        public static final Offense DEFAULT = new Offense(0,0,false, true, 1f, 0);
         public static final Codec<Offense> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         Codec.doubleRange(0d, Double.MAX_VALUE).optionalFieldOf("added_attack_damage", 0d).forGetter(Offense::addedAttackDamage),
                         Codec.floatRange(0, Float.MAX_VALUE).optionalFieldOf("arrow_damage", 0f).forGetter(Offense::arrowDamage),
                         Codec.BOOL.optionalFieldOf("flaming_arrow", false).forGetter(Offense::flaming),
                         Codec.BOOL.optionalFieldOf("can_be_tipped", true).forGetter(Offense::canBeTipped),
-                        //move multishot to its own bow/crossbow type(s) or json value for type
-                        Codec.intRange(0, 3).optionalFieldOf("base_multishot_level", 0).forGetter(Offense::multishotLevel),
-                        //move power to its own bow/crossbow type(s) or json value for type
-                        Codec.intRange(0, 100).optionalFieldOf("base_bow_power", 0).forGetter(Offense::bowPower),
                         //might want to change to an arrow gravity value that gets set by the bow (in other words how strait the arrow flies)
                         Codec.FLOAT.optionalFieldOf("arrow_velocity_multiplier", 0f).forGetter(Offense::velocityMultiplier),
                         Codec.intRange(0, 32).optionalFieldOf("quiver_slots", 0).forGetter(Offense::quiverSlots)
