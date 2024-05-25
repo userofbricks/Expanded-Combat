@@ -149,6 +149,14 @@ public class ECArrow extends AbstractArrow {
     }
 
     @Override
+    protected double getDefaultGravity() {
+        return getMaterial().offense().defaultArrowGravity();
+    }
+    public double getBaseDamage() {
+        return getMaterial().offense().arrowDamage();
+    }
+
+    @Override
     public void handleEntityEvent(byte pId) {
         if (pId == 0) {
             int i = this.getColor();

@@ -24,8 +24,6 @@ public class ECArrowItem extends ArrowItem {
 
     public @NotNull AbstractArrow createArrow(@NotNull Level worldIn, @NotNull ItemStack stack, @NotNull LivingEntity shooter) {
         ECArrow arrowentity = new ECArrow(worldIn, shooter, material);
-        arrowentity.setEffectsFromItem(stack);
-        arrowentity.setBaseDamage(getMaterial().offense().arrowDamage());
         return arrowentity;
     }
 
@@ -33,8 +31,6 @@ public class ECArrowItem extends ArrowItem {
     public Projectile asProjectile(Level pLevel, Position pPos, ItemStack pStack, Direction pDirection) {
         ECArrow arrow = new ECArrow(pLevel, pPos.x(), pPos.y(), pPos.z(), pStack.copyWithCount(1), material);
         arrow.pickup = AbstractArrow.Pickup.ALLOWED;
-        arrow.setEffectsFromItem(pStack.copyWithCount(1));
-        arrow.setBaseDamage(getMaterial().offense().arrowDamage());
         return arrow;
     }
 

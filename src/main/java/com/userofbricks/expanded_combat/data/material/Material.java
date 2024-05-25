@@ -2,6 +2,8 @@ package com.userofbricks.expanded_combat.data.material;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.userofbricks.expanded_combat.init.Registries;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Items;
@@ -28,9 +30,10 @@ public record Material(
         Ingredient repairItem,
         boolean isSingleAddition,
         Optional<List<ResourceLocation>> onlyReplaceResource,
-        ResourceLocation smithingTemplate
+        Ingredient smithingTemplate
 
 ) {
+
     public static final Codec<Material> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                     Durabilities.CODEC.optionalFieldOf("durability", Durabilities.DEFAULT).forGetter(Material::durabilities),
@@ -40,7 +43,7 @@ public record Material(
                     Ingredient.CODEC.optionalFieldOf("repair_item", Ingredient.of(Items.AIR)).forGetter(Material::repairItem),
                     Codec.BOOL.optionalFieldOf("is_single_addition", false).forGetter(Material::isSingleAddition),
                     Codec.optionalField("only_replace", ResourceLocation.CODEC.listOf(), false).forGetter(Material::onlyReplaceResource),
-                    ResourceLocation.CODEC.optionalFieldOf("smithing_template", new ResourceLocation("air")).forGetter(Material::smithingTemplate)
+                    Ingredient.CODEC.optionalFieldOf("smithing_template", Ingredient.of(Items.AIR)).forGetter(Material::smithingTemplate)
             ).apply(instance, Material::new)
     );
     public static final Codec<Material> CODEC_CLIENT_SYNC = CODEC;
@@ -51,7 +54,7 @@ public record Material(
             Offense offense,
             Defense defense,
             Ingredient repairItem) {
-        this(durabilities, enchantingRelated, offense, defense, repairItem, false, Optional.empty(), modLoc("air"));
+        this(durabilities, enchantingRelated, offense, defense, repairItem, false, Optional.empty(), Ingredient.of(Items.AIR));
     }
 
     /**
@@ -100,12 +103,13 @@ public record Material(
      * @param canBeTipped weather the arrow can be tipped with potions
      * @param velocityMultiplier multiplies the base velocity of an arrow when shot from the bow or crossbow of the material
      */
-    public record Offense(double addedAttackDamage, float arrowDamage, boolean flaming, boolean canBeTipped, float velocityMultiplier, int quiverSlots) {
-        public static final Offense DEFAULT = new Offense(0,0,false, true, 1f, 0);
+    public record Offense(double addedAttackDamage, float arrowDamage, double defaultArrowGravity, boolean flaming, boolean canBeTipped, float velocityMultiplier, int quiverSlots) {
+        public static final Offense DEFAULT = new Offense(0,0, 0.05,false, true, 1f, 0);
         public static final Codec<Offense> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                         Codec.doubleRange(0d, Double.MAX_VALUE).optionalFieldOf("added_attack_damage", 0d).forGetter(Offense::addedAttackDamage),
                         Codec.floatRange(0, Float.MAX_VALUE).optionalFieldOf("arrow_damage", 0f).forGetter(Offense::arrowDamage),
+                        Codec.doubleRange(0d, Double.MAX_VALUE).optionalFieldOf("default_arrow_gravity", 0.05d).forGetter(Offense::defaultArrowGravity),
                         Codec.BOOL.optionalFieldOf("flaming_arrow", false).forGetter(Offense::flaming),
                         Codec.BOOL.optionalFieldOf("can_be_tipped", true).forGetter(Offense::canBeTipped),
                         //might want to change to an arrow gravity value that gets set by the bow (in other words how strait the arrow flies)
