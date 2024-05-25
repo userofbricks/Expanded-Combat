@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.alchemy.Potion;
@@ -38,5 +39,9 @@ public class ECTippedArrowItem extends ECArrowItem{
 
     public String getPotionId(ItemStack stack) {
         return Potion.getName(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).potion(), TIPPED_ARROW_POTION_ENDING);
+    }
+
+    public Item getNotTipped() {
+        return null;
     }
 }

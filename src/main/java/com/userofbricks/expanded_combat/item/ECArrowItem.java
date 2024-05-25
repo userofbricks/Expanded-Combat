@@ -7,7 +7,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Position;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
@@ -32,9 +31,8 @@ public class ECArrowItem extends ArrowItem {
 
     @Override
     public Projectile asProjectile(Level pLevel, Position pPos, ItemStack pStack, Direction pDirection) {
-        ECArrow arrow = new ECArrow(pLevel, pPos.x(), pPos.y(), pPos.z(), pStack.copyWithCount(1));
+        ECArrow arrow = new ECArrow(pLevel, pPos.x(), pPos.y(), pPos.z(), pStack.copyWithCount(1), material);
         arrow.pickup = AbstractArrow.Pickup.ALLOWED;
-        arrow.setArrowType(material);
         arrow.setEffectsFromItem(pStack.copyWithCount(1));
         arrow.setBaseDamage(getMaterial().offense().arrowDamage());
         return arrow;

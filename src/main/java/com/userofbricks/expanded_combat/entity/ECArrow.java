@@ -1,108 +1,185 @@
 package com.userofbricks.expanded_combat.entity;
 
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECEntities;
+import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.init.MaterialInit;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
+import javax.annotation.ParametersAreNonnullByDefault;
 
-public class ECArrow extends Arrow {
-    private Material material;
-    @SuppressWarnings("unchecked")
-    public ECArrow(EntityType<? extends Entity> entityEntityType, Level level) {
-        super((EntityType<? extends ECArrow>) entityEntityType, level);
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class ECArrow extends AbstractArrow {
+    private static final EntityDataAccessor<Integer> ID_EFFECT_COLOR = SynchedEntityData.defineId(ECArrow.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Holder<Material>> MATERIAL = SynchedEntityData.defineId(ECArrow.class, ECEntities.MATERIAL.get());
+    private Holder<Material> material;
+    public ECArrow(EntityType<? extends ECArrow> entityEntityType, Level level) {
+        super(entityEntityType, level);
     }
-    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack) {
+    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, Holder.Reference<Material> material) {
         super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
+        this.material = material;
+        this.updateColor();
     }
 
-    public ECArrow(Level level, LivingEntity shooter, Material material) {
+    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Holder.Reference<Material> material) {
         this(ECEntities.EC_ARROW.get(), level);
         this.material = material;
-        this.setPos(shooter.getX(), shooter.getEyeY() - (double)0.1F, shooter.getZ());
-        this.setOwner(shooter);
-        if (shooter instanceof Player) {
-            this.pickup = Pickup.ALLOWED;
+        this.updateColor();
+    }
+
+    private PotionContents getPotionContents() {
+        return this.getPickupItemStackOrigin().getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+    }
+
+    private void setPotionContents(PotionContents pPotionContents) {
+        this.getPickupItemStackOrigin().set(DataComponents.POTION_CONTENTS, pPotionContents);
+        this.updateColor();
+    }
+
+    @Override
+    protected void setPickupItemStack(ItemStack pPickupItemStack) {
+        super.setPickupItemStack(pPickupItemStack);
+        this.updateColor();
+    }
+
+    private void updateColor() {
+        PotionContents potioncontents = this.getPotionContents();
+        this.entityData.set(ID_EFFECT_COLOR, potioncontents.equals(PotionContents.EMPTY) ? -1 : potioncontents.getColor());
+    }
+
+    public void addEffect(MobEffectInstance pEffectInstance) {
+        this.setPotionContents(this.getPotionContents().withEffectAdded(pEffectInstance));
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
+        super.defineSynchedData(pBuilder);
+        pBuilder.define(ID_EFFECT_COLOR, -1);
+        pBuilder.define(MATERIAL, Materials.VANILLA);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (getMaterial().offense().flaming()) this.setRemainingFireTicks(100);
+        if (this.level().isClientSide) {
+            if (this.inGround) {
+                if (this.inGroundTime % 5 == 0) {
+                    this.makeParticle(1);
+                }
+            } else {
+                this.makeParticle(2);
+            }
+        } else if (this.inGround && this.inGroundTime != 0 && !this.getPotionContents().equals(PotionContents.EMPTY) && this.inGroundTime >= 600) {
+            this.level().broadcastEntityEvent(this, (byte)0);
+            Item nonTipped = ((ECTippedArrowItem) getPickupItemStackOrigin().getItem()).getNotTipped();
+            this.setPickupItemStack(new ItemStack(nonTipped));
+        }
+    }
+
+    private void makeParticle(int pParticleAmount) {
+        int i = this.getColor();
+        if (i != -1 && pParticleAmount > 0) {
+            for (int j = 0; j < pParticleAmount; j++) {
+                this.level()
+                        .addParticle(
+                                ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, i),
+                                this.getRandomX(0.5),
+                                this.getRandomY(),
+                                this.getRandomZ(0.5),
+                                0.0,
+                                0.0,
+                                0.0
+                        );
+            }
+        }
+    }
+
+    public int getColor() {
+        return this.entityData.get(ID_EFFECT_COLOR);
+    }
+
+    @Override
+    protected void doPostHurtEffects(LivingEntity pLiving) {
+        super.doPostHurtEffects(pLiving);
+        Entity entity = this.getEffectSource();
+        PotionContents potioncontents = this.getPotionContents();
+        if (potioncontents.potion().isPresent()) {
+            for (MobEffectInstance mobeffectinstance : potioncontents.potion().get().value().getEffects()) {
+                pLiving.addEffect(
+                        new MobEffectInstance(
+                                mobeffectinstance.getEffect(),
+                                Math.max(mobeffectinstance.mapDuration(p_268168_ -> p_268168_ / 8), 1),
+                                mobeffectinstance.getAmplifier(),
+                                mobeffectinstance.isAmbient(),
+                                mobeffectinstance.isVisible()
+                        ),
+                        entity
+                );
+            }
+        }
+
+        for (MobEffectInstance mobeffectinstance1 : potioncontents.customEffects()) {
+            pLiving.addEffect(mobeffectinstance1, entity);
         }
     }
 
     @Override
-    public void setEffectsFromItem(ItemStack p_36879_) {
-        if (p_36879_.is(Items.TIPPED_ARROW) || p_36879_.getItem() instanceof ECTippedArrowItem) {
-            this.potion = PotionUtils.getPotion(p_36879_);
-            Collection<MobEffectInstance> collection = PotionUtils.getCustomEffects(p_36879_);
-            if (!collection.isEmpty()) {
-                for(MobEffectInstance mobeffectinstance : collection) {
-                    this.effects.add(new MobEffectInstance(mobeffectinstance));
+    protected ItemStack getDefaultPickupItem() {
+        return new ItemStack(Items.ARROW);
+    }
+
+    @Override
+    public void handleEntityEvent(byte pId) {
+        if (pId == 0) {
+            int i = this.getColor();
+            if (i != -1) {
+                float f = (float)(i >> 16 & 0xFF) / 255.0F;
+                float f1 = (float)(i >> 8 & 0xFF) / 255.0F;
+                float f2 = (float)(i >> 0 & 0xFF) / 255.0F;
+
+                for (int j = 0; j < 20; j++) {
+                    this.level()
+                            .addParticle(
+                                    ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, f, f1, f2),
+                                    this.getRandomX(0.5),
+                                    this.getRandomY(),
+                                    this.getRandomZ(0.5),
+                                    0.0,
+                                    0.0,
+                                    0.0
+                            );
                 }
             }
-
-            int i = getCustomColor(p_36879_);
-            if (i == -1) {
-                this.updateColor();
-            } else {
-                this.setFixedColor(i);
-            }
-        } else if (p_36879_.is(this.material.getArrowEntry().get())) {
-            this.potion = Potions.EMPTY;
-            this.effects.clear();
-            this.entityData.set(ID_EFFECT_COLOR, -1);
+        } else {
+            super.handleEntityEvent(pId);
         }
-
-    }
-
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putString("Material", this.material.getName());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        if (compound.contains("Material")) {
-            String type = compound.getString("Material");
-            this.material = MaterialInit.valueOfArrow(type);
-        }
-    }
-
-    @Override
-    protected @NotNull ItemStack getPickupItem() {
-        if (this.effects.isEmpty() && this.potion == Potions.EMPTY) {
-            return new ItemStack(this.material.getArrowEntry().get());
-        }
-        ItemStack itemstack = new ItemStack(this.material.getTippedArrowEntry().get());
-        PotionUtils.setPotion(itemstack, this.potion);
-        PotionUtils.setCustomEffects(itemstack, this.effects);
-        if (this.fixedColor) {
-            itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
-        }
-        return itemstack;
-    }
-
-    @Override
-    public void setEnchantmentEffectsFromEntity(@NotNull LivingEntity livingEntity, float damage) {
-        super.setEnchantmentEffectsFromEntity(livingEntity, damage);
-        if (material.getConfig().offense.flaming) this.setSecondsOnFire(100);
     }
 
     public Material getMaterial() {
-        return material;
+        return material.value();
     }
 
-    public void setArrowType(Material arrowMaterial) {
+    public void setArrowType(Holder<Material> arrowMaterial) {
         this.material = arrowMaterial;
     }
 }
