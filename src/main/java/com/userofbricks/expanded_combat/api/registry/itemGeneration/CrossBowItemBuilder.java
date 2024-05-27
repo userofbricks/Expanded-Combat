@@ -29,10 +29,7 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder;
-    private String lang = "";
-    private TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder;
     private TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
-    private NonNullConsumer<ItemBuilder<? extends CrossbowItem, Registrate>> colorBuilder;
 
     public CrossBowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends CrossbowItem> constructor) {
         ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_crossbow", (p) -> constructor.apply(p, material));
@@ -44,41 +41,18 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Crossbow";
-        modelBuilder = CrossBowItemBuilder::generateModel;
         recipeBuilder = CrossBowItemBuilder::generateRecipes;
-        colorBuilder = CrossBowItemBuilder::colors;
-    }
-    public CrossBowItemBuilder lang(String englishName) {
-        lang = englishName;
-        return this;
-    }
-    public CrossBowItemBuilder model(TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Boolean> modelBuilder) {
-        this.modelBuilder = modelBuilder;
-        return this;
     }
     public CrossBowItemBuilder recipes(TriConsumer<ItemBuilder<? extends CrossbowItem, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }
 
-    public CrossBowItemBuilder color(NonNullConsumer<ItemBuilder<? extends CrossbowItem, Registrate>> colorBuilder) {
-        this.colorBuilder = colorBuilder;
-        return this;
-    }
-
-    public MaterialBuilder build(boolean dyeable) {
-        itemBuilder.lang(lang);
-        modelBuilder.apply(itemBuilder, material, dyeable);
+    public MaterialBuilder build() {
         recipeBuilder.apply(itemBuilder, material, craftedFrom);
-        if (dyeable) colorBuilder.accept(itemBuilder);
 
         materialBuilder.crossBow(m -> itemBuilder.register());
         return materialBuilder;
-    }
-
-    public static void colors(ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder) {
-        itemBuilder.color(() -> () -> (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
     }
     public static void generateRecipes(ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         String name = material.getName();

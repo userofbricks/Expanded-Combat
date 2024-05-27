@@ -37,8 +37,6 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, tippedBuilder;
-    private String lang = "";
-    private NonNullBiConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material> modelBuilder, tippedModelBuilder;
     private TriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, @Nullable Material> recipeBuilder;
 
     public ArrowItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> constructor, NonNullBiFunction<Item.Properties, Material, ? extends ArrowItem> tippedConstructor) {
@@ -46,7 +44,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         if (tippedConstructor != null) {
             ItemBuilder<? extends ArrowItem, Registrate> tippedBuilder = registrate.item("tipped_" + material.getLocationName().getPath() + "_arrow", (p) -> tippedConstructor.apply(p, material));
             tippedBuilder.tag(ECItemTags.ARROWS, ItemTags.ARROWS);
-            tippedBuilder.color(() -> () -> (ItemColor) (itemStack, itemLayer) -> (itemLayer == 1) ? PotionUtils.getColor(itemStack) : -1);
+            tippedBuilder.color(() -> () -> );
             this.tippedBuilder = tippedBuilder;
         }
         else this.tippedBuilder = null;
@@ -57,22 +55,7 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        modelBuilder = ArrowItemBuilder::generateModel;
-        tippedModelBuilder = ArrowItemBuilder::generateTippedModel;
         recipeBuilder = ArrowItemBuilder::generateRecipes;
-    }
-
-    public ArrowItemBuilder lang(String englishName) {
-        lang = englishName;
-        return this;
-    }
-    public ArrowItemBuilder model(NonNullBiConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material> modelBuilder) {
-        this.modelBuilder = modelBuilder;
-        return this;
-    }
-    public ArrowItemBuilder tippedModel(NonNullBiConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material> modelBuilder) {
-        this.tippedModelBuilder = modelBuilder;
-        return this;
     }
     public ArrowItemBuilder recipes(TriConsumer<ItemBuilder<? extends ArrowItem, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
@@ -80,12 +63,6 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
     }
 
     public MaterialBuilder build() {
-        if (!lang.isBlank()) {
-            itemBuilder.lang(lang);
-            if (tippedBuilder != null)tippedBuilder.lang(lang);
-        }
-        modelBuilder.accept(itemBuilder, material);
-        if (tippedBuilder != null) tippedModelBuilder.accept(tippedBuilder, material);
         recipeBuilder.apply(itemBuilder, material, craftedFrom);
 
         materialBuilder.arrow(m -> itemBuilder.register());

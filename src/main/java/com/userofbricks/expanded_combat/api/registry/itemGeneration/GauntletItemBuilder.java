@@ -24,10 +24,7 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
-    private String lang = "";
-    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder;
     private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
-    private NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder;
 
     public GauntletItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_gauntlet", (p) -> constructor.apply(p, material));
@@ -38,41 +35,18 @@ public class GauntletItemBuilder extends MaterialItemBuilder {
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
         this.craftedFrom = craftedFrom;
-        lang = material.getName() + " Gauntlet";
-        modelBuilder = GauntletItemBuilder::generateModel;
         recipeBuilder = GauntletItemBuilder::generateRecipes;
-        colorBuilder = GauntletItemBuilder::colors;
-    }
-    public GauntletItemBuilder lang(String englishName) {
-        lang = englishName;
-        return this;
-    }
-    public GauntletItemBuilder model(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Boolean> modelBuilder) {
-        this.modelBuilder = modelBuilder;
-        return this;
     }
     public GauntletItemBuilder recipes(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
         this.recipeBuilder = recipeBuilder;
         return this;
     }
 
-    public GauntletItemBuilder color(NonNullConsumer<ItemBuilder<? extends Item, Registrate>> colorBuilder) {
-        this.colorBuilder = colorBuilder;
-        return this;
-    }
-
-    public MaterialBuilder build(boolean dyeable) {
-        itemBuilder.lang(lang);
-        modelBuilder.apply(itemBuilder, material, dyeable);
+    public MaterialBuilder build() {
         recipeBuilder.apply(itemBuilder, material, craftedFrom);
-        if (dyeable) colorBuilder.accept(itemBuilder);
 
         materialBuilder.gauntlet(m -> itemBuilder.register());
         return materialBuilder;
-    }
-
-    public static void colors(ItemBuilder<? extends Item, Registrate> itemBuilder) {
-        itemBuilder.color(() -> () -> (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
     }
     public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         String name = material.getName();
