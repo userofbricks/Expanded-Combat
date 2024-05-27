@@ -4,6 +4,8 @@ import com.userofbricks.expanded_combat.config.ConfigName;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.TooltipFrase;
 import com.userofbricks.expanded_combat.config.TooltipFrases;
+import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.ElementalWeapon;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.core.Holder;
@@ -11,8 +13,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.lang.reflect.Field;
@@ -72,6 +77,12 @@ public class LangStrings extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        for (DeferredHolder<Item, ? extends Item> deferredItem : ECItems.ITEMS.getEntries()) {
+            String locationName = deferredItem.getId().getPath();
+            String name = locationToName(locationName);
+            addItem(deferredItem, name);
+        }
+
         langEntriesToAdd.forEach(langEntry -> add(langEntry.translatableLang, langEntry.englishTranslation));
 
         addAttributeDescription("dmg_no_weapon", "Added Weaponless Damage");
@@ -134,11 +145,17 @@ public class LangStrings extends LanguageProvider {
 
     public static String locationToName(String location) {
         List<String> parts = Arrays.stream(location.split("_")).map(part -> {
+            if (part.equals("s")) return "'s";
             String firstLetter = String.valueOf(part.charAt(0)).toUpperCase(Locale.ROOT);
             String theRest = part.substring(1);
             return firstLetter + theRest;
         }).toList();
-        return String.join(" ", parts);
+        StringBuilder ret = new StringBuilder();
+        for (String part: parts) {
+            if (part.equals("'s")) ret.append(part);
+            else ret.append(" ").append(part);
+        }
+        return ret.toString();
     }
 
     public String getOrCreateCategoryForField(Field field, List<String> alreadyAddedStrings, String configLangStart) {

@@ -90,7 +90,6 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         CHERRY_PLANK =   registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Cherry Plank",  CONFIG.cherryPlank).shield().weapons());
         STONE =          registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Stone",         CONFIG.stone).weapons());
         IRON =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Iron",          CONFIG.iron).arrow().bowAndHalfBow().crossBow().gauntlet().quiver().shield().weapons().alias("m", "Vanilla"));
-        //add makes piglins neutral in json
         GOLD =           registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Gold",          CONFIG.gold).bowAndHalfBow().crossBow().gauntlet().quiver().shield().weapons());
         DIAMOND =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Diamond",       CONFIG.diamond).arrow().bowAndHalfBow(IRON).crossBow(IRON).gauntlet().quiver().shield().weapons());
         NETHERITE =      registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Netherite",     CONFIG.netherite).arrow(DIAMOND, true).bow(DIAMOND, false).crossBow(DIAMOND).gauntlet(DIAMOND).quiver(DIAMOND).shield(DIAMOND).weapons(DIAMOND));

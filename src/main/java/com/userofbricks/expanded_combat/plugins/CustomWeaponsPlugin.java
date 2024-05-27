@@ -45,7 +45,7 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
     @Override
     public void registerMaterials(RegistrationHandler registrationHandler) {
         HEART_STEALER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Heart Stealer", CONFIG.heartStealer)
-                .weapon(VanillaECPlugin.CLAYMORE, m -> REGISTRATE.get().item("heartstealer", HeartStealerItem::new)
+                .weapon(VanillaECPlugin.CLAYMORE, m -> REGISTRATE.get().item("heart_stealer", HeartStealerItem::new)
                         .model((ctx, prov) -> {
                         })
                         .register()));
