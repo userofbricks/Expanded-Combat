@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
-    private final Holder.Reference<Material> material;
+    public final Holder.Reference<Material> material;
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
         protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack itemStack) {

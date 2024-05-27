@@ -33,8 +33,8 @@ import java.util.UUID;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECWeaponItem extends Item implements IMaterialItem {
-    private final Holder.Reference<Material> material;
-    private final Holder.Reference<WeaponType> weapon;
+    public final Holder.Reference<Material> material;
+    public final Holder.Reference<WeaponType> weapon;
     public final int addedDmg;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");

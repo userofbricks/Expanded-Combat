@@ -1,10 +1,10 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
 import com.userofbricks.expanded_combat.network.ECVariables;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -16,23 +16,20 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 
 public class ECQuiverItem extends Item implements ICurioItem {
-    private final ResourceLocation QUIVER_TEXTURE;
+    public final Layer[] QUIVER_TEXTURE_LAYERS;
     public final int providedSlots;
-    public final Material material;
-    public ECQuiverItem(Properties properties, Material material) {
+    public final Holder.Reference<Material> material;
+    public ECQuiverItem(Properties properties, Holder.Reference<Material> material, Layer... layers) {
         super(properties);
-        this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName().getPath() + ".png");
+        this.QUIVER_TEXTURE_LAYERS = layers;
         this.providedSlots = material.getConfig().quiverSlots;
         this.material = material;
-    }
-
-    public ResourceLocation getQUIVER_TEXTURE() {
-        return this.QUIVER_TEXTURE;
     }
     public Supplier<ICurioRenderer> getQuiverRenderer() {
         return QuiverRenderer::new;
@@ -41,32 +38,6 @@ public class ECQuiverItem extends Item implements ICurioItem {
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
     }
-
-    /*
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (!(newStack.getItem() instanceof ECQuiverItem)) {
-            serializeArrowsNBT(stack, slotContext.entity());
-        }
-    }
-
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        if (prevStack.getItem() instanceof ECQuiverItem) {
-            serializeArrowsNBT(prevStack, slotContext.entity());
-        }
-        CuriosApi.getCuriosHelper().getCuriosHandler(slotContext.entity()).ifPresent(curios -> {
-                IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                arrowStackHandler.deserializeNBT(stack.getOrCreateTag().getCompound("Arrows"));
-        });
-    }
-
-    private static void serializeArrowsNBT(ItemStack stack, LivingEntity entity) {
-        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(curios -> {
-            IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-            stack.getOrCreateTag().put("Arrows", arrowStackHandler.serializeNBT());
-            for (int s = 0; s < arrowStackHandler.getSlots(); s++) {arrowStackHandler.setStackInSlot(s, ItemStack.EMPTY);}
-        });
-    }
-*/
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -110,19 +81,39 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return this.material.getName().equals("Gold");
     }
 
-    /*
-    @Override
-    public CompoundTag getShareTag(ItemStack stack) {
-        CompoundTag nbt = super.getShareTag(stack);
-        if (nbt != null)
-            stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> nbt.put("Inventory", ((ItemStackHandler) capability).serializeNBT()));
-        return nbt;
-    }
+    public static final class Layer {
+        private final String suffix;
+        private final boolean dyeable;
+        private final Function<ResourceLocation, ResourceLocation> texture;
 
-    @Override
-    public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
-        super.readShareTag(stack, nbt);
-        if (nbt != null)
-            stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> ((ItemStackHandler) capability).deserializeNBT((CompoundTag) nbt.get("Inventory")));
-    }*/
+        public Layer(String suffix, boolean pDyeable) {
+            this.suffix = suffix;
+            this.dyeable = pDyeable;
+            this.texture = this.resolveTexture();
+        }
+
+        public Layer(String suffix) {
+            this(suffix, false);
+        }
+        public Layer() {
+            this("", false);
+        }
+        public Layer(ResourceLocation relativeTexture, boolean pDyeable){
+            this.suffix = "";
+            this.dyeable = pDyeable;
+            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/models/quiver/" + relativeTexture.getPath() + ".png");
+        }
+
+        private Function<ResourceLocation, ResourceLocation> resolveTexture() {
+            return assetName -> assetName.withPath(p_324187_ -> "textures/models/quiver/" + assetName.getPath() + "_" + suffix + ".png");
+        }
+
+        public ResourceLocation texture(ResourceLocation material) {
+            return texture.apply(material);
+        }
+
+        public boolean dyeable() {
+            return this.dyeable;
+        }
+    }
 }

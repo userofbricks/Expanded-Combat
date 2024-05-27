@@ -82,15 +82,6 @@ public class QuiverItemBuilder extends MaterialItemBuilder {
     public static void colors(ItemBuilder<? extends Item, Registrate> itemBuilder) {
         itemBuilder.color(() -> () -> (stack, itemLayer) -> (itemLayer == 0) ? ((DyeableLeatherItem)stack.getItem()).getColor(stack) : -1);
     }
-    public static void generateModel(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, boolean dyeable) {
-        String locationName = material.getLocationName().getPath();
-        itemBuilder.model((ctx, prov) -> {
-            ResourceLocation main_texture = new ResourceLocation(material.getLocationName().getNamespace(), "item/quiver/" + locationName);
-            ResourceLocation overlay_texture = new ResourceLocation(material.getLocationName().getNamespace(), "item/quiver/" + locationName + "_overlay");
-            if (!dyeable) prov.generated(ctx, main_texture);
-            else prov.generated(ctx, main_texture, overlay_texture);
-        });
-    }
     public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
         String name = material.getName();
         itemBuilder.recipe((ctx, prov) -> {

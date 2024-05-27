@@ -92,14 +92,6 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         if (tippedBuilder != null) materialBuilder.tippedArrow(m -> tippedBuilder.register());
         return materialBuilder;
     }
-
-    private static void generateTippedModel(ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, Material material) {
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, material.getLocationName().withPrefix("item/arrow/"), new ResourceLocation(MODID, "item/arrow/tipped_head")));
-    }
-
-    private static void generateModel(ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, Material material) {
-        itemBuilder.model((ctx, prov) -> prov.generated(ctx, material.getLocationName().withPrefix("item/arrow/")));
-    }
     public static void generateRecipes(ItemBuilder<? extends ArrowItem, Registrate> itemBuilder, Material material, Material craftedFrom) {
         String name = material.getName();
         itemBuilder.recipe((ctx, prov) -> {

@@ -15,15 +15,17 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder;
 import com.userofbricks.expanded_combat.init.ECAttributes;
-import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.item.ElementalWeapon;
+import com.userofbricks.expanded_combat.item.GauntletBerserk;
+import com.userofbricks.expanded_combat.item.GauntletBrawlers;
+import com.userofbricks.expanded_combat.item.HeartStealerItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 
 import java.util.function.Function;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.*;
-import static com.userofbricks.expanded_combat.api.registry.itemGeneration.WeaponItemBuilder.getItemBaseModel;
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @ECPlugin
 public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
@@ -45,33 +47,6 @@ public class CustomWeaponsPlugin implements IExpandedCombatPlugin {
         HEART_STEALER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Heart Stealer", CONFIG.heartStealer)
                 .weapon(VanillaECPlugin.CLAYMORE, m -> REGISTRATE.get().item("heartstealer", HeartStealerItem::new)
                         .model((ctx, prov) -> {
-                            ItemModelBuilder stage1Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "", "")
-                                    .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage1"));
-                            ItemModelBuilder stage2Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage2_", "")
-                                    .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage2"));
-                            ItemModelBuilder stage3Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage3_", "")
-                                    .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage3"));
-                            ItemModelBuilder stage4Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage4_", "")
-                                    .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage4"));
-                            ItemModelBuilder stage5Builder =  getItemBaseModel(prov, VanillaECPlugin.CLAYMORE, ctx, "heartstealer/stage5_", "")
-                                    .texture("layer0",  new ResourceLocation(ctx.getId().getNamespace(), "item_large/" + ctx.getId().getPath() + "/stage5"));
-
-                            stage1Builder.override()
-                                    .predicate(new ResourceLocation("stage"), 0.4f)
-                                    .model(stage2Builder)
-                                    .end();
-                            stage1Builder.override()
-                                    .predicate(new ResourceLocation("stage"), 0.6f)
-                                    .model(stage3Builder)
-                                    .end();
-                            stage1Builder.override()
-                                    .predicate(new ResourceLocation("stage"), 0.8f)
-                                    .model(stage4Builder)
-                                    .end();
-                            stage1Builder.override()
-                                    .predicate(new ResourceLocation("stage"), 1f)
-                                    .model(stage5Builder)
-                                    .end();
                         })
                         .register()));
 

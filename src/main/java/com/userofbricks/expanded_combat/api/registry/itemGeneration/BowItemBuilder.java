@@ -201,45 +201,4 @@ public class BowItemBuilder extends MaterialItemBuilder {
             }
         });
     }
-
-    private static void genModel(ItemBuilder<? extends BowItem, Registrate> itemBuilder, String locationName, String prefix, boolean dyeable) {
-        String modid = itemBuilder.getParent().getModid();
-        itemBuilder.model((ctx, prov) -> {
-            ItemModelBuilder itemModelBuilder;
-            if (dyeable) {
-                itemModelBuilder = prov.generated(ctx, new ResourceLocation(modid, "item/bow/" + prefix + locationName),
-                        new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_overlay"));
-            } else {
-                itemModelBuilder = prov.generated(ctx, new ResourceLocation(modid, "item/bow/" + prefix + locationName));
-            }
-
-            itemModelBuilder.transforms()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-80, 260, -40).translation(-1, -2, 2.5f).scale(0.9f).end()
-                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(-80, -280, 40).translation(-1, -2, 2.5f).scale(0.9f).end()
-                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, -90, 25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
-                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 90, -25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
-                .end()
-                .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        !dyeable ? prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_0")) :
-                                prov.withExistingParent(ctx.getName()+"_pulling_0", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_0"))
-                                .texture("layer1", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_0_overlay"))
-                ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65f).model(
-                        !dyeable ? prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_1")) :
-                                prov.withExistingParent(ctx.getName()+"_pulling_1", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_1"))
-                                .texture("layer1", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_1_overlay"))
-                ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9f).model(
-                        !dyeable ? prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_2")) :
-                                prov.withExistingParent(ctx.getName()+"_pulling_2", new ResourceLocation("item/bow"))
-                                .texture("layer0", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_2"))
-                                .texture("layer1", new ResourceLocation(modid, "item/bow/" + prefix + locationName + "_pulling_2_overlay"))
-                ).end();
-        });
-    }
 }

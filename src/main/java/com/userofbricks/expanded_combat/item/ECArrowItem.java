@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class ECArrowItem extends ArrowItem {
-    private final Holder.Reference<Material> material;
+    public final Holder.Reference<Material> material;
 
     public ECArrowItem(Item.Properties properties, Holder.Reference<Material> material) {
         super(properties);
