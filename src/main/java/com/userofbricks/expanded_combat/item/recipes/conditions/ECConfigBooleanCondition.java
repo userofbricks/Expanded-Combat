@@ -1,16 +1,19 @@
 package com.userofbricks.expanded_combat.item.recipes.conditions;
 
-import com.google.gson.JsonObject;
-import com.userofbricks.expanded_combat.ExpandedCombat;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import org.jetbrains.annotations.NotNull;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECConfigBooleanCondition implements ICondition {
-    private static final ResourceLocation NAME = new ResourceLocation(ExpandedCombat.MODID, "config_boolean");
+    public static MapCodec<ECConfigBooleanCondition> CODEC = RecordCodecBuilder.mapCodec(
+            builder -> builder
+                    .group(
+                            Codec.STRING.fieldOf("config_entry").forGetter(ECConfigBooleanCondition::getConfigEntry))
+                    .apply(builder, ECConfigBooleanCondition::new));
     private final String configBooleanName;
 
     public ECConfigBooleanCondition(String configBooleanName)
@@ -19,13 +22,7 @@ public class ECConfigBooleanCondition implements ICondition {
     }
 
     @Override
-    public ResourceLocation getID()
-    {
-        return NAME;
-    }
-
-    @Override
-    public boolean test(IContext context)
+    public boolean test(ICondition.@NotNull IContext context)
     {
         return switch (configBooleanName) {
             default -> false;
@@ -40,31 +37,16 @@ public class ECConfigBooleanCondition implements ICondition {
     }
 
     @Override
-    public String toString()
-    {
-        return "config_boolean(\"" + this.configBooleanName + "\")";
+    public @NotNull MapCodec<? extends ICondition> codec() {
+        return CODEC;
+    }
+    public String getConfigEntry() {
+        return configBooleanName;
     }
 
-    public static class Serializer implements IConditionSerializer<ECConfigBooleanCondition>
+    @Override
+    public String toString()
     {
-        public static final ECConfigBooleanCondition.Serializer INSTANCE = new ECConfigBooleanCondition.Serializer();
-
-        @Override
-        public void write(JsonObject json, ECConfigBooleanCondition value)
-        {
-            json.addProperty("config_entry", value.configBooleanName);
-        }
-
-        @Override
-        public ECConfigBooleanCondition read(JsonObject json)
-        {
-            return new ECConfigBooleanCondition(GsonHelper.getAsString(json, "config_entry"));
-        }
-
-        @Override
-        public ResourceLocation getID()
-        {
-            return ECConfigBooleanCondition.NAME;
-        }
+        return "ec:config_boolean(\"" + this.configBooleanName + "\")";
     }
 }

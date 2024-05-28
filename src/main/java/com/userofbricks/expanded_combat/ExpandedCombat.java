@@ -79,7 +79,7 @@ public class ExpandedCombat {
         ECItems.loadClass();
         ECItemTags.loadTags();
         ECCreativeTabs.loadClass();
-        bus.addListener(ECRecipeSerializerInit::registerConditions);
+        ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);

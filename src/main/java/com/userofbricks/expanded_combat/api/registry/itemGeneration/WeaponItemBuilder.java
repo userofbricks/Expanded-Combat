@@ -37,10 +37,8 @@ import java.util.Map;
 
 public class WeaponItemBuilder extends MaterialItemBuilder {
     public final WeaponMaterial weapon;
-    public final Material material, craftedFrom;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
     public final MaterialBuilder materialBuilder;
-    private QuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, @Nullable Material> recipeBuilder;
 
     public WeaponItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, WeaponMaterial weapon, Material material, Material craftedFrom, TriFunction<Material, WeaponMaterial, Item.Properties, ? extends Item> constructor, boolean shaped) {
         String locationName = material.getLocationName().getPath() + "_" + weapon.getLocationName();
@@ -48,64 +46,13 @@ public class WeaponItemBuilder extends MaterialItemBuilder {
 
         if (weapon.potionDippable()) itemBuilder.tag(ECItemTags.POTION_WEAPONS);
         this.weapon = weapon;
-        this.material = material;
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
-        this.craftedFrom = craftedFrom;
-        recipeBuilder = shaped ? WeaponItemBuilder::generateShapedRecipes : WeaponItemBuilder::generateSmithingRecipes;
-    }
-    public WeaponItemBuilder recipes(QuadConsumer<ItemBuilder<? extends Item, Registrate>, WeaponMaterial, Material, Material> recipeBuilder) {
-        this.recipeBuilder = recipeBuilder;
-        return this;
     }
 
     public MaterialBuilder build() {
-        recipeBuilder.apply(itemBuilder, weapon, material, craftedFrom);
-
         materialBuilder.weapon(weapon, (m) -> itemBuilder.register());
         return materialBuilder;
-    }
-
-    public static void generateShapedRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
-        itemBuilder.recipe((ctx, prov) -> {
-            Ingredient craftingIngredient = null;
-            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
-            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
-            if (useCraftingItem) {
-                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
-                triggerInstance = getTriggerInstance(Collections.singletonList(material.getConfig().crafting.craftingItem));
-            }
-            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
-                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
-            }
-
-            if (craftingIngredient != null) {
-                ECConfigBooleanCondition enableArrows = new ECConfigBooleanCondition("weapon");
-
-                Map<Character, Ingredient> ingredientMap = new RecipeIngredientMapBuilder().put('i', craftingIngredient).build();
-                if (weapon.recipeIngredients() != null) {
-                    if (!weapon.recipeContains("i")) ingredientMap.remove('i');
-                    ingredientMap.putAll(weapon.recipeIngredients().get().build());
-                    if(ingredientMap.get('p') == null && weapon.recipeContains("p")) {
-                        Ingredient prev = weapon.craftedFrom() == null ? IngredientUtil.getTagedIngredientOrEmpty("forge", "tools/swords/" + material.getLocationName().getPath()) : Ingredient.of(material.getWeaponEntry(weapon.craftedFrom().name()).get());
-                        ingredientMap.put('p', prev);
-                    }
-                    if(ingredientMap.get('b') == null && weapon.recipeContains("b")) ingredientMap.put('b', IngredientUtil.getTagedIngredientOrEmpty("forge", "storage_blocks/" + material.getLocationName().getPath()));
-
-                    conditionalShapedRecipe(ctx, prov, weapon.recipe(), ingredientMap, 1, new ICondition[]{enableArrows}, triggerInstance, "");
-                }
-            }
-        });
-    }
-
-    public static void generateSmithingRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, WeaponMaterial weapon, Material material, Material craftedFrom) {
-        itemBuilder.recipe((ctx, prov) -> {
-            ECConfigBooleanCondition enableWeapons = new ECConfigBooleanCondition("weapon");
-            if (craftedFrom != null){
-                conditionalSmithing120Recipe(ctx, prov, material, Ingredient.of(craftedFrom.getWeaponEntry(weapon.name()).get()), new ICondition[]{enableWeapons}, "");
-            }
-        });
     }
 
 }

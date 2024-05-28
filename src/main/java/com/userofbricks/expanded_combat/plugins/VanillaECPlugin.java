@@ -1,38 +1,20 @@
 package com.userofbricks.expanded_combat.plugins;
 
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import com.userofbricks.expanded_combat.api.registry.ECPlugin;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
-import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
-import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.*;
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @ECPlugin
 public class VanillaECPlugin implements IExpandedCombatPlugin {
-
-    public static WeaponMaterial BATTLE_STAFF;
-    public static WeaponMaterial BROAD_SWORD;
-    public static WeaponMaterial CLAYMORE;
-    public static WeaponMaterial CUTLASS;
-    public static WeaponMaterial DAGGER;
-    public static WeaponMaterial DANCERS_SWORD;
-    public static WeaponMaterial FLAIL;
-    public static WeaponMaterial GLAIVE;
-    public static WeaponMaterial GREAT_HAMMER;
-    public static WeaponMaterial KATANA;
-    public static WeaponMaterial MACE;
-    public static WeaponMaterial SCYTHE;
-    public static WeaponMaterial SICKLE;
-    public static WeaponMaterial SPEAR;
-
     public static Material LEATHER;
     public static Material RABBIT_LEATHER;
     public static Material OAK_PLANK;
@@ -59,23 +41,7 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
 
     @Override
     public void registerMaterials(RegistrationHandler registrationHandler) {
-        BATTLE_STAFF =  registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Battle Staff", CONFIG.battlestaff,     () -> new RecipeIngredientMapBuilder().put('s', ECItems.LEATHER_STICK.get()),                 new String[]{"  i", " s ", "i  "}).dyeable().hasLargeModel());
-        BROAD_SWORD =   registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Broad Sword", CONFIG.broadsword,       RecipeIngredientMapBuilder::new,                                                                       new String[]{" i ", "ipi"}).dyeable().hasLargeModel());
-        CLAYMORE =      registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Claymore", CONFIG.claymore,            RecipeIngredientMapBuilder::new,                                                                       new String[]{"i", "i", "p"}).dyeable().hasLargeModel());
-        CUTLASS =       registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Cutlass", CONFIG.cutlass,              () -> new RecipeIngredientMapBuilder().put('s', ECItems.GOLD_STICK.get()),                    new String[]{"i", "i", "s"}).customModelTransforms());
-        DAGGER =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Dagger", CONFIG.dagger,                () -> new RecipeIngredientMapBuilder().put('s', ECItems.IRON_STICK.get()),                    new String[]{"i", "s"}).customModelTransforms());
-        DANCERS_SWORD = registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Dancer's Sword", CONFIG.dancers_sword, () -> new RecipeIngredientMapBuilder().put('s', ECItems.GOLD_STICK.get()),                    new String[]{"  p", " s ", "p  "}).dyeable().hasLargeModel());
-        FLAIL =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Flail", CONFIG.flail,                  () -> new RecipeIngredientMapBuilder().put('c', Items.CHAIN).put('s', Items.STICK),  new String[]{"b", "c", "s"}).blockWeapon());
-        GLAIVE =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Glaive", CONFIG.glaive,                () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"  p", " s ", "s  "}).dyeable().hasLargeModel());
-        GREAT_HAMMER =  registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Great Hammer", CONFIG.great_hammer,    () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"  b", " s ", "s  "}).blockWeapon());
-        KATANA =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Katana", CONFIG.katana,                RecipeIngredientMapBuilder::new,                                                                       new String[]{"i", "p"}).hasLargeModel());
-        MACE =          registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Mace", CONFIG.mace,                    () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{" b", "s "}).blockWeapon());
-        SCYTHE =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Scythe", CONFIG.scythe,                () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"ip ", "  s", "  s"}).potionDippable().hasLargeModel());
-        SICKLE =        registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Sickle", CONFIG.sickle,                () -> new RecipeIngredientMapBuilder().put('s', ECItems.GOLD_STICK.get()),                    new String[]{"ii", "s "}).customModelTransforms());
-        SPEAR =         registrationHandler.registerWeaponMaterial(new WeaponMaterial.Builder("Spear", CONFIG.spear,                  () -> new RecipeIngredientMapBuilder().put('s', Items.STICK),                                 new String[]{"p", "s", "s"}).hasLargeModel());
-
         LEATHER =        registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Leather",       CONFIG.leather).dyeableGauntlet().quiver().shield(PlacementInShield.NOT_TRIM, null));
-
         RABBIT_LEATHER = registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Rabbit Leather",CONFIG.rebbitLeather).gauntlet().quiver().shield(PlacementInShield.NOT_TRIM, null));
         OAK_PLANK =      registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Oak Plank",     CONFIG.oakPlank).shield().weapons());
         ACACIA_PLANK =   registrationHandler.registerMaterial(new MaterialBuilder(REGISTRATE, "Acacia Plank",  CONFIG.acaciaPlank).shield().weapons());

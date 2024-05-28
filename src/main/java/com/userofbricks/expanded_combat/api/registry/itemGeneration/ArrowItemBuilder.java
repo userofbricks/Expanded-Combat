@@ -2,10 +2,7 @@ package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
-import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.userofbricks.expanded_combat.api.TriConsumer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
@@ -15,14 +12,11 @@ import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanC
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
@@ -30,8 +24,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class ArrowItemBuilder extends MaterialItemBuilder {
     public final MaterialBuilder materialBuilder;
@@ -74,14 +66,12 @@ public class ArrowItemBuilder extends MaterialItemBuilder {
         itemBuilder.recipe((ctx, prov) -> {
             Ingredient craftingIngredient = null;
             InventoryChangeTrigger.TriggerInstance triggerInstance = null;
-            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
+            boolean useCraftingItem; //sets what item to use for crafting. the craft item or the repair item
             if (useCraftingItem) {
-                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
-                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+                //sets ingredient and inventory trigger to crafting item
             }
             else if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
-                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
+                //sets ingredient and inventory trigger to the repair item if not empty
             }
 
             if (craftingIngredient != null) {
