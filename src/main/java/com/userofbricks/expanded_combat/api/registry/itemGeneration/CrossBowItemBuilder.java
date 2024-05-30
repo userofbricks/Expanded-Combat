@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CrossBowItemBuilder extends MaterialItemBuilder {
+public class CrossBowItemBuilder {
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends CrossbowItem, Registrate> itemBuilder;

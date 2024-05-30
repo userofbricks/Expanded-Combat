@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class GauntletItemBuilder extends MaterialItemBuilder {
+public class GauntletItemBuilder {
 
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;

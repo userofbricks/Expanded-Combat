@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class QuiverItemBuilder extends MaterialItemBuilder {
+public class QuiverItemBuilder {
 
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;

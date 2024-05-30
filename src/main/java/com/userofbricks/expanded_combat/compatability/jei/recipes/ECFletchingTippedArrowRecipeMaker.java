@@ -46,7 +46,7 @@ public class ECFletchingTippedArrowRecipeMaker {
                     Ingredient potionIngredient = ingredientHelper.createNbtIngredient(input, stackHelper);
 
                     ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.fletching.tipped.arrow." + output.getDescriptionId());
-                    return new FletchingRecipe(id, arrowIngredient, potionIngredient, output, 64);
+                    return new FletchingRecipe(potionIngredient, output, 64);
                 })
                 .toList();
     }

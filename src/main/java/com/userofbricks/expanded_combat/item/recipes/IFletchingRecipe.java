@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +20,7 @@ public interface IFletchingRecipe extends Recipe<Container> {
     @Nonnull
     @Override
     default RecipeType<?> getType() {
-        return Objects.requireNonNull(ForgeRegistries.RECIPE_TYPES.getValue(FLETCHING_RECIPE_ID));
+        return ECRecipeSerializerInit.FLETCHING_TYPE.get();
     }
 
     @Override

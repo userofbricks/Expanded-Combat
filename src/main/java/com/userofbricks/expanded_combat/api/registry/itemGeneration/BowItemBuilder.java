@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BowItemBuilder extends MaterialItemBuilder {
+public class BowItemBuilder {
     public final MaterialBuilder materialBuilder;
     public final Material material, craftedFrom;
     public final ItemBuilder<? extends BowItem, Registrate> itemBuilder;

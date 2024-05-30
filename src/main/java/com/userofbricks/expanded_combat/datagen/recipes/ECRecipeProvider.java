@@ -5,10 +5,13 @@ import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
+import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
@@ -54,6 +57,12 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             || weaponItem.material == Materials.HEART_STEALER
             )) {
                 buildWeaponRecipe(pRecipeOutput, weaponItem);
+            } else if (deferredItem.get() instanceof ECArrowItem arrowItem) {
+                if (arrowItem.material == Materials.NETHERITE) {
+                    variableFletching(pRecipeOutput, arrowItem, Items.NETHERITE_INGOT, ECItems.DIAMOND_ARROW.get(), 16);
+                } else {
+                    fletching(pRecipeOutput, arrowItem, arrowItem.getMaterial().repairItem().getItems()[0].getItem(), ECItems.FLETCHED_STICKS.get(), 6);
+                }
             }
         }
     }
@@ -71,7 +80,11 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                     Ingredient.of(Items.NETHERITE_INGOT),
                     RecipeCategory.COMBAT,
                     weaponItem
-            );
+            )
+            .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+            .unlocks(getHasName(diamondWeapons.get(weaponType)), has(diamondWeapons.get(weaponType)))
+            .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("weapon")), RecipeBuilder.getDefaultRecipeId(weaponItem));
         }
         else if (weaponType == WeaponTypes.FLAIL) flail(pRecipeOutput, weaponItem, block);
         else if (weaponType == WeaponTypes.GREAT_HAMMER) greatHammer(pRecipeOutput, weaponItem, block);

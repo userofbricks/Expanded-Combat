@@ -1,12 +1,17 @@
 package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ICondition;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -200,5 +205,46 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(sword), has(sword))
                 .unlockedBy(getHasName(stick), has(stick))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+    }
+
+
+    public static void arrow(RecipeOutput recipeOutput, ItemLike arrow, ItemLike tip) {
+        arrow(recipeOutput, arrow, 4, tip);
+    }
+    public static void arrow(RecipeOutput recipeOutput, ItemLike arrow, int amount, ItemLike tip) {
+        arrow(recipeOutput, arrow, amount, tip, Items.STICK, Items.FEATHER);
+    }
+    public static void arrow(RecipeOutput recipeOutput, ItemLike arrow, ItemLike tip, ItemLike stick, ItemLike feather) {
+        arrow(recipeOutput, arrow, 4, tip, stick, feather);
+    }
+    public static void arrow(RecipeOutput recipeOutput, ItemLike arrow, int amount, ItemLike tip, ItemLike stick, ItemLike feather) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, arrow, amount)
+                .define('x', tip)
+                .define('#', stick)
+                .define('y', feather)
+                .pattern("x")
+                .pattern("#")
+                .pattern("y")
+                .unlockedBy(getHasName(tip), has(tip))
+                .unlockedBy(getHasName(stick), has(stick))
+                .unlockedBy(getHasName(feather), has(feather))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
+    }
+
+    public static void fletching(RecipeOutput recipeOutput, ItemLike result, ItemLike addition, ItemLike previosItem, int resultCount) {
+
+        FletchingRecipeBuilder.fletching(Ingredient.of(previosItem), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem(), resultCount)
+                .unlockedBy("has_item", has(previosItem))
+                .unlockedBy("has_item", has(addition))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
+    }
+
+    public static void variableFletching(RecipeOutput recipeOutput, ItemLike result, ItemLike addition, ItemLike previosItem, int maxResultCount) {
+
+        FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(previosItem), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem(), maxResultCount)
+                .unlockedBy("has_item", has(previosItem))
+                .unlockedBy("has_item", has(addition))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")),
+                        RecipeBuilder.getDefaultRecipeId(result).withSuffix("_variable_fletching"));
     }
 }
