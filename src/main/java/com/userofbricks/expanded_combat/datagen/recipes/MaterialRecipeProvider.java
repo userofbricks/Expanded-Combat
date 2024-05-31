@@ -278,4 +278,12 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")));
     }
+    public static void gauntlet(RecipeOutput recipeOutput, ItemLike gauntlet, ItemLike material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, gauntlet, 1)
+                .define('b', material)
+                .pattern("bb")
+                .pattern("b ")
+                .unlockedBy(getHasName(material), has(material))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")));
+    }
 }
