@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.item.ECBowItem;
+import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.core.Holder;
@@ -77,6 +78,22 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             .unlocks(getHasName(ECItems.DIAMOND_BOW.get()), has(ECItems.DIAMOND_BOW.get()))
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                             .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("bow")), RecipeBuilder.getDefaultRecipeId(bowItem));
+                } else {
+                    bow(pRecipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
+                }
+            } else if (deferredItem.get() instanceof ECCrossBowItem bowItem) {
+                if (bowItem.material == Materials.NETHERITE) {
+                    SmithingTransformRecipeBuilder.smithing(
+                                    Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                                    Ingredient.of(ECItems.DIAMOND_CROSS_BOW.get()),
+                                    Ingredient.of(Items.NETHERITE_INGOT),
+                                    RecipeCategory.COMBAT,
+                                    bowItem
+                            )
+                            .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                            .unlocks(getHasName(ECItems.DIAMOND_CROSS_BOW.get()), has(ECItems.DIAMOND_CROSS_BOW.get()))
+                            .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")), RecipeBuilder.getDefaultRecipeId(bowItem));
                 } else {
                     bow(pRecipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
                 }

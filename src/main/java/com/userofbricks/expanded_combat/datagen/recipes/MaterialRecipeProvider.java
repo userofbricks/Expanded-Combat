@@ -262,6 +262,20 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(string), has(string))
                 .unlockedBy(getHasName(stick), has(stick))
                 .unlockedBy(getHasName(material), has(material))
-                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("bow")));
+    }
+
+    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, ItemLike material) {
+        crossbow(recipeOutput, crossbow, Items.CROSSBOW, material);
+    }
+    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, ItemLike previous, ItemLike material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, crossbow, 1)
+                .define('p', previous)
+                .define('m', material)
+                .pattern(" m ")
+                .pattern("mpm")
+                .unlockedBy(getHasName(previous), has(previous))
+                .unlockedBy(getHasName(material), has(material))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")));
     }
 }
