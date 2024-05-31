@@ -41,7 +41,7 @@ public class ECArrow extends AbstractArrow {
     }
 
     public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Holder.Reference<Material> material) {
-        this(ECEntities.EC_ARROW.get(), level);
+        super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack);
         this.material = material;
         this.updateColor();
     }

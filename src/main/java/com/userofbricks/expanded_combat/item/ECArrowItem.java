@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.entity.ECArrow;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Position;
@@ -14,6 +15,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class ECArrowItem extends ArrowItem {
     public final Holder.Reference<Material> material;
 
@@ -22,9 +27,8 @@ public class ECArrowItem extends ArrowItem {
         this.material = material;
     }
 
-    public @NotNull AbstractArrow createArrow(@NotNull Level worldIn, @NotNull ItemStack stack, @NotNull LivingEntity shooter) {
-        ECArrow arrowentity = new ECArrow(worldIn, shooter, material);
-        return arrowentity;
+    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter) {
+        return new ECArrow(worldIn, shooter, stack.copyWithCount(1), material);
     }
 
     @Override
