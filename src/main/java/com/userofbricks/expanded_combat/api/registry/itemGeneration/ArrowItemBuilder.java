@@ -5,8 +5,6 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
-import com.userofbricks.expanded_combat.init.ECItemTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 
@@ -19,12 +17,9 @@ public class ArrowItemBuilder {
         ItemBuilder<? extends ArrowItem, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_arrow", (p) -> constructor.apply(p, material));
         if (tippedConstructor != null) {
             ItemBuilder<? extends ArrowItem, Registrate> tippedBuilder = registrate.item("tipped_" + material.getLocationName().getPath() + "_arrow", (p) -> tippedConstructor.apply(p, material));
-            tippedBuilder.tag(ECItemTags.ARROWS, ItemTags.ARROWS);
             this.tippedBuilder = tippedBuilder;
         }
         else this.tippedBuilder = null;
-
-        itemBuilder.tag(ECItemTags.ARROWS, ItemTags.ARROWS);
 
         this.material = material;
         this.itemBuilder = itemBuilder;

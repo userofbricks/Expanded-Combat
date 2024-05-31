@@ -2,8 +2,10 @@ package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.datagen.loot.ECGlobalLootModifiersProvider;
 import com.userofbricks.expanded_combat.datagen.models.ECItemModelProvider;
-import com.userofbricks.expanded_combat.datagen.models.ItemModelProviderBase;
 import com.userofbricks.expanded_combat.datagen.recipes.ECRecipeProvider;
+import com.userofbricks.expanded_combat.datagen.tags.ECBlockTagsProvider;
+import com.userofbricks.expanded_combat.datagen.tags.ECDamageTypeTagsProvider;
+import com.userofbricks.expanded_combat.datagen.tags.ECItemTagsProvider;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.core.HolderLookup;
@@ -39,6 +41,9 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ECRecipeProvider(output, provider));
         //generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output));
+        ECBlockTagsProvider blockTagsProvider = new ECBlockTagsProvider(output, provider, helper);
+        generator.addProvider(event.includeServer(), blockTagsProvider);
+        generator.addProvider(event.includeServer(), new ECItemTagsProvider(output, provider, blockTagsProvider.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new ECDamageTypeTagsProvider(output, provider, helper));
         generator.addProvider(event.includeServer(),
                 (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(

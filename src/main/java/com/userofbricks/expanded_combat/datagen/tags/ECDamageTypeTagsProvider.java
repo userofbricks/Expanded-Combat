@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.datagen;
+package com.userofbricks.expanded_combat.datagen.tags;
 
 import com.userofbricks.expanded_combat.init.ECDamageInit;
 import net.minecraft.core.HolderLookup;

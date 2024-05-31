@@ -1,22 +1,17 @@
 package com.userofbricks.expanded_combat.init;
 
 import com.mojang.serialization.MapCodec;
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
-import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.RegisterEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -56,11 +51,5 @@ public class ECRecipeSerializerInit {
                 return recourceLocation;
             }
         };
-    }
-
-    public static void registerConditions(RegisterEvent event) {
-        if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
-            CraftingHelper.register(ECMaterialBooleanCondition.Serializer.INSTANCE);
-        }
     }
 }

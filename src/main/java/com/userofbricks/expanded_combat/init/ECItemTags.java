@@ -23,11 +23,6 @@ public final class ECItemTags {
     public static final TagKey<Item> QUIVERS = bindCurios("quiver_ec");
     public static final TagKey<Item> POTION_WEAPONS = bind("potion_weapons");
 
-    public static final TagKey<Item> IRON_SWORD = bindForgeSword("iron");
-    public static final TagKey<Item> GOLD_SWORD = bindForgeSword("gold");
-    public static final TagKey<Item> DIAMOND_SWORD = bindForgeSword("diamond");
-    public static final TagKey<Item> NETHERITE_SWORD = bindForgeSword("netherite");
-
     //Enchantment Tags
     public static final TagKey<Item> GAUNTLET_ENCHANTABLE = bind("enchantable/gauntlet");
     public static final TagKey<Item> BLOCKING_ENCHANTABLE = bind("enchantable/blocking");
@@ -55,12 +50,6 @@ public final class ECItemTags {
         REGISTRATE.get().addDataGenerator(ProviderType.ITEM_TAGS, tagsProvider -> {
             tagsProvider.addTag(SHIELDS).add(Items.SHIELD);
             tagsProvider.addTag(ARROWS).addTag(ItemTags.ARROWS);
-
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.STONE.getLocationName().getPath())).add(Items.STONE_SWORD);
-            tagsProvider.addTag(IRON_SWORD).add(Items.IRON_SWORD);
-            tagsProvider.addTag(GOLD_SWORD).add(Items.GOLDEN_SWORD);
-            tagsProvider.addTag(DIAMOND_SWORD).add(Items.DIAMOND_SWORD);
-            tagsProvider.addTag(NETHERITE_SWORD).add(Items.NETHERITE_SWORD);
 
             tagsProvider.addTag(bindForgeSword(VanillaECPlugin.ACACIA_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
             tagsProvider.addTag(bindForgeSword(VanillaECPlugin.BIRCH_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
