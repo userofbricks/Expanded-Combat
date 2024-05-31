@@ -30,9 +30,8 @@ import java.util.*;
 public class QuiverItemBuilder {
 
     public final MaterialBuilder materialBuilder;
-    public final Material material, craftedFrom;
+    public final Material material;
     public final ItemBuilder<? extends Item, Registrate> itemBuilder;
-    private TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, @Nullable Material> recipeBuilder;
 
     public QuiverItemBuilder(MaterialBuilder materialBuilder, Registrate registrate, Material material, Material craftedFrom, NonNullBiFunction<Item.Properties, Material, ? extends Item> constructor) {
         ItemBuilder<? extends Item, Registrate> itemBuilder = registrate.item(material.getLocationName().getPath() + "_quiver", (p) -> constructor.apply(p, material));
@@ -42,61 +41,10 @@ public class QuiverItemBuilder {
         this.material = material;
         this.itemBuilder = itemBuilder;
         this.materialBuilder = materialBuilder;
-        this.craftedFrom = craftedFrom;
-        recipeBuilder = QuiverItemBuilder::generateRecipes;
-    }
-    public QuiverItemBuilder recipes(TriConsumer<ItemBuilder<? extends Item, Registrate>, Material, Material> recipeBuilder) {
-        this.recipeBuilder = recipeBuilder;
-        return this;
     }
 
     public MaterialBuilder build() {
-        recipeBuilder.apply(itemBuilder, material, craftedFrom);
-
         materialBuilder.quiver(m -> itemBuilder.register());
         return materialBuilder;
-    }
-    public static void generateRecipes(ItemBuilder<? extends Item, Registrate> itemBuilder, Material material, @Nullable Material craftedFrom) {
-        String name = material.getName();
-        itemBuilder.recipe((ctx, prov) -> {
-            Ingredient craftingIngredient = null;
-            InventoryChangeTrigger.TriggerInstance triggerInstance = null;
-            boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
-            if (useCraftingItem) {
-                craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
-                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
-            }
-            else if (!material.getConfig().crafting.repairItem.isEmpty()) {
-                craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
-                triggerInstance = getTriggerInstance(material.getConfig().crafting.repairItem);
-            }
-
-            if (craftingIngredient != null) {
-                ECConfigBooleanCondition enableGauntlets = new ECConfigBooleanCondition("arrow");
-                ECMaterialBooleanCondition isSingleAddition = new ECMaterialBooleanCondition(name, "config", "crafting", "is_single_addition");
-
-                Map<Character, Ingredient> recipe = new HashMap<>();
-                recipe.put('i', craftingIngredient);
-                recipe.put('l', IngredientUtil.getTagedIngredientOrEmpty("forge", "leather"));
-                recipe.put('s', IngredientUtil.getTagedIngredientOrEmpty("forge", "string"));
-                conditionalShapedRecipe(ctx, prov, new String[]{"sl ","l l", "il "}, recipe, 1, new ICondition[]{enableGauntlets, new NotCondition(isSingleAddition)}, triggerInstance, "");
-
-                if (craftedFrom != null) {
-                    if (material.getConfig().crafting.smithingTemplate != null && !Objects.equals(material.getConfig().crafting.smithingTemplate, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(Items.AIR)).toString())) {
-                        conditionalSmithing120Recipe(ctx, prov,
-                                Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.smithingTemplate))),
-                                craftingIngredient,
-                                Ingredient.of(craftedFrom.getQuiverEntry().get()),
-                                new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
-                    } else {
-                        conditionalSmithingWithoutTemplateRecipe(ctx, prov,
-                                craftingIngredient,
-                                Ingredient.of(craftedFrom.getQuiverEntry().get()),
-                                new ICondition[]{enableGauntlets, isSingleAddition}, triggerInstance, "");
-                    }
-                }
-
-            }
-        });
     }
 }

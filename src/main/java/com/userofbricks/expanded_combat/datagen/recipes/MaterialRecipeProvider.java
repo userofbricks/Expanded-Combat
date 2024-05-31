@@ -286,4 +286,21 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")));
     }
+
+    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, ItemLike material) {
+        quiver(recipeOutput, quiver, Items.LEATHER, Items.STRING, material);
+    }
+    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, ItemLike leather, ItemLike string, ItemLike material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, quiver, 1)
+                .define('l', leather)
+                .define('s', string)
+                .define('m', material)
+                .pattern("sl ")
+                .pattern("l l")
+                .pattern("ml ")
+                .unlockedBy(getHasName(leather), has(leather))
+                .unlockedBy(getHasName(string), has(string))
+                .unlockedBy(getHasName(material), has(material))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("quiver")));
+    }
 }

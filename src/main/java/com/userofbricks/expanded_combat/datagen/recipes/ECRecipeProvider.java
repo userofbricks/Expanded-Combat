@@ -110,6 +110,22 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 } else {
                     gauntlet(pRecipeOutput, gauntletItem, gauntletItem.getMaterial().repairItem().getItems()[0].getItem());
                 }
+            } else if (deferredItem.get() instanceof ECQuiverItem quiverItem) {
+                if (quiverItem.material == Materials.NETHERITE) {
+                    SmithingTransformRecipeBuilder.smithing(
+                                    Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                                    Ingredient.of(ECItems.DIAMOND_QUIVER.get()),
+                                    Ingredient.of(Items.NETHERITE_INGOT),
+                                    RecipeCategory.COMBAT,
+                                    quiverItem
+                            )
+                            .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                            .unlocks(getHasName(ECItems.DIAMOND_QUIVER.get()), has(ECItems.DIAMOND_QUIVER.get()))
+                            .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("quiver")), RecipeBuilder.getDefaultRecipeId(quiverItem));
+                } else {
+                    quiver(pRecipeOutput, quiverItem, quiverItem.getMaterial().repairItem().getItems()[0].getItem());
+                }
             }
         }
     }

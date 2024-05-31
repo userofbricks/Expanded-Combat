@@ -24,6 +24,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDEN
 public class ECQuiverItem extends Item implements ICurioItem {
     public final Layer[] QUIVER_TEXTURE_LAYERS;
     public final int providedSlots;
+
     public final Holder.Reference<Material> material;
     public ECQuiverItem(Properties properties, Holder.Reference<Material> material, Layer... layers) {
         super(properties);
@@ -74,6 +75,10 @@ public class ECQuiverItem extends Item implements ICurioItem {
             }
         }
         ECVariables.setArrowSlotTo(livingEntity, arrowSlot);
+    }
+
+    public Material getMaterial() {
+        return material.value();
     }
 
     @Override
