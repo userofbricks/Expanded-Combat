@@ -247,4 +247,21 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")),
                         RecipeBuilder.getDefaultRecipeId(result).withSuffix("_variable_fletching"));
     }
+
+    public static void bow(RecipeOutput recipeOutput, ItemLike bow, ItemLike material) {
+        bow(recipeOutput, bow, Items.STRING, ECItems.IRON_STICK.get(), material);
+    }
+    public static void bow(RecipeOutput recipeOutput, ItemLike bow, ItemLike string, ItemLike stick, ItemLike material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, bow, 1)
+                .define('s', string)
+                .define('/', stick)
+                .define('m', material)
+                .pattern(" ms")
+                .pattern("/ s")
+                .pattern(" ms")
+                .unlockedBy(getHasName(string), has(string))
+                .unlockedBy(getHasName(stick), has(stick))
+                .unlockedBy(getHasName(material), has(material))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
+    }
 }
