@@ -26,4 +26,7 @@ public class ItemDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockWeaponAnim>> BLOCK_WEAPON_ANIM = DATA_COMPONENTS.registerComponentType(
             "hits_till_slam", p_331382_ -> p_331382_.persistent(BlockWeaponAnim.CODEC).networkSynchronized(BlockWeaponAnim.STREAM_CODEC)
     );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> COOL_DOWN = DATA_COMPONENTS.registerComponentType(
+            "cool_down", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
 }

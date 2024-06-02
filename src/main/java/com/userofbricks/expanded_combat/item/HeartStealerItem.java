@@ -33,7 +33,7 @@ public class HeartStealerItem extends ECWeaponItem{
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return false;
-        int charge = stack.get(CHARGE);
+        int charge = stack.getOrDefault(CHARGE, 0);
         if (charge >= 500 && target.getMaxHealth() >= this.getDamage() && attacker.level().random.nextInt((int)(Math.round(Math.sqrt((ECVariables.getAddedHealth(attacker)+ECVariables.getStolenHealth(attacker))^3)))+1) == 0) {
             stack.set(CHARGE, 0);
             attacker.setData(STOLEN_HEALTH, attacker.getData(STOLEN_HEALTH) + 1);

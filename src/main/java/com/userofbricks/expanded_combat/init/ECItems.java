@@ -3,17 +3,18 @@ package com.userofbricks.expanded_combat.init;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.userofbricks.expanded_combat.item.*;
-import com.userofbricks.expanded_combat.api.curios.ArrowCurio;
 import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.item.AllayItem;
+import com.userofbricks.expanded_combat.item.ECShieldItem;
+import com.userofbricks.expanded_combat.item.PurifiedGasBottle;
+import com.userofbricks.expanded_combat.item.SolidPureFoodItem;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.HardCodedRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.RecipeIngredientMapBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -24,28 +25,16 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import top.theillusivec4.curios.api.CuriosCapability;
-import top.theillusivec4.curios.api.type.capability.ICurio;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
-import java.util.Objects;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.*;
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ECItems
 {
@@ -190,23 +179,6 @@ public class ECItems
                 .register();
         ITEMS.add(shieldRegistryEntry);
         return shieldRegistryEntry;
-    }
-
-    @SubscribeEvent
-    public void attachCaps(AttachCapabilitiesEvent<ItemStack> e) {
-        ItemStack stack = e.getObject();
-
-        if (Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem())) {
-            ArrowCurio arrowCurio = new ArrowCurio(stack);
-            e.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
-                final LazyOptional<ICurio> curio = LazyOptional.of(() -> arrowCurio);
-
-                @Nonnull
-                public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-                    return CuriosCapability.ITEM.orEmpty(cap, this.curio);
-                }
-            });
-        }
     }
 
     public static TagKey<EntityType<?>> modTag(String name)
