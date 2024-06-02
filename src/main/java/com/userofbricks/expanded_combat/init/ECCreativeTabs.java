@@ -43,7 +43,7 @@ public class ECCreativeTabs {
                             for (Material material : MaterialInit.shieldMaterials) {
                                 ItemStack stack;
                                 if (!material.getConfig().fireResistant) {
-                                    stack = SHIELD_TIER_1.get().getDefaultInstance();
+                                    stack = SHIELD.get().getDefaultInstance();
                                 } else {
                                     stack = SHIELD_TIER_3.get().getDefaultInstance();
                                 }
@@ -132,7 +132,7 @@ public class ECCreativeTabs {
                     Material material = MaterialInit.shieldMaterials.get(shieldListLocation);
                     ItemStack stack;
                     if (!material.getConfig().fireResistant) {
-                        stack = SHIELD_TIER_1.get().getDefaultInstance();
+                        stack = SHIELD.get().getDefaultInstance();
                     } else {
                         stack = SHIELD_TIER_3.get().getDefaultInstance();
                     }

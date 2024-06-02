@@ -32,7 +32,7 @@ public class ECShieldSmithingRecipeMaker {
         }
         for (Material material :
                 MaterialInit.shieldMaterials) {
-            ItemStack shield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+            ItemStack shield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD.get());
             shield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
@@ -46,7 +46,7 @@ public class ECShieldSmithingRecipeMaker {
             Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
             if (addition.isEmpty() || addition.test(ItemStack.EMPTY) || addition.test(new ItemStack(Items.AIR))) continue;
 
-            ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+            ItemStack resultShield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD.get());
             resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
@@ -57,7 +57,7 @@ public class ECShieldSmithingRecipeMaker {
             ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.shield.smithing." + resultShield.getDescriptionId());
 
             if (material.getConfig().crafting.isSingleAddition && material.getCraftedFrom() != null) {
-                ItemStack baseShield = new ItemStack(material.getCraftedFrom().getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+                ItemStack baseShield = new ItemStack(material.getCraftedFrom().getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD.get());
                 baseShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getCraftedFrom().getName());
                 baseShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getCraftedFrom().getName());
                 baseShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getCraftedFrom().getName());

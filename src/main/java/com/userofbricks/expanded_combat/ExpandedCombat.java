@@ -76,7 +76,7 @@ public class ExpandedCombat {
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
-        ECItems.loadClass();
+        ECItems.ITEMS.register(bus);
         ECItemTags.loadTags();
         ECCreativeTabs.loadClass();
         ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
@@ -99,7 +99,6 @@ public class ExpandedCombat {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void comms(InterModEnqueueEvent event) {
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());

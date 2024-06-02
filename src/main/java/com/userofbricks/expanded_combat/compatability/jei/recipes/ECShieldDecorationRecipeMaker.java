@@ -48,7 +48,7 @@ public class ECShieldDecorationRecipeMaker {
     }
 
     private static CraftingRecipe createRecipe(BannerItem banner, Material shieldMaterial) {
-        ItemStack shieldStack = ECShieldItem.makeShieldBeMaterial(new ItemStack(shieldMaterial.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get()), shieldMaterial);
+        ItemStack shieldStack = ECShieldItem.makeShieldBeMaterial(new ItemStack(shieldMaterial.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD.get()), shieldMaterial);
         NonNullList<Ingredient> inputs = NonNullList.of(
                 Ingredient.EMPTY,
                 Ingredient.of(shieldStack),

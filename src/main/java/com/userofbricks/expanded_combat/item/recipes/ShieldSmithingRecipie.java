@@ -86,7 +86,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         Material result_dl_material = inventory.getItem(4).isEmpty() ? dl_material: addition_dl_material;
         Material result_dr_material = inventory.getItem(5).isEmpty() ? dr_material: addition_dr_material;
         Material result_m_material = inventory.getItem(3).isEmpty() ? m_material: addition_m_material;
-        ItemStack result = new ItemStack(ECItems.SHIELD_TIER_1.get());
+        ItemStack result = new ItemStack(ECItems.SHIELD.get());
         if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
             result = new ItemStack(ECItems.SHIELD_TIER_3.get());
         }

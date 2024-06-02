@@ -6,14 +6,15 @@ import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -24,6 +25,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.init.ECItems.*;
 
 @ParametersAreNonnullByDefault
 public class ECRecipeProvider extends MaterialRecipeProvider {
@@ -49,85 +53,162 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput pRecipeOutput) {
-        for (DeferredHolder<Item, ? extends Item> deferredItem : ECItems.ITEMS.getEntries()) {
+    protected void buildRecipes(RecipeOutput recipeOutput) {
+        for (DeferredHolder<Item, ? extends Item> deferredItem : ITEMS.getEntries()) {
             if (deferredItem.get() instanceof ECWeaponItem weaponItem && !(
                     weaponItem.material == Materials.HEAT || weaponItem.material == Materials.FROST || weaponItem.material == Materials.VOID_TOUCHED || weaponItem.material == Materials.SOUL
                             || weaponItem.material == Materials.HEART_STEALER
             )) {
-                buildWeaponRecipe(pRecipeOutput, weaponItem);
+                buildWeaponRecipe(recipeOutput, weaponItem);
             } else if (deferredItem.get() instanceof ECArrowItem arrowItem) {
                 if (arrowItem.material == Materials.NETHERITE) {
-                    variableFletching(pRecipeOutput, arrowItem, Items.NETHERITE_INGOT, ECItems.DIAMOND_ARROW.get(), 16);
+                    variableFletching(recipeOutput, arrowItem, Items.NETHERITE_INGOT, DIAMOND_ARROW, 16);
                 } else {
-                    fletching(pRecipeOutput, arrowItem, arrowItem.getMaterial().repairItem().getItems()[0].getItem(), ECItems.FLETCHED_STICKS.get(), 6);
+                    fletching(recipeOutput, arrowItem, arrowItem.getMaterial().repairItem().getItems()[0].getItem(), FLETCHED_STICKS, 6);
                 }
             } else if (deferredItem.get() instanceof ECBowItem bowItem) {
                 if (bowItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                                    Ingredient.of(ECItems.DIAMOND_BOW.get()),
+                                    Ingredient.of(DIAMOND_BOW),
                                     Ingredient.of(Items.NETHERITE_INGOT),
                                     RecipeCategory.COMBAT,
                                     bowItem
                             )
                             .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                            .unlocks(getHasName(ECItems.DIAMOND_BOW.get()), has(ECItems.DIAMOND_BOW.get()))
+                            .unlocks(getHasName(DIAMOND_BOW), has(DIAMOND_BOW))
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
-                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("bow")), RecipeBuilder.getDefaultRecipeId(bowItem));
+                            .save(recipeOutput.withConditions(new ECConfigBooleanCondition("bow")), RecipeBuilder.getDefaultRecipeId(bowItem));
                 } else {
-                    bow(pRecipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
+                    bow(recipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
                 }
             } else if (deferredItem.get() instanceof ECCrossBowItem bowItem) {
                 if (bowItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                                    Ingredient.of(ECItems.DIAMOND_CROSS_BOW.get()),
+                                    Ingredient.of(DIAMOND_CROSS_BOW),
                                     Ingredient.of(Items.NETHERITE_INGOT),
                                     RecipeCategory.COMBAT,
                                     bowItem
                             )
                             .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                            .unlocks(getHasName(ECItems.DIAMOND_CROSS_BOW.get()), has(ECItems.DIAMOND_CROSS_BOW.get()))
+                            .unlocks(getHasName(DIAMOND_CROSS_BOW), has(DIAMOND_CROSS_BOW))
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
-                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")), RecipeBuilder.getDefaultRecipeId(bowItem));
+                            .save(recipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")), RecipeBuilder.getDefaultRecipeId(bowItem));
                 } else {
-                    crossbow(pRecipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
+                    crossbow(recipeOutput, bowItem, bowItem.getMaterial().repairItem().getItems()[0].getItem());
                 }
             } else if (deferredItem.get() instanceof GauntletItem gauntletItem) {
                 if (gauntletItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                                    Ingredient.of(ECItems.DIAMOND_GAUNTLET.get()),
+                                    Ingredient.of(DIAMOND_GAUNTLET),
                                     Ingredient.of(Items.NETHERITE_INGOT),
                                     RecipeCategory.COMBAT,
                                     gauntletItem
                             )
                             .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                            .unlocks(getHasName(ECItems.DIAMOND_GAUNTLET.get()), has(ECItems.DIAMOND_GAUNTLET.get()))
+                            .unlocks(getHasName(DIAMOND_GAUNTLET), has(DIAMOND_GAUNTLET))
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
-                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")), RecipeBuilder.getDefaultRecipeId(gauntletItem));
+                            .save(recipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")), RecipeBuilder.getDefaultRecipeId(gauntletItem));
                 } else {
-                    gauntlet(pRecipeOutput, gauntletItem, gauntletItem.getMaterial().repairItem().getItems()[0].getItem());
+                    gauntlet(recipeOutput, gauntletItem, gauntletItem.getMaterial().repairItem().getItems()[0].getItem());
                 }
             } else if (deferredItem.get() instanceof ECQuiverItem quiverItem) {
                 if (quiverItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                                    Ingredient.of(ECItems.DIAMOND_QUIVER.get()),
+                                    Ingredient.of(DIAMOND_QUIVER),
                                     Ingredient.of(Items.NETHERITE_INGOT),
                                     RecipeCategory.COMBAT,
                                     quiverItem
                             )
                             .unlocks(getHasName(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                            .unlocks(getHasName(ECItems.DIAMOND_QUIVER.get()), has(ECItems.DIAMOND_QUIVER.get()))
+                            .unlocks(getHasName(DIAMOND_QUIVER), has(DIAMOND_QUIVER))
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
-                            .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("quiver")), RecipeBuilder.getDefaultRecipeId(quiverItem));
+                            .save(recipeOutput.withConditions(new ECConfigBooleanCondition("quiver")), RecipeBuilder.getDefaultRecipeId(quiverItem));
                 } else {
-                    quiver(pRecipeOutput, quiverItem, quiverItem.getMaterial().repairItem().getItems()[0].getItem());
+                    quiver(recipeOutput, quiverItem, quiverItem.getMaterial().repairItem().getItems()[0].getItem());
                 }
             }
         }
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, LEATHER_STICK, 2)
+                .define('l', Items.LEATHER)
+                .define('s', Items.STICK)
+                .pattern("  s")
+                .pattern(" l ")
+                .pattern("s  ")
+                .unlockedBy(getHasName(Items.LEATHER), has(Items.LEATHER))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, GOLD_STICK, 2)
+                .define('l', Items.GOLD_INGOT)
+                .define('s', Items.STICK)
+                .pattern("  s")
+                .pattern(" l ")
+                .pattern("s  ")
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, IRON_STICK, 2)
+                .define('l', Items.IRON_INGOT)
+                .define('s', Items.STICK)
+                .pattern("  s")
+                .pattern(" l ")
+                .pattern("s  ")
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+        fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), FLETCHED_STICKS, Items.FEATHER, Items.STICK, 1);
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(GAS_BOTTLE), RecipeCategory.BREWING, PURIFIED_GAS_BOTTLE, 2, 200)
+                .unlockedBy(getHasName(GAS_BOTTLE), has(GAS_BOTTLE))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, GOOD_SOUL)
+                .requires(SOLIDIFIED_PURIFICATION, 2)
+                .unlockedBy("has_items", InventoryChangeTrigger.TriggerInstance.hasItems(BAD_SOUL.get(), SOLIDIFIED_PURIFICATION))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ALLAY_ITEM)
+                .pattern("pap")
+                .pattern("psp")
+                .pattern("pap")
+                .define('p', SOLIDIFIED_PURIFICATION)
+                .define('a', Items.AMETHYST_SHARD)
+                .define('s', GOOD_SOUL)
+                .unlockedBy("has_items", InventoryChangeTrigger.TriggerInstance.hasItems(GOOD_SOUL, SOLIDIFIED_PURIFICATION, Items.AMETHYST_SHARD))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+
+
+        FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, IRON_ARROW, 1)
+                .unlockedBy(getHasName(FLETCHED_STICKS), has(FLETCHED_STICKS))
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), new ResourceLocation(MODID, "iron_arrow_fletching2"));
+        fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), Items.ARROW, Items.FLINT, FLETCHED_STICKS, 6);
+
+        /* TODO
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing_singleton"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_DECORATION.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.BANNERS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "ec_shield_decoration"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.POTION_WEAPONS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
+            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get())
+                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
+                    .save(recipeProvider, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
+         */
     }
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {

@@ -25,7 +25,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
 
     public ShieldSmithingUpgradeRecipe(ResourceLocation id) {
-        super(id, Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, new ItemStack(ECItems.SHIELD_TIER_1.get()));
+        super(id, Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, new ItemStack(ECItems.SHIELD.get()));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         Material result_dr_material = addition_material.satifiesOnlyReplaceRequirement(dr_material.getName()) ? addition_material: dr_material;
         Material result_m_material = addition_material.satifiesOnlyReplaceRequirement(m_material.getName()) ? addition_material: m_material;
 
-        ItemStack result = new ItemStack(ECItems.SHIELD_TIER_1.get());
+        ItemStack result = new ItemStack(ECItems.SHIELD.get());
         if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
             result = new ItemStack(ECItems.SHIELD_TIER_3.get());
         }
@@ -79,7 +79,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
 
     @Override
     public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
-        return new ItemStack(ECItems.SHIELD_TIER_1.get());
+        return new ItemStack(ECItems.SHIELD.get());
     }
 
     public boolean isTemplateIngredient(@NotNull ItemStack stack) {

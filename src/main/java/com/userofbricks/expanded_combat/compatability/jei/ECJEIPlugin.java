@@ -74,7 +74,7 @@ public class ECJEIPlugin implements IModPlugin {
                 if (registryEntry.get() instanceof PotionWeaponItem) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
             });
         }
-        registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_1.get(), ShieldSubtypeInterpreter.INSTANCE);
+        registration.registerSubtypeInterpreter(ECItems.SHIELD.get(), ShieldSubtypeInterpreter.INSTANCE);
         registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_2.get(), ShieldSubtypeInterpreter.INSTANCE);
         registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_3.get(), ShieldSubtypeInterpreter.INSTANCE);
         registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_4.get(), ShieldSubtypeInterpreter.INSTANCE);
