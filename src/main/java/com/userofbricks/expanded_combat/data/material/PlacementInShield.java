@@ -2,6 +2,10 @@ package com.userofbricks.expanded_combat.data.material;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 
 import java.util.Objects;
 
@@ -11,14 +15,27 @@ public enum PlacementInShield {
     NONE;
 
     public static final Codec<PlacementInShield> CODEC =
-                            Codec.stringResolver(placementInShield -> switch (placementInShield) {
-                                case ALL -> "all";
-                                case NOT_TRIM -> "not_trim";
-                                case NONE -> "none";
-                            }, string -> switch (string) {
-                                case "all" -> ALL;
-                                case "not_trim" -> NOT_TRIM;
-                                case "none" -> NONE;
-                                default -> throw new IllegalStateException("Unexpected value: " + string);
-                            });
+            Codec.stringResolver(placementInShield -> switch (placementInShield) {
+                case ALL -> "all";
+                case NOT_TRIM -> "not_trim";
+                case NONE -> "none";
+            }, string -> switch (string) {
+                case "not_trim" -> NOT_TRIM;
+                case "none" -> NONE;
+                default -> ALL;
+            });
+
+    public static final StreamCodec<ByteBuf, PlacementInShield> STREAM_CODEC =
+            ByteBufCodecs.idMapper(
+                    p -> switch (p) {
+                        case 0 -> NOT_TRIM;
+                        case 1 -> NONE;
+                        default -> ALL;
+                    },
+                    p -> switch (p) {
+                        case ALL -> 2;
+                        case NOT_TRIM -> 0;
+                        case NONE -> 1;
+                    }
+            );
 }

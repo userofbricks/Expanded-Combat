@@ -3,16 +3,22 @@ package com.userofbricks.expanded_combat.data.material;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.Registries;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 /**
  * @param durabilities {@link Durabilities Durabilities}
@@ -22,6 +28,8 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
  * @param onlyReplaceResource a list of what materials this one can replace on a shield
  * @param smithingTemplate the smithing template used for single addition materials
  */
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public record Material(
         Durabilities durabilities,
         EnchantingRelated enchantingRelated,
@@ -47,6 +55,40 @@ public record Material(
             ).apply(instance, Material::new)
     );
     public static final Codec<Material> CODEC_CLIENT_SYNC = CODEC;
+    public static final StreamCodec<RegistryFriendlyByteBuf, Material> STREAM_CODEC = new StreamCodec<>() {
+        final StreamCodec<ByteBuf, Optional<List<ResourceLocation>>> REPLACE_STREAM_CODEC = ByteBufCodecs.optional(ByteBufCodecs.collection(ArrayList::new, ResourceLocation.STREAM_CODEC).map(
+                arrayList -> Arrays.asList(arrayList.toArray(new ResourceLocation[0])), list -> (ArrayList<ResourceLocation>) list
+        ));
+
+        @Override
+        public Material decode(RegistryFriendlyByteBuf pBuffer) {
+            Durabilities durabilities = Durabilities.STREAM_CODEC.decode(pBuffer);
+            EnchantingRelated enchantingRelated = EnchantingRelated.STREAM_CODEC.decode(pBuffer);
+            Offense offense = Offense.STREAM_CODEC.decode(pBuffer);
+            Defense defense = Defense.STREAM_CODEC.decode(pBuffer);
+            Ingredient repairItem = Ingredient.CONTENTS_STREAM_CODEC.decode(pBuffer);
+            boolean isSingleAddition = ByteBufCodecs.BOOL.decode(pBuffer);
+            Optional<List<ResourceLocation>> onlyReplaceResource = REPLACE_STREAM_CODEC.decode(pBuffer);
+            Ingredient smithingTemplate = Ingredient.CONTENTS_STREAM_CODEC.decode(pBuffer);
+            return new Material(durabilities, enchantingRelated, offense, defense, repairItem, isSingleAddition, onlyReplaceResource, smithingTemplate);
+        }
+
+        @Override
+        public void encode(RegistryFriendlyByteBuf pBuffer, Material pValue) {
+            Durabilities.STREAM_CODEC.encode(pBuffer, pValue.durabilities);
+            EnchantingRelated.STREAM_CODEC.encode(pBuffer, pValue.enchantingRelated);
+            Offense.STREAM_CODEC.encode(pBuffer, pValue.offense);
+            Defense.STREAM_CODEC.encode(pBuffer, pValue.defense);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(pBuffer, pValue.repairItem);
+            ByteBufCodecs.BOOL.encode(pBuffer, pValue.isSingleAddition);
+            REPLACE_STREAM_CODEC.encode(pBuffer, pValue.onlyReplaceResource);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(pBuffer, pValue.smithingTemplate);
+        }
+    };
+    public static final Codec<Holder<Material>> HOLDER_CODEC = RegistryFileCodec.create(Registries.MATERIAL_REGISTRY_KEY, CODEC);
+    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<Material>> HOLDER_STREAM_CODEC = ByteBufCodecs.holder(
+            Registries.MATERIAL_REGISTRY_KEY, STREAM_CODEC
+    );
 
     public Material(
             Durabilities durabilities,
@@ -74,6 +116,17 @@ public record Material(
                 )
                 .apply(instance, Durabilities::new)
         );
+        public static final StreamCodec<RegistryFriendlyByteBuf, Durabilities> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.INT,
+                Durabilities::toolBaseDurability,
+                ByteBufCodecs.INT,
+                Durabilities::gauntletDurability,
+                ByteBufCodecs.INT,
+                Durabilities::bowCrossbowDurability,
+                ByteBufCodecs.INT,
+                Durabilities::addedShieldDurability,
+                Durabilities::new
+        );
         public static Durabilities shieldGauntlet(int gauntletDurability, int addedShieldDurability) {
             return new Durabilities(0, gauntletDurability, 0, addedShieldDurability);
         }
@@ -93,6 +146,15 @@ public record Material(
                     Codec.FLOAT.optionalFieldOf("mending_bonus", 0f).forGetter(EnchantingRelated::mendingBonus)
             )
             .apply(instance, EnchantingRelated::new)
+        );
+        public static final StreamCodec<RegistryFriendlyByteBuf, EnchantingRelated> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.INT,
+                EnchantingRelated::offenseEnchantability,
+                ByteBufCodecs.INT,
+                EnchantingRelated::defenseEnchantability,
+                ByteBufCodecs.FLOAT,
+                EnchantingRelated::mendingBonus,
+                EnchantingRelated::new
         );
     }
 
@@ -118,6 +180,31 @@ public record Material(
                 )
                 .apply(instance, Offense::new)
         );
+        public static final StreamCodec<RegistryFriendlyByteBuf, Offense> STREAM_CODEC = new StreamCodec<>() {
+            @Override
+            public Offense decode(RegistryFriendlyByteBuf pBuffer) {
+                return new Offense(
+                        ByteBufCodecs.DOUBLE.decode(pBuffer),
+                        ByteBufCodecs.FLOAT.decode(pBuffer),
+                        ByteBufCodecs.DOUBLE.decode(pBuffer),
+                        ByteBufCodecs.BOOL.decode(pBuffer),
+                        ByteBufCodecs.BOOL.decode(pBuffer),
+                        ByteBufCodecs.FLOAT.decode(pBuffer),
+                        ByteBufCodecs.INT.decode(pBuffer)
+                );
+            }
+
+            @Override
+            public void encode(RegistryFriendlyByteBuf pBuffer, Offense pValue) {
+                ByteBufCodecs.DOUBLE.encode(pBuffer, pValue.addedAttackDamage);
+                ByteBufCodecs.FLOAT.encode(pBuffer, pValue.arrowDamage);
+                ByteBufCodecs.DOUBLE.encode(pBuffer, pValue.defaultArrowGravity);
+                ByteBufCodecs.BOOL.encode(pBuffer, pValue.flaming);
+                ByteBufCodecs.BOOL.encode(pBuffer, pValue.canBeTipped);
+                ByteBufCodecs.FLOAT.encode(pBuffer, pValue.velocityMultiplier);
+                ByteBufCodecs.INT.encode(pBuffer, pValue.quiverSlots);
+            }
+        };
     }
 
     /**
@@ -147,6 +234,35 @@ public record Material(
                 )
                 .apply(instance, Defense::new)
         );
+        public static final StreamCodec<RegistryFriendlyByteBuf, Defense> STREAM_CODEC = new StreamCodec<>() {
+            @Override
+            public Defense decode(RegistryFriendlyByteBuf pBuffer) {
+                return new Defense(
+                        PlacementInShield.STREAM_CODEC.decode(pBuffer),
+                        ResourceLocation.STREAM_CODEC.decode(pBuffer),
+                        ByteBufCodecs.BOOL.decode(pBuffer),
+                        ByteBufCodecs.BOOL.decode(pBuffer),
+                        ByteBufCodecs.INT.decode(pBuffer),
+                        ByteBufCodecs.DOUBLE.decode(pBuffer),
+                        ByteBufCodecs.DOUBLE.decode(pBuffer),
+                        ByteBufCodecs.FLOAT.decode(pBuffer),
+                        ByteBufCodecs.FLOAT.decode(pBuffer)
+                );
+            }
+
+            @Override
+            public void encode(RegistryFriendlyByteBuf pBuffer, Defense pValue) {
+                PlacementInShield.STREAM_CODEC.encode(pBuffer, pValue.placementInShield);
+                ResourceLocation.STREAM_CODEC.encode(pBuffer, pValue.equipSound);
+                ByteBufCodecs.BOOL.encode(pBuffer, pValue.fireResistant);
+                ByteBufCodecs.BOOL.encode(pBuffer, pValue.makesPiglinsNeutral);
+                ByteBufCodecs.INT.encode(pBuffer, pValue.gauntletArmorAmount);
+                ByteBufCodecs.DOUBLE.encode(pBuffer, pValue.armorToughness);
+                ByteBufCodecs.DOUBLE.encode(pBuffer, pValue.knockbackResistance);
+                ByteBufCodecs.FLOAT.encode(pBuffer, pValue.baseProtectionAmmount);
+                ByteBufCodecs.FLOAT.encode(pBuffer, pValue.afterBasePercentReduction);
+            }
+        };
 
         public Defense(PlacementInShield placementInShield, boolean fireResistant, boolean makesPiglinsNeutral, int gauntletArmorAmount, double armorToughness,
                        double knockbackResistance, float baseProtectionAmmount, float afterBasePercentReduction) {

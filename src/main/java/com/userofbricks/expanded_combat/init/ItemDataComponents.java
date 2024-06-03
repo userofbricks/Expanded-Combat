@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
@@ -28,5 +29,8 @@ public class ItemDataComponents {
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> COOL_DOWN = DATA_COMPONENTS.registerComponentType(
             "cool_down", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ShieldMaterials>> SHIELD_MATERIALS = DATA_COMPONENTS.registerComponentType(
+            "cool_down", p_331382_ -> p_331382_.persistent(ShieldMaterials.CODEC).networkSynchronized(ShieldMaterials.STREAM_CODEC)
     );
 }
