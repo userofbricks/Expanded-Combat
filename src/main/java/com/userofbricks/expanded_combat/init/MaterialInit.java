@@ -4,10 +4,11 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
-import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -42,7 +43,7 @@ public class MaterialInit {
         }
     }
 
-    public static Material getMaterialForShieldPart(String part, ItemLike shield) {
+    public static Holder<Material> getMaterialForShieldPart(String part, ItemLike shield) {
         for (ShieldToMaterials shieldToMaterials : shieldToMaterialsList) {
             if (shield.asItem() == shieldToMaterials.itemLikeSupplier().get().asItem()) {
                 return switch (part) {
@@ -70,7 +71,7 @@ public class MaterialInit {
         return false;
     }
 
-    public static @Nullable ShieldMaterialUseTick getShieldHaveUseTickEntry(Material material) {
+    public static @Nullable ShieldMaterialUseTick getShieldUseTickEntry(Holder<Material> material) {
         for (ShieldMaterialUseTick shieldMaterialUseTick : shieldMaterialUseTickList) {
             if (material == shieldMaterialUseTick.material()) {
                 return shieldMaterialUseTick;
@@ -169,5 +170,21 @@ public class MaterialInit {
             if (weaponMaterial.name().equals(name)) return weaponMaterial;
         }
         return null;
+    }
+    public static double getShieldToMaterialBaseProtection(ItemStack stack) {
+        double ul = getMaterialForShieldPart("ul", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        double ur = getMaterialForShieldPart("ur", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        double dl = getMaterialForShieldPart("dl", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        double dr = getMaterialForShieldPart("dr", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        double m = getMaterialForShieldPart("m", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        return ul + ur + dl + dr + m;
+    }
+    public static double getShieldToMaterialPercentageProtection(ItemStack stack) {
+        double ul = getMaterialForShieldPart("ul", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        double ur = getMaterialForShieldPart("ur", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        double dl = getMaterialForShieldPart("dl", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        double dr = getMaterialForShieldPart("dr", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        double m = getMaterialForShieldPart("m", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        return ul + ur + dl + dr + m;
     }
 }

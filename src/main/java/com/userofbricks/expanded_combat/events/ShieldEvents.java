@@ -36,7 +36,7 @@ public class ShieldEvents {
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
                 }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    damagePercent = ECShieldItem.getShieldToMaterialPercentageProtection(shieldItemStack);
+                    damagePercent = MaterialInit.getShieldToMaterialPercentageProtection(shieldItemStack);
                 }
                 damageBlocked += (float) (damageLeftToBlock * damagePercent);
             }
@@ -52,7 +52,7 @@ public class ShieldEvents {
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
                 }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    protectionAmount = ECShieldItem.getShieldToMaterialBaseProtection(shieldItemStack);
+                    protectionAmount = MaterialInit.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
                 damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
             }

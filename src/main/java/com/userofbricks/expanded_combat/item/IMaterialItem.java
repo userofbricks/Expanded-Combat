@@ -1,10 +1,22 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.extensions.IItemExtension;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default float getMendingBonus() {
@@ -29,5 +41,19 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default boolean makesPiglinsNeutral(@NotNull ItemStack stack, @NotNull LivingEntity wearer) {
         IMaterialItem materialItem = ((IMaterialItem) stack.getItem());
         return materialItem.getMaterial().defense().makesPiglinsNeutral();
+    }
+
+
+
+    @OnlyIn(Dist.CLIENT)
+    default void appendHoverText(ItemStack stack, List<Component> list) {
+        if (getMendingBonus() != 0.0f && stack.getItem().isDamageable(stack)) {
+            if (getMendingBonus() > 0.0f) {
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE).append(Component.literal(ChatFormatting.BLUE + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus()))));
+            }
+            else if (getMendingBonus() < 0.0f) {
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus()))));
+            }
+        }
     }
 }

@@ -54,22 +54,16 @@ public class ECItems
     public static final DeferredItem<Item> GOOD_SOUL = ITEMS.registerSimpleItem("good_soul");
     public static final DeferredItem<AllayItem> ALLAY_ITEM = ITEMS.registerItem("allay", AllayItem::new);
 
-    public static final DeferredItem<ECShieldItem> SHIELD = registerShield("shield", false);
+    public static final DeferredItem<ECShieldItem> SHIELD = ITEMS.registerItem("shield_1", ECShieldItem::new);
+    public static final DeferredItem<ECShieldItem> SHIELD_FIRE_RESISTANT = ITEMS.registerItem("shield_1", ECShieldItem::new, new Item.Properties().fireResistant());
 
     private static DeferredItem<ECShieldItem> registerShield(String name, boolean fireresistant) {
-        DeferredItem<ECShieldItem> shieldDeferredItem = ITEMS.item(name, (properties -> new ECShieldItem(fireresistant, properties)))
+        return ITEMS.item(name, (properties -> new ECShieldItem(properties)))
                 .lang("Shield")
                 .tag(ECItemTags.SHIELDS)
                 .tag(Tags.Items.TOOLS_SHIELDS)
                 .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation(MODID, "item/bases/shield"))
                         .override().predicate(new ResourceLocation("blocking"), 1.0f).model(prov.withExistingParent(ctx.getName()+"_blocking", new ResourceLocation(MODID, "item/bases/shield_blocking"))))
                 .register();
-        ITEMS.add(shieldDeferredItem);
-        return shieldDeferredItem;
-    }
-
-    public static TagKey<EntityType<?>> modTag(String name)
-    {
-        return TagKey.create(Registries.ENTITY_TYPE, modLoc(name));
     }
 }

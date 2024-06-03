@@ -2,28 +2,26 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
-import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.MaterialInit;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,34 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static com.userofbricks.expanded_combat.init.MaterialInit.getMaterialForShieldPart;
+import static com.userofbricks.expanded_combat.init.ItemDataComponents.SHIELD_MATERIALS;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECShieldItem extends ShieldItem {
-
-    public static final String ULMaterialTagName = "UL_Material";
-    public static final String URMaterialTagName = "UR_Material";
-    public static final String DLMaterialTagName = "DL_Material";
-    public static final String DRMaterialTagName = "DR_Material";
-    public static final String MMaterialTagName = "M_Material";
-    public static final String LastRepairNumber = "Last_Repair_Number";
-
-    public ECShieldItem(boolean fireresistant, Item.Properties properties) {
-        super(fireresistant ? properties.fireResistant().stacksTo(1) : properties.stacksTo(1));
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack getDefaultInstance() {
-        ItemStack stack = super.getDefaultInstance();
-        stack.getOrCreateTag().putString(ULMaterialTagName, "empty");
-        stack.getOrCreateTag().putString(URMaterialTagName, "empty");
-        stack.getOrCreateTag().putString(DLMaterialTagName, "empty");
-        stack.getOrCreateTag().putString(DRMaterialTagName, "empty");
-        stack.getOrCreateTag().putString(MMaterialTagName, "empty");
-        stack.getOrCreateTag().putInt(LastRepairNumber, 0);
-        return stack;
+    public ECShieldItem(Item.Properties properties) {
+        super(properties.stacksTo(1).component(SHIELD_MATERIALS, ShieldMaterials.DEFAULT));
     }
 
     /**
@@ -69,11 +46,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getMaxDamage(ItemStack stack) {
         int durability = 336;
-        int ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().durability.addedShieldDurability;
-        int m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().durability.addedShieldDurability;
+        int ul = getUpperLeftMaterial(stack).value().durabilities().addedShieldDurability();
+        int ur = getUpperRightMaterial(stack).value().durabilities().addedShieldDurability();
+        int dl = getDownLeftMaterial(stack).value().durabilities().addedShieldDurability();
+        int dr = getDownRightMaterial(stack).value().durabilities().addedShieldDurability();
+        int m = getMiddleMaterial(stack).value().durabilities().addedShieldDurability();
         return durability + ul + ur + dl + dr + m;
     }
 
@@ -90,18 +67,19 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (repair.getItem() instanceof EnchantedBookItem) return  false;
-        String ul = getUpperLeftMaterial(toRepair);
-        String ur = getUpperRightMaterial(toRepair);
-        String dl = getDownLeftMaterial(toRepair);
-        String dr = getDownRightMaterial(toRepair);
-        String m = getMiddleMaterial(toRepair);
-        int last = toRepair.getOrCreateTag().getInt(LastRepairNumber) + 1;
+        Material ul = getUpperLeftMaterial(toRepair).value();
+        Material ur = getUpperRightMaterial(toRepair).value();
+        Material dl = getDownLeftMaterial(toRepair).value();
+        Material dr = getDownRightMaterial(toRepair).value();
+        Material m = getMiddleMaterial(toRepair).value();
+        ShieldMaterials shieldMaterials = toRepair.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT);
+        int last = shieldMaterials.LastRepairNumber + 1;
         if (last >= 5) last = 0;
-        List<String> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
-        String currentSlotMaterial = slotMaterials.get(last);
+        List<Material> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
+        Material currentSlotMaterial = slotMaterials.get(last);
 
-        toRepair.getOrCreateTag().putInt(LastRepairNumber, last);
-        Ingredient ingredient = IngredientUtil.getIngrediantFromItemString(MaterialInit.valueOfShield("any", currentSlotMaterial).getConfig().crafting.repairItem);
+        toRepair.set(SHIELD_MATERIALS, shieldMaterials.updateLastRepair(last));
+        Ingredient ingredient = currentSlotMaterial.repairItem();
         return !ingredient.isEmpty() && ingredient.test(repair);
     }
 
@@ -121,73 +99,47 @@ public class ECShieldItem extends ShieldItem {
      * @return the mending bonus.
      */
     public float getMendingBonus(ItemStack stack) {
-        float ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().mendingBonus/5;
-        float ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().mendingBonus/5;
-        float dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().mendingBonus/5;
-        float dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().mendingBonus/5;
-        float m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().mendingBonus/5;
+        float ul = getUpperLeftMaterial(stack).value().enchantingRelated().mendingBonus()/5;
+        float ur = getUpperRightMaterial(stack).value().enchantingRelated().mendingBonus()/5;
+        float dl = getDownLeftMaterial(stack).value().enchantingRelated().mendingBonus()/5;
+        float dr = getDownRightMaterial(stack).value().enchantingRelated().mendingBonus()/5;
+        float m = getMiddleMaterial(stack).value().enchantingRelated().mendingBonus()/5;
         return ul + ur + dl + dr + m;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
-        String ul = getUpperLeftMaterial(stack);
-        String ur = getUpperRightMaterial(stack);
-        String dl = getDownLeftMaterial(stack);
-        String dr = getDownRightMaterial(stack);
-        String m = getMiddleMaterial(stack);
-        list.add(Component.translatable(LangStrings.UPPER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ul).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable(LangStrings.UPPER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ur).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable(LangStrings.CENTER_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + m).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable(LangStrings.LOWER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dl).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
-        list.add(Component.translatable(LangStrings.LOWER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dr).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+    public void appendHoverText(ItemStack stack, TooltipContext pContext, List<Component> list, TooltipFlag flag) {
+        stack.addToTooltip(SHIELD_MATERIALS, pContext, list::add, flag);
 
         if (getMendingBonus(stack) != 0.0f) {
             if (getMendingBonus(stack) > 0.0f) {
-                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE).append(Component.literal(ChatFormatting.BLUE + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE).append(Component.literal(ChatFormatting.BLUE + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
             else if (getMendingBonus(stack) < 0.0f) {
-                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
+                list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED).append(Component.literal(ChatFormatting.RED + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus(stack)))));
             }
         }
-        super.appendHoverText(stack, world, list, flag);
+        super.appendHoverText(stack, pContext, list, flag);
     }
 
     public static double getBaseProtection(ItemStack stack) {
-        double ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
-        double m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.baseProtectionAmmount /5;
+        double ul = getUpperLeftMaterial(stack).value().defense().baseProtectionAmmount() /5;
+        double ur = getUpperRightMaterial(stack).value().defense().baseProtectionAmmount() /5;
+        double dl = getDownLeftMaterial(stack).value().defense().baseProtectionAmmount() /5;
+        double dr = getDownRightMaterial(stack).value().defense().baseProtectionAmmount() /5;
+        double m = getMiddleMaterial(stack).value().defense().baseProtectionAmmount() /5;
         return ul + ur + dl + dr + m;
     }
 
     public static double getPercentageProtection(ItemStack stack) {
-        double ul = MaterialInit.valueOfShield("ul", getUpperLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double ur = MaterialInit.valueOfShield("ur", getUpperRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double dl = MaterialInit.valueOfShield("dl", getDownLeftMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double dr = MaterialInit.valueOfShield("dr", getDownRightMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
-        double m = MaterialInit.valueOfShield("m", getMiddleMaterial(stack)).getConfig().defense.afterBasePercentReduction /5;
+        double ul = getUpperLeftMaterial(stack).value().defense().afterBasePercentReduction() /5;
+        double ur = getUpperRightMaterial(stack).value().defense().afterBasePercentReduction() /5;
+        double dl = getDownLeftMaterial(stack).value().defense().afterBasePercentReduction() /5;
+        double dr = getDownRightMaterial(stack).value().defense().afterBasePercentReduction() /5;
+        double m = getMiddleMaterial(stack).value().defense().afterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
 
-    public static double getShieldToMaterialBaseProtection(ItemStack stack) {
-        double ul = getMaterialForShieldPart("ul", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
-        double ur = getMaterialForShieldPart("ur", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
-        double dl = getMaterialForShieldPart("dl", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
-        double dr = getMaterialForShieldPart("dr", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
-        double m = getMaterialForShieldPart("m", stack.getItem()).getConfig().defense.baseProtectionAmmount /5;
-        return ul + ur + dl + dr + m;
-    }
-
-    public static double getShieldToMaterialPercentageProtection(ItemStack stack) {
-        double ul = getMaterialForShieldPart("ul", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
-        double ur = getMaterialForShieldPart("ur", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
-        double dl = getMaterialForShieldPart("dl", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
-        double dr = getMaterialForShieldPart("dr", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
-        double m = getMaterialForShieldPart("m", stack.getItem()).getConfig().defense.afterBasePercentReduction /5;
-        return ul + ur + dl + dr + m;
-    }
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
@@ -209,45 +161,41 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int timeUsing) {
         super.onUseTick(level, livingEntity, itemStack, timeUsing);
-        Map<Material, Integer> materials = new HashMap<>();
-        for (Material material : Arrays.asList(MaterialInit.valueOfShield("ul", getUpperLeftMaterial(itemStack)), MaterialInit.valueOfShield("ur", getUpperRightMaterial(itemStack)), MaterialInit.valueOfShield("m", getMiddleMaterial(itemStack)),
-                MaterialInit.valueOfShield("dl", getDownLeftMaterial(itemStack)), MaterialInit.valueOfShield("dr", getDownRightMaterial(itemStack))))
+        Map<Holder<Material>, Integer> materials = new HashMap<>();
+        for (Holder<Material> material : Arrays.asList(getUpperLeftMaterial(itemStack), getUpperRightMaterial(itemStack), getMiddleMaterial(itemStack),
+                getDownLeftMaterial(itemStack), getDownRightMaterial(itemStack)))
         {
             if (materials.containsKey(material)) materials.replace(material, materials.get(material) + 1);
             else materials.put(material, 1);
         }
-        for (Map.Entry<Material, Integer> material : materials.entrySet()) {
-            ShieldMaterialUseTick useTick = MaterialInit.getShieldHaveUseTickEntry(material.getKey());
+        for (Map.Entry<Holder<Material>, Integer> material : materials.entrySet()) {
+            ShieldMaterialUseTick useTick = MaterialInit.getShieldUseTickEntry(material.getKey());
             if (useTick != null) useTick.onUseTick().apply(level, livingEntity, itemStack, timeUsing, material.getValue());
         }
     }
 
-    public static String getUpperLeftMaterial(ItemStack stack) {
-        return stack.getOrCreateTag().getString(ULMaterialTagName);
+    public static Holder<Material> getUpperLeftMaterial(ItemStack stack) {
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).ULMaterial;
     }
 
-    public static String getUpperRightMaterial(ItemStack stack) {
-        return stack.getOrCreateTag().getString(URMaterialTagName);
+    public static Holder<Material> getUpperRightMaterial(ItemStack stack) {
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).URMaterial;
     }
 
-    public static String getDownLeftMaterial(ItemStack stack) {
-        return stack.getOrCreateTag().getString(DLMaterialTagName);
+    public static Holder<Material> getDownLeftMaterial(ItemStack stack) {
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DLMaterial;
     }
 
-    public static String getDownRightMaterial(ItemStack stack) {
-        return stack.getOrCreateTag().getString(DRMaterialTagName);
+    public static Holder<Material> getDownRightMaterial(ItemStack stack) {
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DRMaterial;
     }
 
-    public static String getMiddleMaterial(ItemStack stack) {
-        return stack.getOrCreateTag().getString(MMaterialTagName);
+    public static Holder<Material> getMiddleMaterial(ItemStack stack) {
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).MMaterial;
     }
 
-    public static ItemStack makeShieldBeMaterial(ItemStack stack, Material material) {
-        stack.getOrCreateTag().putString(ULMaterialTagName, material.getLocationName().toString());
-        stack.getOrCreateTag().putString(URMaterialTagName, material.getLocationName().toString());
-        stack.getOrCreateTag().putString(DLMaterialTagName, material.getLocationName().toString());
-        stack.getOrCreateTag().putString(DRMaterialTagName, material.getLocationName().toString());
-        stack.getOrCreateTag().putString(MMaterialTagName, material.getLocationName().toString());
+    public static ItemStack makeShieldBeMaterial(ItemStack stack, Holder<Material> material) {
+        stack.set(SHIELD_MATERIALS, new ShieldMaterials(material, material, material, material, material, 0));
         return stack;
     }
 }

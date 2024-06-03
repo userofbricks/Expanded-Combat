@@ -3,6 +3,9 @@ package com.userofbricks.expanded_combat.data_components;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
+import com.userofbricks.expanded_combat.init.Materials;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -45,6 +48,8 @@ public class ShieldMaterials implements TooltipProvider {
             ShieldMaterials::new
     );
 
+    public static final ShieldMaterials DEFAULT = new ShieldMaterials(Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.IRON, 0);
+
     public final Holder<Material>  ULMaterial;
     public final Holder<Material>  URMaterial;
     public final Holder<Material>  DLMaterial;
@@ -64,7 +69,16 @@ public class ShieldMaterials implements TooltipProvider {
 
     @Override
     public void addToTooltip(Item.TooltipContext pContext, Consumer<Component> pTooltipAdder, TooltipFlag pTooltipFlag) {
-
+        String ul = ULMaterial.getRegisteredName();
+        String ur = URMaterial.getRegisteredName();
+        String dl = DLMaterial.getRegisteredName();
+        String dr = DRMaterial.getRegisteredName();
+        String m = MMaterial.getRegisteredName();
+        pTooltipAdder.accept(Component.translatable(LangStrings.UPPER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ul).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        pTooltipAdder.accept(Component.translatable(LangStrings.UPPER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + ur).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        pTooltipAdder.accept(Component.translatable(LangStrings.CENTER_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + m).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        pTooltipAdder.accept(Component.translatable(LangStrings.LOWER_LEFT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dl).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
+        pTooltipAdder.accept(Component.translatable(LangStrings.LOWER_RIGHT_MATERIAL).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC).append(Component.translatable(LangStrings.SHIELD_MATERIAL_LANG_START + dr).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC)));
     }
 
     public Holder<Material> getULMaterial() {
@@ -89,5 +103,9 @@ public class ShieldMaterials implements TooltipProvider {
 
     public int getLastRepairNumber() {
         return LastRepairNumber;
+    }
+
+    public ShieldMaterials updateLastRepair(int lastRepairNumber) {
+        return new ShieldMaterials(ULMaterial, URMaterial, DLMaterial, DRMaterial, MMaterial, lastRepairNumber);
     }
 }
