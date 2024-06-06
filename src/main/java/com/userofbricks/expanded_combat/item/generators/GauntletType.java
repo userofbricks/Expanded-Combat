@@ -18,10 +18,6 @@ public record GauntletType(TriFunction<Item.Properties, Holder.Reference<Materia
     }
 
     public GauntletItem construct(Item.Properties properties, Holder.Reference<Material> materialReference) {
-        Material material = materialReference.value();
-        if (material.defense().fireResistant()) {
-            properties.fireResistant();
-        }
         return constructor.apply(properties, materialReference, layers);
     }
 }

@@ -50,6 +50,22 @@ public class WeaponTypes {
     public static final ResourceKey<WeaponType> SPEAR_KEY = createWeaponTypeKey(modLoc("spear"));
 
 
+    public static void setKeys() {
+            BATTLE_STAFF.bindKey(BATTLE_STAFF_KEY);
+            BROAD_SWORD.bindKey(BROAD_SWORD_KEY);
+            CLAYMORE.bindKey(CLAYMORE_KEY);
+            CUTLASS.bindKey(CUTLASS_KEY);
+            DAGGER.bindKey(DAGGER_KEY);
+            DANCERS_SWORD.bindKey(DANCERS_SWORD_KEY);
+            FLAIL.bindKey(FLAIL_KEY);
+            GLAIVE.bindKey(GLAIVE_KEY);
+            GREAT_HAMMER.bindKey(GREAT_HAMMER_KEY);
+            KATANA.bindKey(KATANA_KEY);
+            MACE.bindKey(MACE_KEY);
+            SCYTHE.bindKey(SCYTHE_KEY);
+            SICKLE.bindKey(SICKLE_KEY);
+            SPEAR.bindKey(SPEAR_KEY);
+    }
     public static final RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder()
             .add(Registries.WEAPON_TYPE_REGISTRY_KEY, bootstrap -> {
                 BATTLE_STAFF = bootstrap.register(BATTLE_STAFF_KEY,

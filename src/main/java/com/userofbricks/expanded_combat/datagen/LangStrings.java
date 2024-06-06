@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.TooltipFrase;
 import com.userofbricks.expanded_combat.config.TooltipFrases;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.item.ElementalWeapon;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -78,9 +79,13 @@ public class LangStrings extends LanguageProvider {
     @Override
     protected void addTranslations() {
         for (DeferredHolder<Item, ? extends Item> deferredItem : ECItems.ITEMS.getEntries()) {
-            String locationName = deferredItem.getId().getPath();
-            String name = locationToName(locationName);
-            addItem(deferredItem, name);
+            if (deferredItem.get() instanceof ECShieldItem) {
+                addItem(deferredItem, "Shield");
+            } else {
+                String locationName = deferredItem.getId().getPath();
+                String name = locationToName(locationName);
+                addItem(deferredItem, name);
+            }
         }
 
         langEntriesToAdd.forEach(langEntry -> add(langEntry.translatableLang, langEntry.englishTranslation));

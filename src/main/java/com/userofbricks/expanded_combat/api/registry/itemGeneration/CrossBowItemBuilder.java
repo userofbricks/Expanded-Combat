@@ -4,7 +4,6 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 

@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.api.registry.itemGeneration;
 
 import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.api.material.MaterialBuilder;
 import net.minecraft.world.item.Item;
 
 public class GauntletItemBuilder {

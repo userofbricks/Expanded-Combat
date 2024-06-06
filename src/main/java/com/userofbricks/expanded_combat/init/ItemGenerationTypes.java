@@ -31,7 +31,7 @@ public class ItemGenerationTypes {
     //Arrows
     public static final DeferredRegister<ArrowType> ARROW_TYPES = DeferredRegister.create(Registries.ARROW_TYPE_REGISTRY, MODID);
     public static final DeferredHolder<ArrowType, ArrowType> STANDARD_ARROW = ARROW_TYPES.register("standard", () -> new ArrowType(ECArrowItem::new));
-    public static final DeferredHolder<ArrowType, ArrowType> STANDARD_TIPPED_ARROW = ARROW_TYPES.register("standard_tipped", () -> new ArrowType((properties, material) -> new ECTippedArrowItem(properties, material, notTipped)));
+    //public static final DeferredHolder<ArrowType, ArrowType> STANDARD_TIPPED_ARROW = ARROW_TYPES.register("standard_tipped", () -> new ArrowType((properties, material) -> new ECTippedArrowItem(properties, material, notTipped)));
 
     //CrossBows
     public static final DeferredRegister<CrossBowType> CROSSBOW_TYPES = DeferredRegister.create(Registries.CROSSBOW_TYPE_REGISTRY, MODID);

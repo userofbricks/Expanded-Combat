@@ -121,5 +121,12 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                 builder.generateWeaponModelAndStandardOverrides();
             }
         }
+
+        if (item.get() instanceof ECShieldItem) {
+            withExistingParent(item.getId().getPath(), modLoc("item/bases/shield"))
+                    .override()
+                    .predicate(new ResourceLocation("blocking"), 1.0f)
+                    .model(withExistingParent(item.getId().getPath() + "_blocking", modLoc("item/bases/shield_blocking")));
+        }
     }
 }

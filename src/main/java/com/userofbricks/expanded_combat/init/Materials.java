@@ -2,10 +2,8 @@ package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -22,8 +20,8 @@ public class Materials {
     public static final ResourceKey<Material> VANILLA_KEY = createMaterialKey(modLoc("vanilla"));
     public static Holder.Reference<Material> LEATHER;
     public static final ResourceKey<Material> LEATHER_KEY = createMaterialKey(modLoc("leather"));
-    public static Holder.Reference<Material> RABBIT_LEATHER;
-    public static final ResourceKey<Material> RABBIT_LEATHER_KEY = createMaterialKey(modLoc("rabbit_hide"));
+    public static Holder.Reference<Material> RABBIT_HIDE;
+    public static final ResourceKey<Material> RABBIT_HIDE_KEY = createMaterialKey(modLoc("rabbit_hide"));
     public static Holder.Reference<Material> WOOD_PLANK;
     public static final ResourceKey<Material> WOOD_PLANK_KEY = createMaterialKey(modLoc("wood_plank"));
     public static Holder.Reference<Material> STONE;
@@ -70,7 +68,7 @@ public class Materials {
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 1, 0, 0, 2.75f, 0.45f),
                         Ingredient.of(Items.LEATHER)
                 ));
-                RABBIT_LEATHER = bootstrap.register(RABBIT_LEATHER_KEY, new Material(
+                RABBIT_HIDE = bootstrap.register(RABBIT_HIDE_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(110, 75),
                         new Material.EnchantingRelated(5, 15, 0),
                         new Material.Offense(1, 0, 0.05, false, true, 1, 3),

@@ -2,13 +2,11 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -20,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
@@ -48,8 +47,9 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
         materialBlocks.put(Materials.GOLD, Items.GOLD_BLOCK);
         materialBlocks.put(Materials.DIAMOND, Items.DIAMOND_BLOCK);
 
-
-        //TODO: add diamond weapons to map
+        for (DeferredItem<? extends ECWeaponItem> weapon : DIAMOND_WEAPONS) {
+            diamondWeapons.put(weapon.get().weapon, weapon);
+        }
     }
 
     @Override
@@ -180,7 +180,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
 
 
-        FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, IRON_ARROW, 1)
+        FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, IRON_ARROW.get(), 1)
                 .unlockedBy(getHasName(FLETCHED_STICKS), has(FLETCHED_STICKS))
                 .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), new ResourceLocation(MODID, "iron_arrow_fletching2"));

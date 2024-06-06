@@ -51,7 +51,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 @Mod(MODID)
 public class ExpandedCombat {
     public static final String MODID = "expanded_combat";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
     public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
@@ -76,6 +76,7 @@ public class ExpandedCombat {
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
+        //WeaponTypes.setKeys();
         ECItems.ITEMS.register(bus);
         ECItemTags.loadTags();
         ECCreativeTabs.loadClass();

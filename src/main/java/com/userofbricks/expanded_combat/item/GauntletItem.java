@@ -9,11 +9,14 @@ import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -84,12 +87,18 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     public GauntletItem(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
-        super(
-                properties.durability(materialIn.value().durabilities().gauntletDurability())
-        );
+        super(properties);
         this.material = materialIn;
         this.GAUNTLET_TEXTURE_LAYERS = layers;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
+    }
+    public @NotNull DataComponentMap components() {
+        DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
+
+        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().gauntletDurability());
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+
+        return Item.Properties.validateComponents(components.build());
     }
     public Material getMaterial() {
         return this.material.value();
