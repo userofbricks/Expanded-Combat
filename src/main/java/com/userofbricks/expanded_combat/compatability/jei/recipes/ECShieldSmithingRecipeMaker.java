@@ -2,11 +2,11 @@ package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.init.MaterialInit.shieldToMaterialsList;
+import static com.userofbricks.expanded_combat.init.PluginInit.shieldToMaterialsList;
 
 public class ECShieldSmithingRecipeMaker {
     public static List<IShieldSmithingRecipe> createShieldSmithingRecipes(IStackHelper stackHelper) {
@@ -31,7 +31,7 @@ public class ECShieldSmithingRecipeMaker {
             bases.add(new ItemStack(shieldToMaterials.itemLikeSupplier().get()));
         }
         for (Material material :
-                MaterialInit.shieldMaterials) {
+                PluginInit.shieldMaterials) {
             ItemStack shield = new ItemStack(material.getConfig().fireResistant ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD.get());
             shield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
@@ -42,7 +42,7 @@ public class ECShieldSmithingRecipeMaker {
         }
 
         for (Material material :
-                MaterialInit.shieldMaterials) {
+                PluginInit.shieldMaterials) {
             Ingredient addition = Ingredient.of(IngredientUtil.toItemLikeArray(material.getConfig().crafting.repairItem));
             if (addition.isEmpty() || addition.test(ItemStack.EMPTY) || addition.test(new ItemStack(Items.AIR))) continue;
 

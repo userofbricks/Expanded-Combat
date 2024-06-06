@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat;
 
 import com.mojang.logging.LogUtils;
-import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
@@ -10,7 +9,6 @@ import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.Shi
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
-import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
@@ -26,8 +24,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.DistExecutor;
 import net.neoforged.fml.InterModComms;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -36,15 +32,14 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.slf4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -70,7 +65,7 @@ public class ExpandedCombat {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         ItemGenerationTypes.GAUNTLET_TYPES.register(bus);
-        MaterialInit.loadClass();
+        PluginInit.loadClass();
         DataAttachments.ATTACHMENT_TYPES.register(bus);
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
@@ -131,13 +126,12 @@ public class ExpandedCombat {
         MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
         MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
         
-        for (RegistryEntry<? extends Item> registryEntry: ECItems.ITEMS) {
+        for (DeferredItem<? extends Item> registryEntry: ECItems.ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList())
+        {
             if (registryEntry.get() instanceof GauntletItem gauntletItem)
                 CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
-        }
-        for (Material material : MaterialInit.quiverMaterials) {
-            ECQuiverItem quiverItem = (ECQuiverItem) material.getQuiverEntry().get();
-            CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
+            else if (registryEntry.get() instanceof ECQuiverItem quiverItem)
+                CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelsProperties.registerModelOverides();
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);

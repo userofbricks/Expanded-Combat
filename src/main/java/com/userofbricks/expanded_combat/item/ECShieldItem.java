@@ -4,7 +4,7 @@ import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
-import com.userofbricks.expanded_combat.init.MaterialInit;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -169,7 +169,7 @@ public class ECShieldItem extends ShieldItem {
             else materials.put(material, 1);
         }
         for (Map.Entry<Holder<Material>, Integer> material : materials.entrySet()) {
-            ShieldMaterialUseTick useTick = MaterialInit.getShieldUseTickEntry(material.getKey());
+            ShieldMaterialUseTick useTick = PluginInit.getShieldUseTickEntry(material.getKey());
             if (useTick != null) useTick.onUseTick().apply(level, livingEntity, itemStack, timeUsing, material.getValue());
         }
     }

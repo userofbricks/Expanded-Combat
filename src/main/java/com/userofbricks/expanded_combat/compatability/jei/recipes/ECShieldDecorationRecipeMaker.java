@@ -1,9 +1,9 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.init.MaterialInit;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import mezz.jei.api.constants.ModIds;
 import mezz.jei.api.helpers.IStackHelper;
 import net.minecraft.core.Holder;
@@ -32,7 +32,7 @@ public class ECShieldDecorationRecipeMaker {
         Set<DyeColor> colors = EnumSet.noneOf(DyeColor.class);
 
         List<CraftingRecipe> craftingRecipes = new ArrayList<>();
-        for (Material shieldMaterial : MaterialInit.shieldMaterials) {
+        for (Material shieldMaterial : PluginInit.shieldMaterials) {
 
             List<CraftingRecipe> craftingRecipesForShield = StreamSupport.stream(banners.spliterator(), false)
                     .filter(Holder::isBound)

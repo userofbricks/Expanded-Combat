@@ -24,6 +24,6 @@ public class ECEntities {
 
     public static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS = DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, MODID);
 
-    public static final Supplier<EntityDataSerializer<Holder<Material>>> MATERIAL = ENTITY_DATA_SERIALIZERS.register("material", () -> EntityDataSerializer.forValueType(
+    public static final Supplier<EntityDataSerializer<Holder.Reference<Material>>> MATERIAL = ENTITY_DATA_SERIALIZERS.register("material", () -> EntityDataSerializer.forValueType(
             ByteBufCodecs.holderRegistry(Registries.MATERIAL_REGISTRY_KEY)));
 }

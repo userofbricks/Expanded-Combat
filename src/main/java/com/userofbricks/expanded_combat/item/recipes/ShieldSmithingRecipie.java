@@ -2,11 +2,11 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,16 +40,16 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         if (!Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(SHIELDS).contains(base.getItem())) return false;
         if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
                 && inventory.getItem(5).isEmpty()) return false;
-        Material ul_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
-        Material ur_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
-        Material dl_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
-        Material dr_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
-        Material m_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
-        Material addition_ul_material = MaterialInit.valueOfShield(inventory.getItem(1));
-        Material addition_ur_material = MaterialInit.valueOfShield(inventory.getItem(2));
-        Material addition_dl_material = MaterialInit.valueOfShield(inventory.getItem(4));
-        Material addition_dr_material = MaterialInit.valueOfShield(inventory.getItem(5));
-        Material addition_m_material = MaterialInit.valueOfShield(inventory.getItem(3));
+        Material ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
+        Material ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
+        Material dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
+        Material dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
+        Material m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
+        Material addition_ul_material = PluginInit.valueOfShield(inventory.getItem(1));
+        Material addition_ur_material = PluginInit.valueOfShield(inventory.getItem(2));
+        Material addition_dl_material = PluginInit.valueOfShield(inventory.getItem(4));
+        Material addition_dr_material = PluginInit.valueOfShield(inventory.getItem(5));
+        Material addition_m_material = PluginInit.valueOfShield(inventory.getItem(3));
         if (addition_ul_material.getConfig().crafting.isSingleAddition || addition_ur_material.getConfig().crafting.isSingleAddition || addition_dl_material.getConfig().crafting.isSingleAddition
                 || addition_dr_material.getConfig().crafting.isSingleAddition || addition_m_material.getConfig().crafting.isSingleAddition) return false;
 
@@ -70,16 +70,16 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     @Override
     public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("ul", base.getItem());
-        Material ur_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("ur", base.getItem());
-        Material dl_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : MaterialInit.getMaterialForShieldPart("dl", base.getItem());
-        Material dr_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : MaterialInit.getMaterialForShieldPart("dr", base.getItem());
-        Material m_material = base.getItem() instanceof ECShieldItem ? MaterialInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : MaterialInit.getMaterialForShieldPart("m", base.getItem());
-        Material addition_ul_material = MaterialInit.valueOfShield(inventory.getItem(1));
-        Material addition_ur_material = MaterialInit.valueOfShield(inventory.getItem(2));
-        Material addition_dl_material = MaterialInit.valueOfShield(inventory.getItem(4));
-        Material addition_dr_material = MaterialInit.valueOfShield(inventory.getItem(5));
-        Material addition_m_material = MaterialInit.valueOfShield(inventory.getItem(3));
+        Material ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
+        Material ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
+        Material dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
+        Material dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
+        Material m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
+        Material addition_ul_material = PluginInit.valueOfShield(inventory.getItem(1));
+        Material addition_ur_material = PluginInit.valueOfShield(inventory.getItem(2));
+        Material addition_dl_material = PluginInit.valueOfShield(inventory.getItem(4));
+        Material addition_dr_material = PluginInit.valueOfShield(inventory.getItem(5));
+        Material addition_m_material = PluginInit.valueOfShield(inventory.getItem(3));
 
         Material result_ul_material = inventory.getItem(1).isEmpty() ? ul_material: addition_ul_material;
         Material result_ur_material = inventory.getItem(2).isEmpty() ? ur_material: addition_ur_material;
@@ -150,7 +150,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
 
     @Override
     public boolean isAdditionIngredient(ItemStack stack) {
-        for (Material material : MaterialInit.shieldMaterials) {
+        for (Material material : PluginInit.shieldMaterials) {
             if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(stack) && !material.getConfig().crafting.isSingleAddition) {
                 return true;
             }

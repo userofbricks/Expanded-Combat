@@ -187,6 +187,10 @@ public class ECArrow extends AbstractArrow {
         return material.value();
     }
 
+    public Holder<Material> getMaterialHolder() {
+        return material;
+    }
+
     public void setArrowType(Holder<Material> arrowMaterial) {
         this.material = arrowMaterial;
     }

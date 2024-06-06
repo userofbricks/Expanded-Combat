@@ -1,12 +1,12 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.api.material.WeaponMaterial;
-import com.userofbricks.expanded_combat.init.*;
+import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
@@ -19,9 +19,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-
-import java.util.Map;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 

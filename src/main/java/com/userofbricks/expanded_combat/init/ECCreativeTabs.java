@@ -1,25 +1,20 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.MutableHashedLinkedMap;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
-import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
 @Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -35,12 +30,12 @@ public class ECCreativeTabs {
                         output.accept(SOLIDIFIED_PURIFICATION.get());
                         output.accept(ALLAY_ITEM.get());
                         if (CONFIG.enableGauntlets) {
-                            for (Material material : MaterialInit.gauntletMaterials) {
+                            for (Material material : PluginInit.gauntletMaterials) {
                                 output.accept(material.getGauntletEntry().get());
                             }
                         }
                         if (CONFIG.enableShields) {
-                            for (Material material : MaterialInit.shieldMaterials) {
+                            for (Material material : PluginInit.shieldMaterials) {
                                 ItemStack stack;
                                 if (!material.getConfig().fireResistant) {
                                     stack = SHIELD.get().getDefaultInstance();
@@ -58,28 +53,28 @@ public class ECCreativeTabs {
                             }
                         }
                         if (CONFIG.enableBows) {
-                            for (Material material : MaterialInit.bowMaterials) {
+                            for (Material material : PluginInit.bowMaterials) {
                                 if (!material.halfbow || CONFIG.enableHalfBows) {
                                     output.accept(material.getBowEntry().get());
                                 }
                             }
                         }
                         if (CONFIG.enableCrossbows) {
-                            for (Material material : MaterialInit.crossbowMaterials) {
+                            for (Material material : PluginInit.crossbowMaterials) {
                                 output.accept(material.getCrossbowEntry().get());
                             }
                         }
                         if (CONFIG.enableQuivers) {
-                            for (Material material : MaterialInit.quiverMaterials) {
+                            for (Material material : PluginInit.quiverMaterials) {
                                 output.accept(material.getQuiverEntry().get());
                             }
                         }
                         if (CONFIG.enableArrows) {
-                            for (Material material : MaterialInit.arrowMaterials) {
+                            for (Material material : PluginInit.arrowMaterials) {
                                 output.accept(material.getArrowEntry().get());
                             }
                             for (Potion potion : ForgeRegistries.POTIONS) {
-                                for (Material material : MaterialInit.arrowMaterials) {
+                                for (Material material : PluginInit.arrowMaterials) {
                                     if (!potion.getEffects().isEmpty()) {
                                         output.accept(PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion));
                                     }
@@ -88,7 +83,7 @@ public class ECCreativeTabs {
                         }
                         if (CONFIG.enableWeapons) {
                             for (Material material :
-                                    MaterialInit.weaponMaterials) {
+                                    PluginInit.weaponMaterials) {
                                 for (RegistryEntry<? extends Item> itemRegistry :
                                         material.getWeapons().values()) {
                                     output.accept(itemRegistry.get().getDefaultInstance());
@@ -111,7 +106,7 @@ public class ECCreativeTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             if (CONFIG.enableGauntlets) {
-                for (Material material : MaterialInit.gauntletMaterials) {
+                for (Material material : PluginInit.gauntletMaterials) {
                     if (material == VanillaECPlugin.LEATHER) {
                         items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     } else if (material == VanillaECPlugin.IRON) {
@@ -128,8 +123,8 @@ public class ECCreativeTabs {
                 }
             }
             if (CONFIG.enableShields) {
-                for (int shieldListLocation = MaterialInit.shieldMaterials.size() - 1; shieldListLocation > -1; shieldListLocation--) {
-                    Material material = MaterialInit.shieldMaterials.get(shieldListLocation);
+                for (int shieldListLocation = PluginInit.shieldMaterials.size() - 1; shieldListLocation > -1; shieldListLocation--) {
+                    Material material = PluginInit.shieldMaterials.get(shieldListLocation);
                     ItemStack stack;
                     if (!material.getConfig().fireResistant) {
                         stack = SHIELD.get().getDefaultInstance();
@@ -148,28 +143,28 @@ public class ECCreativeTabs {
                 }
             }
             if (CONFIG.enableBows) {
-                for (Material material : MaterialInit.bowMaterials) {
+                for (Material material : PluginInit.bowMaterials) {
                     if (!material.halfbow || CONFIG.enableHalfBows) {
                         items.putAfter(new ItemStack(Items.BOW), new ItemStack(material.getBowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }
             if (CONFIG.enableCrossbows) {
-                for (Material material : MaterialInit.crossbowMaterials) {
+                for (Material material : PluginInit.crossbowMaterials) {
                     items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(material.getCrossbowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableQuivers) {
-                for (Material material : MaterialInit.quiverMaterials) {
+                for (Material material : PluginInit.quiverMaterials) {
                     items.putBefore(new ItemStack(Items.ARROW), new ItemStack(material.getQuiverEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableArrows) {
-                for (Material material : MaterialInit.arrowMaterials) {
+                for (Material material : PluginInit.arrowMaterials) {
                     items.putAfter(new ItemStack(Items.ARROW), new ItemStack(material.getArrowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
                 for (Potion potion : ForgeRegistries.POTIONS) {
-                    for (Material material : MaterialInit.arrowMaterials) {
+                    for (Material material : PluginInit.arrowMaterials) {
                         if (!potion.getEffects().isEmpty()) {
                             items.putAfter(PotionUtils.setPotion(new ItemStack(Items.TIPPED_ARROW), potion), PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                         }
@@ -178,7 +173,7 @@ public class ECCreativeTabs {
             }
             if (CONFIG.enableWeapons) {
                 for (Material material :
-                        MaterialInit.weaponMaterials) {
+                        PluginInit.weaponMaterials) {
                     for (RegistryEntry<? extends Item> itemRegistry :
                             material.getWeapons().values()) {
                         items.put(itemRegistry.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

@@ -3,9 +3,9 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
@@ -35,8 +35,8 @@ public class ShieldEvents {
                 double damagePercent = CONFIG.vanilla.defense.afterBasePercentReduction;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
-                }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    damagePercent = MaterialInit.getShieldToMaterialPercentageProtection(shieldItemStack);
+                }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                    damagePercent = PluginInit.getShieldToMaterialPercentageProtection(shieldItemStack);
                 }
                 damageBlocked += (float) (damageLeftToBlock * damagePercent);
             }
@@ -51,8 +51,8 @@ public class ShieldEvents {
                 double protectionAmount = CONFIG.vanilla.defense.baseProtectionAmmount;
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
-                }else if (MaterialInit.doesShieldHaveEntry(shieldItemStack.getItem())){
-                    protectionAmount = MaterialInit.getShieldToMaterialBaseProtection(shieldItemStack);
+                }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                    protectionAmount = PluginInit.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
                 damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
             }

@@ -1,14 +1,16 @@
 package com.userofbricks.expanded_combat.client.renderer;
 
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.entity.ECArrow;
-import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.TippableArrowRenderer;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import java.util.Optional;
 
 public class ECArrowRenderer extends ArrowRenderer<ECArrow> {
 
@@ -18,8 +20,10 @@ public class ECArrowRenderer extends ArrowRenderer<ECArrow> {
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(ECArrow entity) {
-        Material material = entity.getMaterial();
-        return material == null ? TippableArrowRenderer.NORMAL_ARROW_LOCATION :
-                new ResourceLocation(MODID, "textures/entity/projectiles/" + material.getLocationName() + "_arrow.png");
+        Holder<Material> material = entity.getMaterialHolder();
+        Optional<ResourceKey<Material>> optionalKey = material.unwrapKey();
+        return optionalKey.map(
+                materialResourceKey -> new ResourceLocation(materialResourceKey.location().getNamespace(), "textures/entity/projectiles/" + materialResourceKey.location().getPath() + "_arrow.png")
+        ).orElse(TippableArrowRenderer.NORMAL_ARROW_LOCATION);
     }
 }

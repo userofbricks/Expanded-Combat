@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
-import com.userofbricks.expanded_combat.init.MaterialInit;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -34,7 +34,7 @@ public class ECTippedArrowRecipe extends CustomRecipe {
                         if (!itemstack.is(Items.LINGERING_POTION)) {
                             return false;
                         }
-                    } else if (!(itemstack.getItem() instanceof ECArrowItem ecArrowItem && MaterialInit.arrowMaterials.contains(ecArrowItem.getMaterial())) || !areArrowTypesEqual(inv)) {
+                    } else if (!(itemstack.getItem() instanceof ECArrowItem ecArrowItem && PluginInit.arrowMaterials.contains(ecArrowItem.getMaterial())) || !areArrowTypesEqual(inv)) {
                         return false;
                     }
                 }
@@ -50,7 +50,7 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         ItemStack itemstack = inv.getItem(1 + inv.getWidth());
         ECArrowItem ecArrowItem = ((ECArrowItem)inv.getItem(0).getItem());
 
-        if (MaterialInit.arrowMaterials.contains(ecArrowItem.getMaterial())
+        if (PluginInit.arrowMaterials.contains(ecArrowItem.getMaterial())
                 && itemstack.is(Items.LINGERING_POTION)
                 && areArrowTypesEqual(inv)) {
             Item tippedArrow = ecArrowItem.getMaterial().getTippedArrowEntry().get();

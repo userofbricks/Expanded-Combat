@@ -26,7 +26,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.init.MaterialInit.valueOfShield;
+import static com.userofbricks.expanded_combat.init.PluginInit.valueOfShield;
 
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {

@@ -1,9 +1,6 @@
 package com.userofbricks.expanded_combat.plugins;
 
-import com.userofbricks.expanded_combat.api.registry.ECPlugin;
-import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
-import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
-import com.userofbricks.expanded_combat.api.registry.ShieldToMaterials;
+import com.userofbricks.expanded_combat.api.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
@@ -18,7 +15,7 @@ public class VanillaECPlugin implements IExpandedCombatPlugin {
         return modLoc("vanilla");
     }
     @Override
-    public void registerShieldToMaterials(RegistrationHandler.ShieldMaterialRegisterator registrationHandler) {
+    public void registerShieldToMaterials(ShieldMaterialRegisterator registrationHandler) {
         registrationHandler.registerShieldToMaterials(new ShieldToMaterials(() -> Items.SHIELD, WOOD_PLANK, WOOD_PLANK, IRON, WOOD_PLANK, WOOD_PLANK));
     }
     @Override

@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.compatability.jei;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.compatability.jei.container_handelers.CuriosContainerHandler;
@@ -8,13 +7,13 @@ import com.userofbricks.expanded_combat.compatability.jei.item_subtype.ShieldSub
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.FletchingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipes.*;
+import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECContainers;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.api.material.Material;
-import com.userofbricks.expanded_combat.init.MaterialInit;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
@@ -28,17 +27,14 @@ import mezz.jei.api.helpers.IStackHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
-import mezz.jei.common.util.ErrorUtil;
-import mezz.jei.library.plugins.vanilla.brewing.PotionSubtypeInterpreter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.client.gui.CuriosScreenV2;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -65,19 +61,17 @@ public class ECJEIPlugin implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
         for (Material material :
-                MaterialInit.arrowMaterials) {
+                PluginInit.arrowMaterials) {
             registration.registerSubtypeInterpreter(material.getTippedArrowEntry().get(), PotionSubtypeInterpreter.INSTANCE);
         }
         for (Material material :
-                MaterialInit.weaponMaterials) {
+                PluginInit.weaponMaterials) {
             material.getWeapons().forEach((weaponName, registryEntry) -> {
                 if (registryEntry.get() instanceof PotionWeaponItem) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
             });
         }
         registration.registerSubtypeInterpreter(ECItems.SHIELD.get(), ShieldSubtypeInterpreter.INSTANCE);
         registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_2.get(), ShieldSubtypeInterpreter.INSTANCE);
-        registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_3.get(), ShieldSubtypeInterpreter.INSTANCE);
-        registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_4.get(), ShieldSubtypeInterpreter.INSTANCE);
     }
 
     @Override
@@ -99,7 +93,7 @@ public class ECJEIPlugin implements IModPlugin {
         IStackHelper stackHelper = jeiHelpers.getStackHelper();
         ECRecipes vanillaRecipes = new ECRecipes(ingredientManager);
         for (Material material :
-                MaterialInit.arrowMaterials) {
+                PluginInit.arrowMaterials) {
             registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(stackHelper, (ECArrowItem) material.getArrowEntry().get()));
         }
 
