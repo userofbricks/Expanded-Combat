@@ -43,6 +43,9 @@ public class LangStrings extends LanguageProvider {
     public static final String LOWER_RIGHT_MATERIAL = createLangEntry("tooltip.expanded_combat.shield_material.lower_right", "Lower Right: ");
     public static final String SHIELD_MATERIAL_LANG_START = "tooltip.expanded_combat.shield_material.";
     public static final String SHIELD_UPGRADE_CONTAINER = createLangEntry("container.upgrade_shield", "Upgrade Shield");
+    public static final String MISSING_SHIELD_TOOLTIP = createLangEntry("container.upgrade.missing_shield_tooltip", "Add Shield");
+
+
     //Arrow Lang
     public static final String TIPPED_ARROW_POTION_ENDING = "arrow.expanded_combat.effect.";
     //Key Lang
