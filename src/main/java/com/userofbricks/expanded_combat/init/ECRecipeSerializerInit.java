@@ -34,10 +34,6 @@ public class ECRecipeSerializerInit {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> EC_SHIELD_DECORATION = RECIPE_SERIALIZERS.register("ec_shield_decoration", () -> new SimpleCraftingRecipeSerializer<>(ECShieldDecorationRecipe::new));
 
 
-    //vanilla variants
-    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> SMITHING_TRANSFORM_WITHOUT_TEMPLATE = RECIPE_SERIALIZERS.register("smithing_transform_without_template", SmithingTransformWithoutTemplateRecipe.Serializer::new);
-
-
 
 
     public static final DeferredRegister<MapCodec<? extends ICondition>> CONDITION_CODECS = DeferredRegister.create(NeoForgeRegistries.Keys.CONDITION_CODECS, MODID);
