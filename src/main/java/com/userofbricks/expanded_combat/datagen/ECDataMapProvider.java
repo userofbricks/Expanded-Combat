@@ -1,0 +1,37 @@
+package com.userofbricks.expanded_combat.datagen;
+
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.init.DataMaps;
+import com.userofbricks.expanded_combat.init.Materials;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.data.DataMapProvider;
+
+import java.util.concurrent.CompletableFuture;
+
+public class ECDataMapProvider extends DataMapProvider {
+    protected ECDataMapProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(packOutput, lookupProvider);
+    }
+
+    @Override
+    protected void gather() {
+        builder(DataMaps.SHIELD_INGREDIENT_MAP)
+                .add(Items.LEATHER.builtInRegistryHolder(), Materials.LEATHER, false)
+                .add(Items.RABBIT_HIDE.builtInRegistryHolder(), Materials.RABBIT_HIDE, false)
+                .add(ItemTags.PLANKS, Materials.WOOD_PLANK, false)
+                .add(ItemTags.STONE_CRAFTING_MATERIALS, Materials.STONE, false)
+                .add(Items.IRON_INGOT.builtInRegistryHolder(), Materials.IRON, false)
+                .add(Items.GOLD_INGOT.builtInRegistryHolder(), Materials.GOLD, false)
+                .add(Items.DIAMOND.builtInRegistryHolder(), Materials.DIAMOND, false)
+                .add(Items.NETHERITE_INGOT.builtInRegistryHolder(), Materials.NETHERITE, false)
+        ;
+        builder(DataMaps.SHIELD_MATERIALS)
+                .add(Items.SHIELD.builtInRegistryHolder(),
+                        new ShieldMaterials(Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.IRON, 0),
+                        false)
+        ;
+    }
+}

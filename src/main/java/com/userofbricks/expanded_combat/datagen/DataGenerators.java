@@ -61,5 +61,6 @@ public class DataGenerators {
                         Set.of(MODID)
                 )
         );
+        generator.addProvider(event.includeServer(), new ECDataMapProvider(output, provider));
     }
 }
