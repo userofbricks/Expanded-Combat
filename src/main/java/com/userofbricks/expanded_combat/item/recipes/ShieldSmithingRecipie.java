@@ -1,15 +1,14 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.PluginInit;
-import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -17,84 +16,87 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Objects;
-
-import static com.userofbricks.expanded_combat.init.ECItemTags.SHIELDS;
 
 public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
-    private final ResourceLocation id;
 
-    public ShieldSmithingRecipie(ResourceLocation id) {
-        this.id = id;
-    }
+    public ShieldSmithingRecipie() {}
 
     @Override
     public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
-        if (!Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(SHIELDS).contains(base.getItem())) return false;
+        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (shieldMaterials == null) {
+            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
+        }
+        if (shieldMaterials == null) return false;
         if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
                 && inventory.getItem(5).isEmpty()) return false;
-        Material ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
-        Material ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
-        Material dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
-        Material dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
-        Material m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
-        Material addition_ul_material = PluginInit.valueOfShield(inventory.getItem(1));
-        Material addition_ur_material = PluginInit.valueOfShield(inventory.getItem(2));
-        Material addition_dl_material = PluginInit.valueOfShield(inventory.getItem(4));
-        Material addition_dr_material = PluginInit.valueOfShield(inventory.getItem(5));
-        Material addition_m_material = PluginInit.valueOfShield(inventory.getItem(3));
-        if (addition_ul_material.getConfig().crafting.isSingleAddition || addition_ur_material.getConfig().crafting.isSingleAddition || addition_dl_material.getConfig().crafting.isSingleAddition
-                || addition_dr_material.getConfig().crafting.isSingleAddition || addition_m_material.getConfig().crafting.isSingleAddition) return false;
 
-        if (!addition_ul_material.satifiesOnlyReplaceRequirement(ul_material.getName())) return false;
-        if (!addition_ur_material.satifiesOnlyReplaceRequirement(ur_material.getName())) return false;
-        if (!addition_dl_material.satifiesOnlyReplaceRequirement(dl_material.getName())) return false;
-        if (!addition_dr_material.satifiesOnlyReplaceRequirement(dr_material.getName())) return false;
-        if (!addition_m_material.satifiesOnlyReplaceRequirement(m_material.getName())) return false;
+        Holder<Material> addition_ul_material = inventory.getItem(1).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_ur_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_dl_material = inventory.getItem(4).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_dr_material = inventory.getItem(5).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_m_material = inventory.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
 
-        boolean is_ul = (ul_material != addition_ul_material) || inventory.getItem(1).getItem() == Items.AIR;
-        boolean is_ur = (ur_material != addition_ur_material) || inventory.getItem(2).getItem() == Items.AIR;
-        boolean is_dl = (dl_material != addition_dl_material) || inventory.getItem(4).getItem() == Items.AIR;
-        boolean is_dr = (dr_material != addition_dr_material) || inventory.getItem(5).getItem() == Items.AIR;
-        boolean is_m = (m_material != addition_m_material) || inventory.getItem(3).getItem() == Items.AIR;
+        if (addition_ul_material == null || addition_ur_material == null || addition_dl_material == null
+                || addition_dr_material == null || addition_m_material == null) return false;
+        if (addition_ul_material.value().isSingleAddition() || addition_ur_material.value().isSingleAddition() || addition_dl_material.value().isSingleAddition()
+                || addition_dr_material.value().isSingleAddition() || addition_m_material.value().isSingleAddition()) return false;
+
+        if (!shieldMaterials.canReplaceUL(addition_ul_material)
+                || !shieldMaterials.canReplaceUR(addition_ur_material)
+                || !shieldMaterials.canReplaceDL(addition_dl_material)
+                || !shieldMaterials.canReplaceDR(addition_dr_material)
+                || !shieldMaterials.canReplaceM(addition_m_material)
+        ) return false;
+
+        boolean is_ul = (shieldMaterials.ULMaterial != addition_ul_material) || inventory.getItem(1).getItem() == Items.AIR;
+        boolean is_ur = (shieldMaterials.URMaterial != addition_ur_material) || inventory.getItem(2).getItem() == Items.AIR;
+        boolean is_dl = (shieldMaterials.DLMaterial != addition_dl_material) || inventory.getItem(4).getItem() == Items.AIR;
+        boolean is_dr = (shieldMaterials.DRMaterial != addition_dr_material) || inventory.getItem(5).getItem() == Items.AIR;
+        boolean is_m = (shieldMaterials.MMaterial != addition_m_material) || inventory.getItem(3).getItem() == Items.AIR;
         return is_ul && is_ur && is_dl && is_dr && is_m;
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
+    public @NotNull ItemStack assemble(Container inventory, @NotNull HolderLookup.Provider p_267165_) {
         ItemStack base = inventory.getItem(0);
-        Material ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
-        Material ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
-        Material dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
-        Material dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
-        Material m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
-        Material addition_ul_material = PluginInit.valueOfShield(inventory.getItem(1));
-        Material addition_ur_material = PluginInit.valueOfShield(inventory.getItem(2));
-        Material addition_dl_material = PluginInit.valueOfShield(inventory.getItem(4));
-        Material addition_dr_material = PluginInit.valueOfShield(inventory.getItem(5));
-        Material addition_m_material = PluginInit.valueOfShield(inventory.getItem(3));
 
-        Material result_ul_material = inventory.getItem(1).isEmpty() ? ul_material: addition_ul_material;
-        Material result_ur_material = inventory.getItem(2).isEmpty() ? ur_material: addition_ur_material;
-        Material result_dl_material = inventory.getItem(4).isEmpty() ? dl_material: addition_dl_material;
-        Material result_dr_material = inventory.getItem(5).isEmpty() ? dr_material: addition_dr_material;
-        Material result_m_material = inventory.getItem(3).isEmpty() ? m_material: addition_m_material;
-        ItemStack result = new ItemStack(ECItems.SHIELD.get());
-        if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
-            result = new ItemStack(ECItems.SHIELD_TIER_3.get());
+        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (shieldMaterials == null) {
+            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
         }
-        result.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, result_ul_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, result_ur_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, result_dl_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, result_dr_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, result_m_material.getName());
+        if (shieldMaterials == null) return ItemStack.EMPTY;
+
+        Holder<Material> addition_ul_material = inventory.getItem(1).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_ur_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_dl_material = inventory.getItem(4).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_dr_material = inventory.getItem(5).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Holder<Material> addition_m_material = inventory.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+
+        if (addition_ul_material == null || addition_ur_material == null || addition_dl_material == null
+                || addition_dr_material == null || addition_m_material == null) return ItemStack.EMPTY;
+
+        Holder<Material> result_ul_material = inventory.getItem(1).isEmpty() ? shieldMaterials.ULMaterial: addition_ul_material;
+        Holder<Material> result_ur_material = inventory.getItem(2).isEmpty() ? shieldMaterials.URMaterial: addition_ur_material;
+        Holder<Material> result_dl_material = inventory.getItem(4).isEmpty() ? shieldMaterials.DLMaterial: addition_dl_material;
+        Holder<Material> result_dr_material = inventory.getItem(5).isEmpty() ? shieldMaterials.DRMaterial: addition_dr_material;
+        Holder<Material> result_m_material = inventory.getItem(3).isEmpty() ? shieldMaterials.MMaterial: addition_m_material;
+
+        ItemStack result = new ItemStack(ECItems.SHIELD.get());
+        if (result_ul_material.value().defense().fireResistant()
+                || result_ur_material.value().defense().fireResistant()
+                || result_m_material.value().defense().fireResistant()
+                || result_dl_material.value().defense().fireResistant()
+                || result_dr_material.value().defense().fireResistant()) {
+            result = new ItemStack(ECItems.SHIELD_FIRE_RESISTANT.get());
+        }
+        result.set(ItemDataComponents.SHIELD_MATERIALS, new ShieldMaterials(result_ul_material, result_ur_material, result_dl_material, result_dr_material, result_m_material,
+                shieldMaterials.LastRepairNumber));
         return result;
     }
 
@@ -129,13 +131,8 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess p_267052_) {
+    public @NotNull ItemStack getResultItem(@NotNull HolderLookup.Provider p_267052_) {
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return this.id;
     }
 
     @Override
@@ -146,29 +143,5 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     @Override
     public boolean isSpecial() {
         return true;
-    }
-
-    @Override
-    public boolean isAdditionIngredient(ItemStack stack) {
-        for (Material material : PluginInit.shieldMaterials) {
-            if (IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem).test(stack) && !material.getConfig().crafting.isSingleAddition) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @ParametersAreNonnullByDefault
-    public static class Serializer implements RecipeSerializer<ShieldSmithingRecipie> {
-
-        public @NotNull ShieldSmithingRecipie fromJson(ResourceLocation location, JsonObject jsonObject) {
-            return new ShieldSmithingRecipie(location);
-        }
-
-        public ShieldSmithingRecipie fromNetwork(ResourceLocation location, FriendlyByteBuf packetBuffer) {
-            return new ShieldSmithingRecipie(location);
-        }
-
-        public void toNetwork(FriendlyByteBuf packetBuffer, ShieldSmithingRecipie shieldSmithingRecipie) {}
     }
 }

@@ -1,115 +1,106 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.PluginInit;
-import com.userofbricks.expanded_combat.item.ECShieldItem;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
 
-    public ShieldSmithingUpgradeRecipe(ResourceLocation id) {
-        super(id, Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, new ItemStack(ECItems.SHIELD.get()));
+    public ShieldSmithingUpgradeRecipe() {
+        super(Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, new ItemStack(ECItems.SHIELD.get()));
     }
 
     @Override
     public boolean matches(Container inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(1);
-        if (!(base.getItem() instanceof ECShieldItem)) return false;
-        if (inventory.getItem(2).isEmpty()) return false;
-        Material existing_ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
-        Material existing_ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
-        Material addition_m_material = PluginInit.valueOfShield(inventory.getItem(2));
-        Material existing_m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
-        Material existing_dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
-        Material existing_dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
-        if (!(addition_m_material.getConfig().crafting.isSingleAddition)) return false;
-        if (!(inventory.getItem(0).getItem() == ForgeRegistries.ITEMS.getValue(new ResourceLocation(addition_m_material.getConfig().crafting.smithingTemplate)))) {
-            return false;
+        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (shieldMaterials == null) {
+            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
         }
-        return addition_m_material.satifiesOnlyReplaceRequirement(existing_ur_material.getName()) ||
-                addition_m_material.satifiesOnlyReplaceRequirement(existing_ul_material.getName()) ||
-                addition_m_material.satifiesOnlyReplaceRequirement(existing_m_material.getName()) ||
-                addition_m_material.satifiesOnlyReplaceRequirement(existing_dr_material.getName()) ||
-                addition_m_material.satifiesOnlyReplaceRequirement(existing_dl_material.getName());
+        if (shieldMaterials == null) return false;
+
+        if (inventory.getItem(2).isEmpty()) return false;
+
+        Holder<Material> addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        if (addition_m_material == null || !(addition_m_material.value().isSingleAddition())) return false;
+        if (!(addition_m_material.value().smithingTemplate().test(inventory.getItem(0)))) return false;
+
+        return shieldMaterials.canReplaceUL(addition_m_material)
+                || shieldMaterials.canReplaceUR(addition_m_material)
+                || shieldMaterials.canReplaceDL(addition_m_material)
+                || shieldMaterials.canReplaceDR(addition_m_material)
+                || shieldMaterials.canReplaceM(addition_m_material);
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, @NotNull RegistryAccess p_267165_) {
+    public @NotNull ItemStack assemble(Container inventory, @NotNull HolderLookup.Provider access) {
         ItemStack base = inventory.getItem(1);
-        Material ul_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ul", ECShieldItem.getUpperLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("ul", base.getItem());
-        Material ur_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("ur", ECShieldItem.getUpperRightMaterial(base)) : PluginInit.getMaterialForShieldPart("ur", base.getItem());
-        Material dl_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dl", ECShieldItem.getDownLeftMaterial(base)) : PluginInit.getMaterialForShieldPart("dl", base.getItem());
-        Material dr_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("dr", ECShieldItem.getDownRightMaterial(base)) : PluginInit.getMaterialForShieldPart("dr", base.getItem());
-        Material m_material = base.getItem() instanceof ECShieldItem ? PluginInit.valueOfShield("m", ECShieldItem.getMiddleMaterial(base)) : PluginInit.getMaterialForShieldPart("m", base.getItem());
-        Material addition_material = PluginInit.valueOfShield(inventory.getItem(2));
-        Material result_ul_material = addition_material.satifiesOnlyReplaceRequirement(ul_material.getName()) ? addition_material: ul_material;
-        Material result_ur_material = addition_material.satifiesOnlyReplaceRequirement(ur_material.getName()) ? addition_material: ur_material;
-        Material result_dl_material = addition_material.satifiesOnlyReplaceRequirement(dl_material.getName()) ? addition_material: dl_material;
-        Material result_dr_material = addition_material.satifiesOnlyReplaceRequirement(dr_material.getName()) ? addition_material: dr_material;
-        Material result_m_material = addition_material.satifiesOnlyReplaceRequirement(m_material.getName()) ? addition_material: m_material;
+        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (shieldMaterials == null) {
+            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
+        }
+        if (shieldMaterials == null) return ItemStack.EMPTY;
+
+        Holder<Material> addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        if (addition_m_material == null) return ItemStack.EMPTY;
+
+        Holder<Material> result_ul_material = shieldMaterials.canReplaceUL(addition_m_material) ? addition_m_material: shieldMaterials.ULMaterial;
+        Holder<Material> result_ur_material = shieldMaterials.canReplaceUR(addition_m_material) ? addition_m_material: shieldMaterials.URMaterial;
+        Holder<Material> result_dl_material = shieldMaterials.canReplaceDL(addition_m_material) ? addition_m_material: shieldMaterials.DLMaterial;
+        Holder<Material> result_dr_material = shieldMaterials.canReplaceDR(addition_m_material) ? addition_m_material: shieldMaterials.DRMaterial;
+        Holder<Material> result_m_material = shieldMaterials.canReplaceM(addition_m_material) ? addition_m_material: shieldMaterials.MMaterial;
 
         ItemStack result = new ItemStack(ECItems.SHIELD.get());
-        if (result_ul_material.getConfig().fireResistant || result_ur_material.getConfig().fireResistant || result_m_material.getConfig().fireResistant || result_dl_material.getConfig().fireResistant || result_dr_material.getConfig().fireResistant) {
-            result = new ItemStack(ECItems.SHIELD_TIER_3.get());
+        if (result_ul_material.value().defense().fireResistant()
+                || result_ur_material.value().defense().fireResistant()
+                || result_m_material.value().defense().fireResistant()
+                || result_dl_material.value().defense().fireResistant()
+                || result_dr_material.value().defense().fireResistant()) {
+            result = new ItemStack(ECItems.SHIELD_FIRE_RESISTANT.get());
         }
-        result.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, result_ul_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, result_ur_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, result_dl_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, result_dr_material.getName());
-        result.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, result_m_material.getName());
+        result.set(ItemDataComponents.SHIELD_MATERIALS, new ShieldMaterials(result_ul_material, result_ur_material, result_dl_material, result_dr_material, result_m_material,
+                shieldMaterials.LastRepairNumber));
         return result;
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(@NotNull HolderLookup.Provider registryAccess) {
         return new ItemStack(ECItems.SHIELD.get());
     }
 
     public boolean isTemplateIngredient(@NotNull ItemStack stack) {
-        return stack.isEmpty() || stack.getItem() == Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE;
+        return true;
     }
 
-    public boolean isBaseIngredient(@NotNull ItemStack stack) {
-        return stack.getItem() instanceof ECShieldItem;
+    public boolean isBaseIngredient(@NotNull ItemStack base) {
+        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (shieldMaterials == null) {
+            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
+        }
+        return shieldMaterials != null;
     }
 
     public boolean isAdditionIngredient(@NotNull ItemStack stack) {
-        return false; //PluginInit.valueOfShield(stack).getConfig().crafting.isSingleAddition;
+        Holder<Material> materialHolder = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        return materialHolder != null && materialHolder.value().isSingleAddition();
     }
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
         return ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get();
-    }
-
-    @ParametersAreNonnullByDefault
-    public static class Serializer implements RecipeSerializer<ShieldSmithingUpgradeRecipe> {
-
-        public @NotNull ShieldSmithingUpgradeRecipe fromJson(ResourceLocation location, JsonObject jsonObject) {
-            return new ShieldSmithingUpgradeRecipe(location);
-        }
-
-        public ShieldSmithingUpgradeRecipe fromNetwork(ResourceLocation location, FriendlyByteBuf packetBuffer) {
-            return new ShieldSmithingUpgradeRecipe(location);
-        }
-
-        public void toNetwork(FriendlyByteBuf packetBuffer, ShieldSmithingUpgradeRecipe shieldSmithingRecipie) {}
     }
 }

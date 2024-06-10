@@ -11,12 +11,15 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
@@ -107,5 +110,26 @@ public class ShieldMaterials implements TooltipProvider {
 
     public ShieldMaterials updateLastRepair(int lastRepairNumber) {
         return new ShieldMaterials(ULMaterial, URMaterial, DLMaterial, DRMaterial, MMaterial, lastRepairNumber);
+    }
+
+    public boolean canReplaceUL(Holder<Material> replacement) {
+        Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(ULMaterial.getRegisteredName()))).orElse(false);
+    }
+    public boolean canReplaceUR(Holder<Material> replacement) {
+        Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(URMaterial.getRegisteredName()))).orElse(false);
+    }
+    public boolean canReplaceDL(Holder<Material> replacement) {
+        Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DLMaterial.getRegisteredName()))).orElse(false);
+    }
+    public boolean canReplaceDR(Holder<Material> replacement) {
+        Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DRMaterial.getRegisteredName()))).orElse(false);
+    }
+    public boolean canReplaceM(Holder<Material> replacement) {
+        Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(MMaterial.getRegisteredName()))).orElse(false);
     }
 }

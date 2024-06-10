@@ -2,7 +2,9 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -13,12 +15,13 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.jetbrains.annotations.NotNull;
 
-public class ECShieldDecorationRecipe  extends CustomRecipe {
-    public ECShieldDecorationRecipe(ResourceLocation p_251738_, CraftingBookCategory p_251065_) {
-        super(p_251738_, p_251065_);
+public class ECShieldDecorationRecipe extends CustomRecipe {
+    public ECShieldDecorationRecipe(CraftingBookCategory p_251065_) {
+        super(p_251065_);
     }
 
     public boolean matches(CraftingContainer p_44308_, @NotNull Level p_44309_) {
@@ -43,7 +46,8 @@ public class ECShieldDecorationRecipe  extends CustomRecipe {
                         return false;
                     }
 
-                    if (BlockItem.getBlockEntityData(itemstack2) != null) {
+                    BannerPatternLayers bannerpatternlayers = itemstack2.getOrDefault(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY);
+                    if (!bannerpatternlayers.layers().isEmpty()) {
                         return false;
                     }
 
@@ -55,7 +59,7 @@ public class ECShieldDecorationRecipe  extends CustomRecipe {
         return !itemstack.isEmpty() && !itemstack1.isEmpty();
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer p_44306_, @NotNull RegistryAccess p_267112_) {
+    public @NotNull ItemStack assemble(CraftingContainer p_44306_, @NotNull HolderLookup.Provider p_267112_) {
         ItemStack itemstack = ItemStack.EMPTY;
         ItemStack itemstack1 = ItemStack.EMPTY;
 
@@ -71,10 +75,8 @@ public class ECShieldDecorationRecipe  extends CustomRecipe {
         }
 
         if (!itemstack1.isEmpty()) {
-            CompoundTag compoundtag = BlockItem.getBlockEntityData(itemstack);
-            CompoundTag compoundtag1 = compoundtag == null ? new CompoundTag() : compoundtag.copy();
-            compoundtag1.putInt("Base", ((BannerItem) itemstack.getItem()).getColor().getId());
-            BlockItem.setBlockEntityData(itemstack1, BlockEntityType.BANNER, compoundtag1);
+            itemstack1.set(DataComponents.BANNER_PATTERNS, itemstack.get(DataComponents.BANNER_PATTERNS));
+            itemstack1.set(DataComponents.BASE_COLOR, ((BannerItem)itemstack.getItem()).getColor());
         }
         return itemstack1;
     }
