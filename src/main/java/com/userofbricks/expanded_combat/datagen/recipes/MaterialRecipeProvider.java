@@ -2,18 +2,16 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.TippedArrowRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.conditions.ICondition;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
@@ -231,6 +229,11 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(tip), has(tip))
                 .unlockedBy(getHasName(stick), has(stick))
                 .unlockedBy(getHasName(feather), has(feather))
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
+    }
+
+    public static void tippedArrow(RecipeOutput recipeOutput, ItemLike tipped_arrow, ItemLike arrow) {
+        new TippedArrowRecipeBuilder(new ItemStack(tipped_arrow), Ingredient.of(arrow))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
     }
 

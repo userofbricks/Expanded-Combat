@@ -1,24 +1,25 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
-import com.userofbricks.expanded_combat.init.PluginInit;
-import com.userofbricks.expanded_combat.item.ECArrowItem;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class ECTippedArrowRecipe extends CustomRecipe {
-    public ECTippedArrowRecipe(CraftingBookCategory p_252163_) {
-        super(p_252163_);
+    final Ingredient arrow;
+    final ItemStack result;
+    public ECTippedArrowRecipe(CraftingBookCategory category, Ingredient arrow, ItemStack result) {super(category);
+        this.arrow = arrow;
+        this.result = result;
     }
 
     public boolean matches(CraftingContainer inv, @NotNull Level level) {
@@ -34,7 +35,7 @@ public class ECTippedArrowRecipe extends CustomRecipe {
                         if (!itemstack.is(Items.LINGERING_POTION)) {
                             return false;
                         }
-                    } else if (!(itemstack.getItem() instanceof ECArrowItem ecArrowItem && PluginInit.arrowMaterials.contains(ecArrowItem.getMaterial())) || !areArrowTypesEqual(inv)) {
+                    } else if (!arrow.test(itemstack)) {
                         return false;
                     }
                 }
@@ -46,20 +47,15 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         }
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull HolderLookup.Provider registryAccess) {
         ItemStack itemstack = inv.getItem(1 + inv.getWidth());
-        ECArrowItem ecArrowItem = ((ECArrowItem)inv.getItem(0).getItem());
-
-        if (PluginInit.arrowMaterials.contains(ecArrowItem.getMaterial())
-                && itemstack.is(Items.LINGERING_POTION)
-                && areArrowTypesEqual(inv)) {
-            Item tippedArrow = ecArrowItem.getMaterial().getTippedArrowEntry().get();
-            ItemStack itemstack1 = new ItemStack(tippedArrow, 8);
-            PotionUtils.setPotion(itemstack1, PotionUtils.getPotion(itemstack));
-            PotionUtils.setCustomEffects(itemstack1, PotionUtils.getCustomEffects(itemstack));
+        if (!itemstack.is(Items.LINGERING_POTION)) {
+            return ItemStack.EMPTY;
+        } else {
+            ItemStack itemstack1 = new ItemStack(result.getItem(), 8);
+            itemstack1.set(DataComponents.POTION_CONTENTS, itemstack.get(DataComponents.POTION_CONTENTS));
             return itemstack1;
         }
-        return ItemStack.EMPTY;
     }
 
     public boolean canCraftInDimensions(int p_44505_, int p_44506_) {
@@ -70,15 +66,40 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         return ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
     }
 
-    private static boolean areArrowTypesEqual(final CraftingContainer inv) {
-        final Item firstArrow = inv.getItem(0).getItem();
-        for (int i = 0; i < inv.getWidth(); ++i) {
-            for (int j = 0; j < inv.getHeight(); ++j) {
-                if ((i != 1 || j != 1) && firstArrow != inv.getItem(i + j * inv.getWidth()).getItem()) {
-                    return false;
-                }
-            }
+
+    public static class Serializer implements RecipeSerializer<ECTippedArrowRecipe> {
+        private static final MapCodec<ECTippedArrowRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                p_340782_ -> p_340782_.group(
+                                CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(CraftingRecipe::category),
+                                Ingredient.CODEC.fieldOf("arrow").forGetter(p_301310_ -> p_301310_.arrow),
+                                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_300935_ -> p_300935_.result)
+                        )
+                        .apply(p_340782_, ECTippedArrowRecipe::new)
+        );
+        public static final StreamCodec<RegistryFriendlyByteBuf, ECTippedArrowRecipe> STREAM_CODEC = StreamCodec.of(
+                ECTippedArrowRecipe.Serializer::toNetwork, ECTippedArrowRecipe.Serializer::fromNetwork
+        );
+        public static ECTippedArrowRecipe fromNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer) {
+            CraftingBookCategory category = CraftingBookCategory.STREAM_CODEC.decode(packetBuffer);
+            Ingredient arrow = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
+            ItemStack result = ItemStack.STREAM_CODEC.decode(packetBuffer);
+            return new ECTippedArrowRecipe(category, arrow, result);
         }
-        return true;
+
+        public static void toNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer, ECTippedArrowRecipe fletchingRecipe) {
+            CraftingBookCategory.STREAM_CODEC.encode(packetBuffer, fletchingRecipe.category());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(packetBuffer, fletchingRecipe.arrow);
+            ItemStack.STREAM_CODEC.encode(packetBuffer, fletchingRecipe.result);
+        }
+
+        @Override
+        public @NotNull MapCodec<ECTippedArrowRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, ECTippedArrowRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
     }
 }

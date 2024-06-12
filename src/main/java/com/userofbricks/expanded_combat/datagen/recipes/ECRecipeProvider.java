@@ -2,23 +2,21 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.init.ECItemTags;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
+import com.userofbricks.expanded_combat.item.recipes.builders.TippedArrowRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -66,7 +64,9 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
             )) {
                 buildWeaponRecipe(recipeOutput, weaponItem);
             } else if (deferredItem.get() instanceof ECArrowItem arrowItem) {
-                if (arrowItem.material == Materials.NETHERITE) {
+                if (arrowItem instanceof ECTippedArrowItem) {
+                    tippedArrow(recipeOutput, arrowItem, ((ECTippedArrowItem) arrowItem).getNotTipped());
+                } else if (arrowItem.material == Materials.NETHERITE) {
                     variableFletching(recipeOutput, arrowItem, Items.NETHERITE_INGOT, DIAMOND_ARROW, 16);
                 } else {
                     fletching(recipeOutput, arrowItem, arrowItem.getMaterial().repairItem().getItems()[0].getItem(), FLETCHED_STICKS, 6);
@@ -201,8 +201,6 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                     .save(recipeOutput, new ResourceLocation(MODID, "ec_shield_decoration"));
         SpecialRecipeBuilder.special(PotionDippedWeaponRecipe::new)
                     .save(recipeOutput, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
-        SpecialRecipeBuilder.special(ECTippedArrowRecipe::new)
-                    .save(recipeOutput, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
         SpecialRecipeBuilder.special(category -> new TippedArrowFletchingRecipe())
                     .save(recipeOutput, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
     }
