@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,13 +15,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmithingMenu> implements ContainerListener {
+public class ShieldSmithingTableScreen extends ItemCombinerScreen<ShieldSmithingMenu> implements ContainerListener {
+    private static final ResourceLocation ERROR_SPRITE = new ResourceLocation("shield_smithing_error");
     public static final ResourceLocation SHIELD_SMITHING_LOCATION = new ResourceLocation("expanded_combat", "textures/gui/container/shield_smithing.png");
     public static final Component MISSING_SHIELD_TOOLTIP = Component.translatable(LangStrings.MISSING_SHIELD_TOOLTIP);
     private static final Component ERROR_TOOLTIP = Component.translatable("container.upgrade.error_tooltip");
 
     public ShieldSmithingTableScreen(ShieldSmithingMenu p_i232291_1_, Inventory p_i232291_2_, Component p_i232291_3_) {
-        super(p_i232291_1_, p_i232291_2_, p_i232291_3_);
+        super(p_i232291_1_, p_i232291_2_, p_i232291_3_, SHIELD_SMITHING_LOCATION);
         this.titleLabelX = 60;
         this.titleLabelY = 18;
     }
@@ -43,15 +45,10 @@ public class ShieldSmithingTableScreen extends AbstractContainerScreen<ShieldSmi
     }
 
     @Override
-    protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
-        int i = leftPos;
-        int j = topPos;
-        guiGraphics.blit(SHIELD_SMITHING_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
+    protected void renderErrorIcon(@NotNull GuiGraphics guiGraphics, int pX, int pY) {
         if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem() || this.menu.getSlot(2).hasItem() || this.menu.getSlot(3).hasItem() || this.menu.getSlot(4).hasItem() || this.menu.getSlot(5).hasItem()) && !this.menu.getSlot(6).hasItem()) {
-            guiGraphics.blit(SHIELD_SMITHING_LOCATION, i + 99, j + 45, this.imageWidth, 0, 28, 21);
-            //pGuiGraphics.blitSprite(ERROR_SPRITE, pX + 99, pY + 45, 28, 21);
+            guiGraphics.blitSprite(ERROR_SPRITE, pX + 99, pY + 45, 28, 21);
         }
-
     }
 
     public void dataChanged(@NotNull AbstractContainerMenu pContainerMenu, int pDataSlotIndex, int pValue) {
