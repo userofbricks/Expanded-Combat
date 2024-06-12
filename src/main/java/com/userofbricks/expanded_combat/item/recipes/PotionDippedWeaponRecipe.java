@@ -19,8 +19,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 public class PotionDippedWeaponRecipe extends CustomRecipe {
-    public PotionDippedWeaponRecipe(ResourceLocation id, CraftingBookCategory bookCategory) {
-        super(id, bookCategory);
+    public PotionDippedWeaponRecipe(CraftingBookCategory bookCategory) {
+        super(bookCategory);
     }
 
     public boolean matches(CraftingContainer inv, @NotNull Level level) {

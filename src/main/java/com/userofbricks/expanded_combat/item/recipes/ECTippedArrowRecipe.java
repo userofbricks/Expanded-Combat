@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class ECTippedArrowRecipe extends CustomRecipe {
-    public ECTippedArrowRecipe(ResourceLocation p_250995_, CraftingBookCategory p_252163_) {
-        super(p_250995_, p_252163_);
+    public ECTippedArrowRecipe(CraftingBookCategory p_252163_) {
+        super(p_252163_);
     }
 
     public boolean matches(CraftingContainer inv, @NotNull Level level) {

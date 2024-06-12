@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
 
-    public TippedArrowFletchingRecipe(ResourceLocation id) { super(id); }
+    public TippedArrowFletchingRecipe() { super(); }
 
     public boolean matches(Container iInventory, @NotNull Level world) {
         return (iInventory.getItem(0).getItem() instanceof ECArrowItem || iInventory.getItem(0).getItem() == Items.ARROW)

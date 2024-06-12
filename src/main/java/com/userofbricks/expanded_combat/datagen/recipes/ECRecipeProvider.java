@@ -2,17 +2,22 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.init.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
+import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.util.IngredientUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -186,29 +191,20 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), new ResourceLocation(MODID, "iron_arrow_fletching2"));
         fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), Items.ARROW, Items.FLINT, FLETCHED_STICKS, 6);
 
-        /* TODO
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_UPGRADING_SHIELD_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "shield_smithing_singleton"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.SHIELDS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_SHIELD_DECORATION.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.BANNERS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "ec_shield_decoration"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ECItemTags.POTION_WEAPONS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
-            new HardCodedRecipeBuilder(RecipeCategory.COMBAT, ECRecipeSerializerInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get())
-                    .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(IngredientUtil.toItemLikeArray(Ingredient.of(ItemTags.ARROWS))))
-                    .save(recipeProvider, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
-         */
+        SpecialRecipeBuilder.special(category -> new ShieldSmithingRecipie())
+                .save(recipeOutput, new ResourceLocation(MODID, "shield_smithing"));
+        SpecialRecipeBuilder.special(category -> new ShieldUpgradeRecipe())
+                    .save(recipeOutput, new ResourceLocation(MODID, "shield_smithing_singleton"));
+        SpecialRecipeBuilder.special(category -> new ShieldSmithingUpgradeRecipe())
+                    .save(recipeOutput, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
+        SpecialRecipeBuilder.special(ECShieldDecorationRecipe::new)
+                    .save(recipeOutput, new ResourceLocation(MODID, "ec_shield_decoration"));
+        SpecialRecipeBuilder.special(PotionDippedWeaponRecipe::new)
+                    .save(recipeOutput, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
+        SpecialRecipeBuilder.special(ECTippedArrowRecipe::new)
+                    .save(recipeOutput, new ResourceLocation(MODID, "ec_tipped_arrow_recipe"));
+        SpecialRecipeBuilder.special(category -> new TippedArrowFletchingRecipe())
+                    .save(recipeOutput, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
     }
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {
