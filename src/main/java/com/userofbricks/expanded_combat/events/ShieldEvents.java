@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
@@ -10,12 +11,12 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ContainerScreenEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.event.entity.living.ShieldBlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ContainerScreenEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
@@ -32,7 +33,7 @@ public class ShieldEvents {
                 damageLeftToBlock -= damageBlocked;
             }
             if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
-                double damagePercent = CONFIG.vanilla.defense.afterBasePercentReduction;
+                double damagePercent = Materials.VANILLA.value().defense().afterBasePercentReduction();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
                 }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
@@ -48,7 +49,7 @@ public class ShieldEvents {
         float damageBlocked = 0;
         switch (CONFIG.shieldProtectionConfig.shieldBaseProtectionType) {
             case PREDEFINED_AMMOUNT -> {
-                double protectionAmount = CONFIG.vanilla.defense.baseProtectionAmmount;
+                double protectionAmount = Materials.VANILLA.value().defense().baseProtectionAmmount();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
                 }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
@@ -80,20 +81,16 @@ public class ShieldEvents {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
-            int textureOffsetX = 224;
-            int textureOffsetY = 0;
             int yOffset = 36;
             int xOffset = -21;
-            evt.addListener(new ShieldTabButtion(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, textureOffsetX, textureOffsetY, 0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION));
+            evt.addListener(new ShieldTabButtion(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, ShieldTabButtion.SHIELD));
         } else if (screen instanceof ShieldSmithingTableScreen) {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
-            int textureOffsetX = 204;
-            int textureOffsetY = 0;
             int yOffset = 8;
             int xOffset = -21;
-            evt.addListener(new ShieldTabButtion(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, textureOffsetX, textureOffsetY, 0, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION));
+            evt.addListener(new ShieldTabButtion(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, ShieldTabButtion.HAMMER));
         }
     }
 

@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,7 +12,7 @@ import net.minecraft.world.inventory.SmithingMenu;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SmithingMenuProvider implements MenuProvider {
+public record SmithingMenuProvider(BlockPos accessPos) implements MenuProvider {
     @Nonnull
     @Override
     public Component getDisplayName() {

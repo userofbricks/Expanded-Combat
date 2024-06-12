@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
 import com.userofbricks.expanded_combat.datagen.LangStrings;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,7 +12,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ShieldSmithingMenuProvider implements MenuProvider {
+public record ShieldSmithingMenuProvider(BlockPos accessPos) implements MenuProvider {
     @Nonnull
     @Override
     public Component getDisplayName() {
@@ -21,7 +22,7 @@ public class ShieldSmithingMenuProvider implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory, @Nonnull Player playerEntity) {
-        ContainerLevelAccess containerLevelAccess = ContainerLevelAccess.create(playerEntity.level(), playerEntity.blockPosition());
+        ContainerLevelAccess containerLevelAccess = ContainerLevelAccess.create(playerEntity.level(), accessPos);
         return new ShieldSmithingMenu(i, playerInventory, containerLevelAccess);
     }
 }
