@@ -28,13 +28,10 @@ public class ECItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         for (DeferredHolder<Item, ? extends Item> deferredItem : ECItems.ITEMS.getEntries()) {
             if (deferredItem.get() instanceof ECArrowItem item) {
-                tag(ECItemTags.ARROWS).add(item);
                 tag(ItemTags.ARROWS).add(item);
             } else if (deferredItem.get() instanceof ECBowItem item) {
-                tag(ECItemTags.BOWS).add(item);
                 tag(Tags.Items.TOOLS_BOWS).add(item);
             } else if (deferredItem.get() instanceof ECCrossBowItem item) {
-                tag(ECItemTags.CROSSBOWS).add(item);
                 tag(Tags.Items.TOOLS_CROSSBOWS).add(item);
             } else if (deferredItem.get() instanceof GauntletItem item) {
                 tag(ECItemTags.GAUNTLETS).add(item);
@@ -52,7 +49,6 @@ public class ECItemTagsProvider extends ItemTagsProvider {
                 .add(ECItems.LEATHER_GAUNTLET.getKey());
 
 
-        tag(ECItemTags.SHIELDS).add(ECItems.SHIELD.getKey(), ECItems.SHIELD_FIRE_RESISTANT.getKey());
         tag(Tags.Items.TOOLS_SHIELDS).add(ECItems.SHIELD.getKey(), ECItems.SHIELD_FIRE_RESISTANT.getKey());
     }
 }

@@ -15,11 +15,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.REGISTRATE;
 public final class ECItemTags {
 
     public static final TagKey<Item> GAUNTLETS = bindCurios("hands");
-    public static final TagKey<Item> SHIELDS = bind("shields");
     public static final TagKey<Item> NON_EC_MENDABLE_GOLD = bind("non_ec_mendable_gold");
-    public static final TagKey<Item> BOWS = bind("bows");
-    public static final TagKey<Item> CROSSBOWS = bind("crossbows");
-    public static final TagKey<Item> ARROWS = bindCurios("arrows");
     public static final TagKey<Item> QUIVERS = bindCurios("quiver_ec");
     public static final TagKey<Item> POTION_WEAPONS = bind("potion_weapons");
 
@@ -39,29 +35,12 @@ public final class ECItemTags {
     public static TagKey<Item> bindCurios(String name) {
         return ItemTags.create(new ResourceLocation(ModIDs.Curios, name));
     }
-    public static TagKey<Item> bindForgeSword(String materialName) {
-        return bindForge("tools/swords/" + materialName);
-    }
     public static TagKey<Item> bindForgeStorageBlock(String materialName) {
         return bindForge("storage_blocks/" + materialName);
     }
 
     public static void loadTags() {
         REGISTRATE.get().addDataGenerator(ProviderType.ITEM_TAGS, tagsProvider -> {
-            tagsProvider.addTag(SHIELDS).add(Items.SHIELD);
-            tagsProvider.addTag(ARROWS).addTag(ItemTags.ARROWS);
-
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.ACACIA_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.BIRCH_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.DARK_OAK_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.OAK_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.SPRUCE_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.JUNGLE_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.WARPED_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.CRIMSON_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.BAMBOO_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.MANGROVE_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
-            tagsProvider.addTag(bindForgeSword(VanillaECPlugin.CHERRY_PLANK.getLocationName().getPath())).add(Items.WOODEN_SWORD);
 
             tagsProvider.addTag(bindForgeStorageBlock(VanillaECPlugin.ACACIA_PLANK.getLocationName().getPath())).add(Items.ACACIA_PLANKS);
             tagsProvider.addTag(bindForgeStorageBlock(VanillaECPlugin.BIRCH_PLANK.getLocationName().getPath())).add(Items.BIRCH_PLANKS);
