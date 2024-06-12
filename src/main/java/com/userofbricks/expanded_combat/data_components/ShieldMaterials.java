@@ -114,22 +114,22 @@ public class ShieldMaterials implements TooltipProvider {
 
     public boolean canReplaceUL(Holder<Material> replacement) {
         Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
-        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(ULMaterial.getRegisteredName()))).orElse(false);
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(ULMaterial.getRegisteredName()))).orElse(true);
     }
     public boolean canReplaceUR(Holder<Material> replacement) {
         Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
-        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(URMaterial.getRegisteredName()))).orElse(false);
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(URMaterial.getRegisteredName()))).orElse(true);
     }
     public boolean canReplaceDL(Holder<Material> replacement) {
         Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
-        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DLMaterial.getRegisteredName()))).orElse(false);
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DLMaterial.getRegisteredName()))).orElse(true);
     }
     public boolean canReplaceDR(Holder<Material> replacement) {
         Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
-        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DRMaterial.getRegisteredName()))).orElse(false);
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(DRMaterial.getRegisteredName()))).orElse(true);
     }
     public boolean canReplaceM(Holder<Material> replacement) {
         Optional<List<ResourceLocation>> canReplace = replacement.value().onlyReplaceResource();
-        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(MMaterial.getRegisteredName()))).orElse(false);
+        return canReplace.map(resourceLocations -> resourceLocations.contains(new ResourceLocation(MMaterial.getRegisteredName()))).orElse(true);
     }
 }
