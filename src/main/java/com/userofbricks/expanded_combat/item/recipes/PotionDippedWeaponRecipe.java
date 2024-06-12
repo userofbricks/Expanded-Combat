@@ -1,21 +1,21 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 public class PotionDippedWeaponRecipe extends CustomRecipe {
@@ -40,7 +40,7 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         return numPotions == 1 && numPotionWeapons == 1;
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull HolderLookup.Provider registryAccess) {
         ItemStack potionItem = ItemStack.EMPTY;
         ItemStack potionWeaponItem = ItemStack.EMPTY;
 
@@ -59,14 +59,15 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         if(potionItem == ItemStack.EMPTY || potionWeaponItem == ItemStack.EMPTY)
             return ItemStack.EMPTY;
 
-        Potion potion = PotionUtils.getPotion(potionItem);
-        PotionUtils.setPotion(potionWeaponItem, potion);
-        PotionUtils.setCustomEffects(potionWeaponItem, PotionUtils.getCustomEffects(potionItem));
-        CompoundTag compoundTag = potionWeaponItem.getOrCreateTag();
-        String potionName = ForgeRegistries.POTIONS.getKey(potion).getPath();
+        PotionContents potionContents = potionItem.get(DataComponents.POTION_CONTENTS);
+
+        potionWeaponItem.set(DataComponents.POTION_CONTENTS, potionContents);
+
+        String potionName = BuiltInRegistries.POTION.getKey(potionContents.potion().orElse(Potions.AWKWARD).value()).getPath();
         int potionUses = potionName.contains("strong_") || potionName.contains("long_") ? 90 : 200;
-        compoundTag.putInt("PotionUses", potionUses);
-        compoundTag.putInt("MaxPotionUses", potionUses);
+
+        potionWeaponItem.set(ItemDataComponents.POTION_USES, potionUses);
+        potionWeaponItem.set(ItemDataComponents.MAX_POTION_USES, potionUses);
 
         return potionWeaponItem;
     }
