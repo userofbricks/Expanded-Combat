@@ -3,21 +3,22 @@ package com.userofbricks.expanded_combat.client.sprites;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.SpriteSourceTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.texture.SpriteContents;
+import net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.FastColor;
-import net.minecraftforge.client.textures.ForgeTextureMetadata;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.*;
 @MethodsReturnNonnullByDefault
 public class AlphaMaskFolderPermutations implements SpriteSource {
     static final Logger LOGGER = LogUtils.getLogger();
-    public static final Codec<AlphaMaskFolderPermutations> CODEC = RecordCodecBuilder.create((p_266838_) ->
+    public static final MapCodec<AlphaMaskFolderPermutations> CODEC = RecordCodecBuilder.mapCodec((p_266838_) ->
             p_266838_.group(Codec.list(ResourceLocation.CODEC).fieldOf("permutations").forGetter((p_267300_) -> p_267300_.permutations),
                             Codec.BOOL.fieldOf("mask_name_as_folder").forGetter(palette -> palette.maskNameAsFolder),
                             Codec.STRING.fieldOf("source").forGetter((p_261592_) -> p_261592_.sourcePath))
@@ -91,7 +92,7 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
     @OnlyIn(Dist.CLIENT)
     record MaskedSpriteSupplier(NativeImage baseNative, LazyLoadedImage maskImage, ResourceLocation permutationLocation) implements SpriteSupplier {
         @Nullable
-        public SpriteContents get() {
+        public SpriteContents apply(SpriteResourceLoader p_295023_) {
             try {
                 int width = baseNative.getWidth();
                 int height = baseNative.getHeight();
@@ -107,7 +108,7 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
                         }
                     }
                 }
-                return new SpriteContents(this.permutationLocation, new FrameSize(nativeimage.getWidth(), nativeimage.getHeight()), nativeimage, AnimationMetadataSection.EMPTY, ForgeTextureMetadata.EMPTY);
+                return new SpriteContents(this.permutationLocation, new FrameSize(nativeimage.getWidth(), nativeimage.getHeight()), nativeimage, ResourceMetadata.EMPTY);
             } catch (IllegalArgumentException | IOException ioexception) {
                 LOGGER.error("unable to apply alpha mask to {}", this.permutationLocation, ioexception);
             } finally {

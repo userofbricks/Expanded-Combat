@@ -57,10 +57,6 @@ public class ExpandedCombat {
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            SpriteSourceTypes.load();
-        }
-
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
@@ -76,7 +72,6 @@ public class ExpandedCombat {
         ECBlocks.BLOCKS.register(bus);
         //WeaponTypes.setKeys();
         ECItems.ITEMS.register(bus);
-        ECItemTags.loadTags();
         ECCreativeTabs.CREATIVE_TABS.register(bus);
         ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);

@@ -4,12 +4,14 @@ import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.SpriteSourceTypes;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.texture.SpriteContents;
+import net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
@@ -18,10 +20,10 @@ import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.FastColor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.textures.ForgeTextureMetadata;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
@@ -40,7 +42,7 @@ import static net.minecraft.client.renderer.texture.atlas.sources.PalettedPermut
 @MethodsReturnNonnullByDefault
 public class PalettedFolderPermutations implements SpriteSource {
     static final Logger LOGGER = LogUtils.getLogger();
-    public static final Codec<PalettedFolderPermutations> CODEC = RecordCodecBuilder.create((p_266838_) ->
+    public static final MapCodec<PalettedFolderPermutations> CODEC = RecordCodecBuilder.mapCodec((p_266838_) ->
             p_266838_.group(Codec.list(ResourceLocation.CODEC).fieldOf("textures").forGetter((p_267300_) -> p_267300_.textures),
                             ResourceLocation.CODEC.fieldOf("palette_key").forGetter((p_266732_) -> p_266732_.paletteKey),
                             Codec.BOOL.fieldOf("texture_name_as_folder").forGetter(palette -> palette.textureNameAsFolder),
@@ -119,10 +121,10 @@ public class PalettedFolderPermutations implements SpriteSource {
     @OnlyIn(Dist.CLIENT)
     record PalettedSpriteSupplier(LazyLoadedImage baseImage, Supplier<IntUnaryOperator> palette, ResourceLocation permutationLocation) implements SpriteSource.SpriteSupplier {
         @Nullable
-        public SpriteContents get() {
+        public SpriteContents apply(SpriteResourceLoader loader) {
             try {
                 NativeImage nativeimage = this.baseImage.get().mappedCopy(this.palette.get());
-                return new SpriteContents(this.permutationLocation, new FrameSize(nativeimage.getWidth(), nativeimage.getHeight()), nativeimage, AnimationMetadataSection.EMPTY, ForgeTextureMetadata.EMPTY);
+                return new SpriteContents(this.permutationLocation, new FrameSize(nativeimage.getWidth(), nativeimage.getHeight()), nativeimage, ResourceMetadata.EMPTY);
             } catch (IllegalArgumentException | IOException ioexception) {
                 LOGGER.error("unable to apply palette to {}", this.permutationLocation, ioexception);
             } finally {
