@@ -77,7 +77,7 @@ public class ExpandedCombat {
         //WeaponTypes.setKeys();
         ECItems.ITEMS.register(bus);
         ECItemTags.loadTags();
-        ECCreativeTabs.loadClass();
+        ECCreativeTabs.CREATIVE_TABS.register(bus);
         ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
         ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);

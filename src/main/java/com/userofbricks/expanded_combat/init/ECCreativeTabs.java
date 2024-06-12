@@ -3,100 +3,106 @@ package com.userofbricks.expanded_combat.init;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
-import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.item.*;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
-@Mod.EventBusSubscriber(modid = ExpandedCombat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ECCreativeTabs {
-    public static final RegistryEntry<CreativeModeTab> EC_GROUP = REGISTRATE.get().defaultCreativeTab("expanded_combat", builder -> {
-            builder.icon(() -> new ItemStack(getIcon()))
-                    .displayItems((displayParameters, output) -> {
-                        output.accept(LEATHER_STICK.get());
-                        output.accept(GOLD_STICK.get());
-                        output.accept(IRON_STICK.get());
-                        output.accept(GAS_BOTTLE.get());
-                        output.accept(PURIFIED_GAS_BOTTLE.get());
-                        output.accept(SOLIDIFIED_PURIFICATION.get());
-                        output.accept(ALLAY_ITEM.get());
-                        if (CONFIG.enableGauntlets) {
-                            for (Material material : PluginInit.gauntletMaterials) {
-                                output.accept(material.getGauntletEntry().get());
-                            }
-                        }
-                        if (CONFIG.enableShields) {
-                            for (Material material : PluginInit.shieldMaterials) {
-                                ItemStack stack;
-                                if (!material.getConfig().fireResistant) {
-                                    stack = SHIELD.get().getDefaultInstance();
-                                } else {
-                                    stack = SHIELD_TIER_3.get().getDefaultInstance();
-                                }
-                                stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
-                                stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
-                                stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
-                                stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                                if (material.shieldUse == PlacementInShield.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
-                                else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
-                                output.accept(stack);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB, MODID);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EC_GROUP = CREATIVE_TABS.register("expanded_combat", () -> CreativeModeTab.builder()
+            .icon(() -> new ItemStack(getIcon()))
+            .displayItems((displayParameters, output) -> {
+                output.accept(LEATHER_STICK.get());
+                output.accept(GOLD_STICK.get());
+                output.accept(IRON_STICK.get());
+                output.accept(GAS_BOTTLE.get());
+                output.accept(PURIFIED_GAS_BOTTLE.get());
+                output.accept(SOLIDIFIED_PURIFICATION.get());
+                output.accept(ALLAY_ITEM.get());
+                List<? extends DeferredItem<? extends Item>> items = ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList();
 
-                            }
+                if (CONFIG.enableGauntlets) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof GauntletItem).toList()) {
+                        output.accept(deferredItem);
+                    }
+                }
+                if (CONFIG.enableShields) {
+                    for (Holder.Reference<Material> material : Arrays.asList(Materials.LEATHER, Materials.RABBIT_HIDE, Materials.IRON, Materials.GOLD, Materials.DIAMOND, Materials.NETHERITE)) {
+                        ItemStack stack;
+                        if (!material.value().defense().fireResistant()) {
+                            stack = new ItemStack(SHIELD.get());
+                        } else {
+                            stack = new ItemStack(SHIELD_FIRE_RESISTANT.get());
                         }
-                        if (CONFIG.enableBows) {
-                            for (Material material : PluginInit.bowMaterials) {
-                                if (!material.halfbow || CONFIG.enableHalfBows) {
-                                    output.accept(material.getBowEntry().get());
-                                }
-                            }
+                        stack.set(ItemDataComponents.SHIELD_MATERIALS,
+                                new ShieldMaterials(
+                                        material, material, material, material,
+                                        material.value().defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON,
+                                        0
+                                ));
+                        output.accept(stack);
+                    }
+                }
+                if (CONFIG.enableBows) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof BowItem).toList()) {
+                        output.accept(deferredItem);
+                    }
+                }
+                if (CONFIG.enableCrossbows) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof CrossbowItem).toList()) {
+                        output.accept(deferredItem);
+                    }
+                }
+                if (CONFIG.enableQuivers) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
+                        output.accept(deferredItem);
+                    }
+                }
+                if (CONFIG.enableArrows) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
+                        output.accept(deferredItem);
+                    }
+                    for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
+                        for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECTippedArrowItem).toList()) {
+                            ItemStack stack = new ItemStack(deferredItem.get());
+                            stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
+                            output.accept(stack);
                         }
-                        if (CONFIG.enableCrossbows) {
-                            for (Material material : PluginInit.crossbowMaterials) {
-                                output.accept(material.getCrossbowEntry().get());
-                            }
-                        }
-                        if (CONFIG.enableQuivers) {
-                            for (Material material : PluginInit.quiverMaterials) {
-                                output.accept(material.getQuiverEntry().get());
-                            }
-                        }
-                        if (CONFIG.enableArrows) {
-                            for (Material material : PluginInit.arrowMaterials) {
-                                output.accept(material.getArrowEntry().get());
-                            }
-                            for (Potion potion : ForgeRegistries.POTIONS) {
-                                for (Material material : PluginInit.arrowMaterials) {
-                                    if (!potion.getEffects().isEmpty()) {
-                                        output.accept(PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion));
-                                    }
-                                }
-                            }
-                        }
-                        if (CONFIG.enableWeapons) {
-                            for (Material material :
-                                    PluginInit.weaponMaterials) {
-                                for (RegistryEntry<? extends Item> itemRegistry :
-                                        material.getWeapons().values()) {
-                                    output.accept(itemRegistry.get().getDefaultInstance());
-                                }
-                            }
-                        }
-                    })
-                    .build();
-        }).register();
+                    }
+                }
+                if (CONFIG.enableWeapons) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECWeaponItem).toList()) {
+                        output.accept(deferredItem);
+                    }
+                }
+            })
+            .build());
 
     private static Item getIcon() {
-        if(CONFIG.enableGauntlets) return VanillaECPlugin.DIAMOND.getGauntletEntry().get();
-        return Items.ARROW;
+        return DIAMOND_GAUNTLET.get();
     }
 
     @SubscribeEvent
@@ -106,78 +112,71 @@ public class ECCreativeTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             if (CONFIG.enableGauntlets) {
-                for (Material material : PluginInit.gauntletMaterials) {
-                    if (material == VanillaECPlugin.LEATHER) {
-                        items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == VanillaECPlugin.IRON) {
-                        items.putBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == VanillaECPlugin.GOLD) {
-                        items.putBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == VanillaECPlugin.DIAMOND) {
-                        items.putBefore(new ItemStack(Items.DIAMOND_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else if (material == VanillaECPlugin.NETHERITE) {
-                        items.putBefore(new ItemStack(Items.NETHERITE_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    } else {
-                        items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(material.getGauntletEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    }
-                }
+                items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(LEATHER_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(IRON_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(GOLD_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putBefore(new ItemStack(Items.DIAMOND_HELMET), new ItemStack(DIAMOND_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putBefore(new ItemStack(Items.NETHERITE_HELMET), new ItemStack(NETHERITE_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(SOUL_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(SOUL_GAUNTLET.get()), new ItemStack(FIGHTERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(FIGHTERS_GAUNTLETS.get()), new ItemStack(BERSERK_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                items.putAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
             if (CONFIG.enableShields) {
-                for (int shieldListLocation = PluginInit.shieldMaterials.size() - 1; shieldListLocation > -1; shieldListLocation--) {
-                    Material material = PluginInit.shieldMaterials.get(shieldListLocation);
+
+                for (Holder.Reference<Material> material : Arrays.asList(Materials.NETHERITE, Materials.DIAMOND, Materials.GOLD, Materials.IRON, Materials.RABBIT_HIDE, Materials.LEATHER)) {
                     ItemStack stack;
-                    if (!material.getConfig().fireResistant) {
-                        stack = SHIELD.get().getDefaultInstance();
+                    if (!material.value().defense().fireResistant()) {
+                        stack = new ItemStack(SHIELD.get());
                     } else {
-                        stack = SHIELD_TIER_3.get().getDefaultInstance();
+                        stack = new ItemStack(SHIELD_FIRE_RESISTANT.get());
                     }
-                    stack.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, material.getName());
-                    stack.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
-                    stack.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
-                    stack.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-                    if (material.shieldUse == PlacementInShield.ALL) stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
-                    else stack.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
-
+                    stack.set(ItemDataComponents.SHIELD_MATERIALS,
+                            new ShieldMaterials(
+                                    material, material, material, material,
+                                    material.value().defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON,
+                                    0
+                            ));
                     items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
                 }
             }
+
+            List<? extends DeferredItem<? extends Item>> itemList = ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList();
+
             if (CONFIG.enableBows) {
-                for (Material material : PluginInit.bowMaterials) {
-                    if (!material.halfbow || CONFIG.enableHalfBows) {
-                        items.putAfter(new ItemStack(Items.BOW), new ItemStack(material.getBowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    }
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof BowItem).toList()) {
+                    items.putAfter(new ItemStack(Items.BOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableCrossbows) {
-                for (Material material : PluginInit.crossbowMaterials) {
-                    items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(material.getCrossbowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof CrossbowItem).toList()) {
+                    items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableQuivers) {
-                for (Material material : PluginInit.quiverMaterials) {
-                    items.putBefore(new ItemStack(Items.ARROW), new ItemStack(material.getQuiverEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
+                    items.putBefore(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableArrows) {
-                for (Material material : PluginInit.arrowMaterials) {
-                    items.putAfter(new ItemStack(Items.ARROW), new ItemStack(material.getArrowEntry().get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
+                    items.putAfter(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
-                for (Potion potion : ForgeRegistries.POTIONS) {
-                    for (Material material : PluginInit.arrowMaterials) {
-                        if (!potion.getEffects().isEmpty()) {
-                            items.putAfter(PotionUtils.setPotion(new ItemStack(Items.TIPPED_ARROW), potion), PotionUtils.setPotion(new ItemStack(material.getTippedArrowEntry().get()), potion), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                        }
+                for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
+                    ItemStack tippedArrow = new ItemStack(Items.TIPPED_ARROW);
+                    tippedArrow.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
+                    for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECTippedArrowItem).toList()) {
+                        ItemStack stack = new ItemStack(deferredItem.get());
+                        stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
+                        items.putAfter(tippedArrow, stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }
             if (CONFIG.enableWeapons) {
-                for (Material material :
-                        PluginInit.weaponMaterials) {
-                    for (RegistryEntry<? extends Item> itemRegistry :
-                            material.getWeapons().values()) {
-                        items.put(itemRegistry.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    }
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECWeaponItem).toList()) {
+
+                    items.put(new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
         } else if (tab == CreativeModeTabs.INGREDIENTS) {
@@ -193,6 +192,4 @@ public class ECCreativeTabs {
             event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
-
-    public static void loadClass() {}
 }
