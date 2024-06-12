@@ -1,13 +1,13 @@
 package com.userofbricks.expanded_combat.block;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.network.ECVariables;
-import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,17 +38,23 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
-
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<WeaponDisplayBlock> CODEC = RecordCodecBuilder.mapCodec(
+            p_308801_ -> p_308801_.group(propertiesCodec()).apply(p_308801_, WeaponDisplayBlock::new)
+    );
     public static final EnumProperty<WeaponDisplayPart> PART = EnumProperty.create("part", WeaponDisplayPart.class);
     public WeaponDisplayBlock(Properties p_54120_) {
         super(p_54120_);
         this.registerDefaultState(this.stateDefinition.any().setValue(PART, WeaponDisplayPart.RIGHT));
     }
-    @SuppressWarnings("deprecation")
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
     public BlockState updateShape(BlockState thisState, Direction directionOfUpdate, BlockState updatedBlock, LevelAccessor levelAccessor, BlockPos thisPos, BlockPos updatedPos) {
         if (directionOfUpdate == getNeighbourDirection(thisState.getValue(PART), thisState.getValue(FACING))) {
             return updatedBlock.is(this) && updatedBlock.getValue(PART) != thisState.getValue(PART) ? thisState : Blocks.AIR.defaultBlockState();
@@ -59,7 +65,7 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
     private static Direction getNeighbourDirection(WeaponDisplayPart p_49534_, Direction p_49535_) {
         return p_49534_ == WeaponDisplayPart.RIGHT ? p_49535_.getClockWise() : p_49535_.getCounterClockWise();
     }
-    public void playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
+    public BlockState playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
         if (!p_49505_.isClientSide && p_49508_.isCreative()) {
             WeaponDisplayPart bedpart = p_49507_.getValue(PART);
             if (bedpart == WeaponDisplayPart.RIGHT) {
@@ -72,7 +78,7 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
             }
         }
 
-        super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
+        return super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
     }
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext p_49479_) {
@@ -82,7 +88,6 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
         Level level = p_49479_.getLevel();
         return level.getBlockState(blockpos1).canBeReplaced(p_49479_) && level.getWorldBorder().isWithinBounds(blockpos1) ? this.defaultBlockState().setValue(FACING, direction) : null;
     }
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState p_49547_, BlockGetter p_49548_, BlockPos p_49549_, CollisionContext p_49550_) {
         return switch (p_49547_.getValue(PART)) {
             default -> switch (p_49547_.getValue(FACING)) {
@@ -116,26 +121,24 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
         BlockPos blockpos = p_49523_.relative(p_49522_.getValue(FACING).getCounterClockWise(), p_49522_.getValue(PART) == WeaponDisplayPart.LEFT ? 0 : 1);
         return Mth.getSeed(blockpos.getX(), p_49523_.getY(), blockpos.getZ());
     }
-    @SuppressWarnings("deprecation")
-    public boolean isPathfindable(BlockState p_49510_, BlockGetter p_49511_, BlockPos p_49512_, PathComputationType p_49513_) {
+    public boolean isPathfindable(BlockState p_49510_, PathComputationType pPathComputationType) {
         return false;
     }
 
-    @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        ResourceLocation resourcelocation = this.getLootTable();
+        ResourceKey<LootTable> resourcelocation = this.getLootTable();
         if (resourcelocation == BuiltInLootTables.EMPTY) {
             return Collections.emptyList();
         } else {
             LootParams lootparams = builder.withParameter(LootContextParams.BLOCK_STATE, state).create(LootContextParamSets.BLOCK);
             ServerLevel serverlevel = lootparams.getLevel();
-            LootTable loottable = serverlevel.getServer().getLootData().getLootTable(resourcelocation);
+            LootTable loottable = serverlevel.getServer().reloadableRegistries().getLootTable(resourcelocation);
 
             if (ECVariables.WorldVariables.getHeartStealerCount(builder.getLevel()) != 0 && serverlevel.random.nextInt(10) != 0) {
                 return loottable.getRandomItems(lootparams);
             } else {
                 ECVariables.WorldVariables.increaseHeartStealerCount(builder.getLevel());
-                return List.of(new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get()));
+                return List.of(new ItemStack(ECItems.HEART_STEALER.get()));
             }
         }
     }

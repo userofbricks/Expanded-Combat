@@ -3,27 +3,13 @@ package com.userofbricks.expanded_combat.init;
 import com.userofbricks.expanded_combat.block.AbstractGasBlock;
 import com.userofbricks.expanded_combat.block.PurifiedGasBlock;
 import com.userofbricks.expanded_combat.block.WeaponDisplayBlock;
-import com.userofbricks.expanded_combat.block.WeaponDisplayPart;
-import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
-import net.minecraft.advancements.critereon.EnchantmentPredicate;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -47,7 +33,7 @@ public class ECBlocks {
     public static final DeferredItem<BlockItem> HEART_STEALER_DISPLAY_ITEM = ECItems.ITEMS.registerSimpleBlockItem("heartstealer_display", HEART_STEALER_DISPLAY);
 
     public static void registerDataGen() {
-        /* TODO:
+        /*TODO:
             Heartstealer datagen
 
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), state -> state.getValue(WeaponDisplayBlock.PART) == WeaponDisplayPart.RIGHT ? prov.models().getExistingFile(prov.modLoc("block/heartstealer")) : prov.models().getExistingFile(prov.modLoc("block/nothing"))))
