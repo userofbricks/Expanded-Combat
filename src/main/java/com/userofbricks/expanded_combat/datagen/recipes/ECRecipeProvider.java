@@ -7,7 +7,6 @@ import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
-import com.userofbricks.expanded_combat.item.recipes.builders.TippedArrowRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
@@ -29,6 +28,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
 @ParametersAreNonnullByDefault
@@ -191,6 +191,8 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), new ResourceLocation(MODID, "iron_arrow_fletching2"));
         fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), Items.ARROW, Items.FLINT, FLETCHED_STICKS, 6);
 
+        recipeOutput.accept(modLoc("tipped_arrow_fletching"), new TippedArrowFletchingRecipe(Ingredient.of(Items.ARROW), new ItemStack(Items.TIPPED_ARROW)), null);
+
         SpecialRecipeBuilder.special(category -> new ShieldSmithingRecipie())
                 .save(recipeOutput, new ResourceLocation(MODID, "shield_smithing"));
         SpecialRecipeBuilder.special(category -> new ShieldUpgradeRecipe())
@@ -201,8 +203,6 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                     .save(recipeOutput, new ResourceLocation(MODID, "ec_shield_decoration"));
         SpecialRecipeBuilder.special(PotionDippedWeaponRecipe::new)
                     .save(recipeOutput, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
-        SpecialRecipeBuilder.special(category -> new TippedArrowFletchingRecipe())
-                    .save(recipeOutput, new ResourceLocation(MODID, "tipped_arrow_fletching_recipe"));
     }
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {

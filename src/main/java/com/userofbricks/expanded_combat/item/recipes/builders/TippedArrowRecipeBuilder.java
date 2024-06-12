@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.item.recipes.builders;
 
 import com.userofbricks.expanded_combat.item.recipes.ECTippedArrowRecipe;
+import com.userofbricks.expanded_combat.item.recipes.TippedArrowFletchingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -39,11 +40,10 @@ public class TippedArrowRecipeBuilder {
     }
 
     public void save(RecipeOutput pRecipeOutput, ResourceLocation pId) {
-        ECTippedArrowRecipe fletchingRecipe = new ECTippedArrowRecipe(
-                this.bookCategory, this.arrow, this.result
-        );
+        ECTippedArrowRecipe recipe = new ECTippedArrowRecipe(this.bookCategory, this.arrow, this.result);
+        TippedArrowFletchingRecipe fletchingRecipe = new TippedArrowFletchingRecipe(this.arrow, this.result);
 
-
-        pRecipeOutput.accept(pId, fletchingRecipe, null);
+        pRecipeOutput.accept(pId, recipe, null);
+        pRecipeOutput.accept(pId.withSuffix("_fletching"), fletchingRecipe, null);
     }
 }
