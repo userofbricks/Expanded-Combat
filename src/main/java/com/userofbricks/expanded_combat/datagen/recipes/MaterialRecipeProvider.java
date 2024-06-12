@@ -4,15 +4,18 @@ import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class MaterialRecipeProvider extends RecipeProvider {
@@ -20,10 +23,10 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
         super(pOutput, pRegistries);
     }
 
-    public static void battleStaff(RecipeOutput recipeOutput, ItemLike staff, ItemLike material) {
+    public static void battleStaff(RecipeOutput recipeOutput, ItemLike staff, Ingredient material) {
         battleStaff(recipeOutput, staff, ECItems.LEATHER_STICK.get(), material);
     }
-    public static void battleStaff(RecipeOutput recipeOutput, ItemLike staff, ItemLike stick, ItemLike material) {
+    public static void battleStaff(RecipeOutput recipeOutput, ItemLike staff, ItemLike stick, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, staff)
                 .define('i', material)
                 .define('s', stick)
@@ -31,20 +34,20 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern(" s ")
                 .pattern("i  ")
                 .unlockedBy(getHasName(stick), has(stick))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void broadSword(RecipeOutput recipeOutput, ItemLike broadSword, ItemLike sword, ItemLike material) {
+    public static void broadSword(RecipeOutput recipeOutput, ItemLike broadSword, ItemLike sword, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, broadSword)
                 .define('i', material)
                 .define('s', sword)
                 .pattern(" i ")
                 .pattern("isi")
                 .unlockedBy(getHasName(sword), has(sword))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void claymore(RecipeOutput recipeOutput, ItemLike claymore, ItemLike sword, ItemLike material) {
+    public static void claymore(RecipeOutput recipeOutput, ItemLike claymore, ItemLike sword, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, claymore)
                 .define('i', material)
                 .define('s', sword)
@@ -52,13 +55,13 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern("i")
                 .pattern("s")
                 .unlockedBy(getHasName(sword), has(sword))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void cutlass(RecipeOutput recipeOutput, ItemLike cutlass, ItemLike material) {
+    public static void cutlass(RecipeOutput recipeOutput, ItemLike cutlass, Ingredient material) {
         cutlass(recipeOutput, cutlass, ECItems.GOLD_STICK.get(), material);
     }
-    public static void cutlass(RecipeOutput recipeOutput, ItemLike cutlass, ItemLike stick, ItemLike material) {
+    public static void cutlass(RecipeOutput recipeOutput, ItemLike cutlass, ItemLike stick, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, cutlass)
                 .define('i', material)
                 .define('s', stick)
@@ -66,20 +69,20 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern("i")
                 .pattern("s")
                 .unlockedBy(getHasName(stick), has(stick))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void dagger(RecipeOutput recipeOutput, ItemLike dagger, ItemLike material) {
+    public static void dagger(RecipeOutput recipeOutput, ItemLike dagger, Ingredient material) {
         dagger(recipeOutput, dagger, ECItems.IRON_STICK.get(), material);
     }
-    public static void dagger(RecipeOutput recipeOutput, ItemLike dagger, ItemLike stick, ItemLike material) {
+    public static void dagger(RecipeOutput recipeOutput, ItemLike dagger, ItemLike stick, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, dagger)
                 .define('i', material)
                 .define('s', stick)
                 .pattern("i")
                 .pattern("s")
                 .unlockedBy(getHasName(stick), has(stick))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
     public static void dancersSword(RecipeOutput recipeOutput, ItemLike dancersSword, ItemLike sword) {
@@ -140,14 +143,14 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(stick), has(stick))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void katana(RecipeOutput recipeOutput, ItemLike katana, ItemLike sword, ItemLike material) {
+    public static void katana(RecipeOutput recipeOutput, ItemLike katana, ItemLike sword, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, katana)
                 .define('s', sword)
                 .define('i', material)
                 .pattern("i")
                 .pattern("s")
                 .unlockedBy(getHasName(sword), has(sword))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
     public static void mace(RecipeOutput recipeOutput, ItemLike mace, ItemLike block) {
@@ -163,10 +166,10 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(stick), has(stick))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void scythe(RecipeOutput recipeOutput, ItemLike scythe, ItemLike sword, ItemLike material) {
+    public static void scythe(RecipeOutput recipeOutput, ItemLike scythe, ItemLike sword, Ingredient material) {
         scythe(recipeOutput, scythe, sword, material, Items.STICK);
     }
-    public static void scythe(RecipeOutput recipeOutput, ItemLike scythe, ItemLike sword, ItemLike material, ItemLike stick) {
+    public static void scythe(RecipeOutput recipeOutput, ItemLike scythe, ItemLike sword, Ingredient material, ItemLike stick) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, scythe)
                 .define('p', sword)
                 .define('i', material)
@@ -175,20 +178,20 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern("  s")
                 .pattern("  s")
                 .unlockedBy(getHasName(sword), has(sword))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .unlockedBy(getHasName(stick), has(stick))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
-    public static void sickle(RecipeOutput recipeOutput, ItemLike sickle, ItemLike material) {
+    public static void sickle(RecipeOutput recipeOutput, ItemLike sickle, Ingredient material) {
         sickle(recipeOutput, sickle, material, Items.STICK);
     }
-    public static void sickle(RecipeOutput recipeOutput, ItemLike sickle, ItemLike material, ItemLike stick) {
+    public static void sickle(RecipeOutput recipeOutput, ItemLike sickle, Ingredient material, ItemLike stick) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, sickle)
                 .define('i', material)
                 .define('s', stick)
                 .pattern("ii")
                 .pattern("s ")
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .unlockedBy(getHasName(stick), has(stick))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
     }
@@ -248,10 +251,10 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                         RecipeBuilder.getDefaultRecipeId(result).withSuffix("_variable_fletching"));
     }
 
-    public static void bow(RecipeOutput recipeOutput, ItemLike bow, ItemLike material) {
+    public static void bow(RecipeOutput recipeOutput, ItemLike bow, Ingredient material) {
         bow(recipeOutput, bow, Items.STRING, ECItems.IRON_STICK.get(), material);
     }
-    public static void bow(RecipeOutput recipeOutput, ItemLike bow, ItemLike string, ItemLike stick, ItemLike material) {
+    public static void bow(RecipeOutput recipeOutput, ItemLike bow, ItemLike string, ItemLike stick, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, bow, 1)
                 .define('s', string)
                 .define('/', stick)
@@ -261,36 +264,36 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern(" ms")
                 .unlockedBy(getHasName(string), has(string))
                 .unlockedBy(getHasName(stick), has(stick))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("bow")));
     }
 
-    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, ItemLike material) {
+    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, Ingredient material) {
         crossbow(recipeOutput, crossbow, Items.CROSSBOW, material);
     }
-    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, ItemLike previous, ItemLike material) {
+    public static void crossbow(RecipeOutput recipeOutput, ItemLike crossbow, ItemLike previous, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, crossbow, 1)
                 .define('p', previous)
                 .define('m', material)
                 .pattern(" m ")
                 .pattern("mpm")
                 .unlockedBy(getHasName(previous), has(previous))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")));
     }
-    public static void gauntlet(RecipeOutput recipeOutput, ItemLike gauntlet, ItemLike material) {
+    public static void gauntlet(RecipeOutput recipeOutput, ItemLike gauntlet, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, gauntlet, 1)
                 .define('b', material)
                 .pattern("bb")
                 .pattern("b ")
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")));
     }
 
-    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, ItemLike material) {
+    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, Ingredient material) {
         quiver(recipeOutput, quiver, Items.LEATHER, Items.STRING, material);
     }
-    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, ItemLike leather, ItemLike string, ItemLike material) {
+    public static void quiver(RecipeOutput recipeOutput, ItemLike quiver, ItemLike leather, ItemLike string, Ingredient material) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, quiver, 1)
                 .define('l', leather)
                 .define('s', string)
@@ -300,7 +303,7 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .pattern("ml ")
                 .unlockedBy(getHasName(leather), has(leather))
                 .unlockedBy(getHasName(string), has(string))
-                .unlockedBy(getHasName(material), has(material))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(material.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("quiver")));
     }
 }
