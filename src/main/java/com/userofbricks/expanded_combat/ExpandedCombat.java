@@ -32,11 +32,13 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.slf4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
+import top.theillusivec4.curios.common.network.NetworkHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,7 @@ public class ExpandedCombat {
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
+        bus.addListener(this::registerPayloadHandler);
         ItemGenerationTypes.GAUNTLET_TYPES.register(bus);
         PluginInit.loadClass();
         DataAttachments.ATTACHMENT_TYPES.register(bus);
@@ -95,6 +98,10 @@ public class ExpandedCombat {
         }
     }
 
+    private void registerPayloadHandler(final RegisterPayloadHandlersEvent evt) {
+        ECNetworkHandler.register(evt.registrar("1.0"));
+    }
+
     private void comms(InterModEnqueueEvent event) {
         if (CONFIG.enableGauntlets) {
             InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
@@ -115,9 +122,7 @@ public class ExpandedCombat {
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ECItems());
         MinecraftForge.EVENT_BUS.register(new GeneralEvents());
-        ECNetworkHandler.register();
     }
 
     @SuppressWarnings("utility_instantation")

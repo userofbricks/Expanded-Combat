@@ -1,22 +1,15 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ItemGenerationTypes.*;
