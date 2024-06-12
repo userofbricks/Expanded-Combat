@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.datagen.models;
 
-import com.userofbricks.expanded_combat.api.TriFunction;
+import com.mojang.datafixers.util.Function3;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
@@ -33,7 +33,7 @@ public class WeaponItemModelBuilder {
     private boolean singleTexture = false;
     private boolean hasCustomTransformsOrModel = false;
     private boolean hasLargeModel = false;
-    private TriFunction<DeferredItem<?>, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction =
+    private Function3<DeferredItem<?>, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction =
             (deferredItem, materialReference, weaponReference) ->
                     new ResourceLocation(deferredItem.getId().getNamespace(), weaponReference.key().location().getPath() + "/" + materialReference.key().location().getPath());
     private BiFunction<DeferredItem<?>, Holder.Reference<WeaponType>, ResourceLocation> handleTextureFunction =
@@ -48,7 +48,7 @@ public class WeaponItemModelBuilder {
         this.weapon = weapon;
         this.modelProvider = modelProvider;
     }
-    public WeaponItemModelBuilder setMainTextureFunction(TriFunction<DeferredItem<?>, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction) {
+    public WeaponItemModelBuilder setMainTextureFunction(Function3<DeferredItem<?>, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction) {
         this.mainTextureFunction = mainTextureFunction;
         return this;
     }
