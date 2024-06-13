@@ -6,13 +6,12 @@ import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
-import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
+import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
-import com.userofbricks.expanded_combat.init.ECItemTags;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
@@ -33,12 +32,10 @@ import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.slf4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
-import top.theillusivec4.curios.common.network.NetworkHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,7 +130,7 @@ public class ExpandedCombat {
             else if (registryEntry.get() instanceof ECQuiverItem quiverItem)
                 CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
-        ECItemModelsProperties.registerModelOverides();
+        ECItemModelProperties.registerModelOverrides();
         MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
