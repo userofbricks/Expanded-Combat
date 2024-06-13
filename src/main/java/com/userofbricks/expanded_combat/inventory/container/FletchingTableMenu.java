@@ -11,6 +11,7 @@ import net.minecraft.world.inventory.ItemCombinerMenu;
 import net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,7 +24,7 @@ import java.util.Optional;
 public class FletchingTableMenu extends ItemCombinerMenu {
     private final Level level;
     @Nullable
-    private IFletchingRecipe selectedRecipe;
+    private RecipeHolder<IFletchingRecipe> selectedRecipe;
 
     public FletchingTableMenu(int p_i231591_1_, Inventory p_i231591_2_, ContainerLevelAccess p_i231591_3_) {
         super(ECContainers.FLETCHING.get(), p_i231591_1_, p_i231591_2_, p_i231591_3_);
@@ -41,7 +42,7 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     @Override
     protected boolean mayPickup(@NotNull Player p_230303_1_, boolean p_230303_2_) {
-        return this.selectedRecipe != null && this.selectedRecipe.matches(this.inputSlots, this.level);
+        return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.inputSlots, this.level);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class FletchingTableMenu extends ItemCombinerMenu {
         this.resultSlots.awardUsedRecipes(player, Collections.singletonList(itemStack));
 
         assert selectedRecipe != null;
-        this.shrinkStackInSlot(0, Math.min(inputSlots.getItem(0).getCount(), selectedRecipe.getMaxCraftingAmount()));
+        this.shrinkStackInSlot(0, Math.min(inputSlots.getItem(0).getCount(), selectedRecipe.value().getMaxCraftingAmount()));
 
         this.shrinkStackInSlot(1, 1);
         this.access.execute((level, blockPos) -> level.levelEvent(1044, blockPos, 0));
@@ -64,12 +65,12 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     @Override
     public void createResult() {
-        Optional<IFletchingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ECRecipeSerializerInit.FLETCHING_TYPE.get(), this.inputSlots, this.level);
+        Optional<RecipeHolder<IFletchingRecipe>> optional = this.level.getRecipeManager().getRecipeFor(ECRecipeSerializerInit.FLETCHING_TYPE.get(), this.inputSlots, this.level);
         if (optional.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
             this.selectedRecipe = optional.get();
-            ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots, this.level.registryAccess());
+            ItemStack itemstack = this.selectedRecipe.value().assemble(this.inputSlots, this.level.registryAccess());
             this.resultSlots.setRecipeUsed(this.selectedRecipe);
             this.resultSlots.setItem(0, itemstack);
         }
