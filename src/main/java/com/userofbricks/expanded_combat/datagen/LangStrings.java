@@ -98,7 +98,6 @@ public class LangStrings extends LanguageProvider {
         addAttributeDescription("cold_dmg", "Cold Damage");
         addAttributeDescription("void_dmg", "Void Damage");
         add("curios.identifier." + QUIVER_CURIOS_IDENTIFIER, "Quiver");
-        add("curios.identifier." + ARROWS_CURIOS_IDENTIFIER, "Arrow");
 
         //arrows
         for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {

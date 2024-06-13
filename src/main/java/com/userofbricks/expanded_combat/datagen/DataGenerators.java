@@ -62,5 +62,6 @@ public class DataGenerators {
                 )
         );
         generator.addProvider(event.includeServer(), new ECDataMapProvider(output, provider));
+        generator.addProvider(event.includeServer(), new CuriosSlotProvider(output, helper, provider));
     }
 }

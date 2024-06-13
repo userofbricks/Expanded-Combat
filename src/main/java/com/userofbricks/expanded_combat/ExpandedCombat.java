@@ -77,7 +77,6 @@ public class ExpandedCombat {
         ItemDataComponents.DATA_COMPONENTS.register(bus);
         ECEntities.ENTITIES.register(bus);
         ECLootModifiers.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
-        bus.addListener(this::comms);
         NeoForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
         NeoForge.EVENT_BUS.register(QuiverEvents.class);
         NeoForge.EVENT_BUS.register(ShieldEvents.class);
@@ -94,34 +93,13 @@ public class ExpandedCombat {
         ECNetworkHandler.register(evt.registrar("1.0"));
     }
 
-    private void comms(InterModEnqueueEvent event) {
-        if (CONFIG.enableGauntlets) {
-            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(GAUNTLET_CURIOS_IDENTIFIER).build());
-        }
-        if (CONFIG.enableQuivers) {
-            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(QUIVER_CURIOS_IDENTIFIER)
-                    .cosmetic()
-                    .icon(new ResourceLocation(MODID, "slot/empty_" + QUIVER_CURIOS_IDENTIFIER + "_slot"))
-                    .hide()
-                    .build());
-            InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder(ARROWS_CURIOS_IDENTIFIER)
-                    .cosmetic()
-                    .icon(new ResourceLocation(MODID, "slot/empty_" + ARROWS_CURIOS_IDENTIFIER + "_slot"))
-                    .hide()
-                    .size(maxQuiverSlots)
-                    .build());
-        }
-    }
-
     private void setup(FMLCommonSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new GeneralEvents());
+        NeoForge.EVENT_BUS.register(new GeneralEvents());
     }
 
     @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(ClientEvents.class);
-        MenuScreens.register(ECContainers.SHIELD_SMITHING.get(), ShieldSmithingTableScreen::new);
-        MenuScreens.register(ECContainers.FLETCHING.get(), FletchingTableScreen::new);
+        NeoForge.EVENT_BUS.register(ClientEvents.class);
         
         for (DeferredItem<? extends Item> registryEntry: ECItems.ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList())
         {
@@ -131,7 +109,7 @@ public class ExpandedCombat {
                 CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelProperties.registerModelOverrides();
-        MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
+        NeoForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
     }
