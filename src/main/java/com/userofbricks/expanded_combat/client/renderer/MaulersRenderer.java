@@ -46,8 +46,7 @@ public class MaulersRenderer implements IGauntletRenderer {
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
-        if (stack.getItem() instanceof GauntletItem gauntletItem) {
-            GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
+        if (stack.getItem() instanceof GauntletItem) {
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -57,8 +56,6 @@ public class MaulersRenderer implements IGauntletRenderer {
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             ICurioRenderer.followBodyRotations(entity, this.model);
             renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE);
-
-            //ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(gauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
         }
     }
 
@@ -74,15 +71,15 @@ public class MaulersRenderer implements IGauntletRenderer {
             model.setupAnim(player, 0, 0, 0, 0, 0);
             modelPart.xRot = 0;
 
-            if (stack.getItem() instanceof GauntletItem gauntletItem) {
-                GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
-
+            if (stack.getItem() instanceof GauntletItem) {
                 RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
                 VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
 
                 modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
 
-                //ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent((armorTrim) -> this.renderTrim(gauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+                if (stack.hasFoil()) {
+                    modelPart.render(poseStack, multiBufferSource.getBuffer(RenderType.armorEntityGlint()), light, OverlayTexture.NO_OVERLAY);
+                }
             }
         }
     }
@@ -93,18 +90,4 @@ public class MaulersRenderer implements IGauntletRenderer {
         model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
     }
 
-    private void renderTrim(GauntletItem gauntletItem, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, boolean foil) {
-        String materialSuffix = armorTrim.material().get().assetName();
-
-        if (materialSuffix.equals(gauntletItem.getMaterial().getLocationName())) {
-            materialSuffix = materialSuffix + "_darker";
-        }
-
-        ResourceLocation trimTexture = new ResourceLocation(ExpandedCombat.MODID, "trims/models/gauntlets/" + armorTrim.pattern().get().assetId().getPath() + "_" + materialSuffix);
-
-
-        TextureAtlasSprite textureatlassprite = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET).getSprite(trimTexture);
-        VertexConsumer vertexconsumer = textureatlassprite.wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, Sheets.armorTrimsSheet(), true, foil));
-        new GauntletModel(Minecraft.getInstance().getEntityModels().bakeLayer(ECLayerDefinitions.GAUNTLET)).renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
-    }
 }

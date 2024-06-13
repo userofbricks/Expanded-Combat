@@ -19,18 +19,17 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.armortrim.ArmorTrim;
+import net.minecraft.world.item.component.DyedItemColor;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 public class GauntletRenderer implements IGauntletRenderer {
-
-    private ResourceLocation GAUNTLET_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/knuckles.png");
-
     private final GauntletModel model;
 
     public GauntletRenderer() {
@@ -43,7 +42,6 @@ public class GauntletRenderer implements IGauntletRenderer {
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
         if (stack.getItem() instanceof GauntletItem gauntletItem) {
-            GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
             LivingEntity entity = slotContext.entity();
             model.setAllVisible(false);
             model.leftArm.visible = true;
@@ -52,21 +50,29 @@ public class GauntletRenderer implements IGauntletRenderer {
             this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             ICurioRenderer.followBodyRotations(entity, this.model);
-            if (stack.getItem() instanceof GauntletItem.Dyeable dyeableGauntletItem) {
-                ResourceLocation GAUNTLET_TEXTURE_OVERLAY = dyeableGauntletItem.getGauntletTextureOverlay(stack);
-                int i = dyeableGauntletItem.getColor(stack);
-                float f = (float)(i >> 16 & 255) / 255.0F;
-                float f1 = (float)(i >> 8 & 255) / 255.0F;
-                float f2 = (float)(i & 255) / 255.0F;
-                renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, f, f1,f2, GAUNTLET_TEXTURE);
-                renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE_OVERLAY);
-            }
-            else {
-                renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f,1f, GAUNTLET_TEXTURE);
+
+            ResourceLocation material = gauntletItem.material.key().location();
+            for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
+                ResourceLocation layerTexture = layer.texture(material);
+                if (layer.dyeable()) {
+                    int i = DyedItemColor.getOrDefault(stack, -6265536);
+                    float f = (float) (i >> 16 & 255) / 255.0F;
+                    float f1 = (float) (i >> 8 & 255) / 255.0F;
+                    float f2 = (float) (i & 255) / 255.0F;
+                    renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, f, f1, f2, layerTexture);
+                } else {
+                    renderModel(poseStack, multiBufferSource, light, stack.hasFoil(), this.model, 1f, 1f, 1f, layerTexture);
+                }
             }
 
-            ArmorTrim.getTrim(entity.level().registryAccess(), stack).ifPresent((armorTrim) ->
-                    this.renderTrim(gauntletItem, poseStack, multiBufferSource, light, armorTrim, stack.hasFoil()));
+            ArmorTrim armortrim = stack.get(DataComponents.TRIM);
+            if (armortrim != null) {
+                this.renderTrim(material, poseStack, multiBufferSource, light, armortrim);
+            }
+
+            if (stack.hasFoil()) {
+                this.renderGlint(poseStack, multiBufferSource, light, model);
+            }
         }
     }
 
@@ -83,28 +89,33 @@ public class GauntletRenderer implements IGauntletRenderer {
             modelPart.xRot = 0;
 
             if (stack.getItem() instanceof GauntletItem gauntletItem) {
-                GAUNTLET_TEXTURE = gauntletItem.getGauntletTexture(stack);
+                ResourceLocation material = gauntletItem.material.key().location();
+                for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
+                    ResourceLocation layerTexture = layer.texture(material);
 
-                RenderType renderType = RenderType.armorCutoutNoCull(GAUNTLET_TEXTURE);
-                VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
+                    RenderType renderType = RenderType.armorCutoutNoCull(layerTexture);
+                    VertexConsumer builder = ItemRenderer.getArmorFoilBuffer(multiBufferSource, renderType, false, hasFoil);
 
-                if (stack.getItem() instanceof GauntletItem.Dyeable dyeableGauntletItem) {
-                    int i = dyeableGauntletItem.getColor(stack);
-                    float f = (float)(i >> 16 & 255) / 255.0F;
-                    float f1 = (float)(i >> 8 & 255) / 255.0F;
-                    float f2 = (float)(i & 255) / 255.0F;
-                    modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1f);
+                    if (layer.dyeable()) {
+                        int i = DyedItemColor.getOrDefault(stack, -6265536);
+                        float f = (float) (i >> 16 & 255) / 255.0F;
+                        float f1 = (float) (i >> 8 & 255) / 255.0F;
+                        float f2 = (float) (i & 255) / 255.0F;
+                        modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1f);
+                    } else {
+                        modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
+                    }
                 }
-                else {
-                    modelPart.render(poseStack, builder, light, OverlayTexture.NO_OVERLAY);
+
+                ArmorTrim armortrim = stack.get(DataComponents.TRIM);
+                if (armortrim != null) {
+                    VertexConsumer vertexConsumer = getTrimVertexConsumer(material, multiBufferSource, armortrim);
+                    modelPart.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
                 }
 
-                ArmorTrim.getTrim(player.level().registryAccess(), stack).ifPresent(
-                        (armorTrim) -> {
-                            VertexConsumer vertexConsumer = getTrimVertexConsumer(gauntletItem, multiBufferSource, armorTrim, hasFoil);
-                            modelPart.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
-                        }
-                );
+                if (stack.hasFoil()) {
+                    modelPart.render(poseStack, multiBufferSource.getBuffer(RenderType.armorEntityGlint()), light, OverlayTexture.NO_OVERLAY);
+                }
             }
         }
     }
@@ -115,22 +126,26 @@ public class GauntletRenderer implements IGauntletRenderer {
         model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
     }
 
-    private void renderTrim(GauntletItem gauntletItem, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, boolean foil) {
-        VertexConsumer vertexconsumer = getTrimVertexConsumer(gauntletItem, multiBufferSource, armorTrim, foil);
+    private void renderTrim(ResourceLocation material, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim) {
+        VertexConsumer vertexconsumer = getTrimVertexConsumer(material, multiBufferSource, armorTrim);
         this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    private VertexConsumer getTrimVertexConsumer(GauntletItem gauntletItem, MultiBufferSource multiBufferSource, ArmorTrim armorTrim, boolean foil) {
-        String materialSuffix = armorTrim.material().get().assetName();
+    private VertexConsumer getTrimVertexConsumer(ResourceLocation material, MultiBufferSource multiBufferSource, ArmorTrim armorTrim) {
+        String materialSuffix = armorTrim.material().value().assetName();
 
-        if (materialSuffix.equals(gauntletItem.getMaterial().getLocationName())) {
+        if (materialSuffix.equals(material.getPath())) {
             materialSuffix = materialSuffix + "_darker";
         }
 
-        ResourceLocation trimTexture = new ResourceLocation(ExpandedCombat.MODID, "trims/models/gauntlets/" + armorTrim.pattern().get().assetId().getPath() + "_" + materialSuffix);
-
+        ResourceLocation trimTexture = new ResourceLocation(ExpandedCombat.MODID, "trims/models/gauntlets/" + armorTrim.pattern().value().assetId().getPath() + "_" + materialSuffix);
 
         TextureAtlasSprite textureatlassprite = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET).getSprite(trimTexture);
-        return textureatlassprite.wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, Sheets.armorTrimsSheet(), true, foil));
+
+        return textureatlassprite.wrap(multiBufferSource.getBuffer(Sheets.armorTrimsSheet(armorTrim.pattern().value().decal())));
+    }
+
+    private void renderGlint(PoseStack p_289673_, MultiBufferSource p_289654_, int p_289649_, net.minecraft.client.model.Model p_289659_) {
+        p_289659_.renderToBuffer(p_289673_, p_289654_.getBuffer(RenderType.armorEntityGlint()), p_289649_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }
 }
