@@ -6,7 +6,6 @@ import com.userofbricks.expanded_combat.config.TooltipFrase;
 import com.userofbricks.expanded_combat.config.TooltipFrases;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import com.userofbricks.expanded_combat.item.ElementalWeapon;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.core.Holder;
@@ -18,8 +17,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -68,6 +65,21 @@ public class LangStrings extends LanguageProvider {
     public static final String advancementPowerGloveDesc = createAdvancementLangEntry("gold_gauntlet", "Snap", false);
     public static final String advancementPunchGauntletTitle = createAdvancementLangEntry("punch_gauntlet", "Punch it!", true);
     public static final String advancementPunchGauntletDesc = createAdvancementLangEntry("punch_gauntlet", "Punch 2 Gauntlet", false);
+
+    //commands
+    public static final String increaseChargeNotLivingEntity = createCommandLangEntry("increase_charge", false, "entity", "%s is not a valid entity for this command");
+    public static final String increaseChargeNoItem = createCommandLangEntry("increase_charge", false, "itemless", "%s is not holding a valid item");
+    public static final String increaseChargeNothingHappened = createCommandLangEntry("increase_charge", false, "nothing", "Nothing changed.");
+    public static final String increaseChargeSingleSuccess = createCommandLangEntry("increase_charge", true, "single", "Added %s charge to %s's item");
+    public static final String increaseChargeMultipleSuccesses = createCommandLangEntry("increase_charge", true, "multiple", "Added %s charge to %s entities");
+    public static final String addedHeartsNotValidEntity = createCommandLangEntry("added_hearts", false, "entity", "%s is not a valid entity for this command");
+    public static final String addedHeartsNothingHappened = createCommandLangEntry("added_hearts", false, "nothing", "Nothing changed.");
+    public static final String addedHeartsSuccess = createCommandLangEntry("increase_charge", true, "single", "Set Stolen Hearts to %s for %s");
+    public static final String addedHeartsSuccesses = createCommandLangEntry("increase_charge", true, "multiple", "Set Stolen Hearts to %s for %s entities");
+    public static final String stolenHeartsNotValidEntity = createCommandLangEntry("stolen_hearts", false, "entity", "%s is not a valid entity for this command");
+    public static final String stolenHeartsNothingHappened = createCommandLangEntry("stolen_hearts", false, "nothing", "Nothing changed.");
+    public static final String stolenHeartsSuccess = createCommandLangEntry("increase_charge", true, "single", "Set Stolen Hearts to %s for %s");
+    public static final String stolenHeartsSucceses = createCommandLangEntry("increase_charge", true, "multiple", "Set Stolen Hearts to %s for %s entities");
 
     public LangStrings(PackOutput output) {
         super(output, MODID, "en_us");
