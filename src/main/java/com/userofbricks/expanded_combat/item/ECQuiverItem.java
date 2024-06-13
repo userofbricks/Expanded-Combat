@@ -9,6 +9,7 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -117,7 +118,7 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
                         ItemStack itemstack2 = pSlot.safeInsert(itemstack1);
                         bundlecontents$mutable.tryInsert(itemstack2);
                     }
-                } else if (itemstack.getItem().canFitInsideContainerItems()) {
+                } else if (itemstack.getItem().canFitInsideContainerItems() && itemstack.is(ItemTags.ARROWS)) {
                     int i = bundlecontents$mutable.tryTransfer(pSlot, pPlayer);
                     if (i > 0) {
                         playInsertSound(pPlayer);
@@ -145,11 +146,13 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
                         playRemoveOneSound(pPlayer);
                         pAccess.set(itemstack);
                     }
-                } else {
+                } else if (pOther.is(ItemTags.ARROWS)) {
                     int i = bundlecontents$mutable.tryInsert(pOther);
                     if (i > 0) {
                         playInsertSound(pPlayer);
                     }
+                } else {
+                    return false;
                 }
 
                 pStack.set(BUNDLE_CONTENTS, bundlecontents$mutable.toImmutable());

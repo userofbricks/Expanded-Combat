@@ -1,94 +1,62 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.config.OverlayAnchorPoss;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGuiEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.item.component.BundleContents;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.init.DataAttachments.ARROW_SLOT;
 
-@Mod.EventBusSubscriber({Dist.CLIENT})
+@EventBusSubscriber({Dist.CLIENT})
 public class QuiverSlotOverlay {
-    protected static final ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/widgets.png");
-
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void overlayEventHandler(RenderGuiEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         assert player != null;
-        Optional<SlotResult> quiverSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> stack.getItem() instanceof ECQuiverItem);
+        Optional<SlotResult> quiverSlotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem));
         if (quiverSlotResult.isEmpty()) return;
         if (!(player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof BowItem)) return;
 
-        int w = event.getWindow().getGuiScaledWidth();
-        int h = event.getWindow().getGuiScaledHeight();
-        ECQuiverItem quiver = (ECQuiverItem) quiverSlotResult.get().stack().getItem();
+        int w = event.getGuiGraphics().guiWidth();
+        int h = event.getGuiGraphics().guiHeight();
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        int providedSlots = quiver.providedSlots;
 
-        int currentIndex = ECVariables.getArrowSlot(player);
+        BundleContents contents = quiverSlotResult.get().stack().getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+
+        int providedSlots = contents.size();
+
+        int currentIndex = player.getData(ARROW_SLOT);
+        if (currentIndex >= providedSlots) {
+            currentIndex = providedSlots - 1;
+            player.setData(ARROW_SLOT, providedSlots - 1);
+        }
+
         int beforeIndex = currentIndex - 1 < 0 ? providedSlots - 1 : currentIndex - 1;
         int nextIndex = currentIndex + 1 >= providedSlots ? 0 : currentIndex + 1;
 
-        ItemStack currentArrow;
-        ItemStack nextArrow = null;
-        ItemStack beforeArrow = null;
-
-        Optional<SlotResult> currentSelectedSlotResult = CuriosApi.getCuriosHelper().findCurio(player, ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, currentIndex);
-        if (currentSelectedSlotResult.isEmpty()) currentSelectedSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()));
-        if (currentSelectedSlotResult.isEmpty()) {
-            currentArrow = ItemStack.EMPTY;
-        }
-        else currentArrow = currentSelectedSlotResult.get().stack();
-
-        if (!currentArrow.isEmpty()) {
-            for (int slot = beforeIndex; true; slot--) {
-                slot = slot < 0 ? providedSlots -1 : slot;
-                if (slot == currentIndex) {
-                    break;
-                }
-                Optional<SlotResult> beforeSelectedSlotResult = CuriosApi.getCuriosHelper().findCurio(player, ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, slot);
-                if (beforeSelectedSlotResult.isPresent()) {
-                    beforeArrow = beforeSelectedSlotResult.get().stack();
-                    break;
-                }
-            }
-            for (int slot = nextIndex; true; slot++) {
-                slot = slot >= providedSlots ? 0 : slot;
-                if (slot == currentIndex) {
-                    break;
-                }
-                Optional<SlotResult> nextSelectedSlotResult = CuriosApi.getCuriosHelper().findCurio(player, ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, slot);
-                if (nextSelectedSlotResult.isPresent()) {
-                    nextArrow = nextSelectedSlotResult.get().stack();
-                    break;
-                }
-            }
-        }
-
-        beforeArrow = beforeArrow == null ? ItemStack.EMPTY : beforeArrow;
-        nextArrow = nextArrow == null ? ItemStack.EMPTY : nextArrow;
+        ItemStack currentArrow = contents.isEmpty() ? ItemStack.EMPTY : contents.getItemUnsafe(currentIndex);
+        ItemStack nextArrow = nextIndex == currentIndex ? ItemStack.EMPTY : contents.getItemUnsafe(nextIndex);
+        ItemStack beforeArrow = beforeIndex == currentIndex || beforeIndex == nextIndex ? ItemStack.EMPTY : contents.getItemUnsafe(beforeIndex);
 
 
         int offsetX = CONFIG.quiverHudAnchor.xAxisRatio.apply(w) + CONFIG.quiverHudXAdjustment;
@@ -104,8 +72,9 @@ public class QuiverSlotOverlay {
         //Rendering selection Background
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0.0F, 0.0F, -90.0F);
+        ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/sprites/hud/hotbar_offhand_"+(CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? "left" : "right")+".png");
         RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
-        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 24, 23, 22, 22);
+        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 1, CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? 0 : 7, 22, 22);
         guiGraphics.pose().popPose();
 
         renderSlot(guiGraphics, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow);
