@@ -17,7 +17,7 @@ public class DataAttachments {
             "added_health", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).copyOnDeath().build());
     public static final Supplier<AttachmentType<Integer>> ARROW_SLOT = ATTACHMENT_TYPES.register(
             "added_health", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).copyOnDeath().build());
-    public static final Supplier<AttachmentType<Integer>> BLOCK_WEAPON_COUNT = ATTACHMENT_TYPES.register(
+    public static final Supplier<AttachmentType<Integer>> WEAPON_BLOCK_COUNT = ATTACHMENT_TYPES.register(
             "added_health", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).copyOnDeath().build());
     public static final Supplier<AttachmentType<Integer>> TIME_SINCE_WEAPON_BLOCK = ATTACHMENT_TYPES.register(
             "added_health", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).copyOnDeath().build());
