@@ -1,7 +1,5 @@
 package com.userofbricks.expanded_combat.network;
 
-import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;

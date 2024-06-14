@@ -1,16 +1,14 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 
 import java.util.List;
 

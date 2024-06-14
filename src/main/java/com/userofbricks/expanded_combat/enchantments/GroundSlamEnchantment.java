@@ -1,8 +1,6 @@
 package com.userofbricks.expanded_combat.enchantments;
 
 import com.userofbricks.expanded_combat.item.SlamWeaponItem;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -18,7 +16,7 @@ public class GroundSlamEnchantment extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
         Item item = stack.getItem();
-        return item instanceof SlamWeaponItem || (item instanceof ECWeaponItem ecWeaponItem && (ecWeaponItem.getWeapon() == VanillaECPlugin.BROAD_SWORD || ecWeaponItem.getWeapon() == VanillaECPlugin.CLAYMORE));
+        return item instanceof SlamWeaponItem;
     }
 
     @Override

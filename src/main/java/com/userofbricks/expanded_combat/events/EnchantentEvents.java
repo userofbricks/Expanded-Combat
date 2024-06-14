@@ -1,9 +1,8 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.item.GauntletItem;
-import com.userofbricks.expanded_combat.item.ECWeaponItem;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,14 +11,13 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
@@ -32,7 +30,7 @@ public class EnchantentEvents {
         DamageSource damageSource = event.getSource();
         if (!damageSource.isIndirect() && damageSource.getEntity() instanceof LivingEntity livingEntity && (
                 damageSource.is(DamageTypes.GENERIC) || damageSource.is(DamageTypes.GENERIC_KILL)
-                ) && livingEntity.getItemInHand(livingEntity.getUsedItemHand()).getItem() instanceof ECWeaponItem weaponItem && weaponItem.getWeapon() == VanillaECPlugin.KATANA) {
+                ) && livingEntity.getItemInHand(livingEntity.getUsedItemHand()).getItem() instanceof ArrowBlockWeaponItem) {
             ItemStack weapon = livingEntity.getItemInHand(livingEntity.getUsedItemHand());
             int healthStealLvl = weapon.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
         }

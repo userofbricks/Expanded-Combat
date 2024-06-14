@@ -2,11 +2,8 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,7 +12,6 @@ import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.function.Consumer;
 
 import static com.userofbricks.expanded_combat.init.DataAttachments.ADDED_HEALTH;
 import static com.userofbricks.expanded_combat.init.DataAttachments.STOLEN_HEALTH;

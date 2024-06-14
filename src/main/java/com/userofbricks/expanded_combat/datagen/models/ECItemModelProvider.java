@@ -6,7 +6,6 @@ import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
-import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
