@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.api.registry.*;
 import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -12,39 +13,13 @@ import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
-@SuppressWarnings("unused")
 public class PluginInit {
-    public static List<ShieldToMaterials> shieldToMaterialsList = new ArrayList<>();
     public static List<ShieldMaterialUseTick> shieldMaterialUseTickList = new ArrayList<>();
 
     public static void loadClass() {
         for (IExpandedCombatPlugin plugin: PLUGINS) {
-            plugin.registerShieldToMaterials(new ShieldMaterialRegisterator());
+            //plugin.registerShieldToMaterials(new ShieldMaterialRegisterator());
         }
-    }
-
-    public static Holder<Material> getMaterialForShieldPart(String part, ItemLike shield) {
-        for (ShieldToMaterials shieldToMaterials : shieldToMaterialsList) {
-            if (shield.asItem() == shieldToMaterials.itemLikeSupplier().get().asItem()) {
-                return switch (part) {
-                    case "dr" -> shieldToMaterials.dr();
-                    case "dl" -> shieldToMaterials.dl();
-                    case "ur" -> shieldToMaterials.ur();
-                    case "ul" -> shieldToMaterials.ul();
-                    default -> shieldToMaterials.m();
-                };
-            }
-        }
-        return part.equals("m") ? Materials.IRON : Materials.WOOD_PLANK;
-    }
-
-    public static boolean doesShieldHaveEntry(ItemLike shield) {
-        for (ShieldToMaterials shieldToMaterials : shieldToMaterialsList) {
-            if (shield.asItem() == shieldToMaterials.itemLikeSupplier().get().asItem()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static @Nullable ShieldMaterialUseTick getShieldUseTickEntry(Holder<Material> material) {
@@ -56,19 +31,25 @@ public class PluginInit {
         return null;
     }
     public static double getShieldToMaterialBaseProtection(ItemStack stack) {
-        double ul = getMaterialForShieldPart("ul", stack.getItem()).value().defense().baseProtectionAmmount() /5;
-        double ur = getMaterialForShieldPart("ur", stack.getItem()).value().defense().baseProtectionAmmount() /5;
-        double dl = getMaterialForShieldPart("dl", stack.getItem()).value().defense().baseProtectionAmmount() /5;
-        double dr = getMaterialForShieldPart("dr", stack.getItem()).value().defense().baseProtectionAmmount() /5;
-        double m = getMaterialForShieldPart("m", stack.getItem()).value().defense().baseProtectionAmmount() /5;
+        ShieldMaterials materials = stack.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (materials == null) return Materials.VANILLA.value().defense().baseProtectionAmmount();
+
+        double ul = materials.ULMaterial.value().defense().baseProtectionAmmount() /5;
+        double ur = materials.URMaterial.value().defense().baseProtectionAmmount() /5;
+        double dl = materials.DLMaterial.value().defense().baseProtectionAmmount() /5;
+        double dr = materials.DRMaterial.value().defense().baseProtectionAmmount() /5;
+        double m = materials.MMaterial.value().defense().baseProtectionAmmount() /5;
         return ul + ur + dl + dr + m;
     }
     public static double getShieldToMaterialPercentageProtection(ItemStack stack) {
-        double ul = getMaterialForShieldPart("ul", stack.getItem()).value().defense().afterBasePercentReduction() /5;
-        double ur = getMaterialForShieldPart("ur", stack.getItem()).value().defense().afterBasePercentReduction() /5;
-        double dl = getMaterialForShieldPart("dl", stack.getItem()).value().defense().afterBasePercentReduction() /5;
-        double dr = getMaterialForShieldPart("dr", stack.getItem()).value().defense().afterBasePercentReduction() /5;
-        double m = getMaterialForShieldPart("m", stack.getItem()).value().defense().afterBasePercentReduction() /5;
+        ShieldMaterials materials = stack.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (materials == null) return Materials.VANILLA.value().defense().baseProtectionAmmount();
+
+        double ul = materials.ULMaterial.value().defense().afterBasePercentReduction() /5;
+        double ur = materials.URMaterial.value().defense().afterBasePercentReduction() /5;
+        double dl = materials.DLMaterial.value().defense().afterBasePercentReduction() /5;
+        double dr = materials.DRMaterial.value().defense().afterBasePercentReduction() /5;
+        double m = materials.MMaterial.value().defense().afterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
 }

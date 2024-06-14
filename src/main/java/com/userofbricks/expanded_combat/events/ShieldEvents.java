@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
+import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.PluginInit;
@@ -36,7 +37,7 @@ public class ShieldEvents {
                 double damagePercent = Materials.VANILLA.value().defense().afterBasePercentReduction();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
-                }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                }else if (shieldItemStack.getItemHolder().getData(DataMaps.SHIELD_MATERIALS) != null){
                     damagePercent = PluginInit.getShieldToMaterialPercentageProtection(shieldItemStack);
                 }
                 damageBlocked += (float) (damageLeftToBlock * damagePercent);
@@ -52,7 +53,7 @@ public class ShieldEvents {
                 double protectionAmount = Materials.VANILLA.value().defense().baseProtectionAmmount();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     protectionAmount = ECShieldItem.getBaseProtection(shieldItemStack);
-                }else if (PluginInit.doesShieldHaveEntry(shieldItemStack.getItem())){
+                }else if (shieldItemStack.getItemHolder().getData(DataMaps.SHIELD_MATERIALS) != null){
                     protectionAmount = PluginInit.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
                 damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
