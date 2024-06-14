@@ -1,16 +1,14 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
-import com.userofbricks.expanded_combat.network.ECVariables;
-import net.minecraft.tags.ItemTags;
+import com.userofbricks.expanded_combat.init.DataAttachments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,8 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.Objects;
 import java.util.Optional;
+
+import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @Mixin(Player.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
@@ -33,18 +32,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (!(shootable.getItem() instanceof ProjectileWeaponItem)) {
             return;
         }
-        Optional<SlotResult> quiverStack = CuriosApi.getCuriosHelper().findCurio(this, ExpandedCombat.QUIVER_CURIOS_IDENTIFIER, 0);
+        Optional<SlotResult> quiverStack = CuriosApi.getCuriosInventory(this).flatMap(curiosInventory -> curiosInventory.findCurio(ExpandedCombat.QUIVER_CURIOS_IDENTIFIER, 0));
         if (quiverStack.isPresent()) {
-            int providedSlots = ((ECQuiverItem)quiverStack.get().stack().getItem()).providedSlots;
-            int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots - 1), 0);
-            //ECVariables.setArrowSlotTo(this, selectedSlot);
+            BundleContents bundlecontents = quiverStack.get().stack().getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
+            int providedSlots = bundlecontents.size();
+            int selectedSlot = Math.max(Math.min(this.getData(DataAttachments.ARROW_SLOT), providedSlots - 1), 0);
 
-            Optional<SlotResult> currentSelectedSlot = CuriosApi.getCuriosHelper().findCurio(this, ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, selectedSlot);
-            if (currentSelectedSlot.isPresent() && currentSelectedSlot.get().slotContext().index() == selectedSlot) cir.setReturnValue(currentSelectedSlot.get().stack());
-            else {
-                CuriosApi.getCuriosHelper().findFirstCurio(this, stack -> Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()))
-                        .ifPresent(slotResult -> cir.setReturnValue(slotResult.stack()));
-            }
+            //TODO may need to create methods of removal after shot or mimic Spartan weaponry and put the arrow stack in offhand instead of using a mixin
+            cir.setReturnValue(bundlecontents.getItemUnsafe(selectedSlot));
         }
     }
 }

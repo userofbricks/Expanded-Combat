@@ -3,9 +3,13 @@ package com.userofbricks.expanded_combat.mixin;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,21 +22,35 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
+import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @Mixin(AbstractArrow.class)
-public abstract class AbstractArrowEntityMixin {
+public abstract class AbstractArrowEntityMixin extends Projectile {
 
     @Shadow
     protected boolean inGround;
     @Shadow
+    public int shakeTime;
+
+
+    protected AbstractArrowEntityMixin(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+    }
+
+    @Shadow
     protected abstract ItemStack getPickupItem();
+
+    @Shadow
+    public abstract boolean isNoPhysics();
 
     @Shadow public AbstractArrow.Pickup pickup;
 
     /**
      * Changed Version
-     * author: Skijearz;
-     * reason: changed the mixin from a overwrite to inject in order to keep compatibility with other mods and mixins. needs to be cancellable, if a arrow is pickedup into the quiver it cancels the vanilla behaviour so the arrow isnt duped. Otherwise if the quiver is not equipped just dont cancel the vanilla behavior so it will be picked up into the inventory.
+     * @author Skijearz;
+     * @reason changed the mixin from an overwrite to inject in order to keep compatibility with other mods and mixins.
+     * Needs to be cancellable, if an arrow is picked up into the quiver it cancels the vanilla behaviour so the arrow isn't duped.
+     * Otherwise, if the quiver is not equipped just don't cancel the vanilla behavior, so it will be picked up into the inventory.
      *
      *
      * @author Userofbricks and theNyfaria for the original overwrite of this method
@@ -41,31 +59,24 @@ public abstract class AbstractArrowEntityMixin {
      */
     @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
     public void playerTouch(Player player,CallbackInfo callback) {
-        if (!((AbstractArrow)(Object)this).level().isClientSide && (this.inGround || ((AbstractArrow)(Object)this).isNoPhysics()) && ((AbstractArrow)(Object)this).shakeTime <= 0) {
+        if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0) {
             ItemStack pickupItem = this.getPickupItem();
-            AtomicBoolean added = new AtomicBoolean(false);
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
-                SlotResult quiverSlot = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+                SlotResult quiverSlot = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem)).orElse(null);
                 if (quiverSlot == null) return;
                 ItemStack quiverStack = quiverSlot.stack();
+                ECQuiverItem quiverItem = ((ECQuiverItem)quiverStack.getItem());
 
-                CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(curios -> {
-                    IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                    int slots = arrowStackHandler.getSlots();
+                BundleContents bundlecontents = quiverStack.getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-                    for (int s = 0; s < slots; s++) {
-                        ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
-                        if (((currentStack.getItem() == this.getPickupItem().getItem() && currentStack.getCount() < currentStack.getMaxStackSize()) || currentStack.isEmpty()) && ((ECQuiverItem) quiverStack.getItem()).providedSlots > s) {
-                            arrowStackHandler.insertItem(s, this.getPickupItem().copy(), false);
-                            player.awardStat(Stats.ITEM_PICKED_UP.get(this.getPickupItem().getItem()), 1);
-                            ((AbstractArrow) (Object) this).discard();
-                            added.set(true);
-                            break;
-                        }
-                    }
-                });
+                ECQuiverItem.MutableQuiverContents bundlecontents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
 
-                if (added.get()){
+                int i = bundlecontents$mutable.tryInsert(pickupItem);
+                if (i > 0) {
+                    quiverStack.set(BUNDLE_CONTENTS, bundlecontents$mutable.toImmutable());
+                    quiverItem.playInsert(player);
+                    player.awardStat(Stats.ITEM_PICKED_UP.get(pickupItem.getItem()), 1);
+                    discard();
                     callback.cancel();
                 }
             }

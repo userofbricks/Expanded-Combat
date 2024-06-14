@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
@@ -176,6 +177,10 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
 
     public int mulAndTruncateRelToSlots(Fraction pFraction, int pFactor) {
         return ((pFraction.getNumerator() / getMaterial().offense().quiverSlots()) * pFactor) / pFraction.getDenominator();
+    }
+
+    public void playInsert(Entity pEntity) {
+        playInsertSound(pEntity);
     }
 
     public static final class Layer {
