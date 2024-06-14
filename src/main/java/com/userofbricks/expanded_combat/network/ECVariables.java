@@ -29,61 +29,11 @@ import java.util.Objects;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECVariables {
 
-    public static int getStolenHealth(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).stolenHealth;
-    }
-    public static int getAddedHealth(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).addedHealth;
-    }
-    public static ItemStack getTheirHeartStealer(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).playersHeartStealer;
-    }
-    public static int getArrowSlot(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).arrowSlot;
-    }
     public static int getKatanaArrowBlockNumber(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaArrowBlockNumber;
     }
     public static int getKatanaTimeSinceBlock(Entity entity) {
         return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaTimeSinceBlock;
-    }
-
-    public static void setTheirHeartStealer(LivingEntity entity, ItemStack stack) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.playersHeartStealer = stack;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-    public static void changeStolenHealth(LivingEntity entity, int health) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.stolenHealth += health;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-    public static void changeAddedHealth(LivingEntity entity, int health) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.addedHealth += health;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-    public static void setStolenHealth(LivingEntity entity, int health) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.stolenHealth = health;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-    public static void setAddedHealth(LivingEntity entity, int health) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.addedHealth = health;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-
-    public static void setArrowSlotTo(LivingEntity entity, int slot) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.arrowSlot = slot;
-            capability.syncPlayerVariables(entity);
-        });
     }
 
     public static void setKatanaTimeSinceBlock(LivingEntity entity, int ticks) {
