@@ -40,7 +40,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECRecipeProvider(output, provider));
         //generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, provider, helper));
-        generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output));
+        generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output, provider));
         ECBlockTagsProvider blockTagsProvider = new ECBlockTagsProvider(output, provider, helper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ECItemTagsProvider(output, provider, blockTagsProvider.contentsGetter(), helper));

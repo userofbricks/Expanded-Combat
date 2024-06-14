@@ -4,26 +4,27 @@ import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.loot.AddItemFromGauntletModifier;
 import com.userofbricks.expanded_combat.loot.AddItemModifier;
 import com.userofbricks.expanded_combat.loot.AddItemWithoutGauntletModifier;
-import com.userofbricks.expanded_combat.plugins.CustomWeaponsPlugin;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.critereon.EntityEquipmentPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.init.ECItems.*;
 import static net.minecraft.world.level.storage.loot.LootContext.EntityTarget.KILLER;
 
 public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
-    public ECGlobalLootModifiersProvider(PackOutput output) {
-        super(output, MODID);
+    public ECGlobalLootModifiersProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries, MODID);
     }
 
     @Override
@@ -33,88 +34,86 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     }
 
     private void generateCustomWeaponLootModifiers() {
-        for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.VOID_MATERIAL.getWeapons().entrySet()) {
-            add("end_city_treasure_void_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+        for (DeferredItem<?> entry : Arrays.asList(VOID_TOUCHED_CLAYMORE, VOID_TOUCHED_CUTLASS, VOID_TOUCHED_DAGGER, VOID_TOUCHED_GREAT_HAMMER)) {
+            add("end_city_treasure_void_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "end_city_treasure")).build(),
                     LootItemRandomChanceCondition.randomChance(0.05f).build()
-            }, entry.getValue().get()));
+            }, entry.get()));
         }
 
         for (String chestLoot : Arrays.asList("shipwreck_treasure", "underwater_ruin_big", "woodland_mansion", "buried_treasure")) {
-            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.COLD_MATERIAL.getWeapons().entrySet()) {
-                add(chestLoot + "_cold_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+            for (DeferredItem<?> entry : Arrays.asList(FROST_CLAYMORE, FROST_DAGGER, FROST_SCYTHE)) {
+                add(chestLoot + "_cold_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.get()));
             }
         }
 
         for (String chestLoot : Arrays.asList("desert_pyramid", "bastion_treasure", "woodland_mansion", "buried_treasure")) {
-            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.HEAT_MATERIAL.getWeapons().entrySet()) {
-                add(chestLoot + "_heat_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+            for (DeferredItem<?> entry : Arrays.asList(HEAT_KATANA, HEAT_GLAIVE, HEAT_MACE, HEAT_SCYTHE)) {
+                add(chestLoot + "_heat_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.get()));
             }
         }
 
         for (String chestLoot : Arrays.asList("ancient_city", "bastion_treasure", "woodland_mansion")) {
-            for (Map.Entry<String, RegistryEntry<? extends Item>> entry : CustomWeaponsPlugin.SOUL_MATERIAL.getWeapons().entrySet()) {
-                add(chestLoot + "_soul_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
+            for (DeferredItem<?> entry : Arrays.asList(SOUL_KATANA, SOUL_DAGGER, SOUL_SCYTHE, SOUL_GAUNTLET)) {
+                add(chestLoot + "_soul_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.get()));
             }
         }
 
         add("bastion_treasure" + "_fighters_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "bastion_treasure")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get()));
-        add("woodland_mansion" + "_gauntlet", new AddItemModifier(new LootItemCondition[]{
+        }, FIGHTERS_GAUNTLETS.get()));
+        add("woodland_mansion" + "_brawlers_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "woodland_mansion")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.GAUNTLET.getGauntletEntry().get()));
-        add("pillager_outpost" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
+        }, BRAWLERS_GAUNTLETS.get()));
+        add("pillager_outpost" + "_berserk_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "pillager_outpost")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get()));
-        add("ancient_city" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
-                new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "ancient_city")).build(),
-                LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+        }, BERSERK_GAUNTLETS.get()));
     }
 
     private void generateSoulLootModifiers() {
         AllOfCondition.Builder soulWeaponChance = AllOfCondition.allOf(
-                LootItemEntityPropertyCondition.hasProperties(KILLER, new EntityPredicate.Builder().equipment(new EntityEquipmentPredicate.Builder().mainhand(new ItemPredicate(null,
-                        CustomWeaponsPlugin.SOUL_MATERIAL.getWeapons().values().stream().map(RegistryEntry::get).collect(Collectors.toSet()), MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY,
-                        EnchantmentPredicate.NONE, EnchantmentPredicate.NONE, null, NbtPredicate.ANY)).build()).build()),
-                LootItemRandomChanceCondition.randomChance(0.2f)
-        );
+                LootItemEntityPropertyCondition.hasProperties(KILLER,
+                        new EntityPredicate.Builder().equipment(
+                                new EntityEquipmentPredicate.Builder().mainhand(
+                                        ItemPredicate.Builder.item().of(SOUL_KATANA, SOUL_DAGGER, SOUL_SCYTHE)
+                                ).build()
+                        )
+                ), LootItemRandomChanceCondition.randomChance(0.2f));
 
 
         for (String mob : Arrays.asList("blaze", "cave_spider", "creeper", "ender_dragon", "endermite", "evoker", "guardian", "hoglin", "illusioner", "magma_cube", "piglin", "piglin_brute", "pillager", "ravager", "silverfish", "slime", "spider", "vindicator", "witch", "wither_skeleton")) {
             add("bad_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.01f), soulWeaponChance).build()
-            }, ECItems.BAD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
 
             add("bad_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.BAD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
         }
         for (String mob : Arrays.asList("drowned", "enderman", "ghast", "giant", "husk", "phantom", "shulker", "skeleton", "skeleton_horse", "stray", "vex", "zoglin", "zombie", "zombie_horse", "zombie_villager", "zombified_piglin")) {
             add("good_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.01f), soulWeaponChance).build()
-            }, ECItems.GOOD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
 
             add("good_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.GOOD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
         }
 
 
@@ -122,24 +121,24 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             add("bad_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.1f), soulWeaponChance).build()
-            }, ECItems.BAD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
 
             add("bad_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.BAD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
         }
 
         for (String mob : Arrays.asList("wither", "warden")) {
             add("good_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.1f), soulWeaponChance).build()
-            }, ECItems.GOOD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
 
             add("good_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.GOOD_SOUL.get(), CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
         }
     }
 }
