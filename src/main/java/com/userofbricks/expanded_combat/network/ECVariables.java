@@ -1,68 +1,36 @@
 package com.userofbricks.expanded_combat.network;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.saveddata.SavedData;
-
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.Direction;
-import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+
+@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ECVariables {
-
-    public static int getKatanaArrowBlockNumber(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaArrowBlockNumber;
-    }
-    public static int getKatanaTimeSinceBlock(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).katanaTimeSinceBlock;
-    }
-
-    public static void setKatanaTimeSinceBlock(LivingEntity entity, int ticks) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.katanaTimeSinceBlock = ticks;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-
-    public static void setKatanaArrowBlockNumber(LivingEntity entity, int arrowBlocks) {
-        entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.katanaArrowBlockNumber = arrowBlocks;
-            capability.syncPlayerVariables(entity);
-        });
-    }
-
-
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         ECNetworkHandler.register(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
         ECNetworkHandler.register(SavedDataSyncMessage.class, SavedDataSyncMessage::buffer, SavedDataSyncMessage::new, SavedDataSyncMessage::handler);
     }
 
-    @SubscribeEvent
-    public static void init(RegisterCapabilitiesEvent event) {
-        event.register(PlayerVariables.class);
-    }
-
-    @Mod.EventBusSubscriber
+    @EventBusSubscriber
     public static class EventBusVariableHandlers {
         @SubscribeEvent
         public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -110,33 +78,6 @@ public class ECVariables {
 
     public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
     });
-
-    @Mod.EventBusSubscriber
-    private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
-        @SubscribeEvent
-        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-            if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
-                event.addCapability(new ResourceLocation("expanded_combat", "player_variables"), new PlayerVariablesProvider());
-        }
-
-        private final PlayerVariables playerVariables = new PlayerVariables();
-        private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
-
-        @Override
-        public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
-            return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
-        }
-
-        @Override
-        public Tag serializeNBT() {
-            return playerVariables.writeNBT();
-        }
-
-        @Override
-        public void deserializeNBT(Tag nbt) {
-            playerVariables.readNBT(nbt);
-        }
-    }
 
     public static class PlayerVariables {
         public int arrowSlot = 0;

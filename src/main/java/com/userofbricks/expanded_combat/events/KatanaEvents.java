@@ -1,5 +1,8 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
+import com.userofbricks.expanded_combat.init.DataAttachments;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.sounds.SoundEvents;
@@ -7,51 +10,59 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 public class KatanaEvents {
 
     @SubscribeEvent
     public static void KatanaBlockingEvent(LivingAttackEvent event) {
-        ItemStack katanaStack = event.getEntity().getUseItem();
+        LivingEntity livingEntity = event.getEntity();
+        ItemStack katanaStack = livingEntity.getUseItem();
+
         if (!(katanaStack.getItem() instanceof ArrowBlockWeaponItem)) return;
-        if (isArrowDamageSourceBlockable(event.getSource(), event.getEntity()) &&
-                ECVariables.getKatanaTimeSinceBlock(event.getEntity()) > 0 &&
-                ECVariables.getKatanaArrowBlockNumber(event.getEntity()) <= ArrowBlockWeaponItem.getMaxBlocksInARow(katanaStack)) {
+
+        int ticksPassed = livingEntity.getData(DataAttachments.TIME_SINCE_WEAPON_BLOCK);
+        int blockCount = livingEntity.getData(DataAttachments.WEAPON_BLOCK_COUNT);
+
+        if (isArrowDamageSourceBlockable(event.getSource(), livingEntity) && ticksPassed > 0 &&
+                blockCount <= ArrowBlockWeaponItem.getMaxBlocksInARow(katanaStack)) {
             //Animate
-            if (ECVariables.getKatanaTimeSinceBlock(event.getEntity()) >= 10) {
-                int blockAnim = event.getEntity().getRandom().nextIntBetweenInclusive(1, 4);
-                katanaStack.getOrCreateTag().putFloat("BlockingPos", (float) blockAnim / 10f);
+            if (ticksPassed >= 10) {
+                int blockAnim = livingEntity.getRandom().nextIntBetweenInclusive(1, 4);
+                katanaStack.set(ItemDataComponents.BLOCK_WEAPON_ANIM, BlockWeaponAnim.values()[blockAnim]);
             }
 
-            ECVariables.setKatanaTimeSinceBlock(event.getEntity(), 0);
-            ECVariables.setKatanaArrowBlockNumber(event.getEntity(), ECVariables.getKatanaArrowBlockNumber(event.getEntity()) + 1);
-            event.getEntity().playSound(SoundEvents.SMALL_AMETHYST_BUD_BREAK, 0.5f, 0.5F + event.getEntity().level().random.nextFloat() * 0.4F);
+            livingEntity.setData(DataAttachments.TIME_SINCE_WEAPON_BLOCK, 0);
+            livingEntity.setData(DataAttachments.WEAPON_BLOCK_COUNT, blockCount + 1);
+            livingEntity.playSound(SoundEvents.SMALL_AMETHYST_BUD_BREAK, 0.5f, 0.5F + livingEntity.level().random.nextFloat() * 0.4F);
             event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
-    public static void keepKatanaTicks(TickEvent.PlayerTickEvent event) {
-        if (ECVariables.getKatanaArrowBlockNumber(event.player) > 0) {
-            int ticksPassed = ECVariables.getKatanaTimeSinceBlock(event.player);
+    public static void keepKatanaTicks(PlayerTickEvent event) {
+        Player player = event.getEntity();
+        int ticksPassed = player.getData(DataAttachments.TIME_SINCE_WEAPON_BLOCK);
+        int blockCount = player.getData(DataAttachments.WEAPON_BLOCK_COUNT);
+        if (blockCount > 0) {
             //Animate
-            if (ticksPassed >= 30 && event.player.getUseItem().getItem() instanceof ArrowBlockWeaponItem && event.player.isUsingItem()) {
-                event.player.getUseItem().getOrCreateTag().putFloat("BlockingPos", 0);
+            if (ticksPassed >= 30 && player.getUseItem().getItem() instanceof ArrowBlockWeaponItem && player.isUsingItem()) {
+                player.getUseItem().set(ItemDataComponents.BLOCK_WEAPON_ANIM, BlockWeaponAnim.values()[0]);
             }
 
-            if (ticksPassed >= 256 && ECVariables.getKatanaArrowBlockNumber(event.player) > 0) {
-                ECVariables.setKatanaArrowBlockNumber(event.player, ECVariables.getKatanaArrowBlockNumber(event.player) -1);
-                if (ticksPassed >= 1024) ECVariables.setKatanaTimeSinceBlock(event.player, 0);
+            if (ticksPassed >= 256) {
+                player.setData(DataAttachments.WEAPON_BLOCK_COUNT, blockCount -1);
+                if (ticksPassed >= 1024) player.setData(DataAttachments.TIME_SINCE_WEAPON_BLOCK, 0);
             }
-            ECVariables.setKatanaTimeSinceBlock(event.player, ticksPassed + 1);
+            player.setData(DataAttachments.TIME_SINCE_WEAPON_BLOCK, ticksPassed + 1);
         }
-        if (ECVariables.getKatanaArrowBlockNumber(event.player) == 0 && ECVariables.getKatanaTimeSinceBlock(event.player) == 0) ECVariables.setKatanaTimeSinceBlock(event.player, 1);
+        if (blockCount == 0 && ticksPassed == 0) player.setData(DataAttachments.TIME_SINCE_WEAPON_BLOCK, 1);
     }
 
     public static boolean isArrowDamageSourceBlockable(DamageSource p_21276_, LivingEntity livingEntity) {

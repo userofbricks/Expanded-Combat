@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
+import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.network.ECVariables;
@@ -39,7 +40,7 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
     }
 
     public static boolean blockedRecently(LivingEntity livingEntity) {
-        int timeSinceBlock = ECVariables.getKatanaTimeSinceBlock(livingEntity);
+        int timeSinceBlock = livingEntity.getData(DataAttachments.TIME_SINCE_WEAPON_BLOCK);
         return timeSinceBlock < 20;
     }
 
