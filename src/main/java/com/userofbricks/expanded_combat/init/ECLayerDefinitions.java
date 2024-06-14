@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.init;
 import com.userofbricks.expanded_combat.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
