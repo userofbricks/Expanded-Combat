@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.init.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
@@ -58,7 +58,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
                             null, AdvancementType.TASK, true, true, false
                     )
                     .addCriterion("gauntlet_with_punch_2", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(ECItemTags.GAUNTLETS)
+                            ItemPredicate.Builder.item().of(ECTags.GAUNTLETS)
                                     .withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(
                                             List.of(new EnchantmentPredicate(Enchantments.PUNCH, MinMaxBounds.Ints.atLeast(2)))
                                     ))

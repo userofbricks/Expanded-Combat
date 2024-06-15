@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.datagen.recipes.ECRecipeProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECBlockTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECDamageTypeTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECItemTagsProvider;
+import com.userofbricks.expanded_combat.datagen.tags.ECWeaponTypeTagsProvider;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.core.HolderLookup;
@@ -63,5 +64,6 @@ public class DataGenerators {
         );
         generator.addProvider(event.includeServer(), new ECDataMapProvider(output, provider));
         generator.addProvider(event.includeServer(), new CuriosSlotProvider(output, helper, provider));
+        generator.addProvider(event.includeServer(), new ECWeaponTypeTagsProvider(output, provider, helper));
     }
 }

@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.datagen.tags;
 
-import com.userofbricks.expanded_combat.init.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECTags;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.core.HolderLookup;
@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -34,12 +33,12 @@ public class ECItemTagsProvider extends ItemTagsProvider {
             } else if (deferredItem.get() instanceof ECCrossBowItem item) {
                 tag(Tags.Items.TOOLS_CROSSBOWS).add(item);
             } else if (deferredItem.get() instanceof GauntletItem item) {
-                tag(ECItemTags.GAUNTLETS).add(item);
+                tag(ECTags.GAUNTLETS).add(item);
                 tag(ItemTags.TRIMMABLE_ARMOR).add(item);
             } else if (deferredItem.get() instanceof ECQuiverItem item) {
-                tag(ECItemTags.QUIVERS).add(item);
+                tag(ECTags.QUIVERS).add(item);
             } else if (deferredItem.get() instanceof PotionWeaponItem item) {
-                tag(ECItemTags.POTION_WEAPONS).add(item);
+                tag(ECTags.POTION_WEAPONS).add(item);
             }
         }
 

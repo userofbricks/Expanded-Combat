@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.init.ECItemTags;
+import com.userofbricks.expanded_combat.init.ECTags;
 import com.userofbricks.expanded_combat.item.IMendingBonusItem;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
@@ -78,6 +78,6 @@ public class GoldMending
     public static boolean doesGoldMendingContainItem( Item item) {
         ITagManager<Item> tagManager = ForgeRegistries.ITEMS.tags();
         assert tagManager != null;
-        return tagManager.getTag(ECItemTags.NON_EC_MENDABLE_GOLD).contains(item);
+        return tagManager.getTag(ECTags.NON_EC_MENDABLE_GOLD).contains(item);
     }
 }
