@@ -1,9 +1,8 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.init.ECDamageInit;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,26 +10,24 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.init.ECAttributes.*;
 
-@Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE, value = {Dist.DEDICATED_SERVER})
+@EventBusSubscriber(modid = "expanded_combat", bus = EventBusSubscriber.Bus.GAME, value = Dist.DEDICATED_SERVER)
 public class GeneralForgeEventBusEvents {
-    private static List<Runnable> ADDITIONAL_DMG_RUNS = new ArrayList<>();
+    private static final List<Runnable> ADDITIONAL_DMG_RUNS = new ArrayList<>();
 
     @SubscribeEvent
-    public static void dealExtraDmg(LivingEvent.LivingTickEvent event) {
+    public static void dealExtraDmg(EntityTickEvent event) {
         ADDITIONAL_DMG_RUNS.forEach(Runnable::run);
         ADDITIONAL_DMG_RUNS.clear();
     }
@@ -43,11 +40,11 @@ public class GeneralForgeEventBusEvents {
         Entity directEntity = ev.getSource().getDirectEntity();
         if (entity != directEntity) return;
 
-        double gauntletDmg = causingEntity.getAttributeValue(GAUNTLET_DMG_WITHOUT_WEAPON.get());
-        double coldDmg = causingEntity.getAttributeValue(COLD_DMG.get());
-        double heatDmg = causingEntity.getAttributeValue(HEAT_DMG.get());
-        double voidDmg = causingEntity.getAttributeValue(VOID_DMG.get());
-        double soulDmg = causingEntity.getAttributeValue(SOUL_DMG.get());
+        double gauntletDmg = causingEntity.getAttributeValue(GAUNTLET_DMG_WITHOUT_WEAPON);
+        double coldDmg = causingEntity.getAttributeValue(COLD_DMG);
+        double heatDmg = causingEntity.getAttributeValue(HEAT_DMG);
+        double voidDmg = causingEntity.getAttributeValue(VOID_DMG);
+        double soulDmg = causingEntity.getAttributeValue(SOUL_DMG);
 
         if (coldDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
             ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.coldDmgAttack(level, entity), (float) coldDmg));
@@ -66,19 +63,19 @@ public class GeneralForgeEventBusEvents {
     }
 
     public static boolean entityHoldingWeapon(LivingEntity entity) {
-        Multimap<Attribute, AttributeModifier> mainHandAttributes = entity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
-        Multimap<Attribute, AttributeModifier> offHandAttributes = entity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
+        Multimap<Holder<Attribute>, AttributeModifier> mainHandAttributes = entity.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
+        Multimap<Holder<Attribute>, AttributeModifier> offHandAttributes = entity.getOffhandItem().getAttributeModifiers(EquipmentSlot.OFFHAND);
 
         if (mainHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
             for (AttributeModifier modifier :
                     mainHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                if (modifier.getAmount() > 1) return true;
+                if (modifier.amount() > 1) return true;
             }
         }
         if (offHandAttributes.containsKey(Attributes.ATTACK_DAMAGE)) {
             for (AttributeModifier modifier :
                     offHandAttributes.get(Attributes.ATTACK_DAMAGE)) {
-                if (modifier.getAmount() > 1) return true;
+                if (modifier.amount() > 1) return true;
             }
         }
         return false;
