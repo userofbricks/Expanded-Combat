@@ -19,7 +19,6 @@ public record SmithingMenuProvider(BlockPos accessPos) implements MenuProvider {
         return Component.translatable("container.upgrade");
     }
 
-    @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory, @Nonnull Player playerEntity) {
         return new SmithingMenu(i, playerInventory, ContainerLevelAccess.NULL);

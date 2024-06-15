@@ -10,7 +10,6 @@ import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.plugins.VanillaECPlugin;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
-import com.userofbricks.expanded_combat.util.IngredientUtil;
 import mezz.jei.api.helpers.IStackHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

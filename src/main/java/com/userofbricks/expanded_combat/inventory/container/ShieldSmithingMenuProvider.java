@@ -19,7 +19,6 @@ public record ShieldSmithingMenuProvider(BlockPos accessPos) implements MenuProv
         return Component.translatable(LangStrings.SHIELD_UPGRADE_CONTAINER);
     }
 
-    @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, @Nonnull Inventory playerInventory, @Nonnull Player playerEntity) {
         ContainerLevelAccess containerLevelAccess = ContainerLevelAccess.create(playerEntity.level(), accessPos);
