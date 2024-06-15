@@ -1,29 +1,27 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.init.ECTags;
 import com.userofbricks.expanded_combat.item.IMendingBonusItem;
-import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITagManager;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = "expanded_combat", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = "expanded_combat", bus = EventBusSubscriber.Bus.GAME)
 public class GoldMending
 {
     @SubscribeEvent
@@ -55,29 +53,23 @@ public class GoldMending
         List<Component> list = event.getToolTip();
         if (doesGoldMendingContainItem(itemStack)) {
             list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)
-                    .append(Component.literal(ChatFormatting.BLUE + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
+                    .append(Component.literal(ChatFormatting.BLUE + " +" + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(2L))));
         }
         if (itemStack.getItem() instanceof IMendingBonusItem simpleMaterialItem) {
             if (simpleMaterialItem.getMendingBonus() != 0.0f) {
                 if (simpleMaterialItem.getMendingBonus() > 0.0f) {
                     list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE)
-                            .append(Component.literal(ChatFormatting.BLUE + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
+                            .append(Component.literal(ChatFormatting.BLUE + " +" + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
                 }
                 else if (simpleMaterialItem.getMendingBonus() < 0.0f) {
                     list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.RED)
-                            .append(Component.literal(ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
+                            .append(Component.literal(ChatFormatting.RED + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(simpleMaterialItem.getMendingBonus()))));
                 }
             }
         }
     }
     
     public static boolean doesGoldMendingContainItem( ItemStack itemStack) {
-        return doesGoldMendingContainItem(itemStack.getItem());
-    }
-    
-    public static boolean doesGoldMendingContainItem( Item item) {
-        ITagManager<Item> tagManager = ForgeRegistries.ITEMS.tags();
-        assert tagManager != null;
-        return tagManager.getTag(ECTags.NON_EC_MENDABLE_GOLD).contains(item);
+        return itemStack.is(ECTags.NON_EC_MENDABLE_GOLD);
     }
 }
