@@ -18,7 +18,7 @@ public class PluginInit {
 
     public static void loadClass() {
         for (IExpandedCombatPlugin plugin: PLUGINS) {
-            //plugin.registerShieldToMaterials(new ShieldMaterialRegisterator());
+            shieldMaterialUseTickList.addAll(plugin.registerShieldMaterialUseTick());
         }
     }
 

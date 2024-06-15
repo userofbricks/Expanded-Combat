@@ -2,9 +2,8 @@ package com.userofbricks.expanded_combat.util;
 
 import com.userofbricks.expanded_combat.api.registry.ECPlugin;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.forgespi.language.ModFileScanData;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforgespi.language.ModFileScanData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;

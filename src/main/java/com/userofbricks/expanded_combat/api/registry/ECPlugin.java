@@ -5,6 +5,7 @@ package com.userofbricks.expanded_combat.api.registry;
  * All {@link IExpandedCombatPlugin} must have this annotation and a constructor with no arguments.
  */
 
+@SuppressWarnings("unused")
 public @interface ECPlugin {
     String[] required() default "minecraft";
 }
