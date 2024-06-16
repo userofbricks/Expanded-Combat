@@ -87,13 +87,10 @@ dependencies {
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
     // compile against the JEI API but do not include it at runtime
-    //compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    //compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    compileOnly "mezz.jei:jei-1.20.4-common-api:${jei_version}"
-    compileOnly "mezz.jei:jei-1.20.4-neoforge-api:${jei_version}"
-    // at runtime, use the full JEI jar for Forge
-    //runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    runtimeOnly "mezz.jei:jei-1.20.4-neoforge:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    // at runtime, use the full JEI jar for NeoForge
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -117,6 +114,20 @@ tasks.withType(ProcessResources).configureEach {
 
     filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
         expand replaceProperties
+    }
+}
+
+// Example configuration to allow publishing using the maven-publish plugin
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
     }
 }
 

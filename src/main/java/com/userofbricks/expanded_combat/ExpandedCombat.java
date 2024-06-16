@@ -4,11 +4,8 @@ import com.mojang.logging.LogUtils;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
-import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
-import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
-import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
@@ -17,24 +14,18 @@ import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.InterModComms;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.slf4j.Logger;
-import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 import java.util.ArrayList;
@@ -84,9 +75,6 @@ public class ExpandedCombat {
         NeoForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
         NeoForge.EVENT_BUS.register(this);
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            ECConfigGUIRegister.registerModsPage();
-        }
     }
 
     private void registerPayloadHandler(final RegisterPayloadHandlersEvent evt) {
