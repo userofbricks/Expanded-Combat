@@ -6,7 +6,6 @@ import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
@@ -20,8 +19,6 @@ import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault

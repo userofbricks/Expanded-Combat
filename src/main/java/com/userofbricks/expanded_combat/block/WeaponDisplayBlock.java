@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.block;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.network.ECVariables;
+import com.userofbricks.expanded_combat.world.ECWorldSaveData;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -134,10 +134,10 @@ public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
             ServerLevel serverlevel = lootparams.getLevel();
             LootTable loottable = serverlevel.getServer().reloadableRegistries().getLootTable(resourcelocation);
 
-            if (ECVariables.WorldVariables.getHeartStealerCount(builder.getLevel()) != 0 && serverlevel.random.nextInt(10) != 0) {
+            if (ECWorldSaveData.getHeartStealerCount(builder.getLevel()) != 0 && serverlevel.random.nextInt(10) != 0) {
                 return loottable.getRandomItems(lootparams);
             } else {
-                ECVariables.WorldVariables.increaseHeartStealerCount(builder.getLevel());
+                ECWorldSaveData.increaseHeartStealerCount(builder.getLevel());
                 return List.of(new ItemStack(ECItems.HEART_STEALER.get()));
             }
         }

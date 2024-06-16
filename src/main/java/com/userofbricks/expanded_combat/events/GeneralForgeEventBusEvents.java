@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.events;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECDamageInit;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;

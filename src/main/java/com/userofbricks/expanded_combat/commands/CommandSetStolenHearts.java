@@ -7,7 +7,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.userofbricks.expanded_combat.init.DataAttachments;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

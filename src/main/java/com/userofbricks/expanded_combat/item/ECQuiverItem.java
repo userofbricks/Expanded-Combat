@@ -3,11 +3,8 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
-import com.userofbricks.expanded_combat.init.ItemDataComponents;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
@@ -22,13 +19,10 @@ import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.items.IItemHandler;
 import org.apache.commons.lang3.math.Fraction;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -37,9 +31,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.init.DataAttachments.ARROW_SLOT;
-import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
 import static com.userofbricks.expanded_combat.init.ItemDataComponents.COOL_DOWN;
 import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 

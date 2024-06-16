@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.datagen.LangStrings;
-import com.userofbricks.expanded_combat.network.ECVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
@@ -14,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
