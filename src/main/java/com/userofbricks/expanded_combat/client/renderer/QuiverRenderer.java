@@ -58,7 +58,7 @@ public class QuiverRenderer implements ICurioRenderer {
 
             //render arrows if has some
 
-            CuriosApi.getCuriosHelper().getCuriosHandler(Minecraft.getInstance().player).ifPresent(curios -> {
+            CuriosApi.getCuriosInventory(Minecraft.getInstance().player).ifPresent(curios -> {
                 IDynamicStackHandler stackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
                 ItemStack quiverStack = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0);
                 if (quiverStack.getItem() instanceof ECQuiverItem ecQuiverItem){

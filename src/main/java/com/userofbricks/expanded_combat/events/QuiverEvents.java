@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,27 +31,28 @@ public class QuiverEvents {
     public static void onArrowItemPickup(EntityItemPickupEvent evt) {
         Player player = evt.getEntity();
         ItemStack toPickup = evt.getItem().getItem();
-        SlotResult slotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
+        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+        SlotResult slotResult = playerCuriosInventory.findFirstCurio( item -> item.getItem() instanceof ECQuiverItem).orElse(null);
         if(toPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
-             CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(curios -> {
-                 IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                 int slots = arrowStackHandler.getSlots();
+            IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+            int slots = arrowStackHandler.getSlots();
 
-                 for (int s = 0; s < slots; s++) {
-                     ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
-                     ItemStack rem = toPickup.copy();
-                     int itemsRemaining = toPickup.getCount();
-                     if ((currentStack.getItem() == toPickup.getItem() || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
-                         rem = arrowStackHandler.insertItem(s, rem, false);
-                         if (rem.getCount() < itemsRemaining) {
-                             //arrowStackHandler.getStackInSlot(s).setPopTime(5);
-                             //TODO: make arrows picked up make pop sound
-                             player.awardStat(Stats.ITEM_PICKED_UP.get(toPickup.getItem()), itemsRemaining - rem.getCount());
-                         }
-                     }
-                     toPickup.setCount(rem.getCount());
-                 }
-             });
+            for (int s = 0; s < slots; s++) {
+                ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
+                ItemStack rem = toPickup.copy();
+                int itemsRemaining = toPickup.getCount();
+                if ((currentStack.getItem() == toPickup.getItem() || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
+                    rem = arrowStackHandler.insertItem(s, rem, false);
+                    if (rem.getCount() < itemsRemaining) {
+                        //arrowStackHandler.getStackInSlot(s).setPopTime(5);
+                        //TODO: make arrows picked up make pop sound
+                        player.awardStat(Stats.ITEM_PICKED_UP.get(toPickup.getItem()), itemsRemaining - rem.getCount());
+                    }
+                }
+                toPickup.setCount(rem.getCount());
+            }
         }
     }
 
@@ -64,7 +66,7 @@ public class QuiverEvents {
             int top = curiosScreen.getGuiTop();
             evt.getGuiGraphics().blit(textureLocation, left + 76, top + 43, 45, 18, 18, 18);
 
-            CuriosApi.getCuriosHelper().getCuriosHandler(curiosScreen.getMenu().player).ifPresent(curios -> {
+            CuriosApi.getCuriosInventory(curiosScreen.getMenu().player).ifPresent(curios -> {
                 Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
                 int curiosSlots = 0;
                 if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
@@ -100,10 +102,11 @@ public class QuiverEvents {
 
         name:
         if (screen instanceof CuriosScreenV2 curiosScreen) {
-            ICuriosItemHandler curios = CuriosApi.getCuriosHelper().getCuriosHandler(curiosScreen.getMenu().player).resolve().orElse(null);
-            if (curios == null) break name;
+            LazyOptional <ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(curiosScreen.getMenu().player);
+            if (optionalCuriosInventory.resolve().isEmpty()) break name;
 
-            Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
+            ICuriosItemHandler playerInventory = optionalCuriosInventory.resolve().get();
+            Item quiverItem = playerInventory.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
             int curiosSlots = 0;
             if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
 

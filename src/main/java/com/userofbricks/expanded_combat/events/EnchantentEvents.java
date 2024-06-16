@@ -9,13 +9,13 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -23,6 +23,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.UUID;
 
@@ -58,7 +59,10 @@ public class EnchantentEvents {
     @SubscribeEvent
     public static void miningSpeed(PlayerEvent.BreakSpeed event) {
         float speedIncrease = 0;
-        for (SlotResult slotResult : CuriosApi.getCuriosHelper().findCurios(event.getEntity(), stack -> stack.getItem() instanceof ECGauntletItem)) {
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(event.getEntity());
+        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        ICuriosItemHandler entityCuriosIventory = optionalCuriosInventory.resolve().get();
+        for (SlotResult slotResult : entityCuriosIventory.findCurios(stack -> stack.getItem() instanceof ECGauntletItem)) {
             speedIncrease += slotResult.stack().getEnchantmentLevel(ECEnchantments.AGILITY.get()) * 0.2f;
         }
         event.setNewSpeed(event.getOriginalSpeed() - speedIncrease);

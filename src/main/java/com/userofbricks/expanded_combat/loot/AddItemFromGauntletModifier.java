@@ -12,10 +12,12 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -42,9 +44,13 @@ public class AddItemFromGauntletModifier extends LootModifier {
 
 
         if (context.getParamOrNull(LootContextParams.KILLER_ENTITY) instanceof LivingEntity killer) {
-            Optional<SlotResult> optionalSlotResult  = CuriosApi.getCuriosHelper().findFirstCurio(killer, gauntlet);
-            if (optionalSlotResult.isPresent()) {
-                generatedLoot.add(new ItemStack(lootItem));
+            LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(killer);
+            if(optionalCuriosInventory.resolve().isPresent()){
+                ICuriosItemHandler killerCuriosInventory = optionalCuriosInventory.resolve().get();
+                Optional<SlotResult> optionalSlotResult  = killerCuriosInventory.findFirstCurio(gauntlet);
+                if (optionalSlotResult.isPresent()) {
+                    generatedLoot.add(new ItemStack(lootItem));
+                }
             }
         }
 

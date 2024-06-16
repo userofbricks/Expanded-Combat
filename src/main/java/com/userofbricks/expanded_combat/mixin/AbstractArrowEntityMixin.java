@@ -6,6 +6,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.util.LazyOptional;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -45,26 +47,24 @@ public abstract class AbstractArrowEntityMixin {
             ItemStack pickupItem = this.getPickupItem();
             AtomicBoolean added = new AtomicBoolean(false);
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
-                SlotResult quiverSlot = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+                LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
+                if(optionalCuriosInventory.resolve().isEmpty()) return;
+                ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+                SlotResult quiverSlot =playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
                 if (quiverSlot == null) return;
                 ItemStack quiverStack = quiverSlot.stack();
-
-                CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(curios -> {
-                    IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                    int slots = arrowStackHandler.getSlots();
-
-                    for (int s = 0; s < slots; s++) {
-                        ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
-                        if (((currentStack.getItem() == this.getPickupItem().getItem() && currentStack.getCount() < currentStack.getMaxStackSize()) || currentStack.isEmpty()) && ((ECQuiverItem) quiverStack.getItem()).providedSlots > s) {
-                            arrowStackHandler.insertItem(s, this.getPickupItem().copy(), false);
-                            player.awardStat(Stats.ITEM_PICKED_UP.get(this.getPickupItem().getItem()), 1);
-                            ((AbstractArrow) (Object) this).discard();
-                            added.set(true);
-                            break;
-                        }
+                IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+                int slots = arrowStackHandler.getSlots();
+                for (int s = 0; s < slots; s++) {
+                    ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
+                    if (((currentStack.getItem() == this.getPickupItem().getItem() && currentStack.getCount() < currentStack.getMaxStackSize()) || currentStack.isEmpty()) && ((ECQuiverItem) quiverStack.getItem()).providedSlots > s) {
+                        arrowStackHandler.insertItem(s, this.getPickupItem().copy(), false);
+                        player.awardStat(Stats.ITEM_PICKED_UP.get(this.getPickupItem().getItem()), 1);
+                        ((AbstractArrow) (Object) this).discard();
+                        added.set(true);
+                        break;
                     }
-                });
-
+                }
                 if (added.get()){
                     callback.cancel();
                 }

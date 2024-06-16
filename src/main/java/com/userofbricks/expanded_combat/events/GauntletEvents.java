@@ -49,20 +49,26 @@ public class GauntletEvents
     public static void DamageGauntletEvent(AttackEntityEvent event) {
         Player player = event.getEntity();
         if (player.isCreative()) return;
-        List<SlotResult> slotResults = CuriosApi.getCuriosHelper().findCurios(player, itemStack -> itemStack.getItem() instanceof ECGauntletItem);
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
+        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+        List<SlotResult> slotResults = playerCuriosInventory.findCurios(itemStack -> itemStack.getItem() instanceof ECGauntletItem);
         if (slotResults.isEmpty()) return;
         for (SlotResult slotResult : slotResults) {
             ItemStack stack = slotResult.stack();
             SlotContext slotContext = slotResult.slotContext();
             if (stack.getItem() instanceof ECGauntletItem) {
-                stack.hurtAndBreak(1, (LivingEntity) player, damager -> CuriosApi.getCuriosHelper().onBrokenCurio(slotContext));
+                stack.hurtAndBreak(1, (LivingEntity) player, damager -> CuriosApi.broadcastCurioBreakEvent(slotContext));
             }
         }
     }
     @SubscribeEvent
     public static void moreDamageSources(LivingAttackEvent ev) {
         LivingEntity target = ev.getEntity();
-        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(target, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get());
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(target);
+        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        ICuriosItemHandler entityCuriosInventory = optionalCuriosInventory.resolve().get();
+        Optional<SlotResult> optionalSlotResult = entityCuriosInventory.findFirstCurio(CustomWeaponsPlugin.MAULERS.getGauntletEntry().get());
         if (optionalSlotResult.isPresent()) {
             SlotResult slotResult = optionalSlotResult.get();
             int charge = slotResult.stack().getOrCreateTag().getInt("charge");
@@ -77,13 +83,15 @@ public class GauntletEvents
     @SubscribeEvent
     public static void pulOutArrow(PlayerInteractEvent.RightClickEmpty event) {
         Player player = event.getEntity();
-        Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get());
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
+        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+        Optional<SlotResult> optionalSlotResult = playerCuriosInventory.findFirstCurio(CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get());
         if (optionalSlotResult.isPresent() && player.getArrowCount() >= 1) {
-            LazyOptional<ICuriosItemHandler> lazyOptional = CuriosApi.getCuriosHelper().getCuriosHandler(player);
-            Optional<SlotResult> optionalQuiverSlotResult = CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> stack.getItem() instanceof ECQuiverItem);
-            if (lazyOptional.resolve().isPresent() && optionalQuiverSlotResult.isPresent()) {
+            Optional<SlotResult> optionalQuiverSlotResult = playerCuriosInventory.findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem);
+            if (optionalQuiverSlotResult.isPresent()) {
                 ECQuiverItem quiverItem = (ECQuiverItem) optionalQuiverSlotResult.get().stack().getItem();
-                IDynamicStackHandler arrowStackHandler = lazyOptional.resolve().get().getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+                IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
                 int slots = arrowStackHandler.getSlots();
                 boolean found = false;
                 for (int s = 0; s < slots; s++) {
@@ -106,7 +114,7 @@ public class GauntletEvents
     @OnlyIn(Dist.CLIENT)
     @SuppressWarnings("deprecation")
     public static void onRenderArm(RenderArmEvent event) {
-        CuriosApi.getCuriosHelper().getCuriosHandler(event.getPlayer()).ifPresent(handler -> {
+        CuriosApi.getCuriosInventory(event.getPlayer()).ifPresent(handler -> {
             ICurioStacksHandler stacksHandler = handler.getCurios().get(SlotTypePreset.HANDS.getIdentifier());
             if (stacksHandler != null) {
                 IDynamicStackHandler stacks = stacksHandler.getStacks();

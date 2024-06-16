@@ -34,7 +34,7 @@ public class CuriosMenuMixin {
     }
 
     protected void createQuiver() {
-        CuriosApi.getCuriosHelper().getCuriosHandler(this.player).ifPresent(curios -> {
+        CuriosApi.getCuriosInventory(this.player).ifPresent(curios -> {
             ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
             IDynamicStackHandler stackHandler = stacksHandler.getStacks();
             ((CuriosContainerV2)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));

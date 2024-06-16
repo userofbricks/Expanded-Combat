@@ -29,6 +29,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -36,6 +37,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -66,12 +68,15 @@ public class ECGauntletItem extends Item implements ICurioItem, ISimpleMaterialI
             return false;
         } else {
             LivingEntity livingentity = list.get(0);
-            Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosHelper().findCurio(livingentity, ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0);
+            LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(livingentity);
+            if(optionalCuriosInventory.resolve().isEmpty()) return false;
+            ICuriosItemHandler entityCuriosInventory = optionalCuriosInventory.resolve().get();
+            Optional<SlotResult> optionalSlotResult = entityCuriosInventory.findCurio(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0);
 
             if (optionalSlotResult.isPresent() && !optionalSlotResult.get().stack().isEmpty()) return false;
 
             ItemStack itemstack = stack.split(1);
-            CuriosApi.getCuriosHelper().setEquippedCurio(livingentity, ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0, itemstack);
+            entityCuriosInventory.setEquippedCurio(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0, itemstack);
 
             if (livingentity instanceof Mob) {
                 ((Mob)livingentity).setPersistenceRequired();

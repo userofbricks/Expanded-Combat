@@ -28,7 +28,7 @@ public class CuriosContainerHandler implements IGuiContainerHandler<CuriosScreen
             int left = containerScreen.getGuiLeft();
             int top = containerScreen.getGuiTop();
 
-            CuriosApi.getCuriosHelper().getCuriosHandler(containerScreen.getMenu().player).ifPresent(curios -> {
+            CuriosApi.getCuriosInventory(containerScreen.getMenu().player).ifPresent(curios -> {
                 Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
                 int curiosSlots = 0;
                 if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
