@@ -1,8 +1,12 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.google.common.collect.Multimap;
+import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECDamageInit;
+import com.userofbricks.expanded_combat.network.ECVariables;
+import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -15,7 +19,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,5 +85,18 @@ public class GeneralForgeEventBusEvents {
             }
         }
         return false;
+    }
+
+    @SubscribeEvent
+    public static void syncPlayerVariablesOnLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        PacketDistributor.sendToPlayer((ServerPlayer) event.getEntity(), new PacketIntAttachment(DataAttachments.ARROW_SLOT.get(), event.getEntity().getData(DataAttachments.ARROW_SLOT)));
+        PacketDistributor.sendToPlayer((ServerPlayer) event.getEntity(), new PacketIntAttachment(DataAttachments.STOLEN_HEALTH.get(), event.getEntity().getData(DataAttachments.STOLEN_HEALTH)));
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
+        if (!event.getEntity().level().isClientSide()) {
+            event.getEntity().setData(DataAttachments.STOLEN_HEALTH, Math.max(event.getEntity().getData(DataAttachments.STOLEN_HEALTH) - 10, 0));
+        }
     }
 }

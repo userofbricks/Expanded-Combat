@@ -58,7 +58,7 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
      * @reason need this to check the arrow slots if a quiver exists.
      */
     @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
-    public void playerTouch(Player player,CallbackInfo callback) {
+    public void playerTouch(Player player, CallbackInfo callback) {
         if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0) {
             ItemStack pickupItem = this.getPickupItem();
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){

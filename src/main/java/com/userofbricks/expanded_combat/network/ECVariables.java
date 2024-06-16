@@ -26,7 +26,6 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public class ECVariables {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
-        ECNetworkHandler.register(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
         ECNetworkHandler.register(SavedDataSyncMessage.class, SavedDataSyncMessage::buffer, SavedDataSyncMessage::new, SavedDataSyncMessage::handler);
     }
 
@@ -34,86 +33,11 @@ public class ECVariables {
     public static class EventBusVariableHandlers {
         @SubscribeEvent
         public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-            if (!event.getEntity().level().isClientSide()) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());
             if (!event.getEntity().level().isClientSide()) {
                 SavedData worlddata = WorldVariables.get(event.getEntity().level());
                 if (worlddata != null)
                     ECNetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(1, worlddata));
             }
-        }
-
-        @SubscribeEvent
-        public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
-            if (!event.getEntity().level().isClientSide()) {
-                PlayerVariables player = event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-                player.stolenHealth = Math.max(player.stolenHealth - 10, 0);
-                player.syncPlayerVariables(event.getEntity());
-            }
-
-        }
-
-        @SubscribeEvent
-        public static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-            if (!event.getEntity().level().isClientSide()) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());
-            if (!event.getEntity().level().isClientSide()) {
-                SavedData worlddata = WorldVariables.get(event.getEntity().level());
-                if (worlddata != null)
-                    ECNetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(1, worlddata));
-            }
-        }
-
-        @SubscribeEvent
-        public static void clonePlayer(PlayerEvent.Clone event) {
-            event.getOriginal().revive();
-            PlayerVariables original = event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-            PlayerVariables clone = event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-            clone.arrowSlot = original.arrowSlot;
-            clone.katanaArrowBlockNumber = original.katanaArrowBlockNumber;
-            clone.katanaTimeSinceBlock = original.katanaTimeSinceBlock;
-            clone.stolenHealth = original.stolenHealth;
-            clone.addedHealth = original.addedHealth;
-            clone.playersHeartStealer = original.playersHeartStealer;
-        }
-    }
-
-    public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
-    });
-
-    public static class PlayerVariables {
-        public int arrowSlot = 0;
-        public int katanaArrowBlockNumber = 0;
-        public int katanaTimeSinceBlock = 0;
-        public int stolenHealth = 0;
-        public int addedHealth = 0;
-        public ItemStack playersHeartStealer = new ItemStack(CustomWeaponsPlugin.HEART_STEALER.getWeaponEntry(VanillaECPlugin.CLAYMORE.name()).get());
-
-        public void syncPlayerVariables(Entity entity) {
-            if (entity instanceof ServerPlayer serverPlayer)
-                ECNetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new PlayerVariablesSyncMessage(this));
-            else if (entity instanceof LocalPlayer localPlayer) {
-                ECNetworkHandler.INSTANCE.send(ECNetworkHandler.LOCAL_PLAYER.with(() -> localPlayer), new PlayerVariablesSyncMessage(this));
-            }
-        }
-
-        public Tag writeNBT() {
-            CompoundTag nbt = new CompoundTag();
-            nbt.putInt("arrowSlot", arrowSlot);
-            nbt.putInt("katanaArrowBlockNumber", katanaArrowBlockNumber);
-            nbt.putInt("katanaTimeSinceBlock", katanaTimeSinceBlock);
-            nbt.putInt("stolenHealth", stolenHealth);
-            nbt.putInt("addedHealth", addedHealth);
-            nbt.put("playersHeartStealer", playersHeartStealer.serializeNBT());
-            return nbt;
-        }
-
-        public void readNBT(Tag Tag) {
-            CompoundTag nbt = (CompoundTag) Tag;
-            arrowSlot = nbt.getInt("arrowSlot");
-            katanaArrowBlockNumber = nbt.getInt("katanaArrowBlockNumber");
-            katanaTimeSinceBlock = nbt.getInt("katanaTimeSinceBlock");
-            stolenHealth = nbt.getInt("stolenHealth");
-            addedHealth = nbt.getInt("addedHealth");
-            playersHeartStealer = ItemStack.of(nbt.getCompound("playersHeartStealer"));
         }
     }
 
@@ -159,50 +83,6 @@ public class ECVariables {
             double count = get(world).heartstealerCount += 1;
             get(world).syncData(world);
             return count;
-        }
-    }
-
-    public static class PlayerVariablesSyncMessage {
-        public PlayerVariables data;
-
-        public PlayerVariablesSyncMessage(FriendlyByteBuf buffer) {
-            this.data = new PlayerVariables();
-            this.data.readNBT(buffer.readNbt());
-        }
-
-        public PlayerVariablesSyncMessage(PlayerVariables data) {
-            this.data = data;
-        }
-
-        public static void buffer(PlayerVariablesSyncMessage message, FriendlyByteBuf buffer) {
-            buffer.writeNbt((CompoundTag) message.data.writeNBT());
-        }
-
-        public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-            NetworkEvent.Context context = contextSupplier.get();
-            context.enqueueWork(() -> {
-                if (!context.getDirection().getReceptionSide().isServer()) {
-                    assert Minecraft.getInstance().player != null;
-                    PlayerVariables variables = Minecraft.getInstance().player.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-                    variables.arrowSlot = message.data.arrowSlot;
-                    variables.katanaArrowBlockNumber = message.data.katanaArrowBlockNumber;
-                    variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
-                    variables.stolenHealth = message.data.stolenHealth;
-                    variables.addedHealth = message.data.addedHealth;
-                    variables.playersHeartStealer = message.data.playersHeartStealer;
-                } else {
-                    ServerPlayer serverPlayer = context.getSender();
-                    assert serverPlayer != null;
-                    PlayerVariables variables = serverPlayer.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-                    variables.arrowSlot = message.data.arrowSlot;
-                    variables.katanaArrowBlockNumber = message.data.katanaArrowBlockNumber;
-                    variables.katanaTimeSinceBlock = message.data.katanaTimeSinceBlock;
-                    variables.stolenHealth = message.data.stolenHealth;
-                    variables.addedHealth = message.data.addedHealth;
-                    variables.playersHeartStealer = message.data.playersHeartStealer;
-                }
-            });
-            context.setPacketHandled(true);
         }
     }
 

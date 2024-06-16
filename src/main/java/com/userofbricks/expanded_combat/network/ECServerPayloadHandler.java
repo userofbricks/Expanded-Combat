@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenuPr
 import com.userofbricks.expanded_combat.inventory.container.SmithingMenuProvider;
 import com.userofbricks.expanded_combat.network.client.CPacketOpenShieldSmithing;
 import com.userofbricks.expanded_combat.network.client.CPacketOpenSmithing;
+import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -55,6 +56,12 @@ public class ECServerPayloadHandler {
                     PacketDistributor.sendToPlayer(serverPlayer, new SPacketGrabbedItem(stack));
                 }
             }
+        });
+    }
+
+    public void handleIntAttachmentSync(PacketIntAttachment packetIntAttachment, IPayloadContext ctx) {
+        ctx.enqueueWork(() -> {
+            ctx.player().setData(packetIntAttachment.attachmentType(), packetIntAttachment.data());
         });
     }
 }
