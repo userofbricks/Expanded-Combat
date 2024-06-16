@@ -45,9 +45,7 @@ public class AncientCity {
         for (int i = 0; i < weight; i++) {
             pool.templates.add(piece);
         }
-        List<Pair<StructurePoolElement, Integer>> listOfPieceEntries = new ArrayList<>(pool.rawTemplates);
-        listOfPieceEntries.add(new Pair<>(piece, weight));
-        pool.rawTemplates = listOfPieceEntries;
+        pool.rawTemplates.add(new Pair<>(piece, weight));
     }
 
     /**
