@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.config.ConfigName;
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.ClientECConfig;
 import com.userofbricks.expanded_combat.config.TooltipFrase;
 import com.userofbricks.expanded_combat.config.TooltipFrases;
 import com.userofbricks.expanded_combat.init.ECItems;
@@ -54,7 +54,7 @@ public class LangStrings extends LanguageProvider {
     public static final String FOUND_AT_HEIGHT_LIMIT = createLangEntry("tooltip.expanded_combat.found_at_height_limit", "Block can be found at world height limit");
 
     //Config
-    private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
+    private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ClientECConfig.class.getAnnotation(Config.class).name();
     private static final BiFunction<String, String, String> categoryFunction = (baseI13n, categoryName) -> String.format("%s.category.%s", baseI13n, categoryName);
     private static final BiFunction<String, Field, String> optionFunction = (baseI13n, field) -> String.format("%s.option.%s", baseI13n, field.getName());
 
@@ -121,7 +121,7 @@ public class LangStrings extends LanguageProvider {
         List<String> alreadyAddedStrings = new ArrayList<>();
         String configLangStart = configLangStartGetter.get();
         add(configLangStart + ".title", "Expanded Combat Settings");
-        Arrays.stream(ECConfig.class.getDeclaredFields()).collect(
+        Arrays.stream(ClientECConfig.class.getDeclaredFields()).collect(
                         Collectors.groupingBy((field) -> getOrCreateCategoryForField(field, alreadyAddedStrings, configLangStart), LinkedHashMap::new, Collectors.toList()))
                 .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(field, configLangStart, alreadyAddedStrings)));
     }

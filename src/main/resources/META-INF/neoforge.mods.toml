@@ -43,10 +43,3 @@ file="META-INF/accesstransformer.cfg"
     versionRange="[${curios_version},)"
     ordering="NONE"
     side="BOTH"
-
-[[dependencies.${mod_id}]]
-    modId="cloth_config"
-    type="required"
-    versionRange="[${cloth_config_api_version},)"
-    ordering="NONE"
-    side="BOTH"

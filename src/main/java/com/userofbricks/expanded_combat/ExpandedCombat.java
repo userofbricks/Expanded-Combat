@@ -5,7 +5,7 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelProperties;
-import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.ClientECConfig;
 import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
@@ -13,8 +13,6 @@ import com.userofbricks.expanded_combat.item.GauntletItem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -43,14 +41,11 @@ public class ExpandedCombat {
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
     public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
     public static final List<IExpandedCombatPlugin> PLUGINS = new ArrayList<>();
-    public static ECConfig CONFIG;
-    public static int maxQuiverSlots = 0;
 
     public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.COMMON, CommonECConfig.pair.getRight());
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientECConfig.pair.getRight());
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
-        AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         bus.addListener(this::registerPayloadHandler);

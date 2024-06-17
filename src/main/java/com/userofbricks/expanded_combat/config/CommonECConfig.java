@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.config;
 
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
