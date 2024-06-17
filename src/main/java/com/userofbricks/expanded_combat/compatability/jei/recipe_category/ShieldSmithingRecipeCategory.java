@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -9,10 +10,10 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.library.util.RecipeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -20,14 +21,14 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class ShieldSmithingRecipeCategory implements IRecipeCategory<IShieldSmithingRecipe> {
+public class ShieldSmithingRecipeCategory implements IRecipeCategory<RecipeHolder<IShieldSmithingRecipe>> {
 
     private final IDrawable background;
     private final IDrawable icon;
     public static final ResourceLocation iconLocation = new ResourceLocation(MODID, "textures/gui/jei/recipe_icons.png");
 
-    public static final RecipeType<IShieldSmithingRecipe> SHIELD_SMITHING =
-            RecipeType.create(MODID, "shield_smithing", IShieldSmithingRecipe.class);
+    public static final RecipeType<RecipeHolder<IShieldSmithingRecipe>> SHIELD_SMITHING =
+            RecipeType.createFromVanilla(ECRecipeSerializerInit.SHIELD_TYPE.get());
 
     public ShieldSmithingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(FletchingRecipeCategory.textureLocation, 0, 28, 125, 54);
@@ -35,7 +36,7 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<IShieldSmit
     }
 
     @Override
-    public RecipeType<IShieldSmithingRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<IShieldSmithingRecipe>> getRecipeType() {
         return SHIELD_SMITHING;
     }
 
@@ -55,26 +56,26 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<IShieldSmit
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, IShieldSmithingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<IShieldSmithingRecipe> recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 19)
-                .addIngredients(recipe.getBase());
+                .addIngredients(recipe.value().getBase());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 41, 1)
-                .addIngredients(recipe.getULAddition());
+                .addIngredients(recipe.value().getULAddition());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 59, 1)
-                .addIngredients(recipe.getURAddition());
+                .addIngredients(recipe.value().getURAddition());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 50, 19)
-                .addIngredients(recipe.getMAddition());
+                .addIngredients(recipe.value().getMAddition());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 41, 37)
-                .addIngredients(recipe.getDLAddition());
+                .addIngredients(recipe.value().getDLAddition());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 59, 37)
-                .addIngredients(recipe.getDRAddition());
+                .addIngredients(recipe.value().getDRAddition());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 108, 19)
-                .addItemStack(RecipeUtil.getResultItem(recipe));
+                .addItemStack(RecipeUtil.getResultItem(recipe.value()));
     }
 }

@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.gui.ITickTimer;
@@ -12,13 +12,12 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.library.util.RecipeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -27,15 +26,15 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe> {
+public class FletchingRecipeCategory implements IRecipeCategory<RecipeHolder<IFletchingRecipe>> {
 
     private final IDrawable background;
     private final IDrawable icon;
     private final ITickTimer tickTimer;
     public static final ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/jei/recipe_backgrounds.png");
 
-    public static final RecipeType<IFletchingRecipe> FLETCHING =
-            RecipeType.create(MODID, "fletching", IFletchingRecipe.class);
+    public static final RecipeType<RecipeHolder<IFletchingRecipe>> FLETCHING =
+            RecipeType.createFromVanilla(ECRecipeSerializerInit.FLETCHING_TYPE.get());
 
     public FletchingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(textureLocation, 0, 0, 125, 18);
@@ -44,7 +43,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
     }
 
     @Override
-    public RecipeType<IFletchingRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<IFletchingRecipe>> getRecipeType() {
         return FLETCHING;
     }
 
@@ -64,11 +63,11 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
     }
 
     @Override
-    public void draw(IFletchingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.getMaxCraftingAmount() > 1) {
+    public void draw(RecipeHolder<IFletchingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.value().getMaxCraftingAmount() > 1) {
             guiGraphics.pose().pushPose();
-            drawAcendingNumbers(guiGraphics, 7, 12, recipe.getMaxCraftingAmount());
-            drawAcendingNumbers(guiGraphics, 114, 12, recipe.getMaxCraftingAmount());
+            drawAcendingNumbers(guiGraphics, 7, 12, recipe.value().getMaxCraftingAmount());
+            drawAcendingNumbers(guiGraphics, 114, 12, recipe.value().getMaxCraftingAmount());
             guiGraphics.pose().popPose();
         }
     }
@@ -98,19 +97,19 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, IFletchingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<IFletchingRecipe> recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
-                .addIngredients(recipe.getBase());
+                .addIngredients(recipe.value().getBase());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 50, 1)
-                .addIngredients(recipe.getAddition());
+                .addIngredients(recipe.value().getAddition());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 108, 1)
-                .addItemStack(RecipeUtil.getResultItem(recipe));
+                .addItemStack(RecipeUtil.getResultItem(recipe.value()));
     }
 
     @Override
-    public boolean isHandled(IFletchingRecipe recipe) {
-        return recipe instanceof FletchingRecipe;
+    public boolean isHandled(RecipeHolder<IFletchingRecipe> recipe) {
+        return recipe.value() instanceof FletchingRecipe;
     }
 }

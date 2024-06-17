@@ -7,12 +7,9 @@ import com.userofbricks.expanded_combat.compatability.jei.item_subtype.ShieldSub
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.FletchingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipes.*;
-import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECContainers;
-import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
-import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
@@ -33,11 +30,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
-import net.neoforged.neoforge.registries.DeferredItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.client.gui.CuriosScreen;
 import top.theillusivec4.curios.common.integration.jei.CuriosContainerHandler;
 
 import javax.annotation.Nullable;
@@ -53,9 +51,9 @@ import static com.userofbricks.expanded_combat.compatability.jei.recipe_category
 public class ECJEIPlugin implements IModPlugin {
     private static final Logger LOGGER = LogManager.getLogger();
     @Nullable
-    private IRecipeCategory<IFletchingRecipe> fletchingCategory;
+    private IRecipeCategory<RecipeHolder<IFletchingRecipe>> fletchingCategory;
     @Nullable
-    private IRecipeCategory<IShieldSmithingRecipe> shieldSmithingCategory;
+    private IRecipeCategory<RecipeHolder<IShieldSmithingRecipe>> shieldSmithingCategory;
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -91,27 +89,24 @@ public class ECJEIPlugin implements IModPlugin {
         ErrorUtil.checkNotNull(shieldSmithingCategory, "shieldSmithingCategory");
 
         IIngredientManager ingredientManager = registration.getIngredientManager();
-        IJeiHelpers jeiHelpers = registration.getJeiHelpers();
-        IStackHelper stackHelper = jeiHelpers.getStackHelper();
         ECRecipes vanillaRecipes = new ECRecipes(ingredientManager);
-        for (Material material :
-                PluginInit.arrowMaterials) {
-            registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(stackHelper, (ECArrowItem) material.getArrowEntry().get()));
+        for (ECTippedArrowItem item :
+                BuiltInRegistries.ITEM.stream().filter(item -> item instanceof ECTippedArrowItem).map(item -> (ECTippedArrowItem)item).toList()) {
+            registration.addRecipes(RecipeTypes.CRAFTING, ECTippedArrowRecipeMaker.createRecipes(item));
         }
 
-        for (RegistryEntry<? extends Item> item:ECItems.ITEMS) {
-            if (item.get() instanceof PotionWeaponItem) {
-                registration.addRecipes(RecipeTypes.CRAFTING, ECPotionWeaponRecipeMaker.createRecipes(stackHelper, (PotionWeaponItem) item.get()));
-            }
+        for (PotionWeaponItem item :
+                BuiltInRegistries.ITEM.stream().filter(item -> item instanceof PotionWeaponItem).map(item -> (PotionWeaponItem)item).toList()) {
+            registration.addRecipes(RecipeTypes.CRAFTING, ECPotionWeaponRecipeMaker.createRecipes(item));
         }
 
         if (fletchingCategory != null) {
             registration.addRecipes(FLETCHING, vanillaRecipes.getFletchingRecipes(fletchingCategory));
-            registration.addRecipes(FLETCHING, ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes(stackHelper));
+            registration.addRecipes(FLETCHING, ECFletchingTippedArrowRecipeMaker.createTippedArrowRecipes());
         }
         registration.addRecipes(SHIELD_SMITHING, vanillaRecipes.getShieldSmithingRecipes(shieldSmithingCategory));
-        registration.addRecipes(SHIELD_SMITHING, ECShieldSmithingRecipeMaker.createShieldSmithingRecipes(stackHelper));
-        registration.addRecipes(RecipeTypes.CRAFTING, ECShieldDecorationRecipeMaker.createRecipes(stackHelper));
+        registration.addRecipes(SHIELD_SMITHING, ECShieldSmithingRecipeMaker.createShieldSmithingRecipes());
+        registration.addRecipes(RecipeTypes.CRAFTING, ECShieldDecorationRecipeMaker.createRecipes());
     }
 
     @Override
@@ -129,6 +124,5 @@ public class ECJEIPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         if (fletchingCategory != null) registration.addRecipeClickArea(FletchingTableScreen.class, 102, 48, 22, 15, FLETCHING);
         registration.addRecipeClickArea(ShieldSmithingTableScreen.class, 102, 48, 22, 15, SHIELD_SMITHING);
-        registration.addGuiContainerHandler(CuriosScreenV2.class, new CuriosContainerHandler());
     }
 }
