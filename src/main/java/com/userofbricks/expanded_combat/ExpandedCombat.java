@@ -6,6 +6,7 @@ import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelProperties;
 import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -45,6 +47,7 @@ public class ExpandedCombat {
     public static int maxQuiverSlots = 0;
 
     public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
+        modContainer.registerConfig(ModConfig.Type.COMMON, CommonECConfig.pair.getRight());
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();

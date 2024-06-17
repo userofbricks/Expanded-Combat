@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ public class QuiverEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onArrowItemPickup(ItemEntityPickupEvent evt) {
+        if (!CommonECConfig.pair.getLeft().enableQuivers.get()) return;
         Player player = evt.getPlayer();
         ItemStack toPickup = evt.getItemEntity().getItem();
         SlotResult slotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem)).orElse(null);
@@ -50,7 +52,7 @@ public class QuiverEvents {
     @SubscribeEvent
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
-        if (screen instanceof CuriosScreen curiosScreen) {
+        if (screen instanceof CuriosScreen curiosScreen && CommonECConfig.pair.getLeft().enableQuivers.get()) {
             ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();

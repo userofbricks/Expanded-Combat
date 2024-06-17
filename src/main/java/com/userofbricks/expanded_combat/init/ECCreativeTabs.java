@@ -25,7 +25,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.config.CommonECConfig.pair;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
@@ -44,12 +44,12 @@ public class ECCreativeTabs {
                 output.accept(ALLAY_ITEM.get());
                 List<? extends DeferredItem<? extends Item>> items = ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList();
 
-                if (CONFIG.enableGauntlets) {
+                if (pair.getLeft().enableGauntlets.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof GauntletItem).toList()) {
                         output.accept(deferredItem);
                     }
                 }
-                if (CONFIG.enableShields) {
+                if (pair.getLeft().enableShields.get()) {
                     for (Holder.Reference<Material> material : Arrays.asList(Materials.LEATHER, Materials.RABBIT_HIDE, Materials.IRON, Materials.GOLD, Materials.DIAMOND, Materials.NETHERITE)) {
                         ItemStack stack;
                         if (!material.value().defense().fireResistant()) {
@@ -66,22 +66,22 @@ public class ECCreativeTabs {
                         output.accept(stack);
                     }
                 }
-                if (CONFIG.enableBows) {
+                if (pair.getLeft().enableBows.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof BowItem).toList()) {
                         output.accept(deferredItem);
                     }
                 }
-                if (CONFIG.enableCrossbows) {
+                if (pair.getLeft().enableCrossbows.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof CrossbowItem).toList()) {
                         output.accept(deferredItem);
                     }
                 }
-                if (CONFIG.enableQuivers) {
+                if (pair.getLeft().enableQuivers.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
                         output.accept(deferredItem);
                     }
                 }
-                if (CONFIG.enableArrows) {
+                if (pair.getLeft().enableArrows.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
                         output.accept(deferredItem);
                     }
@@ -93,7 +93,7 @@ public class ECCreativeTabs {
                         }
                     }
                 }
-                if (CONFIG.enableWeapons) {
+                if (pair.getLeft().enableWeapons.get()) {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECWeaponItem).toList()) {
                         output.accept(deferredItem);
                     }
@@ -111,7 +111,7 @@ public class ECCreativeTabs {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.COMBAT) {
             MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
-            if (CONFIG.enableGauntlets) {
+            if (pair.getLeft().enableGauntlets.get()) {
                 items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(LEATHER_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 items.putBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(IRON_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 items.putBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(GOLD_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -123,7 +123,7 @@ public class ECCreativeTabs {
                 items.putAfter(new ItemStack(FIGHTERS_GAUNTLETS.get()), new ItemStack(BERSERK_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 items.putAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
-            if (CONFIG.enableShields) {
+            if (pair.getLeft().enableShields.get()) {
 
                 for (Holder.Reference<Material> material : Arrays.asList(Materials.NETHERITE, Materials.DIAMOND, Materials.GOLD, Materials.IRON, Materials.RABBIT_HIDE, Materials.LEATHER)) {
                     ItemStack stack;
@@ -144,22 +144,22 @@ public class ECCreativeTabs {
 
             List<? extends DeferredItem<? extends Item>> itemList = ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList();
 
-            if (CONFIG.enableBows) {
+            if (pair.getLeft().enableBows.get()) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof BowItem).toList()) {
                     items.putAfter(new ItemStack(Items.BOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
-            if (CONFIG.enableCrossbows) {
+            if (pair.getLeft().enableCrossbows.get()) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof CrossbowItem).toList()) {
                     items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
-            if (CONFIG.enableQuivers) {
+            if (pair.getLeft().enableQuivers.get()) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
                     items.putBefore(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
-            if (CONFIG.enableArrows) {
+            if (pair.getLeft().enableArrows.get()) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
                     items.putAfter(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
@@ -173,7 +173,7 @@ public class ECCreativeTabs {
                     }
                 }
             }
-            if (CONFIG.enableWeapons) {
+            if (pair.getLeft().enableWeapons.get()) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECWeaponItem).toList()) {
 
                     items.put(new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

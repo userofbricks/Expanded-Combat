@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldTabButtion;
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.Materials;
@@ -19,21 +20,21 @@ import net.neoforged.neoforge.client.event.ContainerScreenEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.config.CommonECConfig.ShieldProtectionConfig.ShieldBaseProtectionType.*;
 
 public class ShieldEvents {
 
     @SubscribeEvent
     public static void ShieldBlockingEvent(ShieldBlockEvent event) {
-        if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection && !(event.getEntity().getUseItem().getItem() instanceof ArrowBlockWeaponItem)) {
+        if (!CommonECConfig.pair.getLeft().shieldProtectionConfig.enableVanillaStyleShieldProtection.get() && !(event.getEntity().getUseItem().getItem() instanceof ArrowBlockWeaponItem)) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();
-            if (CONFIG.shieldProtectionConfig.EnableShieldBaseProtection) {
+            if (CommonECConfig.pair.getLeft().shieldProtectionConfig.enableShieldBaseProtection.get()) {
                 damageBlocked += BaseShieldProtection(shieldItemStack, damageLeftToBlock);
                 damageLeftToBlock -= damageBlocked;
             }
-            if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
+            if (CommonECConfig.pair.getLeft().shieldProtectionConfig.enableShieldProtectionPercentage.get()) {
                 double damagePercent = Materials.VANILLA.value().defense().afterBasePercentReduction();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
                     damagePercent = ECShieldItem.getPercentageProtection(shieldItemStack);
@@ -48,7 +49,7 @@ public class ShieldEvents {
 
     private static float BaseShieldProtection(ItemStack shieldItemStack, float damageLeftToBlock) {
         float damageBlocked = 0;
-        switch (CONFIG.shieldProtectionConfig.shieldBaseProtectionType) {
+        switch (CommonECConfig.pair.getLeft().shieldProtectionConfig.shieldBaseProtectionType.get()) {
             case PREDEFINED_AMMOUNT -> {
                 double protectionAmount = Materials.VANILLA.value().defense().baseProtectionAmmount();
                 if (shieldItemStack.getItem() instanceof ECShieldItem) {
@@ -77,16 +78,15 @@ public class ShieldEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onInventoryGuiInit(ScreenEvent.Init.Post evt) {
+        if (!CommonECConfig.pair.getLeft().enableShields.get()) return;
         Screen screen = evt.getScreen();
-        if (screen instanceof SmithingScreen) {
-            AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
+        if (screen instanceof SmithingScreen gui) {
             int sizeX = 20;
             int sizeY = 20;
             int yOffset = 36;
             int xOffset = -21;
             evt.addListener(new ShieldTabButtion(gui, gui.getGuiLeft() + xOffset, gui.getGuiTop() + yOffset, sizeX, sizeY, ShieldTabButtion.SHIELD));
-        } else if (screen instanceof ShieldSmithingTableScreen) {
-            AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
+        } else if (screen instanceof ShieldSmithingTableScreen gui) {
             int sizeX = 20;
             int sizeY = 20;
             int yOffset = 8;
@@ -98,6 +98,7 @@ public class ShieldEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void drawTabs(ContainerScreenEvent.Render.Background e) {
+        if (!CommonECConfig.pair.getLeft().enableShields.get()) return;
         if (e.getContainerScreen() instanceof SmithingScreen) {
             AbstractContainerScreen<?> smithingTableScreen = e.getContainerScreen();
             int left = smithingTableScreen.getGuiLeft();

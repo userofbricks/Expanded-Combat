@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +30,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "getProjectile", at = @At("HEAD"), cancellable = true)
     private void checkQuiver(ItemStack shootable, CallbackInfoReturnable<ItemStack> cir) {
-        if (!(shootable.getItem() instanceof ProjectileWeaponItem)) {
+        if (!(shootable.getItem() instanceof ProjectileWeaponItem) || !CommonECConfig.pair.getLeft().enableQuivers.get()) {
             return;
         }
         Optional<SlotResult> quiverStack = CuriosApi.getCuriosInventory(this).flatMap(curiosInventory -> curiosInventory.findCurio(ExpandedCombat.QUIVER_CURIOS_IDENTIFIER, 0));

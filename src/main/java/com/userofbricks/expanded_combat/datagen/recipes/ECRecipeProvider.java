@@ -19,11 +19,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -182,7 +184,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 .define('a', Items.AMETHYST_SHARD)
                 .define('s', GOOD_SOUL)
                 .unlockedBy("has_items", InventoryChangeTrigger.TriggerInstance.hasItems(GOOD_SOUL, SOLIDIFIED_PURIFICATION, Items.AMETHYST_SHARD))
-                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("weapon")));
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("soul")));
 
 
         FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, IRON_ARROW.get(), 1)

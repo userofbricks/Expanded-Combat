@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.datagen.loot;
 
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.loot.AddItemFromGauntletModifier;
 import com.userofbricks.expanded_combat.loot.AddItemModifier;
 import com.userofbricks.expanded_combat.loot.AddItemWithoutGauntletModifier;
@@ -38,7 +39,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             add("end_city_treasure_void_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "end_city_treasure")).build(),
                     LootItemRandomChanceCondition.randomChance(0.05f).build()
-            }, entry.get()));
+            }, entry.get()), new ECConfigBooleanCondition("weapons"));
         }
 
         for (String chestLoot : Arrays.asList("shipwreck_treasure", "underwater_ruin_big", "woodland_mansion", "buried_treasure")) {
@@ -46,7 +47,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_cold_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.get()));
+                }, entry.get()), new ECConfigBooleanCondition("weapons"));
             }
         }
 
@@ -55,7 +56,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_heat_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.get()));
+                }, entry.get()), new ECConfigBooleanCondition("weapons"));
             }
         }
 
@@ -64,22 +65,22 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_soul_" + entry.getId().getPath(), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.get()));
+                }, entry.get()), new ECConfigBooleanCondition("weapons"));
             }
         }
 
         add("bastion_treasure" + "_fighters_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "bastion_treasure")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, FIGHTERS_GAUNTLETS.get()));
+        }, FIGHTERS_GAUNTLETS.get()), new ECConfigBooleanCondition("weapons"));
         add("woodland_mansion" + "_brawlers_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "woodland_mansion")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, BRAWLERS_GAUNTLETS.get()));
+        }, BRAWLERS_GAUNTLETS.get()), new ECConfigBooleanCondition("weapons"));
         add("pillager_outpost" + "_berserk_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "pillager_outpost")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, BERSERK_GAUNTLETS.get()));
+        }, BERSERK_GAUNTLETS.get()), new ECConfigBooleanCondition("weapons"));
     }
 
     private void generateSoulLootModifiers() {
@@ -97,23 +98,23 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             add("bad_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.01f), soulWeaponChance).build()
-            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
 
             add("bad_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
         }
         for (String mob : Arrays.asList("drowned", "enderman", "ghast", "giant", "husk", "phantom", "shulker", "skeleton", "skeleton_horse", "stray", "vex", "zoglin", "zombie", "zombie_horse", "zombie_villager", "zombified_piglin")) {
             add("good_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.01f), soulWeaponChance).build()
-            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
 
             add("good_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
         }
 
 
@@ -121,24 +122,24 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             add("bad_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.1f), soulWeaponChance).build()
-            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
 
             add("bad_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.BAD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
         }
 
         for (String mob : Arrays.asList("wither", "warden")) {
             add("good_soul_from_" + mob + "_with_soul_gauntlet", new AddItemFromGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     AnyOfCondition.anyOf(LootItemRandomChanceCondition.randomChance(0.1f), soulWeaponChance).build()
-            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
 
             add("good_soul_from_" + mob + "_without_soul_gauntlet", new AddItemWithoutGauntletModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("entities/" + mob)).build(),
                     soulWeaponChance.build()
-            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()));
+            }, ECItems.GOOD_SOUL.get(), SOUL_GAUNTLET.get()), new ECConfigBooleanCondition("soul"));
         }
     }
 }

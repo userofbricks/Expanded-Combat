@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.registry.ApiHelper;
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -43,10 +44,10 @@ public class FletchingTableBlockMixin extends CraftingTableBlock {
      * @author Userofbricks
      * @reason for some odd reason couldn't get it to work with Events so...
      */
-    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
-    public void use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult blockRayTraceResult, CallbackInfoReturnable<InteractionResult> cir) {
-        if (ApiHelper.doesAnyPluginDenyFletchingTableGui(ExpandedCombat.PLUGINS)) {}
-        else if (!ExpandedCombat.CONFIG.enableArrows) {
+    @Inject(method = "useWithoutItem", at = @At("HEAD"), cancellable = true)
+    public void use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        if (ApiHelper.doesAnyPluginDenyFletchingTableGui(ExpandedCombat.PLUGINS)
+                || !CommonECConfig.pair.getLeft().enableArrowsFletching.get()) {
             cir.setReturnValue(InteractionResult.PASS);
         } else {
             if (world.isClientSide) {

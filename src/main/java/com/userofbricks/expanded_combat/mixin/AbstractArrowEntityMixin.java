@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.mixin;
 
+import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -59,7 +60,7 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
      */
     @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
     public void playerTouch(Player player, CallbackInfo callback) {
-        if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0) {
+        if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0 && CommonECConfig.pair.getLeft().enableQuivers.get()) {
             ItemStack pickupItem = this.getPickupItem();
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
                 SlotResult quiverSlot = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem)).orElse(null);
