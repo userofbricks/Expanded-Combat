@@ -1,13 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
-import com.userofbricks.expanded_combat.config.ConfigName;
-import com.userofbricks.expanded_combat.config.ClientECConfig;
-import com.userofbricks.expanded_combat.config.TooltipFrase;
-import com.userofbricks.expanded_combat.config.TooltipFrases;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -18,11 +12,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-import java.lang.reflect.Field;
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
@@ -53,11 +43,6 @@ public class LangStrings extends LanguageProvider {
     public static final String EDIBLE = createLangEntry("tooltip.expanded_combat.edible", "Smells Delectable");
     public static final String FOUND_AT_HEIGHT_LIMIT = createLangEntry("tooltip.expanded_combat.found_at_height_limit", "Block can be found at world height limit");
 
-    //Config
-    private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ClientECConfig.class.getAnnotation(Config.class).name();
-    private static final BiFunction<String, String, String> categoryFunction = (baseI13n, categoryName) -> String.format("%s.category.%s", baseI13n, categoryName);
-    private static final BiFunction<String, Field, String> optionFunction = (baseI13n, field) -> String.format("%s.option.%s", baseI13n, field.getName());
-
     //advancements
     public static final String advancementRootTitle = createAdvancementLangEntry("root", "Expanded Combat", true);
     public static final String advancementRootDesc = createAdvancementLangEntry("root", "Expanded Combat", false);
@@ -87,10 +72,6 @@ public class LangStrings extends LanguageProvider {
     }
 
 
-    public static String getLocationPathVersion(String string) {
-        return string.toLowerCase(Locale.ROOT).replace(' ', '_').replace("'", "_");
-    }
-
     @Override
     protected void addTranslations() {
         for (DeferredHolder<Item, ? extends Item> deferredItem : ECItems.ITEMS.getEntries()) {
@@ -116,14 +97,6 @@ public class LangStrings extends LanguageProvider {
             Optional<Holder<Potion>> optionalPotionReference = Optional.of(potion);
             add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), " of " + locationToName(Potion.getName(optionalPotionReference,"")));
         }
-
-        //Config
-        List<String> alreadyAddedStrings = new ArrayList<>();
-        String configLangStart = configLangStartGetter.get();
-        add(configLangStart + ".title", "Expanded Combat Settings");
-        Arrays.stream(ClientECConfig.class.getDeclaredFields()).collect(
-                        Collectors.groupingBy((field) -> getOrCreateCategoryForField(field, alreadyAddedStrings, configLangStart), LinkedHashMap::new, Collectors.toList()))
-                .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(field, configLangStart, alreadyAddedStrings)));
     }
 
     public void addAttributeDescription(String attribute, String englishLang) {
@@ -175,63 +148,6 @@ public class LangStrings extends LanguageProvider {
             else ret.append(" ").append(part);
         }
         return ret.toString();
-    }
-
-    public String getOrCreateCategoryForField(Field field, List<String> alreadyAddedStrings, String configLangStart) {
-        String categoryName = "Default";
-        if (field.isAnnotationPresent(ConfigEntry.Category.class)) {
-            categoryName = field.getAnnotation(ConfigEntry.Category.class).value();
-            String categoryLang = categoryFunction.apply(configLangStart, categoryName);
-            getOrCreateLang(alreadyAddedStrings, categoryLang, categoryName, " Settings");
-        }
-        return categoryName;
-    }
-
-    public void getOrCreateLang(List<String> alreadyAddedStrings, String lang, String Name, String sufix) {
-        if (!alreadyAddedStrings.contains(lang)) {
-            alreadyAddedStrings.add(lang);
-            add(lang, Name + sufix);
-        }
-    }
-
-    public void ifNotExcludedRegisterLangs(Field field, String configLangStart, List<String> alreadyAddedStrings) {
-        if (!field.isAnnotationPresent(ConfigEntry.Gui.Excluded.class)) {
-            String optionLang;
-            if (configLangStart.contains("option")) {
-                optionLang = configLangStart + "." + field.getName();
-            } else {
-                optionLang = optionFunction.apply(configLangStart, field);
-            }
-            getOrCreateLang(alreadyAddedStrings, optionLang, getConfigOptionName(field), "");
-            if(field.isAnnotationPresent(ConfigEntry.Gui.Tooltip.class) && (field.isAnnotationPresent(TooltipFrase.class) || field.isAnnotationPresent(TooltipFrases.class))) {
-                int tooltipLines = field.getAnnotation(ConfigEntry.Gui.Tooltip.class).count();
-                Map<Integer, String> tooltips = new HashMap<>();
-                for (TooltipFrase tooltip : field.getAnnotationsByType(TooltipFrase.class)) {
-                    tooltips.put(tooltip.line(), tooltip.value());
-                }
-                if (tooltipLines == 1) {
-                    getOrCreateLang(alreadyAddedStrings, optionLang + ".@Tooltip", tooltips.get(0), "");
-                } else {
-                    for (int tooltipLine = 0; tooltipLine < tooltipLines; tooltipLine++) {
-                        String tooltip = tooltips.get(tooltipLine);
-                        getOrCreateLang(alreadyAddedStrings, optionLang + ".@Tooltip[" + tooltipLine + "]", tooltip == null ? "Needs TooltipFrase Annotation defined for Tooltip[" + tooltipLine + "]" : tooltip, "");
-                    }
-                }
-            }
-            if (field.isAnnotationPresent(ConfigEntry.Gui.CollapsibleObject.class) || field.isAnnotationPresent(ConfigEntry.Gui.TransitiveObject.class)) {
-                for (Field fieldOfField : field.getType().getDeclaredFields()) {
-                    ifNotExcludedRegisterLangs(fieldOfField, optionLang, alreadyAddedStrings);
-                }
-            }
-        }
-
-    }
-
-    private static String getConfigOptionName(Field field) {
-        if (field.isAnnotationPresent(ConfigName.class)) {
-            return field.getAnnotation(ConfigName.class).value();
-        }
-        return field.getName();
     }
 
     public record LangEntry(String translatableLang, String englishTranslation) {}

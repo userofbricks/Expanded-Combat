@@ -1,10 +1,9 @@
 package com.userofbricks.expanded_combat.config;
 
-import me.shedaniel.autoconfig.ConfigData;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class ClientECConfig implements ConfigData {
+public class ClientECConfig {
     public static final Pair<ClientECConfig, ModConfigSpec> pair = new ModConfigSpec.Builder()
             .configure(ClientECConfig::new);
 

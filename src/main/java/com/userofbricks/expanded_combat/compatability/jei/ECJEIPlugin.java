@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.compatability.jei;
 
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
-import com.userofbricks.expanded_combat.compatability.jei.container_handelers.CuriosContainerHandler;
+import com.userofbricks.expanded_combat.compatability.jei.item_subtype.PotionSubtypeInterpreter;
 import com.userofbricks.expanded_combat.compatability.jei.item_subtype.ShieldSubtypeInterpreter;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.FletchingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory;
@@ -14,6 +14,7 @@ import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import com.userofbricks.expanded_combat.item.ECArrowItem;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
@@ -28,13 +29,16 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.common.integration.jei.CuriosContainerHandler;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -60,18 +64,16 @@ public class ECJEIPlugin implements IModPlugin {
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
-        for (Material material :
-                PluginInit.arrowMaterials) {
-            registration.registerSubtypeInterpreter(material.getTippedArrowEntry().get(), PotionSubtypeInterpreter.INSTANCE);
+        for (Item item :
+                BuiltInRegistries.ITEM.stream().filter(item -> item instanceof ECTippedArrowItem).toList()) {
+            registration.registerSubtypeInterpreter(item, PotionSubtypeInterpreter.INSTANCE);
         }
-        for (Material material :
-                PluginInit.weaponMaterials) {
-            material.getWeapons().forEach((weaponName, registryEntry) -> {
-                if (registryEntry.get() instanceof PotionWeaponItem) registration.registerSubtypeInterpreter(registryEntry.get(), PotionSubtypeInterpreter.INSTANCE);
-            });
+        for (Item item :
+                BuiltInRegistries.ITEM.stream().filter(item -> item instanceof PotionWeaponItem).toList()) {
+             registration.registerSubtypeInterpreter(item, PotionSubtypeInterpreter.INSTANCE);
         }
         registration.registerSubtypeInterpreter(ECItems.SHIELD.get(), ShieldSubtypeInterpreter.INSTANCE);
-        registration.registerSubtypeInterpreter(ECItems.SHIELD_TIER_2.get(), ShieldSubtypeInterpreter.INSTANCE);
+        registration.registerSubtypeInterpreter(ECItems.SHIELD_FIRE_RESISTANT.get(), ShieldSubtypeInterpreter.INSTANCE);
     }
 
     @Override

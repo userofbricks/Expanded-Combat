@@ -1,5 +1,7 @@
 package com.userofbricks.expanded_combat.compatability.jei.item_subtype;
 
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
@@ -13,15 +15,16 @@ public class ShieldSubtypeInterpreter implements IIngredientSubtypeInterpreter<I
 
     @Override
     public @NotNull String apply(ItemStack itemStack, @NotNull UidContext context) {
-        if (!itemStack.hasTag()) {
-            return IIngredientSubtypeInterpreter.NONE;
-        }
-        String ul_material = ECShieldItem.getUpperLeftMaterial(itemStack);
-        String ur_material = ECShieldItem.getUpperRightMaterial(itemStack);
-        String dl_material = ECShieldItem.getDownLeftMaterial(itemStack);
-        String dr_material = ECShieldItem.getDownRightMaterial(itemStack);
-        String m_material = ECShieldItem.getMiddleMaterial(itemStack);
+        ShieldMaterials materials = itemStack.get(ItemDataComponents.SHIELD_MATERIALS);
+        if (materials != null) {
+            String ul_material = materials.ULMaterial.getRegisteredName();
+            String ur_material = materials.URMaterial.getRegisteredName();
+            String dl_material = materials.DLMaterial.getRegisteredName();
+            String dr_material = materials.DRMaterial.getRegisteredName();
+            String m_material = materials.MMaterial.getRegisteredName();
 
-        return ul_material + ";" + ur_material + ";" + dl_material + ";" + dr_material + ";" + m_material;
+            return ul_material + ";" + ur_material + ";" + dl_material + ";" + dr_material + ";" + m_material;
+        }
+        return IIngredientSubtypeInterpreter.NONE;
     }
 }

@@ -6,7 +6,10 @@ import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
@@ -68,18 +71,13 @@ public class ClientEvents {
                 event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, gauntletItem);
             } else if (item.get() instanceof ECQuiverItem quiverItem && quiverItem.material == Materials.LEATHER) {
                 event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, quiverItem);
-            } else if (item.get() instanceof ECWeaponItem weaponItem && !(
-                    weaponItem.material == Materials.HEAT || weaponItem.material == Materials.FROST || weaponItem.material == Materials.VOID_TOUCHED || weaponItem.material == Materials.SOUL
-                            || weaponItem.material == Materials.HEART_STEALER
-                    ) && !(
-                    weaponItem.weapon == WeaponTypes.KATANA && weaponItem.weapon == WeaponTypes.SPEAR || weaponItem.weapon == WeaponTypes.DAGGER || weaponItem.weapon == WeaponTypes.DANCERS_SWORD
-                            || weaponItem.weapon == WeaponTypes.GREAT_HAMMER || weaponItem.weapon == WeaponTypes.MACE || weaponItem.weapon == WeaponTypes.FLAIL
-            )) {
-                if (weaponItem.weapon == WeaponTypes.SCYTHE) {
-                    event.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : FastColor.ARGB32.opaque(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor()), weaponItem);
-                } else {
-                    event.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : DyedItemColor.getOrDefault(stack, -6265536), weaponItem);
-                }
+            }
+        }
+        for (Holder.Reference<Item> weaponItem : BuiltInRegistries.ITEM.holders().filter(item -> item.value() instanceof ECWeaponItem).toList()) {
+            if (weaponItem.value() instanceof PotionWeaponItem) {
+                event.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : FastColor.ARGB32.opaque(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor()), weaponItem.value());
+            } else if (weaponItem.is(ItemTags.DYEABLE)) {
+                event.register((stack, itemLayer) -> (itemLayer > 0) ? -1 : DyedItemColor.getOrDefault(stack, -6265536), weaponItem.value());
             }
         }
     }
