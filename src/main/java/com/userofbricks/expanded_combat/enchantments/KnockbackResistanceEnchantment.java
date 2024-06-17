@@ -10,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
-
 public class KnockbackResistanceEnchantment extends Enchantment
 {
     public KnockbackResistanceEnchantment(Enchantment.EnchantmentDefinition pDefinition) {

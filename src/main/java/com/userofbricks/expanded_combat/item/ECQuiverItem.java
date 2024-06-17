@@ -2,10 +2,13 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
+import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,6 +22,7 @@ import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.apache.commons.lang3.math.Fraction;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -77,6 +81,9 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
             if (arrowSlot >= items.size()) arrowSlot = 0;
             if (arrowSlot < 0) arrowSlot = items.size() - 1;
             livingEntity.setData(ARROW_SLOT, arrowSlot);
+            if (livingEntity instanceof ServerPlayer serverPlayer) {
+                PacketDistributor.sendToPlayer(serverPlayer, new PacketIntAttachment(serverPlayer.getId(), DataAttachments.ARROW_SLOT.get(), arrowSlot));
+            }
         }
     }
 

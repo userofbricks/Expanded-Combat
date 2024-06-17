@@ -11,6 +11,7 @@ public class ECNetworkHandler {
                 ECServerPayloadHandler.getInstance()::handleOpenShieldSmithing);
         registrar.playToServer(CPacketOpenSmithing.TYPE, CPacketOpenSmithing.STREAM_CODEC,
                 ECServerPayloadHandler.getInstance()::handleOpenSmithing);
+
         registrar.playToClient(PacketIntAttachment.TYPE, PacketIntAttachment.STREAM_CODEC,
                 ECServerPayloadHandler.getInstance()::handleIntAttachmentSync);
     }

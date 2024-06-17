@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
-public record PacketIntAttachment(AttachmentType<Integer> attachmentType, int data) implements CustomPacketPayload {
+public record PacketIntAttachment(int id, AttachmentType<Integer> attachmentType, int data) implements CustomPacketPayload {
 
     public static final Type<PacketIntAttachment> TYPE =
             new Type<>(new ResourceLocation(MODID, "int_attachment"));
@@ -19,12 +19,14 @@ public record PacketIntAttachment(AttachmentType<Integer> attachmentType, int da
     @SuppressWarnings("unchecked")
     public static final StreamCodec<RegistryFriendlyByteBuf, PacketIntAttachment> STREAM_CODEC =
             StreamCodec.of((pBuffer, pValue) -> {
+                ByteBufCodecs.INT.encode(pBuffer, pValue.id());
                 ByteBufCodecs.registry(NeoForgeRegistries.ATTACHMENT_TYPES.key()).encode(pBuffer, pValue.attachmentType());
                 ByteBufCodecs.INT.encode(pBuffer, pValue.data());
             }, pBuffer -> {
+                int id = ByteBufCodecs.INT.decode(pBuffer);
                 AttachmentType<Integer> attachmentType = (AttachmentType<Integer>) ByteBufCodecs.registry(NeoForgeRegistries.ATTACHMENT_TYPES.key()).decode(pBuffer);
                 int data = ByteBufCodecs.INT.decode(pBuffer);
-                return new PacketIntAttachment(attachmentType, data);
+                return new PacketIntAttachment(id, attachmentType, data);
             });
 
 

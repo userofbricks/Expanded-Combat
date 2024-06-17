@@ -5,9 +5,12 @@ import com.userofbricks.expanded_combat.inventory.container.SmithingMenuProvider
 import com.userofbricks.expanded_combat.network.client.CPacketOpenShieldSmithing;
 import com.userofbricks.expanded_combat.network.client.CPacketOpenSmithing;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import top.theillusivec4.curios.common.network.server.SPacketGrabbedItem;
@@ -61,7 +64,12 @@ public class ECServerPayloadHandler {
 
     public void handleIntAttachmentSync(PacketIntAttachment packetIntAttachment, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
-            ctx.player().setData(packetIntAttachment.attachmentType(), packetIntAttachment.data());
+            Player player = ctx.player();
+            if (player instanceof LocalPlayer localPlayer) {
+                Level level = localPlayer.clientLevel;
+                Entity entity = level.getEntity(packetIntAttachment.id());
+                if (entity != null) entity.setData(packetIntAttachment.attachmentType(), packetIntAttachment.data());
+            }
         });
     }
 }
