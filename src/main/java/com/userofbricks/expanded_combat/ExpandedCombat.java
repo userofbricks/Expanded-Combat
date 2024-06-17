@@ -55,8 +55,6 @@ public class ExpandedCombat {
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
-        WeaponTypes.setKeys();
-        Materials.setKeys();
         ECItems.ITEMS.register(bus);
         ECCreativeTabs.CREATIVE_TABS.register(bus);
         ECRecipeSerializerInit.CONDITION_CODECS.register(bus);

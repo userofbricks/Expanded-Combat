@@ -11,52 +11,36 @@ import net.minecraft.resources.ResourceLocation;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class WeaponTypes {
-    public static Holder.Reference<WeaponType> BATTLE_STAFF = Holder.Reference.createStandAlone(HolderOwner);
+    private static final UniversalOwner tempOwner = new UniversalOwner();
     public static final ResourceKey<WeaponType> BATTLE_STAFF_KEY = createWeaponTypeKey(modLoc("battle_staff"));
-    public static Holder.Reference<WeaponType> BROAD_SWORD;
+    public static Holder.Reference<WeaponType> BATTLE_STAFF = Holder.Reference.createStandAlone(tempOwner, BATTLE_STAFF_KEY);
     public static final ResourceKey<WeaponType> BROAD_SWORD_KEY = createWeaponTypeKey(modLoc("broad_sword"));
-    public static Holder.Reference<WeaponType> CLAYMORE;
+    public static Holder.Reference<WeaponType> BROAD_SWORD = Holder.Reference.createStandAlone(tempOwner, BROAD_SWORD_KEY);
     public static final ResourceKey<WeaponType> CLAYMORE_KEY = createWeaponTypeKey(modLoc("claymore"));
-    public static Holder.Reference<WeaponType> CUTLASS;
+    public static Holder.Reference<WeaponType> CLAYMORE = Holder.Reference.createStandAlone(tempOwner, CLAYMORE_KEY);
     public static final ResourceKey<WeaponType> CUTLASS_KEY = createWeaponTypeKey(modLoc("cutlass"));
-    public static Holder.Reference<WeaponType> DAGGER;
+    public static Holder.Reference<WeaponType> CUTLASS = Holder.Reference.createStandAlone(tempOwner, CUTLASS_KEY);
     public static final ResourceKey<WeaponType> DAGGER_KEY = createWeaponTypeKey(modLoc("dagger"));
-    public static Holder.Reference<WeaponType> DANCERS_SWORD;
+    public static Holder.Reference<WeaponType> DAGGER = Holder.Reference.createStandAlone(tempOwner, DAGGER_KEY);
     public static final ResourceKey<WeaponType> DANCERS_SWORD_KEY = createWeaponTypeKey(modLoc("dancer_s_sword"));
-    public static Holder.Reference<WeaponType> FLAIL;
+    public static Holder.Reference<WeaponType> DANCERS_SWORD = Holder.Reference.createStandAlone(tempOwner, DANCERS_SWORD_KEY);
     public static final ResourceKey<WeaponType> FLAIL_KEY = createWeaponTypeKey(modLoc("flail"));
-    public static Holder.Reference<WeaponType> GLAIVE;
+    public static Holder.Reference<WeaponType> FLAIL = Holder.Reference.createStandAlone(tempOwner, FLAIL_KEY);
     public static final ResourceKey<WeaponType> GLAIVE_KEY = createWeaponTypeKey(modLoc("glaive"));
-    public static Holder.Reference<WeaponType> GREAT_HAMMER;
+    public static Holder.Reference<WeaponType> GLAIVE = Holder.Reference.createStandAlone(tempOwner, GLAIVE_KEY);
     public static final ResourceKey<WeaponType> GREAT_HAMMER_KEY = createWeaponTypeKey(modLoc("great_hammer"));
-    public static Holder.Reference<WeaponType> KATANA;
+    public static Holder.Reference<WeaponType> GREAT_HAMMER = Holder.Reference.createStandAlone(tempOwner, GREAT_HAMMER_KEY);
     public static final ResourceKey<WeaponType> KATANA_KEY = createWeaponTypeKey(modLoc("katana"));
-    public static Holder.Reference<WeaponType> MACE;
+    public static Holder.Reference<WeaponType> KATANA = Holder.Reference.createStandAlone(tempOwner, KATANA_KEY);
     public static final ResourceKey<WeaponType> MACE_KEY = createWeaponTypeKey(modLoc("mace"));
-    public static Holder.Reference<WeaponType> SCYTHE;
+    public static Holder.Reference<WeaponType> MACE = Holder.Reference.createStandAlone(tempOwner, MACE_KEY);
     public static final ResourceKey<WeaponType> SCYTHE_KEY = createWeaponTypeKey(modLoc("scythe"));
-    public static Holder.Reference<WeaponType> SICKLE;
+    public static Holder.Reference<WeaponType> SCYTHE = Holder.Reference.createStandAlone(tempOwner, SCYTHE_KEY);
     public static final ResourceKey<WeaponType> SICKLE_KEY = createWeaponTypeKey(modLoc("sickle"));
-    public static Holder.Reference<WeaponType> SPEAR;
+    public static Holder.Reference<WeaponType> SICKLE = Holder.Reference.createStandAlone(tempOwner, SICKLE_KEY);
     public static final ResourceKey<WeaponType> SPEAR_KEY = createWeaponTypeKey(modLoc("spear"));
+    public static Holder.Reference<WeaponType> SPEAR = Holder.Reference.createStandAlone(tempOwner, SPEAR_KEY);
 
-
-    public static void setKeys() {
-            BATTLE_STAFF.bindKey(BATTLE_STAFF_KEY);
-            BROAD_SWORD.bindKey(BROAD_SWORD_KEY);
-            CLAYMORE.bindKey(CLAYMORE_KEY);
-            CUTLASS.bindKey(CUTLASS_KEY);
-            DAGGER.bindKey(DAGGER_KEY);
-            DANCERS_SWORD.bindKey(DANCERS_SWORD_KEY);
-            FLAIL.bindKey(FLAIL_KEY);
-            GLAIVE.bindKey(GLAIVE_KEY);
-            GREAT_HAMMER.bindKey(GREAT_HAMMER_KEY);
-            KATANA.bindKey(KATANA_KEY);
-            MACE.bindKey(MACE_KEY);
-            SCYTHE.bindKey(SCYTHE_KEY);
-            SICKLE.bindKey(SICKLE_KEY);
-            SPEAR.bindKey(SPEAR_KEY);
-    }
     public static final RegistrySetBuilder.RegistryBootstrap<WeaponType> registrySetBuilder = bootstrap -> {
                 BATTLE_STAFF = bootstrap.register(BATTLE_STAFF_KEY,
                         new WeaponType(false, 0.9, -2, -1.4f, 0.1f, 1, 1.5, GripType.TWOHANDED)
@@ -107,4 +91,6 @@ public class WeaponTypes {
                 id
         );
     }
+
+    static class UniversalOwner implements HolderOwner<WeaponType> {}
 }

@@ -2,7 +2,9 @@ package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
+import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderOwner;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -16,40 +18,41 @@ import java.util.Optional;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class Materials {
-    public static Holder.Reference<Material> VANILLA;
+    private static final UniversalOwner tempOwner = new UniversalOwner();
     public static final ResourceKey<Material> VANILLA_KEY = createMaterialKey(modLoc("vanilla"));
-    public static Holder.Reference<Material> LEATHER;
+    public static Holder.Reference<Material> VANILLA = Holder.Reference.createStandAlone(tempOwner, VANILLA_KEY);
     public static final ResourceKey<Material> LEATHER_KEY = createMaterialKey(modLoc("leather"));
-    public static Holder.Reference<Material> RABBIT_HIDE;
+    public static Holder.Reference<Material> LEATHER = Holder.Reference.createStandAlone(tempOwner, LEATHER_KEY);
     public static final ResourceKey<Material> RABBIT_HIDE_KEY = createMaterialKey(modLoc("rabbit_hide"));
-    public static Holder.Reference<Material> WOOD_PLANK;
+    public static Holder.Reference<Material> RABBIT_HIDE = Holder.Reference.createStandAlone(tempOwner, RABBIT_HIDE_KEY);
     public static final ResourceKey<Material> WOOD_PLANK_KEY = createMaterialKey(modLoc("wood_plank"));
-    public static Holder.Reference<Material> STONE;
+    public static Holder.Reference<Material> WOOD_PLANK = Holder.Reference.createStandAlone(tempOwner, WOOD_PLANK_KEY);
     public static final ResourceKey<Material> STONE_KEY = createMaterialKey(modLoc("stone"));
-    public static Holder.Reference<Material> IRON;
+    public static Holder.Reference<Material> STONE = Holder.Reference.createStandAlone(tempOwner, STONE_KEY);
     public static final ResourceKey<Material> IRON_KEY = createMaterialKey(modLoc("iron"));
-    public static Holder.Reference<Material> GOLD;
+    public static Holder.Reference<Material> IRON = Holder.Reference.createStandAlone(tempOwner, IRON_KEY);
     public static final ResourceKey<Material> GOLD_KEY = createMaterialKey(modLoc("gold"));
-    public static Holder.Reference<Material> DIAMOND;
+    public static Holder.Reference<Material> GOLD = Holder.Reference.createStandAlone(tempOwner, GOLD_KEY);
     public static final ResourceKey<Material> DIAMOND_KEY = createMaterialKey(modLoc("diamond"));
-    public static Holder.Reference<Material> NETHERITE;
+    public static Holder.Reference<Material> DIAMOND = Holder.Reference.createStandAlone(tempOwner, DIAMOND_KEY);
     public static final ResourceKey<Material> NETHERITE_KEY = createMaterialKey(modLoc("netherite"));
-    public static Holder.Reference<Material> HEART_STEALER;
+    public static Holder.Reference<Material> NETHERITE = Holder.Reference.createStandAlone(tempOwner, NETHERITE_KEY);
     public static final ResourceKey<Material> HEART_STEALER_KEY = createMaterialKey(modLoc("heart_stealer"));
-    public static Holder.Reference<Material> HEAT;
+    public static Holder.Reference<Material> HEART_STEALER = Holder.Reference.createStandAlone(tempOwner, HEART_STEALER_KEY);
     public static final ResourceKey<Material> HEAT_KEY = createMaterialKey(modLoc("heat"));
-    public static Holder.Reference<Material> FROST;
+    public static Holder.Reference<Material> HEAT = Holder.Reference.createStandAlone(tempOwner, HEAT_KEY);
     public static final ResourceKey<Material> FROST_KEY = createMaterialKey(modLoc("frost"));
-    public static Holder.Reference<Material> VOID_TOUCHED;
+    public static Holder.Reference<Material> FROST = Holder.Reference.createStandAlone(tempOwner, FROST_KEY);
     public static final ResourceKey<Material> VOID_TOUCHED_KEY = createMaterialKey(modLoc("void_touched"));
-    public static Holder.Reference<Material> SOUL;
+    public static Holder.Reference<Material> VOID_TOUCHED = Holder.Reference.createStandAlone(tempOwner, VOID_TOUCHED_KEY);
     public static final ResourceKey<Material> SOUL_KEY = createMaterialKey(modLoc("soul"));
-    public static Holder.Reference<Material> FIGHTERS;
+    public static Holder.Reference<Material> SOUL = Holder.Reference.createStandAlone(tempOwner, SOUL_KEY);
     public static final ResourceKey<Material> FIGHTERS_KEY = createMaterialKey(modLoc("fighters"));
-    public static Holder.Reference<Material> BERSERK;
+    public static Holder.Reference<Material> FIGHTERS = Holder.Reference.createStandAlone(tempOwner, FIGHTERS_KEY);
     public static final ResourceKey<Material> BERSERK_KEY = createMaterialKey(modLoc("berserk"));
-    public static Holder.Reference<Material> BRAWLERS;
+    public static Holder.Reference<Material> BERSERK = Holder.Reference.createStandAlone(tempOwner, BERSERK_KEY);
     public static final ResourceKey<Material> BRAWLERS_KEY = createMaterialKey(modLoc("brawlers"));
+    public static Holder.Reference<Material> BRAWLERS = Holder.Reference.createStandAlone(tempOwner, BRAWLERS_KEY);
 
 
     public static final RegistrySetBuilder.RegistryBootstrap<Material> registrySetBuilder = bootstrap -> {
@@ -183,23 +186,5 @@ public class Materials {
         );
     }
 
-    public static void setKeys() {
-        VANILLA.bindKey(VANILLA_KEY);
-        LEATHER.bindKey(LEATHER_KEY);
-        RABBIT_HIDE.bindKey(RABBIT_HIDE_KEY);
-        WOOD_PLANK.bindKey(WOOD_PLANK_KEY);
-        STONE.bindKey(STONE_KEY);
-        IRON.bindKey(IRON_KEY);
-        GOLD.bindKey(GOLD_KEY);
-        DIAMOND.bindKey(DIAMOND_KEY);
-        NETHERITE.bindKey(NETHERITE_KEY);
-        HEART_STEALER.bindKey(HEART_STEALER_KEY);
-        HEAT.bindKey(HEAT_KEY);
-        FROST.bindKey(FROST_KEY);
-        VOID_TOUCHED.bindKey(VOID_TOUCHED_KEY);
-        SOUL.bindKey(SOUL_KEY);
-        FIGHTERS.bindKey(FIGHTERS_KEY);
-        BERSERK.bindKey(BERSERK_KEY);
-        BRAWLERS.bindKey(BRAWLERS_KEY);
-    }
+    static class UniversalOwner implements HolderOwner<Material> {}
 }
