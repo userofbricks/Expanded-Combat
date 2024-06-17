@@ -45,7 +45,7 @@ public class KatanaEvents {
     }
 
     @SubscribeEvent
-    public static void keepKatanaTicks(PlayerTickEvent event) {
+    public static void keepKatanaTicks(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         int ticksPassed = player.getData(DataAttachments.TIME_SINCE_WEAPON_BLOCK);
         int blockCount = player.getData(DataAttachments.WEAPON_BLOCK_COUNT);

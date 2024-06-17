@@ -73,7 +73,7 @@ public class ECShieldItem extends ShieldItem {
         Material dr = getDownRightMaterial(toRepair).value();
         Material m = getMiddleMaterial(toRepair).value();
         ShieldMaterials shieldMaterials = toRepair.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT);
-        int last = shieldMaterials.LastRepairNumber + 1;
+        int last = shieldMaterials.lastRepairNumber() + 1;
         if (last >= 5) last = 0;
         List<Material> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
         Material currentSlotMaterial = slotMaterials.get(last);
@@ -175,23 +175,23 @@ public class ECShieldItem extends ShieldItem {
     }
 
     public static Holder<Material> getUpperLeftMaterial(ItemStack stack) {
-        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).ULMaterial;
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).ULMaterial();
     }
 
     public static Holder<Material> getUpperRightMaterial(ItemStack stack) {
-        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).URMaterial;
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).URMaterial();
     }
 
     public static Holder<Material> getDownLeftMaterial(ItemStack stack) {
-        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DLMaterial;
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DLMaterial();
     }
 
     public static Holder<Material> getDownRightMaterial(ItemStack stack) {
-        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DRMaterial;
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DRMaterial();
     }
 
     public static Holder<Material> getMiddleMaterial(ItemStack stack) {
-        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).MMaterial;
+        return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).MMaterial();
     }
 
     public static ItemStack makeShieldBeMaterial(ItemStack stack, Holder<Material> material) {

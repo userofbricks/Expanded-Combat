@@ -21,13 +21,13 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public abstract class ItemModelProviderBase extends ItemModelProvider {
     public static final List<TrimModelData> GENERATED_TRIM_MODELS = List.of(
             new TrimModelData("quartz", 0.1F, Map.of()),
-            new TrimModelData("iron", 0.2F, Map.of(Materials.IRON, "iron_darker")),
-            new TrimModelData("netherite", 0.3F, Map.of(Materials.NETHERITE, "netherite_darker")),
+            new TrimModelData("iron", 0.2F, Map.of()),
+            new TrimModelData("netherite", 0.3F, Map.of()),
             new TrimModelData("redstone", 0.4F, Map.of()),
             new TrimModelData("copper", 0.5F, Map.of()),
-            new TrimModelData("gold", 0.6F, Map.of(Materials.GOLD, "gold_darker")),
+            new TrimModelData("gold", 0.6F, Map.of()),
             new TrimModelData("emerald", 0.7F, Map.of()),
-            new TrimModelData("diamond", 0.8F, Map.of(Materials.DIAMOND, "diamond_darker")),
+            new TrimModelData("diamond", 0.8F, Map.of()),
             new TrimModelData("lapis", 0.9F, Map.of()),
             new TrimModelData("amethyst", 1.0F, Map.of()));
 
@@ -101,9 +101,21 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         else mainModel = generated(item, main_texture, overlay_texture);
 
         for (TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
-            ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name(material));
+            ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name() + (
+                    item.getPath().contains("gold")
+                            || item.getPath().contains("iron")
+                            || item.getPath().contains("diamond")
+                            || item.getPath().contains("netherite")
+                            ? "_darker" : ""
+                    ));
 
-            ItemModelBuilder trimModel = getBuilder(item + "_" + trimModelData.name(material) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
+            ItemModelBuilder trimModel = getBuilder(item + "_" + trimModelData.name() + (
+                    item.getPath().contains("gold")
+                            || item.getPath().contains("iron")
+                            || item.getPath().contains("diamond")
+                            || item.getPath().contains("netherite")
+                            ? "_darker" : ""
+            ) + "_trim").parent(new ModelFile.UncheckedModelFile("item/generated"));
             trimModel.texture("layer0", main_texture);
             if (!dyeable) {
                 trimModel.texture("layer1", trim_texture);
@@ -134,12 +146,5 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         return modelBuilder;
     }
 
-    public record TrimModelData(String name, float itemModelIndex, Map<Holder.Reference<Material>, String> overrideMaterials) {
-        public String name(@Nullable Holder.Reference<Material> p_268105_) {
-            if (p_268105_ != null) {
-                return this.overrideMaterials.getOrDefault(p_268105_, this.name);
-            }
-            return this.name;
-        }
-    }
+    public record TrimModelData(String name, float itemModelIndex, Map<Holder.Reference<Material>, String> overrideMaterials) {}
 }

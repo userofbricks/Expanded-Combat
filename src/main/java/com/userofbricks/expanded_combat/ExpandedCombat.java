@@ -49,14 +49,14 @@ public class ExpandedCombat {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         bus.addListener(this::registerPayloadHandler);
-        ItemGenerationTypes.GAUNTLET_TYPES.register(bus);
         PluginInit.loadClass();
         DataAttachments.ATTACHMENT_TYPES.register(bus);
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
         ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
-        //WeaponTypes.setKeys();
+        WeaponTypes.setKeys();
+        Materials.setKeys();
         ECItems.ITEMS.register(bus);
         ECCreativeTabs.CREATIVE_TABS.register(bus);
         ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
@@ -72,7 +72,7 @@ public class ExpandedCombat {
         NeoForge.EVENT_BUS.register(KatanaEvents.class);
         NeoForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
-        NeoForge.EVENT_BUS.register(this);
+        //NeoForge.EVENT_BUS.register(this);
     }
 
     private void registerPayloadHandler(final RegisterPayloadHandlersEvent evt) {

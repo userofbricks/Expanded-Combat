@@ -7,11 +7,14 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
+@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Registries {
     public static final ResourceKey<Registry<Material>> MATERIAL_REGISTRY_KEY = ResourceKey.createRegistryKey(new ResourceLocation(MODID, "materials"));
     public static final ResourceKey<Registry<WeaponType>> WEAPON_TYPE_REGISTRY_KEY = ResourceKey.createRegistryKey(new ResourceLocation(MODID, "weapon_type"));
@@ -52,5 +55,15 @@ public class Registries {
                 WeaponType.CODEC,
                 WeaponType.CODEC_CLIENT_SYNC
         );
+    }
+
+    @SubscribeEvent
+    public static void registerRegistries(NewRegistryEvent event){
+        event.register(ARROW_TYPE_REGISTRY);
+        event.register(BOW_TYPE_REGISTRY);
+        event.register(CROSSBOW_TYPE_REGISTRY);
+        event.register(GAUNTLET_TYPE_REGISTRY);
+        event.register(QUIVER_TYPE_REGISTRY);
+        event.register(WEAPON_GENERATOR_REGISTRY);
     }
 }

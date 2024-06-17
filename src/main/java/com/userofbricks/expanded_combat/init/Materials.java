@@ -52,8 +52,7 @@ public class Materials {
     public static final ResourceKey<Material> BRAWLERS_KEY = createMaterialKey(modLoc("brawlers"));
 
 
-    public static final RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder()
-            .add(Registries.MATERIAL_REGISTRY_KEY, bootstrap -> {
+    public static final RegistrySetBuilder.RegistryBootstrap<Material> registrySetBuilder = bootstrap -> {
                 VANILLA = bootstrap.register(VANILLA_KEY, new Material(
                         Material.Durabilities.shieldGauntlet(0, 0),
                         new Material.EnchantingRelated(0, 0, 0),
@@ -175,12 +174,32 @@ public class Materials {
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0, 0f, 0f),
                         Ingredient.of(Items.AIR)
                 ));
-            });
+            };
 
     public static ResourceKey<Material> createMaterialKey(ResourceLocation id) {
         return ResourceKey.create(
                 Registries.MATERIAL_REGISTRY_KEY,
                 id
         );
+    }
+
+    public static void setKeys() {
+        VANILLA.bindKey(VANILLA_KEY);
+        LEATHER.bindKey(LEATHER_KEY);
+        RABBIT_HIDE.bindKey(RABBIT_HIDE_KEY);
+        WOOD_PLANK.bindKey(WOOD_PLANK_KEY);
+        STONE.bindKey(STONE_KEY);
+        IRON.bindKey(IRON_KEY);
+        GOLD.bindKey(GOLD_KEY);
+        DIAMOND.bindKey(DIAMOND_KEY);
+        NETHERITE.bindKey(NETHERITE_KEY);
+        HEART_STEALER.bindKey(HEART_STEALER_KEY);
+        HEAT.bindKey(HEAT_KEY);
+        FROST.bindKey(FROST_KEY);
+        VOID_TOUCHED.bindKey(VOID_TOUCHED_KEY);
+        SOUL.bindKey(SOUL_KEY);
+        FIGHTERS.bindKey(FIGHTERS_KEY);
+        BERSERK.bindKey(BERSERK_KEY);
+        BRAWLERS.bindKey(BRAWLERS_KEY);
     }
 }

@@ -59,12 +59,12 @@ public class LangStrings extends LanguageProvider {
     public static final String increaseChargeMultipleSuccesses = createCommandLangEntry("increase_charge", true, "multiple", "Added %s charge to %s entities");
     public static final String addedHeartsNotValidEntity = createCommandLangEntry("added_hearts", false, "entity", "%s is not a valid entity for this command");
     public static final String addedHeartsNothingHappened = createCommandLangEntry("added_hearts", false, "nothing", "Nothing changed.");
-    public static final String addedHeartsSuccess = createCommandLangEntry("increase_charge", true, "single", "Set Stolen Hearts to %s for %s");
-    public static final String addedHeartsSuccesses = createCommandLangEntry("increase_charge", true, "multiple", "Set Stolen Hearts to %s for %s entities");
+    public static final String addedHeartsSuccess = createCommandLangEntry("added_hearts", true, "single", "Set Stolen Hearts to %s for %s");
+    public static final String addedHeartsSuccesses = createCommandLangEntry("added_hearts", true, "multiple", "Set Stolen Hearts to %s for %s entities");
     public static final String stolenHeartsNotValidEntity = createCommandLangEntry("stolen_hearts", false, "entity", "%s is not a valid entity for this command");
     public static final String stolenHeartsNothingHappened = createCommandLangEntry("stolen_hearts", false, "nothing", "Nothing changed.");
-    public static final String stolenHeartsSuccess = createCommandLangEntry("increase_charge", true, "single", "Set Stolen Hearts to %s for %s");
-    public static final String stolenHeartsSucceses = createCommandLangEntry("increase_charge", true, "multiple", "Set Stolen Hearts to %s for %s entities");
+    public static final String stolenHeartsSuccess = createCommandLangEntry("stolen_hearts", true, "single", "Set Stolen Hearts to %s for %s");
+    public static final String stolenHeartsSucceses = createCommandLangEntry("stolen_hearts", true, "multiple", "Set Stolen Hearts to %s for %s entities");
 
     public LangStrings(PackOutput output) {
         super(output, MODID, "en_us");
@@ -92,10 +92,14 @@ public class LangStrings extends LanguageProvider {
         addAttributeDescription("void_dmg", "Void Damage");
         add("curios.identifier." + QUIVER_CURIOS_IDENTIFIER, "Quiver");
 
+        List<String> alreadyAddedPotions = new ArrayList<>();
         //arrows
         for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
             Optional<Holder<Potion>> optionalPotionReference = Optional.of(potion);
-            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), " of " + locationToName(Potion.getName(optionalPotionReference,"")));
+            String potionName = Potion.getName(optionalPotionReference,"");
+            if (alreadyAddedPotions.contains(potionName)) continue;
+            alreadyAddedPotions.add(potionName);
+            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), " of " + locationToName(potionName));
         }
     }
 

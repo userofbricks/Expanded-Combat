@@ -8,8 +8,10 @@ import com.userofbricks.expanded_combat.datagen.tags.ECDamageTypeTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECItemTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECWeaponTypeTagsProvider;
 import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.Registries;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -34,6 +36,17 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
+        generator.addProvider(event.includeServer(),
+                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
+                        output1,
+                        provider,
+                        new RegistrySetBuilder()
+                                .add(Registries.MATERIAL_REGISTRY_KEY, Materials.registrySetBuilder)
+                                .add(Registries.WEAPON_TYPE_REGISTRY_KEY, WeaponTypes.registrySetBuilder),
+                        Set.of(MODID)
+                )
+        );
+
         generator.addProvider(event.includeClient(), new LangStrings(output));
         generator.addProvider(event.includeClient(), new ECSpriteScourceProvider(output, provider, helper));
         generator.addProvider(event.includeClient(), new ECItemModelProvider(output, helper));
@@ -46,22 +59,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ECItemTagsProvider(output, provider, blockTagsProvider.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new ECDamageTypeTagsProvider(output, provider, helper));
-        generator.addProvider(event.includeServer(),
-                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
-                        output1,
-                        provider,
-                        Materials.registrySetBuilder,
-                        Set.of(MODID)
-                )
-        );
-        generator.addProvider(event.includeServer(),
-                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
-                        output1,
-                        provider,
-                        WeaponTypes.registrySetBuilder,
-                        Set.of(MODID)
-                )
-        );
         generator.addProvider(event.includeServer(), new ECDataMapProvider(output, provider));
         generator.addProvider(event.includeServer(), new CuriosSlotProvider(output, helper, provider));
         generator.addProvider(event.includeServer(), new ECWeaponTypeTagsProvider(output, provider, helper));

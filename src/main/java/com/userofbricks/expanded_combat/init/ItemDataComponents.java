@@ -25,12 +25,12 @@ public class ItemDataComponents {
             "hits_till_slam", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockWeaponAnim>> BLOCK_WEAPON_ANIM = DATA_COMPONENTS.registerComponentType(
-            "hits_till_slam", p_331382_ -> p_331382_.persistent(BlockWeaponAnim.CODEC).networkSynchronized(BlockWeaponAnim.STREAM_CODEC)
+            "blocking_weapon_anim", p_331382_ -> p_331382_.persistent(BlockWeaponAnim.CODEC).networkSynchronized(BlockWeaponAnim.STREAM_CODEC)
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> COOL_DOWN = DATA_COMPONENTS.registerComponentType(
             "cool_down", p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ShieldMaterials>> SHIELD_MATERIALS = DATA_COMPONENTS.registerComponentType(
-            "cool_down", p_331382_ -> p_331382_.persistent(ShieldMaterials.CODEC).networkSynchronized(ShieldMaterials.STREAM_CODEC)
+            "shield_materials", p_331382_ -> p_331382_.persistent(ShieldMaterials.CODEC).networkSynchronized(ShieldMaterials.STREAM_CODEC)
     );
 }

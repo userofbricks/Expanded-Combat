@@ -25,7 +25,7 @@ import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 public class QuiverEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArrowItemPickup(ItemEntityPickupEvent evt) {
+    public static void onArrowItemPickup(ItemEntityPickupEvent.Pre evt) {
         if (!CommonECConfig.pair.getLeft().enableQuivers.get()) return;
         Player player = evt.getPlayer();
         ItemStack toPickup = evt.getItemEntity().getItem();

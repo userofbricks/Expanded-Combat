@@ -42,11 +42,11 @@ public class ECShieldSmithingRecipeMaker {
             ShieldMaterials materials = itemReference.getData(DataMaps.SHIELD_MATERIALS);
             if (materials != null) {
                 bases.add(new ItemStack(itemReference));
-                if (materials.MMaterial == Materials.DIAMOND
-                        || materials.DLMaterial == Materials.DIAMOND
-                        || materials.DRMaterial == Materials.DIAMOND
-                        || materials.ULMaterial == Materials.DIAMOND
-                        || materials.URMaterial == Materials.DIAMOND) {
+                if (materials.MMaterial() == Materials.DIAMOND
+                        || materials.DLMaterial() == Materials.DIAMOND
+                        || materials.DRMaterial() == Materials.DIAMOND
+                        || materials.ULMaterial() == Materials.DIAMOND
+                        || materials.URMaterial() == Materials.DIAMOND) {
                     netherite_bases.add(new ItemStack(itemReference));
                 }
             }
@@ -96,11 +96,11 @@ public class ECShieldSmithingRecipeMaker {
             Ingredient dr_ad = materialIngredientMap.get(dr);
             Ingredient m_ad = materialIngredientMap.get(m.value().defense().placementInShield() == PlacementInShield.NOT_TRIM ? Materials.IRON: m);
 
-            ResourceLocation id = modLoc("jei.shield_smithing." + resultMaterials.ULMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.URMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.DLMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.DRMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.MMaterial.getRegisteredName().replace(':', '_')
+            ResourceLocation id = modLoc("jei.shield_smithing." + resultMaterials.ULMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.URMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.DLMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.DRMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.MMaterial().getRegisteredName().replace(':', '_')
             );
             recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(basesIngrediant, ur_ad, ul_ad, m_ad, dr_ad, dl_ad, resultShield)));
 
@@ -126,19 +126,19 @@ public class ECShieldSmithingRecipeMaker {
             }
             if (materials1 == null) continue;
             ShieldMaterials resultMaterials = new ShieldMaterials(
-                    materials1.MMaterial == Materials.DIAMOND ? Materials.NETHERITE : materials1.ULMaterial,
-                    materials1.DLMaterial == Materials.DIAMOND ? Materials.NETHERITE : materials1.DLMaterial,
-                    materials1.DRMaterial == Materials.DIAMOND ? Materials.NETHERITE : materials1.DRMaterial,
-                    materials1.ULMaterial == Materials.DIAMOND ? Materials.NETHERITE : materials1.ULMaterial,
-                    materials1.URMaterial == Materials.DIAMOND ? Materials.NETHERITE : materials1.URMaterial,
+                    materials1.MMaterial() == Materials.DIAMOND ? Materials.NETHERITE : materials1.ULMaterial(),
+                    materials1.DLMaterial() == Materials.DIAMOND ? Materials.NETHERITE : materials1.DLMaterial(),
+                    materials1.DRMaterial() == Materials.DIAMOND ? Materials.NETHERITE : materials1.DRMaterial(),
+                    materials1.ULMaterial() == Materials.DIAMOND ? Materials.NETHERITE : materials1.ULMaterial(),
+                    materials1.URMaterial() == Materials.DIAMOND ? Materials.NETHERITE : materials1.URMaterial(),
                     0
             );
             output.set(ItemDataComponents.SHIELD_MATERIALS, resultMaterials);
-            ResourceLocation id = modLoc("jei.shield_smithing." + resultMaterials.ULMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.URMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.DLMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.DRMaterial.getRegisteredName().replace(':', '_')
-                    + "." + resultMaterials.MMaterial.getRegisteredName().replace(':', '_')
+            ResourceLocation id = modLoc("jei.shield_smithing." + resultMaterials.ULMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.URMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.DLMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.DRMaterial().getRegisteredName().replace(':', '_')
+                    + "." + resultMaterials.MMaterial().getRegisteredName().replace(':', '_')
             );
             recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(Ingredient.of(netherite_bases.stream()), Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.of(Items.NETHERITE_INGOT), Ingredient.EMPTY, Ingredient.EMPTY, output)));
         }

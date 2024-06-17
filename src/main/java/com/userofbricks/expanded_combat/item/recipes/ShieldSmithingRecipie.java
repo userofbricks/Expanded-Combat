@@ -46,27 +46,27 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
                 addition_ul_material == null ? inventory.getItem(1).isEmpty() :
                         !addition_ul_material.value().isSingleAddition()
                                 && shieldMaterials.canReplaceUL(addition_ul_material)
-                                && shieldMaterials.ULMaterial != addition_ul_material;
+                                && shieldMaterials.ULMaterial() != addition_ul_material;
         boolean is_ur =
                 addition_ur_material == null ? inventory.getItem(1).isEmpty() :
                         !addition_ur_material.value().isSingleAddition()
                                 && shieldMaterials.canReplaceUR(addition_ur_material)
-                                && shieldMaterials.URMaterial != addition_ur_material;
+                                && shieldMaterials.URMaterial() != addition_ur_material;
         boolean is_dl =
                 addition_dl_material == null ? inventory.getItem(1).isEmpty() :
                         !addition_dl_material.value().isSingleAddition()
                                 && shieldMaterials.canReplaceDL(addition_dl_material)
-                                && shieldMaterials.DLMaterial != addition_dl_material;
+                                && shieldMaterials.DLMaterial() != addition_dl_material;
         boolean is_dr =
                 addition_dr_material == null ? inventory.getItem(1).isEmpty() :
                         !addition_dr_material.value().isSingleAddition()
                                 && shieldMaterials.canReplaceDR(addition_dr_material)
-                                && shieldMaterials.DRMaterial != addition_dr_material;
+                                && shieldMaterials.DRMaterial() != addition_dr_material;
         boolean is_m =
                 addition_m_material == null ? inventory.getItem(1).isEmpty() :
                         !addition_m_material.value().isSingleAddition()
                                 && shieldMaterials.canReplaceM(addition_m_material)
-                                && shieldMaterials.MMaterial != addition_m_material;
+                                && shieldMaterials.MMaterial() != addition_m_material;
 
         return is_ul && is_ur && is_dl && is_dr && is_m;
     }
@@ -87,11 +87,11 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
         Holder<Material> addition_dr_material = inventory.getItem(5).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
         Holder<Material> addition_m_material = inventory.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
 
-        Holder<Material> result_ul_material = inventory.getItem(1).isEmpty() ? shieldMaterials.ULMaterial: addition_ul_material;
-        Holder<Material> result_ur_material = inventory.getItem(2).isEmpty() ? shieldMaterials.URMaterial: addition_ur_material;
-        Holder<Material> result_dl_material = inventory.getItem(4).isEmpty() ? shieldMaterials.DLMaterial: addition_dl_material;
-        Holder<Material> result_dr_material = inventory.getItem(5).isEmpty() ? shieldMaterials.DRMaterial: addition_dr_material;
-        Holder<Material> result_m_material = inventory.getItem(3).isEmpty() ? shieldMaterials.MMaterial: addition_m_material;
+        Holder<Material> result_ul_material = inventory.getItem(1).isEmpty() ? shieldMaterials.ULMaterial(): addition_ul_material;
+        Holder<Material> result_ur_material = inventory.getItem(2).isEmpty() ? shieldMaterials.URMaterial(): addition_ur_material;
+        Holder<Material> result_dl_material = inventory.getItem(4).isEmpty() ? shieldMaterials.DLMaterial(): addition_dl_material;
+        Holder<Material> result_dr_material = inventory.getItem(5).isEmpty() ? shieldMaterials.DRMaterial(): addition_dr_material;
+        Holder<Material> result_m_material = inventory.getItem(3).isEmpty() ? shieldMaterials.MMaterial(): addition_m_material;
 
         if (result_ul_material == null || result_ur_material == null || result_dl_material == null
                 || result_dr_material == null || result_m_material == null) return ItemStack.EMPTY;
@@ -105,7 +105,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
             result = new ItemStack(ECItems.SHIELD_FIRE_RESISTANT.get());
         }
         result.set(ItemDataComponents.SHIELD_MATERIALS, new ShieldMaterials(result_ul_material, result_ur_material, result_dl_material, result_dr_material, result_m_material,
-                shieldMaterials.LastRepairNumber));
+                shieldMaterials.lastRepairNumber()));
         return result;
     }
 

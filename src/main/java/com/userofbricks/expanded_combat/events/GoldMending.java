@@ -25,7 +25,7 @@ import java.util.List;
 public class GoldMending
 {
     @SubscribeEvent
-    public void MendingBonus( PlayerXpEvent.PickupXp event) {
+    public static void MendingBonus( PlayerXpEvent.PickupXp event) {
          Player player = event.getEntity();
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = player.getItemBySlot(slot);

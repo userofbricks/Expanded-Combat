@@ -61,11 +61,11 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
         Holder<Material> addition_m_material = inventory.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
         if (addition_m_material == null) return ItemStack.EMPTY;
 
-        Holder<Material> result_ul_material = shieldMaterials.canReplaceUL(addition_m_material) ? addition_m_material: shieldMaterials.ULMaterial;
-        Holder<Material> result_ur_material = shieldMaterials.canReplaceUR(addition_m_material) ? addition_m_material: shieldMaterials.URMaterial;
-        Holder<Material> result_dl_material = shieldMaterials.canReplaceDL(addition_m_material) ? addition_m_material: shieldMaterials.DLMaterial;
-        Holder<Material> result_dr_material = shieldMaterials.canReplaceDR(addition_m_material) ? addition_m_material: shieldMaterials.DRMaterial;
-        Holder<Material> result_m_material = shieldMaterials.canReplaceM(addition_m_material) ? addition_m_material: shieldMaterials.MMaterial;
+        Holder<Material> result_ul_material = shieldMaterials.canReplaceUL(addition_m_material) ? addition_m_material: shieldMaterials.ULMaterial();
+        Holder<Material> result_ur_material = shieldMaterials.canReplaceUR(addition_m_material) ? addition_m_material: shieldMaterials.URMaterial();
+        Holder<Material> result_dl_material = shieldMaterials.canReplaceDL(addition_m_material) ? addition_m_material: shieldMaterials.DLMaterial();
+        Holder<Material> result_dr_material = shieldMaterials.canReplaceDR(addition_m_material) ? addition_m_material: shieldMaterials.DRMaterial();
+        Holder<Material> result_m_material = shieldMaterials.canReplaceM(addition_m_material) ? addition_m_material: shieldMaterials.MMaterial();
 
         ItemStack result = new ItemStack(ECItems.SHIELD.get());
         if (result_ul_material.value().defense().fireResistant()
@@ -76,7 +76,7 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
             result = new ItemStack(ECItems.SHIELD_FIRE_RESISTANT.get());
         }
         result.set(ItemDataComponents.SHIELD_MATERIALS, new ShieldMaterials(result_ul_material, result_ur_material, result_dl_material, result_dr_material, result_m_material,
-                shieldMaterials.LastRepairNumber));
+                shieldMaterials.lastRepairNumber()));
         return result;
     }
 

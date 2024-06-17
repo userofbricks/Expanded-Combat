@@ -1,26 +1,17 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderOwner;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import org.lwjgl.opengl.GL;
-
-import java.util.List;
-import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class WeaponTypes {
-    public static Holder.Reference<WeaponType> BATTLE_STAFF;
+    public static Holder.Reference<WeaponType> BATTLE_STAFF = Holder.Reference.createStandAlone(HolderOwner);
     public static final ResourceKey<WeaponType> BATTLE_STAFF_KEY = createWeaponTypeKey(modLoc("battle_staff"));
     public static Holder.Reference<WeaponType> BROAD_SWORD;
     public static final ResourceKey<WeaponType> BROAD_SWORD_KEY = createWeaponTypeKey(modLoc("broad_sword"));
@@ -66,8 +57,7 @@ public class WeaponTypes {
             SICKLE.bindKey(SICKLE_KEY);
             SPEAR.bindKey(SPEAR_KEY);
     }
-    public static final RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder()
-            .add(Registries.WEAPON_TYPE_REGISTRY_KEY, bootstrap -> {
+    public static final RegistrySetBuilder.RegistryBootstrap<WeaponType> registrySetBuilder = bootstrap -> {
                 BATTLE_STAFF = bootstrap.register(BATTLE_STAFF_KEY,
                         new WeaponType(false, 0.9, -2, -1.4f, 0.1f, 1, 1.5, GripType.TWOHANDED)
                 );
@@ -110,7 +100,7 @@ public class WeaponTypes {
                 SPEAR = bootstrap.register(SPEAR_KEY,
                         new WeaponType(false, 1, 3, -3.4f, 0.1f, 0.5f, 2, GripType.TWOHANDED)
                 );
-            });
+            };
     public static ResourceKey<WeaponType> createWeaponTypeKey(ResourceLocation id) {
         return ResourceKey.create(
                 Registries.WEAPON_TYPE_REGISTRY_KEY,

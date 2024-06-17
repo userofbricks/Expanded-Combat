@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
-public class ShieldMaterials implements TooltipProvider {
+public record ShieldMaterials(Holder<Material> ULMaterial, Holder<Material> URMaterial, Holder<Material> DLMaterial, Holder<Material> DRMaterial, Holder<Material> MMaterial, int lastRepairNumber) implements TooltipProvider {
     public static final Codec<ShieldMaterials> CODEC = RecordCodecBuilder.create(
             shieldMaterialsInstance -> shieldMaterialsInstance.group(
                             Material.HOLDER_CODEC.fieldOf("ul_material").forGetter(ShieldMaterials::getULMaterial),
@@ -52,23 +52,6 @@ public class ShieldMaterials implements TooltipProvider {
     );
 
     public static final ShieldMaterials DEFAULT = new ShieldMaterials(Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.IRON, 0);
-
-    public final Holder<Material>  ULMaterial;
-    public final Holder<Material>  URMaterial;
-    public final Holder<Material>  DLMaterial;
-    public final Holder<Material>  DRMaterial;
-    public final Holder<Material>  MMaterial;
-    public final int LastRepairNumber;
-
-    public ShieldMaterials(Holder<Material> ULMaterial, Holder<Material> URMaterial, Holder<Material> DLMaterial, Holder<Material> DRMaterial, Holder<Material> MMaterial, int lastRepairNumber) {
-        this.ULMaterial = ULMaterial;
-        this.URMaterial = URMaterial;
-        this.DLMaterial = DLMaterial;
-        this.DRMaterial = DRMaterial;
-        this.MMaterial = MMaterial;
-        LastRepairNumber = lastRepairNumber;
-    }
-
 
     @Override
     public void addToTooltip(Item.TooltipContext pContext, Consumer<Component> pTooltipAdder, TooltipFlag pTooltipFlag) {
@@ -105,7 +88,7 @@ public class ShieldMaterials implements TooltipProvider {
     }
 
     public int getLastRepairNumber() {
-        return LastRepairNumber;
+        return lastRepairNumber;
     }
 
     public ShieldMaterials updateLastRepair(int lastRepairNumber) {

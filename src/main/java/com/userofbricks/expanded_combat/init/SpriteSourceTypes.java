@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
-@EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class SpriteSourceTypes {
     public static SpriteSourceType PALETTED_FOLDER_PERMUTATIONS;
     public static SpriteSourceType ALPHA_MASK_FOLDER_PERMUTATIONS;

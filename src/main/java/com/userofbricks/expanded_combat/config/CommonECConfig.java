@@ -23,7 +23,7 @@ public class CommonECConfig {
                 .worldRestart()
                 .define("enable.Arrows", true);
         enableArrowsFletching = builder.comment("Disables/Enables the fletching table menu.")
-                .define("enable.Arrows.Fletching", true);
+                .define("enable.Fletching", true);
         enableBows = builder.comment("Disables/Enables Recipes, and items showing in creative tab.")
                 .worldRestart()
                 .define("enable.Bows", true);

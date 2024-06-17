@@ -58,11 +58,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
                 ResourceLocation trimResourceLocation = trim.pattern().value().assetId();
                 trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
             }
-            ResourceLocation rlUL = getShieldTexture(shieldMaterials.ULMaterial, trimName, "ul");
-            ResourceLocation rlUR = getShieldTexture(shieldMaterials.URMaterial, trimName, "ur");
-            ResourceLocation rlDL = getShieldTexture(shieldMaterials.DLMaterial, trimName, "dl");
-            ResourceLocation rlDR = getShieldTexture(shieldMaterials.DRMaterial, trimName, "dr");
-            ResourceLocation rlM = getShieldTexture(shieldMaterials.MMaterial, trimName, "m");
+            ResourceLocation rlUL = getShieldTexture(shieldMaterials.ULMaterial(), trimName, "ul");
+            ResourceLocation rlUR = getShieldTexture(shieldMaterials.URMaterial(), trimName, "ur");
+            ResourceLocation rlDL = getShieldTexture(shieldMaterials.DLMaterial(), trimName, "dl");
+            ResourceLocation rlDR = getShieldTexture(shieldMaterials.DRMaterial(), trimName, "dr");
+            ResourceLocation rlM = getShieldTexture(shieldMaterials.MMaterial(), trimName, "m");
 
             renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.handle(), rlM);
 
