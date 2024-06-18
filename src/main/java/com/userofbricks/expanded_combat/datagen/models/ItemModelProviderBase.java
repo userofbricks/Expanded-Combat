@@ -98,10 +98,10 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
 
         for (TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
             ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name() + (
-                    item.getPath().contains("gold")
-                            || item.getPath().contains("iron")
-                            || item.getPath().contains("diamond")
-                            || item.getPath().contains("netherite")
+                    (item.getPath().contains("gold") && trimModelData.name.equals("gold"))
+                            || (item.getPath().contains("iron") && trimModelData.name.equals("iron"))
+                            || (item.getPath().contains("diamond") && trimModelData.name.equals("diamond"))
+                            || (item.getPath().contains("netherite") && trimModelData.name.equals("netherite"))
                             ? "_darker" : ""
                     ));
 
@@ -132,7 +132,6 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         if (!dyeable) generated(item, main_texture);
         else generated(item, main_texture, overlay_texture);
     }
-
     protected void standardWeaponModelsFor(Holder.Reference<Material> materialReference, String materialItemName) {
         ResourceLocation materialLocation = materialReference.key().location();
         new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_battle_staff"), materialReference, BATTLE_STAFF, this)
