@@ -8,6 +8,7 @@ import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
@@ -110,11 +111,12 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                     builder.generateModel("item_large/", "", "");
                 }
             } else if (weaponTypeReference == WeaponTypes.DAGGER || weaponTypeReference == WeaponTypes.DANCERS_SWORD || weaponTypeReference == WeaponTypes.GREAT_HAMMER ||
-                    weaponTypeReference == WeaponTypes.MACE || weaponTypeReference == WeaponTypes.FLAIL) {
+                    weaponTypeReference == WeaponTypes.MACE || weaponTypeReference == WeaponTypes.FLAIL || weaponTypeReference == WeaponTypes.CUTLASS || weaponTypeReference == WeaponTypes.SICKLE) {
                 builder.setHasCustomTransformsOrModel().generateWeaponModelAndStandardOverrides();
             } else {
                 builder.setHasLargeModel();
-                if (weaponTypeReference != WeaponTypes.KATANA && weaponTypeReference != WeaponTypes.SPEAR) {
+                if (weaponTypeReference == WeaponTypes.BATTLE_STAFF || weaponTypeReference == WeaponTypes.BROAD_SWORD || weaponTypeReference == WeaponTypes.CLAYMORE
+                        || weaponTypeReference == WeaponTypes.DANCERS_SWORD || weaponTypeReference == WeaponTypes.GLAIVE || weaponTypeReference == WeaponTypes.SCYTHE) {
                     builder.setDyeableOrPotionDippable();
                 }
                 builder.generateWeaponModelAndStandardOverrides();
