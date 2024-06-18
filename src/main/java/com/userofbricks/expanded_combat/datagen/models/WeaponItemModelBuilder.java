@@ -92,8 +92,9 @@ public class WeaponItemModelBuilder {
         return this;
     }
 
-    public void setHasArrowBlockingWeaponOverrides(boolean hasArrowBlockingWeaponOverrides) {
-        this.hasArrowBlockingWeaponOverrides = hasArrowBlockingWeaponOverrides;
+    public WeaponItemModelBuilder setHasArrowBlockingWeaponOverrides() {
+        this.hasArrowBlockingWeaponOverrides = true;
+        return this;
     }
 
 

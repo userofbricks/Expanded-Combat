@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.datagen.models;
 
 import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.init.Materials;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.ItemModelGenerators;
@@ -11,12 +10,13 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
+import static com.userofbricks.expanded_combat.init.WeaponTypes.SPEAR;
 
 public abstract class ItemModelProviderBase extends ItemModelProvider {
     public static final List<TrimModelData> GENERATED_TRIM_MODELS = List.of(
@@ -34,15 +34,12 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
     public ItemModelProviderBase(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
         super(output, modid, existingFileHelper);
     }
-
     public void generateTippedArrowModel(ResourceLocation item, Holder.Reference<Material> material) {
         generated(item, material.key().location().withPrefix("item/arrow/"), new ResourceLocation(MODID, "item/arrow/tipped_head"));
     }
-
     public void generateArrowModel(ResourceLocation item, Holder.Reference<Material> material) {
         generated(item, material.key().location().withPrefix("item/arrow/"));
     }
-
     public void generateBowModel(ResourceLocation item, Holder.Reference<Material> material) {
         ResourceLocation materialLocation = material.key().location();
         ItemModelBuilder itemModelBuilder = generated(item, materialLocation.withPath("item/bow/" + materialLocation.getPath()));
@@ -66,7 +63,6 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                                 .texture("layer0", materialLocation.withPath("item/bow/" + materialLocation.getPath() + "_pulling_2"))
                 ).end();
     }
-
     public void generateCrossBowModel(ResourceLocation item, Holder.Reference<Material> material) {
         ResourceLocation materialLocation = material.key().location();
         generated(item, materialLocation.withPath("item/crossbow/" + materialLocation.getPath()))
@@ -136,7 +132,68 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         if (!dyeable) generated(item, main_texture);
         else generated(item, main_texture, overlay_texture);
     }
-    
+
+    protected void standardWeaponModelsFor(Holder.Reference<Material> materialReference, String materialItemName) {
+        ResourceLocation materialLocation = materialReference.key().location();
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_battle_staff"), materialReference, BATTLE_STAFF, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_broad_sword"), materialReference, BROAD_SWORD, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_claymore"), materialReference, CLAYMORE, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_cutlass"), materialReference, CUTLASS, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_dagger"), materialReference, DAGGER, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_dancer_s_sword"), materialReference, DANCERS_SWORD, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_flail"), materialReference, FLAIL, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_glaive"), materialReference, GLAIVE, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_great_hammer"), materialReference, GREAT_HAMMER, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_katana"), materialReference, KATANA, this)
+                .setHasLargeModel().setHasArrowBlockingWeaponOverrides()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_mace"), materialReference, MACE, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_scythe"), materialReference, SCYTHE, this)
+                .setHasLargeModel().setDyeableOrPotionDippable()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_sickle"), materialReference, SICKLE, this)
+                .setHasCustomTransformsOrModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_spear"), materialReference, SPEAR, this)
+                .setHasLargeModel()
+                .generateWeaponModelAndStandardOverrides()
+        ;
+    }
+
+
     public ItemModelBuilder generated(ResourceLocation item, ResourceLocation... layers) {
         ItemModelBuilder modelBuilder = getBuilder(item.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"));
         for (int layer = 0; layer < layers.length; layer++) {
