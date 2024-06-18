@@ -95,8 +95,9 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     public @NotNull DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().gauntletDurability());
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        components.set(DataComponents.MAX_DAMAGE, material.isBound() ? getMaterial().durabilities().gauntletDurability() : 10)
+                .set(DataComponents.MAX_STACK_SIZE, 1);
+        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return Item.Properties.validateComponents(components.build());
     }

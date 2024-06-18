@@ -46,7 +46,7 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
 
     public final Holder.Reference<Material> material;
     public ECQuiverItem(Properties properties, Holder.Reference<Material> material, Layer... layers) {
-        super(properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY).component(COOL_DOWN, 0));
+        super(properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY).component(COOL_DOWN, 0).stacksTo(1));
         this.QUIVER_TEXTURE_LAYERS = layers;
         this.material = material;
     }

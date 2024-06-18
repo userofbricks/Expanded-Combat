@@ -53,7 +53,8 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     protected DataComponentMap.Builder componentBuilder() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()));
+        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()))
+                .set(DataComponents.MAX_STACK_SIZE, 1);
         components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
         if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 

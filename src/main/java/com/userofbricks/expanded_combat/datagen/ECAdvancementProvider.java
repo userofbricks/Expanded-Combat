@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ECTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -36,7 +37,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
             AdvancementHolder root = Advancement.Builder.advancement()
                     .display(
                             //display item
-                            BuiltInRegistries.ITEM.get(ExpandedCombat.modLoc("leather_quiver")),
+                            ECItems.LEATHER_QUIVER,
                             Component.translatable(LangStrings.advancementRootTitle),
                             Component.translatable(LangStrings.advancementRootDesc),
                             //background
@@ -48,11 +49,9 @@ public class ECAdvancementProvider extends AdvancementProvider {
                     .addCriterion("crafting_table", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
                     .save(saver, MODID + ":root");
 
-            ItemStack punch2NetheriteGauntlet = new ItemStack(BuiltInRegistries.ITEM.get(ExpandedCombat.modLoc("netherite_gauntlet")));
-            punch2NetheriteGauntlet.enchant(Enchantments.PUNCH, 2);
             AdvancementHolder punchGauntlet = Advancement.Builder.advancement().parent(root)
                     .display(
-                            punch2NetheriteGauntlet,
+                            ECItems.NETHERITE_GAUNTLET,
                             Component.translatable(LangStrings.advancementPunchGauntletTitle),
                             Component.translatable(LangStrings.advancementPunchGauntletDesc),
                             null, AdvancementType.TASK, true, true, false
@@ -67,12 +66,12 @@ public class ECAdvancementProvider extends AdvancementProvider {
 
             AdvancementHolder powerGlove = Advancement.Builder.advancement().parent(punchGauntlet)
                     .display(
-                            BuiltInRegistries.ITEM.get(ExpandedCombat.modLoc("gold_gauntlet")),
+                            ECItems.GOLD_GAUNTLET,
                             Component.translatable(LangStrings.advancementPowerGloveTitle),
                             Component.translatable(LangStrings.advancementPowerGloveDesc),
                             null, AdvancementType.TASK, true, true, true
                     )
-                    .addCriterion("gold_gauntlet", InventoryChangeTrigger.TriggerInstance.hasItems(BuiltInRegistries.ITEM.get(ExpandedCombat.modLoc("gold_gauntlet"))))
+                    .addCriterion("gold_gauntlet", InventoryChangeTrigger.TriggerInstance.hasItems(ECItems.GOLD_GAUNTLET))
                     .save(saver, MODID + ":gold_gauntlet");
         }
     }
