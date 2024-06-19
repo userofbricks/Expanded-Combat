@@ -14,6 +14,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,6 +39,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
     private final Map<Holder.Reference<Material>, ItemLike> materialSwords = new HashMap<>();
     private final Map<Holder.Reference<Material>, ItemLike> materialBlocks = new HashMap<>();
     private final Map<Holder.Reference<WeaponType>, ItemLike> diamondWeapons = new HashMap<>();
+    private final Map<Holder.Reference<Material>, Ingredient> materialIngredients = new HashMap<>();
     public ECRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
         materialSwords.put(Materials.WOOD_PLANK, Items.WOODEN_SWORD);
@@ -55,6 +57,15 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
         for (DeferredItem<? extends ECWeaponItem> weapon : DIAMOND_WEAPONS) {
             diamondWeapons.put(weapon.get().weapon, weapon);
         }
+
+        materialIngredients.put(Materials.LEATHER, Ingredient.of(Items.LEATHER));
+        materialIngredients.put(Materials.RABBIT_HIDE, Ingredient.of(Items.RABBIT_HIDE));
+        materialIngredients.put(Materials.WOOD_PLANK, Ingredient.of(ItemTags.PLANKS));
+        materialIngredients.put(Materials.STONE, Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
+        materialIngredients.put(Materials.IRON, Ingredient.of(Items.IRON_INGOT));
+        materialIngredients.put(Materials.GOLD, Ingredient.of(Items.GOLD_INGOT));
+        materialIngredients.put(Materials.DIAMOND, Ingredient.of(Items.DIAMOND));
+        materialIngredients.put(Materials.NETHERITE, Ingredient.of(Items.NETHERITE_INGOT));
     }
 
     @Override
@@ -71,7 +82,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 } else if (arrowItem.material == Materials.NETHERITE) {
                     variableFletching(recipeOutput, arrowItem, Items.NETHERITE_INGOT, DIAMOND_ARROW, 16);
                 } else {
-                    fletching(recipeOutput, arrowItem, arrowItem.getMaterial().repairItem().getItems()[0].getItem(), FLETCHED_STICKS, 6);
+                    fletching(recipeOutput, arrowItem, materialIngredients.get(arrowItem.material), FLETCHED_STICKS, 6);
                 }
             } else if (deferredItem.get() instanceof ECBowItem bowItem) {
                 if (bowItem.material == Materials.NETHERITE) {
@@ -87,7 +98,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                             .save(recipeOutput.withConditions(new ECConfigBooleanCondition("bow")), RecipeBuilder.getDefaultRecipeId(bowItem));
                 } else {
-                    bow(recipeOutput, bowItem, Ingredient.of(bowItem.getMaterial().repairItem().getItems()[0].getItem()));
+                    bow(recipeOutput, bowItem, materialIngredients.get(bowItem.material));
                 }
             } else if (deferredItem.get() instanceof ECCrossBowItem bowItem) {
                 if (bowItem.material == Materials.NETHERITE) {
@@ -103,7 +114,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                             .save(recipeOutput.withConditions(new ECConfigBooleanCondition("crossbow")), RecipeBuilder.getDefaultRecipeId(bowItem));
                 } else {
-                    crossbow(recipeOutput, bowItem, Ingredient.of(bowItem.getMaterial().repairItem().getItems()[0].getItem()));
+                    crossbow(recipeOutput, bowItem, materialIngredients.get(bowItem.material));
                 }
             } else if (deferredItem.get() instanceof GauntletItem gauntletItem) {
                 if (gauntletItem.material == Materials.NETHERITE) {
@@ -119,7 +130,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                             .save(recipeOutput.withConditions(new ECConfigBooleanCondition("gauntlet")), RecipeBuilder.getDefaultRecipeId(gauntletItem));
                 } else {
-                    gauntlet(recipeOutput, gauntletItem, Ingredient.of(gauntletItem.getMaterial().repairItem().getItems()[0].getItem()));
+                    gauntlet(recipeOutput, gauntletItem, materialIngredients.get(gauntletItem.material));
                 }
             } else if (deferredItem.get() instanceof ECQuiverItem quiverItem) {
                 if (quiverItem.material == Materials.NETHERITE) {
@@ -135,7 +146,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                             .save(recipeOutput.withConditions(new ECConfigBooleanCondition("quiver")), RecipeBuilder.getDefaultRecipeId(quiverItem));
                 } else {
-                    quiver(recipeOutput, quiverItem, Ingredient.of(quiverItem.getMaterial().repairItem().getItems()[0].getItem()));
+                    quiver(recipeOutput, quiverItem, materialIngredients.get(quiverItem.material));
                 }
             }
         }
@@ -209,7 +220,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {
         Holder.Reference<WeaponType> weaponType = weaponItem.weapon;
-        Ingredient material = weaponItem.getMaterial().repairItem();
+        Ingredient material = materialIngredients.get(weaponItem.material);
         ItemLike sword = materialSwords.get(weaponItem.material);
         ItemLike block = materialBlocks.get(weaponItem.material);
 

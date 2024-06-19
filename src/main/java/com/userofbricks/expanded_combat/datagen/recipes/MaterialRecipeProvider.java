@@ -238,10 +238,14 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
     }
 
     public static void fletching(RecipeOutput recipeOutput, ItemLike result, ItemLike addition, ItemLike previosItem, int resultCount) {
+        fletching(recipeOutput, result, Ingredient.of(addition), previosItem, resultCount);
+    }
 
-        FletchingRecipeBuilder.fletching(Ingredient.of(previosItem), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem(), resultCount)
+    public static void fletching(RecipeOutput recipeOutput, ItemLike result, Ingredient addition, ItemLike previosItem, int resultCount) {
+
+        FletchingRecipeBuilder.fletching(Ingredient.of(previosItem), addition, RecipeCategory.COMBAT, result.asItem(), resultCount)
                 .unlockedBy("has_item", has(previosItem))
-                .unlockedBy("has_item", has(addition))
+                .unlockedBy("has_material", inventoryTrigger(ItemPredicate.Builder.item().of(Arrays.stream(addition.getItems()).map(ItemStack::getItem).toArray(ItemLike[]::new))))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")));
     }
 
@@ -249,7 +253,7 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
 
         FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(previosItem), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem(), maxResultCount)
                 .unlockedBy("has_item", has(previosItem))
-                .unlockedBy("has_item", has(addition))
+                .unlockedBy("has_material", has(addition))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")),
                         RecipeBuilder.getDefaultRecipeId(result).withSuffix("_variable_fletching"));
     }
