@@ -32,7 +32,7 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
 
         components.set(DataComponents.MAX_DAMAGE, material.isBound() ? getMaterial().durabilities().bowCrossbowDurability() : 10)
                 .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return Item.Properties.validateComponents(components.build());
     }

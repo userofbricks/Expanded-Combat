@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
@@ -116,7 +117,9 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 } else {
                     crossbow(recipeOutput, bowItem, materialIngredients.get(bowItem.material));
                 }
-            } else if (deferredItem.get() instanceof GauntletItem gauntletItem) {
+            } else if (deferredItem.get() instanceof GauntletItem gauntletItem && !(
+                    deferredItem.get() == SOUL_GAUNTLET.get() || deferredItem.get() == BERSERK_GAUNTLETS.get() || deferredItem.get() == BRAWLERS_GAUNTLETS.get() || deferredItem.get() == FIGHTERS_GAUNTLETS.get()
+                    )) {
                 if (gauntletItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),

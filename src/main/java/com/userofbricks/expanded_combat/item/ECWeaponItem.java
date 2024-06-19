@@ -56,7 +56,7 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         components.set(DataComponents.MAX_DAMAGE, (int)((material.isBound() ? getMaterial().durabilities().toolBaseDurability() : 10) * (weapon.isBound() ? getWeapon().durabilityMultiplier() : 1)))
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return components;
     }
