@@ -30,7 +30,7 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
     public DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().bowCrossbowDurability())
+        components.set(DataComponents.MAX_DAMAGE, material.isBound() ? getMaterial().durabilities().bowCrossbowDurability() : 10)
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
