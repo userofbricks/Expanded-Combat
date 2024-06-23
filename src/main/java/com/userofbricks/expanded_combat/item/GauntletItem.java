@@ -8,6 +8,9 @@ import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.Registries;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
@@ -17,6 +20,7 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,6 +44,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
@@ -102,8 +107,15 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 
         return Item.Properties.validateComponents(components.build());
     }
+
     public Material getMaterial() {
-        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
+        if (material.isBound()) return material.value();
+
+        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
+        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
+
+        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
+        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
     }
     @Override
     @ParametersAreNonnullByDefault

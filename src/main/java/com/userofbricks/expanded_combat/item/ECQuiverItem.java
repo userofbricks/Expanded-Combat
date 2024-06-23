@@ -5,8 +5,11 @@ import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
 import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.Registries;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,6 +36,8 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -94,7 +99,13 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
     }
 
     public Material getMaterial() {
-        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
+        if (material.isBound()) return material.value();
+
+        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
+        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
+
+        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
+        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
     }
     public Supplier<ICurioRenderer> getQuiverRenderer() {
         return QuiverRenderer::new;

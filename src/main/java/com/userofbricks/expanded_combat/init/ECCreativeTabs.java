@@ -5,7 +5,9 @@ import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.item.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -24,6 +26,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.config.CommonECConfig.pair;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
@@ -50,7 +53,8 @@ public class ECCreativeTabs {
                     }
                 }
                 if (pair.getLeft().enableShields.get()) {
-                    for (Holder.Reference<Material> material : Arrays.asList(Materials.LEATHER, Materials.RABBIT_HIDE, Materials.IRON, Materials.GOLD, Materials.DIAMOND, Materials.NETHERITE)) {
+                    Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
+                    for (Holder.Reference<Material> material : materialRegistry.holders().toList()) {
                         ItemStack stack;
                         if (!material.value().defense().fireResistant()) {
                             stack = new ItemStack(SHIELD.get());
@@ -60,7 +64,7 @@ public class ECCreativeTabs {
                         stack.set(ItemDataComponents.SHIELD_MATERIALS,
                                 new ShieldMaterials(
                                         material, material, material, material,
-                                        material.value().defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON,
+                                        material.value().defense().placementInShield() == PlacementInShield.ALL ? material : materialRegistry.getHolderOrThrow(Materials.IRON_KEY),
                                         0
                                 ));
                         output.accept(stack);
@@ -124,8 +128,8 @@ public class ECCreativeTabs {
                 items.putAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
             if (pair.getLeft().enableShields.get()) {
-
-                for (Holder.Reference<Material> material : Arrays.asList(Materials.NETHERITE, Materials.DIAMOND, Materials.GOLD, Materials.IRON, Materials.RABBIT_HIDE, Materials.LEATHER)) {
+                Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
+                for (Holder.Reference<Material> material : materialRegistry.holders().toList()) {
                     ItemStack stack;
                     if (!material.value().defense().fireResistant()) {
                         stack = new ItemStack(SHIELD.get());
@@ -135,7 +139,7 @@ public class ECCreativeTabs {
                     stack.set(ItemDataComponents.SHIELD_MATERIALS,
                             new ShieldMaterials(
                                     material, material, material, material,
-                                    material.value().defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON,
+                                    material.value().defense().placementInShield() == PlacementInShield.ALL ? material : materialRegistry.getHolderOrThrow(Materials.IRON_KEY),
                                     0
                             ));
                     items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

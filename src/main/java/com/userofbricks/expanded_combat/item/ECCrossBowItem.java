@@ -2,7 +2,10 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.Registries;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
@@ -18,6 +21,8 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -67,6 +72,12 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
     }
 
     public Material getMaterial() {
-        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
+        if (material.isBound()) return material.value();
+
+        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
+        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
+
+        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
+        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
     }
 }
