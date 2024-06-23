@@ -54,7 +54,7 @@ public class ECCreativeTabs {
                 }
                 if (pair.getLeft().enableShields.get()) {
                     Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
-                    for (Holder.Reference<Material> material : materialRegistry.holders().toList()) {
+                    for (Holder.Reference<Material> material : materialRegistry.holders().filter(materialReference -> materialReference.value().defense().placementInShield() != PlacementInShield.NONE || materialReference.key().location() == Materials.VANILLA_KEY.location()).toList()) {
                         ItemStack stack;
                         if (!material.value().defense().fireResistant()) {
                             stack = new ItemStack(SHIELD.get());
@@ -129,7 +129,7 @@ public class ECCreativeTabs {
             }
             if (pair.getLeft().enableShields.get()) {
                 Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
-                for (Holder.Reference<Material> material : materialRegistry.holders().toList()) {
+                for (Holder.Reference<Material> material : materialRegistry.holders().filter(materialReference -> materialReference.value().defense().placementInShield() != PlacementInShield.NONE || materialReference.key().location() == Materials.VANILLA_KEY.location()).toList()) {
                     ItemStack stack;
                     if (!material.value().defense().fireResistant()) {
                         stack = new ItemStack(SHIELD.get());
