@@ -145,7 +145,7 @@ public class ECShieldItem extends ShieldItem {
         consumer.accept(new IClientItemExtensions() {
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return new ECShieldBlockEntityWithoutLevelRenderer();
+                return ECShieldBlockEntityWithoutLevelRenderer.getInstance();
             }
         });
     }

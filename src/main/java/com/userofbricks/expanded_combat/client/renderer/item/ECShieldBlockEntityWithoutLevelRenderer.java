@@ -32,15 +32,24 @@ import java.util.Objects;
 
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
+    private static ECShieldBlockEntityWithoutLevelRenderer INSTANCE = null;
+
     private final ShieldModel shieldModel;
 
     public ECShieldBlockEntityWithoutLevelRenderer() {
-        this(Minecraft.getInstance().getBlockEntityRenderDispatcher(), new EntityModelSet());
+        this(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     }
 
     public ECShieldBlockEntityWithoutLevelRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelSet entityModelSet) {
         super(blockEntityRenderDispatcher, entityModelSet);
         this.shieldModel = new ShieldModel(entityModelSet.bakeLayer(ModelLayers.SHIELD));
+    }
+
+    public static ECShieldBlockEntityWithoutLevelRenderer getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new ECShieldBlockEntityWithoutLevelRenderer();
+        }
+        return INSTANCE;
     }
 
     public void renderByItem(ItemStack stack, ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay) {
