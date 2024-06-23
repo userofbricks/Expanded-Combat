@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
+import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
@@ -87,8 +88,13 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
         }
     }
 
+    @Override
+    public Holder.Reference<Material> getMaterialReference() {
+        return material;
+    }
+
     public Material getMaterial() {
-        return material.value();
+        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
     }
     public Supplier<ICurioRenderer> getQuiverRenderer() {
         return QuiverRenderer::new;

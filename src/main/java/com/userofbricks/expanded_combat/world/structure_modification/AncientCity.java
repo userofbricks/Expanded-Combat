@@ -45,7 +45,7 @@ public class AncientCity {
         for (int i = 0; i < weight; i++) {
             pool.templates.add(piece);
         }
-        pool.rawTemplates.add(new Pair<>(piece, weight));
+        //TODO: pool.rawTemplates.add(new Pair<>(piece, weight));
     }
 
     /**

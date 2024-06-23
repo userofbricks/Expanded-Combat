@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -19,8 +20,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
+
     default float getMendingBonus() {
-        return getMaterial().enchantingRelated().mendingBonus();
+        return getMaterialReference().isBound() ?
+                getMaterial().enchantingRelated().mendingBonus() : 0;
     }
     default float getXpRepairRatio(@NotNull ItemStack stack) {
         return 2.0f + getMendingBonus();
@@ -37,6 +40,7 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default boolean isRepairable(@NotNull ItemStack stack) {
         return stack.getItem().isDamageable(stack);
     }
+    Holder.Reference<Material> getMaterialReference();
     Material getMaterial();
     default boolean makesPiglinsNeutral(@NotNull ItemStack stack, @NotNull LivingEntity wearer) {
         IMaterialItem materialItem = ((IMaterialItem) stack.getItem());

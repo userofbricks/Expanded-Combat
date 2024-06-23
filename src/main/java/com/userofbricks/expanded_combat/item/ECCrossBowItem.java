@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.init.Materials;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
@@ -30,9 +31,9 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
     public DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, material.isBound() ? getMaterial().durabilities().bowCrossbowDurability() : 10)
+        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().bowCrossbowDurability())
                 .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return Item.Properties.validateComponents(components.build());
     }
@@ -59,7 +60,13 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
             }
         }
     }
+
+    @Override
+    public Holder.Reference<Material> getMaterialReference() {
+        return material;
+    }
+
     public Material getMaterial() {
-        return this.material.value();
+        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
     }
 }

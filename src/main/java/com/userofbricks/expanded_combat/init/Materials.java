@@ -2,7 +2,6 @@ package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderOwner;
 import net.minecraft.core.RegistrySetBuilder;
@@ -18,6 +17,13 @@ import java.util.Optional;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class Materials {
+    public static final Material NOTBOUNDBACKUP = new Material(
+            new Material.Durabilities(10, 10, 10, 2),
+            new Material.EnchantingRelated(10, 10, 10),
+            new Material.Offense(10, 10, 0.05, false, true, 1, 1),
+            new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 0f, 0f),
+            Ingredient.of(Items.AIR)
+    );
     private static final UniversalOwner tempOwner = new UniversalOwner();
     public static final ResourceKey<Material> VANILLA_KEY = createMaterialKey(modLoc("vanilla"));
     public static Holder.Reference<Material> VANILLA = Holder.Reference.createStandAlone(tempOwner, VANILLA_KEY);

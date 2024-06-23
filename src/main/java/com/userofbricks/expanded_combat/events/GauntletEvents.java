@@ -83,11 +83,11 @@ public class GauntletEvents
 
                 BundleContents bundlecontents = quiverStack.getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-                ECQuiverItem.MutableQuiverContents bundlecontents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+                ECQuiverItem.MutableQuiverContents bundleContents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
 
-                int i = bundlecontents$mutable.tryInsert(new ItemStack(Items.ARROW));
+                int i = bundleContents$mutable.tryInsert(new ItemStack(Items.ARROW));
                 if (i > 0) {
-                    quiverStack.set(BUNDLE_CONTENTS, bundlecontents$mutable.toImmutable());
+                    quiverStack.set(BUNDLE_CONTENTS, bundleContents$mutable.toImmutable());
                     quiverItem.playInsert(player);
                     player.awardStat(Stats.ITEM_PICKED_UP.get(Items.ARROW), i);
                 } else {

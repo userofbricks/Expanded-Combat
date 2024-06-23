@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class WeaponTypes {
+    public static final WeaponType NOTBOUNDBACKUP = new WeaponType(false, 1, 10, -10, 10, 10, 10, GripType.ONEHANDED);
     private static final UniversalOwner tempOwner = new UniversalOwner();
     public static final ResourceKey<WeaponType> BATTLE_STAFF_KEY = createWeaponTypeKey(modLoc("battle_staff"));
     public static Holder.Reference<WeaponType> BATTLE_STAFF = Holder.Reference.createStandAlone(tempOwner, BATTLE_STAFF_KEY);

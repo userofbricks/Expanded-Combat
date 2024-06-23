@@ -48,6 +48,8 @@ public class ExpandedCombat {
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
+        bus.register(ClientEvents.class);
+        bus.register(ECKeyRegistry.class);
         bus.addListener(this::registerPayloadHandler);
         PluginInit.loadClass();
         DataAttachments.ATTACHMENT_TYPES.register(bus);
@@ -83,7 +85,6 @@ public class ExpandedCombat {
 
     @SuppressWarnings("utility_instantation")
     private void clientSetup(FMLClientSetupEvent event) {
-        NeoForge.EVENT_BUS.register(ClientEvents.class);
         
         for (DeferredItem<? extends Item> registryEntry: ECItems.ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList())
         {
@@ -93,7 +94,6 @@ public class ExpandedCombat {
                 CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelProperties.registerModelOverrides();
-        NeoForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
     }

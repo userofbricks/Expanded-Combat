@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
@@ -18,19 +17,17 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
-@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void PotionWeaponPotionDurability(RegisterItemDecorationsEvent event) {
+    public static void potionWeaponPotionDurability(RegisterItemDecorationsEvent event) {
         for (DeferredHolder<Item, ? extends Item> item : ECItems.ITEMS.getEntries()) {
             if (item.get() instanceof PotionWeaponItem weaponItem) {
                 event.register(weaponItem, (guiGraphics, font, stack, xOffset, yOffset) -> {

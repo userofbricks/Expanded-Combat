@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.GripType;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -53,10 +55,10 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     protected DataComponentMap.Builder componentBuilder() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, (int)((material.isBound() ? getMaterial().durabilities().toolBaseDurability() : 10) * (weapon.isBound() ? getWeapon().durabilityMultiplier() : 1)))
+        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()))
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
-        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return components;
     }
@@ -68,12 +70,13 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
     }
 
+
     public Material getMaterial() {
-        return this.material.value();
+        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
     }
 
     public WeaponType getWeapon() {
-        return this.weapon.value();
+        return this.weapon.isBound() ? weapon.value() : WeaponTypes.NOTBOUNDBACKUP;
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
@@ -92,7 +95,14 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         return 3 + getMaterial().offense().addedAttackDamage() + getWeapon().baseAttackDamage() + addedDmg;
     }
 
-    public float getMendingBonus() {return getMaterial().enchantingRelated().mendingBonus() + getWeapon().mendingBonus();}
+    public float getMendingBonus() {
+        return getMaterial().enchantingRelated().mendingBonus() + getWeapon().mendingBonus();
+    }
+
+    @Override
+    public Holder.Reference<Material> getMaterialReference() {
+        return material;
+    }
 
     @Override
     public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {

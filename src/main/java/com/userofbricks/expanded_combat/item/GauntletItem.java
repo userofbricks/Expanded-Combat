@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
+import com.userofbricks.expanded_combat.init.Materials;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
@@ -70,7 +71,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         if (list.isEmpty()) {
             return false;
         } else {
-            LivingEntity livingentity = list.get(0);
+            LivingEntity livingentity = list.getFirst();
             Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosInventory(livingentity).flatMap(curiosInventory -> curiosInventory.findCurio(ExpandedCombat.GAUNTLET_CURIOS_IDENTIFIER, 0));
 
             if (optionalSlotResult.isPresent() && !optionalSlotResult.get().stack().isEmpty()) return false;
@@ -95,20 +96,26 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     public @NotNull DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, material.isBound() ? getMaterial().durabilities().gauntletDurability() : 10)
+        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().gauntletDurability())
                 .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (material.isBound() && getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
         return Item.Properties.validateComponents(components.build());
     }
     public Material getMaterial() {
-        return this.material.value();
+        return this.material.isBound() ? material.value() : Materials.NOTBOUNDBACKUP;
     }
     @Override
     @ParametersAreNonnullByDefault
     public int getEnchantmentValue(ItemStack stack) {
         return (getMaterial().enchantingRelated().offenseEnchantability()/2) + (getMaterial().enchantingRelated().defenseEnchantability()/2);
     }
+
+    @Override
+    public Holder.Reference<Material> getMaterialReference() {
+        return material;
+    }
+
     public int getArmorAmount() {
         return getMaterial().defense().gauntletArmorAmount();
     }

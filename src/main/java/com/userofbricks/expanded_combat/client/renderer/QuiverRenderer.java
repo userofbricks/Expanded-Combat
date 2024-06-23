@@ -58,8 +58,9 @@ public class QuiverRenderer implements ICurioRenderer {
 
             List<ItemStack> nonEmptySlots = contents.itemCopyStream().toList();
             if (!nonEmptySlots.isEmpty()) {
-                boolean notOneSlot = ecQuiverItem.getMaterial().offense().quiverSlots() > 1;
-                int thirdOfCapacity = Math.max(1, notOneSlot ? Math.round(ecQuiverItem.getMaterial().offense().quiverSlots() / 3f) : Math.round(nonEmptySlots.get(0).copy().getMaxStackSize() / 3f));
+                int quiverSlots = ecQuiverItem.getMaterial().offense().quiverSlots();
+                boolean notOneSlot = quiverSlots > 1;
+                int thirdOfCapacity = Math.max(1, notOneSlot ? Math.round(quiverSlots / 3f) : Math.round(nonEmptySlots.getFirst().copy().getMaxStackSize() / 3f));
                 Minecraft mc = Minecraft.getInstance();
                 assert mc.player != null;
                 poseStack.pushPose();
@@ -69,20 +70,20 @@ public class QuiverRenderer implements ICurioRenderer {
 
                 //arrow one
                 mc.getEntityRenderDispatcher().getItemInHandRenderer()
-                        .renderItem(mc.player, nonEmptySlots.get(0).copy(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
+                        .renderItem(mc.player, nonEmptySlots.getFirst().copy(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
 
                 //arrow two
-                if ((notOneSlot ? nonEmptySlots.size() : nonEmptySlots.get(0).copy().getCount()) >= thirdOfCapacity) {
+                if ((notOneSlot ? nonEmptySlots.size() : nonEmptySlots.getFirst().copy().getCount()) >= thirdOfCapacity) {
                     poseStack.translate(0.078125, -0.078125, -0.015625);
                     mc.getEntityRenderDispatcher().getItemInHandRenderer()
-                            .renderItem(mc.player, notOneSlot ? nonEmptySlots.get(thirdOfCapacity - 1).copy() : nonEmptySlots.get(0).copy(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
+                            .renderItem(mc.player, notOneSlot ? nonEmptySlots.get(thirdOfCapacity - 1).copy() : nonEmptySlots.getFirst().copy(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
                 }
 
                 //arrow three
-                if ((notOneSlot ? nonEmptySlots.size() : nonEmptySlots.get(0).getCount()) >= thirdOfCapacity * 2) {
+                if ((notOneSlot ? nonEmptySlots.size() : nonEmptySlots.getFirst().getCount()) >= thirdOfCapacity * 2) {
                     poseStack.translate(-0.046875, 0.046875, -0.03125);
                     mc.getEntityRenderDispatcher().getItemInHandRenderer()
-                            .renderItem(mc.player, notOneSlot ? nonEmptySlots.get(thirdOfCapacity * 2 - 1) : nonEmptySlots.get(0), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
+                            .renderItem(mc.player, notOneSlot ? nonEmptySlots.get(thirdOfCapacity * 2 - 1) : nonEmptySlots.getFirst(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, false, poseStack, multiBufferSource, light);
                 }
                 poseStack.popPose();
             }

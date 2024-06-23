@@ -20,10 +20,10 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
 import static net.minecraft.world.entity.npc.VillagerProfession.WEAPONSMITH;
 
-@EventBusSubscriber(modid = MODID)
+//@EventBusSubscriber(modid = MODID)
 public class VillagerTradeEvents {
 
-    @SubscribeEvent
+    //@SubscribeEvent
     public static void villagerTrades(VillagerTradesEvent event) {
         if (event.getType() == WEAPONSMITH) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
