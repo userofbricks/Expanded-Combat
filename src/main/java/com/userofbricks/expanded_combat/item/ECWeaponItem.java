@@ -87,7 +87,13 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     public WeaponType getWeapon() {
-        return this.weapon.isBound() ? weapon.value() : WeaponTypes.NOTBOUNDBACKUP;
+        if (weapon.isBound()) return weapon.value();
+
+        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
+        if (clientPacketListener == null) return WeaponTypes.NOTBOUNDBACKUP;
+
+        Optional<Holder.Reference<WeaponType>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.WEAPON_TYPE_REGISTRY_KEY).getHolder(weapon.key());
+        return reference.map(Holder.Reference::value).orElse(WeaponTypes.NOTBOUNDBACKUP);
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
