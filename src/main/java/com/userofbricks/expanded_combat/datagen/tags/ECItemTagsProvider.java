@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
 
 public class ECItemTagsProvider extends ItemTagsProvider {
     public ECItemTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, ExistingFileHelper existingFileHelper) {
@@ -35,18 +36,26 @@ public class ECItemTagsProvider extends ItemTagsProvider {
             } else if (deferredItem.get() instanceof GauntletItem item) {
                 tag(ECTags.GAUNTLETS).add(item);
                 tag(ItemTags.TRIMMABLE_ARMOR).add(item);
-            } else if (deferredItem.get() instanceof ECQuiverItem item) {
+            } else if (deferredItem.get() instanceof QuiverItem item) {
                 tag(ECTags.QUIVERS).add(item);
             } else if (deferredItem.get() instanceof PotionWeaponItem item) {
                 tag(ECTags.POTION_WEAPONS).add(item);
+            } else if (deferredItem.get() instanceof ECWeaponItem item && (
+                    item.weapon.key() == BATTLE_STAFF.key()
+                            || item.weapon.key() == BROAD_SWORD.key()
+                            || item.weapon.key() == CLAYMORE.key()
+                            || item.weapon.key() == DANCERS_SWORD.key()
+                            || item.weapon.key() == GLAIVE.key()
+                            || item.weapon.key() == SCYTHE.key()
+                    )) {
+                tag(ItemTags.DYEABLE).add(item);
             }
         }
 
         this.tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
                 .add(ECItems.LEATHER_GAUNTLET.getKey(), ECItems.RABBIT_HIDE_GAUNTLET.getKey());
-        this.tag(ItemTags.DYEABLE)
-                .add(ECItems.LEATHER_GAUNTLET.getKey());
 
+        this.tag(ItemTags.DYEABLE).add(ECItems.LEATHER_GAUNTLET.getKey());
 
         tag(Tags.Items.TOOLS_SHIELDS).add(ECItems.SHIELD.getKey(), ECItems.SHIELD_FIRE_RESISTANT.getKey());
     }

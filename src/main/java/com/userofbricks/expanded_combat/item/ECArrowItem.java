@@ -13,6 +13,7 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -20,9 +21,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECArrowItem extends ArrowItem {
-    public final Holder.Reference<Material> material;
+    public final DeferredHolder<Material, Material> material;
 
-    public ECArrowItem(Item.Properties properties, Holder.Reference<Material> material) {
+    public ECArrowItem(Item.Properties properties, DeferredHolder<Material, Material> material) {
         super(properties);
         this.material = material;
     }

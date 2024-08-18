@@ -4,13 +4,8 @@ import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.Registries;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -27,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.commons.lang3.math.Fraction;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -36,8 +32,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -47,11 +41,17 @@ import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialItem {
+public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem {
     public final Layer[] QUIVER_TEXTURE_LAYERS;
 
-    public final Holder.Reference<Material> material;
-    public ECQuiverItem(Properties properties, Holder.Reference<Material> material, Layer... layers) {
+    public final DeferredHolder<Material, Material> material;
+
+
+    public QuiverItem(Properties properties, DeferredHolder<Material, Material> material) {
+        this(properties, material, new Layer());
+    }
+
+    public QuiverItem(Properties properties, DeferredHolder<Material, Material> material, Layer... layers) {
         super(properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY).component(COOL_DOWN, 0).stacksTo(1));
         this.QUIVER_TEXTURE_LAYERS = layers;
         this.material = material;
@@ -94,18 +94,12 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
     }
 
     @Override
-    public Holder.Reference<Material> getMaterialReference() {
+    public DeferredHolder<Material, Material> getMaterialReference() {
         return material;
     }
 
     public Material getMaterial() {
-        if (material.isBound()) return material.value();
-
-        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
-        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
-
-        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
-        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
+        return material.value();
     }
     public Supplier<ICurioRenderer> getQuiverRenderer() {
         return QuiverRenderer::new;
@@ -219,11 +213,11 @@ public class ECQuiverItem extends BundleItem implements ICurioItem, IMaterialIte
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
-            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/models/quiver/" + relativeTexture.getPath() + ".png");
+            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/model/quiver/" + relativeTexture.getPath() + ".png");
         }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
-            return assetName -> assetName.withPath(p_324187_ -> "textures/models/quiver/" + assetName.getPath() + "_" + suffix + ".png");
+            return assetName -> assetName.withPath(p_324187_ -> "textures/model/quiver/" + assetName.getPath() + "_" + suffix + ".png");
         }
 
         public ResourceLocation texture(ResourceLocation material) {

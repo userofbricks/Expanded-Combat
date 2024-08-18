@@ -14,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -23,9 +24,9 @@ import java.util.Optional;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECBowItem extends BowItem implements IMaterialItem {
-    public final Holder.Reference<Material> material;
+    public final DeferredHolder<Material, Material> material;
 
-    public ECBowItem(Item.Properties builder, Holder.Reference<Material> material) {
+    public ECBowItem(Item.Properties builder, DeferredHolder<Material, Material> material) {
         super(builder);
         this.material = material;
     }
@@ -48,17 +49,11 @@ public class ECBowItem extends BowItem implements IMaterialItem {
     }
 
     @Override
-    public Holder.Reference<Material> getMaterialReference() {
+    public DeferredHolder<Material, Material> getMaterialReference() {
         return material;
     }
 
     public Material getMaterial() {
-        if (material.isBound()) return material.value();
-
-        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
-        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
-
-        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
-        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
+        return material.value();
     }
 }

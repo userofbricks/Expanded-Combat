@@ -28,9 +28,8 @@ public class ECShieldDecorationRecipeMaker {
         Set<DyeColor> colors = EnumSet.noneOf(DyeColor.class);
 
         List<RecipeHolder<CraftingRecipe>> craftingRecipes = new ArrayList<>();
-        for (Holder.Reference<Material> shieldMaterial : Objects.requireNonNull(Minecraft.getInstance().getConnection())
-                        .registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).holders()
-                        .filter(materialReference -> materialReference.value().defense().placementInShield() != PlacementInShield.NONE).toList()) {
+        for (Material shieldMaterial : Registries.MATERIAL_REGISTRY.stream()
+                        .filter(materialReference -> materialReference.defense().placementInShield() != PlacementInShield.NONE).toList()) {
 
             List<RecipeHolder<CraftingRecipe>> craftingRecipesForShield = StreamSupport.stream(banners.spliterator(), false)
                     .filter(Holder::isBound)
@@ -45,8 +44,8 @@ public class ECShieldDecorationRecipeMaker {
         return craftingRecipes;
     }
 
-    private static RecipeHolder<CraftingRecipe> createRecipe(BannerItem banner, Holder.Reference<Material> shieldMaterial) {
-        ItemStack shieldStack = ECShieldItem.makeShieldBeMaterial(new ItemStack(shieldMaterial.value().defense().fireResistant() ? ECItems.SHIELD_FIRE_RESISTANT.get() : ECItems.SHIELD.get()), shieldMaterial);
+    private static RecipeHolder<CraftingRecipe> createRecipe(BannerItem banner, Material shieldMaterial) {
+        ItemStack shieldStack = ECShieldItem.makeShieldBeMaterial(new ItemStack(shieldMaterial.defense().fireResistant() ? ECItems.SHIELD_FIRE_RESISTANT.get() : ECItems.SHIELD.get()), shieldMaterial);
         NonNullList<Ingredient> inputs = NonNullList.of(
                 Ingredient.EMPTY,
                 Ingredient.of(shieldStack),
@@ -55,7 +54,7 @@ public class ECShieldDecorationRecipeMaker {
 
         ItemStack output = createOutput(banner, shieldStack.copy());
 
-        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.getRegisteredName().replace(':', '_'));
+        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + Registries.MATERIAL_REGISTRY.getKey(shieldMaterial).toString().replace(':', '_'));
         CraftingRecipe recipe = new ShapelessRecipe("jei.ec_shield.decoration", CraftingBookCategory.MISC, output, inputs);
         return new RecipeHolder<>(id, recipe);
     }

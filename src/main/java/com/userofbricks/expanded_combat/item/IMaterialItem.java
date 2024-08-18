@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.extensions.IItemExtension;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -40,7 +41,7 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
     default boolean isRepairable(@NotNull ItemStack stack) {
         return stack.getItem().isDamageable(stack);
     }
-    Holder.Reference<Material> getMaterialReference();
+    DeferredHolder<Material, Material> getMaterialReference();
     Material getMaterial();
     default boolean makesPiglinsNeutral(@NotNull ItemStack stack, @NotNull LivingEntity wearer) {
         IMaterialItem materialItem = ((IMaterialItem) stack.getItem());

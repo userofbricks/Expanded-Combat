@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.datagen.models;
 
 import com.userofbricks.expanded_combat.data.material.Material;
-import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
@@ -10,6 +9,7 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.Map;
@@ -34,14 +34,14 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
     public ItemModelProviderBase(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
         super(output, modid, existingFileHelper);
     }
-    public void generateTippedArrowModel(ResourceLocation item, Holder.Reference<Material> material) {
-        generated(item, material.key().location().withPrefix("item/arrow/"), new ResourceLocation(MODID, "item/arrow/tipped_head"));
+    public void generateTippedArrowModel(ResourceLocation item, DeferredHolder<Material, Material> material) {
+        generated(item, material.getId().withPrefix("item/arrow/"), new ResourceLocation(MODID, "item/arrow/tipped_head"));
     }
-    public void generateArrowModel(ResourceLocation item, Holder.Reference<Material> material) {
-        generated(item, material.key().location().withPrefix("item/arrow/"));
+    public void generateArrowModel(ResourceLocation item, DeferredHolder<Material, Material> material) {
+        generated(item, material.getId().withPrefix("item/arrow/"));
     }
-    public void generateBowModel(ResourceLocation item, Holder.Reference<Material> material) {
-        ResourceLocation materialLocation = material.key().location();
+    public void generateBowModel(ResourceLocation item, DeferredHolder<Material, Material> material) {
+        ResourceLocation materialLocation = material.getId();
         ItemModelBuilder itemModelBuilder = generated(item, materialLocation.withPath("item/bow/" + materialLocation.getPath()));
 
         itemModelBuilder.transforms()
@@ -63,8 +63,8 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                                 .texture("layer0", materialLocation.withPath("item/bow/" + materialLocation.getPath() + "_pulling_2"))
                 ).end();
     }
-    public void generateCrossBowModel(ResourceLocation item, Holder.Reference<Material> material) {
-        ResourceLocation materialLocation = material.key().location();
+    public void generateCrossBowModel(ResourceLocation item, DeferredHolder<Material, Material> material) {
+        ResourceLocation materialLocation = material.getId();
         generated(item, materialLocation.withPath("item/crossbow/" + materialLocation.getPath()))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(-90, 0, -60).translation(2, 0.1f, -3f).scale(0.9f).end()
@@ -88,8 +88,8 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                         withExistingParent(item + "_firework", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_firework"))
                 ).end();
     }
-    public void generateGauntletModel(ResourceLocation item, Holder.Reference<Material> material, boolean dyeable) {
-        ResourceLocation materialLocation = material.key().location();
+    public void generateGauntletModel(ResourceLocation item, DeferredHolder<Material, Material> material, boolean dyeable) {
+        ResourceLocation materialLocation = material.getId();
         ResourceLocation main_texture = materialLocation.withPath("item/gauntlet/" + materialLocation.getPath());
         ResourceLocation overlay_texture = materialLocation.withPath("item/gauntlet/" + materialLocation.getPath() + "_overlay");
         ItemModelBuilder mainModel;
@@ -125,15 +125,15 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                     .model(trimModel);
         }
     }
-    public void generateQuiverModel(ResourceLocation item, Holder.Reference<Material> material, boolean dyeable) {
-        ResourceLocation materialLocation = material.key().location();
+    public void generateQuiverModel(ResourceLocation item, DeferredHolder<Material, Material> material, boolean dyeable) {
+        ResourceLocation materialLocation = material.getId();
         ResourceLocation main_texture = materialLocation.withPath("item/quiver/" + materialLocation.getPath());
         ResourceLocation overlay_texture = materialLocation.withPath("item/quiver/" + materialLocation.getPath() + "_overlay");
         if (!dyeable) generated(item, main_texture);
         else generated(item, main_texture, overlay_texture);
     }
-    protected void standardWeaponModelsFor(Holder.Reference<Material> materialReference, String materialItemName) {
-        ResourceLocation materialLocation = materialReference.key().location();
+    protected void standardWeaponModelsFor(DeferredHolder<Material, Material> materialReference, String materialItemName) {
+        ResourceLocation materialLocation = materialReference.getId();
         new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_battle_staff"), materialReference, BATTLE_STAFF, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
@@ -202,5 +202,5 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         return modelBuilder;
     }
 
-    public record TrimModelData(String name, float itemModelIndex, Map<Holder.Reference<Material>, String> overrideMaterials) {}
+    public record TrimModelData(String name, float itemModelIndex, Map<DeferredHolder<Material, Material>, String> overrideMaterials) {}
 }

@@ -11,6 +11,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -19,7 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ElementalWeapon extends ECWeaponItem {
     public final Holder<Attribute> damageAttributeRegistryObject;
 
-    public ElementalWeapon(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int addedDmg, Holder<Attribute> damageAttributeRegistryObject) {
+    public ElementalWeapon(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int addedDmg, Holder<Attribute> damageAttributeRegistryObject) {
         super(material, weapon, properties, addedDmg);
         this.damageAttributeRegistryObject = damageAttributeRegistryObject;
     }

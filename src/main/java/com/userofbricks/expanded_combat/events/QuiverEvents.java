@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.config.CommonECConfig;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
@@ -29,12 +29,12 @@ public class QuiverEvents {
         if (!CommonECConfig.pair.getLeft().enableQuivers.get()) return;
         Player player = evt.getPlayer();
         ItemStack toPickup = evt.getItemEntity().getItem();
-        SlotResult slotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem)).orElse(null);
-        if(toPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
+        SlotResult slotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof QuiverItem)).orElse(null);
+        if(toPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof QuiverItem quiverItem) {
 
             BundleContents bundlecontents = slotResult.stack().getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-            ECQuiverItem.MutableQuiverContents bundlecontents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+            QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
 
             int b = toPickup.getCount();
             int i = bundlecontents$mutable.tryInsert(toPickup);

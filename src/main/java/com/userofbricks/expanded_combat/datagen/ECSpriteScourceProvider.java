@@ -59,17 +59,18 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
         weaponPermutations.put("iron", modLoc( "item/color_palettes/iron"));
         weaponPermutations.put("gold", modLoc( "item/color_palettes/gold"));
         weaponPermutations.put("diamond", modLoc( "item/color_palettes/diamond"));
-        weaponPermutations.put("acacia_plank", modLoc( "item/color_palettes/acacia_plank"));
-        weaponPermutations.put("bamboo_plank", modLoc( "item/color_palettes/bamboo_plank"));
-        weaponPermutations.put("birch_plank", modLoc( "item/color_palettes/birch_plank"));
-        weaponPermutations.put("cherry_plank", modLoc( "item/color_palettes/cherry_plank"));
-        weaponPermutations.put("crimson_plank", modLoc( "item/color_palettes/crimson_plank"));
-        weaponPermutations.put("dark_oak_plank", modLoc( "item/color_palettes/dark_oak_plank"));
-        weaponPermutations.put("jungle_plank", modLoc( "item/color_palettes/jungle_plank"));
-        weaponPermutations.put("mangrove_plank", modLoc( "item/color_palettes/mangrove_plank"));
-        weaponPermutations.put("oak_plank", modLoc( "item/color_palettes/oak_plank"));
-        weaponPermutations.put("spruce_plank", modLoc( "item/color_palettes/spruce_plank"));
-        weaponPermutations.put("warped_plank", modLoc( "item/color_palettes/warped_plank"));
+        weaponPermutations.put("wood_plank", modLoc( "item/color_palettes/wood"));
+        //weaponPermutations.put("acacia_plank", modLoc( "item/color_palettes/acacia_plank"));
+        //weaponPermutations.put("bamboo_plank", modLoc( "item/color_palettes/bamboo_plank"));
+        //weaponPermutations.put("birch_plank", modLoc( "item/color_palettes/birch_plank"));
+        //weaponPermutations.put("cherry_plank", modLoc( "item/color_palettes/cherry_plank"));
+        //weaponPermutations.put("crimson_plank", modLoc( "item/color_palettes/crimson_plank"));
+        //weaponPermutations.put("dark_oak_plank", modLoc( "item/color_palettes/dark_oak_plank"));
+        //weaponPermutations.put("jungle_plank", modLoc( "item/color_palettes/jungle_plank"));
+        //weaponPermutations.put("mangrove_plank", modLoc( "item/color_palettes/mangrove_plank"));
+        //weaponPermutations.put("oak_plank", modLoc( "item/color_palettes/oak_plank"));
+        //weaponPermutations.put("spruce_plank", modLoc( "item/color_palettes/spruce_plank"));
+        //weaponPermutations.put("warped_plank", modLoc( "item/color_palettes/warped_plank"));
 
         atlas(BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
                 Arrays.asList(modLoc( "item/battle_staff"),

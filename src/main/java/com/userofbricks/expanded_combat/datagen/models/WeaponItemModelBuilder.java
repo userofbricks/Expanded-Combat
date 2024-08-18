@@ -3,28 +3,26 @@ package com.userofbricks.expanded_combat.datagen.models;
 import com.mojang.datafixers.util.Function3;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import net.minecraft.core.Holder;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
-import net.neoforged.neoforge.registries.DeferredItem;
-
-import java.util.function.BiFunction;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class WeaponItemModelBuilder {
-    public static final Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> DEFAULT_HANDLE_LOC =
-            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.key().location().getPath() + "_handle");
-    public static final Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> DEFAULT_DYE_LOC =
-            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.key().location().getPath() + "_dye");
+    public static final Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> DEFAULT_HANDLE_LOC =
+            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.getId().getPath() + "_handle");
+    public static final Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> DEFAULT_DYE_LOC =
+            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.getId().getPath() + "_dye");
 
     public final ResourceLocation itemLocation;
-    public final Holder.Reference<Material> material;
-    public final Holder.Reference<WeaponType> weapon;
+    public final DeferredHolder<Material, Material> material;
+    public final DeferredHolder<WeaponType, WeaponType> weapon;
     public final ItemModelProvider modelProvider;
 
     private boolean dyeableOrPotionDippable = false;
@@ -32,43 +30,43 @@ public class WeaponItemModelBuilder {
     private boolean hasCustomTransformsOrModel = false;
     private boolean hasLargeModel = false;
     private boolean hasArrowBlockingWeaponOverrides = false;
-    private Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction =
+    private Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> mainTextureFunction =
             (resourceLocation, materialReference, weaponReference) ->
-                    new ResourceLocation(materialReference.key().location().getNamespace(), weaponReference.key().location().getPath() + "/" + materialReference.key().location().getPath());
-    private Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> handleTextureFunction = DEFAULT_HANDLE_LOC;
-    private Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> dyeTextureFunction = DEFAULT_DYE_LOC;
+                    new ResourceLocation(materialReference.getId().getNamespace(), weaponReference.getId().getPath() + "/" + materialReference.getId().getPath());
+    private Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> handleTextureFunction = DEFAULT_HANDLE_LOC;
+    private Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> dyeTextureFunction = DEFAULT_DYE_LOC;
 
 
-    public WeaponItemModelBuilder(ResourceLocation itemLocation, Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, ItemModelProvider modelProvider) {
+    public WeaponItemModelBuilder(ResourceLocation itemLocation, DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, ItemModelProvider modelProvider) {
         this.itemLocation = itemLocation;
         this.material = material;
         this.weapon = weapon;
         this.modelProvider = modelProvider;
     }
-    public WeaponItemModelBuilder setMainTextureFunction(Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> mainTextureFunction) {
+    public WeaponItemModelBuilder setMainTextureFunction(Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> mainTextureFunction) {
         this.mainTextureFunction = mainTextureFunction;
         return this;
     }
 
-    public WeaponItemModelBuilder setHandleTextureFunction(Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> handleTextureFunction) {
+    public WeaponItemModelBuilder setHandleTextureFunction(Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> handleTextureFunction) {
         this.handleTextureFunction = handleTextureFunction;
         return this;
     }
 
     public WeaponItemModelBuilder setHandleTextureFunction(String handleTexture) {
         this.handleTextureFunction = (resourceLocation, materialReference, weaponReference) ->
-                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.key().location().getPath() + "/" + handleTexture);
+                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.getId().getPath() + "/" + handleTexture);
         return this;
     }
 
-    public WeaponItemModelBuilder setDyeTextureFunction(Function3<ResourceLocation, Holder.Reference<Material>, Holder.Reference<WeaponType>, ResourceLocation> dyeTextureFunction) {
+    public WeaponItemModelBuilder setDyeTextureFunction(Function3<ResourceLocation, DeferredHolder<Material, Material>, DeferredHolder<WeaponType, WeaponType>, ResourceLocation> dyeTextureFunction) {
         this.dyeTextureFunction = dyeTextureFunction;
         return this;
     }
 
     public WeaponItemModelBuilder setDyeTextureFunction(String dyeTexture) {
         this.dyeTextureFunction = (resourceLocation, materialReference, weaponReference) ->
-                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.key().location().getPath() + "/" + dyeTexture);
+                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.getId().getPath() + "/" + dyeTexture);
         return this;
     }
 
@@ -174,12 +172,14 @@ public class WeaponItemModelBuilder {
             itemModelBuilder.texture("layer1", mainTextureFunction.apply(itemLocation, material, weapon).withPrefix(directory));
         }
 
+        itemModelBuilder.guiLight(BlockModel.GuiLight.FRONT);
+
         return itemModelBuilder;
     }
 
     public ItemModelBuilder getModelWithWeaponParent(String returningModelfolder, String parentSuffix) {
         String modelName = "item/" + returningModelfolder + itemLocation.getPath();
-        String parentName = "item/bases/" + weapon.key().location().getPath() + (!parentSuffix.isBlank() ? "_" + parentSuffix : "");
+        String parentName = "item/bases/" + weapon.getId().getPath() + (!parentSuffix.isBlank() ? "_" + parentSuffix : "");
 
         return modelProvider.withExistingParent(modelName, new ResourceLocation(MODID, parentName));
     }

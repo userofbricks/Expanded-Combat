@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -34,13 +35,13 @@ public class ECArrow extends AbstractArrow {
     public ECArrow(EntityType<? extends ECArrow> entityEntityType, Level level) {
         super(entityEntityType, level);
     }
-    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, Holder.Reference<Material> material) {
+    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, DeferredHolder<Material, Material> material) {
         super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
         this.material = material;
         this.updateColor();
     }
 
-    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Holder.Reference<Material> material) {
+    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, DeferredHolder<Material, Material> material) {
         super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack);
         this.material = material;
         this.updateColor();

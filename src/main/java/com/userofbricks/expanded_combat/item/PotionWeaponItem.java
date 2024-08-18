@@ -12,10 +12,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 public class PotionWeaponItem extends ECWeaponItem {
-    public PotionWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties builderIn) {
+    public PotionWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties builderIn) {
         super(material, weapon, builderIn.component(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER)));
     }
 

@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -40,17 +41,17 @@ import java.util.UUID;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECWeaponItem extends Item implements IMaterialItem {
-    public final Holder.Reference<Material> material;
-    public final Holder.Reference<WeaponType> weapon;
+    public final DeferredHolder<Material, Material> material;
+    public final DeferredHolder<WeaponType, WeaponType> weapon;
     public final int addedDmg;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
 
-    public ECWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties) {
+    public ECWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties) {
         this(material, weapon, properties, 0);
     }
 
-    public ECWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int addedDmg) {
+    public ECWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int addedDmg) {
         super(properties.stacksTo(1).component(DataComponents.DAMAGE, 0).component(DataComponents.TOOL, createToolProperties()));
         this.material = material;
         this.weapon = weapon;
@@ -77,23 +78,11 @@ public class ECWeaponItem extends Item implements IMaterialItem {
 
 
     public Material getMaterial() {
-        if (material.isBound()) return material.value();
-
-        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
-        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
-
-        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
-        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
+        return material.value();
     }
 
     public WeaponType getWeapon() {
-        if (weapon.isBound()) return weapon.value();
-
-        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
-        if (clientPacketListener == null) return WeaponTypes.NOTBOUNDBACKUP;
-
-        Optional<Holder.Reference<WeaponType>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.WEAPON_TYPE_REGISTRY_KEY).getHolder(weapon.key());
-        return reference.map(Holder.Reference::value).orElse(WeaponTypes.NOTBOUNDBACKUP);
+        return weapon.value();
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
@@ -117,8 +106,12 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     @Override
-    public Holder.Reference<Material> getMaterialReference() {
+    public DeferredHolder<Material, Material> getMaterialReference() {
         return material;
+    }
+
+    public DeferredHolder<WeaponType, WeaponType> getWeaponTypeReference() {
+        return weapon;
     }
 
     @Override

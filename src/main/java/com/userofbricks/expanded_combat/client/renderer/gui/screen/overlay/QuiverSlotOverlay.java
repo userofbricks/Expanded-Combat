@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.client.renderer.gui.screen.overlay;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.config.ClientECConfig;
 import com.userofbricks.expanded_combat.config.OverlayAnchorPoss;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.component.DataComponents;
@@ -33,7 +33,7 @@ public class QuiverSlotOverlay {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         assert player != null;
-        Optional<SlotResult> quiverSlotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem));
+        Optional<SlotResult> quiverSlotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(stack -> stack.getItem() instanceof QuiverItem));
         if (quiverSlotResult.isEmpty()) return;
         if (!(player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof BowItem)) return;
 

@@ -54,7 +54,6 @@ public record Material(
                     Ingredient.CODEC.optionalFieldOf("smithing_template", Ingredient.of(Items.AIR)).forGetter(Material::smithingTemplate)
             ).apply(instance, Material::new)
     );
-    public static final Codec<Material> CODEC_CLIENT_SYNC = CODEC;
     public static final StreamCodec<RegistryFriendlyByteBuf, Material> STREAM_CODEC = new StreamCodec<>() {
         final StreamCodec<ByteBuf, Optional<List<ResourceLocation>>> REPLACE_STREAM_CODEC = ByteBufCodecs.optional(ByteBufCodecs.collection(ArrayList::new, ResourceLocation.STREAM_CODEC).map(
                 arrayList -> Arrays.asList(arrayList.toArray(new ResourceLocation[0])), list -> (ArrayList<ResourceLocation>) list
@@ -85,6 +84,9 @@ public record Material(
             Ingredient.CONTENTS_STREAM_CODEC.encode(pBuffer, pValue.smithingTemplate);
         }
     };
+    public static final Codec<Material> HOLDER_CODEC2 = Registries.MATERIAL_REGISTRY.byNameCodec();
+    public static final StreamCodec<RegistryFriendlyByteBuf, Material> HOLDER_STREAM_CODEC2 = ByteBufCodecs.registry(Registries.MATERIAL_REGISTRY_KEY);
+
     public static final Codec<Holder<Material>> HOLDER_CODEC = RegistryFileCodec.create(Registries.MATERIAL_REGISTRY_KEY, CODEC);
     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<Material>> HOLDER_STREAM_CODEC = ByteBufCodecs.holder(
             Registries.MATERIAL_REGISTRY_KEY, STREAM_CODEC

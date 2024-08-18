@@ -10,187 +10,121 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
 import java.util.Optional;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class Materials {
-    public static final Material NOTBOUNDBACKUP = new Material(
-            new Material.Durabilities(10, 10, 10, 2),
-            new Material.EnchantingRelated(10, 10, 10),
-            new Material.Offense(10, 10, 0.05, false, true, 1, 1),
-            new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 0f, 0f),
+    public static final DeferredRegister<Material> MATERIALS = DeferredRegister.create(Registries.MATERIAL_REGISTRY, MODID);
+    
+    public static DeferredHolder<Material, Material> VANILLA = MATERIALS.register("vanilla", () -> new Material(
+            Material.Durabilities.shieldGauntlet(0, 0),
+            new Material.EnchantingRelated(0, 0, 0),
+            new Material.Offense(0, 0, 0.05, false, true, 1, 0),
+            new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 2.5f, 0.3f),
             Ingredient.of(Items.AIR)
-    );
-    private static final UniversalOwner tempOwner = new UniversalOwner();
-    public static final ResourceKey<Material> VANILLA_KEY = createMaterialKey(modLoc("vanilla"));
-    public static Holder.Reference<Material> VANILLA = Holder.Reference.createStandAlone(tempOwner, VANILLA_KEY);
-    public static final ResourceKey<Material> LEATHER_KEY = createMaterialKey(modLoc("leather"));
-    public static Holder.Reference<Material> LEATHER = Holder.Reference.createStandAlone(tempOwner, LEATHER_KEY);
-    public static final ResourceKey<Material> RABBIT_HIDE_KEY = createMaterialKey(modLoc("rabbit_hide"));
-    public static Holder.Reference<Material> RABBIT_HIDE = Holder.Reference.createStandAlone(tempOwner, RABBIT_HIDE_KEY);
-    public static final ResourceKey<Material> WOOD_PLANK_KEY = createMaterialKey(modLoc("wood_plank"));
-    public static Holder.Reference<Material> WOOD_PLANK = Holder.Reference.createStandAlone(tempOwner, WOOD_PLANK_KEY);
-    public static final ResourceKey<Material> STONE_KEY = createMaterialKey(modLoc("stone"));
-    public static Holder.Reference<Material> STONE = Holder.Reference.createStandAlone(tempOwner, STONE_KEY);
-    public static final ResourceKey<Material> IRON_KEY = createMaterialKey(modLoc("iron"));
-    public static Holder.Reference<Material> IRON = Holder.Reference.createStandAlone(tempOwner, IRON_KEY);
-    public static final ResourceKey<Material> GOLD_KEY = createMaterialKey(modLoc("gold"));
-    public static Holder.Reference<Material> GOLD = Holder.Reference.createStandAlone(tempOwner, GOLD_KEY);
-    public static final ResourceKey<Material> DIAMOND_KEY = createMaterialKey(modLoc("diamond"));
-    public static Holder.Reference<Material> DIAMOND = Holder.Reference.createStandAlone(tempOwner, DIAMOND_KEY);
-    public static final ResourceKey<Material> NETHERITE_KEY = createMaterialKey(modLoc("netherite"));
-    public static Holder.Reference<Material> NETHERITE = Holder.Reference.createStandAlone(tempOwner, NETHERITE_KEY);
-    public static final ResourceKey<Material> HEART_STEALER_KEY = createMaterialKey(modLoc("heart_stealer"));
-    public static Holder.Reference<Material> HEART_STEALER = Holder.Reference.createStandAlone(tempOwner, HEART_STEALER_KEY);
-    public static final ResourceKey<Material> HEAT_KEY = createMaterialKey(modLoc("heat"));
-    public static Holder.Reference<Material> HEAT = Holder.Reference.createStandAlone(tempOwner, HEAT_KEY);
-    public static final ResourceKey<Material> FROST_KEY = createMaterialKey(modLoc("frost"));
-    public static Holder.Reference<Material> FROST = Holder.Reference.createStandAlone(tempOwner, FROST_KEY);
-    public static final ResourceKey<Material> VOID_TOUCHED_KEY = createMaterialKey(modLoc("void_touched"));
-    public static Holder.Reference<Material> VOID_TOUCHED = Holder.Reference.createStandAlone(tempOwner, VOID_TOUCHED_KEY);
-    public static final ResourceKey<Material> SOUL_KEY = createMaterialKey(modLoc("soul"));
-    public static Holder.Reference<Material> SOUL = Holder.Reference.createStandAlone(tempOwner, SOUL_KEY);
-    public static final ResourceKey<Material> FIGHTERS_KEY = createMaterialKey(modLoc("fighters"));
-    public static Holder.Reference<Material> FIGHTERS = Holder.Reference.createStandAlone(tempOwner, FIGHTERS_KEY);
-    public static final ResourceKey<Material> BERSERK_KEY = createMaterialKey(modLoc("berserk"));
-    public static Holder.Reference<Material> BERSERK = Holder.Reference.createStandAlone(tempOwner, BERSERK_KEY);
-    public static final ResourceKey<Material> BRAWLERS_KEY = createMaterialKey(modLoc("brawlers"));
-    public static Holder.Reference<Material> BRAWLERS = Holder.Reference.createStandAlone(tempOwner, BRAWLERS_KEY);
-
-
-    public static final RegistrySetBuilder.RegistryBootstrap<Material> registrySetBuilder = bootstrap -> {
-                VANILLA = bootstrap.register(VANILLA_KEY, new Material(
-                        Material.Durabilities.shieldGauntlet(0, 0),
-                        new Material.EnchantingRelated(0, 0, 0),
-                        new Material.Offense(0, 0, 0.05, false, true, 1, 0),
-                        new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 0, 0, 0, 2.5f, 0.3f),
-                        Ingredient.of(Items.AIR)
-                ));
-                LEATHER = bootstrap.register(LEATHER_KEY, new Material(
+    ));
+    public static DeferredHolder<Material, Material> LEATHER = MATERIALS.register("leather", () -> new Material(
                         Material.Durabilities.shieldGauntlet(131, 80),
                         new Material.EnchantingRelated(5, 15, 0),
                         new Material.Offense(1, 0, 0.05, false, true, 1, 2),
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 1, 0, 0, 2.75f, 0.45f),
-                        Ingredient.of(Items.LEATHER)
-                ));
-                RABBIT_HIDE = bootstrap.register(RABBIT_HIDE_KEY, new Material(
+                        Ingredient.of(Items.LEATHER)));
+    public static DeferredHolder<Material, Material> RABBIT_HIDE = MATERIALS.register("rabbit_hide", () -> new Material(
                         Material.Durabilities.shieldGauntlet(110, 75),
                         new Material.EnchantingRelated(5, 15, 0),
                         new Material.Offense(1, 0, 0.05, false, true, 1, 3),
                         new Material.Defense(PlacementInShield.NOT_TRIM, false, false, 1, 0, 0, 2.65f, 0.5f),
-                        Ingredient.of(Items.RABBIT_HIDE)
-                ));
-                WOOD_PLANK = bootstrap.register(WOOD_PLANK_KEY, new Material(
+                        Ingredient.of(Items.RABBIT_HIDE)));
+    public static DeferredHolder<Material, Material> WOOD_PLANK = MATERIALS.register("wood_plank", () -> new Material(
                         new Material.Durabilities(59, 0, 0, 40),
                         new Material.EnchantingRelated(15, 0, 0),
                         new Material.Offense(0, 0, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.ALL, false, false, 0, 0, 0, 2.5f, 0.3f),
-                        Ingredient.of(ItemTags.PLANKS)
-                ));
-                STONE = bootstrap.register(STONE_KEY, new Material(
+                        Ingredient.of(ItemTags.PLANKS)));
+    public static DeferredHolder<Material, Material> STONE = MATERIALS.register("stone", () -> new Material(
                         new Material.Durabilities(131, 0, 0, 0),
                         new Material.EnchantingRelated(5, 0, 0),
                         new Material.Offense(1, 0, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
-                        Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)
-                ));
-                IRON = bootstrap.register(IRON_KEY, new Material(
+                        Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)));
+    public static DeferredHolder<Material, Material> IRON = MATERIALS.register("iron", () -> new Material(
                         new Material.Durabilities(250, 250, 480, 150),
                         new Material.EnchantingRelated(14, 9, 0),
                         new Material.Offense(2, 3, 0.045, false, true, 1.15f, 4),
                         new Material.Defense(PlacementInShield.ALL, false, false, 2, 0, 0, 3f, 0.6f),
-                        Ingredient.of(Items.IRON_INGOT)
-                ));
-                GOLD = bootstrap.register(GOLD_KEY, new Material(
+                        Ingredient.of(Items.IRON_INGOT)));
+    public static DeferredHolder<Material, Material> GOLD = MATERIALS.register("gold", () -> new Material(
                         new Material.Durabilities(32, 91, 395, 40),
                         new Material.EnchantingRelated(22, 25, 2),
                         new Material.Offense(0, 4, 0.07, false, true, 1.1f, 6),
                         new Material.Defense(PlacementInShield.ALL, false, true, 1, 0, 0, 3f, 0.4f),
-                        Ingredient.of(Items.GOLD_INGOT)
-                ));
-                DIAMOND = bootstrap.register(DIAMOND_KEY, new Material(
+                        Ingredient.of(Items.GOLD_INGOT)));
+    public static DeferredHolder<Material, Material> DIAMOND = MATERIALS.register("diamond", () -> new Material(
                         new Material.Durabilities(1561, 1561, 672, 300),
                         new Material.EnchantingRelated(10, 10, -0.1f),
                         new Material.Offense(3, 3.75f, 0.04, false, true, 1.3f, 8),
                         new Material.Defense(PlacementInShield.ALL, false, false, 3, 2, 0, 5f, 0.75f),
-                        Ingredient.of(Items.DIAMOND)
-                ));
-                NETHERITE = bootstrap.register(NETHERITE_KEY, new Material(
+                        Ingredient.of(Items.DIAMOND)));
+    public static DeferredHolder<Material, Material> NETHERITE = MATERIALS.register("netherite", () -> new Material(
                         new Material.Durabilities(2031, 2031, 768, 375),
                         new Material.EnchantingRelated(15, 15, 0.2f),
                         new Material.Offense(4, 4.5f, 0.05, false, true, 1.45f, 10),
                         new Material.Defense(PlacementInShield.ALL, true, false, 3, 3, 0.1, 6f, 0.85f),
                         Ingredient.of(Items.NETHERITE_INGOT),
-                        true, Optional.of(List.of(DIAMOND.key().location())),
-                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
-                ));
-                HEART_STEALER = bootstrap.register(HEART_STEALER_KEY, new Material(
+                        true, Optional.of(List.of(DIAMOND.getId())),
+                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)));
+    public static DeferredHolder<Material, Material> HEART_STEALER = MATERIALS.register("heart_stealer", () -> new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
                         new Material.Offense(4.5, 0f, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, true, false, 0, 0, 0, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                HEAT = bootstrap.register(HEAT_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> HEAT = MATERIALS.register("heat", () -> new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 0, 0f),
                         new Material.Offense(4, 0f, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, true, false, 0, 0, 0, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                FROST = bootstrap.register(FROST_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> FROST = MATERIALS.register("frost", () -> new Material(
                         new Material.Durabilities(1561, 0, 0, 0),
                         new Material.EnchantingRelated(10, 0, 0f),
                         new Material.Offense(3, 0f, 0.05, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                VOID_TOUCHED = bootstrap.register(VOID_TOUCHED_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> VOID_TOUCHED = MATERIALS.register("void_touched", () -> new Material(
                         new Material.Durabilities(2031, 0, 0, 0),
                         new Material.EnchantingRelated(15, 0, 0f),
                         new Material.Offense(4, 0f, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 0, 0, 0, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                SOUL = bootstrap.register(SOUL_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> SOUL = MATERIALS.register("soul", () -> new Material(
                         new Material.Durabilities(2031, 2031, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
                         new Material.Offense(4, 0f, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0, 0f, 0f),
-                        Ingredient.of(ECItems.GOOD_SOUL, ECItems.BAD_SOUL)
-                ));
-                FIGHTERS = bootstrap.register(FIGHTERS_KEY, new Material(
+                        Ingredient.of(ECItems.GOOD_SOUL, ECItems.BAD_SOUL)));
+    public static DeferredHolder<Material, Material> FIGHTERS = MATERIALS.register("fighters", () -> new Material(
                         new Material.Durabilities(0, 1561, 0, 0),
                         new Material.EnchantingRelated(10, 10, 0f),
                         new Material.Offense(3.5, 0f, 0.05, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0.05, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                BERSERK = bootstrap.register(BERSERK_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> BERSERK = MATERIALS.register("berserk", () -> new Material(
                         new Material.Durabilities(0, 1561, 0, 0),
                         new Material.EnchantingRelated(10, 10, 0f),
                         new Material.Offense(3.5, 0f, 0.05, false, true, 1f, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0.05, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-                BRAWLERS = bootstrap.register(BRAWLERS_KEY, new Material(
+                        Ingredient.of(Items.AIR)));
+    public static DeferredHolder<Material, Material> BRAWLERS = MATERIALS.register("brawlers", () -> new Material(
                         new Material.Durabilities(0, 2031, 0, 0),
                         new Material.EnchantingRelated(15, 15, 0f),
                         new Material.Offense(4, 0f, 0.05, false, true, 1, 0),
                         new Material.Defense(PlacementInShield.NONE, false, false, 3, 3, 0, 0f, 0f),
-                        Ingredient.of(Items.AIR)
-                ));
-            };
-
-    public static ResourceKey<Material> createMaterialKey(ResourceLocation id) {
-        return ResourceKey.create(
-                Registries.MATERIAL_REGISTRY_KEY,
-                id
-        );
-    }
-
-    static class UniversalOwner implements HolderOwner<Material> {}
+                        Ingredient.of(Items.AIR)));
 }

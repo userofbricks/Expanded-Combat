@@ -10,7 +10,7 @@ import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -90,7 +90,7 @@ public class ExpandedCombat {
         {
             if (registryEntry.get() instanceof GauntletItem gauntletItem)
                 CuriosRendererRegistry.register(gauntletItem, gauntletItem.getGauntletRenderer());
-            else if (registryEntry.get() instanceof ECQuiverItem quiverItem)
+            else if (registryEntry.get() instanceof QuiverItem quiverItem)
                 CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelProperties.registerModelOverrides();

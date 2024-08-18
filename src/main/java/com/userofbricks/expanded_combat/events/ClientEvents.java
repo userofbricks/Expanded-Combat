@@ -66,9 +66,9 @@ public class ClientEvents {
                         FastColor.ARGB32.opaque(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor()) : -1, arrowItem);
             } else if (item.get() instanceof GauntletItem gauntletItem && gauntletItem.material == Materials.LEATHER) {
                 event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, gauntletItem);
-            } else if (item.get() instanceof ECQuiverItem quiverItem && quiverItem.material == Materials.LEATHER) {
-                event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, quiverItem);
-            }
+            } //else if (item.get() instanceof QuiverItem quiverItem && quiverItem.material == Materials.LEATHER) {
+                //event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, quiverItem);
+            //}
         }
         for (Holder.Reference<Item> weaponItem : BuiltInRegistries.ITEM.holders().filter(item -> item.value() instanceof ECWeaponItem).toList()) {
             if (weaponItem.value() instanceof PotionWeaponItem) {

@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.userofbricks.expanded_combat.client.model.QuiverModel;
 import com.userofbricks.expanded_combat.init.ECLayerDefinitions;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -36,7 +36,7 @@ public class QuiverRenderer implements ICurioRenderer {
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent,
                                                                           MultiBufferSource multiBufferSource, int light, float limbSwing, float limbSwingAmount, float partialTicks,
                                                                           float ageInTicks, float netHeadYaw, float headPitch) {
-        if (stack.getItem() instanceof ECQuiverItem ecQuiverItem) {
+        if (stack.getItem() instanceof QuiverItem quiverItem) {
 
             LivingEntity entity = slotContext.entity();
             this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
@@ -45,9 +45,9 @@ public class QuiverRenderer implements ICurioRenderer {
             ICurioRenderer.translateIfSneaking(poseStack, entity);
             ICurioRenderer.rotateIfSneaking(poseStack, entity);
 
-            for (ECQuiverItem.Layer layer : ecQuiverItem.QUIVER_TEXTURE_LAYERS) {
+            for (QuiverItem.Layer layer : quiverItem.QUIVER_TEXTURE_LAYERS) {
                 VertexConsumer vertexconsumer = ItemRenderer
-                        .getArmorFoilBuffer(multiBufferSource, RenderType.armorCutoutNoCull(layer.texture(ecQuiverItem.material.key().location())), false,
+                        .getArmorFoilBuffer(multiBufferSource, RenderType.armorCutoutNoCull(layer.texture(quiverItem.material.getId())), false,
                                 stack.hasFoil());
                 this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             }
@@ -58,7 +58,7 @@ public class QuiverRenderer implements ICurioRenderer {
 
             List<ItemStack> nonEmptySlots = contents.itemCopyStream().toList();
             if (!nonEmptySlots.isEmpty()) {
-                int quiverSlots = ecQuiverItem.getMaterial().offense().quiverSlots();
+                int quiverSlots = quiverItem.getMaterial().offense().quiverSlots();
                 boolean notOneSlot = quiverSlots > 1;
                 int thirdOfCapacity = Math.max(1, notOneSlot ? Math.round(quiverSlots / 3f) : Math.round(nonEmptySlots.getFirst().copy().getMaxStackSize() / 3f));
                 Minecraft mc = Minecraft.getInstance();

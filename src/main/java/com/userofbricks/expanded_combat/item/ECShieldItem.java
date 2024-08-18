@@ -46,11 +46,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getMaxDamage(ItemStack stack) {
         int durability = 336;
-        int ul = getUpperLeftMaterial(stack).value().durabilities().addedShieldDurability();
-        int ur = getUpperRightMaterial(stack).value().durabilities().addedShieldDurability();
-        int dl = getDownLeftMaterial(stack).value().durabilities().addedShieldDurability();
-        int dr = getDownRightMaterial(stack).value().durabilities().addedShieldDurability();
-        int m = getMiddleMaterial(stack).value().durabilities().addedShieldDurability();
+        int ul = getUpperLeftMaterial(stack).durabilities().addedShieldDurability();
+        int ur = getUpperRightMaterial(stack).durabilities().addedShieldDurability();
+        int dl = getDownLeftMaterial(stack).durabilities().addedShieldDurability();
+        int dr = getDownRightMaterial(stack).durabilities().addedShieldDurability();
+        int m = getMiddleMaterial(stack).durabilities().addedShieldDurability();
         return durability + ul + ur + dl + dr + m;
     }
 
@@ -67,11 +67,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (repair.getItem() instanceof EnchantedBookItem) return  false;
-        Material ul = getUpperLeftMaterial(toRepair).value();
-        Material ur = getUpperRightMaterial(toRepair).value();
-        Material dl = getDownLeftMaterial(toRepair).value();
-        Material dr = getDownRightMaterial(toRepair).value();
-        Material m = getMiddleMaterial(toRepair).value();
+        Material ul = getUpperLeftMaterial(toRepair);
+        Material ur = getUpperRightMaterial(toRepair);
+        Material dl = getDownLeftMaterial(toRepair);
+        Material dr = getDownRightMaterial(toRepair);
+        Material m = getMiddleMaterial(toRepair);
         ShieldMaterials shieldMaterials = toRepair.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT);
         int last = shieldMaterials.lastRepairNumber() + 1;
         if (last >= 5) last = 0;
@@ -99,11 +99,11 @@ public class ECShieldItem extends ShieldItem {
      * @return the mending bonus.
      */
     public float getMendingBonus(ItemStack stack) {
-        float ul = getUpperLeftMaterial(stack).value().enchantingRelated().mendingBonus()/5;
-        float ur = getUpperRightMaterial(stack).value().enchantingRelated().mendingBonus()/5;
-        float dl = getDownLeftMaterial(stack).value().enchantingRelated().mendingBonus()/5;
-        float dr = getDownRightMaterial(stack).value().enchantingRelated().mendingBonus()/5;
-        float m = getMiddleMaterial(stack).value().enchantingRelated().mendingBonus()/5;
+        float ul = getUpperLeftMaterial(stack).enchantingRelated().mendingBonus()/5;
+        float ur = getUpperRightMaterial(stack).enchantingRelated().mendingBonus()/5;
+        float dl = getDownLeftMaterial(stack).enchantingRelated().mendingBonus()/5;
+        float dr = getDownRightMaterial(stack).enchantingRelated().mendingBonus()/5;
+        float m = getMiddleMaterial(stack).enchantingRelated().mendingBonus()/5;
         return ul + ur + dl + dr + m;
     }
 
@@ -123,20 +123,20 @@ public class ECShieldItem extends ShieldItem {
     }
 
     public static double getBaseProtection(ItemStack stack) {
-        double ul = getUpperLeftMaterial(stack).value().defense().baseProtectionAmmount() /5;
-        double ur = getUpperRightMaterial(stack).value().defense().baseProtectionAmmount() /5;
-        double dl = getDownLeftMaterial(stack).value().defense().baseProtectionAmmount() /5;
-        double dr = getDownRightMaterial(stack).value().defense().baseProtectionAmmount() /5;
-        double m = getMiddleMaterial(stack).value().defense().baseProtectionAmmount() /5;
+        double ul = getUpperLeftMaterial(stack).defense().baseProtectionAmmount() /5;
+        double ur = getUpperRightMaterial(stack).defense().baseProtectionAmmount() /5;
+        double dl = getDownLeftMaterial(stack).defense().baseProtectionAmmount() /5;
+        double dr = getDownRightMaterial(stack).defense().baseProtectionAmmount() /5;
+        double m = getMiddleMaterial(stack).defense().baseProtectionAmmount() /5;
         return ul + ur + dl + dr + m;
     }
 
     public static double getPercentageProtection(ItemStack stack) {
-        double ul = getUpperLeftMaterial(stack).value().defense().afterBasePercentReduction() /5;
-        double ur = getUpperRightMaterial(stack).value().defense().afterBasePercentReduction() /5;
-        double dl = getDownLeftMaterial(stack).value().defense().afterBasePercentReduction() /5;
-        double dr = getDownRightMaterial(stack).value().defense().afterBasePercentReduction() /5;
-        double m = getMiddleMaterial(stack).value().defense().afterBasePercentReduction() /5;
+        double ul = getUpperLeftMaterial(stack).defense().afterBasePercentReduction() /5;
+        double ur = getUpperRightMaterial(stack).defense().afterBasePercentReduction() /5;
+        double dl = getDownLeftMaterial(stack).defense().afterBasePercentReduction() /5;
+        double dr = getDownRightMaterial(stack).defense().afterBasePercentReduction() /5;
+        double m = getMiddleMaterial(stack).defense().afterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
 
@@ -161,40 +161,40 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int timeUsing) {
         super.onUseTick(level, livingEntity, itemStack, timeUsing);
-        Map<Holder<Material>, Integer> materials = new HashMap<>();
-        for (Holder<Material> material : Arrays.asList(getUpperLeftMaterial(itemStack), getUpperRightMaterial(itemStack), getMiddleMaterial(itemStack),
+        Map<Material, Integer> materials = new HashMap<>();
+        for (Material material : Arrays.asList(getUpperLeftMaterial(itemStack), getUpperRightMaterial(itemStack), getMiddleMaterial(itemStack),
                 getDownLeftMaterial(itemStack), getDownRightMaterial(itemStack)))
         {
             if (materials.containsKey(material)) materials.replace(material, materials.get(material) + 1);
             else materials.put(material, 1);
         }
-        for (Map.Entry<Holder<Material>, Integer> material : materials.entrySet()) {
+        for (Map.Entry<Material, Integer> material : materials.entrySet()) {
             ShieldMaterialUseTick useTick = PluginInit.getShieldUseTickEntry(material.getKey());
             if (useTick != null) useTick.onUseTick().apply(level, livingEntity, itemStack, timeUsing, material.getValue());
         }
     }
 
-    public static Holder<Material> getUpperLeftMaterial(ItemStack stack) {
+    public static Material getUpperLeftMaterial(ItemStack stack) {
         return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).ULMaterial();
     }
 
-    public static Holder<Material> getUpperRightMaterial(ItemStack stack) {
+    public static Material getUpperRightMaterial(ItemStack stack) {
         return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).URMaterial();
     }
 
-    public static Holder<Material> getDownLeftMaterial(ItemStack stack) {
+    public static Material getDownLeftMaterial(ItemStack stack) {
         return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DLMaterial();
     }
 
-    public static Holder<Material> getDownRightMaterial(ItemStack stack) {
+    public static Material getDownRightMaterial(ItemStack stack) {
         return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).DRMaterial();
     }
 
-    public static Holder<Material> getMiddleMaterial(ItemStack stack) {
+    public static Material getMiddleMaterial(ItemStack stack) {
         return stack.getOrDefault(SHIELD_MATERIALS, ShieldMaterials.DEFAULT).MMaterial();
     }
 
-    public static ItemStack makeShieldBeMaterial(ItemStack stack, Holder<Material> material) {
+    public static ItemStack makeShieldBeMaterial(ItemStack stack, Material material) {
         stack.set(SHIELD_MATERIALS, new ShieldMaterials(material, material, material, material, material, 0));
         return stack;
     }

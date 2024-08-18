@@ -22,7 +22,7 @@ public class PluginInit {
         }
     }
 
-    public static @Nullable ShieldMaterialUseTick getShieldUseTickEntry(Holder<Material> material) {
+    public static @Nullable ShieldMaterialUseTick getShieldUseTickEntry(Material material) {
         for (ShieldMaterialUseTick shieldMaterialUseTick : shieldMaterialUseTickList) {
             if (material == shieldMaterialUseTick.material()) {
                 return shieldMaterialUseTick;
@@ -32,24 +32,24 @@ public class PluginInit {
     }
     public static double getShieldToMaterialBaseProtection(ItemStack stack) {
         ShieldMaterials materials = stack.get(ItemDataComponents.SHIELD_MATERIALS);
-        if (materials == null) return Materials.VANILLA.value().defense().baseProtectionAmmount();
+        if (materials == null) return Materials.VANILLA.get().defense().baseProtectionAmmount();
 
-        double ul = materials.ULMaterial().value().defense().baseProtectionAmmount() /5;
-        double ur = materials.URMaterial().value().defense().baseProtectionAmmount() /5;
-        double dl = materials.DLMaterial().value().defense().baseProtectionAmmount() /5;
-        double dr = materials.DRMaterial().value().defense().baseProtectionAmmount() /5;
-        double m = materials.MMaterial().value().defense().baseProtectionAmmount() /5;
+        double ul = materials.ULMaterial().defense().baseProtectionAmmount() /5;
+        double ur = materials.URMaterial().defense().baseProtectionAmmount() /5;
+        double dl = materials.DLMaterial().defense().baseProtectionAmmount() /5;
+        double dr = materials.DRMaterial().defense().baseProtectionAmmount() /5;
+        double m = materials.MMaterial().defense().baseProtectionAmmount() /5;
         return ul + ur + dl + dr + m;
     }
     public static double getShieldToMaterialPercentageProtection(ItemStack stack) {
         ShieldMaterials materials = stack.get(ItemDataComponents.SHIELD_MATERIALS);
-        if (materials == null) return Materials.VANILLA.value().defense().baseProtectionAmmount();
+        if (materials == null) return Materials.VANILLA.get().defense().baseProtectionAmmount();
 
-        double ul = materials.ULMaterial().value().defense().afterBasePercentReduction() /5;
-        double ur = materials.URMaterial().value().defense().afterBasePercentReduction() /5;
-        double dl = materials.DLMaterial().value().defense().afterBasePercentReduction() /5;
-        double dr = materials.DRMaterial().value().defense().afterBasePercentReduction() /5;
-        double m = materials.MMaterial().value().defense().afterBasePercentReduction() /5;
+        double ul = materials.ULMaterial().defense().afterBasePercentReduction() /5;
+        double ur = materials.URMaterial().defense().afterBasePercentReduction() /5;
+        double dl = materials.DLMaterial().defense().afterBasePercentReduction() /5;
+        double dr = materials.DRMaterial().defense().afterBasePercentReduction() /5;
+        double m = materials.MMaterial().defense().afterBasePercentReduction() /5;
         return ul + ur + dl + dr + m;
     }
 }

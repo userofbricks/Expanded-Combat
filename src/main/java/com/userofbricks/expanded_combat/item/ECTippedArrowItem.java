@@ -12,6 +12,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -22,7 +23,7 @@ import static com.userofbricks.expanded_combat.datagen.LangStrings.TIPPED_ARROW_
 @MethodsReturnNonnullByDefault
 public class ECTippedArrowItem extends ECArrowItem {
     private final ItemLike notTipped;
-    public ECTippedArrowItem(Properties properties, Holder.Reference<Material> material, ItemLike notTipped) {
+    public ECTippedArrowItem(Properties properties, DeferredHolder<Material, Material> material, ItemLike notTipped) {
         super(properties, material);
         this.notTipped = notTipped;
     }

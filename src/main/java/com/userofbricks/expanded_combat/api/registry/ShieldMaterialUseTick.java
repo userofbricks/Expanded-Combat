@@ -7,5 +7,5 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public record ShieldMaterialUseTick(Holder<Material> material, Consumer5<Level, LivingEntity, ItemStack, Integer, Integer> onUseTick) {
+public record ShieldMaterialUseTick(Material material, Consumer5<Level, LivingEntity, ItemStack, Integer, Integer> onUseTick) {
 }

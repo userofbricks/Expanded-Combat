@@ -8,7 +8,6 @@ import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSources;
@@ -21,6 +20,7 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -30,7 +30,7 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class SlamWeaponItem extends ECWeaponItem{
     private final int extraSlamLvl;
-    public SlamWeaponItem(Holder.Reference<Material> material, Holder.Reference<WeaponType> weapon, Properties properties, int extraSlamLvl) {
+    public SlamWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int extraSlamLvl) {
         super(material, weapon, properties.component(ItemDataComponents.HITS_TILL_SLAM, 0));
         this.extraSlamLvl = extraSlamLvl;
     }

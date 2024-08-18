@@ -7,10 +7,11 @@ import com.userofbricks.expanded_combat.item.ECCrossBowItem;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.function.BiFunction;
 
-public record CrossBowType(BiFunction<Item.Properties, Holder.Reference<Material>, ? extends ECCrossBowItem> bowConstructor) {
+public record CrossBowType(BiFunction<Item.Properties, DeferredHolder<Material, Material>, ? extends ECCrossBowItem> bowConstructor) {
     public  static final Codec<Holder<CrossBowType>> HOLDER_CODEC = Registries.CROSSBOW_TYPE_REGISTRY
             .holderByNameCodec();
 }

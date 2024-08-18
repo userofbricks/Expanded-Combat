@@ -25,13 +25,21 @@ public class ECItemModelProvider extends ItemModelProviderBase {
     protected void registerModels() {
         for (DeferredHolder<Item, ? extends Item> item : ECItems.ITEMS.getEntries()) {
             dynamicallyGenerateModels(item);
-            standardWeaponModelsFor(Materials.WOOD_PLANK, "wooden");
-            standardWeaponModelsFor(Materials.STONE, "stone");
-            standardWeaponModelsFor(Materials.IRON, "iron");
-            standardWeaponModelsFor(Materials.GOLD, "golden");
-            standardWeaponModelsFor(Materials.DIAMOND, "diamond");
-            standardWeaponModelsFor(Materials.NETHERITE, "netherite");
         }
+        standardWeaponModelsFor(Materials.WOOD_PLANK, "wooden");
+        standardWeaponModelsFor(Materials.STONE, "stone");
+        standardWeaponModelsFor(Materials.IRON, "iron");
+        standardWeaponModelsFor(Materials.GOLD, "golden");
+        standardWeaponModelsFor(Materials.DIAMOND, "diamond");
+        standardWeaponModelsFor(Materials.NETHERITE, "netherite");
+        basicItem(ECItems.LEATHER_STICK.asItem());
+        basicItem(ECItems.GOLD_STICK.asItem());
+        basicItem(ECItems.IRON_STICK.asItem());
+        basicItem(ECItems.GAS_BOTTLE.asItem());
+        basicItem(ECItems.PURIFIED_GAS_BOTTLE.asItem());
+        basicItem(ECItems.SOLIDIFIED_PURIFICATION.asItem());
+        basicItem(ECItems.GOOD_SOUL.asItem());
+        basicItem(ECItems.BAD_SOUL.asItem());
     }
 
     private void dynamicallyGenerateModels(DeferredHolder<Item, ? extends Item> item) {
@@ -61,9 +69,9 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         if (item.get() instanceof ECCrossBowItem bowItem) {
             generateCrossBowModel(item.getId(), bowItem.material);
         }
-        if (item.get() instanceof ECQuiverItem quiverItem) {
+        if (item.get() instanceof QuiverItem quiverItem) {
             boolean dyeable = false;
-            for (ECQuiverItem.Layer layer : quiverItem.QUIVER_TEXTURE_LAYERS) {
+            for (QuiverItem.Layer layer : quiverItem.QUIVER_TEXTURE_LAYERS) {
                 if (layer.dyeable()) {
                     dyeable = true;
                     break;
@@ -107,11 +115,11 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                         .predicate(new ResourceLocation("stage"), 1f)
                         .model(stage5Builder)
                         .end();
-            } else if (materialReference == Materials.HEAT || materialReference == Materials.FROST || materialReference == Materials.VOID_TOUCHED || materialReference == Materials.SOUL) {
+            } else if (materialReference.key() == Materials.HEAT.key() || materialReference.key() == Materials.FROST.key() || materialReference.key() == Materials.VOID_TOUCHED.key() || materialReference.key() == Materials.SOUL.key()) {
                 builder.setSingleTexture().setHasCustomTransformsOrModel();
-                if (weaponTypeReference == WeaponTypes.DAGGER || weaponTypeReference == WeaponTypes.CUTLASS) {
+                if (weaponTypeReference.key() == WeaponTypes.DAGGER.key() || weaponTypeReference.key() == WeaponTypes.CUTLASS.key()) {
                     builder.generateModel("item/", "", "");
-                } else if (weaponTypeReference != WeaponTypes.MACE && weaponTypeReference != WeaponTypes.GREAT_HAMMER) {
+                } else if (weaponTypeReference.key() != WeaponTypes.MACE.key() && weaponTypeReference.key() != WeaponTypes.GREAT_HAMMER.key()) {
                     builder.generateModel("item_large/", "", "");
                 }
             }

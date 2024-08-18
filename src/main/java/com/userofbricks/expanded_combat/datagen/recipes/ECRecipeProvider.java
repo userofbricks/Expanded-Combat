@@ -2,7 +2,6 @@ package com.userofbricks.expanded_combat.datagen.recipes;
 
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
@@ -21,13 +20,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -135,7 +132,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 } else {
                     gauntlet(recipeOutput, gauntletItem, materialIngredients.get(gauntletItem.material));
                 }
-            } else if (deferredItem.get() instanceof ECQuiverItem quiverItem) {
+            } else if (deferredItem.get() instanceof QuiverItem quiverItem) {
                 if (quiverItem.material == Materials.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),

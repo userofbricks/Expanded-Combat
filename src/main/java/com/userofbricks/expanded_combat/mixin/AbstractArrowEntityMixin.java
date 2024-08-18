@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.config.CommonECConfig;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EntityType;
@@ -18,11 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
-import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @Mixin(AbstractArrow.class)
@@ -63,14 +59,14 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
         if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0 && CommonECConfig.pair.getLeft().enableQuivers.get()) {
             ItemStack pickupItem = this.getPickupItem();
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
-                SlotResult quiverSlot = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem)).orElse(null);
+                SlotResult quiverSlot = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof QuiverItem)).orElse(null);
                 if (quiverSlot == null) return;
                 ItemStack quiverStack = quiverSlot.stack();
-                ECQuiverItem quiverItem = ((ECQuiverItem)quiverStack.getItem());
+                QuiverItem quiverItem = ((QuiverItem)quiverStack.getItem());
 
                 BundleContents bundlecontents = quiverStack.getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-                ECQuiverItem.MutableQuiverContents bundlecontents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+                QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
 
                 int i = bundlecontents$mutable.tryInsert(pickupItem);
                 if (i > 0) {

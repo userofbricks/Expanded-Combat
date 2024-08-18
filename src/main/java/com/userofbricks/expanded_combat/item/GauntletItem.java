@@ -34,6 +34,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -54,7 +55,7 @@ import java.util.function.Supplier;
 public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
-    public final Holder.Reference<Material> material;
+    public final DeferredHolder<Material, Material> material;
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
         protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack itemStack) {
@@ -91,8 +92,11 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
             return true;
         }
     }
+    public GauntletItem(Properties properties, DeferredHolder<Material, Material> material) {
+        this(properties, material, new GauntletItem.Layer());
+    }
 
-    public GauntletItem(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
+    public GauntletItem(Properties properties, DeferredHolder<Material, Material> materialIn, Layer... layers) {
         super(properties);
         this.material = materialIn;
         this.GAUNTLET_TEXTURE_LAYERS = layers;
@@ -109,13 +113,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     public Material getMaterial() {
-        if (material.isBound()) return material.value();
-
-        ClientPacketListener clientPacketListener = Minecraft.getInstance().getConnection();
-        if (clientPacketListener == null) return Materials.NOTBOUNDBACKUP;
-
-        Optional<Holder.Reference<Material>> reference = clientPacketListener.registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY).getHolder(material.key());
-        return reference.map(Holder.Reference::value).orElse(Materials.NOTBOUNDBACKUP);
+        return material.value();
     }
     @Override
     @ParametersAreNonnullByDefault
@@ -124,7 +122,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     @Override
-    public Holder.Reference<Material> getMaterialReference() {
+    public DeferredHolder<Material, Material> getMaterialReference() {
         return material;
     }
 
@@ -208,11 +206,11 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
-            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/models/gauntlet/" + relativeTexture.getPath() + ".png");
+            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/model/gauntlet/" + relativeTexture.getPath() + ".png");
         }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
-            return assetName -> assetName.withPath(p_324187_ -> "textures/models/gauntlet/" + assetName.getPath() + "_" + suffix + ".png");
+            return assetName -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + "_" + suffix + ".png");
         }
 
         public ResourceLocation texture(ResourceLocation material) {

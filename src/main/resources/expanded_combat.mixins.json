@@ -10,6 +10,7 @@
     "CuriosMenuMixin",
     "EntityAttachmentMixin",
     "FletchingTableBlockMixin",
+    "GameDataMixin",
     "PlayerEntityMixin"
   ],
   "client": [],

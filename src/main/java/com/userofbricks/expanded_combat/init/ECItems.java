@@ -1,10 +1,11 @@
 package com.userofbricks.expanded_combat.init;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.item.*;
-import net.minecraft.core.Holder;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.init.ItemGenerationTypes.*;
 import static com.userofbricks.expanded_combat.init.Materials.*;
 import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
 
@@ -40,43 +40,43 @@ public class ECItems
     public static final DeferredItem<ECShieldItem> SHIELD_FIRE_RESISTANT = ITEMS.registerItem("fire_resistant_shield", ECShieldItem::new, new Item.Properties().fireResistant());
 
     //Vanilla Material Items
-    public static final DeferredItem<GauntletItem> LEATHER_GAUNTLET = ITEMS.registerItem("leather_gauntlet", properties -> DYEABLE_GAUNTLET.construct(properties, LEATHER));
-    public static final DeferredItem<ECQuiverItem> LEATHER_QUIVER = ITEMS.registerItem("leather_quiver", properties -> STANDARD_QUIVER.construct(properties, LEATHER));
-    public static final DeferredItem<GauntletItem> RABBIT_HIDE_GAUNTLET = ITEMS.registerItem("rabbit_hide_gauntlet", properties -> STANDARD_GAUNTLET.construct(properties, RABBIT_HIDE));
-    public static final DeferredItem<ECQuiverItem> RABBIT_HIDE_QUIVER = ITEMS.registerItem("rabbit_hide_quiver", properties -> STANDARD_QUIVER.construct(properties, RABBIT_HIDE));
+    public static final DeferredItem<GauntletItem> LEATHER_GAUNTLET = ITEMS.registerItem("leather_gauntlet", properties -> new GauntletItem(properties, LEATHER));
+    public static final DeferredItem<QuiverItem> LEATHER_QUIVER = ITEMS.registerItem("leather_quiver", properties -> new QuiverItem(properties, LEATHER));
+    public static final DeferredItem<GauntletItem> RABBIT_HIDE_GAUNTLET = ITEMS.registerItem("rabbit_hide_gauntlet", properties -> new GauntletItem(properties, RABBIT_HIDE));
+    public static final DeferredItem<QuiverItem> RABBIT_HIDE_QUIVER = ITEMS.registerItem("rabbit_hide_quiver", properties -> new QuiverItem(properties, RABBIT_HIDE));
 
     public static final List<DeferredItem<? extends ECWeaponItem>> WOOD_PLANK_WEAPONS = standardWeaponsFor(WOOD_PLANK, "wooden");
     public static final List<DeferredItem<? extends ECWeaponItem>> STONE_WEAPONS = standardWeaponsFor(STONE, "stone");
 
     public static final List<DeferredItem<? extends ECWeaponItem>> IRON_WEAPONS = standardWeaponsFor(IRON, "iron");
-    public static final DeferredItem<? extends ECArrowItem> IRON_ARROW = ITEMS.registerItem("iron_arrow", properties -> STANDARD_ARROW.constructor().apply(properties, IRON));
+    public static final DeferredItem<? extends ECArrowItem> IRON_ARROW = ITEMS.registerItem("iron_arrow", properties -> new ECArrowItem(properties, IRON));
     public static final DeferredItem<? extends ECArrowItem> IRON_TIPPED_ARROW = ITEMS.registerItem("tipped_iron_arrow", properties -> new ECTippedArrowItem(properties, IRON, IRON_ARROW));
-    public static final DeferredItem<? extends ECBowItem> IRON_BOW = ITEMS.registerItem("iron_bow", properties -> STANDARD_BOW.bowConstructor().apply(properties, IRON));
-    public static final DeferredItem<? extends ECCrossBowItem> IRON_CROSS_BOW = ITEMS.registerItem("iron_cross_bow", properties -> STANDARD_CROSSBOW.bowConstructor().apply(properties, IRON));
-    public static final DeferredItem<? extends GauntletItem> IRON_GAUNTLET = ITEMS.registerItem("iron_gauntlet", properties -> STANDARD_GAUNTLET.construct(properties, IRON));
-    public static final DeferredItem<? extends ECQuiverItem> IRON_QUIVER = ITEMS.registerItem("iron_quiver", properties -> STANDARD_QUIVER.construct(properties, IRON));
+    public static final DeferredItem<? extends ECBowItem> IRON_BOW = ITEMS.registerItem("iron_bow", properties -> new ECBowItem(properties, IRON));
+    public static final DeferredItem<? extends ECCrossBowItem> IRON_CROSS_BOW = ITEMS.registerItem("iron_cross_bow", properties -> new ECCrossBowItem(properties, IRON));
+    public static final DeferredItem<? extends GauntletItem> IRON_GAUNTLET = ITEMS.registerItem("iron_gauntlet", properties -> new GauntletItem(properties, IRON));
+    public static final DeferredItem<? extends QuiverItem> IRON_QUIVER = ITEMS.registerItem("iron_quiver", properties -> new QuiverItem(properties, IRON));
 
     public static final List<DeferredItem<? extends ECWeaponItem>> GOLD_WEAPONS = standardWeaponsFor(GOLD, "golden");
-    public static final DeferredItem<? extends ECBowItem> GOLD_BOW = ITEMS.registerItem("golden_bow", properties -> STANDARD_BOW.bowConstructor().apply(properties, GOLD));
-    public static final DeferredItem<? extends ECCrossBowItem> GOLD_CROSS_BOW = ITEMS.registerItem("golden_cross_bow", properties -> STANDARD_CROSSBOW.bowConstructor().apply(properties, GOLD));
-    public static final DeferredItem<? extends GauntletItem> GOLD_GAUNTLET = ITEMS.registerItem("golden_gauntlet", properties -> STANDARD_GAUNTLET.construct(properties, GOLD));
-    public static final DeferredItem<? extends ECQuiverItem> GOLD_QUIVER = ITEMS.registerItem("golden_quiver", properties -> STANDARD_QUIVER.construct(properties, GOLD));
+    public static final DeferredItem<? extends ECBowItem> GOLD_BOW = ITEMS.registerItem("golden_bow", properties -> new ECBowItem(properties, GOLD));
+    public static final DeferredItem<? extends ECCrossBowItem> GOLD_CROSS_BOW = ITEMS.registerItem("golden_cross_bow", properties -> new ECCrossBowItem(properties, GOLD));
+    public static final DeferredItem<? extends GauntletItem> GOLD_GAUNTLET = ITEMS.registerItem("golden_gauntlet", properties -> new GauntletItem(properties, GOLD));
+    public static final DeferredItem<? extends QuiverItem> GOLD_QUIVER = ITEMS.registerItem("golden_quiver", properties -> new QuiverItem(properties, GOLD));
 
     public static final List<DeferredItem<? extends ECWeaponItem>> DIAMOND_WEAPONS = standardWeaponsFor(DIAMOND, "diamond");
-    public static final DeferredItem<? extends ECArrowItem> DIAMOND_ARROW = ITEMS.registerItem("diamond_arrow", properties -> STANDARD_ARROW.constructor().apply(properties, DIAMOND));
+    public static final DeferredItem<? extends ECArrowItem> DIAMOND_ARROW = ITEMS.registerItem("diamond_arrow", properties -> new ECArrowItem(properties, DIAMOND));
     public static final DeferredItem<? extends ECArrowItem> DIAMOND_TIPPED_ARROW = ITEMS.registerItem("tipped_diamond_arrow", properties -> new ECTippedArrowItem(properties, DIAMOND, DIAMOND_ARROW));
-    public static final DeferredItem<? extends ECBowItem> DIAMOND_BOW = ITEMS.registerItem("diamond_bow", properties -> STANDARD_BOW.bowConstructor().apply(properties, DIAMOND));
-    public static final DeferredItem<? extends ECCrossBowItem> DIAMOND_CROSS_BOW = ITEMS.registerItem("diamond_cross_bow", properties -> STANDARD_CROSSBOW.bowConstructor().apply(properties, DIAMOND));
-    public static final DeferredItem<? extends GauntletItem> DIAMOND_GAUNTLET = ITEMS.registerItem("diamond_gauntlet", properties -> STANDARD_GAUNTLET.construct(properties, DIAMOND));
-    public static final DeferredItem<? extends ECQuiverItem> DIAMOND_QUIVER = ITEMS.registerItem("diamond_quiver", properties -> STANDARD_QUIVER.construct(properties, DIAMOND));
+    public static final DeferredItem<? extends ECBowItem> DIAMOND_BOW = ITEMS.registerItem("diamond_bow", properties -> new ECBowItem(properties, DIAMOND));
+    public static final DeferredItem<? extends ECCrossBowItem> DIAMOND_CROSS_BOW = ITEMS.registerItem("diamond_cross_bow", properties -> new ECCrossBowItem(properties, DIAMOND));
+    public static final DeferredItem<? extends GauntletItem> DIAMOND_GAUNTLET = ITEMS.registerItem("diamond_gauntlet", properties -> new GauntletItem(properties, DIAMOND));
+    public static final DeferredItem<? extends QuiverItem> DIAMOND_QUIVER = ITEMS.registerItem("diamond_quiver", properties -> new QuiverItem(properties, DIAMOND));
 
     public static final List<DeferredItem<? extends ECWeaponItem>> NETHERITE_WEAPONS = standardWeaponsFor(NETHERITE, "netherite");
-    public static final DeferredItem<? extends ECArrowItem> NETHERITE_ARROW = ITEMS.registerItem("netherite_arrow", properties -> STANDARD_ARROW.constructor().apply(properties, NETHERITE));
+    public static final DeferredItem<? extends ECArrowItem> NETHERITE_ARROW = ITEMS.registerItem("netherite_arrow", properties -> new ECArrowItem(properties, NETHERITE));
     public static final DeferredItem<? extends ECArrowItem> NETHERITE_TIPPED_ARROW = ITEMS.registerItem("tipped_netherite_arrow", properties -> new ECTippedArrowItem(properties, NETHERITE, NETHERITE_ARROW));
-    public static final DeferredItem<? extends ECBowItem> NETHERITE_BOW = ITEMS.registerItem("netherite_bow", properties -> STANDARD_BOW.bowConstructor().apply(properties, NETHERITE));
-    public static final DeferredItem<? extends ECCrossBowItem> NETHERITE_CROSS_BOW = ITEMS.registerItem("netherite_cross_bow", properties -> STANDARD_CROSSBOW.bowConstructor().apply(properties, NETHERITE));
-    public static final DeferredItem<? extends GauntletItem> NETHERITE_GAUNTLET = ITEMS.registerItem("netherite_gauntlet", properties -> STANDARD_GAUNTLET.construct(properties, NETHERITE));
-    public static final DeferredItem<? extends ECQuiverItem> NETHERITE_QUIVER = ITEMS.registerItem("netherite_quiver", properties -> STANDARD_QUIVER.construct(properties, NETHERITE));
+    public static final DeferredItem<? extends ECBowItem> NETHERITE_BOW = ITEMS.registerItem("netherite_bow", properties -> new ECBowItem(properties, NETHERITE));
+    public static final DeferredItem<? extends ECCrossBowItem> NETHERITE_CROSS_BOW = ITEMS.registerItem("netherite_cross_bow", properties -> new ECCrossBowItem(properties, NETHERITE));
+    public static final DeferredItem<? extends GauntletItem> NETHERITE_GAUNTLET = ITEMS.registerItem("netherite_gauntlet", properties -> new GauntletItem(properties, NETHERITE));
+    public static final DeferredItem<? extends QuiverItem> NETHERITE_QUIVER = ITEMS.registerItem("netherite_quiver", properties -> new QuiverItem(properties, NETHERITE));
 
     public static final DeferredItem<HeartStealerItem> HEART_STEALER = ITEMS.registerItem("heart_stealer", HeartStealerItem::new);
 
@@ -97,28 +97,28 @@ public class ECItems
     public static final DeferredItem<ElementalWeapon> SOUL_KATANA = ITEMS.registerItem("dark_katana", properties -> new ElementalWeapon(SOUL, KATANA, properties, 2, ECAttributes.SOUL_DMG));
     public static final DeferredItem<ElementalWeapon> SOUL_DAGGER = ITEMS.registerItem("eternal_soul_knife", properties -> new ElementalWeapon(SOUL, DAGGER, properties, 2, ECAttributes.SOUL_DMG));
     public static final DeferredItem<ElementalWeapon> SOUL_SCYTHE = ITEMS.registerItem("soul_scythe", properties -> new ElementalWeapon(SOUL, SCYTHE, properties, 2, ECAttributes.SOUL_DMG));
-    public static final DeferredItem<GauntletItem> SOUL_GAUNTLET = ITEMS.registerItem("soul_fist", properties -> SOUL_FIST.construct(properties, SOUL));
+    public static final DeferredItem<GauntletItem> SOUL_GAUNTLET = ITEMS.registerItem("soul_fist", properties -> new GauntletItem(properties, SOUL, new GauntletItem.Layer(ExpandedCombat.modLoc("soul_fist"), false)));
 
-    public static final DeferredItem<GauntletItem> FIGHTERS_GAUNTLETS = ITEMS.registerItem("fighter_s_gauntlet", properties -> FIGHTERS_BINDINGS.construct(properties, FIGHTERS));
-    public static final DeferredItem<GauntletItem> BERSERK_GAUNTLETS = ITEMS.registerItem("berserk_gauntlet", properties -> BERSERK_GAUNTLET.construct(properties, BERSERK));
-    public static final DeferredItem<GauntletItem> BRAWLERS_GAUNTLETS = ITEMS.registerItem("brawler_s_gauntlet", properties -> BRAWLERS_GAUNTLET.construct(properties, BRAWLERS));
+    public static final DeferredItem<GauntletItem> FIGHTERS_GAUNTLETS = ITEMS.registerItem("fighter_s_gauntlet", properties -> new GauntletItem(properties, FIGHTERS, new GauntletItem.Layer(ExpandedCombat.modLoc("fighters_bindings"), false)));
+    public static final DeferredItem<GauntletItem> BERSERK_GAUNTLETS = ITEMS.registerItem("berserk_gauntlet", properties -> new GauntletBerserk(properties, BERSERK, new GauntletItem.Layer(ExpandedCombat.modLoc("berserk_gauntlet"), false)));
+    public static final DeferredItem<GauntletItem> BRAWLERS_GAUNTLETS = ITEMS.registerItem("brawler_s_gauntlet", properties -> new GauntletBrawlers(properties, BRAWLERS, new GauntletItem.Layer(ExpandedCombat.modLoc("brawlers_gauntlet"), false)));
 
-    private static List<DeferredItem<? extends ECWeaponItem>> standardWeaponsFor(Holder.Reference<Material> materialReference, String materialItemName) {
+    private static List<DeferredItem<? extends ECWeaponItem>> standardWeaponsFor(DeferredHolder<Material, Material> materialReference, String materialItemName) {
         List<DeferredItem<? extends ECWeaponItem>> weaponMap = new ArrayList<>();
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_battle_staff", properties -> STANDARD_WEAPON.constructor().apply(materialReference, BATTLE_STAFF, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_broad_sword", properties -> SLAM_WEAPON.constructor().apply(materialReference, BROAD_SWORD, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_claymore", properties -> SLAM_WEAPON.constructor().apply(materialReference, CLAYMORE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_cutlass", properties -> STANDARD_WEAPON.constructor().apply(materialReference, CUTLASS, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_dagger", properties -> STANDARD_WEAPON.constructor().apply(materialReference, DAGGER, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_dancer_s_sword", properties -> STANDARD_WEAPON.constructor().apply(materialReference, DANCERS_SWORD, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_flail", properties -> STANDARD_WEAPON.constructor().apply(materialReference, FLAIL, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_glaive", properties -> STANDARD_WEAPON.constructor().apply(materialReference, GLAIVE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_great_hammer", properties -> HAMMER_WEAPON.constructor().apply(materialReference, GREAT_HAMMER, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_katana", properties -> ARROW_BLOCKING_WEAPON.constructor().apply(materialReference, KATANA, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_mace", properties -> STANDARD_WEAPON.constructor().apply(materialReference, MACE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_scythe", properties -> POTION_WEAPON.constructor().apply(materialReference, SCYTHE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_sickle", properties -> STANDARD_WEAPON.constructor().apply(materialReference, SICKLE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_spear", properties -> STANDARD_WEAPON.constructor().apply(materialReference, SPEAR, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_battle_staff", properties -> new ECWeaponItem(materialReference, BATTLE_STAFF, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_broad_sword", properties -> new SlamWeaponItem(materialReference, BROAD_SWORD, properties,0)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_claymore", properties -> new SlamWeaponItem(materialReference, CLAYMORE, properties,0)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_cutlass", properties -> new ECWeaponItem(materialReference, CUTLASS, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_dagger", properties -> new ECWeaponItem(materialReference, DAGGER, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_dancer_s_sword", properties -> new ECWeaponItem(materialReference, DANCERS_SWORD, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_flail", properties -> new ECWeaponItem(materialReference, FLAIL, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_glaive", properties -> new ECWeaponItem(materialReference, GLAIVE, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_great_hammer", properties -> new SlamWeaponItem(materialReference, GREAT_HAMMER, properties,2)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_katana", properties -> new ArrowBlockWeaponItem(materialReference, KATANA, properties,2)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_mace", properties -> new ECWeaponItem(materialReference, MACE, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_scythe", properties -> new PotionWeaponItem(materialReference, SCYTHE, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_sickle", properties -> new ECWeaponItem(materialReference, SICKLE, properties)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_spear", properties -> new ECWeaponItem(materialReference, SPEAR, properties)));
         return weaponMap;
     }
 }

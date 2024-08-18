@@ -11,6 +11,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
@@ -19,7 +20,7 @@ import java.util.function.Supplier;
 
 public class GauntletBrawlers extends GauntletItem {
 
-    public GauntletBrawlers(Properties properties, Holder.Reference<Material> materialIn, Layer... layers) {
+    public GauntletBrawlers(Properties properties, DeferredHolder<Material, Material> materialIn, Layer... layers) {
         super(properties, materialIn, layers);
     }
 

@@ -5,9 +5,7 @@ import com.userofbricks.expanded_combat.data.material.Material;
 import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.item.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -24,9 +22,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static com.userofbricks.expanded_combat.config.CommonECConfig.pair;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
@@ -53,10 +49,9 @@ public class ECCreativeTabs {
                     }
                 }
                 if (pair.getLeft().enableShields.get()) {
-                    Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
-                    for (Holder.Reference<Material> material : materialRegistry.holders().filter(materialReference -> materialReference.value().defense().placementInShield() != PlacementInShield.NONE || materialReference.key().location() == Materials.VANILLA_KEY.location()).toList()) {
+                    for (Material material : Registries.MATERIAL_REGISTRY.stream().filter(materialReference -> materialReference.defense().placementInShield() != PlacementInShield.NONE || materialReference == Materials.VANILLA.get()).toList()) {
                         ItemStack stack;
-                        if (!material.value().defense().fireResistant()) {
+                        if (!material.defense().fireResistant()) {
                             stack = new ItemStack(SHIELD.get());
                         } else {
                             stack = new ItemStack(SHIELD_FIRE_RESISTANT.get());
@@ -64,7 +59,7 @@ public class ECCreativeTabs {
                         stack.set(ItemDataComponents.SHIELD_MATERIALS,
                                 new ShieldMaterials(
                                         material, material, material, material,
-                                        material.value().defense().placementInShield() == PlacementInShield.ALL ? material : materialRegistry.getHolderOrThrow(Materials.IRON_KEY),
+                                        material.defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON.get(),
                                         0
                                 ));
                         output.accept(stack);
@@ -81,7 +76,7 @@ public class ECCreativeTabs {
                     }
                 }
                 if (pair.getLeft().enableQuivers.get()) {
-                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
+                    for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof QuiverItem).toList()) {
                         output.accept(deferredItem);
                     }
                 }
@@ -128,10 +123,9 @@ public class ECCreativeTabs {
                 items.putAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
             if (pair.getLeft().enableShields.get()) {
-                Registry<Material> materialRegistry = Objects.requireNonNull(Minecraft.getInstance().getConnection()).registryAccess().registryOrThrow(Registries.MATERIAL_REGISTRY_KEY);
-                for (Holder.Reference<Material> material : materialRegistry.holders().filter(materialReference -> materialReference.value().defense().placementInShield() != PlacementInShield.NONE || materialReference.key().location() == Materials.VANILLA_KEY.location()).toList()) {
+                for (Material material : Registries.MATERIAL_REGISTRY.stream().filter(materialReference -> materialReference.defense().placementInShield() != PlacementInShield.NONE || materialReference == Materials.VANILLA.get()).toList()) {
                     ItemStack stack;
-                    if (!material.value().defense().fireResistant()) {
+                    if (!material.defense().fireResistant()) {
                         stack = new ItemStack(SHIELD.get());
                     } else {
                         stack = new ItemStack(SHIELD_FIRE_RESISTANT.get());
@@ -139,7 +133,7 @@ public class ECCreativeTabs {
                     stack.set(ItemDataComponents.SHIELD_MATERIALS,
                             new ShieldMaterials(
                                     material, material, material, material,
-                                    material.value().defense().placementInShield() == PlacementInShield.ALL ? material : materialRegistry.getHolderOrThrow(Materials.IRON_KEY),
+                                    material.defense().placementInShield() == PlacementInShield.ALL ? material : Materials.IRON.get(),
                                     0
                             ));
                     items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -159,7 +153,7 @@ public class ECCreativeTabs {
                 }
             }
             if (pair.getLeft().enableQuivers.get()) {
-                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECQuiverItem).toList()) {
+                for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof QuiverItem).toList()) {
                     items.putBefore(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }

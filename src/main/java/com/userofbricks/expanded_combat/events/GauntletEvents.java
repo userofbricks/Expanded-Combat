@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
 import com.userofbricks.expanded_combat.item.GauntletItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -76,14 +76,14 @@ public class GauntletEvents
         Optional<ICuriosItemHandler> handlerOptional = CuriosApi.getCuriosInventory(player);
         Optional<SlotResult> optionalSlotResult = handlerOptional.flatMap(curiosInventory -> curiosInventory.findFirstCurio(ECItems.FIGHTERS_GAUNTLETS.get()));
         if (optionalSlotResult.isPresent() && player.getArrowCount() >= 1) {
-            Optional<SlotResult> optionalQuiverSlotResult = handlerOptional.get().findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem);
+            Optional<SlotResult> optionalQuiverSlotResult = handlerOptional.get().findFirstCurio(stack -> stack.getItem() instanceof QuiverItem);
             if (optionalQuiverSlotResult.isPresent()) {
                 ItemStack quiverStack = optionalQuiverSlotResult.get().stack();
-                ECQuiverItem quiverItem = (ECQuiverItem) quiverStack.getItem();
+                QuiverItem quiverItem = (QuiverItem) quiverStack.getItem();
 
                 BundleContents bundlecontents = quiverStack.getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-                ECQuiverItem.MutableQuiverContents bundleContents$mutable = new ECQuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+                QuiverItem.MutableQuiverContents bundleContents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
 
                 int i = bundleContents$mutable.tryInsert(new ItemStack(Items.ARROW));
                 if (i > 0) {
