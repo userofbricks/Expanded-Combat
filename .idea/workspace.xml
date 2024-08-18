@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="this should fix the auto clicker infinite dmg bug with gauntlets and elemental weapons.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/7c3fca85cddb9240841f6dd23bc746a4058a0c69" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,6 +65,12 @@
     <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "userofbricks"
+  }
+}]]></component>
   <component name="GitRewordedCommitMessages">
     <option name="onto" value="cfd96972206e3979517691f99b6f3c3857c4de49" />
   </component>
@@ -75,6 +82,12 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/userofbricks/Expanded-Combat.git",
+    "accountId": "24cb5fd4-7a83-44f8-aafd-d5078bc751b6"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$PROJECT_DIR$/build/fg_cache/net/minecraftforge/forge/1.19.4-45.1.0_mapped_official_1.19.4/forge-1.19.4-45.1.0_mapped_official_1.19.4-sources.jar!/net/minecraftforge/registries/DataPackRegistryEvent.java" root0="SKIP_INSPECTION" />
   </component>
@@ -92,20 +105,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaClassFindUsagesOptions.isMethodsUsages&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;forge-1.20.1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/data/expanded_combat/damage_type&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor": "Run",
+    "Gradle.Expanded-Combat [genIntellijRuns].executor": "Run",
+    "JavaClassFindUsagesOptions.isMethodsUsages": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "forge-1.20.1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/data/expanded_combat/damage_type",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3143969",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.item" />
@@ -152,12 +168,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
-    <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle">
+    <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -267,11 +283,11 @@
       <item itemvalue="Application.runData" />
       <item itemvalue="Application.runGameTestServer" />
       <item itemvalue="Application.runServer" />
-      <item itemvalue="Gradle.Expanded-Combat [build]" />
       <item itemvalue="Gradle.Expanded-Combat [jar]" />
-      <item itemvalue="Gradle.Expanded-Combat [runClient]" />
-      <item itemvalue="Gradle.Expanded-Combat [runData]" />
       <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+      <item itemvalue="Gradle.Expanded-Combat [runData]" />
+      <item itemvalue="Gradle.Expanded-Combat [build]" />
+      <item itemvalue="Gradle.Expanded-Combat [runClient]" />
     </list>
     <recent_temporary>
       <list>
@@ -279,7 +295,7 @@
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
         <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [jar]" />
-        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.Expanded-Combat [runData]" />
       </list>
     </recent_temporary>
   </component>

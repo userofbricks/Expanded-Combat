@@ -38,9 +38,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(this);
         if(optionalCuriosInventory.resolve().isEmpty()) return;
         ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
-        Optional<SlotResult> quiverStack = playerCuriosInventory.findCurio( ExpandedCombat.QUIVER_CURIOS_IDENTIFIER, 0);
-        if (quiverStack.isPresent()) {
-            int providedSlots = ((ECQuiverItem)quiverStack.get().stack().getItem()).providedSlots;
+        SlotResult quiverStack = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+        if (quiverStack != null) {
+            int providedSlots = ((ECQuiverItem)quiverStack.stack().getItem()).providedSlots;
             int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots - 1), 0);
             //ECVariables.setArrowSlotTo(this, selectedSlot);
 

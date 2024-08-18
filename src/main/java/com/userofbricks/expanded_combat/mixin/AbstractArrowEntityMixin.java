@@ -50,7 +50,7 @@ public abstract class AbstractArrowEntityMixin {
                 LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
                 if(optionalCuriosInventory.resolve().isEmpty()) return;
                 ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
-                SlotResult quiverSlot =playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+                SlotResult quiverSlot = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
                 if (quiverSlot == null) return;
                 ItemStack quiverStack = quiverSlot.stack();
                 IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
