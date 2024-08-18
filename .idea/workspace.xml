@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="this should fix the auto clicker infinite dmg bug with gauntlets and elemental weapons.">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="misc change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <option name="SHOW_DIALOG" value="false" />
@@ -653,7 +652,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -686,8 +685,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed IngredientUtil ArrayList Usages" />
-    <MESSAGE value="fixed Ingredient ArrayList Usages in automatic recipe gen" />
     <MESSAGE value="fixed a bug with crafting items being null instead of just empty" />
     <MESSAGE value="fixed netherite recipes not being generated correctly" />
     <MESSAGE value="3.0.5" />
@@ -711,7 +708,9 @@
     <MESSAGE value="fixed inventory rendering of effects rendering on top of arrowSlots" />
     <MESSAGE value="doubled katana arrow block cool downs" />
     <MESSAGE value="this should fix the auto clicker infinite dmg bug with gauntlets and elemental weapons." />
-    <option name="LAST_COMMIT_MESSAGE" value="this should fix the auto clicker infinite dmg bug with gauntlets and elemental weapons." />
+    <MESSAGE value="fixed quivers not being checked for being an instance of a quiver causing crash when item isn't a quiver" />
+    <MESSAGE value="misc change" />
+    <option name="LAST_COMMIT_MESSAGE" value="misc change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

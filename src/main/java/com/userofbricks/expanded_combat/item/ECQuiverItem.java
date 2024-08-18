@@ -5,21 +5,45 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
 import com.userofbricks.expanded_combat.network.ECVariables;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.tooltip.BundleTooltip;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
-
+@ParametersAreNonnullByDefault
 public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
     public final int providedSlots;
@@ -41,32 +65,6 @@ public class ECQuiverItem extends Item implements ICurioItem {
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
     }
-
-    /*
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (!(newStack.getItem() instanceof ECQuiverItem)) {
-            serializeArrowsNBT(stack, slotContext.entity());
-        }
-    }
-
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        if (prevStack.getItem() instanceof ECQuiverItem) {
-            serializeArrowsNBT(prevStack, slotContext.entity());
-        }
-        CuriosApi.getCuriosHelper().getCuriosHandler(slotContext.entity()).ifPresent(curios -> {
-                IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                arrowStackHandler.deserializeNBT(stack.getOrCreateTag().getCompound("Arrows"));
-        });
-    }
-
-    private static void serializeArrowsNBT(ItemStack stack, LivingEntity entity) {
-        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(curios -> {
-            IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-            stack.getOrCreateTag().put("Arrows", arrowStackHandler.serializeNBT());
-            for (int s = 0; s < arrowStackHandler.getSlots(); s++) {arrowStackHandler.setStackInSlot(s, ItemStack.EMPTY);}
-        });
-    }
-*/
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -110,19 +108,191 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return this.material.getName().equals("Gold");
     }
 
-    /*
-    @Override
-    public CompoundTag getShareTag(ItemStack stack) {
-        CompoundTag nbt = super.getShareTag(stack);
-        if (nbt != null)
-            stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> nbt.put("Inventory", ((ItemStackHandler) capability).serializeNBT()));
-        return nbt;
+
+    ////////START BUNDLE FUNCTIONALITY////////
+
+    public float getFullnessDisplay(ItemStack p_150767_) {
+        return (float)getContentWeight(p_150767_) / maxFullness();
     }
 
-    @Override
-    public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
-        super.readShareTag(stack, nbt);
-        if (nbt != null)
-            stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> ((ItemStackHandler) capability).deserializeNBT((CompoundTag) nbt.get("Inventory")));
-    }*/
+    private int maxFullness() {
+        return 64 * providedSlots;
+    }
+
+    public boolean overrideStackedOnOther(ItemStack quiver, Slot slot, ClickAction clickAction, Player player) {
+        if (quiver.getCount() == 1 && clickAction == ClickAction.SECONDARY) {
+            ItemStack itemstack = slot.getItem();
+            if (itemstack.isEmpty()) {
+                playRemoveOneSound(player);
+                removeOne(quiver).ifPresent((p_150740_) -> {
+                    add(quiver, slot.safeInsert(p_150740_));
+                });
+            } else if (itemstack.getItem().canFitInsideContainerItems() && itemstack.is(ItemTags.ARROWS)) {
+                int i = (maxFullness() - getContentWeight(quiver)) / getWeight(itemstack);
+                int j = add(quiver, slot.safeTake(itemstack.getCount(), i, player));
+                if (j > 0) {
+                    playInsertSound(player);
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean overrideOtherStackedOnMe(ItemStack quiver, ItemStack stackInHand, Slot slot, ClickAction clickAction, Player player, SlotAccess slotAccess) {
+        if (quiver.getCount() != 1) {
+            return false;
+        } else if (clickAction == ClickAction.SECONDARY && slot.allowModification(player)) {
+            if (stackInHand.isEmpty()) {
+                removeOne(quiver).ifPresent((p_186347_) -> {
+                    playRemoveOneSound(player);
+                    slotAccess.set(p_186347_);
+                });
+            } else {
+                int i = add(quiver, stackInHand);
+                if (i > 0) {
+                    playInsertSound(player);
+                    stackInHand.shrink(i);
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isBarVisible(ItemStack quiver) {
+        return getContentWeight(quiver) > 0;
+    }
+
+    public int getBarWidth(ItemStack quiver) {
+        return Math.min(1 + 12 * getContentWeight(quiver) / maxFullness(), 13);
+    }
+
+    public int getBarColor(ItemStack quiver) {
+        return Mth.color(0.4F, 0.4F, 1.0F);
+    }
+
+    private int add(ItemStack quiver, ItemStack stackToAdd) {
+        if (!stackToAdd.isEmpty() && stackToAdd.getItem().canFitInsideContainerItems() && stackToAdd.is(ItemTags.ARROWS)) {
+            CompoundTag compoundtag = quiver.getOrCreateTag();
+            if (!compoundtag.contains("Items")) {
+                compoundtag.put("Items", new ListTag());
+            }
+
+            int i = getContentWeight(quiver);
+            int j = getWeight(stackToAdd);
+            int k = Math.min(stackToAdd.getCount(), (maxFullness() - i) / j);
+            if (k == 0) {
+                return 0;
+            } else {
+                ListTag listtag = compoundtag.getList("Items", 10);
+                Optional<CompoundTag> optional = getMatchingItem(stackToAdd, listtag);
+                if (optional.isPresent()) {
+                    CompoundTag compoundtag1 = optional.get();
+                    ItemStack itemstack = ItemStack.of(compoundtag1);
+                    itemstack.grow(k);
+                    itemstack.save(compoundtag1);
+                    listtag.remove(compoundtag1);
+                    listtag.add(0, compoundtag1);
+                } else {
+                    ItemStack itemstack1 = stackToAdd.copyWithCount(k);
+                    CompoundTag compoundtag2 = new CompoundTag();
+                    itemstack1.save(compoundtag2);
+                    listtag.add(0, compoundtag2);
+                }
+
+                return k;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    private static Optional<CompoundTag> getMatchingItem(ItemStack stack, ListTag p_150758_) {
+        Optional<CompoundTag> var10000;
+        if (stack.is(Items.BUNDLE)) {
+            var10000 = Optional.empty();
+        } else {
+            Stream<Tag> var2 = p_150758_.stream();
+            Objects.requireNonNull(CompoundTag.class);
+            var2 = var2.filter(CompoundTag.class::isInstance);
+            Objects.requireNonNull(CompoundTag.class);
+            var10000 = var2.map(CompoundTag.class::cast).filter((p_186350_) -> ItemStack.isSameItemSameTags(ItemStack.of(p_186350_), stack)).findFirst();
+        }
+
+        return var10000;
+    }
+
+    private static int getWeight(ItemStack stack) {
+        if (stack.is(ItemTags.ARROWS)) {
+            return 64 / stack.getMaxStackSize();
+        } else {
+            return 1000000;
+        }
+    }
+
+    private static int getContentWeight(ItemStack quiver) {
+        return getContents(quiver).mapToInt((stack) -> getWeight(stack) * stack.getCount()).sum();
+    }
+
+    private static Optional<ItemStack> removeOne(ItemStack quiver) {
+        CompoundTag compoundtag = quiver.getOrCreateTag();
+        if (!compoundtag.contains("Items")) {
+            return Optional.empty();
+        } else {
+            ListTag listtag = compoundtag.getList("Items", 10);
+            if (listtag.isEmpty()) {
+                return Optional.empty();
+            } else {
+                CompoundTag firstInList = listtag.getCompound(0);
+                ItemStack itemstack = ItemStack.of(firstInList);
+                listtag.remove(0);
+                if (listtag.isEmpty()) {
+                    quiver.removeTagKey("Items");
+                }
+
+                return Optional.of(itemstack);
+            }
+        }
+    }
+
+    private static Stream<ItemStack> getContents(ItemStack quiver) {
+        CompoundTag compoundtag = quiver.getTag();
+        if (compoundtag == null) {
+            return Stream.empty();
+        } else {
+            ListTag listtag = compoundtag.getList("Items", 10);
+            Stream<Tag> tagStream = listtag.stream();
+            Objects.requireNonNull(CompoundTag.class);
+            return tagStream.map(CompoundTag.class::cast).map(ItemStack::of);
+        }
+    }
+
+    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack p_150775_) {
+        NonNullList<ItemStack> nonnulllist = NonNullList.create();
+        Stream<ItemStack> var10000 = getContents(p_150775_);
+        Objects.requireNonNull(nonnulllist);
+        var10000.forEach(nonnulllist::add);
+        return Optional.of(new BundleTooltip(nonnulllist, getContentWeight(p_150775_)));
+    }
+
+    public void appendHoverText(ItemStack p_150749_, @Nullable Level p_150750_, List<Component> p_150751_, TooltipFlag p_150752_) {
+        p_150751_.add(Component.translatable("item.minecraft.bundle.fullness", getContentWeight(p_150749_), maxFullness()).withStyle(ChatFormatting.GRAY));
+    }
+
+    public void onDestroyed(ItemEntity p_150728_) {
+        ItemUtils.onContainerDestroyed(p_150728_, getContents(p_150728_.getItem()));
+    }
+
+    private void playRemoveOneSound(Entity p_186343_) {
+        p_186343_.playSound(SoundEvents.BUNDLE_REMOVE_ONE, 0.8F, 0.8F + p_186343_.level().getRandom().nextFloat() * 0.4F);
+    }
+
+    private void playInsertSound(Entity p_186352_) {
+        p_186352_.playSound(SoundEvents.BUNDLE_INSERT, 0.8F, 0.8F + p_186352_.level().getRandom().nextFloat() * 0.4F);
+    }
 }
