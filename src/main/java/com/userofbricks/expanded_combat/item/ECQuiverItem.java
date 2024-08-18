@@ -191,14 +191,21 @@ public class ECQuiverItem extends Item implements ICurioItem {
             } else {
                 ListTag listtag = compoundtag.getList("Items", 10);
                 Optional<CompoundTag> optional = getMatchingItem(stackToAdd, listtag);
+                boolean newStack = true;
                 if (optional.isPresent()) {
                     CompoundTag compoundtag1 = optional.get();
                     ItemStack itemstack = ItemStack.of(compoundtag1);
-                    itemstack.grow(k);
-                    itemstack.save(compoundtag1);
-                    listtag.remove(compoundtag1);
-                    listtag.add(0, compoundtag1);
-                } else {
+                    if (itemstack.getCount() < itemstack.getMaxStackSize()) {
+                        int l = Math.min(itemstack.getMaxStackSize() - itemstack.getCount(), k);
+                        if (l == k) newStack = false;
+                        else k -= l;
+                        itemstack.grow(l);
+                        itemstack.save(compoundtag1);
+                        listtag.remove(compoundtag1);
+                        listtag.add(0, compoundtag1);
+                    }
+                }
+                if (newStack){
                     ItemStack itemstack1 = stackToAdd.copyWithCount(k);
                     CompoundTag compoundtag2 = new CompoundTag();
                     itemstack1.save(compoundtag2);
@@ -270,6 +277,10 @@ public class ECQuiverItem extends Item implements ICurioItem {
             Objects.requireNonNull(CompoundTag.class);
             return tagStream.map(CompoundTag.class::cast).map(ItemStack::of);
         }
+    }
+
+    public static int numberOfArrowStacks(ItemStack quiver) {
+        return getContents(quiver).toList().size();
     }
 
     public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack p_150775_) {

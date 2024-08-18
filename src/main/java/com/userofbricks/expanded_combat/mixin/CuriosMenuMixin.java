@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -30,10 +31,11 @@ public class CuriosMenuMixin {
 
     @Inject(method = "setPage", at = @At("RETURN"), remap = false)
     public void InventoryMenu(int indexIn, CallbackInfo ci) {
-        createQuiver();
+        expanded_Combat$createQuiver();
     }
 
-    protected void createQuiver() {
+    @Unique
+    protected void expanded_Combat$createQuiver() {
         CuriosApi.getCuriosInventory(this.player).ifPresent(curios -> {
             ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
             IDynamicStackHandler stackHandler = stacksHandler.getStacks();

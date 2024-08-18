@@ -45,9 +45,8 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
      * reason: changed the mixin from an overwrite to inject in order to keep compatibility with other mods and mixins. needs to be cancellable, if an arrow is picked up into the quiver it cancels the vanilla behaviour so the arrow isn't duped. Otherwise, if the quiver is not equipped just don't cancel the vanilla behavior, so it will be picked up into the inventory.
      *
      *
-     * @author Userofbricks and theNyfaria for the original overwrite of this method
-     * (this is now so heavily modified that I don't know if any of theNyfaria's work even exists in it anymore)
-     * @reason need this to check the arrow slots if a quiver exists.
+     * @author Userofbricks
+     * @reason need this to check the quiver if one exists.
      */
     @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
     public void playerTouch(Player player,CallbackInfo callback) {
@@ -60,6 +59,9 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
                 SlotResult quiverSlot = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
                 if (quiverSlot == null) return;
                 ItemStack quiverStack = quiverSlot.stack();
+
+
+
                 IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
                 int slots = arrowStackHandler.getSlots();
                 for (int s = 0; s < slots; s++) {
