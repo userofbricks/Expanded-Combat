@@ -13,8 +13,12 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import javax.annotation.Nullable;
 
@@ -54,23 +58,30 @@ public class ECBowItem extends BowItem implements ISimpleMaterialItem {
         return this.material.getConfig().offense.multishotLevel;
     }
 
-    public void fireArrows( ItemStack stack,  Level worldIn,  Player playerentity,  ItemStack itemstack,  float arrowVelocity) {
+    public void fireArrows( ItemStack stack,  Level worldIn,  Player playerEntity,  ItemStack itemstack,  float arrowVelocity) {
         int multishotLevel = stack.getEnchantmentLevel(Enchantments.MULTISHOT) + this.getMultishotLevel();
         for (int arrowNumber = 0; arrowNumber < 1 + multishotLevel * 2; ++arrowNumber) {
             if (arrowVelocity >= 0.1) {
-                boolean hasInfiniteAmmo = playerentity.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
+                boolean hasInfiniteAmmo = playerEntity.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerEntity));
                 boolean isAdditionalShot = arrowNumber > 0;
                 if (!worldIn.isClientSide) {
-                    this.createBowArrow(stack, worldIn, playerentity, itemstack, arrowVelocity, arrowNumber, hasInfiniteAmmo, isAdditionalShot);
+                    this.createBowArrow(stack, worldIn, playerEntity, itemstack, arrowVelocity, arrowNumber, hasInfiniteAmmo, isAdditionalShot);
                 }
-                worldIn.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
-                if (!hasInfiniteAmmo && !playerentity.getAbilities().instabuild && !isAdditionalShot) {
+                worldIn.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0f, 1.0f / (worldIn.getRandom().nextFloat() * 0.4f + 1.2f) + arrowVelocity * 0.5f);
+                if (!hasInfiniteAmmo && !playerEntity.getAbilities().instabuild && !isAdditionalShot) {
                     itemstack.shrink(1);
                     if (itemstack.isEmpty()) {
-                        playerentity.getInventory().removeItem(itemstack);
+                        playerEntity.getInventory().removeItem(itemstack);
+                    }
+                    LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(playerEntity);
+                    if(optionalCuriosInventory.resolve().isEmpty()) return;
+                    ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+                    SlotResult quiverStack = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+                    if (quiverStack != null && !ECQuiverItem.getContents(quiverStack.stack()).toList().isEmpty()) {
+                        ECQuiverItem.remove(quiverStack.stack(), itemstack.copyWithCount(1));
                     }
                 }
-                playerentity.awardStat(Stats.ITEM_USED.get(this));
+                playerEntity.awardStat(Stats.ITEM_USED.get(this));
             }
         }
     }

@@ -20,6 +20,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -40,16 +41,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
         SlotResult quiverStack = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
         if (quiverStack != null) {
-            int providedSlots = ((ECQuiverItem)quiverStack.stack().getItem()).providedSlots;
+            int providedSlots = ECQuiverItem.numberOfArrowStacks(quiverStack.stack());
             int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots - 1), 0);
-            //ECVariables.setArrowSlotTo(this, selectedSlot);
 
-            Optional<SlotResult> currentSelectedSlot =playerCuriosInventory.findCurio( ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, selectedSlot);
-            if (currentSelectedSlot.isPresent() && currentSelectedSlot.get().slotContext().index() == selectedSlot) cir.setReturnValue(currentSelectedSlot.get().stack());
-            else {
-                playerCuriosInventory.findFirstCurio(stack -> Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()))
-                        .ifPresent(slotResult -> cir.setReturnValue(slotResult.stack()));
-            }
+            List<ItemStack> arrows = ECQuiverItem.getContents(quiverStack.stack()).toList();
+            if (!arrows.isEmpty()) cir.setReturnValue(arrows.get(selectedSlot));
+            else playerCuriosInventory.findFirstCurio(stack -> stack.is(ItemTags.ARROWS)).ifPresent(slotResult -> cir.setReturnValue(slotResult.stack()));
         }
     }
 }

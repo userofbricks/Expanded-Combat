@@ -176,7 +176,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return Mth.color(0.4F, 0.4F, 1.0F);
     }
 
-    private int add(ItemStack quiver, ItemStack stackToAdd) {
+    public static int add(ItemStack quiver, ItemStack stackToAdd) {
         if (!stackToAdd.isEmpty() && stackToAdd.getItem().canFitInsideContainerItems() && stackToAdd.is(ItemTags.ARROWS)) {
             CompoundTag compoundtag = quiver.getOrCreateTag();
             if (!compoundtag.contains("Items")) {
@@ -185,27 +185,30 @@ public class ECQuiverItem extends Item implements ICurioItem {
 
             int i = getContentWeight(quiver);
             int j = getWeight(stackToAdd);
-            int k = Math.min(stackToAdd.getCount(), (maxFullness() - i) / j);
+            int k = Math.min(stackToAdd.getCount(), (((ECQuiverItem) quiver.getItem()).maxFullness() - i) / j);
             if (k == 0) {
                 return 0;
             } else {
                 ListTag listtag = compoundtag.getList("Items", 10);
                 Optional<CompoundTag> optional = getMatchingItem(stackToAdd, listtag);
-                boolean newStack = true;
                 if (optional.isPresent()) {
                     CompoundTag compoundtag1 = optional.get();
                     ItemStack itemstack = ItemStack.of(compoundtag1);
                     if (itemstack.getCount() < itemstack.getMaxStackSize()) {
                         int l = Math.min(itemstack.getMaxStackSize() - itemstack.getCount(), k);
-                        if (l == k) newStack = false;
-                        else k -= l;
                         itemstack.grow(l);
                         itemstack.save(compoundtag1);
                         listtag.remove(compoundtag1);
                         listtag.add(0, compoundtag1);
+                        int m = k - l;
+                        if (m > 0) {
+                            ItemStack itemstack1 = stackToAdd.copyWithCount(m);
+                            CompoundTag compoundtag2 = new CompoundTag();
+                            itemstack1.save(compoundtag2);
+                            listtag.add(0, compoundtag2);
+                        }
                     }
-                }
-                if (newStack){
+                } else {
                     ItemStack itemstack1 = stackToAdd.copyWithCount(k);
                     CompoundTag compoundtag2 = new CompoundTag();
                     itemstack1.save(compoundtag2);
@@ -216,6 +219,25 @@ public class ECQuiverItem extends Item implements ICurioItem {
             }
         } else {
             return 0;
+        }
+    }
+
+    public static void remove(ItemStack quiver, ItemStack stackToRemove) {
+        if (!stackToRemove.isEmpty() && stackToRemove.getItem().canFitInsideContainerItems() && stackToRemove.is(ItemTags.ARROWS)) {
+            CompoundTag compoundtag = quiver.getOrCreateTag();
+            if (!compoundtag.contains("Items")) {
+                return;
+            }
+
+            ListTag listtag = compoundtag.getList("Items", 10);
+            for (int slot = 0; slot < listtag.size(); slot++) {
+                CompoundTag arrowTag = listtag.getCompound(slot);
+                if (ItemStack.isSameItemSameTags(ItemStack.of(arrowTag), stackToRemove)) {
+                    ItemStack itemstack = ItemStack.of(arrowTag);
+                    itemstack.shrink(stackToRemove.getCount());
+                    itemstack.save(arrowTag);
+                }
+            }
         }
     }
 
@@ -246,7 +268,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return getContents(quiver).mapToInt((stack) -> getWeight(stack) * stack.getCount()).sum();
     }
 
-    private static Optional<ItemStack> removeOne(ItemStack quiver) {
+    public static Optional<ItemStack> removeOne(ItemStack quiver) {
         CompoundTag compoundtag = quiver.getOrCreateTag();
         if (!compoundtag.contains("Items")) {
             return Optional.empty();
@@ -267,7 +289,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         }
     }
 
-    private static Stream<ItemStack> getContents(ItemStack quiver) {
+    public static Stream<ItemStack> getContents(ItemStack quiver) {
         CompoundTag compoundtag = quiver.getTag();
         if (compoundtag == null) {
             return Stream.empty();

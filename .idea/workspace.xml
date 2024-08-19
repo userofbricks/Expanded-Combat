@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="misc change">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="quiver with bundle holding functionality v2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/BowItemMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CrossbowItemMixin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECBowItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCrossBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCrossBowItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
+    <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +44,28 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="forgegradle runs" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -64,12 +95,12 @@
     <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "userofbricks"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;userofbricks&quot;
   }
-}]]></component>
+}</component>
   <component name="GitRewordedCommitMessages">
     <option name="onto" value="cfd96972206e3979517691f99b6f3c3857c4de49" />
   </component>
@@ -81,14 +112,37 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/userofbricks/Expanded-Combat.git",
-    "accountId": "24cb5fd4-7a83-44f8-aafd-d5078bc751b6"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/userofbricks/Expanded-Combat.git&quot;,
+    &quot;accountId&quot;: &quot;24cb5fd4-7a83-44f8-aafd-d5078bc751b6&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$PROJECT_DIR$/build/fg_cache/net/minecraftforge/forge/1.19.4-45.1.0_mapped_official_1.19.4/forge-1.19.4-45.1.0_mapped_official_1.19.4-sources.jar!/net/minecraftforge/registries/DataPackRegistryEvent.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="6" end1="7" start2="6" end2="9" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="8" end1="8" start2="10" end2="13" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="9" end1="9" start2="14" end2="16" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="11" end1="11" start2="18" end2="21" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="36" end1="37" start2="46" end2="68" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="66" end1="70" start2="97" end2="101" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="71" end1="72" start2="102" end2="103" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="83" end1="87" start2="114" end2="118" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="88" end1="89" start2="119" end2="120" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="91" end1="91" start2="122" end2="145" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="108" end1="108" start2="162" end2="164" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="109" end1="109" start2="165" end2="167" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
+        <range start1="292" end1="292" start2="350" end2="351" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
+        <range start1="296" end1="297" start2="355" end2="355" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
+        <range start1="654" end1="655" start2="712" end2="713" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="687" end1="688" start2="745" end2="745" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="712" end1="713" start2="769" end2="771" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -106,6 +160,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.runClient.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
     "Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor": "Run",
     "Gradle.Expanded-Combat [genIntellijRuns].executor": "Run",
     "JavaClassFindUsagesOptions.isMethodsUsages": "true",
@@ -118,7 +174,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3143969",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -652,7 +708,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -685,7 +741,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed a bug with crafting items being null instead of just empty" />
     <MESSAGE value="fixed netherite recipes not being generated correctly" />
     <MESSAGE value="3.0.5" />
     <MESSAGE value="added MaterialConfig builder from tier/armorMaterial methods without ingredient part as it can sometimes cause crashing if items are not yet registered" />
@@ -710,7 +765,8 @@
     <MESSAGE value="this should fix the auto clicker infinite dmg bug with gauntlets and elemental weapons." />
     <MESSAGE value="fixed quivers not being checked for being an instance of a quiver causing crash when item isn't a quiver" />
     <MESSAGE value="misc change" />
-    <option name="LAST_COMMIT_MESSAGE" value="misc change" />
+    <MESSAGE value="quiver with bundle holding functionality v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="quiver with bundle holding functionality v2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

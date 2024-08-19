@@ -26,9 +26,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.List;
 import java.util.Objects;
@@ -100,6 +104,14 @@ public class ECCrossBowItem extends CrossbowItem implements ISimpleMaterialItem 
             }
             if (!canAddChargedProjectile(entityIn, stack, itemstack, i > 0, flag)) {
                 return false;
+            }
+        }
+        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(entityIn);
+        if(optionalCuriosInventory.resolve().isPresent() && entityIn instanceof Player) {
+            ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
+            SlotResult quiverStack = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
+            if (quiverStack != null && !ECQuiverItem.getContents(quiverStack.stack()).toList().isEmpty()) {
+                ECQuiverItem.remove(quiverStack.stack(), itemstack.copyWithCount(1));
             }
         }
         return true;
