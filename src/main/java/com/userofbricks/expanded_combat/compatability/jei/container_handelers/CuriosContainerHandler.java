@@ -9,12 +9,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.client.gui.CuriosScreenV2;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.events.QuiverEvents.roundToNearest8;
 
@@ -29,9 +31,11 @@ public class CuriosContainerHandler implements IGuiContainerHandler<CuriosScreen
             int top = containerScreen.getGuiTop();
 
             CuriosApi.getCuriosInventory(containerScreen.getMenu().player).ifPresent(curios -> {
-                Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
+                IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
                 int curiosSlots = 0;
-                if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
+                for (int slot = 0; slot < arrowStackHandler.getSlots(); slot++) {
+                    if (!arrowStackHandler.getStackInSlot(arrowStackHandler.getSlots() - 1 - slot).isEmpty()) curiosSlots = arrowStackHandler.getSlots() - slot;
+                }
                 if (curiosSlots > 0){
                     IPlatformScreenHelper screenHelper = Services.PLATFORM.getScreenHelper();
                     int x = screenHelper.getGuiLeft(containerScreen) + 175;

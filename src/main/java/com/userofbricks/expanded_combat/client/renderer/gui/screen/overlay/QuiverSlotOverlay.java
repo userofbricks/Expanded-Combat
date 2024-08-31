@@ -25,8 +25,10 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
@@ -47,48 +49,32 @@ public class QuiverSlotOverlay {
             if (!(player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof BowItem)) return;
             int w = event.getWindow().getGuiScaledWidth();
             int h = event.getWindow().getGuiScaledHeight();
-            ECQuiverItem quiver = (ECQuiverItem) quiverSlotResult.get().stack().getItem();
+            ItemStack quiver = quiverSlotResult.get().stack();
             GuiGraphics guiGraphics = event.getGuiGraphics();
-            int providedSlots = quiver.providedSlots;
+            int providedSlots = ECQuiverItem.numberOfArrowStacks(quiver);
             int currentIndex = ECVariables.getArrowSlot(player);
             int beforeIndex = currentIndex - 1 < 0 ? providedSlots - 1 : currentIndex - 1;
             int nextIndex = currentIndex + 1 >= providedSlots ? 0 : currentIndex + 1;
-            ItemStack currentArrow;
+
+            List<ItemStack> arrows = ECQuiverItem.getContents(quiver).toList();
+
+            ItemStack currentArrow = arrows.get(currentIndex);
             ItemStack nextArrow = null;
             ItemStack beforeArrow = null;
 
-            Optional<SlotResult> currentSelectedSlotResult = curiosPlayerInventory.findCurio(ExpandedCombat.ARROWS_CURIOS_IDENTIFIER,currentIndex);
-            if(currentSelectedSlotResult.isEmpty()){
-                currentSelectedSlotResult = curiosPlayerInventory.findFirstCurio(stack->Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()));
+            if(currentArrow.isEmpty()){
+                currentArrow = arrows.get(0);
             }
-            if(currentSelectedSlotResult.isEmpty()){
+            if(currentArrow.isEmpty()) {
+                Optional<SlotResult> slotResult = curiosPlayerInventory.findFirstCurio(stack->Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(ItemTags.ARROWS).contains(stack.getItem()));
+                if (slotResult.isPresent()) currentArrow = slotResult.get().stack();
+            }
+            if(currentArrow.isEmpty()){
                 currentArrow = ItemStack.EMPTY;
-            }else{
-                currentArrow = currentSelectedSlotResult.get().stack();
             }
             if (!currentArrow.isEmpty()) {
-                for (int slot = beforeIndex; true; slot--) {
-                    slot = slot < 0 ? providedSlots -1 : slot;
-                    if (slot == currentIndex) {
-                        break;
-                    }
-                    Optional<SlotResult> beforeSelectedSlotResult = curiosPlayerInventory.findCurio(ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, slot);
-                    if (beforeSelectedSlotResult.isPresent()) {
-                        beforeArrow = beforeSelectedSlotResult.get().stack();
-                        break;
-                    }
-                }
-                for (int slot = nextIndex; true; slot++) {
-                    slot = slot >= providedSlots ? 0 : slot;
-                    if (slot == currentIndex) {
-                        break;
-                    }
-                    Optional<SlotResult> nextSelectedSlotResult = curiosPlayerInventory.findCurio(ExpandedCombat.ARROWS_CURIOS_IDENTIFIER, slot);
-                    if (nextSelectedSlotResult.isPresent()) {
-                        nextArrow = nextSelectedSlotResult.get().stack();
-                        break;
-                    }
-                }
+                beforeArrow = arrows.get(beforeIndex);
+                nextArrow = arrows.get(nextIndex);
             }
 
             beforeArrow = beforeArrow == null ? ItemStack.EMPTY : beforeArrow;

@@ -26,6 +26,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 
 public class ArrowSlot extends SlotItemHandler {
@@ -55,8 +56,14 @@ public class ArrowSlot extends SlotItemHandler {
         LazyOptional<ICuriosItemHandler> optionalCuriosIventory = CuriosApi.getCuriosInventory(this.player);
         if(optionalCuriosIventory.resolve().isEmpty()) return null;
         ICuriosItemHandler playerCuriosInventory = optionalCuriosIventory.resolve().get();
+
+        IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+        int curiosSlots = 0;
+        for (int slot = 0; slot < arrowStackHandler.getSlots(); slot++) {
+            if (!arrowStackHandler.getStackInSlot(arrowStackHandler.getSlots() - 1 - slot).isEmpty()) curiosSlots = arrowStackHandler.getSlots() - slot;
+        }
         SlotResult slotResult = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
-        if (slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem ecQuiverItem && ecQuiverItem.providedSlots > slotContext.index()) return super.getNoItemIcon();
+        if (slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem && curiosSlots > slotContext.index()) return super.getNoItemIcon();
         else return null;
     }
 
@@ -74,45 +81,11 @@ public class ArrowSlot extends SlotItemHandler {
     }
 
     @Override
-    public boolean mayPlace(@Nonnull ItemStack stack) {
-        CurioEquipEvent equipEvent = new CurioEquipEvent(stack, slotContext);
-        MinecraftForge.EVENT_BUS.post(equipEvent);
-        Event.Result result = equipEvent.getResult();
-
-        if (result == Event.Result.DENY) {
-            return false;
-        }
-        return result == Event.Result.ALLOW ||
-                (CuriosApi.isStackValid(slotContext, stack) &&
-                        CuriosApi.getCurio(stack).map(curio -> curio.canEquip(slotContext))
-                                .orElse(true) && super.mayPlace(stack));
-    }
+    public boolean mayPlace(@Nonnull ItemStack stack) {return false;}
 
     @Override
-    public boolean mayPickup(Player playerIn) {
-        ItemStack stack = this.getItem();
-        CurioUnequipEvent unequipEvent = new CurioUnequipEvent(stack, slotContext);
-        MinecraftForge.EVENT_BUS.post(unequipEvent);
-        Event.Result result = unequipEvent.getResult();
-
-        if (result == Event.Result.DENY) {
-            return false;
-        }
-        return result == Event.Result.ALLOW ||
-                ((stack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(stack)) &&
-                        CuriosApi.getCurio(stack).map(curio -> curio.canUnequip(slotContext))
-                                .orElse(true) && super.mayPickup(playerIn));
-    }
+    public boolean mayPickup(Player playerIn) {return true;}
 
     @Override
-    public boolean isHighlightable() {
-        LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(Objects.requireNonNull(Minecraft.getInstance().player));
-        if(optionalCuriosInventory.resolve().isEmpty()) return false;
-        ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
-        SlotResult slotResult = playerCuriosInventory.findCurio(QUIVER_CURIOS_IDENTIFIER, 0).orElse(null);
-        int curiosSlots = 0;
-        if (slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
-        int id = slotContext.index();
-        return curiosSlots > id;
-    }
+    public boolean isHighlightable() {return this.hasItem();}
 }

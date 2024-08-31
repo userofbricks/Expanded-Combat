@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -30,34 +31,26 @@ public class QuiverEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onArrowItemPickup(EntityItemPickupEvent evt) {
         Player player = evt.getEntity();
-        ItemStack toPickup = evt.getItem().getItem();
+        ItemStack stackToPickup = evt.getItem().getItem();
         LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
         if(optionalCuriosInventory.resolve().isEmpty()) return;
         ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
         SlotResult slotResult = playerCuriosInventory.findFirstCurio( item -> item.getItem() instanceof ECQuiverItem).orElse(null);
-        if(toPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
-            IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-            int slots = arrowStackHandler.getSlots();
-
-            for (int s = 0; s < slots; s++) {
-                ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
-                ItemStack rem = toPickup.copy();
-                int itemsRemaining = toPickup.getCount();
-                if ((currentStack.getItem() == toPickup.getItem() || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
-                    rem = arrowStackHandler.insertItem(s, rem, false);
-                    if (rem.getCount() < itemsRemaining) {
-                        //arrowStackHandler.getStackInSlot(s).setPopTime(5);
-                        //TODO: make arrows picked up make pop sound
-                        player.awardStat(Stats.ITEM_PICKED_UP.get(toPickup.getItem()), itemsRemaining - rem.getCount());
-                    }
-                }
-                toPickup.setCount(rem.getCount());
+        if(stackToPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
+            ItemStack quiverStack = slotResult.stack();
+            int inputted = ECQuiverItem.add(quiverStack, stackToPickup);
+            if (inputted > 0) {
+                //TODO: sounds don't like playing from here
+                //ExpandedCombat.LOGGER.info("EC is trying to play arrow item pickup sound on the client: {}", player.level().isClientSide);
+                quiverItem.playInsertSound(player);
+                stackToPickup.shrink(inputted);
             }
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
+    @Deprecated
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
         if (screen instanceof CuriosScreenV2 curiosScreen) {
@@ -67,9 +60,11 @@ public class QuiverEvents {
             evt.getGuiGraphics().blit(textureLocation, left + 76, top + 43, 45, 18, 18, 18);
 
             CuriosApi.getCuriosInventory(curiosScreen.getMenu().player).ifPresent(curios -> {
-                Item quiverItem = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
+                IDynamicStackHandler arrowStackHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
                 int curiosSlots = 0;
-                if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
+                for (int slot = 0; slot < arrowStackHandler.getSlots(); slot++) {
+                    if (!arrowStackHandler.getStackInSlot(arrowStackHandler.getSlots() - 1 - slot).isEmpty()) curiosSlots = arrowStackHandler.getSlots() - slot;
+                }
                 if (curiosSlots > 0){
                     evt.getGuiGraphics().blit(textureLocation, left + 175, top + 4, 0, 0, 2, 158);
                     for (int column = 0; column < roundToNearest8(curiosSlots) / 8; column++) {
@@ -97,6 +92,7 @@ public class QuiverEvents {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
+    @Deprecated
     public static void moveEffectRenderingStack(ScreenEvent.RenderInventoryMobEffects event) {
         Screen screen = event.getScreen();
 
@@ -105,10 +101,11 @@ public class QuiverEvents {
             LazyOptional <ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(curiosScreen.getMenu().player);
             if (optionalCuriosInventory.resolve().isEmpty()) break name;
 
-            ICuriosItemHandler playerInventory = optionalCuriosInventory.resolve().get();
-            Item quiverItem = playerInventory.getCurios().get(QUIVER_CURIOS_IDENTIFIER).getStacks().getStackInSlot(0).getItem();
+            IDynamicStackHandler arrowStackHandler = optionalCuriosInventory.resolve().get().getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
             int curiosSlots = 0;
-            if (quiverItem instanceof ECQuiverItem ecQuiverItem) curiosSlots = ecQuiverItem.providedSlots;
+            for (int slot = 0; slot < arrowStackHandler.getSlots(); slot++) {
+                if (!arrowStackHandler.getStackInSlot(arrowStackHandler.getSlots() - 1 - slot).isEmpty()) curiosSlots = arrowStackHandler.getSlots() - slot;
+            }
 
             if (curiosSlots <= 0) break name;
 
@@ -120,6 +117,7 @@ public class QuiverEvents {
 
 
 
+    @Deprecated
     public static int roundToNearest8(int original) {
         int modulus = original % 8;
         if (modulus != 0) {

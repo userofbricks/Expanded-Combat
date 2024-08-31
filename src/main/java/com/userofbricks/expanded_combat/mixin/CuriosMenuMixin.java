@@ -47,15 +47,7 @@ public class CuriosMenuMixin {
             int row = 1;
             for (int i = 0; i < arrowStackHandler.getSlots(); i++, row++) {
                 int finalI = i;
-                ((CuriosContainerV2)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y) {
-                    @Override
-                    public boolean mayPlace(@Nonnull ItemStack stack) {
-                        if (stackHandler.getStackInSlot(0).getItem() instanceof ECQuiverItem quiverItem) {
-                            return super.mayPlace(stack) && quiverItem.providedSlots >= finalI + 1;
-                        }
-                        return false;
-                    }
-                });
+                ((CuriosContainerV2)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y));
                 y += 18;
                 if (row == 8) {
                     row = 0;

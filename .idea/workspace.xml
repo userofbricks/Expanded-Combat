@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="quiver with bundle holding functionality v2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/BowItemMixin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CrossbowItemMixin.java" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="working arrow removal from quiver bundle inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECBowItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCrossBowItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECCrossBowItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/container_handelers/CuriosContainerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/container_handelers/CuriosContainerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/PlayerEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/expanded_combat.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="">
@@ -124,23 +127,17 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/.idea/workspace.xml">
       <ranges>
-        <range start1="6" end1="7" start2="6" end2="9" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="8" end1="8" start2="10" end2="13" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="9" end1="9" start2="14" end2="16" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="11" end1="11" start2="18" end2="21" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="36" end1="37" start2="46" end2="68" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="66" end1="70" start2="97" end2="101" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="71" end1="72" start2="102" end2="103" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="83" end1="87" start2="114" end2="118" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="88" end1="89" start2="119" end2="120" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="91" end1="91" start2="122" end2="145" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="108" end1="108" start2="162" end2="164" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="109" end1="109" start2="165" end2="167" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
-        <range start1="292" end1="292" start2="350" end2="351" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
-        <range start1="296" end1="297" start2="355" end2="355" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
-        <range start1="654" end1="655" start2="712" end2="713" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="687" end1="688" start2="745" end2="745" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="712" end1="713" start2="769" end2="771" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="6" end1="9" start2="6" end2="7" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="10" end1="13" start2="8" end2="16" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="14" end1="16" start2="17" end2="19" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="126" end1="143" start2="129" end2="140" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="160" end1="177" start2="157" end2="176" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="178" end1="179" start2="177" end2="178" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="348" end1="348" start2="347" end2="348" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
+        <range start1="352" end1="353" start2="352" end2="352" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
+        <range start1="710" end1="711" start2="709" end2="710" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="743" end1="744" start2="742" end2="742" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
+        <range start1="768" end1="769" start2="766" end2="768" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
       </ranges>
     </file>
   </component>
@@ -158,25 +155,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.runClient.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor": "Run",
-    "Gradle.Expanded-Combat [genIntellijRuns].executor": "Run",
-    "JavaClassFindUsagesOptions.isMethodsUsages": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "forge-1.20.1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/data/expanded_combat/damage_type",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3143969",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.runClient.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunClientCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [genIntellijRuns].executor&quot;: &quot;Run&quot;,
+    &quot;JavaClassFindUsagesOptions.isMethodsUsages&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;forge-1.20.1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/data/expanded_combat/damage_type&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3143969&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.item" />
@@ -708,7 +707,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -741,7 +740,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed netherite recipes not being generated correctly" />
     <MESSAGE value="3.0.5" />
     <MESSAGE value="added MaterialConfig builder from tier/armorMaterial methods without ingredient part as it can sometimes cause crashing if items are not yet registered" />
     <MESSAGE value="updated version to 3.0.6 for previous commit" />
@@ -766,7 +764,8 @@
     <MESSAGE value="fixed quivers not being checked for being an instance of a quiver causing crash when item isn't a quiver" />
     <MESSAGE value="misc change" />
     <MESSAGE value="quiver with bundle holding functionality v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="quiver with bundle holding functionality v2" />
+    <MESSAGE value="working arrow removal from quiver bundle inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="working arrow removal from quiver bundle inventory" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

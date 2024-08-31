@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.item.ECGauntletItem;
 import com.userofbricks.expanded_combat.item.ECQuiverItem;
@@ -88,19 +89,14 @@ public class GauntletEvents
         ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
         Optional<SlotResult> optionalSlotResult = playerCuriosInventory.findFirstCurio(CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get());
         if (optionalSlotResult.isPresent() && player.getArrowCount() >= 1) {
-            Optional<SlotResult> optionalQuiverSlotResult = playerCuriosInventory.findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem);
-            if (optionalQuiverSlotResult.isPresent()) {
-                ECQuiverItem quiverItem = (ECQuiverItem) optionalQuiverSlotResult.get().stack().getItem();
-                IDynamicStackHandler arrowStackHandler = playerCuriosInventory.getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
-                int slots = arrowStackHandler.getSlots();
-                boolean found = false;
-                for (int s = 0; s < slots; s++) {
-                    ItemStack currentStack = arrowStackHandler.getStackInSlot(s);
-                    if ((currentStack.getItem() == Items.ARROW || currentStack.isEmpty()) && quiverItem.providedSlots > s) {
-                        found = arrowStackHandler.insertItem(s, new ItemStack(Items.ARROW), false).isEmpty();
-                    }
-                }
-                if (!found) {
+            SlotResult quiverSlotResult = playerCuriosInventory.findFirstCurio(stack -> stack.getItem() instanceof ECQuiverItem).orElse(null);
+            if (quiverSlotResult != null) {
+                ECQuiverItem quiverItem = (ECQuiverItem) quiverSlotResult.stack().getItem();
+                int inputted = ECQuiverItem.add(quiverSlotResult.stack(), new ItemStack(Items.ARROW));
+                if (inputted > 0) {
+                    //ExpandedCombat.LOGGER.info("EC is trying to play arrow in player put in quiver sound on the client: {}", player.level().isClientSide);
+                    quiverItem.playInsertSound(player);
+                } else {
                     player.getInventory().placeItemBackInInventory(new ItemStack(Items.ARROW));
                 }
             } else {

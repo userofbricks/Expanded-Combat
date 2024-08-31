@@ -7,8 +7,6 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
-import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
-import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.FletchingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory.ShieldSmithingTableScreen;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelsProperties;
@@ -23,14 +21,11 @@ import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -42,6 +37,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -55,6 +52,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @Mod(MODID)
 public class ExpandedCombat {
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "expanded_combat";
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
