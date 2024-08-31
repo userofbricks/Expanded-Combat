@@ -1,12 +1,16 @@
 package com.userofbricks.expanded_combat.init;
 
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.LangStrings.*;
 
+@Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ECKeyRegistry {
 
     public static KeyMapping cycleQuiverRight = new KeyMapping(CYCLE_QUIVER_RIGHT, GLFW.GLFW_KEY_X, KEY_CATEGORY);

@@ -137,7 +137,6 @@ public class ExpandedCombat {
             CuriosRendererRegistry.register(quiverItem, quiverItem.getQuiverRenderer());
         }
         ECItemModelsProperties.registerModelOverides();
-        MinecraftForge.EVENT_BUS.register(ECKeyRegistry.class);
         EntityRenderers.register(ECEntities.EC_ARROW.get(), ECArrowRenderer::new);
         EntityRenderers.register(ECEntities.EC_FALLING_BLOCK.get(), ECFallingBlockRenderer::new);
     }

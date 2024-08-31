@@ -189,19 +189,18 @@ public class ECQuiverItem extends Item implements ICurioItem {
                 if (optional.isPresent()) {
                     CompoundTag compoundtag1 = optional.get();
                     ItemStack itemstack = ItemStack.of(compoundtag1);
-                    if (itemstack.getCount() < itemstack.getMaxStackSize()) {
-                        int l = Math.min(itemstack.getMaxStackSize() - itemstack.getCount(), k);
-                        itemstack.grow(l);
-                        itemstack.save(compoundtag1);
-                        listtag.remove(compoundtag1);
-                        listtag.add(0, compoundtag1);
-                        int m = k - l;
-                        if (m > 0) {
-                            ItemStack itemstack1 = stackToAdd.copyWithCount(m);
-                            CompoundTag compoundtag2 = new CompoundTag();
-                            itemstack1.save(compoundtag2);
-                            listtag.add(0, compoundtag2);
-                        }
+
+                    int l = Math.min(itemstack.getMaxStackSize() - itemstack.getCount(), k);
+                    itemstack.grow(l);
+                    itemstack.save(compoundtag1);
+                    listtag.remove(compoundtag1);
+                    listtag.add(0, compoundtag1);
+                    int m = k - l;
+                    if (m > 0) {
+                        ItemStack itemstack1 = stackToAdd.copyWithCount(m);
+                        CompoundTag compoundtag2 = new CompoundTag();
+                        itemstack1.save(compoundtag2);
+                        listtag.add(0, compoundtag2);
                     }
                 } else {
                     ItemStack itemstack1 = stackToAdd.copyWithCount(k);
