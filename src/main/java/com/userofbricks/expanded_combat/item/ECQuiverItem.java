@@ -32,6 +32,8 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
@@ -87,6 +89,21 @@ public class ECQuiverItem extends Item implements ICurioItem {
                 }
             }
         });
+    }
+
+    @Override
+    public  void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        Optional<ICuriosItemHandler> curiosItemHandlerOptional = CuriosApi.getCuriosInventory(slotContext.entity()).resolve();
+        if (curiosItemHandlerOptional.isEmpty())  return;
+
+        IDynamicStackHandler arrowStackHandler = curiosItemHandlerOptional.get().getCurios().get(ARROWS_CURIOS_IDENTIFIER).getStacks();
+        for (int i = 0; i < arrowStackHandler.getSlots(); i++) {
+            ItemStack arrow = arrowStackHandler.getStackInSlot(i);
+            if (arrow.isEmpty()) continue;
+            int added = add(stack, arrow.copy());
+            arrow.shrink(added);
+            if (added < arrow.getCount()) break;
+        }
     }
 
     public void sycleArrows(LivingEntity livingEntity, boolean forward, int providedSlots) {
