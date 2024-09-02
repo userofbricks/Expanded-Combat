@@ -25,6 +25,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,11 +53,12 @@ public class QuiverSlotOverlay {
             ItemStack quiver = quiverSlotResult.get().stack();
             GuiGraphics guiGraphics = event.getGuiGraphics();
             int providedSlots = ECQuiverItem.numberOfArrowStacks(quiver);
-            int currentIndex = ECVariables.getArrowSlot(player);
-            int beforeIndex = currentIndex - 1 < 0 ? providedSlots - 1 : currentIndex - 1;
+            int currentIndex = Math.max(Math.min(ECVariables.getArrowSlot(player), providedSlots <= 0 ? 0 : providedSlots - 1), 0);
+            int beforeIndex = currentIndex - 1 < 0 ? providedSlots <= 0 ? 0 : providedSlots - 1 : currentIndex - 1;
             int nextIndex = currentIndex + 1 >= providedSlots ? 0 : currentIndex + 1;
 
             List<ItemStack> arrows = ECQuiverItem.getContents(quiver).toList();
+            if (arrows.isEmpty()) arrows = List.of(ItemStack.EMPTY);
 
             ItemStack currentArrow = arrows.get(currentIndex);
             ItemStack nextArrow = null;

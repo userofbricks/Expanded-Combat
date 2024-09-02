@@ -110,7 +110,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         int arrowSlot = ECVariables.getArrowSlot(livingEntity);
         arrowSlot += forward ? 1 : -1;
         if (arrowSlot >= providedSlots) arrowSlot = 0;
-        if (arrowSlot < 0) arrowSlot = providedSlots - 1;
+        if (arrowSlot < 0) arrowSlot = providedSlots <= 0 ? 0 : providedSlots - 1;
 
         ECVariables.setArrowSlotTo(livingEntity, arrowSlot);
     }

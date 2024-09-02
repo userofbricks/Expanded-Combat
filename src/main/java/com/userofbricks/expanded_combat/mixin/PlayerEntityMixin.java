@@ -42,7 +42,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         SlotResult quiverStack = playerCuriosInventory.findFirstCurio(item -> item.getItem() instanceof ECQuiverItem).orElse(null);
         if (quiverStack != null) {
             int providedSlots = ECQuiverItem.numberOfArrowStacks(quiverStack.stack());
-            int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots - 1), 0);
+            int selectedSlot = Math.max(Math.min(ECVariables.getArrowSlot(this), providedSlots <= 0 ? 0 : providedSlots - 1), 0);
 
             List<ItemStack> arrows = ECQuiverItem.getContents(quiverStack.stack()).toList();
             if (!arrows.isEmpty()) cir.setReturnValue(arrows.get(selectedSlot));
