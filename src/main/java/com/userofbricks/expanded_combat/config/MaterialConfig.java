@@ -1,6 +1,9 @@
 package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.api.material.PlacementInShield;
+import com.userofbricks.expanded_combat.config.gui.ConfigEntryGui;
+import com.userofbricks.expanded_combat.config.gui.ConfigName;
+import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -30,129 +33,290 @@ public class MaterialConfig {
         this.crafting = new Crafting(isSingleAddition, onlyReplaceResource);
     }
 
-    /**
-     * @param toolBaseDurability This is used as the base durability for weapons, which is added to the weapons durability adjustment to get the final durability
-     * @param gauntletDurability This is used as the gauntlet's durability. plain and simple
-     * @param bowCrossbowDurability again self-explanatory
-     * @param addedShieldDurability this is the amount of durability added by each of the five sections of a shield
-     */
-    public record Durability(
+    public static class Durability{
         @ConfigEntry.BoundedDiscrete(max = Integer.MAX_VALUE)
         @ConfigName("Tool Durability")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("This is used as the base durability for weapons, which is multiplied with the weapons durability multiplier to get the final durability")
-        int toolBaseDurability,
+        int toolBaseDurability;
         @ConfigEntry.BoundedDiscrete(max = Integer.MAX_VALUE)
         @ConfigName("Gauntlet Durability")
-        int gauntletDurability,
+        int gauntletDurability;
         @ConfigEntry.BoundedDiscrete(max = Integer.MAX_VALUE)
         @ConfigName("Bow/Crossbow Durability")
-        int bowCrossbowDurability,
+        int bowCrossbowDurability;
+
         @ConfigEntry.BoundedDiscrete(max = Integer.MAX_VALUE)
         @ConfigName("Added Shield Durability")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("this is the amount of durability added by each of the five sections, onto the base wood shield durability")
-        int addedShieldDurability
-    ){}
+        int addedShieldDurability;
 
-    /**
-     * @param offenseEnchantability the enchantability of weapons and half of a gauntlets
-     * @param defenseEnchantability the enchantability of shields and other half of gauntlets
-     * @param mendingBonus added to the vanilla base mending multiplier of 2
-     */
-    public record Enchanting(
+        /**
+         * @param toolBaseDurability This is used as the base durability for weapons, which is added to the weapons durability adjustment to get the final durability
+         * @param gauntletDurability This is used as the gauntlet's durability. plain and simple
+         * @param bowCrossbowDurability again self-explanatory
+         * @param addedShieldDurability this is the amount of durability added by each of the five sections of a shield
+         */
+        public Durability(
+                int toolBaseDurability,
+                int gauntletDurability,
+                int bowCrossbowDurability,
+                int addedShieldDurability) {
+            this.toolBaseDurability = toolBaseDurability;
+            this.gauntletDurability = gauntletDurability;
+            this.bowCrossbowDurability = bowCrossbowDurability;
+            this.addedShieldDurability = addedShieldDurability;
+        }
+
+        public int addedShieldDurability() {
+            return addedShieldDurability;
+        }
+
+        public int bowCrossbowDurability() {
+            return bowCrossbowDurability;
+        }
+
+        public int gauntletDurability() {
+            return gauntletDurability;
+        }
+
+        public int toolBaseDurability() {
+            return toolBaseDurability;
+        }
+    }
+
+    public static class Enchanting {
         @ConfigEntry.BoundedDiscrete(max = 512)
         @ConfigName("Offence Enchantability")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("The enchantability of weapons and half of a gauntlet's")
-        int offenseEnchantability,
+        int offenseEnchantability;
         @ConfigEntry.BoundedDiscrete(max = 512)
         @ConfigName("Defence Enchantability")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("The enchantability of shields and half of a gauntlet's")
-        int defenseEnchantability,
+        int defenseEnchantability;
         @ConfigName("Mending Bonus")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("Added to the vanilla base mending multiplier of 2")
-        float mendingBonus
-    ) {}
+        float mendingBonus;
 
-    /**
-     * @param addedAttackDamage used for gauntlet damage and also added to melee weapon base damage
-     * @param arrowDamage the Damage an arrow of the material does
-     * @param flaming weather the arrow for the material act like it has the flame enchantment all the time
-     * @param canBeTipped weather the arrow can be tipped with potions
-     * @param velocityMultiplier multiplies the base velocity of an arrow when shot from the bow or crossbow of the material
-     * @param quiverStacks how many stacks of arrows the quiver can hold
-     */
-    public record Offense(
+        public int offenseEnchantability() {
+            return offenseEnchantability;
+        }
+
+        public int defenseEnchantability() {
+            return defenseEnchantability;
+        }
+
+        public float mendingBonus() {
+            return mendingBonus;
+        }
+
+        /**
+         * @param offenseEnchantability the enchantability of weapons and half of a gauntlets
+         * @param defenseEnchantability the enchantability of shields and other half of gauntlets
+         * @param mendingBonus added to the vanilla base mending multiplier of 2
+         */
+        public Enchanting(
+                int offenseEnchantability,
+                int defenseEnchantability,
+                float mendingBonus) {
+            this.offenseEnchantability = offenseEnchantability;
+            this.defenseEnchantability = defenseEnchantability;
+            this.mendingBonus = mendingBonus;
+        }
+    }
+
+    public static class Offense {
         @ConfigName("Added Attack Damage")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("used for gauntlet damage and also added to melee weapon base damage")
-        double addedAttackDamage,
+        double addedAttackDamage;
         @ConfigName("Arrow Damage")
-        float arrowDamage,
+        float arrowDamage;
         @ConfigName("Arrow Gravity")
-        double defaultArrowGravity,
+        double defaultArrowGravity;
         @ConfigName("Flaming Arrow")
-        boolean flaming,
+        boolean flaming;
         @ConfigName("Can Arrow Be Tipped With Potions")
-        boolean canBeTipped,
+        boolean canBeTipped;
         @ConfigEntry.BoundedDiscrete(max = 100)
         @ConfigName("Arrow Velocity Multiplier")
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("used when firing a bow or crossbow")
-        float velocityMultiplier,
+        float velocityMultiplier;
         @ConfigName("QuiverStacks")
         @ConfigEntry.BoundedDiscrete(min = 1, max = 64)
-        int quiverStacks
-    ) {}
+        int quiverStacks;
 
-    /**
-     * @param gauntletArmorAmount the amount of armor the gauntlet has
-     * @param armorToughness how tough the armor provided by the gauntlet is
-     * @param knockbackResistance how resistant to knockback the gauntlet makes you
-     * @param equipSound used when a gauntlet is equipped
-     * @param fireResistant weather it acts like netherite in lava and fire or not
-     * @param placementInShield this is the possible locations in a shield that this material can be placed when crafting
-     * @param baseProtectionAmmount Defines the amount of Damage a shield entirely made of this material will block. Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings.
-     * @param afterBasePercentReduction Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked. Only works if Shield Protection Percentage is enabled in the Shield Protection Settings
-     */
-    public record Defense(
-        @ConfigName("Gauntlet Armor Amount") @ConfigEntry.BoundedDiscrete(max = 512) int gauntletArmorAmount,
-        @ConfigName("Armor Toughness") double armorToughness,
-        @ConfigName("Knockback Resistance") double knockbackResistance,
-        @ConfigName("Equip Sound") @ConfigEntryGui.SoundEvent ResourceLocation equipSound,
-        @ConfigName("Fire Resistant") boolean fireResistant,
-        @ConfigName("Makes Piglins Neutral") boolean makesPiglinsNeutral,
+        /**
+         * @param addedAttackDamage used for gauntlet damage and also added to melee weapon base damage
+         * @param arrowDamage the Damage an arrow of the material does
+         * @param flaming weather the arrow for the material act like it has the flame enchantment all the time
+         * @param canBeTipped weather the arrow can be tipped with potions
+         * @param velocityMultiplier multiplies the base velocity of an arrow when shot from the bow or crossbow of the material
+         * @param quiverStacks how many stacks of arrows the quiver can hold
+         */
+        public Offense(
+                double addedAttackDamage,
+                float arrowDamage,
+                double defaultArrowGravity,
+                boolean flaming,
+                boolean canBeTipped,
+                float velocityMultiplier,
+                int quiverStacks) {
+            this.addedAttackDamage = addedAttackDamage;
+            this.arrowDamage = arrowDamage;
+            this.defaultArrowGravity = defaultArrowGravity;
+            this.flaming = flaming;
+            this.canBeTipped = canBeTipped;
+            this.velocityMultiplier = velocityMultiplier;
+            this.quiverStacks = quiverStacks;
+        }
+
+        public double addedAttackDamage() {
+            return addedAttackDamage;
+        }
+
+        public float arrowDamage() {
+            return arrowDamage;
+        }
+
+        public double defaultArrowGravity() {
+            return defaultArrowGravity;
+        }
+
+        public boolean flaming() {
+            return flaming;
+        }
+
+        public boolean canBeTipped() {
+            return canBeTipped;
+        }
+
+        public float velocityMultiplier() {
+            return velocityMultiplier;
+        }
+
+        public int quiverStacks() {
+            return quiverStacks;
+        }
+    }
+
+    public static class Defense {
+        @ConfigName("Gauntlet Armor Amount") @ConfigEntry.BoundedDiscrete(max = 512) int gauntletArmorAmount;
+        @ConfigName("Armor Toughness") double armorToughness;
+        @ConfigName("Knockback Resistance") double knockbackResistance;
+        @ConfigName("Equip Sound") @ConfigEntryGui.SoundEvent ResourceLocation equipSound;
+        @ConfigName("Fire Resistant") boolean fireResistant;
+        @ConfigName("Makes Piglins Neutral") boolean makesPiglinsNeutral;
         @ConfigName("Placement in Shield")
         @ConfigEntry.Gui.EnumHandler
         @ConfigEntry.Gui.Tooltip
         @TooltipFrase("this is the possible locations in a shield that this material can be placed when crafting")
-        PlacementInShield placementInShield,
+        PlacementInShield placementInShield;
         @ConfigName("Base Protection Amount")
         @ConfigEntry.Gui.Tooltip(count = 2)
         @TooltipFrase("Defines the amount of Damage a shield entirely made of this material will block")
         @TooltipFrase(line = 1, value = "Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings")
-        float baseProtectionAmmount,
+        float baseProtectionAmmount;
         @ConfigEntry.Gui.Tooltip(count = 2)
         @ConfigName("After Base Percent Protection")
         @TooltipFrase("Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked")
         @TooltipFrase(line = 1, value = "Only works if Shield Protection Percentage is enabled in the Shield Protection Settings")
-        float afterBasePercentReduction
-    ) {}
+        float afterBasePercentReduction;
 
-    /**
-     * @param isSingleAddition weather this material is applied to every part of a shield with one item verses using one for each of the five parts
-     * @param onlyReplaceResource a list of what materials this one can replace on a shield
-     */
-    public record Crafting(
+        /**
+         * @param gauntletArmorAmount the amount of armor the gauntlet has
+         * @param armorToughness how tough the armor provided by the gauntlet is
+         * @param knockbackResistance how resistant to knockback the gauntlet makes you
+         * @param equipSound used when a gauntlet is equipped
+         * @param fireResistant weather it acts like netherite in lava and fire or not
+         * @param placementInShield this is the possible locations in a shield that this material can be placed when crafting
+         * @param baseProtectionAmmount Defines the amount of Damage a shield entirely made of this material will block. Only works if PREDEFINED_AMMOUNT is selected in the Shield Protection Settings.
+         * @param afterBasePercentReduction Defines the percent of Damage a shield entirely made of this material will block after the Base amount has been blocked. Only works if Shield Protection Percentage is enabled in the Shield Protection Settings
+         */
+        public Defense(int gauntletArmorAmount, double armorToughness, double knockbackResistance, ResourceLocation equipSound, boolean fireResistant, boolean makesPiglinsNeutral,
+                       PlacementInShield placementInShield,
+                       float baseProtectionAmmount,
+                       float afterBasePercentReduction) {
+            this.gauntletArmorAmount = gauntletArmorAmount;
+            this.armorToughness = armorToughness;
+            this.knockbackResistance = knockbackResistance;
+            this.equipSound = equipSound;
+            this.fireResistant = fireResistant;
+            this.makesPiglinsNeutral = makesPiglinsNeutral;
+            this.placementInShield = placementInShield;
+            this.baseProtectionAmmount = baseProtectionAmmount;
+            this.afterBasePercentReduction = afterBasePercentReduction;
+        }
+
+        public int gauntletArmorAmount() {
+            return gauntletArmorAmount;
+        }
+
+        public double armorToughness() {
+            return armorToughness;
+        }
+
+        public double knockbackResistance() {
+            return knockbackResistance;
+        }
+
+        public ResourceLocation equipSound() {
+            return equipSound;
+        }
+
+        public boolean fireResistant() {
+            return fireResistant;
+        }
+
+        public boolean makesPiglinsNeutral() {
+            return makesPiglinsNeutral;
+        }
+
+        public PlacementInShield placementInShield() {
+            return placementInShield;
+        }
+
+        public float baseProtectionAmmount() {
+            return baseProtectionAmmount;
+        }
+
+        public float afterBasePercentReduction() {
+            return afterBasePercentReduction;
+        }
+    }
+
+    public static class Crafting {
             @ConfigName("Weather this material is applied to every part of a shield with one item verses using one for each of the five parts")
-            boolean isSingleAddition,
+            boolean isSingleAddition;
             @ConfigName("A list of what materials this one can replace on a shield")
-            List<ResourceLocation> onlyReplaceResource
+            @ConfigEntryGui.Material
+            List<ResourceLocation> onlyReplaceResource;
 
-    ) {}
+
+        /**
+         * @param isSingleAddition weather this material is applied to every part of a shield with one item verses using one for each of the five parts
+         * @param onlyReplaceResource a list of what materials this one can replace on a shield
+         */
+        public Crafting(
+                boolean isSingleAddition,
+                List<ResourceLocation> onlyReplaceResource) {
+            this.isSingleAddition = isSingleAddition;
+            this.onlyReplaceResource = onlyReplaceResource;
+        }
+
+        public boolean isSingleAddition() {
+            return isSingleAddition;
+        }
+
+        public List<ResourceLocation> onlyReplaceResource() {
+            return onlyReplaceResource;
+        }
+    }
 
     public static class Builder {
         private int toolDurability = 0;

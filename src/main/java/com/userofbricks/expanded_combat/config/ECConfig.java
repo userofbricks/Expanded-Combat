@@ -2,6 +2,8 @@ package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.api.weapon_type.GripType;
+import com.userofbricks.expanded_combat.config.gui.ConfigName;
+import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;

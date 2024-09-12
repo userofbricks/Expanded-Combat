@@ -1,4 +1,4 @@
-package com.userofbricks.expanded_combat.config;
+package com.userofbricks.expanded_combat.config.gui;
 
 import java.lang.annotation.*;
 

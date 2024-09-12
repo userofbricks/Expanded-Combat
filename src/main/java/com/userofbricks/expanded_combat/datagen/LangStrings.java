@@ -66,6 +66,10 @@ public class LangStrings extends LanguageProvider {
     public static final String stolenHeartsSuccess = createCommandLangEntry("stolen_hearts", true, "single", "Set Stolen Hearts to %s for %s");
     public static final String stolenHeartsSucceses = createCommandLangEntry("stolen_hearts", true, "multiple", "Set Stolen Hearts to %s for %s entities");
 
+
+    public static final String NOT_VALID_RESOURCE_LOCATION_CONFIG_ERROR = createLangEntry("text.ec-cloth-config.error.not_valid_resource_location", "Not a Valid Resource Location!");
+    public static final String RESOURCE_LOCATION_NOT_WITHIN_AVAILABLE_VALUES = createLangEntry("text.ce-cloth-config.error.not_within_available_values", "This Resource Location is Not a Recognised Value");
+
     public LangStrings(PackOutput output) {
         super(output, MODID, "en_us");
         this.modId = MODID;

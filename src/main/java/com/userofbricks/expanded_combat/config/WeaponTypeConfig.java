@@ -1,38 +1,84 @@
 package com.userofbricks.expanded_combat.config;
 
 import com.userofbricks.expanded_combat.api.weapon_type.GripType;
+import com.userofbricks.expanded_combat.config.gui.ConfigName;
+import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-/**
- * @param durabilityMultiplier multiplies the durability provided by the material of the weapon
- * @param baseAttackDamage Material tool damage is added to this
- * @param attackSpeed
- * @param mendingBonus added to the vanilla mending bonus of 2
- * @param knockback
- * @param attackRange The range in Blocks
- * @param gripType
- */
-public record WeaponTypeConfig(
+public class WeaponTypeConfig {
     @ConfigName("Durability Multiplier")
-    double durabilityMultiplier,
+    double durabilityMultiplier;
     @ConfigName("Base Attack Damage")
     @ConfigEntry.Gui.Tooltip
     @TooltipFrase("Material tool damage is added to this")
-    int baseAttackDamage,
+    int baseAttackDamage;
     @ConfigName("Attack Speed")
-    float attackSpeed,
+    float attackSpeed;
     @ConfigName("Mending Bonus")
-    float mendingBonus,
+    float mendingBonus;
     @ConfigName("Knockback")
-    float knockback,
+    float knockback;
     @ConfigName("Added Attack Range")
     @ConfigEntry.Gui.Tooltip
     @TooltipFrase("In Blocks")
-    double attackRange,
+    double attackRange;
     @ConfigName("Grip Type")
-    GripType gripType
-)
-{
+    GripType gripType;
+
+    /**
+     * @param durabilityMultiplier multiplies the durability provided by the material of the weapon
+     * @param baseAttackDamage Material tool damage is added to this
+     * @param attackSpeed
+     * @param mendingBonus added to the vanilla mending bonus of 2
+     * @param knockback
+     * @param attackRange The range in Blocks
+     * @param gripType
+     */
+    public WeaponTypeConfig(
+            double durabilityMultiplier,
+            int baseAttackDamage,
+            float attackSpeed,
+            float mendingBonus,
+            float knockback,
+            double attackRange,
+            GripType gripType) {
+        this.durabilityMultiplier = durabilityMultiplier;
+        this.baseAttackDamage = baseAttackDamage;
+        this.attackSpeed = attackSpeed;
+        this.mendingBonus = mendingBonus;
+        this.knockback = knockback;
+        this.attackRange = attackRange;
+        this.gripType = gripType;
+    }
+
+    public double durabilityMultiplier() {
+        return durabilityMultiplier;
+    }
+
+    public int baseAttackDamage() {
+        return baseAttackDamage;
+    }
+
+    public float attackSpeed() {
+        return attackSpeed;
+    }
+
+    public float mendingBonus() {
+        return mendingBonus;
+    }
+
+    public float knockback() {
+        return knockback;
+    }
+
+    public double attackRange() {
+        return attackRange;
+    }
+
+    public GripType gripType() {
+        return gripType;
+    }
+
     public static class Builder {
         public boolean hasLargeModel = false;
         private double durabilityMultiplier = 1;
