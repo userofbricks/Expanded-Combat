@@ -47,7 +47,7 @@ public class QuiverRenderer implements ICurioRenderer {
 
             for (QuiverItem.Layer layer : quiverItem.QUIVER_TEXTURE_LAYERS) {
                 VertexConsumer vertexconsumer = ItemRenderer
-                        .getArmorFoilBuffer(multiBufferSource, RenderType.armorCutoutNoCull(layer.texture(quiverItem.material.getId())), false,
+                        .getArmorFoilBuffer(multiBufferSource, RenderType.armorCutoutNoCull(layer.texture(quiverItem.material.id())), false,
                                 stack.hasFoil());
                 this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             }
@@ -58,7 +58,7 @@ public class QuiverRenderer implements ICurioRenderer {
 
             List<ItemStack> nonEmptySlots = contents.itemCopyStream().toList();
             if (!nonEmptySlots.isEmpty()) {
-                int quiverSlots = quiverItem.getMaterial().offense().quiverSlots();
+                int quiverSlots = quiverItem.getMaterial().offense().quiverStacks();
                 boolean notOneSlot = quiverSlots > 1;
                 int thirdOfCapacity = Math.max(1, notOneSlot ? Math.round(quiverSlots / 3f) : Math.round(nonEmptySlots.getFirst().copy().getMaxStackSize() / 3f));
                 Minecraft mc = Minecraft.getInstance();

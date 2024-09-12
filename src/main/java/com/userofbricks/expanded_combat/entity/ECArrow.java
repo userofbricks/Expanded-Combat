@@ -1,11 +1,10 @@
 package com.userofbricks.expanded_combat.entity;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import com.userofbricks.expanded_combat.init.ECEntities;
-import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -30,18 +28,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class ECArrow extends AbstractArrow {
     private static final EntityDataAccessor<Integer> ID_EFFECT_COLOR = SynchedEntityData.defineId(ECArrow.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Holder<Material>> MATERIAL = SynchedEntityData.defineId(ECArrow.class, ECEntities.MATERIAL.get());
-    private Holder<Material> material;
+    private static final EntityDataAccessor<Material> MATERIAL = SynchedEntityData.defineId(ECArrow.class, ECEntities.MATERIAL.get());
+    private Material material;
     public ECArrow(EntityType<? extends ECArrow> entityEntityType, Level level) {
         super(entityEntityType, level);
     }
-    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, DeferredHolder<Material, Material> material) {
+    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, Material material) {
         super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
         this.material = material;
         this.updateColor();
     }
 
-    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, DeferredHolder<Material, Material> material) {
+    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Material material) {
         super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack);
         this.material = material;
         this.updateColor();
@@ -75,7 +73,7 @@ public class ECArrow extends AbstractArrow {
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
         pBuilder.define(ID_EFFECT_COLOR, -1);
-        pBuilder.define(MATERIAL, Materials.VANILLA);
+        pBuilder.define(MATERIAL, ECBasePlugin.IRON);
     }
 
     @Override
@@ -185,14 +183,10 @@ public class ECArrow extends AbstractArrow {
     }
 
     public Material getMaterial() {
-        return material.value();
-    }
-
-    public Holder<Material> getMaterialHolder() {
         return material;
     }
 
-    public void setArrowType(Holder<Material> arrowMaterial) {
+    public void setArrowType(Material arrowMaterial) {
         this.material = arrowMaterial;
     }
 }

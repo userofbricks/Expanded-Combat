@@ -5,23 +5,26 @@ import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.client.renderer.ECArrowRenderer;
 import com.userofbricks.expanded_combat.client.renderer.ECFallingBlockRenderer;
 import com.userofbricks.expanded_combat.client.renderer.item.ECItemModelProperties;
-import com.userofbricks.expanded_combat.config.ClientECConfig;
-import com.userofbricks.expanded_combat.config.CommonECConfig;
+import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.ECConfigGUIRegister;
 import com.userofbricks.expanded_combat.events.*;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.GauntletItem;
 import com.userofbricks.expanded_combat.item.QuiverItem;
 import com.userofbricks.expanded_combat.network.ECNetworkHandler;
 import com.userofbricks.expanded_combat.util.ECPluginFinder;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -39,12 +42,12 @@ public class ExpandedCombat {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String GAUNTLET_CURIOS_IDENTIFIER = "hands";
     public static final String QUIVER_CURIOS_IDENTIFIER = "quiver_ec";
-    public static final String ARROWS_CURIOS_IDENTIFIER = "arrows";
     public static final List<IExpandedCombatPlugin> PLUGINS = new ArrayList<>();
+    public static ECConfig CONFIG;
 
     public ExpandedCombat(IEventBus bus, ModContainer modContainer) {
-        modContainer.registerConfig(ModConfig.Type.COMMON, CommonECConfig.pair.getRight());
-        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientECConfig.pair.getRight());
+        AutoConfig.register(ECConfig.class, Toml4jConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(ECConfig.class).getConfig();
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
@@ -73,6 +76,7 @@ public class ExpandedCombat {
         NeoForge.EVENT_BUS.register(EnchantentEvents.class);
         bus.addListener(ECLayerDefinitions::registerLayers);
         //NeoForge.EVENT_BUS.register(this);
+        if (FMLEnvironment.dist == Dist.CLIENT) ECConfigGUIRegister.registerModsPage();
     }
 
     private void registerPayloadHandler(final RegisterPayloadHandlersEvent evt) {

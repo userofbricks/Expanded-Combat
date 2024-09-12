@@ -1,8 +1,7 @@
 package com.userofbricks.expanded_combat.api.registry;
 
 import com.userofbricks.expanded_combat.api.Consumer5;
-import com.userofbricks.expanded_combat.data.material.Material;
-import net.minecraft.core.Holder;
+import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;

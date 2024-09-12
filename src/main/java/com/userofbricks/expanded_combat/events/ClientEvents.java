@@ -1,8 +1,8 @@
 package com.userofbricks.expanded_combat.events;
 
+import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
-import com.userofbricks.expanded_combat.init.Materials;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
@@ -20,8 +20,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 public class ClientEvents {
 
@@ -64,7 +62,7 @@ public class ClientEvents {
             if (item.get() instanceof ECTippedArrowItem arrowItem) {
                 event.register((stack, itemLayer) -> (itemLayer == 1) ?
                         FastColor.ARGB32.opaque(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor()) : -1, arrowItem);
-            } else if (item.get() instanceof GauntletItem gauntletItem && gauntletItem.material == Materials.LEATHER) {
+            } else if (item.get() instanceof GauntletItem gauntletItem && gauntletItem.material == ECBasePlugin.LEATHER) {
                 event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, gauntletItem);
             } //else if (item.get() instanceof QuiverItem quiverItem && quiverItem.material == Materials.LEATHER) {
                 //event.register((stack, itemLayer) -> (itemLayer == 0) ? DyedItemColor.getOrDefault(stack, -6265536) : -1, quiverItem);

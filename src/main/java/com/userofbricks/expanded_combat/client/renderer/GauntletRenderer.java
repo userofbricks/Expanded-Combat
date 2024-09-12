@@ -51,7 +51,7 @@ public class GauntletRenderer implements IGauntletRenderer {
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             ICurioRenderer.followBodyRotations(entity, this.model);
 
-            ResourceLocation material = gauntletItem.material.key().location();
+            ResourceLocation material = gauntletItem.material.id();
             for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
                 ResourceLocation layerTexture = layer.texture(material);
                 if (layer.dyeable()) {
@@ -89,7 +89,7 @@ public class GauntletRenderer implements IGauntletRenderer {
             modelPart.xRot = 0;
 
             if (stack.getItem() instanceof GauntletItem gauntletItem) {
-                ResourceLocation material = gauntletItem.material.key().location();
+                ResourceLocation material = gauntletItem.material.id();
                 for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
                     ResourceLocation layerTexture = layer.texture(material);
 

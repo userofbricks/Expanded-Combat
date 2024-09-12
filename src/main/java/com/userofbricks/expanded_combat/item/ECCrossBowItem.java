@@ -1,12 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.Registries;
+import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Unit;
@@ -17,27 +12,24 @@ import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
-    public final DeferredHolder<Material, Material> material;
+    public final Material material;
 
-    public ECCrossBowItem(Item.Properties builder, DeferredHolder<Material, Material> material) {
+    public ECCrossBowItem(Item.Properties builder, Material material) {
         super(builder);
         this.material = material;
     }
     public DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().bowCrossbowDurability())
+        components.set(DataComponents.MAX_DAMAGE, getMaterial().durability().bowCrossbowDurability())
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
@@ -67,12 +59,7 @@ public class ECCrossBowItem extends CrossbowItem implements IMaterialItem {
         }
     }
 
-    @Override
-    public DeferredHolder<Material, Material> getMaterialReference() {
-        return material;
-    }
-
     public Material getMaterial() {
-        return material.value();
+        return material;
     }
 }

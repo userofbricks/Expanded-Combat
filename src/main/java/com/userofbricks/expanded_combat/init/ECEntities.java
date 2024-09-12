@@ -1,6 +1,10 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.Encoder;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.entity.ECArrow;
 import com.userofbricks.expanded_combat.entity.ECFallingBlockEntity;
 import net.minecraft.core.Holder;
@@ -24,6 +28,5 @@ public class ECEntities {
 
     public static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS = DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, MODID);
 
-    public static final Supplier<EntityDataSerializer<Holder<Material>>> MATERIAL = ENTITY_DATA_SERIALIZERS.register("material", () -> EntityDataSerializer.forValueType(
-            ByteBufCodecs.holderRegistry(Registries.MATERIAL_REGISTRY_KEY)));
+    public static final Supplier<EntityDataSerializer<Material>> MATERIAL = ENTITY_DATA_SERIALIZERS.register("material", () -> EntityDataSerializer.forValueType(Material.STREAM_CODEC));
 }

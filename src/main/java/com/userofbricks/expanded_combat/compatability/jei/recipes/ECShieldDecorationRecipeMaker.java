@@ -1,13 +1,11 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.material.PlacementInShield;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.Registries;
-import com.userofbricks.expanded_combat.item.ECShieldItem;
 import com.userofbricks.expanded_combat.init.PluginInit;
+import com.userofbricks.expanded_combat.item.ECShieldItem;
 import mezz.jei.api.constants.ModIds;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,7 +26,7 @@ public class ECShieldDecorationRecipeMaker {
         Set<DyeColor> colors = EnumSet.noneOf(DyeColor.class);
 
         List<RecipeHolder<CraftingRecipe>> craftingRecipes = new ArrayList<>();
-        for (Material shieldMaterial : Registries.MATERIAL_REGISTRY.stream()
+        for (Material shieldMaterial : PluginInit.materials.values().stream()
                         .filter(materialReference -> materialReference.defense().placementInShield() != PlacementInShield.NONE).toList()) {
 
             List<RecipeHolder<CraftingRecipe>> craftingRecipesForShield = StreamSupport.stream(banners.spliterator(), false)
@@ -54,7 +52,7 @@ public class ECShieldDecorationRecipeMaker {
 
         ItemStack output = createOutput(banner, shieldStack.copy());
 
-        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + Registries.MATERIAL_REGISTRY.getKey(shieldMaterial).toString().replace(':', '_'));
+        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.id().toString().replace(':', '_'));
         CraftingRecipe recipe = new ShapelessRecipe("jei.ec_shield.decoration", CraftingBookCategory.MISC, output, inputs);
         return new RecipeHolder<>(id, recipe);
     }

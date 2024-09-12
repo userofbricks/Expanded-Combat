@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.events;
 
-import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +18,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
@@ -26,7 +26,7 @@ public class QuiverEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onArrowItemPickup(ItemEntityPickupEvent.Pre evt) {
-        if (!CommonECConfig.pair.getLeft().enableQuivers.get()) return;
+        if (!CONFIG.enableQuivers) return;
         Player player = evt.getPlayer();
         ItemStack toPickup = evt.getItemEntity().getItem();
         SlotResult slotResult = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof QuiverItem)).orElse(null);
@@ -34,7 +34,7 @@ public class QuiverEvents {
 
             BundleContents bundlecontents = slotResult.stack().getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-            QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+            QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverStacks());
 
             int b = toPickup.getCount();
             int i = bundlecontents$mutable.tryInsert(toPickup);
@@ -52,7 +52,7 @@ public class QuiverEvents {
     @SubscribeEvent
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
-        if (screen instanceof CuriosScreen curiosScreen && CommonECConfig.pair.getLeft().enableQuivers.get()) {
+        if (screen instanceof CuriosScreen curiosScreen && CONFIG.enableQuivers) {
             ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();

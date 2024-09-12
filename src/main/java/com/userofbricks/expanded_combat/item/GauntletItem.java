@@ -4,13 +4,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.client.renderer.GauntletRenderer;
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.Registries;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
@@ -20,7 +16,6 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +40,6 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
@@ -55,7 +49,7 @@ import java.util.function.Supplier;
 public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 {
     public final Layer[] GAUNTLET_TEXTURE_LAYERS;
-    public final DeferredHolder<Material, Material> material;
+    public final Material material;
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
         protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack itemStack) {
@@ -92,11 +86,11 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
             return true;
         }
     }
-    public GauntletItem(Properties properties, DeferredHolder<Material, Material> material) {
+    public GauntletItem(Properties properties, Material material) {
         this(properties, material, new GauntletItem.Layer());
     }
 
-    public GauntletItem(Properties properties, DeferredHolder<Material, Material> materialIn, Layer... layers) {
+    public GauntletItem(Properties properties, Material materialIn, Layer... layers) {
         super(properties);
         this.material = materialIn;
         this.GAUNTLET_TEXTURE_LAYERS = layers;
@@ -105,7 +99,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     public @NotNull DataComponentMap components() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durabilities().gauntletDurability())
+        components.set(DataComponents.MAX_DAMAGE, getMaterial().durability().gauntletDurability())
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
@@ -113,17 +107,12 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     public Material getMaterial() {
-        return material.value();
+        return material;
     }
     @Override
     @ParametersAreNonnullByDefault
     public int getEnchantmentValue(ItemStack stack) {
-        return (getMaterial().enchantingRelated().offenseEnchantability()/2) + (getMaterial().enchantingRelated().defenseEnchantability()/2);
-    }
-
-    @Override
-    public DeferredHolder<Material, Material> getMaterialReference() {
-        return material;
+        return (getMaterial().enchanting().offenseEnchantability()/2) + (getMaterial().enchanting().defenseEnchantability()/2);
     }
 
     public int getArmorAmount() {

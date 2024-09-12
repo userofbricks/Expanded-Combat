@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.ECAttributes;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import net.minecraft.core.Holder;
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 
 public class GauntletBrawlers extends GauntletItem {
 
-    public GauntletBrawlers(Properties properties, DeferredHolder<Material, Material> materialIn, Layer... layers) {
+    public GauntletBrawlers(Properties properties, Material materialIn, Layer... layers) {
         super(properties, materialIn, layers);
     }
 

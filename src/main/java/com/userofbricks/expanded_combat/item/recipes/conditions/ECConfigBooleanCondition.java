@@ -6,7 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import org.jetbrains.annotations.NotNull;
 
-import static com.userofbricks.expanded_combat.config.CommonECConfig.pair;
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECConfigBooleanCondition implements ICondition {
     public static MapCodec<ECConfigBooleanCondition> CODEC = RecordCodecBuilder.mapCodec(
@@ -26,14 +26,14 @@ public class ECConfigBooleanCondition implements ICondition {
     {
         return switch (configBooleanName) {
             default -> false;
-            case "gauntlet" -> pair.getLeft().enableGauntlets.get();
-            case "shield" -> pair.getLeft().enableShields.get();
-            case "bow" -> pair.getLeft().enableBows.get();
-            case "crossbow" -> pair.getLeft().enableCrossbows.get();
-            case "quiver" -> pair.getLeft().enableQuivers.get();
-            case "arrow" -> pair.getLeft().enableArrows.get();
-            case "weapon" -> pair.getLeft().enableWeapons.get();
-            case "soul" -> pair.getLeft().enableSouls.get();
+            case "gauntlet" -> CONFIG.enableGauntlets;
+            case "shield" -> CONFIG.enableShields;
+            case "bow" -> CONFIG.enableBows;
+            case "crossbow" -> CONFIG.enableCrossbows;
+            case "quiver" -> CONFIG.enableQuivers;
+            case "arrow" -> CONFIG.enableArrows;
+            case "weapon" -> CONFIG.enableWeapons;
+            case "soul" -> CONFIG.enableSouls;
         };
     }
 

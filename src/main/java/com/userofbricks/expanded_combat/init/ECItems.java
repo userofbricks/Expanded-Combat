@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.init;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.init.Materials.*;
-import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
+import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
 
 public class ECItems
 {
@@ -80,10 +79,10 @@ public class ECItems
 
     public static final DeferredItem<HeartStealerItem> HEART_STEALER = ITEMS.registerItem("heart_stealer", HeartStealerItem::new);
 
-    public static final DeferredItem<ElementalWeapon> HEAT_KATANA = ITEMS.registerItem("sun_master_s_katana", properties -> new ElementalWeapon(HEAT, KATANA, properties, 2, ECAttributes.HEAT_DMG));
-    public static final DeferredItem<ElementalWeapon> HEAT_MACE = ITEMS.registerItem("sun_s_firebrand", properties -> new ElementalWeapon(HEAT, MACE, properties, 2, ECAttributes.HEAT_DMG));
-    public static final DeferredItem<ElementalWeapon> HEAT_SCYTHE = ITEMS.registerItem("sun_s_grace", properties -> new ElementalWeapon(HEAT, SCYTHE, properties, 2, ECAttributes.HEAT_DMG));
-    public static final DeferredItem<ElementalWeapon> HEAT_GLAIVE = ITEMS.registerItem("grave_bane", properties -> new ElementalWeapon(HEAT, GLAIVE, properties, 2, ECAttributes.HEAT_DMG));
+    public static final DeferredItem<ElementalWeapon> HEAT_KATANA = ITEMS.registerItem("sun_master_s_katana", properties -> new ElementalWeapon(HEAT_MATERIAL, KATANA, properties, 2, ECAttributes.HEAT_DMG));
+    public static final DeferredItem<ElementalWeapon> HEAT_MACE = ITEMS.registerItem("sun_s_firebrand", properties -> new ElementalWeapon(HEAT_MATERIAL, MACE, properties, 2, ECAttributes.HEAT_DMG));
+    public static final DeferredItem<ElementalWeapon> HEAT_SCYTHE = ITEMS.registerItem("sun_s_grace", properties -> new ElementalWeapon(HEAT_MATERIAL, SCYTHE, properties, 2, ECAttributes.HEAT_DMG));
+    public static final DeferredItem<ElementalWeapon> HEAT_GLAIVE = ITEMS.registerItem("grave_bane", properties -> new ElementalWeapon(HEAT_MATERIAL, GLAIVE, properties, 2, ECAttributes.HEAT_DMG));
 
     public static final DeferredItem<ElementalWeapon> FROST_DAGGER = ITEMS.registerItem("fang_of_frost", properties -> new ElementalWeapon(FROST, DAGGER, properties, 2, ECAttributes.COLD_DMG));
     public static final DeferredItem<ElementalWeapon> FROST_SCYTHE = ITEMS.registerItem("frost_scythe", properties -> new ElementalWeapon(FROST, SCYTHE, properties, 2, ECAttributes.COLD_DMG));
@@ -94,16 +93,16 @@ public class ECItems
     public static final DeferredItem<ElementalWeapon> VOID_TOUCHED_CUTLASS = ITEMS.registerItem("nameless_blade", properties -> new ElementalWeapon(VOID_TOUCHED, CUTLASS, properties, 2, ECAttributes.VOID_DMG));
     public static final DeferredItem<ElementalWeapon> VOID_TOUCHED_GREAT_HAMMER = ITEMS.registerItem("void_touched_great_hammer", properties -> new ElementalWeapon(VOID_TOUCHED, GREAT_HAMMER, properties, 2, ECAttributes.VOID_DMG));
 
-    public static final DeferredItem<ElementalWeapon> SOUL_KATANA = ITEMS.registerItem("dark_katana", properties -> new ElementalWeapon(SOUL, KATANA, properties, 2, ECAttributes.SOUL_DMG));
-    public static final DeferredItem<ElementalWeapon> SOUL_DAGGER = ITEMS.registerItem("eternal_soul_knife", properties -> new ElementalWeapon(SOUL, DAGGER, properties, 2, ECAttributes.SOUL_DMG));
-    public static final DeferredItem<ElementalWeapon> SOUL_SCYTHE = ITEMS.registerItem("soul_scythe", properties -> new ElementalWeapon(SOUL, SCYTHE, properties, 2, ECAttributes.SOUL_DMG));
-    public static final DeferredItem<GauntletItem> SOUL_GAUNTLET = ITEMS.registerItem("soul_fist", properties -> new GauntletItem(properties, SOUL, new GauntletItem.Layer(ExpandedCombat.modLoc("soul_fist"), false)));
+    public static final DeferredItem<ElementalWeapon> SOUL_KATANA = ITEMS.registerItem("dark_katana", properties -> new ElementalWeapon(SOUL_MATERIAL, KATANA, properties, 2, ECAttributes.SOUL_DMG));
+    public static final DeferredItem<ElementalWeapon> SOUL_DAGGER = ITEMS.registerItem("eternal_soul_knife", properties -> new ElementalWeapon(SOUL_MATERIAL, DAGGER, properties, 2, ECAttributes.SOUL_DMG));
+    public static final DeferredItem<ElementalWeapon> SOUL_SCYTHE = ITEMS.registerItem("soul_scythe", properties -> new ElementalWeapon(SOUL_MATERIAL, SCYTHE, properties, 2, ECAttributes.SOUL_DMG));
+    public static final DeferredItem<GauntletItem> SOUL_GAUNTLET = ITEMS.registerItem("soul_fist", properties -> new GauntletItem(properties, SOUL_MATERIAL, new GauntletItem.Layer(ExpandedCombat.modLoc("soul_fist"), false)));
 
-    public static final DeferredItem<GauntletItem> FIGHTERS_GAUNTLETS = ITEMS.registerItem("fighter_s_gauntlet", properties -> new GauntletItem(properties, FIGHTERS, new GauntletItem.Layer(ExpandedCombat.modLoc("fighters_bindings"), false)));
+    public static final DeferredItem<GauntletItem> FIGHTERS_GAUNTLETS = ITEMS.registerItem("fighter_s_gauntlet", properties -> new GauntletItem(properties, FIGHTER, new GauntletItem.Layer(ExpandedCombat.modLoc("fighters_bindings"), false)));
     public static final DeferredItem<GauntletItem> BERSERK_GAUNTLETS = ITEMS.registerItem("berserk_gauntlet", properties -> new GauntletBerserk(properties, BERSERK, new GauntletItem.Layer(ExpandedCombat.modLoc("berserk_gauntlet"), false)));
     public static final DeferredItem<GauntletItem> BRAWLERS_GAUNTLETS = ITEMS.registerItem("brawler_s_gauntlet", properties -> new GauntletBrawlers(properties, BRAWLERS, new GauntletItem.Layer(ExpandedCombat.modLoc("brawlers_gauntlet"), false)));
 
-    private static List<DeferredItem<? extends ECWeaponItem>> standardWeaponsFor(DeferredHolder<Material, Material> materialReference, String materialItemName) {
+    private static List<DeferredItem<? extends ECWeaponItem>> standardWeaponsFor(Material materialReference, String materialItemName) {
         List<DeferredItem<? extends ECWeaponItem>> weaponMap = new ArrayList<>();
         weaponMap.add(ITEMS.registerItem(materialItemName + "_battle_staff", properties -> new ECWeaponItem(materialReference, BATTLE_STAFF, properties)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_broad_sword", properties -> new SlamWeaponItem(materialReference, BROAD_SWORD, properties,0)));

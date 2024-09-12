@@ -1,11 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
-import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.init.DataAttachments;
-import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -13,8 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.attachment.AttachmentType;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -35,7 +29,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "getProjectile", at = @At("HEAD"), cancellable = true)
     private void checkQuiver(ItemStack shootable, CallbackInfoReturnable<ItemStack> cir) {
-        if (!(shootable.getItem() instanceof ProjectileWeaponItem) || !CommonECConfig.pair.getLeft().enableQuivers.get()) {
+        if (!(shootable.getItem() instanceof ProjectileWeaponItem) || !ExpandedCombat.CONFIG.enableQuivers) {
             return;
         }
         Optional<SlotResult> quiverStack = CuriosApi.getCuriosInventory(this).flatMap(curiosInventory -> curiosInventory.findCurio(ExpandedCombat.QUIVER_CURIOS_IDENTIFIER, 0));

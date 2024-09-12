@@ -1,9 +1,10 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -15,8 +16,8 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
 public class DataMaps {
-    public static final DataMapType<Item, Holder<Material>> SHIELD_INGREDIENT_MAP = DataMapType.builder(modLoc("ingredient_to_shield_material"), Registries.ITEM, Material.HOLDER_CODEC)
-            .synced(Material.HOLDER_CODEC, true).build();
+    public static final DataMapType<Item, Material> SHIELD_INGREDIENT_MAP = DataMapType.builder(modLoc("ingredient_to_shield_material"), Registries.ITEM, Material.CODEC)
+            .synced(Material.CODEC, true).build();
     public static final DataMapType<Item, ShieldMaterials> SHIELD_MATERIALS = DataMapType.builder(modLoc("shield_materials"), Registries.ITEM, ShieldMaterials.CODEC)
             .synced(ShieldMaterials.CODEC, false).build();
 

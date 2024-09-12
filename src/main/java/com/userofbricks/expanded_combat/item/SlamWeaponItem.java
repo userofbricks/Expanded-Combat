@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.enchantments.GroundSlamEnchantment;
 import com.userofbricks.expanded_combat.entity.ECFallingBlockEntity;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
@@ -30,7 +30,7 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class SlamWeaponItem extends ECWeaponItem{
     private final int extraSlamLvl;
-    public SlamWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int extraSlamLvl) {
+    public SlamWeaponItem(Material material, WeaponType weapon, Properties properties, int extraSlamLvl) {
         super(material, weapon, properties.component(ItemDataComponents.HITS_TILL_SLAM, 0));
         this.extraSlamLvl = extraSlamLvl;
     }

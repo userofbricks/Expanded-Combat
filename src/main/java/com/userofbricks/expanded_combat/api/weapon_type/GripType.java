@@ -1,7 +1,6 @@
-package com.userofbricks.expanded_combat.data.weapon_type;
+package com.userofbricks.expanded_combat.api.weapon_type;
 
 import com.mojang.serialization.Codec;
-import com.userofbricks.expanded_combat.data.material.PlacementInShield;
 
 public enum GripType {
     ONEHANDED,

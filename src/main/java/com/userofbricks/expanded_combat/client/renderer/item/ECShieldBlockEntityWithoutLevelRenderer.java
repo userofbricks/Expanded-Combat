@@ -18,7 +18,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -100,8 +99,8 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
         }
     }
 
-    private ResourceLocation getShieldTexture(Holder<com.userofbricks.expanded_combat.data.material.Material> materialHolder, String trimName, String p) {
-        ResourceLocation material = new ResourceLocation(materialHolder.getRegisteredName());
+    private ResourceLocation getShieldTexture(com.userofbricks.expanded_combat.api.material.Material materialHolder, String trimName, String p) {
+        ResourceLocation material = materialHolder.id();
         return p.equals("m") ? material.withPrefix("model/shields/m/") : material.withPrefix("model/shields/" + trimName + "/" + p + "/");
     }
 

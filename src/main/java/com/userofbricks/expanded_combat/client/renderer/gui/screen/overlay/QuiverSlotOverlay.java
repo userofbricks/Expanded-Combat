@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.client.renderer.gui.screen.overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.userofbricks.expanded_combat.config.ClientECConfig;
 import com.userofbricks.expanded_combat.config.OverlayAnchorPoss;
 import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.Minecraft;
@@ -24,6 +23,7 @@ import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.init.DataAttachments.ARROW_SLOT;
 
 @EventBusSubscriber({Dist.CLIENT})
@@ -59,12 +59,12 @@ public class QuiverSlotOverlay {
         ItemStack beforeArrow = beforeIndex == currentIndex || beforeIndex == nextIndex ? ItemStack.EMPTY : contents.getItemUnsafe(beforeIndex);
 
 
-        int offsetX = ClientECConfig.pair.getLeft().quiverHudAnchor.get().xAxisRatio.apply(w) + ClientECConfig.pair.getLeft().quiverHudXAdjustment.get();
-        int offsetY = ClientECConfig.pair.getLeft().quiverHudAnchor.get().yAxisRatio.apply(h) + ClientECConfig.pair.getLeft().quiverHudYAdjustment.get();
+        int offsetX = CONFIG.quiverHudAnchor.xAxisRatio.apply(w) + CONFIG.quiverHudXAdjustment;
+        int offsetY = CONFIG.quiverHudAnchor.yAxisRatio.apply(h) + CONFIG.quiverHudYAdjustment;
         if (!player.getItemBySlot(EquipmentSlot.OFFHAND).isEmpty()) {
-            if (player.getMainArm().getOpposite() == HumanoidArm.LEFT && ClientECConfig.pair.getLeft().quiverHudAnchor.get() == OverlayAnchorPoss.LEFT_OF_HOTBAR) {
+            if (player.getMainArm().getOpposite() == HumanoidArm.LEFT && CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR) {
                 offsetX -= 29;
-            } else if (player.getMainArm().getOpposite() == HumanoidArm.RIGHT && ClientECConfig.pair.getLeft().quiverHudAnchor.get() == OverlayAnchorPoss.RIGHT_OF_HOTBAR) {
+            } else if (player.getMainArm().getOpposite() == HumanoidArm.RIGHT && CONFIG.quiverHudAnchor == OverlayAnchorPoss.RIGHT_OF_HOTBAR) {
                 offsetX += 29;
             }
         }
@@ -72,9 +72,9 @@ public class QuiverSlotOverlay {
         //Rendering selection Background
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0.0F, 0.0F, -90.0F);
-        ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/sprites/hud/hotbar_offhand_"+(ClientECConfig.pair.getLeft().quiverHudAnchor.get() == OverlayAnchorPoss.LEFT_OF_HOTBAR ? "left" : "right")+".png");
+        ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/sprites/hud/hotbar_offhand_"+(CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? "left" : "right")+".png");
         RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
-        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 1, ClientECConfig.pair.getLeft().quiverHudAnchor.get() == OverlayAnchorPoss.LEFT_OF_HOTBAR ? 0 : 7, 22, 22);
+        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 1, CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? 0 : 7, 22, 22);
         guiGraphics.pose().popPose();
 
         renderSlot(guiGraphics, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow);

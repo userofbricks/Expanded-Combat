@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
+import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +22,7 @@ import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
 public class HeartStealerItem extends ECWeaponItem{
     public static final String chargeString = "charge";
     public HeartStealerItem(Properties properties) {
-        super(Materials.HEART_STEALER, WeaponTypes.CLAYMORE, properties.component(CHARGE, 0), 2);
+        super(ECBasePlugin.HEART_STEALER, ECBasePlugin.CLAYMORE, properties.component(CHARGE, 0), 2);
     }
 
     @Override

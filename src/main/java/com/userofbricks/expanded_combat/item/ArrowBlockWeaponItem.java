@@ -1,13 +1,12 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.data_components.BlockWeaponAnim;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,7 +24,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class ArrowBlockWeaponItem extends ECWeaponItem{
     private final int baseBlockCount;
-    public ArrowBlockWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int baseBlockCount) {
+    public ArrowBlockWeaponItem(Material material, WeaponType weapon, Properties properties, int baseBlockCount) {
         super(material, weapon, properties);
         this.baseBlockCount = baseBlockCount;
     }

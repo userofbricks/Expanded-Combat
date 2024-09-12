@@ -2,12 +2,10 @@ package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.registry.ApiHelper;
-import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -47,7 +45,7 @@ public class FletchingTableBlockMixin extends CraftingTableBlock {
     @Inject(method = "useWithoutItem", at = @At("HEAD"), cancellable = true)
     public void use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
         if (ApiHelper.doesAnyPluginDenyFletchingTableGui(ExpandedCombat.PLUGINS)
-                || !CommonECConfig.pair.getLeft().enableArrowsFletching.get()) {
+                || !ExpandedCombat.CONFIG.enableFletchingTable) {
             cir.setReturnValue(InteractionResult.PASS);
         } else {
             if (world.isClientSide) {

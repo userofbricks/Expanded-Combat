@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.client.renderer;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.entity.ECArrow;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -20,10 +20,8 @@ public class ECArrowRenderer extends ArrowRenderer<ECArrow> {
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(ECArrow entity) {
-        Holder<Material> material = entity.getMaterialHolder();
-        Optional<ResourceKey<Material>> optionalKey = material.unwrapKey();
-        return optionalKey.map(
-                materialResourceKey -> new ResourceLocation(materialResourceKey.location().getNamespace(), "textures/entity/projectiles/" + materialResourceKey.location().getPath() + "_arrow.png")
-        ).orElse(TippableArrowRenderer.NORMAL_ARROW_LOCATION);
+        Material material = entity.getMaterial();
+        ResourceLocation materialResource = material.id();
+        return new ResourceLocation(materialResource.getNamespace(), "textures/entity/projectiles/" + materialResource.getPath() + "_arrow.png");
     }
 }

@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.mixin;
 
-import com.userofbricks.expanded_combat.config.CommonECConfig;
 import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -19,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @Mixin(AbstractArrow.class)
@@ -56,7 +56,7 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
      */
     @Inject(method = "playerTouch",at = @At("HEAD"),cancellable = true)
     public void playerTouch(Player player, CallbackInfo callback) {
-        if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0 && CommonECConfig.pair.getLeft().enableQuivers.get()) {
+        if (!level().isClientSide && (this.inGround || isNoPhysics()) && shakeTime <= 0 && CONFIG.enableQuivers) {
             ItemStack pickupItem = this.getPickupItem();
             if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.getPickupItem().is(ItemTags.ARROWS)){
                 SlotResult quiverSlot = CuriosApi.getCuriosInventory(player).flatMap(curiosInventory -> curiosInventory.findFirstCurio(item -> item.getItem() instanceof QuiverItem)).orElse(null);
@@ -66,7 +66,7 @@ public abstract class AbstractArrowEntityMixin extends Projectile {
 
                 BundleContents bundlecontents = quiverStack.getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-                QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverSlots());
+                QuiverItem.MutableQuiverContents bundlecontents$mutable = new QuiverItem.MutableQuiverContents(bundlecontents, quiverItem.getMaterial().offense().quiverStacks());
 
                 int i = bundlecontents$mutable.tryInsert(pickupItem);
                 if (i > 0) {

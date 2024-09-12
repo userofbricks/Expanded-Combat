@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
+import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
 
 public class ECItemTagsProvider extends ItemTagsProvider {
     public ECItemTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, ExistingFileHelper existingFileHelper) {
@@ -41,12 +41,12 @@ public class ECItemTagsProvider extends ItemTagsProvider {
             } else if (deferredItem.get() instanceof PotionWeaponItem item) {
                 tag(ECTags.POTION_WEAPONS).add(item);
             } else if (deferredItem.get() instanceof ECWeaponItem item && (
-                    item.weapon.key() == BATTLE_STAFF.key()
-                            || item.weapon.key() == BROAD_SWORD.key()
-                            || item.weapon.key() == CLAYMORE.key()
-                            || item.weapon.key() == DANCERS_SWORD.key()
-                            || item.weapon.key() == GLAIVE.key()
-                            || item.weapon.key() == SCYTHE.key()
+                    item.weapon.id() == BATTLE_STAFF.id()
+                            || item.weapon.id() == BROAD_SWORD.id()
+                            || item.weapon.id() == CLAYMORE.id()
+                            || item.weapon.id() == DANCERS_SWORD.id()
+                            || item.weapon.id() == GLAIVE.id()
+                            || item.weapon.id() == SCYTHE.id()
                     )) {
                 tag(ItemTags.DYEABLE).add(item);
             }

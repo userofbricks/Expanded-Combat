@@ -1,12 +1,9 @@
 package com.userofbricks.expanded_combat.datagen.models;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
 import com.userofbricks.expanded_combat.item.*;
-import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -15,6 +12,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
+import static com.userofbricks.expanded_combat.init.ECBasePlugin.SOUL_MATERIAL;
 
 public class ECItemModelProvider extends ItemModelProviderBase {
 
@@ -26,12 +25,12 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         for (DeferredHolder<Item, ? extends Item> item : ECItems.ITEMS.getEntries()) {
             dynamicallyGenerateModels(item);
         }
-        standardWeaponModelsFor(Materials.WOOD_PLANK, "wooden");
-        standardWeaponModelsFor(Materials.STONE, "stone");
-        standardWeaponModelsFor(Materials.IRON, "iron");
-        standardWeaponModelsFor(Materials.GOLD, "golden");
-        standardWeaponModelsFor(Materials.DIAMOND, "diamond");
-        standardWeaponModelsFor(Materials.NETHERITE, "netherite");
+        standardWeaponModelsFor(WOOD_PLANK, "wooden");
+        standardWeaponModelsFor(STONE, "stone");
+        standardWeaponModelsFor(IRON, "iron");
+        standardWeaponModelsFor(GOLD, "golden");
+        standardWeaponModelsFor(DIAMOND, "diamond");
+        standardWeaponModelsFor(NETHERITE, "netherite");
         basicItem(ECItems.LEATHER_STICK.asItem());
         basicItem(ECItems.GOLD_STICK.asItem());
         basicItem(ECItems.IRON_STICK.asItem());
@@ -66,8 +65,8 @@ public class ECItemModelProvider extends ItemModelProviderBase {
             generateBowModel(item.getId(), bowItem.material);
         }
 
-        if (item.get() instanceof ECCrossBowItem bowItem) {
-            generateCrossBowModel(item.getId(), bowItem.material);
+        if (item.get() instanceof ECCrossBowItem crossBowItem) {
+            generateCrossBowModel(item.getId(), crossBowItem.material);
         }
         if (item.get() instanceof QuiverItem quiverItem) {
             boolean dyeable = false;
@@ -81,8 +80,8 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         }
 
         if (item.get() instanceof ECWeaponItem weaponItem) {
-            Holder.Reference<Material> materialReference = weaponItem.material;
-            Holder.Reference<WeaponType> weaponTypeReference = weaponItem.weapon;
+            Material materialReference = weaponItem.material;
+            WeaponType weaponTypeReference = weaponItem.weapon;
             WeaponItemModelBuilder builder = new WeaponItemModelBuilder(item.getId(), materialReference, weaponTypeReference, this);
 
             if(weaponItem instanceof HeartStealerItem) {
@@ -115,11 +114,11 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                         .predicate(new ResourceLocation("stage"), 1f)
                         .model(stage5Builder)
                         .end();
-            } else if (materialReference.key() == Materials.HEAT.key() || materialReference.key() == Materials.FROST.key() || materialReference.key() == Materials.VOID_TOUCHED.key() || materialReference.key() == Materials.SOUL.key()) {
+            } else if (materialReference.id() == HEAT_MATERIAL.id() || materialReference.id() == FROST.id() || materialReference.id() == VOID_TOUCHED.id() || materialReference.id() == SOUL_MATERIAL.id()) {
                 builder.setSingleTexture().setHasCustomTransformsOrModel();
-                if (weaponTypeReference.key() == WeaponTypes.DAGGER.key() || weaponTypeReference.key() == WeaponTypes.CUTLASS.key()) {
+                if (weaponTypeReference.id() == DAGGER.id() || weaponTypeReference.id() == CUTLASS.id()) {
                     builder.generateModel("item/", "", "");
-                } else if (weaponTypeReference.key() != WeaponTypes.MACE.key() && weaponTypeReference.key() != WeaponTypes.GREAT_HAMMER.key()) {
+                } else if (weaponTypeReference.id() != MACE.id() && weaponTypeReference.id() != GREAT_HAMMER.id()) {
                     builder.generateModel("item_large/", "", "");
                 }
             }

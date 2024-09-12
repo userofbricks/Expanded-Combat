@@ -17,7 +17,7 @@ import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
-import static com.userofbricks.expanded_combat.init.WeaponTypes.*;
+import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
 import static net.minecraft.world.entity.npc.VillagerProfession.WEAPONSMITH;
 
 @EventBusSubscriber(modid = MODID)
@@ -30,7 +30,7 @@ public class VillagerTradeEvents {
 
             ECItems.IRON_WEAPONS.forEach((weaponRegistryEntry) -> {
                 float dmg = (float) weaponRegistryEntry.get().getDamage();
-                boolean block = weaponRegistryEntry.get().weapon.is(MACE) || weaponRegistryEntry.get().weapon.is(FLAIL) || weaponRegistryEntry.get().weapon.is(GREAT_HAMMER);
+                boolean block = weaponRegistryEntry.get().weapon.id().equals(MACE.id()) || weaponRegistryEntry.get().weapon.id().equals(FLAIL.id()) || weaponRegistryEntry.get().weapon.id().equals(GREAT_HAMMER.id());
                 trades.get(2).add((pTrader, pRandom) -> {
                     int i = 5 + pRandom.nextInt(15);
                     return new MerchantOffer(
@@ -49,7 +49,7 @@ public class VillagerTradeEvents {
 
             ECItems.DIAMOND_WEAPONS.forEach((weaponRegistryEntry) -> {
                 float dmg = (float) weaponRegistryEntry.get().getDamage();
-                boolean block = weaponRegistryEntry.get().weapon.is(MACE) || weaponRegistryEntry.get().weapon.is(FLAIL) || weaponRegistryEntry.get().weapon.is(GREAT_HAMMER);
+                boolean block = weaponRegistryEntry.get().weapon.id().equals(MACE.id()) || weaponRegistryEntry.get().weapon.id().equals(FLAIL.id()) || weaponRegistryEntry.get().weapon.id().equals(GREAT_HAMMER.id());
                 trades.get(4).add((pTrader, pRandom) -> {
                     int i = 12 + pRandom.nextInt(15);
                     return new MerchantOffer(

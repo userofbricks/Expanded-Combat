@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
@@ -35,9 +35,9 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
 
         if (inventory.getItem(2).isEmpty()) return false;
 
-        Holder<Material> addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        if (addition_m_material == null || !(addition_m_material.value().isSingleAddition())) return false;
-        if (!(addition_m_material.value().smithingTemplate().test(inventory.getItem(0)))) return false;
+        Material addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        if (addition_m_material == null || !(addition_m_material.crafting().isSingleAddition()) || addition_m_material.smithingTemplate() == null) return false;
+        if (!(addition_m_material.smithingTemplate().get().test(inventory.getItem(0)))) return false;
 
         return shieldMaterials.canReplaceUL(addition_m_material)
                 || shieldMaterials.canReplaceUR(addition_m_material)
@@ -55,21 +55,21 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
         }
         if (shieldMaterials == null) return ItemStack.EMPTY;
 
-        Holder<Material> addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_m_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
         if (addition_m_material == null) return ItemStack.EMPTY;
 
-        Holder<Material> result_ul_material = shieldMaterials.canReplaceUL(addition_m_material) ? addition_m_material: shieldMaterials.ULMaterial();
-        Holder<Material> result_ur_material = shieldMaterials.canReplaceUR(addition_m_material) ? addition_m_material: shieldMaterials.URMaterial();
-        Holder<Material> result_dl_material = shieldMaterials.canReplaceDL(addition_m_material) ? addition_m_material: shieldMaterials.DLMaterial();
-        Holder<Material> result_dr_material = shieldMaterials.canReplaceDR(addition_m_material) ? addition_m_material: shieldMaterials.DRMaterial();
-        Holder<Material> result_m_material = shieldMaterials.canReplaceM(addition_m_material) ? addition_m_material: shieldMaterials.MMaterial();
+        Material result_ul_material = shieldMaterials.canReplaceUL(addition_m_material) ? addition_m_material: shieldMaterials.ULMaterial();
+        Material result_ur_material = shieldMaterials.canReplaceUR(addition_m_material) ? addition_m_material: shieldMaterials.URMaterial();
+        Material result_dl_material = shieldMaterials.canReplaceDL(addition_m_material) ? addition_m_material: shieldMaterials.DLMaterial();
+        Material result_dr_material = shieldMaterials.canReplaceDR(addition_m_material) ? addition_m_material: shieldMaterials.DRMaterial();
+        Material result_m_material = shieldMaterials.canReplaceM(addition_m_material) ? addition_m_material: shieldMaterials.MMaterial();
 
         ItemStack result = new ItemStack(ECItems.SHIELD.get());
-        if (result_ul_material.value().defense().fireResistant()
-                || result_ur_material.value().defense().fireResistant()
-                || result_m_material.value().defense().fireResistant()
-                || result_dl_material.value().defense().fireResistant()
-                || result_dr_material.value().defense().fireResistant()) {
+        if (result_ul_material.defense().fireResistant()
+                || result_ur_material.defense().fireResistant()
+                || result_m_material.defense().fireResistant()
+                || result_dl_material.defense().fireResistant()
+                || result_dr_material.defense().fireResistant()) {
             result = new ItemStack(ECItems.SHIELD_FIRE_RESISTANT.get());
         }
         result.set(ItemDataComponents.SHIELD_MATERIALS, new ShieldMaterials(result_ul_material, result_ur_material, result_dl_material, result_dr_material, result_m_material,
@@ -95,8 +95,8 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     public boolean isAdditionIngredient(@NotNull ItemStack stack) {
-        Holder<Material> materialHolder = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        return materialHolder != null && materialHolder.value().isSingleAddition();
+        Material materialHolder = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        return materialHolder != null && materialHolder.crafting().isSingleAddition();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
@@ -44,14 +44,14 @@ import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem {
     public final Layer[] QUIVER_TEXTURE_LAYERS;
 
-    public final DeferredHolder<Material, Material> material;
+    public final Material material;
 
 
-    public QuiverItem(Properties properties, DeferredHolder<Material, Material> material) {
+    public QuiverItem(Properties properties, Material material) {
         this(properties, material, new Layer());
     }
 
-    public QuiverItem(Properties properties, DeferredHolder<Material, Material> material, Layer... layers) {
+    public QuiverItem(Properties properties, Material material, Layer... layers) {
         super(properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY).component(COOL_DOWN, 0).stacksTo(1));
         this.QUIVER_TEXTURE_LAYERS = layers;
         this.material = material;
@@ -93,13 +93,8 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
         }
     }
 
-    @Override
-    public DeferredHolder<Material, Material> getMaterialReference() {
-        return material;
-    }
-
     public Material getMaterial() {
-        return material.value();
+        return material;
     }
     public Supplier<ICurioRenderer> getQuiverRenderer() {
         return QuiverRenderer::new;
@@ -121,7 +116,7 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
                 return false;
             } else {
                 ItemStack itemstack = pSlot.getItem();
-                MutableQuiverContents bundlecontents$mutable = new MutableQuiverContents(bundlecontents, getMaterial().offense().quiverSlots());
+                MutableQuiverContents bundlecontents$mutable = new MutableQuiverContents(bundlecontents, getMaterial().offense().quiverStacks());
                 if (itemstack.isEmpty()) {
                     playRemoveOneSound(pPlayer);
                     ItemStack itemstack1 = bundlecontents$mutable.removeOne();
@@ -150,7 +145,7 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             if (bundlecontents == null) {
                 return false;
             } else {
-                MutableQuiverContents bundlecontents$mutable = new MutableQuiverContents(bundlecontents, getMaterial().offense().quiverSlots());
+                MutableQuiverContents bundlecontents$mutable = new MutableQuiverContents(bundlecontents, getMaterial().offense().quiverStacks());
                 if (pOther.isEmpty()) {
                     ItemStack itemstack = bundlecontents$mutable.removeOne();
                     if (itemstack != null) {
@@ -186,7 +181,7 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
     }
 
     public int mulAndTruncateRelToSlots(Fraction pFraction, int pFactor) {
-        return ((pFraction.getNumerator() / getMaterial().offense().quiverSlots()) * pFactor) / pFraction.getDenominator();
+        return ((pFraction.getNumerator() / getMaterial().offense().quiverStacks()) * pFactor) / pFraction.getDenominator();
     }
 
     public void playInsert(Entity pEntity) {

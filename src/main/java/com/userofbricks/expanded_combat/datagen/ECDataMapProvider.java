@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.DataMaps;
-import com.userofbricks.expanded_combat.init.Materials;
+import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
@@ -19,18 +19,18 @@ public class ECDataMapProvider extends DataMapProvider {
     @Override
     protected void gather() {
         builder(DataMaps.SHIELD_INGREDIENT_MAP)
-                .add(Items.LEATHER.builtInRegistryHolder(), Materials.LEATHER, false)
-                .add(Items.RABBIT_HIDE.builtInRegistryHolder(), Materials.RABBIT_HIDE, false)
-                .add(ItemTags.PLANKS, Materials.WOOD_PLANK, false)
-                .add(ItemTags.STONE_CRAFTING_MATERIALS, Materials.STONE, false)
-                .add(Items.IRON_INGOT.builtInRegistryHolder(), Materials.IRON, false)
-                .add(Items.GOLD_INGOT.builtInRegistryHolder(), Materials.GOLD, false)
-                .add(Items.DIAMOND.builtInRegistryHolder(), Materials.DIAMOND, false)
-                .add(Items.NETHERITE_INGOT.builtInRegistryHolder(), Materials.NETHERITE, false)
+                .add(Items.LEATHER.builtInRegistryHolder(), ECBasePlugin.LEATHER, false)
+                .add(Items.RABBIT_HIDE.builtInRegistryHolder(), ECBasePlugin.RABBIT_HIDE, false)
+                .add(ItemTags.PLANKS, ECBasePlugin.WOOD_PLANK, false)
+                .add(ItemTags.STONE_CRAFTING_MATERIALS, ECBasePlugin.STONE, false)
+                .add(Items.IRON_INGOT.builtInRegistryHolder(), ECBasePlugin.IRON, false)
+                .add(Items.GOLD_INGOT.builtInRegistryHolder(), ECBasePlugin.GOLD, false)
+                .add(Items.DIAMOND.builtInRegistryHolder(), ECBasePlugin.DIAMOND, false)
+                .add(Items.NETHERITE_INGOT.builtInRegistryHolder(), ECBasePlugin.NETHERITE, false)
         ;
         builder(DataMaps.SHIELD_MATERIALS)
                 .add(Items.SHIELD.builtInRegistryHolder(),
-                        new ShieldMaterials(Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.WOOD_PLANK, Materials.IRON, 0),
+                        new ShieldMaterials(ECBasePlugin.WOOD_PLANK, ECBasePlugin.WOOD_PLANK, ECBasePlugin.WOOD_PLANK, ECBasePlugin.WOOD_PLANK, ECBasePlugin.IRON, 0),
                         false)
         ;
     }

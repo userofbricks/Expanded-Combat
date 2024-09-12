@@ -1,8 +1,7 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -23,7 +22,7 @@ import static com.userofbricks.expanded_combat.datagen.LangStrings.TIPPED_ARROW_
 @MethodsReturnNonnullByDefault
 public class ECTippedArrowItem extends ECArrowItem {
     private final ItemLike notTipped;
-    public ECTippedArrowItem(Properties properties, DeferredHolder<Material, Material> material, ItemLike notTipped) {
+    public ECTippedArrowItem(Properties properties, Material material, ItemLike notTipped) {
         super(properties, material);
         this.notTipped = notTipped;
     }

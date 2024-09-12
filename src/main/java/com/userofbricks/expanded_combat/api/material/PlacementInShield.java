@@ -1,13 +1,9 @@
-package com.userofbricks.expanded_combat.data.material;
+package com.userofbricks.expanded_combat.api.material;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-
-import java.util.Objects;
 
 public enum PlacementInShield {
     ALL,

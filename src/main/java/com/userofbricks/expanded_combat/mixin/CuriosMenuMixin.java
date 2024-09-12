@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.mixin;
 
 
-import com.userofbricks.expanded_combat.config.CommonECConfig;
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.MenuType;
@@ -39,7 +39,7 @@ public abstract class CuriosMenuMixin extends RecipeBookMenu<CraftingContainer> 
 
     @Unique
     protected void expanded_Combat$createQuiver() {
-        if (CommonECConfig.pair.getLeft().enableQuivers.get()) {
+        if (ExpandedCombat.CONFIG.enableQuivers) {
             CuriosApi.getCuriosInventory(this.player).ifPresent(curios -> {
                 ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();

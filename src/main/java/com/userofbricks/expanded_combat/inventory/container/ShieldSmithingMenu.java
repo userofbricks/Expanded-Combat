@@ -1,17 +1,13 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.material.PlacementInShield;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECContainers;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import net.minecraft.core.Holder;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -22,7 +18,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
@@ -48,8 +43,8 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
                 .withSlot(1, 67, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
                 .withSlot(2, 85, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
                 .withSlot(3, 76, 47, stack -> {
-                    Holder<Material> value = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-                    return value != null && value.value().defense().placementInShield() == PlacementInShield.ALL;
+                    Material value = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+                    return value != null && value.defense().placementInShield() == PlacementInShield.ALL;
                 })
                 .withSlot(4, 67, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
                 .withSlot(5, 86, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)

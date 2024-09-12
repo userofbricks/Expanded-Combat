@@ -17,11 +17,11 @@ public class ShieldSubtypeInterpreter implements IIngredientSubtypeInterpreter<I
     public @NotNull String apply(ItemStack itemStack, @NotNull UidContext context) {
         ShieldMaterials materials = itemStack.get(ItemDataComponents.SHIELD_MATERIALS);
         if (materials != null) {
-            String ul_material = materials.ULMaterial().getRegisteredName();
-            String ur_material = materials.URMaterial().getRegisteredName();
-            String dl_material = materials.DLMaterial().getRegisteredName();
-            String dr_material = materials.DRMaterial().getRegisteredName();
-            String m_material = materials.MMaterial().getRegisteredName();
+            String ul_material = materials.ULMaterial().id().getPath();
+            String ur_material = materials.URMaterial().id().getPath();
+            String dl_material = materials.DLMaterial().id().getPath();
+            String dr_material = materials.DRMaterial().id().getPath();
+            String m_material = materials.MMaterial().id().getPath();
 
             return ul_material + ";" + ur_material + ";" + dl_material + ";" + dr_material + ";" + m_material;
         }

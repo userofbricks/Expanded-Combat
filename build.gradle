@@ -80,7 +80,8 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    //annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
+
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_api_version}"
 
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
@@ -106,6 +107,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_description        : mod_description,
 
             curios_version          : curios_version,
+            cloth_config_api_version: cloth_config_api_version,
     ]
     inputs.properties replaceProperties
 

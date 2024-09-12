@@ -2,14 +2,13 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
-import com.userofbricks.expanded_combat.data.material.Material;
+import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
@@ -46,11 +45,11 @@ public class ECShieldItem extends ShieldItem {
     @Override
     public int getMaxDamage(ItemStack stack) {
         int durability = 336;
-        int ul = getUpperLeftMaterial(stack).durabilities().addedShieldDurability();
-        int ur = getUpperRightMaterial(stack).durabilities().addedShieldDurability();
-        int dl = getDownLeftMaterial(stack).durabilities().addedShieldDurability();
-        int dr = getDownRightMaterial(stack).durabilities().addedShieldDurability();
-        int m = getMiddleMaterial(stack).durabilities().addedShieldDurability();
+        int ul = getUpperLeftMaterial(stack).durability().addedShieldDurability();
+        int ur = getUpperRightMaterial(stack).durability().addedShieldDurability();
+        int dl = getDownLeftMaterial(stack).durability().addedShieldDurability();
+        int dr = getDownRightMaterial(stack).durability().addedShieldDurability();
+        int m = getMiddleMaterial(stack).durability().addedShieldDurability();
         return durability + ul + ur + dl + dr + m;
     }
 
@@ -79,7 +78,7 @@ public class ECShieldItem extends ShieldItem {
         Material currentSlotMaterial = slotMaterials.get(last);
 
         toRepair.set(SHIELD_MATERIALS, shieldMaterials.updateLastRepair(last));
-        Ingredient ingredient = currentSlotMaterial.repairItem();
+        Ingredient ingredient = currentSlotMaterial.repairItem()!= null ? currentSlotMaterial.repairItem().get() : Ingredient.EMPTY;
         return !ingredient.isEmpty() && ingredient.test(repair);
     }
 
@@ -99,11 +98,11 @@ public class ECShieldItem extends ShieldItem {
      * @return the mending bonus.
      */
     public float getMendingBonus(ItemStack stack) {
-        float ul = getUpperLeftMaterial(stack).enchantingRelated().mendingBonus()/5;
-        float ur = getUpperRightMaterial(stack).enchantingRelated().mendingBonus()/5;
-        float dl = getDownLeftMaterial(stack).enchantingRelated().mendingBonus()/5;
-        float dr = getDownRightMaterial(stack).enchantingRelated().mendingBonus()/5;
-        float m = getMiddleMaterial(stack).enchantingRelated().mendingBonus()/5;
+        float ul = getUpperLeftMaterial(stack).enchanting().mendingBonus()/5;
+        float ur = getUpperRightMaterial(stack).enchanting().mendingBonus()/5;
+        float dl = getDownLeftMaterial(stack).enchanting().mendingBonus()/5;
+        float dr = getDownRightMaterial(stack).enchanting().mendingBonus()/5;
+        float m = getMiddleMaterial(stack).enchanting().mendingBonus()/5;
         return ul + ur + dl + dr + m;
     }
 

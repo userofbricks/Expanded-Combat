@@ -1,16 +1,10 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.GripType;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.Registries;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.weapon_type.GripType;
+import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
@@ -30,28 +24,25 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ECWeaponItem extends Item implements IMaterialItem {
-    public final DeferredHolder<Material, Material> material;
-    public final DeferredHolder<WeaponType, WeaponType> weapon;
+    public final Material material;
+    public final WeaponType weapon;
     public final int addedDmg;
     protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
 
-    public ECWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties) {
+    public ECWeaponItem(Material material, WeaponType weapon, Properties properties) {
         this(material, weapon, properties, 0);
     }
 
-    public ECWeaponItem(DeferredHolder<Material, Material> material, DeferredHolder<WeaponType, WeaponType> weapon, Properties properties, int addedDmg) {
+    public ECWeaponItem(Material material, WeaponType weapon, Properties properties, int addedDmg) {
         super(properties.stacksTo(1).component(DataComponents.DAMAGE, 0).component(DataComponents.TOOL, createToolProperties()));
         this.material = material;
         this.weapon = weapon;
@@ -61,7 +52,7 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     protected DataComponentMap.Builder componentBuilder() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
-        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durabilities().toolBaseDurability() * getWeapon().durabilityMultiplier()))
+        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durability().toolBaseDurability() * getWeapon().config().durabilityMultiplier()))
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
         if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
@@ -78,40 +69,31 @@ public class ECWeaponItem extends Item implements IMaterialItem {
 
 
     public Material getMaterial() {
-        return material.value();
+        return material;
     }
 
     public WeaponType getWeapon() {
-        return weapon.value();
+        return weapon;
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
     public ItemAttributeModifiers getAttributeModifiers() {
-        EquipmentSlotGroup slotGroup = getWeapon().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
+        EquipmentSlotGroup slotGroup = getWeapon().config().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
         builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", getDamage(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", getWeapon().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", getWeapon().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", getWeapon().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", getWeapon().config().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", getWeapon().config().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", getWeapon().config().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
         return builder.build();
     }
 
     public double getDamage() {
-        return 3 + getMaterial().offense().addedAttackDamage() + getWeapon().baseAttackDamage() + addedDmg;
+        return 3 + getMaterial().offense().addedAttackDamage() + getWeapon().config().baseAttackDamage() + addedDmg;
     }
 
     public float getMendingBonus() {
-        return getMaterial().enchantingRelated().mendingBonus() + getWeapon().mendingBonus();
-    }
-
-    @Override
-    public DeferredHolder<Material, Material> getMaterialReference() {
-        return material;
-    }
-
-    public DeferredHolder<WeaponType, WeaponType> getWeaponTypeReference() {
-        return weapon;
+        return getMaterial().enchanting().mendingBonus() + getWeapon().config().mendingBonus();
     }
 
     @Override

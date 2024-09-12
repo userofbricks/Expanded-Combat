@@ -32,7 +32,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class MaulersRenderer implements IGauntletRenderer {
 
-    private ResourceLocation GAUNTLET_TEXTURE = modLoc("textures/model/gauntlet/maulers.png");
+    private final ResourceLocation GAUNTLET_TEXTURE = modLoc("textures/model/gauntlet/maulers.png");
 
     private final MaulersModel model;
 

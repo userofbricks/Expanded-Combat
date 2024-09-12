@@ -6,21 +6,14 @@ import com.userofbricks.expanded_combat.datagen.recipes.ECRecipeProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECBlockTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECDamageTypeTagsProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECItemTagsProvider;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.Registries;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
@@ -34,17 +27,6 @@ public class DataGenerators {
         PackOutput output = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
-
-        generator.addProvider(event.includeServer(),
-                (DataProvider.Factory<DatapackBuiltinEntriesProvider>) output1 -> new DatapackBuiltinEntriesProvider(
-                        output1,
-                        provider,
-                        new RegistrySetBuilder()
-                                .add(Registries.MATERIAL_REGISTRY_KEY, Materials.registrySetBuilder)
-                                .add(Registries.WEAPON_TYPE_REGISTRY_KEY, WeaponTypes.registrySetBuilder),
-                        Set.of(MODID)
-                )
-        );
 
         generator.addProvider(event.includeClient(), new LangStrings(output));
         generator.addProvider(event.includeClient(), new ECSpriteScourceProvider(output, provider, helper));

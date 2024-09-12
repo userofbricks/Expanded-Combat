@@ -1,15 +1,13 @@
 package com.userofbricks.expanded_combat.datagen.recipes;
 
-import com.userofbricks.expanded_combat.data.material.Material;
-import com.userofbricks.expanded_combat.data.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.init.Materials;
-import com.userofbricks.expanded_combat.init.WeaponTypes;
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
+import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import com.userofbricks.expanded_combat.item.*;
 import com.userofbricks.expanded_combat.item.recipes.*;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -34,56 +32,56 @@ import static com.userofbricks.expanded_combat.init.ECItems.*;
 
 @ParametersAreNonnullByDefault
 public class ECRecipeProvider extends MaterialRecipeProvider {
-    private final Map<Holder.Reference<Material>, ItemLike> materialSwords = new HashMap<>();
-    private final Map<Holder.Reference<Material>, ItemLike> materialBlocks = new HashMap<>();
-    private final Map<Holder.Reference<WeaponType>, ItemLike> diamondWeapons = new HashMap<>();
-    private final Map<Holder.Reference<Material>, Ingredient> materialIngredients = new HashMap<>();
+    private final Map<Material, ItemLike> materialSwords = new HashMap<>();
+    private final Map<Material, ItemLike> materialBlocks = new HashMap<>();
+    private final Map<WeaponType, ItemLike> diamondWeapons = new HashMap<>();
+    private final Map<Material, Ingredient> materialIngredients = new HashMap<>();
     public ECRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
-        materialSwords.put(Materials.WOOD_PLANK, Items.WOODEN_SWORD);
-        materialSwords.put(Materials.STONE, Items.STONE_SWORD);
-        materialSwords.put(Materials.IRON, Items.IRON_SWORD);
-        materialSwords.put(Materials.GOLD, Items.GOLDEN_SWORD);
-        materialSwords.put(Materials.DIAMOND, Items.DIAMOND_SWORD);
+        materialSwords.put(ECBasePlugin.WOOD_PLANK, Items.WOODEN_SWORD);
+        materialSwords.put(ECBasePlugin.STONE, Items.STONE_SWORD);
+        materialSwords.put(ECBasePlugin.IRON, Items.IRON_SWORD);
+        materialSwords.put(ECBasePlugin.GOLD, Items.GOLDEN_SWORD);
+        materialSwords.put(ECBasePlugin.DIAMOND, Items.DIAMOND_SWORD);
 
-        materialBlocks.put(Materials.WOOD_PLANK, Items.OAK_PLANKS);
-        materialBlocks.put(Materials.STONE, Items.STONE);
-        materialBlocks.put(Materials.IRON, Items.IRON_BLOCK);
-        materialBlocks.put(Materials.GOLD, Items.GOLD_BLOCK);
-        materialBlocks.put(Materials.DIAMOND, Items.DIAMOND_BLOCK);
+        materialBlocks.put(ECBasePlugin.WOOD_PLANK, Items.OAK_PLANKS);
+        materialBlocks.put(ECBasePlugin.STONE, Items.STONE);
+        materialBlocks.put(ECBasePlugin.IRON, Items.IRON_BLOCK);
+        materialBlocks.put(ECBasePlugin.GOLD, Items.GOLD_BLOCK);
+        materialBlocks.put(ECBasePlugin.DIAMOND, Items.DIAMOND_BLOCK);
 
         for (DeferredItem<? extends ECWeaponItem> weapon : DIAMOND_WEAPONS) {
             diamondWeapons.put(weapon.get().weapon, weapon);
         }
 
-        materialIngredients.put(Materials.LEATHER, Ingredient.of(Items.LEATHER));
-        materialIngredients.put(Materials.RABBIT_HIDE, Ingredient.of(Items.RABBIT_HIDE));
-        materialIngredients.put(Materials.WOOD_PLANK, Ingredient.of(ItemTags.PLANKS));
-        materialIngredients.put(Materials.STONE, Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
-        materialIngredients.put(Materials.IRON, Ingredient.of(Items.IRON_INGOT));
-        materialIngredients.put(Materials.GOLD, Ingredient.of(Items.GOLD_INGOT));
-        materialIngredients.put(Materials.DIAMOND, Ingredient.of(Items.DIAMOND));
-        materialIngredients.put(Materials.NETHERITE, Ingredient.of(Items.NETHERITE_INGOT));
+        materialIngredients.put(ECBasePlugin.LEATHER, Ingredient.of(Items.LEATHER));
+        materialIngredients.put(ECBasePlugin.RABBIT_HIDE, Ingredient.of(Items.RABBIT_HIDE));
+        materialIngredients.put(ECBasePlugin.WOOD_PLANK, Ingredient.of(ItemTags.PLANKS));
+        materialIngredients.put(ECBasePlugin.STONE, Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
+        materialIngredients.put(ECBasePlugin.IRON, Ingredient.of(Items.IRON_INGOT));
+        materialIngredients.put(ECBasePlugin.GOLD, Ingredient.of(Items.GOLD_INGOT));
+        materialIngredients.put(ECBasePlugin.DIAMOND, Ingredient.of(Items.DIAMOND));
+        materialIngredients.put(ECBasePlugin.NETHERITE, Ingredient.of(Items.NETHERITE_INGOT));
     }
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         for (DeferredHolder<Item, ? extends Item> deferredItem : ITEMS.getEntries()) {
             if (deferredItem.get() instanceof ECWeaponItem weaponItem && !(
-                    weaponItem.material == Materials.HEAT || weaponItem.material == Materials.FROST || weaponItem.material == Materials.VOID_TOUCHED || weaponItem.material == Materials.SOUL
-                            || weaponItem.material == Materials.HEART_STEALER
+                    weaponItem.material == ECBasePlugin.HEAT_MATERIAL || weaponItem.material == ECBasePlugin.FROST || weaponItem.material == ECBasePlugin.VOID_TOUCHED || weaponItem.material == ECBasePlugin.SOUL_MATERIAL
+                            || weaponItem.material == ECBasePlugin.HEART_STEALER
             )) {
                 buildWeaponRecipe(recipeOutput, weaponItem);
             } else if (deferredItem.get() instanceof ECArrowItem arrowItem) {
                 if (arrowItem instanceof ECTippedArrowItem) {
                     tippedArrow(recipeOutput, arrowItem, ((ECTippedArrowItem) arrowItem).getNotTipped());
-                } else if (arrowItem.material == Materials.NETHERITE) {
+                } else if (arrowItem.material == ECBasePlugin.NETHERITE) {
                     variableFletching(recipeOutput, arrowItem, Items.NETHERITE_INGOT, DIAMOND_ARROW, 16);
                 } else {
                     fletching(recipeOutput, arrowItem, materialIngredients.get(arrowItem.material), FLETCHED_STICKS, 6);
                 }
             } else if (deferredItem.get() instanceof ECBowItem bowItem) {
-                if (bowItem.material == Materials.NETHERITE) {
+                if (bowItem.material == ECBasePlugin.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                                     Ingredient.of(DIAMOND_BOW),
@@ -99,7 +97,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                     bow(recipeOutput, bowItem, materialIngredients.get(bowItem.material));
                 }
             } else if (deferredItem.get() instanceof ECCrossBowItem bowItem) {
-                if (bowItem.material == Materials.NETHERITE) {
+                if (bowItem.material == ECBasePlugin.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                                     Ingredient.of(DIAMOND_CROSS_BOW),
@@ -117,7 +115,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
             } else if (deferredItem.get() instanceof GauntletItem gauntletItem && !(
                     deferredItem.get() == SOUL_GAUNTLET.get() || deferredItem.get() == BERSERK_GAUNTLETS.get() || deferredItem.get() == BRAWLERS_GAUNTLETS.get() || deferredItem.get() == FIGHTERS_GAUNTLETS.get()
                     )) {
-                if (gauntletItem.material == Materials.NETHERITE) {
+                if (gauntletItem.material == ECBasePlugin.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                                     Ingredient.of(DIAMOND_GAUNTLET),
@@ -133,7 +131,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                     gauntlet(recipeOutput, gauntletItem, materialIngredients.get(gauntletItem.material));
                 }
             } else if (deferredItem.get() instanceof QuiverItem quiverItem) {
-                if (quiverItem.material == Materials.NETHERITE) {
+                if (quiverItem.material == ECBasePlugin.NETHERITE) {
                     SmithingTransformRecipeBuilder.smithing(
                                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                                     Ingredient.of(DIAMOND_QUIVER),
@@ -219,12 +217,12 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
     }
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {
-        Holder.Reference<WeaponType> weaponType = weaponItem.weapon;
+        WeaponType weaponType = weaponItem.weapon;
         Ingredient material = materialIngredients.get(weaponItem.material);
         ItemLike sword = materialSwords.get(weaponItem.material);
         ItemLike block = materialBlocks.get(weaponItem.material);
 
-        if (weaponItem.material == Materials.NETHERITE) {
+        if (weaponItem.material == ECBasePlugin.NETHERITE) {
             SmithingTransformRecipeBuilder.smithing(
                     Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                     Ingredient.of(diamondWeapons.get(weaponType)),
@@ -237,19 +235,19 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
             .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
             .save(pRecipeOutput.withConditions(new ECConfigBooleanCondition("weapon")), RecipeBuilder.getDefaultRecipeId(weaponItem));
         }
-        else if (weaponType == WeaponTypes.FLAIL) flail(pRecipeOutput, weaponItem, block);
-        else if (weaponType == WeaponTypes.GREAT_HAMMER) greatHammer(pRecipeOutput, weaponItem, block);
-        else if (weaponType == WeaponTypes.MACE) mace(pRecipeOutput, weaponItem, block);
-        else if (weaponType == WeaponTypes.BATTLE_STAFF) battleStaff(pRecipeOutput, weaponItem, material);
-        else if (weaponType == WeaponTypes.BROAD_SWORD) broadSword(pRecipeOutput, weaponItem, sword, material);
-        else if (weaponType == WeaponTypes.CLAYMORE) claymore(pRecipeOutput, weaponItem, sword, material);
-        else if (weaponType == WeaponTypes.CUTLASS) cutlass(pRecipeOutput, weaponItem, material);
-        else if (weaponType == WeaponTypes.DAGGER) dagger(pRecipeOutput, weaponItem, material);
-        else if (weaponType == WeaponTypes.DANCERS_SWORD) dancersSword(pRecipeOutput, weaponItem, sword);
-        else if (weaponType == WeaponTypes.GLAIVE) glaive(pRecipeOutput, weaponItem, sword);
-        else if (weaponType == WeaponTypes.KATANA) katana(pRecipeOutput, weaponItem, sword, material);
-        else if (weaponType == WeaponTypes.SCYTHE) scythe(pRecipeOutput, weaponItem, sword, material);
-        else if (weaponType == WeaponTypes.SICKLE) sickle(pRecipeOutput, weaponItem, material);
-        else if (weaponType == WeaponTypes.SPEAR) spear(pRecipeOutput, weaponItem, sword);
+        else if (weaponType == ECBasePlugin.FLAIL) flail(pRecipeOutput, weaponItem, block);
+        else if (weaponType == ECBasePlugin.GREAT_HAMMER) greatHammer(pRecipeOutput, weaponItem, block);
+        else if (weaponType == ECBasePlugin.MACE) mace(pRecipeOutput, weaponItem, block);
+        else if (weaponType == ECBasePlugin.BATTLE_STAFF) battleStaff(pRecipeOutput, weaponItem, material);
+        else if (weaponType == ECBasePlugin.BROAD_SWORD) broadSword(pRecipeOutput, weaponItem, sword, material);
+        else if (weaponType == ECBasePlugin.CLAYMORE) claymore(pRecipeOutput, weaponItem, sword, material);
+        else if (weaponType == ECBasePlugin.CUTLASS) cutlass(pRecipeOutput, weaponItem, material);
+        else if (weaponType == ECBasePlugin.DAGGER) dagger(pRecipeOutput, weaponItem, material);
+        else if (weaponType == ECBasePlugin.DANCERS_SWORD) dancersSword(pRecipeOutput, weaponItem, sword);
+        else if (weaponType == ECBasePlugin.GLAIVE) glaive(pRecipeOutput, weaponItem, sword);
+        else if (weaponType == ECBasePlugin.KATANA) katana(pRecipeOutput, weaponItem, sword, material);
+        else if (weaponType == ECBasePlugin.SCYTHE) scythe(pRecipeOutput, weaponItem, sword, material);
+        else if (weaponType == ECBasePlugin.SICKLE) sickle(pRecipeOutput, weaponItem, material);
+        else if (weaponType == ECBasePlugin.SPEAR) spear(pRecipeOutput, weaponItem, sword);
     }
 }
