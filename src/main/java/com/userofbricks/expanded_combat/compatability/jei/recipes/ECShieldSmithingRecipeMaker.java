@@ -28,8 +28,11 @@ public class ECShieldSmithingRecipeMaker {
 
         Map<Material, Ingredient> materialIngredientMap = new HashMap<>();
         for (Holder<Item> itemReference : BuiltInRegistries.ITEM.holders().toList()) {
-            Material materialReference = PluginInit.materials.get(itemReference.getData(DataMaps.SHIELD_INGREDIENT_MAP));
 
+            //create a map of items that can be used to put materials on shields
+            Material possibleMaterial = itemReference.getData(DataMaps.SHIELD_INGREDIENT_MAP);
+            if (possibleMaterial == null) continue;
+            Material materialReference = PluginInit.materials.get(possibleMaterial.id());
             if (materialIngredientMap.containsKey(materialReference)) {
                 List<ItemStack> list = new ArrayList<>(Arrays.stream(materialIngredientMap.get(materialReference).getItems()).toList());
                 list.add(new ItemStack(itemReference));
@@ -37,6 +40,8 @@ public class ECShieldSmithingRecipeMaker {
             } else {
                 materialIngredientMap.put(materialReference, Ingredient.of(itemReference.value()));
             }
+
+            //create list of shield bases
             ShieldMaterials materials = itemReference.getData(DataMaps.SHIELD_MATERIALS);
             if (materials != null) {
                 bases.add(new ItemStack(itemReference));
