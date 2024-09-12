@@ -40,6 +40,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
@@ -86,6 +87,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
             return true;
         }
     }
+
     public GauntletItem(Properties properties, Material material) {
         this(properties, material, new GauntletItem.Layer());
     }
@@ -199,7 +201,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
-            return assetName -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + "_" + suffix + ".png");
+            return assetName -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + (!suffix.isEmpty() ? ("_" + suffix) : "") + ".png");
         }
 
         public ResourceLocation texture(ResourceLocation material) {
