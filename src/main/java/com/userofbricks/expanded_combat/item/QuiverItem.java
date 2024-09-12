@@ -212,7 +212,7 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
         }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
-            return assetName -> assetName.withPath(p_324187_ -> "textures/model/quiver/" + assetName.getPath() + "_" + suffix + ".png");
+            return assetName -> assetName.withPath(p_324187_ -> "textures/model/quiver/" + assetName.getPath() + (!suffix.isEmpty() ? ("_" + suffix) : "") + ".png");
         }
 
         public ResourceLocation texture(ResourceLocation material) {
