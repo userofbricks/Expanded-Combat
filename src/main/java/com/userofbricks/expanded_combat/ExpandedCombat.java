@@ -67,6 +67,7 @@ public class ExpandedCombat {
         ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
         ItemDataComponents.DATA_COMPONENTS.register(bus);
+        ECEntities.ENTITY_DATA_SERIALIZERS.register(bus);
         ECEntities.ENTITIES.register(bus);
         ECLootModifiers.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         NeoForge.EVENT_BUS.addListener(GauntletEvents::DamageGauntletEvent);
