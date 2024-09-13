@@ -5,10 +5,14 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -18,7 +22,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.BundleItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -181,7 +187,16 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
     }
 
     public int mulAndTruncateRelToSlots(Fraction pFraction, int pFactor) {
-        return ((pFraction.getNumerator() / getMaterial().offense().quiverStacks()) * pFactor) / pFraction.getDenominator();
+        return (pFraction.getNumerator() * pFactor) / (pFraction.getDenominator() * getMaterial().offense().quiverStacks());
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        BundleContents bundlecontents = pStack.get(DataComponents.BUNDLE_CONTENTS);
+        if (bundlecontents != null) {
+            int i = mulAndTruncateRelToSlots(bundlecontents.weight(), 64 * getMaterial().offense().quiverStacks());
+            pTooltipComponents.add(Component.translatable("item.minecraft.bundle.fullness", i, 64 * getMaterial().offense().quiverStacks()).withStyle(ChatFormatting.GRAY));
+        }
     }
 
     public void playInsert(Entity pEntity) {
