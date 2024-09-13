@@ -115,11 +115,13 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                         .model(stage5Builder)
                         .end();
             } else if (materialReference.id() == HEAT_MATERIAL.id() || materialReference.id() == FROST.id() || materialReference.id() == VOID_TOUCHED.id() || materialReference.id() == SOUL_MATERIAL.id()) {
-                builder.setSingleTexture().setHasCustomTransformsOrModel();
+                builder.setHasCustomTransformsOrModel();
                 if (weaponTypeReference.id() == DAGGER.id() || weaponTypeReference.id() == CUTLASS.id()) {
-                    builder.generateModel("item/", "", "");
+                    builder.setSingleTexture().generateModel("item/", "", "");
                 } else if (weaponTypeReference.id() != MACE.id() && weaponTypeReference.id() != GREAT_HAMMER.id()) {
-                    builder.generateModel("item_large/", "", "");
+                    builder.setSingleTexture().generateModel("item_large/", "", "");
+                } else {
+                    builder.generateWeaponModel("");
                 }
             }
         }

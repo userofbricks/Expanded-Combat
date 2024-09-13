@@ -5,13 +5,13 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
 
@@ -39,7 +39,7 @@ public class ECItems
     public static final DeferredItem<ECShieldItem> SHIELD_FIRE_RESISTANT = ITEMS.registerItem("fire_resistant_shield", ECShieldItem::new, new Item.Properties().fireResistant());
 
     //Vanilla Material Items
-    public static final DeferredItem<GauntletItem> LEATHER_GAUNTLET = ITEMS.registerItem("leather_gauntlet", properties -> new GauntletItem(properties, LEATHER));
+    public static final DeferredItem<GauntletItem> LEATHER_GAUNTLET = ITEMS.registerItem("leather_gauntlet", properties -> new GauntletItem(properties, LEATHER, new GauntletItem.Layer(true), new GauntletItem.Layer("overlay")));
     public static final DeferredItem<QuiverItem> LEATHER_QUIVER = ITEMS.registerItem("leather_quiver", properties -> new QuiverItem(properties, LEATHER));
     public static final DeferredItem<GauntletItem> RABBIT_HIDE_GAUNTLET = ITEMS.registerItem("rabbit_hide_gauntlet", properties -> new GauntletItem(properties, RABBIT_HIDE));
     public static final DeferredItem<QuiverItem> RABBIT_HIDE_QUIVER = ITEMS.registerItem("rabbit_hide_quiver", properties -> new QuiverItem(properties, RABBIT_HIDE));
@@ -112,7 +112,7 @@ public class ECItems
         weaponMap.add(ITEMS.registerItem(materialItemName + "_dancer_s_sword", properties -> new ECWeaponItem(materialReference, DANCERS_SWORD, properties)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_flail", properties -> new ECWeaponItem(materialReference, FLAIL, properties)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_glaive", properties -> new ECWeaponItem(materialReference, GLAIVE, properties)));
-        weaponMap.add(ITEMS.registerItem(materialItemName + "_great_hammer", properties -> new SlamWeaponItem(materialReference, GREAT_HAMMER, properties,2)));
+        weaponMap.add(ITEMS.registerItem(materialItemName + "_great_hammer", properties -> new SlamWeaponItem(materialReference, GREAT_HAMMER, properties, CONFIG.enchantmentLevels.baseHammerSlamLevel)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_katana", properties -> new ArrowBlockWeaponItem(materialReference, KATANA, properties,2)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_mace", properties -> new ECWeaponItem(materialReference, MACE, properties)));
         weaponMap.add(ITEMS.registerItem(materialItemName + "_scythe", properties -> new PotionWeaponItem(materialReference, SCYTHE, properties)));

@@ -1,7 +1,15 @@
 package com.userofbricks.expanded_combat.datagen;
 
+import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.config.ECConfig;
+import com.userofbricks.expanded_combat.config.gui.ConfigName;
+import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
+import com.userofbricks.expanded_combat.config.gui.TooltipFrases;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -12,7 +20,11 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.lang.reflect.Field;
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
@@ -70,6 +82,11 @@ public class LangStrings extends LanguageProvider {
     public static final String NOT_VALID_RESOURCE_LOCATION_CONFIG_ERROR = createLangEntry("text.ec-cloth-config.error.not_valid_resource_location", "Not a Valid Resource Location!");
     public static final String RESOURCE_LOCATION_NOT_WITHIN_AVAILABLE_VALUES = createLangEntry("text.ce-cloth-config.error.not_within_available_values", "This Resource Location is Not a Recognised Value");
 
+    //Config
+    private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
+    private static final BiFunction<String, String, String> categoryFunction = (baseI13n, categoryName) -> String.format("%s.category.%s", baseI13n, categoryName);
+    private static final BiFunction<String, Field, String> optionFunction = (baseI13n, field) -> String.format("%s.option.%s", baseI13n, field.getName());
+
     public LangStrings(PackOutput output) {
         super(output, MODID, "en_us");
         this.modId = MODID;
@@ -90,6 +107,10 @@ public class LangStrings extends LanguageProvider {
 
         langEntriesToAdd.forEach(langEntry -> add(langEntry.translatableLang, langEntry.englishTranslation));
 
+        for (Map.Entry<ResourceLocation, Material> materialEntry : PluginInit.materials.entrySet()) {
+            add(LangStrings.SHIELD_MATERIAL_LANG_START + materialEntry.getKey(), materialEntry.getValue().name());
+        }
+
         addAttributeDescription("dmg_no_weapon", "Added Weaponless Damage");
         addAttributeDescription("heat_dmg", "Heat Damage");
         addAttributeDescription("cold_dmg", "Cold Damage");
@@ -103,8 +124,74 @@ public class LangStrings extends LanguageProvider {
             String potionName = Potion.getName(optionalPotionReference,"");
             if (alreadyAddedPotions.contains(potionName)) continue;
             alreadyAddedPotions.add(potionName);
-            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), " of " + locationToName(potionName));
+            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), "of" + locationToName(potionName));
         }
+
+        List<String> alreadyAddedStrings = new ArrayList<>();
+
+        //Config
+        String configLangStart = configLangStartGetter.get();
+        add(configLangStart + ".title", "Expanded Combat Settings");
+        Arrays.stream(ECConfig.class.getDeclaredFields()).collect(
+                        Collectors.groupingBy((field) -> getOrCreateCategoryForField(field, alreadyAddedStrings, configLangStart), LinkedHashMap::new, Collectors.toList()))
+                .forEach((key, value) -> value.forEach((field) -> ifNotExcludedRegisterLangs(field, configLangStart, alreadyAddedStrings)));
+    }
+
+    public String getOrCreateCategoryForField(Field field, List<String> alreadyAddedStrings, String configLangStart) {
+        String categoryName = "Default";
+        if (field.isAnnotationPresent(ConfigEntry.Category.class)) {
+            categoryName = field.getAnnotation(ConfigEntry.Category.class).value();
+            String categoryLang = categoryFunction.apply(configLangStart, categoryName);
+            getOrCreateLang(alreadyAddedStrings, categoryLang, categoryName, " Settings");
+        }
+        return categoryName;
+    }
+
+    public void getOrCreateLang(List<String> alreadyAddedStrings, String lang, String Name, String sufix) {
+        if (!alreadyAddedStrings.contains(lang)) {
+            alreadyAddedStrings.add(lang);
+            add(lang, Name + sufix);
+        }
+    }
+
+    public void ifNotExcludedRegisterLangs(Field field, String configLangStart, List<String> alreadyAddedStrings) {
+        if (!field.isAnnotationPresent(ConfigEntry.Gui.Excluded.class)) {
+            String optionLang;
+            if (configLangStart.contains("option")) {
+                optionLang = configLangStart + "." + field.getName();
+            } else {
+                optionLang = optionFunction.apply(configLangStart, field);
+            }
+            getOrCreateLang(alreadyAddedStrings, optionLang, getConfigOptionName(field), "");
+            if(field.isAnnotationPresent(ConfigEntry.Gui.Tooltip.class) && (field.isAnnotationPresent(TooltipFrase.class) || field.isAnnotationPresent(TooltipFrases.class))) {
+                int tooltipLines = field.getAnnotation(ConfigEntry.Gui.Tooltip.class).count();
+                Map<Integer, String> tooltips = new HashMap<>();
+                for (TooltipFrase tooltip : field.getAnnotationsByType(TooltipFrase.class)) {
+                    tooltips.put(tooltip.line(), tooltip.value());
+                }
+                if (tooltipLines == 1) {
+                    getOrCreateLang(alreadyAddedStrings, optionLang + ".@Tooltip", tooltips.get(0), "");
+                } else {
+                    for (int tooltipLine = 0; tooltipLine < tooltipLines; tooltipLine++) {
+                        String tooltip = tooltips.get(tooltipLine);
+                        getOrCreateLang(alreadyAddedStrings, optionLang + ".@Tooltip[" + tooltipLine + "]", tooltip == null ? "Needs TooltipFrase Annotation defined for Tooltip[" + tooltipLine + "]" : tooltip, "");
+                    }
+                }
+            }
+            if (field.isAnnotationPresent(ConfigEntry.Gui.CollapsibleObject.class) || field.isAnnotationPresent(ConfigEntry.Gui.TransitiveObject.class)) {
+                for (Field fieldOfField : field.getType().getDeclaredFields()) {
+                    ifNotExcludedRegisterLangs(fieldOfField, optionLang, alreadyAddedStrings);
+                }
+            }
+        }
+
+    }
+
+    private String getConfigOptionName(Field field) {
+        if (field.isAnnotationPresent(ConfigName.class)) {
+            return field.getAnnotation(ConfigName.class).value();
+        }
+        return field.getName();
     }
 
     public void addAttributeDescription(String attribute, String englishLang) {
@@ -112,8 +199,8 @@ public class LangStrings extends LanguageProvider {
         add(stringBuilder, englishLang);
     }
 
-    public static String createAdvancementLangEntry(String advancementName, String englishLang, boolean tittle) {
-        String lang = "advancements." + MODID + "." + advancementName + "." + (tittle ? "title" : "description");
+    public static String createAdvancementLangEntry(String advancementName, String englishLang, boolean title) {
+        String lang = "advancements." + MODID + "." + advancementName + "." + (title ? "title" : "description");
         return createLangEntry(lang, englishLang);
     }
     public static String createCommandLangEntry(String command, boolean pass, String identifier, String englishLang) {
@@ -144,7 +231,7 @@ public class LangStrings extends LanguageProvider {
     }
 
     public static String locationToName(String location) {
-        List<String> parts = Arrays.stream(location.split("_")).map(part -> {
+        List<String> parts = Arrays.stream(location.split("_")).filter(s -> !s.equals("tipped")).map(part -> {
             if (part.equals("s")) return "'s";
             String firstLetter = String.valueOf(part.charAt(0)).toUpperCase(Locale.ROOT);
             String theRest = part.substring(1);

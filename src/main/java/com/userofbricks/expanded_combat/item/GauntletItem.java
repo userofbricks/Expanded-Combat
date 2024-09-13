@@ -194,6 +194,9 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         public Layer() {
             this("", false);
         }
+        public Layer(boolean dyeable) {
+            this("", dyeable);
+        }
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;

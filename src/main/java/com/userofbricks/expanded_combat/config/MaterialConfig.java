@@ -291,9 +291,13 @@ public class MaterialConfig {
     }
 
     public static class Crafting {
-            @ConfigName("Weather this material is applied to every part of a shield with one item verses using one for each of the five parts")
+            @ConfigName("Single Addition")
+            @ConfigEntry.Gui.Tooltip
+            @TooltipFrase("Weather this material is applied to every part of a shield\nwith one item verses using one for each of the five parts")
             boolean isSingleAddition;
-            @ConfigName("A list of what materials this one can replace on a shield")
+            @ConfigName("Can Replace Materials")
+            @ConfigEntry.Gui.Tooltip
+            @TooltipFrase("A list of what materials this one can replace on a shield.\nLeave empty if it can replace anything")
             @ConfigEntryGui.Material
             List<ResourceLocation> onlyReplaceResource;
 

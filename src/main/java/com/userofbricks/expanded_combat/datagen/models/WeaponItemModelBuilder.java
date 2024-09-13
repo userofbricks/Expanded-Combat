@@ -141,6 +141,7 @@ public class WeaponItemModelBuilder {
                     modelProvider.getBuilder(!baseModelSuffix.isBlank() ?
                                     ("item/" + itemLocation.getPath() + "_" + baseModelSuffix) :
                                     ("item/" + itemLocation.getPath()))
+                            .guiLight(BlockModel.GuiLight.FRONT)
                             .customLoader(SeparateTransformsModelBuilder::begin);
 
             modelFileBuilder.base(generateModel("item_large/", "base/" + returningModelFolder, parentSuffix));
