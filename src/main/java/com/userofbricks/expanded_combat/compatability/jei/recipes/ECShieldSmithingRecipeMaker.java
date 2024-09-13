@@ -68,35 +68,24 @@ public class ECShieldSmithingRecipeMaker {
         }
 
 
-        for (Material ul : materials) {
-            if (ul.crafting().isSingleAddition()) continue;
-        for (Material ur : materials) {
-            if (ur.crafting().isSingleAddition()) continue;
-        for (Material dl : materials) {
-            if (dl.crafting().isSingleAddition()) continue;
-        for (Material dr : materials) {
-            if (dr.crafting().isSingleAddition()) continue;
-        for (Material m : materials) {
-            if (m.crafting().isSingleAddition()) continue;
+        for (Material ul_m_dr : materials) {
+            if (ul_m_dr.crafting().isSingleAddition()) continue;
+        for (Material ur_dl : materials) {
+            if (ur_dl.crafting().isSingleAddition()) continue;
 
             ItemStack resultShield = new ItemStack((
-                    ul.defense().fireResistant()
-                    || ur.defense().fireResistant()
-                    || dl.defense().fireResistant()
-                    || dr.defense().fireResistant()
-                    || m.defense().fireResistant()
+                    ul_m_dr.defense().fireResistant()
+                    || ur_dl.defense().fireResistant()
                     ) ? ECItems.SHIELD_FIRE_RESISTANT.get() : ECItems.SHIELD.get());
 
-            ShieldMaterials resultMaterials = new ShieldMaterials(ul, ur, dl, dr,
-                    m.defense().placementInShield() == PlacementInShield.NOT_TRIM ? ECBasePlugin.IRON: m, 0);
+            ShieldMaterials resultMaterials = new ShieldMaterials(ul_m_dr, ur_dl, ur_dl, ul_m_dr,
+                    ul_m_dr.defense().placementInShield() == PlacementInShield.NOT_TRIM ? ECBasePlugin.IRON: ul_m_dr, 0);
             resultShield.set(ItemDataComponents.SHIELD_MATERIALS, resultMaterials);
 
             Ingredient basesIngrediant = Ingredient.of(bases.stream());
-            Ingredient ul_ad = materialIngredientMap.get(ul);
-            Ingredient ur_ad = materialIngredientMap.get(ur);
-            Ingredient dl_ad = materialIngredientMap.get(dl);
-            Ingredient dr_ad = materialIngredientMap.get(dr);
-            Ingredient m_ad = materialIngredientMap.get(m.defense().placementInShield() == PlacementInShield.NOT_TRIM ? ECBasePlugin.IRON: m);
+            Ingredient ul_dr_ad = materialIngredientMap.get(ul_m_dr);
+            Ingredient ur_dl_ad = materialIngredientMap.get(ur_dl);
+            Ingredient m_ad = materialIngredientMap.get(ul_m_dr.defense().placementInShield() == PlacementInShield.NOT_TRIM ? ECBasePlugin.IRON: ul_m_dr);
 
 
             ResourceLocation id = modLoc("jei.shield_smithing." + resultMaterials.ULMaterial().id().toString().replace(':', '_')
@@ -105,19 +94,12 @@ public class ECShieldSmithingRecipeMaker {
                     + "." + resultMaterials.DRMaterial().id().toString().replace(':', '_')
                     + "." + resultMaterials.MMaterial().id().toString().replace(':', '_')
             );
-            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(basesIngrediant, ur_ad, ul_ad, m_ad, dr_ad, dl_ad, resultShield)));
+            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(basesIngrediant, ur_dl_ad, ul_dr_ad, m_ad, ul_dr_ad, ur_dl_ad, resultShield)));
 
 
-            if (m == ECBasePlugin.DIAMOND
-                    || dl == ECBasePlugin.DIAMOND
-                    || dr == ECBasePlugin.DIAMOND
-                    || ul == ECBasePlugin.DIAMOND
-                    || ur == ECBasePlugin.DIAMOND) {
+            if (ul_m_dr == ECBasePlugin.DIAMOND || ur_dl == ECBasePlugin.DIAMOND) {
                 netherite_bases.add(resultShield);
             }
-        }
-        }
-        }
         }
         }
 
