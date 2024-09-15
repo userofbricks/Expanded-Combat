@@ -29,19 +29,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ECArrow extends AbstractArrow {
     private static final EntityDataAccessor<Integer> ID_EFFECT_COLOR = SynchedEntityData.defineId(ECArrow.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Material> MATERIAL = SynchedEntityData.defineId(ECArrow.class, ECEntities.MATERIAL.get());
-    private Material material;
     public ECArrow(EntityType<? extends ECArrow> entityEntityType, Level level) {
         super(entityEntityType, level);
     }
     public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, Material material) {
         super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
-        this.material = material;
+        this.entityData.set(MATERIAL, material);
         this.updateColor();
     }
 
     public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Material material) {
         super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack);
-        this.material = material;
+        this.entityData.set(MATERIAL, material);
         this.updateColor();
     }
 
@@ -183,10 +182,10 @@ public class ECArrow extends AbstractArrow {
     }
 
     public Material getMaterial() {
-        return material;
+        return this.entityData.get(MATERIAL);
     }
 
     public void setArrowType(Material arrowMaterial) {
-        this.material = arrowMaterial;
+        this.entityData.set(MATERIAL, arrowMaterial);
     }
 }
