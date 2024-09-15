@@ -39,6 +39,7 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         basicItem(ECItems.SOLIDIFIED_PURIFICATION.asItem());
         basicItem(ECItems.GOOD_SOUL.asItem());
         basicItem(ECItems.BAD_SOUL.asItem());
+        basicItem(ECItems.FLETCHED_STICKS.asItem());
     }
 
     private void dynamicallyGenerateModels(DeferredHolder<Item, ? extends Item> item) {
@@ -52,7 +53,6 @@ public class ECItemModelProvider extends ItemModelProviderBase {
             }
             generateGauntletModel(item.getId(), gauntletItem.material, dyeable);
         }
-
         if (item.get() instanceof ECArrowItem arrowItem) {
             if(arrowItem instanceof ECTippedArrowItem) {
                 generateTippedArrowModel(item.getId(), arrowItem.material);
@@ -60,11 +60,9 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                 generateArrowModel(item.getId(), arrowItem.material);
             }
         }
-
         if (item.get() instanceof ECBowItem bowItem) {
             generateBowModel(item.getId(), bowItem.material);
         }
-
         if (item.get() instanceof ECCrossBowItem crossBowItem) {
             generateCrossBowModel(item.getId(), crossBowItem.material);
         }
@@ -78,7 +76,6 @@ public class ECItemModelProvider extends ItemModelProviderBase {
             }
             generateQuiverModel(item.getId(), quiverItem.material, dyeable);
         }
-
         if (item.get() instanceof ECWeaponItem weaponItem) {
             Material materialReference = weaponItem.material;
             WeaponType weaponTypeReference = weaponItem.weapon;
@@ -125,7 +122,6 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                 }
             }
         }
-
         if (item.get() instanceof ECShieldItem) {
             withExistingParent(item.getId().getPath(), modLoc("item/bases/shield"))
                     .override()

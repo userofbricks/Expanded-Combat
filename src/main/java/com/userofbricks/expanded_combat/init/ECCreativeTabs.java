@@ -34,13 +34,14 @@ public class ECCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EC_GROUP = CREATIVE_TABS.register("expanded_combat", () -> CreativeModeTab.builder()
             .icon(() -> new ItemStack(getIcon()))
             .displayItems((displayParameters, output) -> {
-                output.accept(LEATHER_STICK.get());
-                output.accept(GOLD_STICK.get());
-                output.accept(IRON_STICK.get());
-                output.accept(GAS_BOTTLE.get());
-                output.accept(PURIFIED_GAS_BOTTLE.get());
-                output.accept(SOLIDIFIED_PURIFICATION.get());
-                output.accept(ALLAY_ITEM.get());
+                output.accept(LEATHER_STICK);
+                output.accept(GOLD_STICK);
+                output.accept(IRON_STICK);
+                output.accept(FLETCHED_STICKS);
+                output.accept(GAS_BOTTLE);
+                output.accept(PURIFIED_GAS_BOTTLE);
+                output.accept(SOLIDIFIED_PURIFICATION);
+                output.accept(ALLAY_ITEM);
                 List<? extends DeferredItem<? extends Item>> items = ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList();
 
                 if (CONFIG.enableGauntlets) {
@@ -181,6 +182,7 @@ public class ECCreativeTabs {
             event.getEntries().putAfter(new ItemStack(Items.STICK), new ItemStack(LEATHER_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.getEntries().putAfter(new ItemStack(LEATHER_STICK.get()), new ItemStack(GOLD_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.getEntries().putAfter(new ItemStack(GOLD_STICK.get()), new ItemStack(IRON_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.getEntries().putAfter(new ItemStack(IRON_STICK.get()), new ItemStack(FLETCHED_STICKS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(ALLAY_ITEM.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(BAD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
