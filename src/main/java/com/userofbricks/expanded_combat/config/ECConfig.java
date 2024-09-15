@@ -23,7 +23,7 @@ public class ECConfig implements ConfigData {
     @Category("Client") @ConfigName("Quiver Hud horizontal adjustment")
     public int quiverHudXAdjustment = -40;
     @Category("Client") @ConfigName("Quiver Hud vertical adjustment")
-    public int quiverHudYAdjustment = -20;
+    public int quiverHudYAdjustment = -23;
 
 
 

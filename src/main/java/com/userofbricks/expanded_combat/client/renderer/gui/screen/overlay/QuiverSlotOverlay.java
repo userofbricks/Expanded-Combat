@@ -24,6 +24,7 @@ import top.theillusivec4.curios.api.SlotResult;
 import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 import static com.userofbricks.expanded_combat.init.DataAttachments.ARROW_SLOT;
 
 @EventBusSubscriber({Dist.CLIENT})
@@ -70,16 +71,17 @@ public class QuiverSlotOverlay {
         }
 
         //Rendering selection Background
+        RenderSystem.enableBlend();
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0.0F, 0.0F, -90.0F);
-        ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/sprites/hud/hotbar_offhand_"+(CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? "left" : "right")+".png");
-        RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
-        guiGraphics.blit(WIDGETS_LOCATION, offsetX, offsetY, 1, CONFIG.quiverHudAnchor == OverlayAnchorPoss.LEFT_OF_HOTBAR ? 0 : 7, 22, 22);
+        ResourceLocation spriteLocation = modLoc("quiver_selection_"+(CONFIG.quiverHudAnchor.left ? "left" : CONFIG.quiverHudAnchor.right ? "right" : "center"));
+        guiGraphics.blitSprite(spriteLocation, offsetX-23, offsetY-8, 68, 38);
         guiGraphics.pose().popPose();
+        RenderSystem.disableBlend();
 
-        renderSlot(guiGraphics, offsetX + 3, offsetY + 3, event.getPartialTick(), player, currentArrow);
-        renderSlot(guiGraphics, offsetX -17, offsetY + 3, event.getPartialTick(), player, beforeArrow);
-        renderSlot(guiGraphics, offsetX + 20, offsetY + 3, event.getPartialTick(), player, nextArrow);
+        renderSlot(guiGraphics, offsetX + 3, offsetY+3, event.getPartialTick(), player, currentArrow);
+        renderSlot(guiGraphics, offsetX -17, offsetY+3, event.getPartialTick(), player, beforeArrow);
+        renderSlot(guiGraphics, offsetX + 21, offsetY+3, event.getPartialTick(), player, nextArrow);
     }
 
     //near identical to the one in Gui.class
