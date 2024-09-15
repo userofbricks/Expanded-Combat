@@ -111,7 +111,7 @@ public class ECShieldSmithingRecipeMaker {
             }
             if (materials1 == null) continue;
             ShieldMaterials resultMaterials = new ShieldMaterials(
-                    materials1.MMaterial() == ECBasePlugin.DIAMOND ? ECBasePlugin.NETHERITE : materials1.ULMaterial(),
+                    materials1.MMaterial() == ECBasePlugin.DIAMOND ? ECBasePlugin.NETHERITE : materials1.MMaterial(),
                     materials1.DLMaterial() == ECBasePlugin.DIAMOND ? ECBasePlugin.NETHERITE : materials1.DLMaterial(),
                     materials1.DRMaterial() == ECBasePlugin.DIAMOND ? ECBasePlugin.NETHERITE : materials1.DRMaterial(),
                     materials1.ULMaterial() == ECBasePlugin.DIAMOND ? ECBasePlugin.NETHERITE : materials1.ULMaterial(),
@@ -125,7 +125,7 @@ public class ECShieldSmithingRecipeMaker {
                     + "." + resultMaterials.DRMaterial().id().toString().replace(':', '_')
                     + "." + resultMaterials.MMaterial().id().toString().replace(':', '_')
             );
-            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(Ingredient.of(netherite_bases.stream()), Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.of(Items.NETHERITE_INGOT), Ingredient.EMPTY, Ingredient.EMPTY, output)));
+            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(Ingredient.of(base), Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.of(Items.NETHERITE_INGOT), Ingredient.EMPTY, Ingredient.EMPTY, output)));
         }
 
         return recipes;
