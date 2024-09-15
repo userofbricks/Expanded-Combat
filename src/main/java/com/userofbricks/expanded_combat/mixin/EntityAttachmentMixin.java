@@ -25,9 +25,9 @@ public abstract class EntityAttachmentMixin {
 
     @Inject(method = {"setData"}, at = @At("RETURN"))
     public <T> void setData(AttachmentType<T> type, T data, CallbackInfoReturnable<T> cir) {
-        if (type == DataAttachments.STOLEN_HEALTH.get()
-                && level() instanceof ServerLevel) {
-            PacketDistributor.sendToPlayersTrackingEntityAndSelf(((Entity)(Object)this), new PacketIntAttachment(id, DataAttachments.STOLEN_HEALTH.get(), (Integer) data));
-        }
+        //if (type == DataAttachments.STOLEN_HEALTH.get()
+        //        && level() instanceof ServerLevel) {
+        //    PacketDistributor.sendToPlayersTrackingEntityAndSelf(((Entity)(Object)this), new PacketIntAttachment(id, DataAttachments.STOLEN_HEALTH.get(), (Integer) data));
+        //}
     }
 }

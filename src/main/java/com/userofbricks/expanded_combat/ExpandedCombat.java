@@ -51,8 +51,10 @@ public class ExpandedCombat {
         PLUGINS.addAll(ECPluginFinder.getECPlugins());
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        bus.register(ClientEvents.class);
-        bus.register(ECKeyRegistry.class);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            bus.register(ClientEvents.class);
+            bus.register(ECKeyRegistry.class);
+        }
         bus.addListener(this::registerPayloadHandler);
         PluginInit.loadClass();
         DataAttachments.ATTACHMENT_TYPES.register(bus);

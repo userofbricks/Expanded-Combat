@@ -14,7 +14,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
-@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ECParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_OPTIONS = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MODID);
 

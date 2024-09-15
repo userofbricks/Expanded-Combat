@@ -11,6 +11,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import top.theillusivec4.curios.common.network.server.SPacketGrabbedItem;
@@ -65,9 +67,8 @@ public class ECServerPayloadHandler {
     public void handleIntAttachmentSync(PacketIntAttachment packetIntAttachment, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
             Player player = ctx.player();
-            if (player instanceof LocalPlayer localPlayer) {
-                Level level = localPlayer.clientLevel;
-                Entity entity = level.getEntity(packetIntAttachment.id());
+            if (player instanceof LocalPlayer) {
+                Entity entity = player.level().getEntity(packetIntAttachment.id());
                 if (entity != null) entity.setData(packetIntAttachment.attachmentType(), packetIntAttachment.data());
             }
         });

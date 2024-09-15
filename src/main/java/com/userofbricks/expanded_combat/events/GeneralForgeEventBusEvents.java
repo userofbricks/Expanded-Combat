@@ -32,7 +32,7 @@ public class GeneralForgeEventBusEvents {
     private static final List<Runnable> ADDITIONAL_DMG_RUNS = new ArrayList<>();
 
     @SubscribeEvent
-    public static void dealExtraDmg(EntityTickEvent event) {
+    public static void dealExtraDmg(EntityTickEvent.Pre event) {
         ADDITIONAL_DMG_RUNS.forEach(Runnable::run);
         ADDITIONAL_DMG_RUNS.clear();
     }

@@ -21,6 +21,7 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+@OnlyIn(Dist.CLIENT)
 public class ClientEvents {
 
     @OnlyIn(Dist.CLIENT)

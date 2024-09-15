@@ -28,7 +28,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
-@EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ECCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EC_GROUP = CREATIVE_TABS.register("expanded_combat", () -> CreativeModeTab.builder()
