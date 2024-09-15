@@ -54,7 +54,7 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
 
     @Override
     protected boolean isValidBlock(BlockState pState) {
-        return pState.is(Blocks.SMITHING_TABLE);
+        return true; //pState.is(Blocks.SMITHING_TABLE);
     }
 
     @Override
