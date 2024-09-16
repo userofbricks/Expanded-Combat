@@ -20,7 +20,6 @@ import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
 @ParametersAreNonnullByDefault
 @EventBusSubscriber
 public class HeartStealerItem extends ECWeaponItem{
-    public static final String chargeString = "charge";
     public HeartStealerItem(Properties properties) {
         super(ECBasePlugin.HEART_STEALER, ECBasePlugin.CLAYMORE, properties.component(CHARGE, 0), 2);
     }
