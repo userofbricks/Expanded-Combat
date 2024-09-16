@@ -45,9 +45,10 @@ public class HeartStealerItem extends ECWeaponItem{
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return 0;
         return super.damageItem(stack, amount, entity, onBroken);
     }
-    public boolean onDroppedByPlayer(ItemStack item, Player player) {
-        return player.getData(STOLEN_HEALTH) <= 5;
-    }
+    //TODO: has bug with server client de-sync for wether the item is actually in the players inventory
+    //public boolean onDroppedByPlayer(ItemStack item, Player player) {
+    //    return player.getData(STOLEN_HEALTH) <= 5;
+    //}
 
     @SubscribeEvent
     public static void onItemExpire(ItemExpireEvent event) {

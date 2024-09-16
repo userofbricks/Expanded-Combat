@@ -90,7 +90,7 @@ public class GeneralForgeEventBusEvents {
     public static void syncPlayerVariablesOnLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             PacketDistributor.sendToPlayer(serverPlayer, new PacketIntAttachment(serverPlayer.getId(), DataAttachments.ARROW_SLOT.get(), serverPlayer.getData(DataAttachments.ARROW_SLOT)));
-            PacketDistributor.sendToPlayersTrackingEntityAndSelf(serverPlayer, new PacketIntAttachment(serverPlayer.getId(), DataAttachments.STOLEN_HEALTH.get(), serverPlayer.getData(DataAttachments.STOLEN_HEALTH)));
+            PacketDistributor.sendToPlayer(serverPlayer, new PacketIntAttachment(serverPlayer.getId(), DataAttachments.STOLEN_HEALTH.get(), serverPlayer.getData(DataAttachments.STOLEN_HEALTH)));
         }
     }
 
