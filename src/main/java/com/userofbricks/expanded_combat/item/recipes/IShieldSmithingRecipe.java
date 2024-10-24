@@ -1,7 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -11,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public interface IShieldSmithingRecipe extends Recipe<Container> {
+public interface IShieldSmithingRecipe extends Recipe<ShieldSmithingRecipeInput> {
 
     @Nonnull
     @Override
@@ -21,7 +20,7 @@ public interface IShieldSmithingRecipe extends Recipe<Container> {
 
     @Override
     default boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 6;
+        return width >= 6 && height >= 1;
     }
 
     @Override

@@ -8,9 +8,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
@@ -41,11 +41,11 @@ public class FletchingRecipe implements IFletchingRecipe {
         return NonNullList.of(this.base, this.addition);
     }
 
-    public boolean matches(Container iInventory, @NotNull Level world) {
+    public boolean matches(FletchingRecipeInput iInventory, @NotNull Level world) {
         return this.base.test(iInventory.getItem(0)) && this.addition.test(iInventory.getItem(1));
     }
 
-    public @NotNull ItemStack assemble(Container iInventory, HolderLookup.@NotNull Provider pRegistries) {
+    public @NotNull ItemStack assemble(FletchingRecipeInput iInventory, HolderLookup.@NotNull Provider pRegistries) {
         int resultCount = Math.min(iInventory.getItem(0).getCount(), maxResultingCount) * result.getCount();
 
         ItemStack itemstack = iInventory.getItem(0).transmuteCopy(this.result.getItem(), resultCount);

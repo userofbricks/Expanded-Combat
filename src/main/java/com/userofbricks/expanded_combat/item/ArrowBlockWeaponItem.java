@@ -7,6 +7,7 @@ import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,9 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
-import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -29,9 +29,9 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
         this.baseBlockCount = baseBlockCount;
     }
 
-    public static int getMaxBlocksInARow(ItemStack katanaStack) {
+    public static int getMaxBlocksInARow(ItemStack katanaStack, Level level) {
         if (katanaStack.getItem() instanceof ArrowBlockWeaponItem arrowBlockWeaponItem) {
-            return arrowBlockWeaponItem.baseBlockCount + katanaStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+            return arrowBlockWeaponItem.baseBlockCount + katanaStack.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ECEnchantments.BLOCKING));
         }
         return 0;
     }
@@ -69,7 +69,7 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
     }
 
     @Override
-    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
+    public boolean canPerformAction(ItemStack stack, ItemAbility toolAction) {
+        return ItemAbilities.DEFAULT_SHIELD_ACTIONS.contains(toolAction) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(toolAction);
     }
 }

@@ -15,7 +15,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 public record CPacketOpenShieldSmithing(ItemStack carried, BlockPos accessPos) implements CustomPacketPayload {
 
     public static final Type<CPacketOpenShieldSmithing> TYPE =
-            new Type<>(new ResourceLocation(MODID, "open_shield_smithing"));
+            new Type<>(ResourceLocation.fromNamespaceAndPath(MODID, "open_shield_smithing"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CPacketOpenShieldSmithing> STREAM_CODEC =
             StreamCodec.composite(

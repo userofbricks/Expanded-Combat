@@ -3,9 +3,10 @@ package com.userofbricks.expanded_combat.mixin;
 
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.RecipeBookMenu;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,7 +24,7 @@ import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
 import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 
 @Mixin(value = CuriosContainer.class, remap = false)
-public abstract class CuriosMenuMixin extends RecipeBookMenu<CraftingContainer> implements ICuriosMenu {
+public abstract class CuriosMenuMixin extends RecipeBookMenu<RecipeInput, Recipe<RecipeInput>> implements ICuriosMenu {
     @Shadow(remap = false)
     @Final
     public Player player;

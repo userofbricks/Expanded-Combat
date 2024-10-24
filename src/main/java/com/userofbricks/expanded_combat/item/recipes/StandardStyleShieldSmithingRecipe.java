@@ -1,28 +1,19 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
+public class StandardStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
     private final Ingredient base;
     private final Ingredient additionUR;
     private final Ingredient additionUL;
@@ -31,7 +22,7 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
     private final Ingredient additionDL;
     private final ItemStack result;
 
-    public StanderStyleShieldSmithingRecipe(Ingredient baseIn, Ingredient additionUR, Ingredient additionUL, Ingredient additionM, Ingredient additionDR, Ingredient additionDL, ItemStack resultIn) {
+    public StandardStyleShieldSmithingRecipe(Ingredient baseIn, Ingredient additionUR, Ingredient additionUL, Ingredient additionM, Ingredient additionDR, Ingredient additionDL, ItemStack resultIn) {
         this.base = baseIn;
         this.additionUR = additionUR;
         this.additionUL = additionUL;
@@ -40,7 +31,7 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
         this.additionDL = additionDL;
         this.result = resultIn;
     }
-    public StanderStyleShieldSmithingRecipe(Ingredient baseIn, Ingredient addition, ItemStack resultIn) {
+    public StandardStyleShieldSmithingRecipe(Ingredient baseIn, Ingredient addition, ItemStack resultIn) {
         this.base = baseIn;
         this.additionUR = addition;
         this.additionUL = addition;
@@ -51,7 +42,7 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
     }
 
     @Override
-    public boolean matches(Container iInventory, @NotNull Level world) {
+    public boolean matches(ShieldSmithingRecipeInput iInventory, @NotNull Level world) {
         return this.base.test(iInventory.getItem(0)) &&
                 this.additionUR.test(iInventory.getItem(1)) &&
                 this.additionUL.test(iInventory.getItem(2)) &&
@@ -61,7 +52,7 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container iInventory, @NotNull HolderLookup.Provider registryAccess) {
+    public @NotNull ItemStack assemble(ShieldSmithingRecipeInput iInventory, @NotNull HolderLookup.Provider registryAccess) {
         ItemStack itemstack = iInventory.getItem(0).transmuteCopy(this.result.getItem(), this.result.getCount());
         itemstack.applyComponents(this.result.getComponentsPatch());
         return itemstack;
@@ -110,8 +101,8 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
         return NonNullList.of(Ingredient.EMPTY, this.base, this.additionUR, additionUL, additionM, additionDR, additionDL);
     }
 
-    public static class Serializer implements RecipeSerializer<StanderStyleShieldSmithingRecipe> {
-        private static final MapCodec<StanderStyleShieldSmithingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+    public static class Serializer implements RecipeSerializer<StandardStyleShieldSmithingRecipe> {
+        private static final MapCodec<StandardStyleShieldSmithingRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340782_ -> p_340782_.group(
                                 Ingredient.CODEC.fieldOf("base").forGetter(p_301310_ -> p_301310_.base),
                                 Ingredient.CODEC.fieldOf("addition_ur").forGetter(p_301310_ -> p_301310_.additionUR),
@@ -121,12 +112,12 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
                                 Ingredient.CODEC.fieldOf("addition_dl").forGetter(p_301310_ -> p_301310_.additionDL),
                                 ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_300935_ -> p_300935_.result)
                         )
-                        .apply(p_340782_, StanderStyleShieldSmithingRecipe::new)
+                        .apply(p_340782_, StandardStyleShieldSmithingRecipe::new)
         );
-        public static final StreamCodec<RegistryFriendlyByteBuf, StanderStyleShieldSmithingRecipe> STREAM_CODEC = StreamCodec.of(
-                StanderStyleShieldSmithingRecipe.Serializer::toNetwork, StanderStyleShieldSmithingRecipe.Serializer::fromNetwork
+        public static final StreamCodec<RegistryFriendlyByteBuf, StandardStyleShieldSmithingRecipe> STREAM_CODEC = StreamCodec.of(
+                StandardStyleShieldSmithingRecipe.Serializer::toNetwork, StandardStyleShieldSmithingRecipe.Serializer::fromNetwork
         );
-        public static StanderStyleShieldSmithingRecipe fromNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer) {
+        public static StandardStyleShieldSmithingRecipe fromNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer) {
             Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
             Ingredient additionUR = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
             Ingredient additionUL = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
@@ -134,10 +125,10 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
             Ingredient additionDR = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
             Ingredient additionDL = Ingredient.CONTENTS_STREAM_CODEC.decode(packetBuffer);
             ItemStack itemstack = ItemStack.STREAM_CODEC.decode(packetBuffer);
-            return new StanderStyleShieldSmithingRecipe(ingredient, additionUR, additionUL, additionM, additionDR, additionDL, itemstack);
+            return new StandardStyleShieldSmithingRecipe(ingredient, additionUR, additionUL, additionM, additionDR, additionDL, itemstack);
         }
 
-        public static void toNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer, StanderStyleShieldSmithingRecipe fletchingRecipe) {
+        public static void toNetwork(@NotNull RegistryFriendlyByteBuf packetBuffer, StandardStyleShieldSmithingRecipe fletchingRecipe) {
             Ingredient.CONTENTS_STREAM_CODEC.encode(packetBuffer, fletchingRecipe.base);
             Ingredient.CONTENTS_STREAM_CODEC.encode(packetBuffer, fletchingRecipe.additionUR);
             Ingredient.CONTENTS_STREAM_CODEC.encode(packetBuffer, fletchingRecipe.additionUL);
@@ -148,12 +139,12 @@ public class StanderStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
         }
 
         @Override
-        public @NotNull MapCodec<StanderStyleShieldSmithingRecipe> codec() {
+        public @NotNull MapCodec<StandardStyleShieldSmithingRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, StanderStyleShieldSmithingRecipe> streamCodec() {
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, StandardStyleShieldSmithingRecipe> streamCodec() {
             return STREAM_CODEC;
         }
     }

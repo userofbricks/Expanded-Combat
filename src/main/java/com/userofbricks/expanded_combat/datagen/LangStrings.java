@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.config.ECConfig;
 import com.userofbricks.expanded_combat.config.gui.ConfigName;
 import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
 import com.userofbricks.expanded_combat.config.gui.TooltipFrases;
+import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
@@ -81,6 +82,12 @@ public class LangStrings extends LanguageProvider {
 
     public static final String NOT_VALID_RESOURCE_LOCATION_CONFIG_ERROR = createLangEntry("text.ec-cloth-config.error.not_valid_resource_location", "Not a Valid Resource Location!");
     public static final String RESOURCE_LOCATION_NOT_WITHIN_AVAILABLE_VALUES = createLangEntry("text.ce-cloth-config.error.not_within_available_values", "This Resource Location is Not a Recognised Value");
+
+    //Enchantments
+    public static final String KNOCK_RESIST_ENCH = createLangEntry("enchantment." + ECEnchantments.KNOCKBACK_RESISTANCE.location().getNamespace() + "." + ECEnchantments.KNOCKBACK_RESISTANCE.location().getPath().replace('/', '.'), "Knockback Resistance");
+    public static final String BLOCKING_ENCH = createLangEntry("enchantment." + ECEnchantments.BLOCKING.location().getNamespace() + "." + ECEnchantments.BLOCKING.location().getPath().replace('/', '.'), "Blocking");
+    public static final String AGILITY_ENCH = createLangEntry("enchantment." + ECEnchantments.AGILITY.location().getNamespace() + "." + ECEnchantments.AGILITY.location().getPath().replace('/', '.'), "Agility");
+    public static final String GROUND_SLAM_ENCH = createLangEntry("enchantment." + ECEnchantments.GROUND_SLAM.location().getNamespace() + "." + ECEnchantments.GROUND_SLAM.location().getPath().replace('/', '.'), "Ground Slam");
 
     //Config
     private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();

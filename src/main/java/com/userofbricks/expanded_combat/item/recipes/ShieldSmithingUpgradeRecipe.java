@@ -6,12 +6,11 @@ import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +24,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     @Override
-    public boolean matches(Container inventory, @Nonnull Level world) {
+    public boolean matches(SmithingRecipeInput inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(1);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {
@@ -47,7 +46,7 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, @NotNull HolderLookup.Provider access) {
+    public @NotNull ItemStack assemble(SmithingRecipeInput inventory, @NotNull HolderLookup.Provider access) {
         ItemStack base = inventory.getItem(1);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {

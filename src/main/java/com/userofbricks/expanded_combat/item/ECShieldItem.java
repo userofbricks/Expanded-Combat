@@ -1,14 +1,13 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
-import com.userofbricks.expanded_combat.client.renderer.item.ECShieldBlockEntityWithoutLevelRenderer;
 import com.userofbricks.expanded_combat.api.material.Material;
+import com.userofbricks.expanded_combat.api.registry.ShieldMaterialUseTick;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
-import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
+import com.userofbricks.expanded_combat.init.PluginInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
@@ -19,14 +18,12 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import static com.userofbricks.expanded_combat.init.ItemDataComponents.SHIELD_MATERIALS;
 
@@ -140,21 +137,11 @@ public class ECShieldItem extends ShieldItem {
     }
 
     @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return ECShieldBlockEntityWithoutLevelRenderer.getInstance();
-            }
-        });
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         if (enchantment == Enchantments.BINDING_CURSE) {
             return false;
         }
-        return super.canApplyAtEnchantingTable(stack,enchantment);
+        return super.supportsEnchantment(stack,enchantment);
     }
 
     @Override

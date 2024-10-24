@@ -1,16 +1,13 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,13 +16,15 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
+
 public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
-    public static final ResourceLocation SHIELD_RECIPE_ID = new ResourceLocation(ExpandedCombat.MODID, "ec_shields");
+    public static final ResourceLocation SHIELD_RECIPE_ID = modLoc( "ec_shields");
 
     public ShieldSmithingRecipie() {}
 
     @Override
-    public boolean matches(Container inventory, @Nonnull Level world) {
+    public boolean matches(ShieldSmithingRecipeInput inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {
@@ -71,7 +70,7 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, @NotNull HolderLookup.Provider p_267165_) {
+    public @NotNull ItemStack assemble(ShieldSmithingRecipeInput inventory, @NotNull HolderLookup.Provider p_267165_) {
         ItemStack base = inventory.getItem(0);
 
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);

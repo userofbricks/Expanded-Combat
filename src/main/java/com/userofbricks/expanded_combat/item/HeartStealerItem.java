@@ -2,14 +2,16 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import static com.userofbricks.expanded_combat.init.DataAttachments.ADDED_HEALTH;
@@ -40,9 +42,11 @@ public class HeartStealerItem extends ECWeaponItem{
         return super.hurtEnemy(stack, target, attacker);
     }
     @Override
-    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity, Runnable onBroken) {
-        if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1) return 0;
-        return super.damageItem(stack, amount, entity, onBroken);
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+        if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1)
+            return InteractionResultHolder.fail(stack);
+        return super.use(pLevel, pPlayer, pUsedHand);
     }
     //TODO: has bug with server client de-sync for wether the item is actually in the players inventory
     //public boolean onDroppedByPlayer(ItemStack item, Player player) {
@@ -52,7 +56,7 @@ public class HeartStealerItem extends ECWeaponItem{
     @SubscribeEvent
     public static void onItemExpire(ItemExpireEvent event) {
         if (event.getEntity().getItem().getItem() instanceof HeartStealerItem) {
-            event.setCanceled(true);
+            event.addExtraLife(12000);
         }
     }
 }

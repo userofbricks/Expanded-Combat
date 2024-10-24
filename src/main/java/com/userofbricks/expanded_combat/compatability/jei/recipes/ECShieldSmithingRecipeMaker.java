@@ -5,7 +5,7 @@ import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.*;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
-import com.userofbricks.expanded_combat.item.recipes.StanderStyleShieldSmithingRecipe;
+import com.userofbricks.expanded_combat.item.recipes.StandardStyleShieldSmithingRecipe;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -94,7 +94,7 @@ public class ECShieldSmithingRecipeMaker {
                     + "." + resultMaterials.DRMaterial().id().toString().replace(':', '_')
                     + "." + resultMaterials.MMaterial().id().toString().replace(':', '_')
             );
-            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(basesIngrediant, ur_dl_ad, ul_dr_ad, m_ad, ul_dr_ad, ur_dl_ad, resultShield)));
+            recipes.add(new RecipeHolder<>(id, new StandardStyleShieldSmithingRecipe(basesIngrediant, ur_dl_ad, ul_dr_ad, m_ad, ul_dr_ad, ur_dl_ad, resultShield)));
 
 
             if (ul_m_dr == ECBasePlugin.DIAMOND || ur_dl == ECBasePlugin.DIAMOND) {
@@ -125,7 +125,7 @@ public class ECShieldSmithingRecipeMaker {
                     + "." + resultMaterials.DRMaterial().id().toString().replace(':', '_')
                     + "." + resultMaterials.MMaterial().id().toString().replace(':', '_')
             );
-            recipes.add(new RecipeHolder<>(id, new StanderStyleShieldSmithingRecipe(Ingredient.of(base), Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.of(Items.NETHERITE_INGOT), Ingredient.EMPTY, Ingredient.EMPTY, output)));
+            recipes.add(new RecipeHolder<>(id, new StandardStyleShieldSmithingRecipe(Ingredient.of(base), Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.of(Items.NETHERITE_INGOT), Ingredient.EMPTY, Ingredient.EMPTY, output)));
         }
 
         return recipes;

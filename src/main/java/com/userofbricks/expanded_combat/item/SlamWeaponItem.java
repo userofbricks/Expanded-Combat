@@ -2,13 +2,15 @@ package com.userofbricks.expanded_combat.item;
 
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
-import com.userofbricks.expanded_combat.enchantments.GroundSlamEnchantment;
 import com.userofbricks.expanded_combat.entity.ECFallingBlockEntity;
 import com.userofbricks.expanded_combat.init.ECEnchantments;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +22,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -36,17 +37,18 @@ public class SlamWeaponItem extends ECWeaponItem{
     }
 
     @Override
-    public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
+    public int getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment) {
         ItemEnchantments itemenchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
-        return itemenchantments.getLevel(enchantment) + (enchantment instanceof GroundSlamEnchantment ? extraSlamLvl : 0);
+        ResourceLocation location = ResourceLocation.tryParse(enchantment.getRegisteredName());
+        return itemenchantments.getLevel(enchantment) + ((location != null && location == ECEnchantments.GROUND_SLAM.location()) ? extraSlamLvl : 0);
     }
 
     @Override
     public boolean hurtEnemy(ItemStack weapon, LivingEntity target, LivingEntity attacker) {
         super.hurtEnemy(weapon, target, attacker);
-        int hitsTillSlam = weapon.get(ItemDataComponents.HITS_TILL_SLAM);
+        int hitsTillSlam = weapon.getOrDefault(ItemDataComponents.HITS_TILL_SLAM, 0);
         hitsTillSlam++;
-        int slamLevel = weapon.getEnchantmentLevel(ECEnchantments.GROUND_SLAM.get());
+        int slamLevel = weapon.getEnchantmentLevel(attacker.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ECEnchantments.GROUND_SLAM));
         if (hitsTillSlam >= 10 - (slamLevel / 2) && slamLevel > 0) {
             weapon.set(ItemDataComponents.HITS_TILL_SLAM, 0);
             int range = 2 + Math.round(slamLevel / 3f);

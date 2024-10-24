@@ -1,4 +1,4 @@
-#this is the branch for 1.20.x
+#this is the branch for 1.21.x
 
 <center>
 <p>
@@ -26,7 +26,7 @@ gauntlets, more bows, weapons, and more to come.
 > All versions of this mod rely on the [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) on CurseForge [Curios API](https://modrinth.com/mod/curios) on Modrinth \
 > version 2.4.0 and above require [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config) on CurseForge [Curios API](https://modrinth.com/mod/cloth-config) on Modrinth
 > 
-> Fully supported minecraft versions: 1.20.1 \
+> Fully supported minecraft versions: 1.20.1, 1.20.6 \
 > For Supported Mods and Plugin Mods adding support look at the bottom of the page
 
 ## Content

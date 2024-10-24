@@ -1,11 +1,12 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public final class ECTags {
 
@@ -28,12 +29,12 @@ public final class ECTags {
     public static final TagKey<Item> LEATHER_REPAIR = bindvanilla("leather_repair");
 
     private static TagKey<Item> bind(String name) {
-        return ItemTags.create(new ResourceLocation(ExpandedCombat.MODID, name));
+        return ItemTags.create(modLoc(name));
     }
     private static TagKey<Item> bindvanilla(String name) {
-        return ItemTags.create(new ResourceLocation(name));
+        return ItemTags.create(ResourceLocation.withDefaultNamespace(name));
     }
     public static TagKey<Item> bindCurios(String name) {
-        return ItemTags.create(new ResourceLocation(ModIDs.Curios, name));
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(ModIDs.Curios, name));
     }
 }

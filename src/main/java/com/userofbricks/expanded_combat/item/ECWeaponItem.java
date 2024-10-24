@@ -7,7 +7,7 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -17,17 +17,17 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
-import java.util.UUID;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -35,8 +35,8 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     public final Material material;
     public final WeaponType weapon;
     public final int addedDmg;
-    protected static final UUID ATTACK_KNOCKBACK_MODIFIER = UUID.fromString("a3617883-03fa-4538-a821-7c0a506e8c56");
-    protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bc644060-615a-4259-a648-5367cd0d45fa");
+    protected static final ResourceLocation ATTACK_KNOCKBACK_MODIFIER = modLoc("base_attack_knockback");
+    protected static final ResourceLocation ATTACK_REACH_MODIFIER = modLoc("base_attack_reach");
 
     public ECWeaponItem(Material material, WeaponType weapon, Properties properties) {
         this(material, weapon, properties, 0);
@@ -49,6 +49,8 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         this.addedDmg = addedDmg;
     }
 
+    //TODO: see if works in constructor, if not move to the event implementation
+    //sadly can't put this in the constructors due to materials technically being loaded after items. although with cloth config this might not be true anymore.
     protected DataComponentMap.Builder componentBuilder() {
         DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
 
@@ -63,10 +65,10 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         return Item.Properties.validateComponents(componentBuilder().build());
     }
 
+    //copy the tool properties from the sword item class
     private static Tool createToolProperties() {
-        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
+        return SwordItem.createToolProperties();
     }
-
 
     public Material getMaterial() {
         return material;
@@ -81,10 +83,10 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         EquipmentSlotGroup slotGroup = getWeapon().config().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-        builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", getDamage(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", getWeapon().config().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, "Weapon modifier", getWeapon().config().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", getWeapon().config().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, getWeapon().config().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, getWeapon().config().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, getWeapon().config().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
         return builder.build();
     }
 
@@ -109,8 +111,8 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     @Override
-    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
+    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+        return ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
     }
 
 }

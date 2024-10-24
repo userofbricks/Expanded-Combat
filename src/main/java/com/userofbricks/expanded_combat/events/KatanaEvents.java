@@ -14,13 +14,13 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 public class KatanaEvents {
 
     @SubscribeEvent
-    public static void KatanaBlockingEvent(LivingAttackEvent event) {
+    public static void KatanaBlockingEvent(LivingIncomingDamageEvent event) {
         LivingEntity livingEntity = event.getEntity();
         ItemStack katanaStack = livingEntity.getUseItem();
 
@@ -30,7 +30,7 @@ public class KatanaEvents {
         int blockCount = livingEntity.getData(DataAttachments.WEAPON_BLOCK_COUNT);
 
         if (isArrowDamageSourceBlockable(event.getSource(), livingEntity) && ticksPassed > 0 &&
-                blockCount <= ArrowBlockWeaponItem.getMaxBlocksInARow(katanaStack)) {
+                blockCount <= ArrowBlockWeaponItem.getMaxBlocksInARow(katanaStack, event.getEntity().level())) {
             //Animate
             if (ticksPassed >= 10) {
                 int blockAnim = livingEntity.getRandom().nextIntBetweenInclusive(1, 4);

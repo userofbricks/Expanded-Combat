@@ -6,13 +6,13 @@ import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -23,11 +23,11 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         super(bookCategory);
     }
 
-    public boolean matches(CraftingContainer inv, @NotNull Level level) {
+    public boolean matches(CraftingInput inv, @NotNull Level level) {
         int numPotionWeapons = 0;
         int numPotions = 0;
 
-        for(int i = 0; i < inv.getContainerSize(); ++i) {
+        for(int i = 0; i < inv.size(); ++i) {
             ItemStack itemstack = inv.getItem(i);
             if (itemstack.getItem() instanceof PotionWeaponItem) {
                 if(numPotionWeapons > 0) return false;
@@ -40,11 +40,11 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         return numPotions == 1 && numPotionWeapons == 1;
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull HolderLookup.Provider registryAccess) {
+    public @NotNull ItemStack assemble(CraftingInput inv, @NotNull HolderLookup.Provider registryAccess) {
         ItemStack potionItem = ItemStack.EMPTY;
         ItemStack potionWeaponItem = ItemStack.EMPTY;
 
-        for(int i = 0; i < inv.getContainerSize(); i++) {
+        for(int i = 0; i < inv.size(); i++) {
             ItemStack stack = inv.getItem(i);
             Item item = stack.getItem();
             if(item instanceof PotionWeaponItem) {

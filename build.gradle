@@ -17,10 +17,10 @@ repositories{
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
+    // Curios Api
     maven {
-        // Curios Api
-        name = "Illusive Soulworks maven"
-        url = "https://maven.theillusivec4.top/"
+        name = "OctoStudios"
+        url = uri("https://maven.octo-studios.com/releases")
     }
     maven {
         // Cloth Config

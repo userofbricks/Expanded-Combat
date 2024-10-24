@@ -1,21 +1,16 @@
 package com.userofbricks.expanded_combat.world.structure_modification;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement;
-import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -25,9 +20,9 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 @EventBusSubscriber(modid = MODID)
 public class AncientCity {
     private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
-            Registries.PROCESSOR_LIST, new ResourceLocation("minecraft", "empty"));
+            Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath("minecraft", "empty"));
     private static final ResourceKey<StructureProcessorList> ANCIENT_CITY_PROCESSOR_LIST_KEY = ResourceKey.create(
-            Registries.PROCESSOR_LIST, new ResourceLocation("expanded_combat", "weaponry_vault_degradation"));
+            Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath("expanded_combat", "weaponry_vault_degradation"));
 
     /**
      * Adds the building to the targeted pool.
@@ -60,7 +55,7 @@ public class AncientCity {
         Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
-                new ResourceLocation("minecraft:ancient_city/structures"),
+                ResourceLocation.fromNamespaceAndPath("minecraft","ancient_city/structures"),
                 MODID+":ancient_city/structures/weaponry_barracks", 1);
     }
 }

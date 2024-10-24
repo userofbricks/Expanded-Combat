@@ -41,7 +41,7 @@ public class AddItemWithoutGauntletModifier extends LootModifier {
         }
 
 
-        if (context.getParamOrNull(LootContextParams.KILLER_ENTITY) instanceof LivingEntity killer) {
+        if (context.getParamOrNull(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity killer) {
             Optional<SlotResult> optionalSlotResult  = CuriosApi.getCuriosInventory(killer).flatMap(curiosInventory -> curiosInventory.findFirstCurio(gauntlet));
             if (optionalSlotResult.isEmpty()) {
                 generatedLoot.add(new ItemStack(lootItem));

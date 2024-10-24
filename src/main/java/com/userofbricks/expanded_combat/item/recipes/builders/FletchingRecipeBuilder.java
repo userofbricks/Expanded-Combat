@@ -60,7 +60,7 @@ public class FletchingRecipeBuilder{
     }
 
     public void save(RecipeOutput pRecipeOutput, String pRecipeId) {
-        this.save(pRecipeOutput, new ResourceLocation(pRecipeId));
+        this.save(pRecipeOutput, ResourceLocation.parse(pRecipeId));
     }
 
     public void save(RecipeOutput pRecipeOutput, ResourceLocation pId) {

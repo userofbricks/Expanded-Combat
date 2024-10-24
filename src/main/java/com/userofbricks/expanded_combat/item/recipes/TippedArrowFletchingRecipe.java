@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -24,11 +23,11 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
         this.result = result;
     }
 
-    public boolean matches(Container iInventory, @NotNull Level world) {
+    public boolean matches(FletchingRecipeInput iInventory, @NotNull Level world) {
         return arrow.test(iInventory.getItem(0)) && iInventory.getItem(1).getItem() == Items.LINGERING_POTION;
     }
 
-    public @NotNull ItemStack assemble(Container inv, @NotNull HolderLookup.Provider registryAccess) {
+    public @NotNull ItemStack assemble(FletchingRecipeInput inv, @NotNull HolderLookup.Provider registryAccess) {
         final ItemStack itemstack = inv.getItem(1);
         final ItemStack itemstack1 = new ItemStack(result.getItem(), Math.min(inv.getItem(0).getCount(), 64));
         itemstack1.set(DataComponents.POTION_CONTENTS, itemstack.get(DataComponents.POTION_CONTENTS));

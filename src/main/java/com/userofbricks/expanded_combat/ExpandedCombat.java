@@ -60,7 +60,6 @@ public class ExpandedCombat {
         DataAttachments.ATTACHMENT_TYPES.register(bus);
         ECParticles.PARTICLE_OPTIONS.register(bus);
         ECAttributes.ATTRIBUTES.register(bus);
-        ECEnchantments.ENCHANTMENTS.register(bus);
         ECBlocks.BLOCKS.register(bus);
         ECItems.ITEMS.register(bus);
         ECCreativeTabs.CREATIVE_TABS.register(bus);
@@ -106,6 +105,6 @@ public class ExpandedCombat {
     }
 
     public static ResourceLocation modLoc(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

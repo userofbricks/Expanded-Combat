@@ -2,10 +2,11 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
-import com.userofbricks.expanded_combat.init.*;
-import net.minecraft.core.Holder;
+import com.userofbricks.expanded_combat.init.DataMaps;
+import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -20,7 +21,7 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
     }
 
     @Override
-    public boolean matches(Container inventory, @Nonnull Level world) {
+    public boolean matches(ShieldSmithingRecipeInput inventory, @Nonnull Level world) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {
@@ -44,7 +45,7 @@ public class ShieldUpgradeRecipe extends ShieldSmithingRecipie {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, @NotNull HolderLookup.Provider access) {
+    public @NotNull ItemStack assemble(ShieldSmithingRecipeInput inventory, @NotNull HolderLookup.Provider access) {
         ItemStack base = inventory.getItem(0);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {

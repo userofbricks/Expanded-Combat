@@ -3,20 +3,15 @@ package com.userofbricks.expanded_combat.item.recipes;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BannerItem;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.jetbrains.annotations.NotNull;
 
 public class ECShieldDecorationRecipe extends CustomRecipe {
@@ -24,11 +19,11 @@ public class ECShieldDecorationRecipe extends CustomRecipe {
         super(p_251065_);
     }
 
-    public boolean matches(CraftingContainer p_44308_, @NotNull Level p_44309_) {
+    public boolean matches(CraftingInput p_44308_, @NotNull Level p_44309_) {
         ItemStack itemstack = ItemStack.EMPTY;
         ItemStack itemstack1 = ItemStack.EMPTY;
 
-        for(int i = 0; i < p_44308_.getContainerSize(); ++i) {
+        for(int i = 0; i < p_44308_.size(); ++i) {
             ItemStack itemstack2 = p_44308_.getItem(i);
             if (!itemstack2.isEmpty()) {
                 if (itemstack2.getItem() instanceof BannerItem) {
@@ -59,11 +54,11 @@ public class ECShieldDecorationRecipe extends CustomRecipe {
         return !itemstack.isEmpty() && !itemstack1.isEmpty();
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer p_44306_, @NotNull HolderLookup.Provider p_267112_) {
+    public @NotNull ItemStack assemble(CraftingInput p_44306_, @NotNull HolderLookup.Provider p_267112_) {
         ItemStack itemstack = ItemStack.EMPTY;
         ItemStack itemstack1 = ItemStack.EMPTY;
 
-        for(int i = 0; i < p_44306_.getContainerSize(); ++i) {
+        for(int i = 0; i < p_44306_.size(); ++i) {
             ItemStack itemstack2 = p_44306_.getItem(i);
             if (!itemstack2.isEmpty()) {
                 if (itemstack2.getItem() instanceof BannerItem) {

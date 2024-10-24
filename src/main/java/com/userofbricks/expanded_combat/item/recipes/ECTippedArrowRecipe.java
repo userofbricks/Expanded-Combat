@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
@@ -22,11 +21,11 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         this.result = result;
     }
 
-    public boolean matches(CraftingContainer inv, @NotNull Level level) {
-        if (inv.getWidth() == 3 && inv.getHeight() == 3) {
-            for(int i = 0; i < inv.getWidth(); ++i) {
-                for(int j = 0; j < inv.getHeight(); ++j) {
-                    ItemStack itemstack = inv.getItem(i + j * inv.getWidth());
+    public boolean matches(CraftingInput inv, @NotNull Level level) {
+        if (inv.width() == 3 && inv.height() == 3) {
+            for(int i = 0; i < inv.width(); ++i) {
+                for(int j = 0; j < inv.height(); ++j) {
+                    ItemStack itemstack = inv.getItem(i + j * inv.width());
                     if (itemstack.isEmpty()) {
                         return false;
                     }
@@ -47,8 +46,8 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         }
     }
 
-    public @NotNull ItemStack assemble(CraftingContainer inv, @NotNull HolderLookup.Provider registryAccess) {
-        ItemStack itemstack = inv.getItem(1 + inv.getWidth());
+    public @NotNull ItemStack assemble(CraftingInput inv, @NotNull HolderLookup.Provider registryAccess) {
+        ItemStack itemstack = inv.getItem(1 + inv.width());
         if (!itemstack.is(Items.LINGERING_POTION)) {
             return ItemStack.EMPTY;
         } else {
