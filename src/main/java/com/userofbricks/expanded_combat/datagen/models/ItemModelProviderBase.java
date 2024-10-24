@@ -9,12 +9,10 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.init.ECBasePlugin.*;
 
 public abstract class ItemModelProviderBase extends ItemModelProvider {
@@ -34,7 +32,7 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         super(output, modid, existingFileHelper);
     }
     public void generateTippedArrowModel(ResourceLocation item, Material material) {
-        generated(item, material.id().withPrefix("item/arrow/"), new ResourceLocation(MODID, "item/arrow/tipped_head"));
+        generated(item, material.id().withPrefix("item/arrow/"), modLoc("item/arrow/tipped_head"));
     }
     public void generateArrowModel(ResourceLocation item, Material material) {
         generated(item, material.id().withPrefix("item/arrow/"));
@@ -49,16 +47,16 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                 .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, -90, 25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 90, -25).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .end()
-                .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        withExistingParent(item + "_pulling_0", new ResourceLocation("item/bow"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).model(
+                        withExistingParent(item + "_pulling_0", ResourceLocation.parse("item/bow"))
                                 .texture("layer0", materialLocation.withPath("item/bow/" + materialLocation.getPath() + "_pulling_0"))
                 ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65f).model(
-                        withExistingParent(item + "_pulling_1", new ResourceLocation("item/bow"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).predicate(ResourceLocation.parse("pull"), 0.65f).model(
+                        withExistingParent(item + "_pulling_1", ResourceLocation.parse("item/bow"))
                                 .texture("layer0", materialLocation.withPath("item/bow/" + materialLocation.getPath() + "_pulling_1"))
                 ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9f).model(
-                        withExistingParent(item + "_pulling_2", new ResourceLocation("item/bow"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).predicate(ResourceLocation.parse("pull"), 0.9f).model(
+                        withExistingParent(item + "_pulling_2", ResourceLocation.parse("item/bow"))
                                 .texture("layer0", materialLocation.withPath("item/bow/" + materialLocation.getPath() + "_pulling_2"))
                 ).end();
     }
@@ -71,20 +69,20 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
                 .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(-90, 0, -55).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(-90, 0, 35).translation(1.13f, 3.2f, 1.13f).scale(0.68f).end()
                 .end()
-                .override().predicate(new ResourceLocation("pulling"), 1).model(
-                        withExistingParent(item + "_pulling_0", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_0"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).model(
+                        withExistingParent(item + "_pulling_0", ResourceLocation.parse("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_0"))
                 ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.58f).model(
-                        withExistingParent(item + "_pulling_1", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_1"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).predicate(ResourceLocation.parse("pull"), 0.58f).model(
+                        withExistingParent(item + "_pulling_1", ResourceLocation.parse("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_1"))
                 ).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 1f).model(
-                        withExistingParent(item + "_pulling_2", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_2"))
+                .override().predicate(ResourceLocation.parse("pulling"), 1).predicate(ResourceLocation.parse("pull"), 1f).model(
+                        withExistingParent(item + "_pulling_2", ResourceLocation.parse("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_pulling_2"))
                 ).end()
-                .override().predicate(new ResourceLocation("charged"), 1).model(
-                        withExistingParent(item + "_arrow", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_arrow"))
+                .override().predicate(ResourceLocation.parse("charged"), 1).model(
+                        withExistingParent(item + "_arrow", ResourceLocation.parse("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_arrow"))
                 ).end()
-                .override().predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1).model(
-                        withExistingParent(item + "_firework", new ResourceLocation("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_firework"))
+                .override().predicate(ResourceLocation.parse("charged"), 1).predicate(ResourceLocation.parse("firework"), 1).model(
+                        withExistingParent(item + "_firework", ResourceLocation.parse("item/crossbow")).texture("layer0", materialLocation.withPath("item/crossbow/" + materialLocation.getPath() + "_firework"))
                 ).end();
     }
     public void generateGauntletModel(ResourceLocation item, Material material, boolean dyeable) {
@@ -96,7 +94,7 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         else mainModel = generated(item, main_texture, overlay_texture);
 
         for (TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
-            ResourceLocation trim_texture = new ResourceLocation(MODID, "trims/items/gauntlet_trim_" + trimModelData.name() + (
+            ResourceLocation trim_texture = modLoc("trims/items/gauntlet_trim_" + trimModelData.name() + (
                     (item.getPath().contains("gold") && trimModelData.name.equals("gold"))
                             || (item.getPath().contains("iron") && trimModelData.name.equals("iron"))
                             || (item.getPath().contains("diamond") && trimModelData.name.equals("diamond"))
@@ -133,59 +131,59 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
     }
     protected void standardWeaponModelsFor(Material materialReference, String materialItemName) {
         ResourceLocation materialLocation = materialReference.id();
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_battle_staff"), materialReference, BATTLE_STAFF, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_battle_staff"), materialReference, BATTLE_STAFF, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_broad_sword"), materialReference, BROAD_SWORD, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_broad_sword"), materialReference, BROAD_SWORD, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_claymore"), materialReference, CLAYMORE, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_claymore"), materialReference, CLAYMORE, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_cutlass"), materialReference, CUTLASS, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_cutlass"), materialReference, CUTLASS, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_dagger"), materialReference, DAGGER, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_dagger"), materialReference, DAGGER, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_dancer_s_sword"), materialReference, DANCERS_SWORD, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_dancer_s_sword"), materialReference, DANCERS_SWORD, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_flail"), materialReference, FLAIL, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_flail"), materialReference, FLAIL, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_glaive"), materialReference, GLAIVE, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_glaive"), materialReference, GLAIVE, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_great_hammer"), materialReference, GREAT_HAMMER, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_great_hammer"), materialReference, GREAT_HAMMER, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_katana"), materialReference, KATANA, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_katana"), materialReference, KATANA, this)
                 .setHasLargeModel().setHasArrowBlockingWeaponOverrides()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_mace"), materialReference, MACE, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_mace"), materialReference, MACE, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_scythe"), materialReference, SCYTHE, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_scythe"), materialReference, SCYTHE, this)
                 .setHasLargeModel().setDyeableOrPotionDippable()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_sickle"), materialReference, SICKLE, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_sickle"), materialReference, SICKLE, this)
                 .setHasCustomTransformsOrModel()
                 .generateWeaponModelAndStandardOverrides()
         ;
-        new WeaponItemModelBuilder(new ResourceLocation(materialLocation.getNamespace(), materialItemName + "_spear"), materialReference, SPEAR, this)
+        new WeaponItemModelBuilder(ResourceLocation.fromNamespaceAndPath(materialLocation.getNamespace(), materialItemName + "_spear"), materialReference, SPEAR, this)
                 .setHasLargeModel()
                 .generateWeaponModelAndStandardOverrides()
         ;

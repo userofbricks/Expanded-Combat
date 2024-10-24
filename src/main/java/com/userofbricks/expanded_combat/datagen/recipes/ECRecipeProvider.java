@@ -11,7 +11,6 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 import static com.userofbricks.expanded_combat.init.ECItems.*;
 
@@ -199,21 +197,21 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
         FletchingRecipeBuilder.fletching(Ingredient.of(FLETCHED_STICKS.get()), Ingredient.of(Items.IRON_NUGGET), RecipeCategory.COMBAT, IRON_ARROW.get(), 1)
                 .unlockedBy(getHasName(FLETCHED_STICKS), has(FLETCHED_STICKS))
                 .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
-                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), new ResourceLocation(MODID, "iron_arrow_fletching2"));
+                .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), modLoc("iron_arrow_fletching2"));
         fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), Items.ARROW, Items.FLINT, FLETCHED_STICKS, 6);
 
         recipeOutput.accept(modLoc("tipped_arrow_fletching"), new TippedArrowFletchingRecipe(Ingredient.of(Items.ARROW), new ItemStack(Items.TIPPED_ARROW)), null);
 
         SpecialRecipeBuilder.special(category -> new ShieldSmithingRecipie())
-                .save(recipeOutput, new ResourceLocation(MODID, "shield_smithing"));
+                .save(recipeOutput, modLoc("shield_smithing"));
         SpecialRecipeBuilder.special(category -> new ShieldUpgradeRecipe())
-                    .save(recipeOutput, new ResourceLocation(MODID, "shield_smithing_singleton"));
+                    .save(recipeOutput, modLoc("shield_smithing_singleton"));
         SpecialRecipeBuilder.special(category -> new ShieldSmithingUpgradeRecipe())
-                    .save(recipeOutput, new ResourceLocation(MODID, "shield_vanilla_smithing_singleton"));
+                    .save(recipeOutput, modLoc("shield_vanilla_smithing_singleton"));
         SpecialRecipeBuilder.special(ECShieldDecorationRecipe::new)
-                    .save(recipeOutput, new ResourceLocation(MODID, "ec_shield_decoration"));
+                    .save(recipeOutput, modLoc("ec_shield_decoration"));
         SpecialRecipeBuilder.special(PotionDippedWeaponRecipe::new)
-                    .save(recipeOutput, new ResourceLocation(MODID, "weapon_potion_dipping_recipe"));
+                    .save(recipeOutput, modLoc("weapon_potion_dipping_recipe"));
     }
 
     private void buildWeaponRecipe(RecipeOutput pRecipeOutput, ECWeaponItem weaponItem) {

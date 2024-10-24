@@ -10,15 +10,15 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
+@SuppressWarnings("unused")
 public class WeaponItemModelBuilder {
     public static final Function3<ResourceLocation, Material, WeaponType, ResourceLocation> DEFAULT_HANDLE_LOC =
-            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.id().getPath() + "_handle");
+            (resourceLocation, materialReference, weaponReference) -> modLoc(weaponReference.id().getPath() + "_handle");
     public static final Function3<ResourceLocation, Material, WeaponType, ResourceLocation> DEFAULT_DYE_LOC =
-            (resourceLocation, materialReference, weaponReference) -> new ResourceLocation(MODID, weaponReference.id().getPath() + "_dye");
+            (resourceLocation, materialReference, weaponReference) -> modLoc(weaponReference.id().getPath() + "_dye");
 
     public final ResourceLocation itemLocation;
     public final Material material;
@@ -32,7 +32,7 @@ public class WeaponItemModelBuilder {
     private boolean hasArrowBlockingWeaponOverrides = false;
     private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> mainTextureFunction =
             (resourceLocation, materialReference, weaponReference) ->
-                    new ResourceLocation(materialReference.id().getNamespace(), weaponReference.id().getPath() + "/" + materialReference.id().getPath());
+                    ResourceLocation.fromNamespaceAndPath(materialReference.id().getNamespace(), weaponReference.id().getPath() + "/" + materialReference.id().getPath());
     private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> handleTextureFunction = DEFAULT_HANDLE_LOC;
     private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> dyeTextureFunction = DEFAULT_DYE_LOC;
 
@@ -55,7 +55,7 @@ public class WeaponItemModelBuilder {
 
     public WeaponItemModelBuilder setHandleTextureFunction(String handleTexture) {
         this.handleTextureFunction = (resourceLocation, materialReference, weaponReference) ->
-                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.id().getPath() + "/" + handleTexture);
+                ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), weaponReference.id().getPath() + "/" + handleTexture);
         return this;
     }
 
@@ -66,7 +66,7 @@ public class WeaponItemModelBuilder {
 
     public WeaponItemModelBuilder setDyeTextureFunction(String dyeTexture) {
         this.dyeTextureFunction = (resourceLocation, materialReference, weaponReference) ->
-                new ResourceLocation(resourceLocation.getNamespace(), weaponReference.id().getPath() + "/" + dyeTexture);
+                ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), weaponReference.id().getPath() + "/" + dyeTexture);
         return this;
     }
 
@@ -106,27 +106,27 @@ public class WeaponItemModelBuilder {
 
     public void addArrowBlockingWeaponOverrides(ItemModelBuilder mainModelBuilder) {
         mainModelBuilder.override()
-                .predicate(new ResourceLocation("blocking"), 1f)
-                .predicate(new ResourceLocation("blocked_recently"), 1f)
-                .predicate(new ResourceLocation("block_pos"), 0.1f)
+                .predicate(ResourceLocation.parse("blocking"), 1f)
+                .predicate(ResourceLocation.parse("blocked_recently"), 1f)
+                .predicate(ResourceLocation.parse("block_pos"), 0.1f)
                 .model(generateWeaponModel("block_1"))
                 .end();
         mainModelBuilder.override()
-                .predicate(new ResourceLocation("blocking"), 1f)
-                .predicate(new ResourceLocation("blocked_recently"), 1f)
-                .predicate(new ResourceLocation("block_pos"), 0.2f)
+                .predicate(ResourceLocation.parse("blocking"), 1f)
+                .predicate(ResourceLocation.parse("blocked_recently"), 1f)
+                .predicate(ResourceLocation.parse("block_pos"), 0.2f)
                 .model(generateWeaponModel("block_2"))
                 .end();
         mainModelBuilder.override()
-                .predicate(new ResourceLocation("blocking"), 1f)
-                .predicate(new ResourceLocation("blocked_recently"), 1f)
-                .predicate(new ResourceLocation("block_pos"), 0.3f)
+                .predicate(ResourceLocation.parse("blocking"), 1f)
+                .predicate(ResourceLocation.parse("blocked_recently"), 1f)
+                .predicate(ResourceLocation.parse("block_pos"), 0.3f)
                 .model(generateWeaponModel("block_3"))
                 .end();
         mainModelBuilder.override()
-                .predicate(new ResourceLocation("blocking"), 1f)
-                .predicate(new ResourceLocation("blocked_recently"), 1f)
-                .predicate(new ResourceLocation("block_pos"), 0.4f)
+                .predicate(ResourceLocation.parse("blocking"), 1f)
+                .predicate(ResourceLocation.parse("blocked_recently"), 1f)
+                .predicate(ResourceLocation.parse("block_pos"), 0.4f)
                 .model(generateWeaponModel("none"))
                 .end();
     }
@@ -182,6 +182,6 @@ public class WeaponItemModelBuilder {
         String modelName = "item/" + returningModelfolder + itemLocation.getPath();
         String parentName = "item/bases/" + weapon.id().getPath() + (!parentSuffix.isBlank() ? "_" + parentSuffix : "");
 
-        return modelProvider.withExistingParent(modelName, new ResourceLocation(MODID, parentName));
+        return modelProvider.withExistingParent(modelName, modLoc(parentName));
     }
 }

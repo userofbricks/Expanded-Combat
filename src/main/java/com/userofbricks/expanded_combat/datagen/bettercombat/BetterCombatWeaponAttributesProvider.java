@@ -47,7 +47,7 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
 
         this.builders.forEach((name, transform) -> {
             List<String> list = builders.keySet().stream()
-                    .filter(s -> BuiltInRegistries.ITEM.containsKey(new ResourceLocation(this.modId, name)))
+                    .filter(s -> BuiltInRegistries.ITEM.containsKey(ResourceLocation.fromNamespaceAndPath(this.modId, name)))
                     .filter(s -> !this.builders.containsKey(s))
                     .filter(this::missing).toList();
 
@@ -55,7 +55,7 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
                 throw new IllegalArgumentException(String.format("Duplicate Weapon Attributes: %s", list.stream().map(Objects::toString).collect(Collectors.joining(", "))));
             } else {
                 JsonObject obj = serializeToJson(transform);
-                Path path = createPath(new ResourceLocation(modId, name));
+                Path path = createPath(ResourceLocation.fromNamespaceAndPath(modId, name));
                 futuresBuilder.add(DataProvider.saveStable(cache, obj, path));
             }
         });
@@ -63,7 +63,7 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
     }
 
     private boolean missing(String name) {
-        return this.helper == null || !this.helper.exists(new ResourceLocation(this.modId, name), new ExistingFileHelper.ResourceType(net.minecraft.server.packs.PackType.SERVER_DATA, ".json", "weapon_attributes"));
+        return this.helper == null || !this.helper.exists(ResourceLocation.fromNamespaceAndPath(this.modId, name), new ExistingFileHelper.ResourceType(net.minecraft.server.packs.PackType.SERVER_DATA, ".json", "weapon_attributes"));
     }
 
     private Path createPath(ResourceLocation name) {
@@ -88,6 +88,6 @@ public abstract class BetterCombatWeaponAttributesProvider implements DataProvid
     }
 
     public void add(Item weapon, String weaponAtrributesParent) {
-        add(weapon, new ResourceLocation(ModIDs.betterCombat, weaponAtrributesParent));
+        add(weapon, ResourceLocation.fromNamespaceAndPath(ModIDs.betterCombat, weaponAtrributesParent));
     }
 }

@@ -30,9 +30,9 @@ public class ECItemTagsProvider extends ItemTagsProvider {
             if (deferredItem.get() instanceof ECArrowItem item) {
                 tag(ItemTags.ARROWS).add(item);
             } else if (deferredItem.get() instanceof ECBowItem item) {
-                tag(Tags.Items.TOOLS_BOWS).add(item);
+                tag(Tags.Items.TOOLS_BOW).add(item);
             } else if (deferredItem.get() instanceof ECCrossBowItem item) {
-                tag(Tags.Items.TOOLS_CROSSBOWS).add(item);
+                tag(Tags.Items.TOOLS_CROSSBOW).add(item);
             } else if (deferredItem.get() instanceof GauntletItem item) {
                 tag(ECTags.GAUNTLETS).add(item);
                 tag(ItemTags.TRIMMABLE_ARMOR).add(item);
@@ -57,6 +57,6 @@ public class ECItemTagsProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.DYEABLE).add(ECItems.LEATHER_GAUNTLET.getKey());
 
-        tag(Tags.Items.TOOLS_SHIELDS).add(ECItems.SHIELD.getKey(), ECItems.SHIELD_FIRE_RESISTANT.getKey());
+        tag(Tags.Items.TOOLS_SHIELD).add(ECItems.SHIELD.getKey(), ECItems.SHIELD_FIRE_RESISTANT.getKey());
     }
 }

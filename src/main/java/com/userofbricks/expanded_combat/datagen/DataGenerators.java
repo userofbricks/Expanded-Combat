@@ -35,6 +35,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static net.minecraft.world.entity.EquipmentSlotGroup.*;
 
 @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+@SuppressWarnings("unused")
 public class DataGenerators {
 
     @SubscribeEvent

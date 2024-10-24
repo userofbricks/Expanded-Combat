@@ -12,8 +12,8 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -26,13 +26,13 @@ public class ECArrowItem extends ArrowItem {
         this.material = material;
     }
 
-    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter) {
-        return new ECArrow(worldIn, shooter, stack.copyWithCount(1), material);
+    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter, @Nullable ItemStack pWeapon) {
+        return new ECArrow(worldIn, shooter, stack.copyWithCount(1), pWeapon, material);
     }
 
     @Override
     public Projectile asProjectile(Level pLevel, Position pPos, ItemStack pStack, Direction pDirection) {
-        ECArrow arrow = new ECArrow(pLevel, pPos.x(), pPos.y(), pPos.z(), pStack.copyWithCount(1), material);
+        ECArrow arrow = new ECArrow(pLevel, pPos.x(), pPos.y(), pPos.z(), pStack.copyWithCount(1), null, material);
         arrow.pickup = AbstractArrow.Pickup.ALLOWED;
         return arrow;
     }

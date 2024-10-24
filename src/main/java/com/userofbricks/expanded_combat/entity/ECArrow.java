@@ -22,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -32,14 +33,14 @@ public class ECArrow extends AbstractArrow {
     public ECArrow(EntityType<? extends ECArrow> entityEntityType, Level level) {
         super(entityEntityType, level);
     }
-    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, Material material) {
-        super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack);
+    public ECArrow(Level level, double x, double y, double z, ItemStack pPickupItemStack, @Nullable ItemStack pFiredFromWeapon, Material material) {
+        super(ECEntities.EC_ARROW.get(), x, y, z, level, pPickupItemStack, pFiredFromWeapon);
         this.entityData.set(MATERIAL, material);
         this.updateColor();
     }
 
-    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, Material material) {
-        super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack);
+    public ECArrow(Level level, LivingEntity shooter, ItemStack pPickupItemStack, @Nullable ItemStack pFiredFromWeapon, Material material) {
+        super(ECEntities.EC_ARROW.get(), shooter, level, pPickupItemStack, pFiredFromWeapon);
         this.entityData.set(MATERIAL, material);
         this.updateColor();
     }

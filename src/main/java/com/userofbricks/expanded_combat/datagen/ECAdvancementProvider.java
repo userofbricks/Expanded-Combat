@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.datagen;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ECTags;
 import net.minecraft.advancements.Advancement;
@@ -8,11 +7,10 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
@@ -41,7 +39,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
                             Component.translatable(LangStrings.advancementRootTitle),
                             Component.translatable(LangStrings.advancementRootDesc),
                             //background
-                            new ResourceLocation("minecraft:textures/gui/advancements/backgrounds/stone.png"),
+                            ResourceLocation.parse("minecraft:textures/gui/advancements/backgrounds/stone.png"),
                             AdvancementType.TASK,
                             //1:showToast, 2:announceChat, 3:hidden
                             false, false, false
@@ -59,7 +57,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
                     .addCriterion("gauntlet_with_punch_2", InventoryChangeTrigger.TriggerInstance.hasItems(
                             ItemPredicate.Builder.item().of(ECTags.GAUNTLETS)
                                     .withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(
-                                            List.of(new EnchantmentPredicate(Enchantments.PUNCH, MinMaxBounds.Ints.atLeast(2)))
+                                            List.of(new EnchantmentPredicate(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PUNCH), MinMaxBounds.Ints.atLeast(2)))
                                     ))
                     ))
                     .save(saver, MODID + ":punch_gauntlet");

@@ -85,30 +85,30 @@ public class ECItemModelProvider extends ItemModelProviderBase {
                 builder.setSingleTexture().setHasCustomTransformsOrModel();
 
                 ItemModelBuilder stage1Builder =  builder.getModelWithWeaponParent("", "")
-                        .texture("layer0",  new ResourceLocation(MODID, "item_large/" + item.getId().getPath() + "/stage1"));
+                        .texture("layer0",  modLoc("item_large/" + item.getId().getPath() + "/stage1"));
                 ItemModelBuilder stage2Builder =  builder.getModelWithWeaponParent("heartstealer/stage2_", "")
-                        .texture("layer0",  new ResourceLocation(MODID, "item_large/" + item.getId().getPath() + "/stage2"));
+                        .texture("layer0",  modLoc("item_large/" + item.getId().getPath() + "/stage2"));
                 ItemModelBuilder stage3Builder =  builder.getModelWithWeaponParent("heartstealer/stage3_", "")
-                        .texture("layer0",  new ResourceLocation(MODID, "item_large/" + item.getId().getPath() + "/stage3"));
+                        .texture("layer0",  modLoc("item_large/" + item.getId().getPath() + "/stage3"));
                 ItemModelBuilder stage4Builder =  builder.getModelWithWeaponParent("heartstealer/stage4_", "")
-                        .texture("layer0",  new ResourceLocation(MODID, "item_large/" + item.getId().getPath() + "/stage4"));
+                        .texture("layer0",  modLoc("item_large/" + item.getId().getPath() + "/stage4"));
                 ItemModelBuilder stage5Builder =  builder.getModelWithWeaponParent("heartstealer/stage5_", "")
-                        .texture("layer0",  new ResourceLocation(MODID, "item_large/" + item.getId().getPath() + "/stage5"));
+                        .texture("layer0",  modLoc("item_large/" + item.getId().getPath() + "/stage5"));
 
                 stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.4f)
+                        .predicate(ResourceLocation.parse("stage"), 0.4f)
                         .model(stage2Builder)
                         .end();
                 stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.6f)
+                        .predicate(ResourceLocation.parse("stage"), 0.6f)
                         .model(stage3Builder)
                         .end();
                 stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 0.8f)
+                        .predicate(ResourceLocation.parse("stage"), 0.8f)
                         .model(stage4Builder)
                         .end();
                 stage1Builder.override()
-                        .predicate(new ResourceLocation("stage"), 1f)
+                        .predicate(ResourceLocation.parse("stage"), 1f)
                         .model(stage5Builder)
                         .end();
             } else if (materialReference.id() == HEAT_MATERIAL.id() || materialReference.id() == FROST.id() || materialReference.id() == VOID_TOUCHED.id() || materialReference.id() == SOUL_MATERIAL.id()) {
@@ -125,7 +125,7 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         if (item.get() instanceof ECShieldItem) {
             withExistingParent(item.getId().getPath(), modLoc("item/bases/shield"))
                     .override()
-                    .predicate(new ResourceLocation("blocking"), 1.0f)
+                    .predicate(ResourceLocation.parse("blocking"), 1.0f)
                     .model(withExistingParent(item.getId().getPath() + "_blocking", modLoc("item/bases/shield_blocking")));
         }
     }

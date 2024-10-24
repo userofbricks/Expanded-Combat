@@ -31,24 +31,24 @@ public class ECSpriteScourceProvider extends SpriteSourceProvider {
 
 
         Map<String, ResourceLocation> gauntletTrimPermutations = new HashMap<>();
-        gauntletTrimPermutations.put("netherite", new ResourceLocation("trims/color_palettes/netherite"));
-        gauntletTrimPermutations.put("quartz", new ResourceLocation("trims/color_palettes/quartz"));
-        gauntletTrimPermutations.put("iron", new ResourceLocation("trims/color_palettes/iron"));
-        gauntletTrimPermutations.put("gold", new ResourceLocation("trims/color_palettes/gold"));
-        gauntletTrimPermutations.put("diamond", new ResourceLocation("trims/color_palettes/diamond"));
-        gauntletTrimPermutations.put("redstone", new ResourceLocation("trims/color_palettes/redstone"));
-        gauntletTrimPermutations.put("copper", new ResourceLocation("trims/color_palettes/copper"));
-        gauntletTrimPermutations.put("emerald", new ResourceLocation("trims/color_palettes/emerald"));
-        gauntletTrimPermutations.put("lapis", new ResourceLocation("trims/color_palettes/lapis"));
-        gauntletTrimPermutations.put("amethyst", new ResourceLocation("trims/color_palettes/amethyst"));
-        gauntletTrimPermutations.put("iron_darker", new ResourceLocation("trims/color_palettes/iron_darker"));
-        gauntletTrimPermutations.put("gold_darker", new ResourceLocation("trims/color_palettes/gold_darker"));
-        gauntletTrimPermutations.put("diamond_darker", new ResourceLocation("trims/color_palettes/diamond_darker"));
-        gauntletTrimPermutations.put("netherite_darker", new ResourceLocation("trims/color_palettes/netherite_darker"));
+        gauntletTrimPermutations.put("netherite", ResourceLocation.parse("trims/color_palettes/netherite"));
+        gauntletTrimPermutations.put("quartz", ResourceLocation.parse("trims/color_palettes/quartz"));
+        gauntletTrimPermutations.put("iron", ResourceLocation.parse("trims/color_palettes/iron"));
+        gauntletTrimPermutations.put("gold", ResourceLocation.parse("trims/color_palettes/gold"));
+        gauntletTrimPermutations.put("diamond", ResourceLocation.parse("trims/color_palettes/diamond"));
+        gauntletTrimPermutations.put("redstone", ResourceLocation.parse("trims/color_palettes/redstone"));
+        gauntletTrimPermutations.put("copper", ResourceLocation.parse("trims/color_palettes/copper"));
+        gauntletTrimPermutations.put("emerald", ResourceLocation.parse("trims/color_palettes/emerald"));
+        gauntletTrimPermutations.put("lapis", ResourceLocation.parse("trims/color_palettes/lapis"));
+        gauntletTrimPermutations.put("amethyst", ResourceLocation.parse("trims/color_palettes/amethyst"));
+        gauntletTrimPermutations.put("iron_darker", ResourceLocation.parse("trims/color_palettes/iron_darker"));
+        gauntletTrimPermutations.put("gold_darker", ResourceLocation.parse("trims/color_palettes/gold_darker"));
+        gauntletTrimPermutations.put("diamond_darker", ResourceLocation.parse("trims/color_palettes/diamond_darker"));
+        gauntletTrimPermutations.put("netherite_darker", ResourceLocation.parse("trims/color_palettes/netherite_darker"));
 
         atlas(BLOCKS_ATLAS).addSource(new PalettedFolderPermutations(
                 List.of(modLoc( "trims/items/gauntlet_trim")),
-                new ResourceLocation("trims/color_palettes/trim_palette"),
+                ResourceLocation.parse("trims/color_palettes/trim_palette"),
                 false,
                 gauntletTrimPermutations));
 
