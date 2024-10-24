@@ -14,13 +14,13 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class SpriteSourceTypes {
-    public static SpriteSourceType PALETTED_FOLDER_PERMUTATIONS;
-    public static SpriteSourceType ALPHA_MASK_FOLDER_PERMUTATIONS;
+    public static SpriteSourceType PALETTED_FOLDER_PERMUTATIONS = new SpriteSourceType(PalettedFolderPermutations.CODEC);
+    public static SpriteSourceType ALPHA_MASK_FOLDER_PERMUTATIONS = new SpriteSourceType(AlphaMaskFolderPermutations.CODEC);
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerSpriteSourceTypes(RegisterSpriteSourceTypesEvent event) {
-        ALPHA_MASK_FOLDER_PERMUTATIONS = event.register(modLoc("alpha_mask_folder_permutations"), AlphaMaskFolderPermutations.CODEC);
-        PALETTED_FOLDER_PERMUTATIONS = event.register(modLoc("paletted_folder_permutations"), PalettedFolderPermutations.CODEC);
+        event.register(modLoc("alpha_mask_folder_permutations"), ALPHA_MASK_FOLDER_PERMUTATIONS);
+        event.register(modLoc("paletted_folder_permutations"), PALETTED_FOLDER_PERMUTATIONS);
     }
 }

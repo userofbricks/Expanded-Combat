@@ -16,7 +16,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.util.MutableHashedLinkedMap;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -110,18 +109,17 @@ public class ECCreativeTabs {
     public static void ModifyVanillaCreativeTabs(BuildCreativeModeTabContentsEvent event){
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
         if (tab == CreativeModeTabs.COMBAT) {
-            MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> items = event.getEntries();
             if (CONFIG.enableGauntlets) {
-                items.putBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(LEATHER_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(IRON_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(GOLD_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putBefore(new ItemStack(Items.DIAMOND_HELMET), new ItemStack(DIAMOND_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putBefore(new ItemStack(Items.NETHERITE_HELMET), new ItemStack(NETHERITE_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertBefore(new ItemStack(Items.LEATHER_HELMET), new ItemStack(LEATHER_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertBefore(new ItemStack(Items.IRON_HELMET), new ItemStack(IRON_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertBefore(new ItemStack(Items.GOLDEN_HELMET), new ItemStack(GOLD_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertBefore(new ItemStack(Items.DIAMOND_HELMET), new ItemStack(DIAMOND_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertBefore(new ItemStack(Items.NETHERITE_HELMET), new ItemStack(NETHERITE_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-                items.putAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(SOUL_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putAfter(new ItemStack(SOUL_GAUNTLET.get()), new ItemStack(FIGHTERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putAfter(new ItemStack(FIGHTERS_GAUNTLETS.get()), new ItemStack(BERSERK_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                items.putAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertAfter(new ItemStack(Items.TURTLE_HELMET), new ItemStack(SOUL_GAUNTLET.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertAfter(new ItemStack(SOUL_GAUNTLET.get()), new ItemStack(FIGHTERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertAfter(new ItemStack(FIGHTERS_GAUNTLETS.get()), new ItemStack(BERSERK_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.insertAfter(new ItemStack(BERSERK_GAUNTLETS.get()), new ItemStack(BRAWLERS_GAUNTLETS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
             if (CONFIG.enableShields) {
                 for (Material material : PluginInit.materials.values().stream().filter(materialReference -> materialReference.defense().placementInShield() != PlacementInShield.NONE).toList()) {
@@ -137,7 +135,7 @@ public class ECCreativeTabs {
                                     material.defense().placementInShield() == PlacementInShield.ALL ? material : ECBasePlugin.IRON,
                                     0
                             ));
-                    items.putAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.insertAfter(new ItemStack(Items.SHIELD), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
 
@@ -145,22 +143,22 @@ public class ECCreativeTabs {
 
             if (CONFIG.enableBows) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof BowItem).toList()) {
-                    items.putAfter(new ItemStack(Items.BOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.insertAfter(new ItemStack(Items.BOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableCrossbows) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof CrossbowItem).toList()) {
-                    items.putAfter(new ItemStack(Items.CROSSBOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.insertAfter(new ItemStack(Items.CROSSBOW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableQuivers) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof QuiverItem).toList()) {
-                    items.putBefore(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.insertBefore(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
             if (CONFIG.enableArrows) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
-                    items.putAfter(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.insertAfter(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
                 for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
                     ItemStack tippedArrow = new ItemStack(Items.TIPPED_ARROW);
@@ -168,28 +166,28 @@ public class ECCreativeTabs {
                     for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECTippedArrowItem).toList()) {
                         ItemStack stack = new ItemStack(deferredItem.get());
                         stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
-                        items.putAfter(tippedArrow, stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                        event.insertAfter(tippedArrow, stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     }
                 }
             }
             if (CONFIG.enableWeapons) {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECWeaponItem).toList()) {
 
-                    items.put(new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    event.accept(new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
             }
         } else if (tab == CreativeModeTabs.INGREDIENTS) {
-            event.getEntries().putAfter(new ItemStack(Items.STICK), new ItemStack(LEATHER_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(LEATHER_STICK.get()), new ItemStack(GOLD_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(GOLD_STICK.get()), new ItemStack(IRON_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(IRON_STICK.get()), new ItemStack(FLETCHED_STICKS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.STICK), new ItemStack(LEATHER_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(LEATHER_STICK.get()), new ItemStack(GOLD_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(GOLD_STICK.get()), new ItemStack(IRON_STICK.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(IRON_STICK.get()), new ItemStack(FLETCHED_STICKS.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(ALLAY_ITEM.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(BAD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GOOD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(SOLIDIFIED_PURIFICATION.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(PURIFIED_GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.getEntries().putAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(ALLAY_ITEM.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(BAD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GOOD_SOUL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(SOLIDIFIED_PURIFICATION.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(PURIFIED_GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(GAS_BOTTLE.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
 }
