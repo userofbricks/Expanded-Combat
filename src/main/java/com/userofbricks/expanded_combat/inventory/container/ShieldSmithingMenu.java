@@ -7,14 +7,16 @@ import com.userofbricks.expanded_combat.init.ECContainers;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
-import net.minecraft.core.Holder;
+import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipeInput;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ItemCombinerMenu;
+import net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,7 +61,12 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
 
     @Override
     protected boolean mayPickup(Player pPlayer, boolean pHasStack) {
-        return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.inputSlots, this.level);
+        return this.selectedRecipe != null && this.selectedRecipe.value().matches(
+                new ShieldSmithingRecipeInput(
+                        inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
+                ),
+                this.level
+        );
     }
 
     /**
@@ -92,12 +99,22 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
      * takes the input slots and matches it to the recipe and then asks the recipe to create its result
      */
     public void createResult() {
-        List<RecipeHolder<IShieldSmithingRecipe>> list = this.level.getRecipeManager().getRecipesFor(ECRecipeSerializerInit.SHIELD_TYPE.get(), this.inputSlots, this.level);
+        List<RecipeHolder<IShieldSmithingRecipe>> list = this.level.getRecipeManager().getRecipesFor(
+                ECRecipeSerializerInit.SHIELD_TYPE.get(),
+                new ShieldSmithingRecipeInput(
+                        inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
+                ), this.level
+        );
         if (list.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
             RecipeHolder<IShieldSmithingRecipe> recipe = list.get(0);
-            ItemStack itemstack = recipe.value().assemble(this.inputSlots, this.level.registryAccess());
+            ItemStack itemstack = recipe.value().assemble(
+                    new ShieldSmithingRecipeInput(
+                            inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
+                    ),
+                    this.level.registryAccess()
+            );
             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
                 this.selectedRecipe = recipe;
                 this.resultSlots.setRecipeUsed(recipe);

@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.inventory.container;
 
 import com.userofbricks.expanded_combat.init.ECContainers;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.item.recipes.FletchingRecipeInput;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -42,7 +43,7 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     @Override
     protected boolean mayPickup(@NotNull Player p_230303_1_, boolean p_230303_2_) {
-        return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.inputSlots, this.level);
+        return this.selectedRecipe != null && this.selectedRecipe.value().matches(new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1)), this.level);
     }
 
     @Override
@@ -65,12 +66,12 @@ public class FletchingTableMenu extends ItemCombinerMenu {
 
     @Override
     public void createResult() {
-        Optional<RecipeHolder<IFletchingRecipe>> optional = this.level.getRecipeManager().getRecipeFor(ECRecipeSerializerInit.FLETCHING_TYPE.get(), this.inputSlots, this.level);
+        Optional<RecipeHolder<IFletchingRecipe>> optional = this.level.getRecipeManager().getRecipeFor(ECRecipeSerializerInit.FLETCHING_TYPE.get(), new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1)), this.level);
         if (optional.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
             this.selectedRecipe = optional.get();
-            ItemStack itemstack = this.selectedRecipe.value().assemble(this.inputSlots, this.level.registryAccess());
+            ItemStack itemstack = this.selectedRecipe.value().assemble(new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1)), this.level.registryAccess());
             this.resultSlots.setRecipeUsed(this.selectedRecipe);
             this.resultSlots.setItem(0, itemstack);
         }
