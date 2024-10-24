@@ -10,6 +10,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import static com.userofbricks.expanded_combat.init.ECAttributes.*;
 
 @EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD)
+@SuppressWarnings("unused")
 public class GeneralModEventBusEvents {
     @SubscribeEvent
     public static void existingEntityAttributes(EntityAttributeModificationEvent event) {

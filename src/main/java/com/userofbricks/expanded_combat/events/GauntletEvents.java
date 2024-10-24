@@ -3,8 +3,9 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.client.IGauntletRenderer;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.item.QuiverItem;
 import com.userofbricks.expanded_combat.item.GauntletItem;
+import com.userofbricks.expanded_combat.item.QuiverItem;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,7 +19,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderArmEvent;
-import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -36,6 +37,7 @@ import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
 import static net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS;
 
 @EventBusSubscriber(modid = "expanded_combat", bus = EventBusSubscriber.Bus.GAME)
+@SuppressWarnings("unused")
 public class GauntletEvents
 {
     public static void DamageGauntletEvent(AttackEntityEvent event) {
@@ -49,13 +51,13 @@ public class GauntletEvents
                 ItemStack stack = slotResult.stack();
                 SlotContext slotContext = slotResult.slotContext();
                 if (stack.getItem() instanceof GauntletItem) {
-                    stack.hurtAndBreak(1, player.getRandom(), player, () -> CuriosApi.broadcastCurioBreakEvent(slotContext));
+                    stack.hurtAndBreak(1, (ServerLevel) player.level(), player, (item) -> CuriosApi.broadcastCurioBreakEvent(slotContext));
                 }
             }
         }
     }
     @SubscribeEvent
-    public static void moreDamageSources(LivingAttackEvent ev) {
+    public static void moreDamageSources(LivingIncomingDamageEvent ev) {
         LivingEntity target = ev.getEntity();
         Optional<SlotResult> optionalSlotResult = CuriosApi.getCuriosInventory(target).flatMap(curiosInventory -> curiosInventory.findFirstCurio(ECItems.BERSERK_GAUNTLETS.get()));
         if (optionalSlotResult.isPresent()) {

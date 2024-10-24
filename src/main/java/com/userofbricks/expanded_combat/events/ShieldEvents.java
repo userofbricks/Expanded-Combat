@@ -10,26 +10,30 @@ import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ContainerScreenEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
-import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
+@SuppressWarnings("unused")
 public class ShieldEvents {
 
     @SubscribeEvent
-    public static void ShieldBlockingEvent(ShieldBlockEvent event) {
+    public static void ShieldBlockingEvent(LivingShieldBlockEvent event) {
         if (!CONFIG.shieldProtectionConfig.EnableVanillaStyleShieldProtection && !(event.getEntity().getUseItem().getItem() instanceof ArrowBlockWeaponItem)) {
             ItemStack shieldItemStack = event.getEntity().getUseItem();
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();
             if (CONFIG.shieldProtectionConfig.EnableShieldBaseProtection) {
-                damageBlocked += BaseShieldProtection(shieldItemStack, damageLeftToBlock);
+                damageBlocked += BaseShieldProtection(shieldItemStack, damageLeftToBlock, event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT));
                 damageLeftToBlock -= damageBlocked;
             }
             if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
@@ -45,7 +49,7 @@ public class ShieldEvents {
         }
     }
 
-    private static float BaseShieldProtection(ItemStack shieldItemStack, float damageLeftToBlock) {
+    private static float BaseShieldProtection(ItemStack shieldItemStack, float damageLeftToBlock, Registry<Enchantment> enchantmentRegistry) {
         float damageBlocked = 0;
         switch (CONFIG.shieldProtectionConfig.shieldBaseProtectionType) {
             case PREDEFINED_AMMOUNT -> {
@@ -55,17 +59,17 @@ public class ShieldEvents {
                 }else if (shieldItemStack.getItemHolder().getData(DataMaps.SHIELD_MATERIALS) != null){
                     protectionAmount = PluginInit.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
-                damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get());
+                damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING));
             }
             case DURABILITY_PERCENTAGE -> {
                 if (shieldItemStack.getMaxDamage() == 0) damageBlocked = damageLeftToBlock;
                 else {
-                    float itemDamageLeft = Math.min(shieldItemStack.getMaxDamage(), ((float)shieldItemStack.getMaxDamage() - (float)shieldItemStack.getDamageValue()) + ((float)shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get()) / 10)));
+                    float itemDamageLeft = Math.min(shieldItemStack.getMaxDamage(), ((float)shieldItemStack.getMaxDamage() - (float)shieldItemStack.getDamageValue()) + ((float)shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING)) / 10)));
                     damageBlocked = damageLeftToBlock * (itemDamageLeft / (float)shieldItemStack.getMaxDamage());
                 }
             }
             case INVERTED_DURABILITY_PERCENTAGE -> {
-                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((shieldItemStack.getDamageValue() + (shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(ECEnchantments.BLOCKING.get()) / 10))) / (float) shieldItemStack.getMaxDamage());
+                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((shieldItemStack.getDamageValue() + (shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING)) / 10))) / (float) shieldItemStack.getMaxDamage());
             }
         }
         return damageBlocked;

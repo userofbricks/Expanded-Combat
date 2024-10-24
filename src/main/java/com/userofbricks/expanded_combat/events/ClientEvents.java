@@ -26,6 +26,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("unused")
 public class ClientEvents {
 
     @OnlyIn(Dist.CLIENT)

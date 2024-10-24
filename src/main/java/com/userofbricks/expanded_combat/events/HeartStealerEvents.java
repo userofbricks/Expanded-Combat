@@ -14,13 +14,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-import java.util.UUID;
-
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 import static com.userofbricks.expanded_combat.init.DataAttachments.ADDED_HEALTH;
 import static com.userofbricks.expanded_combat.init.DataAttachments.STOLEN_HEALTH;
 
 @EventBusSubscriber(modid = MODID)
+@SuppressWarnings("unused")
 public class HeartStealerEvents {
 
     @SubscribeEvent
@@ -60,12 +60,12 @@ public class HeartStealerEvents {
         if (player instanceof ServerPlayer) {
             AttributeInstance attributeinstance = player.getAttribute(Attributes.MAX_HEALTH);
             assert attributeinstance != null;
-            AttributeModifier stolen_modifier = attributeinstance.getModifier(UUID.fromString("803f1818-3e4f-4605-8b1a-04d0c1c9f97d"));
-            AttributeModifier added_modifier = attributeinstance.getModifier(UUID.fromString("f7d9fc3d-4517-4e35-bcf3-12ce2d0a2457"));
+            AttributeModifier stolen_modifier = attributeinstance.getModifier(modLoc("heartstealer_stolen_modifier"));
+            AttributeModifier added_modifier = attributeinstance.getModifier(modLoc("heartstealer_added_modifier"));
             if (stolen_modifier == null || stolen_modifier.amount() != player.getData(STOLEN_HEALTH))
-                attributeinstance.addOrUpdateTransientModifier(new AttributeModifier(UUID.fromString("803f1818-3e4f-4605-8b1a-04d0c1c9f97d"), "Heartstealer Stolen modifier", player.getData(STOLEN_HEALTH), AttributeModifier.Operation.ADD_VALUE));
+                attributeinstance.addOrUpdateTransientModifier(new AttributeModifier(modLoc("heartstealer_stolen_modifier"), player.getData(STOLEN_HEALTH), AttributeModifier.Operation.ADD_VALUE));
             if (added_modifier == null || added_modifier.amount() != player.getData(ADDED_HEALTH))
-                attributeinstance.addOrUpdateTransientModifier(new AttributeModifier(UUID.fromString("f7d9fc3d-4517-4e35-bcf3-12ce2d0a2457"), "Heartstealer Added modifier", player.getData(ADDED_HEALTH), AttributeModifier.Operation.ADD_VALUE));
+                attributeinstance.addOrUpdateTransientModifier(new AttributeModifier(modLoc("heartstealer_added_modifier"), player.getData(ADDED_HEALTH), AttributeModifier.Operation.ADD_VALUE));
         }
     }
 }

@@ -20,6 +20,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 public class KatanaEvents {
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void KatanaBlockingEvent(LivingIncomingDamageEvent event) {
         LivingEntity livingEntity = event.getEntity();
         ItemStack katanaStack = livingEntity.getUseItem();
@@ -45,6 +46,7 @@ public class KatanaEvents {
     }
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void keepKatanaTicks(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         int ticksPassed = player.getData(DataAttachments.TIME_SINCE_WEAPON_BLOCK);

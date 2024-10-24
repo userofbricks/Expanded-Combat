@@ -6,6 +6,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public class GeneralEvents {
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public void commandRegister(RegisterCommandsEvent event) {
         ModCommands.register(event.getDispatcher());
     }
