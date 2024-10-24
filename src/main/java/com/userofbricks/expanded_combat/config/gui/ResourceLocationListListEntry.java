@@ -9,6 +9,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -40,24 +41,26 @@ public class ResourceLocationListListEntry extends AbstractTextFieldListListEntr
 
         @Override
         protected @Nullable ResourceLocation substituteDefault(@Nullable ResourceLocation value) {
-            return value == null ? new ResourceLocation("nothing") : value;
+            return value == null ? ResourceLocation.parse("nothing") : value;
         }
 
         @Override
         protected boolean isValidText(@NotNull String s) {
-            return ResourceLocation.isValidResourceLocation(s);
+            List<String> parts = Arrays.asList(s.split(":"));
+            return parts.size() <= 2 && ResourceLocation.isValidNamespace(parts.getFirst()) && ResourceLocation.isValidPath(parts.get(1));
         }
 
         @Override
         public ResourceLocation getValue() {
-            return new ResourceLocation(this.widget.getValue());
+            return ResourceLocation.parse(this.widget.getValue());
         }
 
         @Override
         public Optional<Component> getError() {
-            if (!ResourceLocation.isValidResourceLocation(this.widget.getValue()))
+            List<String> parts = Arrays.asList(this.widget.getValue().split(":"));
+            if (!(parts.size() <= 2 && ResourceLocation.isValidNamespace(parts.getFirst()) && ResourceLocation.isValidPath(parts.get(1))))
                 return Optional.of(Component.translatable(LangStrings.NOT_VALID_RESOURCE_LOCATION_CONFIG_ERROR));
-            if (this.listListEntry.availableValues != null && !listListEntry.availableValues.get().contains(new ResourceLocation(widget.getValue())))
+            if (this.listListEntry.availableValues != null && !listListEntry.availableValues.get().contains(ResourceLocation.parse(widget.getValue())))
                 return Optional.of(Component.translatable(LangStrings.RESOURCE_LOCATION_NOT_WITHIN_AVAILABLE_VALUES));
             return Optional.empty();
         }

@@ -192,6 +192,7 @@ public class MaterialConfig {
             return flaming;
         }
 
+        @SuppressWarnings("unused")
         public boolean canBeTipped() {
             return canBeTipped;
         }
@@ -322,6 +323,7 @@ public class MaterialConfig {
         }
     }
 
+    @SuppressWarnings("unused")
     public static class Builder {
         private int toolDurability = 0;
         private int gauntletDurability = 0;
@@ -343,7 +345,7 @@ public class MaterialConfig {
         private int gauntletArmorAmount = 0;
         private double armorToughness = 0;
         private double knockbackResistance = 0;
-        private ResourceLocation equipSound = new ResourceLocation("item.armor.equip_generic");
+        private ResourceLocation equipSound = ResourceLocation.parse("item.armor.equip_generic");
         private boolean fireResistant = false;
         private boolean makesPiglinsNeutral = false;
         private PlacementInShield placementInShield = PlacementInShield.NONE;
@@ -391,7 +393,7 @@ public class MaterialConfig {
         }
 
         public Builder equipSound(String equipSound) {
-            this.equipSound = new ResourceLocation(equipSound);
+            this.equipSound = ResourceLocation.parse(equipSound);
             return this;
         }
 
@@ -491,7 +493,7 @@ public class MaterialConfig {
         }
 
         public Builder onlyReplaceResource(String... materials) {
-            this.onlyReplaceResource.addAll(Arrays.stream(materials).map(ResourceLocation::new).toList());
+            this.onlyReplaceResource.addAll(Arrays.stream(materials).map(ResourceLocation::parse).toList());
             return this;
         }
 
