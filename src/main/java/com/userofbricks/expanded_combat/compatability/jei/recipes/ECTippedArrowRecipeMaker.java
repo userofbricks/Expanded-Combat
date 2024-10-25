@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,6 +12,8 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ECTippedArrowRecipeMaker {
     public static List<RecipeHolder<CraftingRecipe>> createRecipes(ECTippedArrowItem arrowItem) {
@@ -32,7 +33,7 @@ public class ECTippedArrowRecipeMaker {
                             arrowIngredient, potionIngredient, arrowIngredient,
                             arrowIngredient, arrowIngredient, arrowIngredient
                     );
-                    ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.tipped.arrow." + output.getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
+                    ResourceLocation id = modLoc("jei.tipped.arrow." + output.getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
                     ShapedRecipePattern pattern = new ShapedRecipePattern(3, 3, inputs, Optional.empty());
                     CraftingRecipe recipe = new ShapedRecipe(group, CraftingBookCategory.MISC, pattern, output);
                     return new RecipeHolder<>(id, recipe);

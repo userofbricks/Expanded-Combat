@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
@@ -10,11 +9,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ECFletchingTippedArrowRecipeMaker {
 
@@ -38,7 +40,7 @@ public class ECFletchingTippedArrowRecipeMaker {
 
                     Ingredient potionIngredient = DataComponentIngredient.of(false, input);
 
-                    ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.fletching.tipped.arrow." + output.getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
+                    ResourceLocation id = modLoc("jei.fletching.tipped.arrow." + output.getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
                     IFletchingRecipe recipe = new FletchingRecipe(arrowIngredient, potionIngredient, output, 64);
                     return new RecipeHolder<>(id, recipe);
                 })

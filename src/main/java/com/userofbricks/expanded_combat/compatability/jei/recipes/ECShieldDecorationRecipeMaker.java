@@ -5,7 +5,6 @@ import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
-import mezz.jei.api.constants.ModIds;
 import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,8 +15,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.StreamSupport;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ECShieldDecorationRecipeMaker {
     public static List<RecipeHolder<CraftingRecipe>> createRecipes() {
@@ -52,7 +56,7 @@ public class ECShieldDecorationRecipeMaker {
 
         ItemStack output = createOutput(banner, shieldStack.copy());
 
-        ResourceLocation id = new ResourceLocation(ModIds.MINECRAFT_ID, "jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.id().toString().replace(':', '_'));
+        ResourceLocation id = modLoc("jei.ec_shield.decoration." + output.getDescriptionId() + "_" + shieldMaterial.id().toString().replace(':', '_'));
         CraftingRecipe recipe = new ShapelessRecipe("jei.ec_shield.decoration", CraftingBookCategory.MISC, output, inputs);
         return new RecipeHolder<>(id, recipe);
     }

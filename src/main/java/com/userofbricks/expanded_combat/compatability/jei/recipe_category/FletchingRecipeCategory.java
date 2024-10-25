@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -31,7 +31,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<RecipeHolder<IFl
     private final IDrawable background;
     private final IDrawable icon;
     private final ITickTimer tickTimer;
-    public static final ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/jei/recipe_backgrounds.png");
+    public static final ResourceLocation textureLocation = modLoc("textures/gui/jei/recipe_backgrounds.png");
 
     public static final RecipeType<RecipeHolder<IFletchingRecipe>> FLETCHING =
             RecipeType.createFromVanilla(ECRecipeSerializerInit.FLETCHING_TYPE.get());
@@ -52,9 +52,12 @@ public class FletchingRecipeCategory implements IRecipeCategory<RecipeHolder<IFl
         return Blocks.FLETCHING_TABLE.getName();
     }
 
-    @Override
-    public IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return background.getWidth();
+    }
+
+    public int getHeight() {
+        return background.getHeight();
     }
 
     @Override
@@ -64,6 +67,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<RecipeHolder<IFl
 
     @Override
     public void draw(RecipeHolder<IFletchingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        background.draw(guiGraphics);
         if ((tickTimer.getValue() != 0 || tickTimer.getValue() != 1) && recipe.value().getMaxCraftingAmount() > 1) {
             guiGraphics.pose().pushPose();
             drawAcendingNumbers(guiGraphics, 7, 12, recipe.value().getMaxCraftingAmount());

@@ -8,9 +8,9 @@ import com.userofbricks.expanded_combat.compatability.jei.recipe_category.Fletch
 import com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory;
 import com.userofbricks.expanded_combat.compatability.jei.recipes.*;
 import com.userofbricks.expanded_combat.init.ECContainers;
+import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.inventory.container.FletchingTableMenu;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
-import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.ECTippedArrowItem;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
@@ -21,7 +21,6 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
-import mezz.jei.api.helpers.IStackHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
@@ -35,13 +34,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.client.gui.CuriosScreen;
-import top.theillusivec4.curios.common.integration.jei.CuriosContainerHandler;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 import static com.userofbricks.expanded_combat.compatability.jei.recipe_category.FletchingRecipeCategory.FLETCHING;
 import static com.userofbricks.expanded_combat.compatability.jei.recipe_category.ShieldSmithingRecipeCategory.SHIELD_SMITHING;
 
@@ -57,7 +54,7 @@ public class ECJEIPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(MODID, "jei_plugin");
+        return modLoc("jei_plugin");
     }
 
     @Override

@@ -1,23 +1,25 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
-import com.userofbricks.expanded_combat.datagen.LangStrings;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -25,7 +27,7 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<RecipeHolde
 
     private final IDrawable background;
     private final IDrawable icon;
-    public static final ResourceLocation iconLocation = new ResourceLocation(MODID, "textures/gui/jei/recipe_icons.png");
+    public static final ResourceLocation iconLocation = modLoc("textures/gui/jei/recipe_icons.png");
 
     public static final RecipeType<RecipeHolder<IShieldSmithingRecipe>> SHIELD_SMITHING =
             RecipeType.createFromVanilla(ECRecipeSerializerInit.SHIELD_TYPE.get());
@@ -45,9 +47,16 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<RecipeHolde
         return Component.translatable(LangStrings.SHIELD_UPGRADE_CONTAINER);
     }
 
-    @Override
-    public IDrawable getBackground() {
-        return background;
+    public void draw(RecipeHolder<IShieldSmithingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        background.draw(guiGraphics);
+    }
+
+    public int getWidth() {
+        return background.getWidth();
+    }
+
+    public int getHeight() {
+        return background.getHeight();
     }
 
     @Override

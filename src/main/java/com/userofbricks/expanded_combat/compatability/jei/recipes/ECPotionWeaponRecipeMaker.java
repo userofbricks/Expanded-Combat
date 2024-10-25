@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipes;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,6 +11,8 @@ import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.List;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ECPotionWeaponRecipeMaker {
     public static List<RecipeHolder<CraftingRecipe>> createRecipes(PotionWeaponItem weaponItem) {
@@ -28,7 +29,7 @@ public class ECPotionWeaponRecipeMaker {
                     NonNullList<Ingredient> inputs = NonNullList.of(Ingredient.EMPTY,
                             weaponIngredient, potionIngredient
                     );
-                    ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.dipped.weapon." + output.getItem().getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
+                    ResourceLocation id = modLoc("jei.dipped.weapon." + output.getItem().getDescriptionId() + "." + potion.getRegisteredName().replace(':', '.'));
                     CraftingRecipe recipe = new ShapelessRecipe(group, CraftingBookCategory.MISC, output, inputs);
                     return new RecipeHolder<>(id, recipe);
                 })
