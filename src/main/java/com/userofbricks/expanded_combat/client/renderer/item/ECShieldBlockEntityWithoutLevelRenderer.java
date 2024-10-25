@@ -29,6 +29,8 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
+
 @ParametersAreNonnullByDefault
 public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
     private static ECShieldBlockEntityWithoutLevelRenderer INSTANCE = null;
@@ -81,7 +83,7 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
             renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlM);
 
             if (hasBanner) {
-                Material material = new Material(Sheets.SHIELD_SHEET, new ResourceLocation("expanded_combat", "model/shields/shield_base"));
+                Material material = new Material(Sheets.SHIELD_SHEET, modLoc("model/shields/shield_base"));
                 BannerRenderer.renderPatterns(
                         poseStack,
                         multiBufferSource,
@@ -104,16 +106,11 @@ public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutL
         return p.equals("m") ? material.withPrefix("model/shields/m/") : material.withPrefix("model/shields/" + trimName + "/" + p + "/");
     }
 
-    private void renderModel(PoseStack poseStack, MultiBufferSource multiBufferSource, int light, boolean foil, ModelPart model, ResourceLocation... shieldResources) {
-        renderModel(poseStack, multiBufferSource, light, foil, model, 1f, 1f, 1f, shieldResources);
-    }
-
-    private void renderModel(PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, ModelPart model, float red, float green, float blue, ResourceLocation... shieldResources) {
+    private void renderModel(PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, ModelPart model, ResourceLocation... shieldResources) {
         for (ResourceLocation shieldResource : shieldResources) {
             Material material = new Material(Sheets.SHIELD_SHEET, shieldResource);
-            VertexConsumer vertexconsumer = material.sprite()
-                    .wrap(ItemRenderer.getFoilBufferDirect(multibuffersource, RenderType.armorCutoutNoCull(material.atlasLocation()), true, foil));
-            model.render(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+            VertexConsumer vertexconsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multibuffersource, RenderType.armorCutoutNoCull(material.atlasLocation()), true, foil));
+            model.render(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
         }
     }
 }

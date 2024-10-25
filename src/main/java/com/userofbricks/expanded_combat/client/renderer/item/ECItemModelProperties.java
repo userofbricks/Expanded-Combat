@@ -22,42 +22,42 @@ public class ECItemModelProperties {
     public static void registerModelOverrides() {
         for (DeferredItem<? extends Item> deferredItem : ECItems.ITEMS.getEntries().stream().map(itemDeferredHolder -> (DeferredItem<? extends Item>)itemDeferredHolder).toList()) {
             if (deferredItem.get() instanceof ECShieldItem) {
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
             } else if (deferredItem.get() instanceof ECBowItem) {
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("pulling"),
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("pulling"),
                         (itemStack, clientWorld, livingEntity, textureLayer) -> (livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack) ? 1.0f : 0.0f);
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("pull"), (itemStack, clientWorld, livingEntity, textureLayer) -> {
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("pull"), (itemStack, clientWorld, livingEntity, textureLayer) -> {
                     if (livingEntity == null) return 0f;
-                    return livingEntity.getUseItem() != itemStack ? 0f : (itemStack.getUseDuration() - livingEntity.getUseItemRemainingTicks()) / 20f;
+                    return livingEntity.getUseItem() != itemStack ? 0f : (itemStack.getUseDuration(livingEntity) - livingEntity.getUseItemRemainingTicks()) / 20f;
                 });
 
             } else if (deferredItem.get() instanceof ECCrossBowItem) {
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("pull"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("pull"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
                     if (livingEntity == null) return 0.0f;
-                    else return CrossbowItem.isCharged(itemStack) ? 0.0F : (float)(itemStack.getUseDuration() - livingEntity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(itemStack);
+                    else return CrossbowItem.isCharged(itemStack) ? 0.0F : (float)(itemStack.getUseDuration(livingEntity) - livingEntity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(itemStack, livingEntity);
                 });
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("pulling"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("pulling"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("charged"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("charged"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F);
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("firework"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
                     ChargedProjectiles chargedprojectiles = itemStack.get(DataComponents.CHARGED_PROJECTILES);
                     return chargedprojectiles != null && chargedprojectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
                 });
 
             } else if (deferredItem.get() instanceof ArrowBlockWeaponItem) {
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("blocking"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("blocked_recently"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && ArrowBlockWeaponItem.blockedRecently(livingEntity) ? 1.0F : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("blocked_recently"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null && ArrowBlockWeaponItem.blockedRecently(livingEntity) ? 1.0F : 0.0F);
 
-                ItemProperties.register(deferredItem.get(), new ResourceLocation("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ArrowBlockWeaponItem.blockPosition(itemStack).id/4f : 0.0F);
+                ItemProperties.register(deferredItem.get(), ResourceLocation.parse("block_pos"), (itemStack, clientLevel, livingEntity, textureLayer) -> livingEntity != null ? ArrowBlockWeaponItem.blockPosition(itemStack).id/4f : 0.0F);
             }
         }
 
-        ItemProperties.register(ECItems.HEART_STEALER.get(), new ResourceLocation("stage"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
+        ItemProperties.register(ECItems.HEART_STEALER.get(), ResourceLocation.parse("stage"), (itemStack, clientLevel, livingEntity, textureLayer) -> {
             int charge = itemStack.getOrDefault(ItemDataComponents.CHARGE, 0);
             if (charge >= 490) return 1f;
             if (charge >= 336) return 0.8f;

@@ -10,14 +10,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.DyedItemColor;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
@@ -46,10 +47,16 @@ public class QuiverRenderer implements ICurioRenderer {
             ICurioRenderer.rotateIfSneaking(poseStack, entity);
 
             for (QuiverItem.Layer layer : quiverItem.QUIVER_TEXTURE_LAYERS) {
-                VertexConsumer vertexconsumer = ItemRenderer
-                        .getArmorFoilBuffer(multiBufferSource, RenderType.armorCutoutNoCull(layer.texture(quiverItem.material.id())), false,
-                                stack.hasFoil());
-                this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.armorCutoutNoCull(layer.texture(quiverItem.material.id())));
+                if (layer.dyeable()) {
+                    int i = FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, DyedItemColor.LEATHER_COLOR));
+                    model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, i);
+                } else {
+                    model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+                }
+            }
+            if (stack.hasFoil()) {
+                model.renderToBuffer(poseStack, multiBufferSource.getBuffer(RenderType.armorEntityGlint()), light, OverlayTexture.NO_OVERLAY);
             }
 
             //render arrows if has some
