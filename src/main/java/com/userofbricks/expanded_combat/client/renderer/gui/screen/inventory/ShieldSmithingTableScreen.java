@@ -3,7 +3,6 @@ package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,9 +14,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
+
 public class ShieldSmithingTableScreen extends ItemCombinerScreen<ShieldSmithingMenu> implements ContainerListener {
-    private static final ResourceLocation ERROR_SPRITE = new ResourceLocation("shield_smithing_error");
-    public static final ResourceLocation SHIELD_SMITHING_LOCATION = new ResourceLocation("expanded_combat", "textures/gui/container/shield_smithing.png");
+    private static final ResourceLocation ERROR_SPRITE = ResourceLocation.parse("shield_smithing_error");
+    public static final ResourceLocation SHIELD_SMITHING_LOCATION = modLoc("textures/gui/container/shield_smithing.png");
     public static final Component MISSING_SHIELD_TOOLTIP = Component.translatable(LangStrings.MISSING_SHIELD_TOOLTIP);
     private static final Component ERROR_TOOLTIP = Component.translatable("container.upgrade.error_tooltip");
 

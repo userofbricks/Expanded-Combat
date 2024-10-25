@@ -8,20 +8,19 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ShieldTabButtion extends ImageButton {
 
     public static final WidgetSprites SHIELD =
-            new WidgetSprites(new ResourceLocation(MODID, "shield_smithing_tab"),
-                    new ResourceLocation(MODID, "shield_smithing_tab"));
+            new WidgetSprites(modLoc("shield_smithing_tab"),
+                    modLoc("shield_smithing_tab"));
     public static final WidgetSprites HAMMER =
-            new WidgetSprites(new ResourceLocation(MODID, "smithing_tab"),
-                    new ResourceLocation(MODID, "smithing_tab"));
+            new WidgetSprites(modLoc("smithing_tab"),
+                    modLoc("smithing_tab"));
 
     //Main reference for this class is CuriosButton
     public ShieldTabButtion(AbstractContainerScreen<?> parentGui, int xIn, int yIn, int widthIn, int heightIn,

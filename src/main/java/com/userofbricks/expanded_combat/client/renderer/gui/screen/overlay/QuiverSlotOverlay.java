@@ -79,9 +79,9 @@ public class QuiverSlotOverlay {
         guiGraphics.pose().popPose();
         RenderSystem.disableBlend();
 
-        renderSlot(guiGraphics, offsetX + 3, offsetY+3, event.getPartialTick(), player, currentArrow);
-        renderSlot(guiGraphics, offsetX -17, offsetY+3, event.getPartialTick(), player, beforeArrow);
-        renderSlot(guiGraphics, offsetX + 21, offsetY+3, event.getPartialTick(), player, nextArrow);
+        renderSlot(guiGraphics, offsetX + 3, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, currentArrow);
+        renderSlot(guiGraphics, offsetX -17, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, beforeArrow);
+        renderSlot(guiGraphics, offsetX + 21, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, nextArrow);
     }
 
     //near identical to the one in Gui.class
