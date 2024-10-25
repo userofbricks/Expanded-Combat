@@ -29,7 +29,6 @@ import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-@SuppressWarnings("deprecation")
 public abstract class AbstractGasBlock extends Block {
     private final Supplier<ParticleOptions> particleSupplier;
     public AbstractGasBlock(Properties properties, Supplier<ParticleOptions> particleSupplier) {
