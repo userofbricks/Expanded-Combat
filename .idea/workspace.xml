@@ -6,22 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="working arrow removal from quiver bundle inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/client/renderer/gui/screen/overlay/QuiverSlotOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/container_handelers/CuriosContainerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/container_handelers/CuriosContainerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GauntletEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/GeneralModEventBusEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/inventory/container/ArrowSlot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/AbstractArrowEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/ArrowItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/ArrowItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/BowItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/BowItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/CrossBowItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/CrossBowItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/GauntletItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/QuiverItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/api/registry/itemGeneration/QuiverItemBuilder.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
-    <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +84,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="neoforge-1.20.x" />
+        <entry key="$PROJECT_DIR$" value="neoforge-1.20.6" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,23 +116,6 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$PROJECT_DIR$/build/fg_cache/net/minecraftforge/forge/1.19.4-45.1.0_mapped_official_1.19.4/forge-1.19.4-45.1.0_mapped_official_1.19.4-sources.jar!/net/minecraftforge/registries/DataPackRegistryEvent.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="6" end1="9" start2="6" end2="7" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="10" end1="13" start2="8" end2="16" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="14" end1="16" start2="17" end2="19" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="126" end1="143" start2="129" end2="140" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="160" end1="177" start2="157" end2="176" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="178" end1="179" start2="177" end2="178" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="348" end1="348" start2="347" end2="348" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
-        <range start1="352" end1="353" start2="352" end2="352" changelist="d50e64d7-bfbc-4afb-b743-9d10a0f05945" />
-        <range start1="710" end1="711" start2="709" end2="710" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="743" end1="744" start2="742" end2="742" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-        <range start1="768" end1="769" start2="766" end2="768" changelist="2743207d-40d1-4e9c-bc14-3b319443f515" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -345,11 +321,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
-        <item itemvalue="Gradle.Expanded-Combat [runData]" />
+        <item itemvalue="Gradle.Expanded-Combat [build]" />
         <item itemvalue="Gradle.Expanded-Combat [runClient]" />
-        <item itemvalue="Gradle.Expanded-Combat [jar]" />
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
+        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.Expanded-Combat [jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -740,7 +716,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="3.0.5" />
     <MESSAGE value="added MaterialConfig builder from tier/armorMaterial methods without ingredient part as it can sometimes cause crashing if items are not yet registered" />
     <MESSAGE value="updated version to 3.0.6 for previous commit" />
     <MESSAGE value="added weapon model additions for custom handle and dye textures" />
@@ -765,7 +740,8 @@
     <MESSAGE value="misc change" />
     <MESSAGE value="quiver with bundle holding functionality v2" />
     <MESSAGE value="working arrow removal from quiver bundle inventory" />
-    <option name="LAST_COMMIT_MESSAGE" value="working arrow removal from quiver bundle inventory" />
+    <MESSAGE value="stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

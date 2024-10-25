@@ -114,7 +114,7 @@ public class CrossBowItemBuilder extends MaterialItemBuilder {
             boolean useCraftingItem = !material.getConfig().crafting.craftingItem.isEmpty();
             if (useCraftingItem) {
                 craftingIngredient = Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(material.getConfig().crafting.craftingItem)));
-                triggerInstance = getTriggerInstance((ArrayList<String>) Collections.singletonList(material.getConfig().crafting.craftingItem));
+                triggerInstance = getTriggerInstance(Collections.singletonList(material.getConfig().crafting.craftingItem));
             }
             else if (!material.getConfig().crafting.repairItem.isEmpty()) {
                 craftingIngredient = IngredientUtil.getIngrediantFromItemString(material.getConfig().crafting.repairItem);
