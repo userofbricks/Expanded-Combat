@@ -15,7 +15,7 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-version = mod_version
+version = minecraft_version + "-" + mod_version
 group = mod_group_id
 
 repositories{
@@ -95,10 +95,10 @@ dependencies {
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version_jei}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version_jei}-neoforge-api:${jei_version}"
     // at runtime, use the full JEI jar for NeoForge
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version_jei}-neoforge:${jei_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
