@@ -32,8 +32,8 @@ public class AncientCity {
      */
     private static void addBuildingToPool(Registry<StructureTemplatePool> templatePoolRegistry, Registry<StructureProcessorList> processorListRegistry, ResourceLocation poolRL,
                                           String nbtPieceRL, int weight) {
-        Holder<StructureProcessorList> ancientCityProcessorList = processorListRegistry.getHolderOrThrow(ANCIENT_CITY_PROCESSOR_LIST_KEY);
-        StructureTemplatePool pool = templatePoolRegistry.get(poolRL);
+        Holder<StructureProcessorList> ancientCityProcessorList = processorListRegistry.getOrThrow(ANCIENT_CITY_PROCESSOR_LIST_KEY);
+        StructureTemplatePool pool = templatePoolRegistry.getValue(poolRL);
         if (pool == null) return;
         SinglePoolElement piece = SinglePoolElement.legacy(nbtPieceRL,
                 ancientCityProcessorList).apply(StructureTemplatePool.Projection.RIGID);
@@ -51,8 +51,8 @@ public class AncientCity {
     public static void addNewBuilding(final ServerAboutToStartEvent event) {
 
 
-        Registry<StructureTemplatePool> templatePoolRegistry = event.getServer().registryAccess().registry(Registries.TEMPLATE_POOL).orElseThrow();
-        Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
+        Registry<StructureTemplatePool> templatePoolRegistry = event.getServer().registryAccess().lookupOrThrow(Registries.TEMPLATE_POOL);
+        Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().lookupOrThrow(Registries.PROCESSOR_LIST);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 ResourceLocation.fromNamespaceAndPath("minecraft","ancient_city/structures"),
