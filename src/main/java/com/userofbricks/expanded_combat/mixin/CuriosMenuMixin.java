@@ -24,7 +24,7 @@ import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
 import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 
 @Mixin(value = CuriosContainer.class, remap = false)
-public abstract class CuriosMenuMixin extends RecipeBookMenu<RecipeInput, Recipe<RecipeInput>> implements ICuriosMenu {
+public abstract class CuriosMenuMixin extends RecipeBookMenu implements ICuriosMenu {
     @Shadow(remap = false)
     @Final
     public Player player;
