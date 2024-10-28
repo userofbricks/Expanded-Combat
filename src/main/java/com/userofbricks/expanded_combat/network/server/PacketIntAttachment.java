@@ -27,7 +27,7 @@ public record PacketIntAttachment(int id, AttachmentType<Integer> attachmentType
                 ByteBufCodecs.INT.encode(pBuffer, pValue.data());
             }, pBuffer -> {
                 int id = ByteBufCodecs.INT.decode(pBuffer);
-                AttachmentType<Integer> attachmentType = (AttachmentType<Integer>) NeoForgeRegistries.ATTACHMENT_TYPES.get(ResourceLocation.parse(ByteBufCodecs.STRING_UTF8.decode(pBuffer)));
+                AttachmentType<Integer> attachmentType = (AttachmentType<Integer>) NeoForgeRegistries.ATTACHMENT_TYPES.getValue(ResourceLocation.parse(ByteBufCodecs.STRING_UTF8.decode(pBuffer)));
                 int data = ByteBufCodecs.INT.decode(pBuffer);
                 return new PacketIntAttachment(id, attachmentType, data);
             });
