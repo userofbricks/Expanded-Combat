@@ -4,8 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,7 +42,7 @@ public class AllayItem extends DeferredSpawnEggItem {
             }
 
             EntityType<?> entitytype = this.getType(itemstack);
-            if (entitytype.spawn((ServerLevel)level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+            if (entitytype.spawn((ServerLevel)level, itemstack, p_43223_.getPlayer(), blockpos1, EntitySpawnReason.SPAWN_ITEM_USE, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
                 itemstack.shrink(1);
                 level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
             }
@@ -55,7 +55,7 @@ public class AllayItem extends DeferredSpawnEggItem {
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         if (stack.getCount() >= 1 && entity.level() instanceof ServerLevel level) {
             EntityType<?> entitytype = this.getType(stack);
-            if (entitytype.spawn(level, entity.blockPosition(), MobSpawnType.SPAWN_EGG) != null) {
+            if (entitytype.spawn(level, entity.blockPosition(), EntitySpawnReason.SPAWN_ITEM_USE) != null) {
                 stack.shrink(1);
                 level.gameEvent(entity, GameEvent.ENTITY_PLACE, entity.blockPosition());
             }

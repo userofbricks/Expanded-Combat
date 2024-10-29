@@ -48,7 +48,7 @@ public class SlamWeaponItem extends ECWeaponItem{
         super.hurtEnemy(weapon, target, attacker);
         int hitsTillSlam = weapon.getOrDefault(ItemDataComponents.HITS_TILL_SLAM, 0);
         hitsTillSlam++;
-        int slamLevel = weapon.getEnchantmentLevel(attacker.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ECEnchantments.GROUND_SLAM));
+        int slamLevel = weapon.getEnchantmentLevel(attacker.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ECEnchantments.GROUND_SLAM));
         if (hitsTillSlam >= 10 - (slamLevel / 2) && slamLevel > 0) {
             weapon.set(ItemDataComponents.HITS_TILL_SLAM, 0);
             int range = 2 + Math.round(slamLevel / 3f);
@@ -96,7 +96,7 @@ public class SlamWeaponItem extends ECWeaponItem{
             for (LivingEntity entity : hit) {
                 if (!attacker.isAlliedTo(entity) && entity != attacker) {
                     DamageSources damageSources = attacker.damageSources();
-                    boolean flag = entity.hurt((attacker instanceof Player player ? damageSources.playerAttack(player) : damageSources.mobAttack(attacker)), dmg);
+                    boolean flag = entity.hurtOrSimulate((attacker instanceof Player player ? damageSources.playerAttack(player) : damageSources.mobAttack(attacker)), dmg);
                     if (flag) {
                         if (grab) {
                             double magnitude = -4.0;

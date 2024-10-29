@@ -21,7 +21,7 @@ public class PotionWeaponItem extends ECWeaponItem {
     public boolean hurtEnemy(@NotNull ItemStack weapon, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
         super.hurtEnemy(weapon, target, attacker);
         PotionContents potioncontents = weapon.get(DataComponents.POTION_CONTENTS);
-        int potionUses = weapon.get(ItemDataComponents.POTION_USES);
+        int potionUses = weapon.getOrDefault(ItemDataComponents.POTION_USES, 0);
 
         if (potioncontents != null && potioncontents.potion().isPresent() && potioncontents.potion().get() != Potions.WATER && potionUses >= 1) {
 

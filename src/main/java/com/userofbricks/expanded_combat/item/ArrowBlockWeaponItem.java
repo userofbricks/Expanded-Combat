@@ -9,11 +9,11 @@ import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
@@ -31,7 +31,7 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
 
     public static int getMaxBlocksInARow(ItemStack katanaStack, Level level) {
         if (katanaStack.getItem() instanceof ArrowBlockWeaponItem arrowBlockWeaponItem) {
-            return arrowBlockWeaponItem.baseBlockCount + katanaStack.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ECEnchantments.BLOCKING));
+            return arrowBlockWeaponItem.baseBlockCount + katanaStack.getEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ECEnchantments.BLOCKING));
         }
         return 0;
     }
@@ -47,14 +47,11 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
     }
 
     //TODO: update block animations to use UseAnim.CUSTOM and add those custom animations
-    public UseAnim getUseAnimation(ItemStack itemStack) {
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
         return switch (itemStack.get(ItemDataComponents.BLOCK_WEAPON_ANIM)) {
-            case null -> UseAnim.BLOCK;
-            case BLOCK_1 -> UseAnim.BLOCK;
-            case BLOCK_2 -> UseAnim.BLOCK;
-            case BLOCK_3 -> UseAnim.BLOCK;
-            case BLOCK_4 -> UseAnim.BLOCK;
-            case BLOCK_5 -> UseAnim.NONE;
+            case null -> ItemUseAnimation.BLOCK;
+            case BLOCK_1, BLOCK_2, BLOCK_3, BLOCK_4 -> ItemUseAnimation.BLOCK;
+            case BLOCK_5 -> ItemUseAnimation.NONE;
         };
     }
 
@@ -62,10 +59,9 @@ public class ArrowBlockWeaponItem extends ECWeaponItem{
         return 72000;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         player.startUsingItem(hand);
-        return InteractionResultHolder.consume(itemstack);
+        return InteractionResult.CONSUME;
     }
 
     @Override

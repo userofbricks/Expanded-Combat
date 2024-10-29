@@ -3,15 +3,17 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -28,18 +30,16 @@ public class SolidPureFoodItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-        FoodProperties foodproperties = itemstack.getFoodProperties(pPlayer);
-        if (foodproperties != null && pPlayer.getData(STOLEN_HEALTH) > 2) {
-            if (pPlayer.canEat(foodproperties.canAlwaysEat())) {
-                pPlayer.startUsingItem(pUsedHand);
-                return InteractionResultHolder.consume(itemstack);
-            } else {
-                return InteractionResultHolder.fail(itemstack);
-            }
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        Consumable consumable = itemstack.get(DataComponents.CONSUMABLE);
+        if (consumable != null && player.getData(STOLEN_HEALTH) > 2) {
+            return consumable.startConsuming(player, itemstack, hand);
         } else {
-            return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+            Equippable equippable = itemstack.get(DataComponents.EQUIPPABLE);
+            return equippable != null && equippable.swappable()
+                    ? equippable.swapWithEquipmentSlot(itemstack, player)
+                    : InteractionResult.PASS;
         }
     }
 

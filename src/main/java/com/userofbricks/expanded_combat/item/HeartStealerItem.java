@@ -3,7 +3,7 @@ package com.userofbricks.expanded_combat.item;
 import com.userofbricks.expanded_combat.init.ECBasePlugin;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +21,7 @@ import static com.userofbricks.expanded_combat.init.ItemDataComponents.CHARGE;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 @EventBusSubscriber
-public class HeartStealerItem extends ECWeaponItem{
+public class HeartStealerItem extends ECWeaponItem {
     public HeartStealerItem(Properties properties) {
         super(ECBasePlugin.HEART_STEALER, ECBasePlugin.CLAYMORE, properties.component(CHARGE, 0), 2);
     }
@@ -42,10 +42,10 @@ public class HeartStealerItem extends ECWeaponItem{
         return super.hurtEnemy(stack, target, attacker);
     }
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
         if (this.getMaxDamage(stack) - this.getDamage(stack) <= 1)
-            return InteractionResultHolder.fail(stack);
+            return InteractionResult.FAIL;
         return super.use(pLevel, pPlayer, pUsedHand);
     }
     //TODO: has bug with server client de-sync for wether the item is actually in the players inventory

@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -44,11 +45,9 @@ public class ECTippedArrowItem extends ECArrowItem {
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(this.getDescriptionId(stack)).append(" ").append(Component.translatable(this.getPotionId(stack)));
-    }
-
-    public String getPotionId(ItemStack stack) {
-        return Potion.getName(stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).potion(), TIPPED_ARROW_POTION_ENDING);
+        PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
+        MutableComponent baseName = (MutableComponent) super.getName(stack);
+        return potioncontents != null ? baseName.append(" ").append(potioncontents.getName(TIPPED_ARROW_POTION_ENDING)) : baseName;
     }
 
     public Item getNotTipped() {

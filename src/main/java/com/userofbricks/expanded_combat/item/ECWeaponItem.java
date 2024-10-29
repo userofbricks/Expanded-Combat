@@ -5,9 +5,14 @@ import com.userofbricks.expanded_combat.api.weapon_type.GripType;
 import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -18,14 +23,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
@@ -43,7 +53,11 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     public ECWeaponItem(Material material, WeaponType weapon, Properties properties, int addedDmg) {
-        super(properties.stacksTo(1).component(DataComponents.DAMAGE, 0).component(DataComponents.TOOL, createToolProperties()));
+        super(properties.stacksTo(1)
+                .component(DataComponents.DAMAGE, 0)
+                .component(DataComponents.TOOL, createToolProperties())
+                .enchantable(material.enchanting().offenseEnchantability())
+        );
         this.material = material;
         this.weapon = weapon;
         this.addedDmg = addedDmg;
@@ -57,7 +71,7 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durability().toolBaseDurability() * getWeapon().config().durabilityMultiplier()))
                 .set(DataComponents.MAX_STACK_SIZE, 1);
         components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(DamageTypeTags.IS_FIRE));
 
         return components;
     }
@@ -65,9 +79,17 @@ public class ECWeaponItem extends Item implements IMaterialItem {
         return Item.Properties.validateComponents(componentBuilder().build());
     }
 
-    //copy the tool properties from the sword item class
+    //copy the tool properties for swords from ToolMaterial class
     private static Tool createToolProperties() {
-        return SwordItem.createToolProperties();
+        HolderGetter<Block> holdergetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK);
+        return new Tool(
+                List.of(
+                        Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F),
+                        Tool.Rule.overrideSpeed(holdergetter.getOrThrow(BlockTags.SWORD_EFFICIENT), 1.5F)
+                ),
+                1.0F,
+                2
+        );
     }
 
     public Material getMaterial() {

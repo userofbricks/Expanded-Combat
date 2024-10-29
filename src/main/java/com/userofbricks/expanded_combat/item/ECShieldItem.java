@@ -8,11 +8,13 @@ import com.userofbricks.expanded_combat.init.PluginInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -29,7 +31,7 @@ import static com.userofbricks.expanded_combat.init.ItemDataComponents.SHIELD_MA
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ECShieldItem extends ShieldItem {
+public class ECShieldItem extends ShieldItem implements IComplexRepairItem {
     public ECShieldItem(Item.Properties properties) {
         super(properties.stacksTo(1).component(SHIELD_MATERIALS, ShieldMaterials.DEFAULT));
     }
@@ -50,19 +52,18 @@ public class ECShieldItem extends ShieldItem {
         return durability + ul + ur + dl + dr + m;
     }
 
-    public boolean canBeDepleted() {
+    public boolean isDamageable(ItemStack stack) {
         return true;
     }
 
     /**
-     * finds what is the most common material in the shield and tests that material like normal
      * @param toRepair the item to repair
      * @param repair the material being repaired with
      * @return weather the repair material is the correct type
      */
     @Override
-    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        if (repair.getItem() instanceof EnchantedBookItem) return  false;
+    public boolean isValidRepairItem(ItemStack repair, ItemStack toRepair, boolean previousRetern) {
+        if (repair.getItem() == Items.ENCHANTED_BOOK) return false;
         Material ul = getUpperLeftMaterial(toRepair);
         Material ur = getUpperRightMaterial(toRepair);
         Material dl = getDownLeftMaterial(toRepair);
@@ -73,10 +74,19 @@ public class ECShieldItem extends ShieldItem {
         if (last >= 5) last = 0;
         List<Material> slotMaterials = Arrays.asList(ul, ur, dl, dr, m);
         Material currentSlotMaterial = slotMaterials.get(last);
+        Ingredient ingredient = currentSlotMaterial.repairItem() != null ? currentSlotMaterial.repairItem().get() : null;
+        for (int i = 0; ingredient == null && i < 5; i++) {
+            last++;
+            if (last >= 5) last = 0;
+            currentSlotMaterial = slotMaterials.get(last);
+            ingredient = currentSlotMaterial.repairItem() != null ? currentSlotMaterial.repairItem().get() : null;
+        }
 
-        toRepair.set(SHIELD_MATERIALS, shieldMaterials.updateLastRepair(last));
-        Ingredient ingredient = currentSlotMaterial.repairItem()!= null ? currentSlotMaterial.repairItem().get() : Ingredient.EMPTY;
-        return !ingredient.isEmpty() && ingredient.test(repair);
+        if (ingredient != null && ingredient.test(repair)) {
+            toRepair.set(SHIELD_MATERIALS, shieldMaterials.updateLastRepair(last));
+            return true;
+        }
+        return false;
     }
 
     /**

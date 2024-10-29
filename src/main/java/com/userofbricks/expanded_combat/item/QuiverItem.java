@@ -12,9 +12,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
@@ -28,7 +27,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.commons.lang3.math.Fraction;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -58,7 +56,11 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
     }
 
     public QuiverItem(Properties properties, Material material, Layer... layers) {
-        super(properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY).component(COOL_DOWN, 0).stacksTo(1));
+        super(ResourceLocation.parse("empty"), ResourceLocation.parse("empty"),
+                properties.component(BUNDLE_CONTENTS, BundleContents.EMPTY)
+                        .component(COOL_DOWN, 0)
+                        .stacksTo(1)
+        );
         this.QUIVER_TEXTURE_LAYERS = layers;
         this.material = material;
     }
@@ -176,8 +178,8 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+    public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -214,12 +216,14 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             this.texture = resolveTexture();
         }
 
+        @SuppressWarnings("unused")
         public Layer(String suffix) {
             this(suffix, false);
         }
         public Layer() {
             this("", false);
         }
+        @SuppressWarnings("unused")
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
@@ -250,6 +254,7 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             this.stacks = stacks;
         }
 
+        @SuppressWarnings("unused")
         public MutableQuiverContents clearItems() {
             items.clear();
             weight = Fraction.ZERO;
@@ -287,9 +292,9 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
                         ItemStack itemstack = items.remove(j);
                         ItemStack itemstack1 = itemstack.copyWithCount(itemstack.getCount() + i);
                         pStack.shrink(i);
-                        items.add(0, itemstack1);
+                        items.addFirst(itemstack1);
                     } else {
-                        items.add(0, pStack.split(i));
+                        items.addFirst(pStack.split(i));
                     }
 
                     return i;
@@ -310,14 +315,10 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             if (items.isEmpty()) {
                 return null;
             } else {
-                ItemStack itemstack = items.remove(0).copy();
+                ItemStack itemstack = items.removeFirst().copy();
                 weight = weight.subtract(BundleContents.getWeight(itemstack).multiplyBy(Fraction.getFraction(itemstack.getCount(), 1)));
                 return itemstack;
             }
-        }
-
-        public Fraction weight() {
-            return weight;
         }
 
         public BundleContents toImmutable() {

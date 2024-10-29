@@ -28,11 +28,11 @@ public class GauntletBrawlers extends GauntletItem {
 
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation uuid, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> atts = HashMultimap.create();
-        Registry<Enchantment> enchantmentRegistry = slotContext.entity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Registry<Enchantment> enchantmentRegistry = slotContext.entity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
         double totalBaseDamage = 3+5+4;
         double totalExtraDamage = getAdditionalDamageAfterEnchantments(totalBaseDamage);
-        double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.PUNCH)) * 2;
+        double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(Enchantments.PUNCH)) * 2;
 
         atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(uuid, totalBaseDamage + totalExtraDamage + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
 
@@ -42,12 +42,12 @@ public class GauntletBrawlers extends GauntletItem {
         atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, toughness, AttributeModifier.Operation.ADD_VALUE));
 
         double knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
-        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance + (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance + (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f), AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
 
-        if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
+        if (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) > 0) {
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
         }
         return atts;
     }

@@ -18,6 +18,7 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +28,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -92,7 +94,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     public GauntletItem(Properties properties, Material materialIn, Layer... layers) {
-        super(properties);
+        super(properties.enchantable((materialIn.enchanting().offenseEnchantability()/2) + (materialIn.enchanting().defenseEnchantability()/2)));
         this.material = materialIn;
         this.GAUNTLET_TEXTURE_LAYERS = layers;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
@@ -102,18 +104,13 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
 
         components.set(DataComponents.MAX_DAMAGE, getMaterial().durability().gauntletDurability())
                 .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (getMaterial().defense().fireResistant()) components.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(DamageTypeTags.IS_FIRE));
 
         return Item.Properties.validateComponents(components.build());
     }
 
     public Material getMaterial() {
         return material;
-    }
-    @Override
-    @ParametersAreNonnullByDefault
-    public int getEnchantmentValue(ItemStack stack) {
-        return (getMaterial().enchanting().offenseEnchantability()/2) + (getMaterial().enchanting().defenseEnchantability()/2);
     }
 
     public int getArmorAmount() {
@@ -129,16 +126,16 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     @Override
     public ICurio.SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack) {
         GauntletItem gauntletItem = (GauntletItem) stack.getItem();
-        return new ICurio.SoundInfo(BuiltInRegistries.SOUND_EVENT.get(gauntletItem.getMaterial().defense().equipSound()), 1.0f, 1.0f);
+        return new ICurio.SoundInfo(BuiltInRegistries.SOUND_EVENT.getValue(gauntletItem.getMaterial().defense().equipSound()), 1.0f, 1.0f);
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation uuid, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> atts = HashMultimap.create();
-        Registry<Enchantment> enchantmentRegistry = slotContext.entity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Registry<Enchantment> enchantmentRegistry = slotContext.entity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
         double totalBaseDamage = Math.max(((GauntletItem)stack.getItem()).getAttackDamage(), 0.5);
         double totalExtraDamage = getAdditionalDamageAfterEnchantments(totalBaseDamage);
-        double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.PUNCH));
+        double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(Enchantments.PUNCH));
 
         atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
         atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(uuid, ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
@@ -149,16 +146,17 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, toughness, AttributeModifier.Operation.ADD_VALUE));
 
         double knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
-        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance + (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance + (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f), AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
 
-        if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
+        if (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) > 0) {
+            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
         }
         return atts;
     }
 
+    @SuppressWarnings("unused")
     public double getAdditionalDamageAfterEnchantments(double totalBaseDamage) {
         return 0;
     }
