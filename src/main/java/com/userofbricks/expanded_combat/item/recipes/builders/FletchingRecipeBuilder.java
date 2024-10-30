@@ -7,17 +7,21 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -65,18 +69,19 @@ public class FletchingRecipeBuilder{
 
     public void save(RecipeOutput pRecipeOutput, ResourceLocation pId) {
         this.ensureValid(pId);
+        ResourceKey<Recipe<?>> key = ResourceKey.create(Registries.RECIPE, pId);
         Advancement.Builder advancement$builder = pRecipeOutput.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pId))
-                .rewards(AdvancementRewards.Builder.recipe(pId))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
+                .rewards(AdvancementRewards.Builder.recipe(key))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement$builder::addCriterion);
         FletchingRecipe fletchingRecipe = new FletchingRecipe(
-                this.base, this.addition, new ItemStack(this.result, this.count), this.maxResultingCount
+                Optional.of(this.base), Optional.of(this.addition), new ItemStack(this.result, this.count), this.maxResultingCount
         );
 
 
-        pRecipeOutput.accept(
-                pId, fletchingRecipe, advancement$builder.build(pId.withPrefix("recipes/" + this.category.getFolderName() + "/"))
+        pRecipeOutput.accept(key,
+                fletchingRecipe, advancement$builder.build(pId.withPrefix("recipes/" + this.category.getFolderName() + "/"))
         );
     }
 

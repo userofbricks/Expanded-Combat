@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.PotionWeaponItem;
 import net.minecraft.core.HolderLookup;
@@ -76,7 +76,7 @@ public class PotionDippedWeaponRecipe extends CustomRecipe {
         return (w * h) >= 2;
     }
 
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_POTION_WEAPON_SERIALIZER.get();
+    public @NotNull RecipeSerializer<PotionDippedWeaponRecipe> getSerializer() {
+        return ECRecipeInit.EC_POTION_WEAPON_SERIALIZER.get();
     }
 }

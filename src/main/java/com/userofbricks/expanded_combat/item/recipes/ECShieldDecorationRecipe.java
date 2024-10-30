@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -76,11 +76,7 @@ public class ECShieldDecorationRecipe extends CustomRecipe {
         return itemstack1;
     }
 
-    public boolean canCraftInDimensions(int p_44298_, int p_44299_) {
-        return p_44298_ * p_44299_ >= 2;
-    }
-
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_SHIELD_DECORATION.get();
+    public @NotNull RecipeSerializer<ECShieldDecorationRecipe> getSerializer() {
+        return ECRecipeInit.EC_SHIELD_DECORATION.get();
     }
 }

@@ -63,9 +63,9 @@ public class ExpandedCombat {
         ECBlocks.BLOCKS.register(bus);
         ECItems.ITEMS.register(bus);
         ECCreativeTabs.CREATIVE_TABS.register(bus);
-        ECRecipeSerializerInit.CONDITION_CODECS.register(bus);
-        ECRecipeSerializerInit.RECIPE_TYPES.register(bus);
-        ECRecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
+        ECRecipeInit.CONDITION_CODECS.register(bus);
+        ECRecipeInit.RECIPE_TYPES.register(bus);
+        ECRecipeInit.RECIPE_SERIALIZERS.register(bus);
         ECContainers.MENU_TYPES.register(bus);
         ItemDataComponents.DATA_COMPONENTS.register(bus);
         ECEntities.ENTITY_DATA_SERIALIZERS.register(bus);

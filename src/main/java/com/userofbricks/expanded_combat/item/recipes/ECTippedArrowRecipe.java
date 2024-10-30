@@ -2,7 +2,7 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -57,12 +57,8 @@ public class ECTippedArrowRecipe extends CustomRecipe {
         }
     }
 
-    public boolean canCraftInDimensions(int p_44505_, int p_44506_) {
-        return p_44505_ >= 2 && p_44506_ >= 2;
-    }
-
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_TIPPED_ARROW_SERIALIZER.get();
+    public @NotNull RecipeSerializer<ECTippedArrowRecipe> getSerializer() {
+        return ECRecipeInit.EC_TIPPED_ARROW_SERIALIZER.get();
     }
 
 

@@ -2,17 +2,18 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
     final Ingredient arrow;
@@ -28,20 +29,20 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
     }
 
     public @NotNull ItemStack assemble(FletchingRecipeInput inv, @NotNull HolderLookup.Provider registryAccess) {
-        final ItemStack itemstack = inv.getItem(1);
-        final ItemStack itemstack1 = new ItemStack(result.getItem(), Math.min(inv.getItem(0).getCount(), 64));
-        itemstack1.set(DataComponents.POTION_CONTENTS, itemstack.get(DataComponents.POTION_CONTENTS));
-        return itemstack1;
+        final ItemStack potionStack = inv.getItem(1);
+        final ItemStack resultStack = new ItemStack(result.getItem(), Math.min(inv.getItem(0).getCount(), 64));
+        resultStack.set(DataComponents.POTION_CONTENTS, potionStack.get(DataComponents.POTION_CONTENTS));
+        return resultStack;
     }
 
     @Override
-    public Ingredient getBase() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getBase() {
+        return Optional.of(arrow);
     }
 
     @Override
-    public Ingredient getAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getAddition() {
+        return Optional.of(Ingredient.of(Items.LINGERING_POTION));
     }
 
     @Override
@@ -49,8 +50,8 @@ public class TippedArrowFletchingRecipe extends SpecialFletchingRecipe {
         return 64;
     }
 
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get();
+    public @NotNull RecipeSerializer<? extends SpecialFletchingRecipe> getSerializer() {
+        return ECRecipeInit.EC_TIPPED_ARROW_FLETCHING_SERIALIZER.get();
     }
 
     public static class Serializer implements RecipeSerializer<TippedArrowFletchingRecipe> {

@@ -1,42 +1,50 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.Optional;
 
 public interface IShieldSmithingRecipe extends Recipe<ShieldSmithingRecipeInput> {
 
     @Nonnull
     @Override
-    default RecipeType<?> getType() {
-        return ECRecipeSerializerInit.SHIELD_TYPE.get();
+    default RecipeType<? extends Recipe<ShieldSmithingRecipeInput>> getType() {
+        return ECRecipeInit.SHIELD_TYPE.get();
     }
 
     @Override
-    default boolean canCraftInDimensions(int width, int height) {
-        return width >= 6 && height >= 1;
+    @NotNull
+    RecipeSerializer<? extends IShieldSmithingRecipe> getSerializer();
+
+    default boolean matches(ShieldSmithingRecipeInput input, @NotNull Level level) {
+        return Ingredient.testOptionalIngredient(this.getBase(), input.shield_base())
+                && Ingredient.testOptionalIngredient(this.getURAddition(), input.urStack())
+                && Ingredient.testOptionalIngredient(this.getULAddition(), input.ulStack())
+                && Ingredient.testOptionalIngredient(this.getMAddition(), input.mStack())
+                && Ingredient.testOptionalIngredient(this.getDRAddition(), input.drStack())
+                && Ingredient.testOptionalIngredient(this.getDLAddition(), input.dlStack());
     }
+
+    Optional<Ingredient> getBase();
+
+    Optional<Ingredient> getURAddition();
+
+    Optional<Ingredient> getULAddition();
+
+    Optional<Ingredient> getMAddition();
+
+    Optional<Ingredient> getDRAddition();
+
+    Optional<Ingredient> getDLAddition();
 
     @Override
-    default @NotNull ItemStack getToastSymbol() {
-        return new ItemStack(Blocks.SMITHING_TABLE);
+    default @NotNull RecipeBookCategory recipeBookCategory() {
+        return ECRecipeInit.SHIELD_SMITHING.get();
     }
-
-    Ingredient getBase();
-
-    Ingredient getURAddition();
-
-    Ingredient getULAddition();
-
-    Ingredient getMAddition();
-
-    Ingredient getDRAddition();
-
-    Ingredient getDLAddition();
 }

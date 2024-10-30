@@ -2,16 +2,19 @@ package com.userofbricks.expanded_combat.item.recipes;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class StandardStyleShieldSmithingRecipe implements IShieldSmithingRecipe {
     private final Ingredient base;
@@ -42,16 +45,6 @@ public class StandardStyleShieldSmithingRecipe implements IShieldSmithingRecipe 
     }
 
     @Override
-    public boolean matches(ShieldSmithingRecipeInput iInventory, @NotNull Level world) {
-        return this.base.test(iInventory.getItem(0)) &&
-                this.additionUR.test(iInventory.getItem(1)) &&
-                this.additionUL.test(iInventory.getItem(2)) &&
-                this.additionM.test(iInventory.getItem(3)) &&
-                this.additionDR.test(iInventory.getItem(4)) &&
-                this.additionDL.test(iInventory.getItem(5));
-    }
-
-    @Override
     public @NotNull ItemStack assemble(ShieldSmithingRecipeInput iInventory, @NotNull HolderLookup.Provider registryAccess) {
         ItemStack itemstack = iInventory.getItem(0).transmuteCopy(this.result.getItem(), this.result.getCount());
         itemstack.applyComponents(this.result.getComponentsPatch());
@@ -59,46 +52,42 @@ public class StandardStyleShieldSmithingRecipe implements IShieldSmithingRecipe 
     }
 
     @Override
-    public Ingredient getBase() {
-        return this.base;
+    public Optional<Ingredient> getBase() {
+        return Optional.of(this.base);
     }
 
     @Override
-    public Ingredient getURAddition() {
-        return additionUR;
+    public Optional<Ingredient> getURAddition() {
+        return Optional.of(additionUR);
     }
 
     @Override
-    public Ingredient getULAddition() {
-        return additionUL;
+    public Optional<Ingredient> getULAddition() {
+        return Optional.of(additionUL);
     }
 
     @Override
-    public Ingredient getMAddition() {
-        return additionM;
+    public Optional<Ingredient> getMAddition() {
+        return Optional.of(additionM);
     }
 
     @Override
-    public Ingredient getDRAddition() {
-        return additionDR;
+    public Optional<Ingredient> getDRAddition() {
+        return Optional.of(additionDR);
     }
 
     @Override
-    public Ingredient getDLAddition() {
-        return additionDL;
+    public Optional<Ingredient> getDLAddition() {
+        return Optional.of(additionDL);
     }
 
-    public @NotNull ItemStack getResultItem(@NotNull HolderLookup.Provider access) {
-        return this.result;
-    }
-
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_STANDARD_SHIELD_SERIALIZER.get();
+    public @NotNull RecipeSerializer<StandardStyleShieldSmithingRecipe> getSerializer() {
+        return ECRecipeInit.EC_STANDARD_SHIELD_SERIALIZER.get();
     }
 
     @Override
-    public @NotNull NonNullList<Ingredient> getIngredients() {
-        return NonNullList.of(Ingredient.EMPTY, this.base, this.additionUR, additionUL, additionM, additionDR, additionDL);
+    public @NotNull PlacementInfo placementInfo() {
+        return PlacementInfo.NOT_PLACEABLE;
     }
 
     public static class Serializer implements RecipeSerializer<StandardStyleShieldSmithingRecipe> {

@@ -3,12 +3,15 @@ package com.userofbricks.expanded_combat.item.recipes.builders;
 import com.userofbricks.expanded_combat.item.recipes.ECTippedArrowRecipe;
 import com.userofbricks.expanded_combat.item.recipes.TippedArrowFletchingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -43,7 +46,10 @@ public class TippedArrowRecipeBuilder {
         ECTippedArrowRecipe recipe = new ECTippedArrowRecipe(this.bookCategory, this.arrow, this.result);
         TippedArrowFletchingRecipe fletchingRecipe = new TippedArrowFletchingRecipe(this.arrow, this.result);
 
-        pRecipeOutput.accept(pId, recipe, null);
-        pRecipeOutput.accept(pId.withSuffix("_fletching"), fletchingRecipe, null);
+        ResourceKey<Recipe<?>> key = ResourceKey.create(Registries.RECIPE, pId);
+        ResourceKey<Recipe<?>> key_fletching = ResourceKey.create(Registries.RECIPE, pId.withSuffix("_fletching"));
+
+        pRecipeOutput.accept(key, recipe, null);
+        pRecipeOutput.accept(key_fletching, fletchingRecipe, null);
     }
 }

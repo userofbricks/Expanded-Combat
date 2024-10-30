@@ -4,24 +4,21 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmithingRecipeInput;
-import net.minecraft.world.item.crafting.SmithingTransformRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Optional;
 
-public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
+public class ShieldSmithingUpgradeRecipe implements SmithingRecipe {
 
-    public ShieldSmithingUpgradeRecipe() {
-        super(Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, new ItemStack(ECItems.SHIELD.get()));
-    }
+    public ShieldSmithingUpgradeRecipe() {}
 
     @Override
     public boolean matches(SmithingRecipeInput inventory, @Nonnull Level world) {
@@ -77,29 +74,25 @@ public class ShieldSmithingUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull HolderLookup.Provider registryAccess) {
-        return new ItemStack(ECItems.SHIELD.get());
-    }
+    public @NotNull Optional<Ingredient> templateIngredient() {return Optional.empty();}
 
-    public boolean isTemplateIngredient(@NotNull ItemStack stack) {
-        return true;
-    }
-
-    public boolean isBaseIngredient(@NotNull ItemStack base) {
-        ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
-        if (shieldMaterials == null) {
-            shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
-        }
-        return shieldMaterials != null;
-    }
-
-    public boolean isAdditionIngredient(@NotNull ItemStack stack) {
-        Material materialHolder = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        return materialHolder != null && materialHolder.crafting().isSingleAddition();
+    @Override
+    public @NotNull Optional<Ingredient> baseIngredient() {
+        return Optional.empty();
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get();
+    public @NotNull Optional<Ingredient> additionIngredient() {
+        return Optional.empty();
+    }
+
+    @Override
+    public @NotNull PlacementInfo placementInfo() {
+        return PlacementInfo.createFromOptionals(List.of(Optional.empty(), Optional.empty(), Optional.empty()));
+    }
+
+    @Override
+    public @NotNull RecipeSerializer<ShieldSmithingUpgradeRecipe> getSerializer() {
+        return ECRecipeInit.EC_SMITHING_UPGRADING_SHIELD_SERIALIZER.get();
     }
 }

@@ -1,12 +1,14 @@
 package com.userofbricks.expanded_combat.item.recipes;
 
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+
+import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
@@ -15,18 +17,27 @@ public interface IFletchingRecipe extends Recipe<FletchingRecipeInput> {
 
     @Nonnull
     @Override
-    default RecipeType<?> getType() {
-        return ECRecipeSerializerInit.FLETCHING_TYPE.get();
+    default RecipeType<IFletchingRecipe> getType() {
+        return ECRecipeInit.FLETCHING_TYPE.get();
     }
 
+    @NotNull
     @Override
-    default boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 2;
+    RecipeSerializer<? extends IFletchingRecipe> getSerializer();
+
+    default boolean matches(FletchingRecipeInput input, @NotNull Level level) {
+        return Ingredient.testOptionalIngredient(this.getBase(), input.base())
+                && Ingredient.testOptionalIngredient(this.getAddition(), input.addition());
     }
 
-    Ingredient getBase();
+    Optional<Ingredient> getBase();
 
-    Ingredient getAddition();
+    Optional<Ingredient> getAddition();
 
     int getMaxCraftingAmount();
+
+    @Override
+    default @NotNull RecipeBookCategory recipeBookCategory() {
+        return ECRecipeInit.FLETCHING.get();
+    }
 }

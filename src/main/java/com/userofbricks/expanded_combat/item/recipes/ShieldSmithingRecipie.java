@@ -4,17 +4,20 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECItems;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+
+import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
@@ -24,44 +27,44 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     public ShieldSmithingRecipie() {}
 
     @Override
-    public boolean matches(ShieldSmithingRecipeInput inventory, @Nonnull Level world) {
-        ItemStack base = inventory.getItem(0);
+    public boolean matches(ShieldSmithingRecipeInput input, @Nonnull Level world) {
+        ItemStack base = input.getItem(0);
         ShieldMaterials shieldMaterials = base.get(ItemDataComponents.SHIELD_MATERIALS);
         if (shieldMaterials == null) {
             shieldMaterials = base.getItemHolder().getData(DataMaps.SHIELD_MATERIALS);
         }
         if (shieldMaterials == null) return false;
-        if (inventory.getItem(1).isEmpty() && inventory.getItem(2).isEmpty() && inventory.getItem(3).isEmpty() && inventory.getItem(4).isEmpty()
-                && inventory.getItem(5).isEmpty()) return false;
+        if (input.getItem(1).isEmpty() && input.getItem(2).isEmpty() && input.getItem(3).isEmpty() && input.getItem(4).isEmpty()
+                && input.getItem(5).isEmpty()) return false;
 
-        Material addition_ul_material = inventory.getItem(1).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        Material addition_ur_material = inventory.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        Material addition_dl_material = inventory.getItem(4).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        Material addition_dr_material = inventory.getItem(5).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-        Material addition_m_material = inventory.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_ul_material = input.getItem(1).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_ur_material = input.getItem(2).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_dl_material = input.getItem(4).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_dr_material = input.getItem(5).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+        Material addition_m_material = input.getItem(3).getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
 
         boolean is_ul =
-                addition_ul_material == null ? inventory.getItem(1).isEmpty() :
+                addition_ul_material == null ? input.getItem(1).isEmpty() :
                         !addition_ul_material.crafting().isSingleAddition()
                                 && shieldMaterials.canReplaceUL(addition_ul_material)
                                 && shieldMaterials.ULMaterial() != addition_ul_material;
         boolean is_ur =
-                addition_ur_material == null ? inventory.getItem(1).isEmpty() :
+                addition_ur_material == null ? input.getItem(1).isEmpty() :
                         !addition_ur_material.crafting().isSingleAddition()
                                 && shieldMaterials.canReplaceUR(addition_ur_material)
                                 && shieldMaterials.URMaterial() != addition_ur_material;
         boolean is_dl =
-                addition_dl_material == null ? inventory.getItem(1).isEmpty() :
+                addition_dl_material == null ? input.getItem(1).isEmpty() :
                         !addition_dl_material.crafting().isSingleAddition()
                                 && shieldMaterials.canReplaceDL(addition_dl_material)
                                 && shieldMaterials.DLMaterial() != addition_dl_material;
         boolean is_dr =
-                addition_dr_material == null ? inventory.getItem(1).isEmpty() :
+                addition_dr_material == null ? input.getItem(1).isEmpty() :
                         !addition_dr_material.crafting().isSingleAddition()
                                 && shieldMaterials.canReplaceDR(addition_dr_material)
                                 && shieldMaterials.DRMaterial() != addition_dr_material;
         boolean is_m =
-                addition_m_material == null ? inventory.getItem(1).isEmpty() :
+                addition_m_material == null ? input.getItem(1).isEmpty() :
                         !addition_m_material.crafting().isSingleAddition()
                                 && shieldMaterials.canReplaceM(addition_m_material)
                                 && shieldMaterials.MMaterial() != addition_m_material;
@@ -108,43 +111,43 @@ public class ShieldSmithingRecipie implements IShieldSmithingRecipe {
     }
 
     @Override
-    public Ingredient getBase() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getBase() {
+        return Optional.empty();
     }
 
     @Override
-    public Ingredient getURAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getURAddition() {
+        return Optional.empty();
     }
 
     @Override
-    public Ingredient getULAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getULAddition() {
+        return Optional.empty();
     }
 
     @Override
-    public Ingredient getMAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getMAddition() {
+        return Optional.empty();
     }
 
     @Override
-    public Ingredient getDRAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getDRAddition() {
+        return Optional.empty();
     }
 
     @Override
-    public Ingredient getDLAddition() {
-        return Ingredient.EMPTY;
+    public Optional<Ingredient> getDLAddition() {
+        return Optional.empty();
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull HolderLookup.Provider p_267052_) {
-        return ItemStack.EMPTY;
+    public @NotNull RecipeSerializer<ShieldSmithingRecipie> getSerializer() {
+        return ECRecipeInit.EC_SHIELD_SERIALIZER.get();
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ECRecipeSerializerInit.EC_SHIELD_SERIALIZER.get();
+    public @NotNull PlacementInfo placementInfo() {
+        return PlacementInfo.NOT_PLACEABLE;
     }
 
     @Override
