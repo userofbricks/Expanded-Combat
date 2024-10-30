@@ -4,10 +4,11 @@ import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.init.DataMaps;
 import com.userofbricks.expanded_combat.init.ECContainers;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.init.ItemDataComponents;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.ShieldSmithingRecipeInput;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -18,40 +19,36 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
 public class ShieldSmithingMenu extends ItemCombinerMenu {
     private final Level level;
     private RecipeHolder<IShieldSmithingRecipe> selectedRecipe;
+    private static final Supplier<ItemCombinerMenuSlotDefinition> slotDefinition = () -> ItemCombinerMenuSlotDefinition.create()
+            .withSlot(0, 27, 47, stack -> stack.get(ItemDataComponents.SHIELD_MATERIALS) != null)
+            .withSlot(1, 67, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
+            .withSlot(2, 85, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
+            .withSlot(3, 76, 47, stack -> {
+                Material value = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
+                return value != null && value.defense().placementInShield() == PlacementInShield.ALL;
+            })
+            .withSlot(4, 67, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
+            .withSlot(5, 86, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
+            .withResultSlot(6, 134, 47)
+            .build();
 
     public ShieldSmithingMenu(int id, Inventory playerInventory, ContainerLevelAccess access) {
-        super(ECContainers.SHIELD_SMITHING.get(), id, playerInventory, access);
+        super(ECContainers.SHIELD_SMITHING.get(), id, playerInventory, access, slotDefinition.get());
         this.level = playerInventory.player.level();
     }
 
     public ShieldSmithingMenu(int id, Inventory playerInventory) {
         this(id, playerInventory, ContainerLevelAccess.NULL);
-    }
-
-    @Override
-    protected @NotNull ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
-        return ItemCombinerMenuSlotDefinition.create()
-                .withSlot(0, 27, 47, stack -> stack.get(ItemDataComponents.SHIELD_MATERIALS) != null)
-                .withSlot(1, 67, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
-                .withSlot(2, 85, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
-                .withSlot(3, 76, 47, stack -> {
-                    Material value = stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP);
-                    return value != null && value.defense().placementInShield() == PlacementInShield.ALL;
-                })
-                .withSlot(4, 67, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
-                .withSlot(5, 86, 65, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
-                .withResultSlot(6, 134, 47)
-                .build();
     }
 
     @Override
@@ -95,33 +92,32 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
         }
     }
 
+    private ShieldSmithingRecipeInput createRecipeInput() {
+        return new ShieldSmithingRecipeInput(
+                inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
+        );
+    }
+
     /**
      * takes the input slots and matches it to the recipe and then asks the recipe to create its result
      */
     public void createResult() {
-        List<RecipeHolder<IShieldSmithingRecipe>> list = this.level.getRecipeManager().getRecipesFor(
-                ECRecipeSerializerInit.SHIELD_TYPE.get(),
-                new ShieldSmithingRecipeInput(
-                        inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
-                ), this.level
-        );
-        if (list.isEmpty()) {
-            this.resultSlots.setItem(0, ItemStack.EMPTY);
+        ShieldSmithingRecipeInput shieldSmithingrecipeinput = this.createRecipeInput();
+        Optional<RecipeHolder<IShieldSmithingRecipe>> optional;
+        if (this.level instanceof ServerLevel serverlevel) {
+            optional = serverlevel.recipeAccess().getRecipeFor(ECRecipeInit.SHIELD_TYPE.get(), shieldSmithingrecipeinput, serverlevel);
         } else {
-            RecipeHolder<IShieldSmithingRecipe> recipe = list.get(0);
-            ItemStack itemstack = recipe.value().assemble(
-                    new ShieldSmithingRecipeInput(
-                            inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)
-                    ),
-                    this.level.registryAccess()
-            );
-            if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
-                this.selectedRecipe = recipe;
-                this.resultSlots.setRecipeUsed(recipe);
-                this.resultSlots.setItem(0, itemstack);
-            } else
-                this.resultSlots.setItem(0, ItemStack.EMPTY);
+            optional = Optional.empty();
         }
+
+        optional.ifPresentOrElse(recipe -> {
+            ItemStack itemstack = recipe.value().assemble(shieldSmithingrecipeinput, this.level.registryAccess());
+            this.resultSlots.setRecipeUsed(recipe);
+            this.resultSlots.setItem(0, itemstack);
+        }, () -> {
+            this.resultSlots.setRecipeUsed(null);
+            this.resultSlots.setItem(0, ItemStack.EMPTY);
+        });
     }
 
     @Override

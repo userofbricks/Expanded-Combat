@@ -1,10 +1,11 @@
 package com.userofbricks.expanded_combat.inventory.container;
 
 import com.userofbricks.expanded_combat.init.ECContainers;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipeInput;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -21,14 +22,19 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class FletchingTableMenu extends ItemCombinerMenu {
     private final Level level;
     @Nullable
     private RecipeHolder<IFletchingRecipe> selectedRecipe;
+    private static final Supplier<ItemCombinerMenuSlotDefinition> slotDefinition = () -> ItemCombinerMenuSlotDefinition.create()
+            .withSlot(0, 27, 47, (p_266635_) -> true)
+            .withSlot(1, 76, 47, (p_266634_) -> true)
+            .withResultSlot(2, 134, 47).build();
 
     public FletchingTableMenu(int p_i231591_1_, Inventory p_i231591_2_, ContainerLevelAccess p_i231591_3_) {
-        super(ECContainers.FLETCHING.get(), p_i231591_1_, p_i231591_2_, p_i231591_3_);
+        super(ECContainers.FLETCHING.get(), p_i231591_1_, p_i231591_2_, p_i231591_3_, slotDefinition.get());
         this.level = p_i231591_2_.player.level();
     }
 
@@ -63,27 +69,29 @@ public class FletchingTableMenu extends ItemCombinerMenu {
         itemstack.shrink(count);
         this.inputSlots.setItem(slot, itemstack);
     }
-
-    @Override
-    public void createResult() {
-        Optional<RecipeHolder<IFletchingRecipe>> optional = this.level.getRecipeManager().getRecipeFor(ECRecipeSerializerInit.FLETCHING_TYPE.get(), new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1)), this.level);
-        if (optional.isEmpty()) {
-            this.resultSlots.setItem(0, ItemStack.EMPTY);
-        } else {
-            this.selectedRecipe = optional.get();
-            ItemStack itemstack = this.selectedRecipe.value().assemble(new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1)), this.level.registryAccess());
-            this.resultSlots.setRecipeUsed(this.selectedRecipe);
-            this.resultSlots.setItem(0, itemstack);
-        }
-
+    private FletchingRecipeInput createRecipeInput() {
+        return new FletchingRecipeInput(inputSlots.getItem(0), inputSlots.getItem(1));
     }
 
     @Override
-    protected @NotNull ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
-        return ItemCombinerMenuSlotDefinition.create()
-                .withSlot(0, 27, 47, (p_266635_) -> true)
-                .withSlot(1, 76, 47, (p_266634_) -> true)
-                .withResultSlot(2, 134, 47).build();
+    public void createResult() {
+        FletchingRecipeInput fletchingRecipeInput = createRecipeInput();
+        Optional<RecipeHolder<IFletchingRecipe>> optional;
+        if (this.level instanceof ServerLevel serverlevel) {
+            optional = serverlevel.recipeAccess().getRecipeFor(ECRecipeInit.FLETCHING_TYPE.get(), fletchingRecipeInput, serverlevel);
+        }  else {
+            optional = Optional.empty();
+        }
+
+        optional.ifPresentOrElse(recipe -> {
+            ItemStack itemstack = recipe.value().assemble(fletchingRecipeInput, this.level.registryAccess());
+            this.resultSlots.setRecipeUsed(recipe);
+            this.resultSlots.setItem(0, itemstack);
+        }, () -> {
+            this.resultSlots.setRecipeUsed(null);
+            this.resultSlots.setItem(0, ItemStack.EMPTY);
+        });
+
     }
 
     @Override
