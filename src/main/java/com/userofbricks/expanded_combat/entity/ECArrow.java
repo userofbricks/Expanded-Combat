@@ -65,6 +65,7 @@ public class ECArrow extends AbstractArrow {
         this.entityData.set(ID_EFFECT_COLOR, potioncontents.equals(PotionContents.EMPTY) ? -1 : potioncontents.getColor());
     }
 
+    @SuppressWarnings("unused")
     public void addEffect(MobEffectInstance pEffectInstance) {
         this.setPotionContents(this.getPotionContents().withEffectAdded(pEffectInstance));
     }
@@ -81,14 +82,14 @@ public class ECArrow extends AbstractArrow {
         super.tick();
         if (getMaterial().offense().flaming()) this.setRemainingFireTicks(100);
         if (this.level().isClientSide) {
-            if (this.inGround) {
+            if (this.isInGround()) {
                 if (this.inGroundTime % 5 == 0) {
                     this.makeParticle(1);
                 }
             } else {
                 this.makeParticle(2);
             }
-        } else if (this.inGround && this.inGroundTime != 0 && !this.getPotionContents().equals(PotionContents.EMPTY) && this.inGroundTime >= 600) {
+        } else if (this.isInGround() && this.inGroundTime != 0 && !this.getPotionContents().equals(PotionContents.EMPTY) && this.inGroundTime >= 600) {
             this.level().broadcastEntityEvent(this, (byte)0);
             Item nonTipped = ((ECTippedArrowItem) getPickupItemStackOrigin().getItem()).getNotTipped();
             this.setPickupItemStack(new ItemStack(nonTipped));
@@ -162,7 +163,7 @@ public class ECArrow extends AbstractArrow {
             if (i != -1) {
                 float f = (float)(i >> 16 & 0xFF) / 255.0F;
                 float f1 = (float)(i >> 8 & 0xFF) / 255.0F;
-                float f2 = (float)(i >> 0 & 0xFF) / 255.0F;
+                float f2 = (float)(i & 0xFF) / 255.0F;
 
                 for (int j = 0; j < 20; j++) {
                     this.level()
@@ -186,6 +187,7 @@ public class ECArrow extends AbstractArrow {
         return this.entityData.get(MATERIAL);
     }
 
+    @SuppressWarnings("unused")
     public void setArrowType(Material arrowMaterial) {
         this.entityData.set(MATERIAL, arrowMaterial);
     }

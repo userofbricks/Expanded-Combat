@@ -8,6 +8,8 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
@@ -75,6 +77,15 @@ public class ECFallingBlockEntity extends Entity {
             this.discard();
         }
 
+    }
+
+    @Override
+    public boolean hurtServer(@NotNull ServerLevel serverLevel, @NotNull DamageSource damageSource, float dmg) {
+        if (!this.isInvulnerableToBase(damageSource)) {
+            this.markHurt();
+        }
+
+        return false;
     }
 
     protected void addAdditionalSaveData(CompoundTag p_31973_) {
