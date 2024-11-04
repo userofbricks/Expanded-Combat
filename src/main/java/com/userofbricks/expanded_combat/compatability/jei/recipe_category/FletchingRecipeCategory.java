@@ -1,6 +1,6 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.gui.ITickTimer;
@@ -34,7 +34,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<RecipeHolder<IFl
     public static final ResourceLocation textureLocation = modLoc("textures/gui/jei/recipe_backgrounds.png");
 
     public static final RecipeType<RecipeHolder<IFletchingRecipe>> FLETCHING =
-            RecipeType.createFromVanilla(ECRecipeSerializerInit.FLETCHING_TYPE.get());
+            RecipeType.createFromVanilla(ECRecipeInit.FLETCHING_TYPE.get());
 
     public FletchingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(textureLocation, 0, 0, 125, 18);

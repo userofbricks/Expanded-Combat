@@ -4,6 +4,7 @@ import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -48,7 +49,7 @@ public class ShieldSmithingTableScreen extends ItemCombinerScreen<ShieldSmithing
     @Override
     protected void renderErrorIcon(@NotNull GuiGraphics guiGraphics, int pX, int pY) {
         if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem() || this.menu.getSlot(2).hasItem() || this.menu.getSlot(3).hasItem() || this.menu.getSlot(4).hasItem() || this.menu.getSlot(5).hasItem()) && !this.menu.getSlot(6).hasItem()) {
-            guiGraphics.blitSprite(ERROR_SPRITE, pX + 99, pY + 45, 28, 21);
+            guiGraphics.blitSprite(RenderType::guiTextured, ERROR_SPRITE, pX + 99, pY + 45, 28, 21);
         }
     }
 

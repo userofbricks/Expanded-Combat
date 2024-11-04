@@ -10,6 +10,7 @@ import com.userofbricks.expanded_combat.item.ECShieldItem;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +34,7 @@ public class ShieldEvents {
             float damageBlocked = 0;
             float damageLeftToBlock = event.getOriginalBlockedDamage();
             if (CONFIG.shieldProtectionConfig.EnableShieldBaseProtection) {
-                damageBlocked += BaseShieldProtection(shieldItemStack, damageLeftToBlock, event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT));
+                damageBlocked += BaseShieldProtection(shieldItemStack, damageLeftToBlock, event.getEntity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT));
                 damageLeftToBlock -= damageBlocked;
             }
             if (CONFIG.shieldProtectionConfig.EnableShieldProtectionPercentage) {
@@ -59,17 +60,17 @@ public class ShieldEvents {
                 }else if (shieldItemStack.getItemHolder().getData(DataMaps.SHIELD_MATERIALS) != null){
                     protectionAmount = PluginInit.getShieldToMaterialBaseProtection(shieldItemStack);
                 }
-                damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING));
+                damageBlocked = (float) protectionAmount + shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.BLOCKING));
             }
             case DURABILITY_PERCENTAGE -> {
                 if (shieldItemStack.getMaxDamage() == 0) damageBlocked = damageLeftToBlock;
                 else {
-                    float itemDamageLeft = Math.min(shieldItemStack.getMaxDamage(), ((float)shieldItemStack.getMaxDamage() - (float)shieldItemStack.getDamageValue()) + ((float)shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING)) / 10)));
+                    float itemDamageLeft = Math.min(shieldItemStack.getMaxDamage(), ((float)shieldItemStack.getMaxDamage() - (float)shieldItemStack.getDamageValue()) + ((float)shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.BLOCKING)) / 10)));
                     damageBlocked = damageLeftToBlock * (itemDamageLeft / (float)shieldItemStack.getMaxDamage());
                 }
             }
             case INVERTED_DURABILITY_PERCENTAGE -> {
-                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((shieldItemStack.getDamageValue() + (shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.BLOCKING)) / 10))) / (float) shieldItemStack.getMaxDamage());
+                if (shieldItemStack.getMaxDamage() != 0) damageBlocked += damageLeftToBlock * ((shieldItemStack.getDamageValue() + (shieldItemStack.getMaxDamage() * ((float)shieldItemStack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.BLOCKING)) / 10))) / (float) shieldItemStack.getMaxDamage());
             }
         }
         return damageBlocked;
@@ -101,18 +102,18 @@ public class ShieldEvents {
     @SubscribeEvent
     public static void drawTabs(ContainerScreenEvent.Render.Background e) {
         if (!CONFIG.enableShields) return;
-        if (e.getContainerScreen() instanceof SmithingScreen) {
-            AbstractContainerScreen<?> smithingTableScreen = e.getContainerScreen();
+        if (e.getContainerScreen() instanceof SmithingScreen smithingTableScreen) {
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 194, 32, 28);
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 32, 0, 166, 32, 28);
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 8, 204, 0, 20, 20);
+            //render type, texture location, loc on screen x, loc on screen y, start u, start v, size x, size y, texture size x, texture size y
+            e.getGuiGraphics().blit(RenderType::guiTextured, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 194, 32, 28, 256, 256);
+            e.getGuiGraphics().blit(RenderType::guiTextured, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 32, 0, 166, 32, 28, 256, 256);
+            e.getGuiGraphics().blit(RenderType::guiTextured, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 8, 204, 0, 20, 20, 256, 256);
         } else if (e.getContainerScreen() instanceof ShieldSmithingTableScreen smithingTableScreen) {
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 166, 32, 56);
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 36, 224, 0, 20, 20);
+            e.getGuiGraphics().blit(RenderType::guiTextured, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 166, 32, 56, 256, 256);
+            e.getGuiGraphics().blit(RenderType::guiTextured, ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 36, 224, 0, 20, 20, 256, 256);
         }
     }
 }

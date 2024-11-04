@@ -43,7 +43,7 @@ public class EnchantentEvents {
                 damageSource.is(DamageTypes.GENERIC) || damageSource.is(DamageTypes.GENERIC_KILL)
                 ) && livingEntity.getItemInHand(livingEntity.getUsedItemHand()).getItem() instanceof ArrowBlockWeaponItem) {
             ItemStack weapon = livingEntity.getItemInHand(livingEntity.getUsedItemHand());
-            int healthStealLvl = weapon.getEnchantmentLevel(event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ECEnchantments.BLOCKING));
+            int healthStealLvl = weapon.getEnchantmentLevel(event.getEntity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ECEnchantments.BLOCKING));
         }
     }
 
@@ -53,9 +53,9 @@ public class EnchantentEvents {
     public static void agilityMovementEvent(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
         assert Minecraft.getInstance().level != null;
-        Registry<Enchantment> enchantmentRegistry = Minecraft.getInstance().level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
-        if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0 && stack.getItem() instanceof ArmorItem armorItem) {
-            int level = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY));
+        Registry<Enchantment> enchantmentRegistry = Minecraft.getInstance().level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        if (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) > 0 && stack.getItem() instanceof ArmorItem armorItem) {
+            int level = stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY));
             if (armorItem.getEquipmentSlot() == EquipmentSlot.FEET) event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(modLoc("movement_speed"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.FEET);
             if (armorItem.getEquipmentSlot() == EquipmentSlot.LEGS) event.addModifier(NeoForgeMod.SWIM_SPEED, new AttributeModifier(modLoc("jump_strength"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.LEGS);
         }
@@ -66,9 +66,9 @@ public class EnchantentEvents {
         Optional<ICuriosItemHandler> handlerOptional = CuriosApi.getCuriosInventory(event.getEntity());
         if (handlerOptional.isPresent()) {
             float speedIncrease = 0;
-            Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+            Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
             for (SlotResult slotResult : handlerOptional.get().findCurios(stack -> stack.getItem() instanceof GauntletItem)) {
-                speedIncrease += slotResult.stack().getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) * 0.2f;
+                speedIncrease += slotResult.stack().getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) * 0.2f;
             }
             event.setNewSpeed(event.getOriginalSpeed() - speedIncrease);
         }
@@ -78,8 +78,8 @@ public class EnchantentEvents {
     public static void agilityDoge(LivingIncomingDamageEvent event) {
         LivingEntity entity = event.getEntity();
         ItemStack chestplate = entity.getItemBySlot(EquipmentSlot.CHEST);
-        Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
-        int agility = chestplate.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY));
+        Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        int agility = chestplate.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY));
         if (!chestplate.isEmpty() && agility > 0 && entity.getRandom().nextIntBetweenInclusive(1, Math.round((20 + agility)-(10 * ((float)Math.sqrt(agility)-1)))) == 1) {
             //TODO: movement when
             float move = 1f / agility;

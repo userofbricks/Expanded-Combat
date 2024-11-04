@@ -1,7 +1,7 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
 import com.userofbricks.expanded_combat.datagen.LangStrings;
-import com.userofbricks.expanded_combat.init.ECRecipeSerializerInit;
+import com.userofbricks.expanded_combat.init.ECRecipeInit;
 import com.userofbricks.expanded_combat.item.recipes.IShieldSmithingRecipe;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -30,7 +30,7 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<RecipeHolde
     public static final ResourceLocation iconLocation = modLoc("textures/gui/jei/recipe_icons.png");
 
     public static final RecipeType<RecipeHolder<IShieldSmithingRecipe>> SHIELD_SMITHING =
-            RecipeType.createFromVanilla(ECRecipeSerializerInit.SHIELD_TYPE.get());
+            RecipeType.createFromVanilla(ECRecipeInit.SHIELD_TYPE.get());
 
     public ShieldSmithingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(FletchingRecipeCategory.textureLocation, 0, 28, 125, 54);

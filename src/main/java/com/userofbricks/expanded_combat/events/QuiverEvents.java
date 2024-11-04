@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.events;
 
 import com.userofbricks.expanded_combat.item.QuiverItem;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
@@ -57,7 +58,7 @@ public class QuiverEvents {
             ResourceLocation textureLocation = modLoc("textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();
-            evt.getGuiGraphics().blit(textureLocation, left + 76, top + 43, 45, 18, 18, 18);
+            evt.getGuiGraphics().blit(RenderType::guiTextured, textureLocation, left + 76, top + 43, 45, 18, 18, 18, 256, 256);
         }
     }
 }

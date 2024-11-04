@@ -5,6 +5,7 @@ import com.userofbricks.expanded_combat.api.registry.ECPlugin;
 import com.userofbricks.expanded_combat.api.registry.IExpandedCombatPlugin;
 import com.userofbricks.expanded_combat.api.registry.RegistrationHandler;
 import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -71,15 +72,15 @@ public class ECBasePlugin implements IExpandedCombatPlugin {
         SICKLE =        registrationHandler.registerWeaponType("Sickle", modLoc("sickle"), CONFIG.sickle);
         SPEAR =         registrationHandler.registerWeaponType("Spear", modLoc("spear"), CONFIG.spear);
 
-        LEATHER =        registrationHandler.registerMaterial("Leather", modLoc("leather"), CONFIG.leather, () -> Ingredient.of(ECTags.LEATHER_REPAIR), () -> Ingredient.of(Items.LEATHER));
+        LEATHER =        registrationHandler.registerMaterial("Leather", modLoc("leather"), CONFIG.leather, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.LEATHER_REPAIR)), () -> Ingredient.of(Items.LEATHER));
 
-        RABBIT_HIDE = registrationHandler.registerMaterial("Rabbit Hide", modLoc("rabbit_hide"), CONFIG.rebbitLeather, () -> Ingredient.of(ECTags.RABBIT_HIDE_REPAIR), () -> Ingredient.of(Items.RABBIT_HIDE));
-        WOOD_PLANK =      registrationHandler.registerMaterial("Wood Plank", modLoc("wood_plank"),   CONFIG.woodPlank, () -> Ingredient.of(ItemTags.PLANKS), () -> Ingredient.of(ItemTags.PLANKS));
-        STONE =          registrationHandler.registerMaterial("Stone", modLoc("stone"),             CONFIG.stone, () -> Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), () -> Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
-        IRON =           registrationHandler.registerMaterial("Iron", modLoc("iron"),               CONFIG.iron, () -> Ingredient.of(ECTags.IRON_REPAIR), () -> Ingredient.of(Items.IRON_INGOT));
-        GOLD =           registrationHandler.registerMaterial("Gold", modLoc("gold"),               CONFIG.gold, () -> Ingredient.of(ECTags.GOLD_REPAIR), () -> Ingredient.of(Items.GOLD_INGOT));
-        DIAMOND =        registrationHandler.registerMaterial("Diamond", modLoc("diamond"),         CONFIG.diamond, () -> Ingredient.of(ECTags.DIAMOND_REPAIR), () -> Ingredient.of(Items.DIAMOND));
-        NETHERITE =      registrationHandler.registerMaterial("Netherite", modLoc("netherite"),     CONFIG.netherite, () -> Ingredient.of(ECTags.NETHERITE_REPAIR), () -> Ingredient.of(Items.NETHERITE_INGOT), () -> Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE));
+        RABBIT_HIDE = registrationHandler.registerMaterial("Rabbit Hide", modLoc("rabbit_hide"), CONFIG.rebbitLeather, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.RABBIT_HIDE_REPAIR)), () -> Ingredient.of(Items.RABBIT_HIDE));
+        WOOD_PLANK =      registrationHandler.registerMaterial("Wood Plank", modLoc("wood_plank"),   CONFIG.woodPlank, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ItemTags.PLANKS)), () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ItemTags.PLANKS)));
+        STONE =          registrationHandler.registerMaterial("Stone", modLoc("stone"),             CONFIG.stone, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ItemTags.STONE_TOOL_MATERIALS)), () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ItemTags.STONE_TOOL_MATERIALS)));
+        IRON =           registrationHandler.registerMaterial("Iron", modLoc("iron"),               CONFIG.iron, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.IRON_REPAIR)), () -> Ingredient.of(Items.IRON_INGOT));
+        GOLD =           registrationHandler.registerMaterial("Gold", modLoc("gold"),               CONFIG.gold, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.GOLD_REPAIR)), () -> Ingredient.of(Items.GOLD_INGOT));
+        DIAMOND =        registrationHandler.registerMaterial("Diamond", modLoc("diamond"),         CONFIG.diamond, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.DIAMOND_REPAIR)), () -> Ingredient.of(Items.DIAMOND));
+        NETHERITE =      registrationHandler.registerMaterial("Netherite", modLoc("netherite"),     CONFIG.netherite, () -> Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(ECTags.NETHERITE_REPAIR)), () -> Ingredient.of(Items.NETHERITE_INGOT), () -> Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE));
 
         HEART_STEALER = registrationHandler.registerMaterial("Heart Stealer", modLoc("heart_stealer"), CONFIG.heartStealer);
         HEAT_MATERIAL = registrationHandler.registerMaterial("Heat", modLoc("heat"), CONFIG.heat);

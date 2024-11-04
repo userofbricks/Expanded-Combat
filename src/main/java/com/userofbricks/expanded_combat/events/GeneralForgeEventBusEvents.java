@@ -3,6 +3,7 @@ package com.userofbricks.expanded_combat.events;
 import com.userofbricks.expanded_combat.init.DataAttachments;
 import com.userofbricks.expanded_combat.init.ECDamageInit;
 import com.userofbricks.expanded_combat.network.server.PacketIntAttachment;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.Entity;
@@ -49,20 +50,22 @@ public class GeneralForgeEventBusEvents {
         double voidDmg = causingEntity.getAttributeValue(VOID_DMG);
         double soulDmg = causingEntity.getAttributeValue(SOUL_DMG);
 
-        if (coldDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
-            ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.coldDmgAttack(level, entity), (float) coldDmg));
+        if (level instanceof ServerLevel serverLevel) {
+            if (coldDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
+                ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurtServer(serverLevel, ECDamageInit.coldDmgAttack(level, entity), (float) coldDmg));
 
-        if (heatDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
-            ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.heatDmgAttack(level, entity), (float) heatDmg));
+            if (heatDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
+                ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurtServer(serverLevel, ECDamageInit.heatDmgAttack(level, entity), (float) heatDmg));
 
-        if (voidDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
-            ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.voidDmgAttack(level, entity), (float) voidDmg));
+            if (voidDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
+                ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurtServer(serverLevel, ECDamageInit.voidDmgAttack(level, entity), (float) voidDmg));
 
-        if (soulDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
-            ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.soulDmgAttack(level, entity), (float) soulDmg));
+            if (soulDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
+                ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurtServer(serverLevel, ECDamageInit.soulDmgAttack(level, entity), (float) soulDmg));
 
-        if (!entityHoldingWeapon(causingEntity) && gauntletDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
-            ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurt(ECDamageInit.gauntletAttack(level, entity), (float) gauntletDmg));
+            if (!entityHoldingWeapon(causingEntity) && gauntletDmg > 0 && !ev.getSource().is(DamageTypeTags.BYPASSES_COOLDOWN))
+                ADDITIONAL_DMG_RUNS.add(() -> ev.getEntity().hurtServer(serverLevel, ECDamageInit.gauntletAttack(level, entity), (float) gauntletDmg));
+        }
     }
 
     public static boolean entityHoldingWeapon(LivingEntity entity) {

@@ -18,18 +18,18 @@ public class ECDamageInit {
     public static final ResourceKey<DamageType> SOUL_DMG = ResourceKey.create(Registries.DAMAGE_TYPE, modLoc("soul_dmg"));
 
     public static DamageSource gauntletAttack(Level level, @Nullable Entity attacker) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(GAUNTLET_DMG), attacker);
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GAUNTLET_DMG), attacker);
     }
     public static DamageSource heatDmgAttack(Level level, @Nullable Entity attacker) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(HEAT_DMG), attacker);
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(HEAT_DMG), attacker);
     }
     public static DamageSource coldDmgAttack(Level level, @Nullable Entity attacker) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(COLD_DMG), attacker);
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(COLD_DMG), attacker);
     }
     public static DamageSource voidDmgAttack(Level level, @Nullable Entity attacker) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(VOID_DMG), attacker);
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(VOID_DMG), attacker);
     }
     public static DamageSource soulDmgAttack(Level level, @Nullable Entity attacker) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(SOUL_DMG), attacker);
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(SOUL_DMG), attacker);
     }
 }

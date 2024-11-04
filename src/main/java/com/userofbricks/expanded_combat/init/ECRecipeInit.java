@@ -19,7 +19,7 @@ public class ECRecipeInit {
 
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, MODID);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ECTippedArrowRecipe>> EC_TIPPED_ARROW_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_arrow", ECTippedArrowRecipe.Serializer::new);
-    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PotionDippedWeaponRecipe>> EC_POTION_WEAPON_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_potion_weapon", () -> new SimpleCraftingRecipeSerializer<>(PotionDippedWeaponRecipe::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PotionDippedWeaponRecipe>> EC_POTION_WEAPON_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_potion_weapon", () -> new CustomRecipe.Serializer<>(PotionDippedWeaponRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<? extends IFletchingRecipe>> EC_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("ec_fletching", FletchingRecipe.Serializer::new);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<? extends SpecialFletchingRecipe>> EC_TIPPED_ARROW_FLETCHING_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_ec_tipped_fletching", TippedArrowFletchingRecipe.Serializer::new);
 
@@ -28,7 +28,7 @@ public class ECRecipeInit {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ShieldUpgradeRecipe>> EC_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("upgrading_shields", () -> new NoEncodingRecipeSerializer<>(ShieldUpgradeRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ShieldSmithingUpgradeRecipe>> EC_SMITHING_UPGRADING_SHIELD_SERIALIZER = RECIPE_SERIALIZERS.register("shield_smithing_upgrade", () -> new NoEncodingRecipeSerializer<>(ShieldSmithingUpgradeRecipe::new));
 
-    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ECShieldDecorationRecipe>> EC_SHIELD_DECORATION = RECIPE_SERIALIZERS.register("ec_shield_decoration", () -> new SimpleCraftingRecipeSerializer<>(ECShieldDecorationRecipe::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ECShieldDecorationRecipe>> EC_SHIELD_DECORATION = RECIPE_SERIALIZERS.register("ec_shield_decoration", () -> new CustomRecipe.Serializer<>(ECShieldDecorationRecipe::new));
 
 
 

@@ -84,7 +84,7 @@ public class ECCreativeTabs {
                     for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
                         output.accept(deferredItem);
                     }
-                    for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
+                    for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.listElements().toList()) {
                         for (DeferredItem<? extends Item> deferredItem : items.stream().filter(deferredItem -> deferredItem.get() instanceof ECTippedArrowItem).toList()) {
                             ItemStack stack = new ItemStack(deferredItem.get());
                             stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
@@ -160,7 +160,7 @@ public class ECCreativeTabs {
                 for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECArrowItem && !(deferredItem.get() instanceof ECTippedArrowItem)).toList()) {
                     event.insertAfter(new ItemStack(Items.ARROW), new ItemStack(deferredItem.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
-                for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
+                for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.listElements().toList()) {
                     ItemStack tippedArrow = new ItemStack(Items.TIPPED_ARROW);
                     tippedArrow.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
                     for (DeferredItem<? extends Item> deferredItem : itemList.stream().filter(deferredItem -> deferredItem.get() instanceof ECTippedArrowItem).toList()) {
