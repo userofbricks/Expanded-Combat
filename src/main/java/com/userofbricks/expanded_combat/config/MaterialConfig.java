@@ -7,7 +7,7 @@ import com.userofbricks.expanded_combat.config.gui.TooltipFrase;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -355,11 +355,11 @@ public class MaterialConfig {
         private boolean isSingleAddition = false;
         private final List<ResourceLocation> onlyReplaceResource = new ArrayList<>();
 
-        public Builder fromTierNoIngredient(Tier tier) {
-            return this.toolDurability(tier.getUses())
-                    .gauntletDurability(tier.getUses())
-                    .offenseEnchantability(tier.getEnchantmentValue())
-                    .addedAttackDamage(tier.getAttackDamageBonus());
+        public Builder fromTierNoIngredient(ToolMaterial tier) {
+            return this.toolDurability(tier.durability())
+                    .gauntletDurability(tier.durability())
+                    .offenseEnchantability(tier.enchantmentValue())
+                    .addedAttackDamage(tier.attackDamageBonus());
         }
 
         public Builder toolDurability(int durability) {
@@ -403,7 +403,7 @@ public class MaterialConfig {
         }
 
         public Builder equipSound(SoundEvent equipSound) {
-            this.equipSound = equipSound.getLocation();
+            this.equipSound = equipSound.location();
             return this;
         }
 

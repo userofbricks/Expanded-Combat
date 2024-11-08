@@ -10,7 +10,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.*;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.ToolMaterial;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
@@ -211,21 +211,21 @@ public class ECConfig implements ConfigData {
             .build();
 
     @Category("Materials") @CollapsibleObject @ConfigName("Heart Stealer Settings")
-    public MaterialConfig heartStealer = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fireResistant().build();
+    public MaterialConfig heartStealer = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.NETHERITE).fireResistant().build();
     @Category("Materials") @CollapsibleObject @ConfigName("Heat Settings")
-    public MaterialConfig heat = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).fireResistant().build();
+    public MaterialConfig heat = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.NETHERITE).fireResistant().build();
     @Category("Materials") @CollapsibleObject @ConfigName("Frost Settings")
-    public MaterialConfig frost = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).build();
+    public MaterialConfig frost = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.DIAMOND).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Void Touched Settings")
-    public MaterialConfig voidTouched = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).build();
+    public MaterialConfig voidTouched = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.NETHERITE).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Soul Settings")
-    public MaterialConfig soul = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).defenseEnchantability(15).gauntletDurability(3).armorToughness(2).knockbackResistance(0.05).build();
+    public MaterialConfig soul = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.NETHERITE).defenseEnchantability(15).gauntletDurability(3).armorToughness(2).knockbackResistance(0.05).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Fighters Settings")
-    public MaterialConfig fighters = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).defenseEnchantability(10).gauntletDurability(3).armorToughness(3).knockbackResistance(0.05).build();
+    public MaterialConfig fighters = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.DIAMOND).defenseEnchantability(10).gauntletDurability(3).armorToughness(3).knockbackResistance(0.05).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Maulers Settings")
-    public MaterialConfig maulers = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.DIAMOND).defenseEnchantability(10).gauntletDurability(3).armorToughness(3).knockbackResistance(0.05).build();
+    public MaterialConfig maulers = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.DIAMOND).defenseEnchantability(10).gauntletDurability(3).armorToughness(3).knockbackResistance(0.05).build();
     @Category("Materials") @CollapsibleObject @ConfigName("Unique Gauntlet Settings")
-    public MaterialConfig gauntlet = new MaterialConfig.Builder().fromTierNoIngredient(Tiers.NETHERITE).defenseEnchantability(15).gauntletDurability(3).armorToughness(3).build();
+    public MaterialConfig gauntlet = new MaterialConfig.Builder().fromTierNoIngredient(ToolMaterial.NETHERITE).defenseEnchantability(15).gauntletDurability(3).armorToughness(3).build();
 
 
     public static class ShieldProtectionConfig {
