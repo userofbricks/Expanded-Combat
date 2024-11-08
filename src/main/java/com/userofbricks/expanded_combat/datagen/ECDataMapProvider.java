@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +18,7 @@ public class ECDataMapProvider extends DataMapProvider {
     }
 
     @Override
-    protected void gather() {
+    protected void gather(HolderLookup.@NotNull Provider provider) {
         builder(DataMaps.SHIELD_INGREDIENT_MAP)
                 .add(Items.LEATHER.builtInRegistryHolder(), ECBasePlugin.LEATHER, false)
                 .add(Items.RABBIT_HIDE.builtInRegistryHolder(), ECBasePlugin.RABBIT_HIDE, false)

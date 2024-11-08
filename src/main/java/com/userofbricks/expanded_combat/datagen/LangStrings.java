@@ -14,10 +14,12 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -126,12 +128,13 @@ public class LangStrings extends LanguageProvider {
 
         List<String> alreadyAddedPotions = new ArrayList<>();
         //arrows
-        for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.holders().toList()) {
-            Optional<Holder<Potion>> optionalPotionReference = Optional.of(potion);
-            String potionName = Potion.getName(optionalPotionReference,"");
+        for (Holder.Reference<Potion> potion : BuiltInRegistries.POTION.listElements().toList()) {
+            PotionContents potionContents = new PotionContents(potion);
+            String potionName = potionContents.customName().or(() -> potionContents.potion().map(p_372776_ -> p_372776_.value().name())).orElse("empty");
+
             if (alreadyAddedPotions.contains(potionName)) continue;
             alreadyAddedPotions.add(potionName);
-            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), "of" + locationToName(potionName));
+            add(((TranslatableContents)potionContents.getName(TIPPED_ARROW_POTION_ENDING).getContents()).getKey(), "of" + locationToName(potionName));
         }
 
         List<String> alreadyAddedStrings = new ArrayList<>();
@@ -215,6 +218,7 @@ public class LangStrings extends LanguageProvider {
 
         return createLangEntry(lang, englishLang);
     }
+    @SuppressWarnings("unused")
     public static String createTagLangEntry(TagKey<?> tagKey, String englishLang) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("tag.");
@@ -238,7 +242,8 @@ public class LangStrings extends LanguageProvider {
     }
 
     public static String locationToName(String location) {
-        List<String> parts = Arrays.stream(location.split("_")).filter(s -> !s.equals("tipped")).map(part -> {
+        String path = Arrays.stream(location.split(":")).toList().getLast().replace("/", "_");
+        List<String> parts = Arrays.stream(path.split("_")).filter(s -> !s.equals("tipped")).map(part -> {
             if (part.equals("s")) return "'s";
             String firstLetter = String.valueOf(part.charAt(0)).toUpperCase(Locale.ROOT);
             String theRest = part.substring(1);

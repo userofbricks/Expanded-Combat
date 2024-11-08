@@ -3,10 +3,13 @@ package com.userofbricks.expanded_combat.datagen.tags;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.init.ECTags;
 import com.userofbricks.expanded_combat.item.*;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.VanillaItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
@@ -67,11 +70,9 @@ public class ECItemTagsProvider extends ItemTagsProvider {
                 tag(ECTags.GROUND_SLAM).add(item);
             }
         }
-        for (Item item :BuiltInRegistries.ITEM.stream().toList()) {
-            if (item instanceof ArmorItem armorItem && (armorItem.getEquipmentSlot() == EquipmentSlot.FEET || armorItem.getEquipmentSlot() == EquipmentSlot.LEGS || armorItem.getEquipmentSlot() == EquipmentSlot.CHEST)) {
-                tag(ECTags.AGILITY_ENCHANTABLE).add(item);
-            }
-        }
+
+        tag(ECTags.AGILITY_ENCHANTABLE).addTag(ItemTags.FOOT_ARMOR).addTag(ItemTags.LEG_ARMOR).addTag(ItemTags.CHEST_ARMOR);
+
 
         this.tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
                 .add(ECItems.LEATHER_GAUNTLET.getKey(), ECItems.RABBIT_HIDE_GAUNTLET.getKey());

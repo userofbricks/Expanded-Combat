@@ -9,6 +9,7 @@ import net.minecraft.advancements.critereon.EntityEquipmentPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.*;
@@ -88,7 +89,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 LootItemEntityPropertyCondition.hasProperties(ATTACKER,
                         new EntityPredicate.Builder().equipment(
                                 new EntityEquipmentPredicate.Builder().mainhand(
-                                        ItemPredicate.Builder.item().of(SOUL_KATANA, SOUL_DAGGER, SOUL_SCYTHE)
+                                        ItemPredicate.Builder.item().of(registries.lookupOrThrow(Registries.ITEM), SOUL_KATANA, SOUL_DAGGER, SOUL_SCYTHE)
                                 ).build()
                         )
                 ), LootItemRandomChanceCondition.randomChance(0.2f));

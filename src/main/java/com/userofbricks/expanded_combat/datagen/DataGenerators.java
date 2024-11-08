@@ -50,7 +50,7 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new ECItemModelProvider(output, helper));
 
         generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
-        generator.addProvider(event.includeServer(), new ECRecipeProvider(output, provider));
+        generator.addProvider(event.includeServer(), new ECRecipeProvider.Runner(output, provider));
         //generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output, provider));
         ECBlockTagsProvider blockTagsProvider = new ECBlockTagsProvider(output, provider, helper);
@@ -72,7 +72,7 @@ public class DataGenerators {
                                     new Enchantment(
                                             Component.translatable(LangStrings.KNOCK_RESIST_ENCH),
                                             Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GAUNTLET_ENCHANTABLE),
+                                                    BuiltInRegistries.ITEM.getOrThrow(ECTags.GAUNTLET_ENCHANTABLE),
                                                     3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
                                                     Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
                                                     2, MAINHAND, OFFHAND
@@ -85,7 +85,7 @@ public class DataGenerators {
                                     new Enchantment(
                                             Component.translatable(LangStrings.BLOCKING_ENCH),
                                             Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.BLOCKING_ENCHANTABLE),
+                                                    BuiltInRegistries.ITEM.getOrThrow(ECTags.BLOCKING_ENCHANTABLE),
                                                     2, CONFIG.enchantmentLevels.maxBlockingLevel,
                                                     Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25),
                                                     4, MAINHAND, OFFHAND
@@ -98,7 +98,7 @@ public class DataGenerators {
                                     new Enchantment(
                                             Component.translatable(LangStrings.AGILITY_ENCH),
                                             Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.AGILITY_ENCHANTABLE),
+                                                    BuiltInRegistries.ITEM.getOrThrow(ECTags.AGILITY_ENCHANTABLE),
                                                     3, CONFIG.enchantmentLevels.maxAgilityLevel,
                                                     Enchantment.dynamicCost(15, 15), Enchantment.dynamicCost(45, 15),
                                                     3, CHEST, LEGS, FEET
@@ -111,7 +111,7 @@ public class DataGenerators {
                                     new Enchantment(
                                             Component.translatable(LangStrings.GROUND_SLAM_ENCH),
                                             Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GROUND_SLAM),
+                                                    BuiltInRegistries.ITEM.getOrThrow(ECTags.GROUND_SLAM),
                                                     3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
                                                     Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
                                                     2, MAINHAND, OFFHAND

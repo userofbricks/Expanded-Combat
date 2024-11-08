@@ -5,7 +5,10 @@ import com.userofbricks.expanded_combat.item.ArrowBlockWeaponItem;
 import com.userofbricks.expanded_combat.item.GauntletItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,6 +32,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
@@ -54,10 +58,10 @@ public class EnchantentEvents {
         ItemStack stack = event.getItemStack();
         assert Minecraft.getInstance().level != null;
         Registry<Enchantment> enchantmentRegistry = Minecraft.getInstance().level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-        if (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) > 0 && stack.getItem() instanceof ArmorItem armorItem) {
+        if (stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY)) > 0 && stack.has(DataComponents.EQUIPPABLE)) {
             int level = stack.getEnchantmentLevel(enchantmentRegistry.getOrThrow(ECEnchantments.AGILITY));
-            if (armorItem.getEquipmentSlot(stack) == EquipmentSlot.FEET) event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(modLoc("movement_speed"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.FEET);
-            if (armorItem.getEquipmentSlot(stack) == EquipmentSlot.LEGS) event.addModifier(NeoForgeMod.SWIM_SPEED, new AttributeModifier(modLoc("jump_strength"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.LEGS);
+            if (Objects.requireNonNull(stack.get(DataComponents.EQUIPPABLE)).slot() == EquipmentSlot.FEET) event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(modLoc("movement_speed"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.FEET);
+            if (Objects.requireNonNull(stack.get(DataComponents.EQUIPPABLE)).slot() == EquipmentSlot.LEGS) event.addModifier(NeoForgeMod.SWIM_SPEED, new AttributeModifier(modLoc("jump_strength"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.LEGS);
         }
     }
 

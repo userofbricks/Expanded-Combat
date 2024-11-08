@@ -6,11 +6,14 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
@@ -32,6 +35,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
     private static class ECAdvancementGenerator implements AdvancementProvider.AdvancementGenerator{
         @Override
         public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
+            HolderGetter<Item> holderGetter = registries.lookupOrThrow(Registries.ITEM);
             AdvancementHolder root = Advancement.Builder.advancement()
                     .display(
                             //display item
@@ -55,7 +59,7 @@ public class ECAdvancementProvider extends AdvancementProvider {
                             null, AdvancementType.TASK, true, true, false
                     )
                     .addCriterion("gauntlet_with_punch_2", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(ECTags.GAUNTLETS)
+                            ItemPredicate.Builder.item().of(holderGetter, ECTags.GAUNTLETS)
                                     .withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(
                                             List.of(new EnchantmentPredicate(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PUNCH), MinMaxBounds.Ints.atLeast(2)))
                                     ))
