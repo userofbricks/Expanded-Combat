@@ -7,9 +7,10 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.world.entity.LivingEntity;
 
-public class MaulersModel extends HumanoidModel<LivingEntity> {
+public class MaulersModel extends HumanoidModel<PlayerRenderState> {
 
 	public MaulersModel(ModelPart root) {
 		super(root);
@@ -60,18 +61,5 @@ public class MaulersModel extends HumanoidModel<LivingEntity> {
 				PartPose.offsetAndRotation(5.0F, 22.0F, 0.0F, -0.1745F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
-
-	@Override
-	@Nonnull
-	protected Iterable<ModelPart> headParts() {
-		return ImmutableList.of();
-	}
-
-	@Override
-	@Nonnull
-	protected Iterable<ModelPart> bodyParts() {
-		return ImmutableList
-				.of(this.rightArm, this.leftArm);
 	}
 }

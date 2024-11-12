@@ -33,21 +33,4 @@ public class QuiverModel extends AgeableListModel<LivingEntity> {
                 PartPose.offsetAndRotation(0.0F, 0.0F, 0, 0.0F, 0.0F, -0.6981f));
         return LayerDefinition.create(mesh, 64, 64);
     }
-
-    @Override
-    @Nonnull
-    protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of();
-    }
-
-    @Override
-    @Nonnull
-    protected Iterable<ModelPart> bodyParts() {
-        return ImmutableList.of(this.quiver, this.strap);
-    }
-
-    @Override
-    public void setupAnim(@NotNull LivingEntity livingEntity, float p_102619_, float p_102620_, float p_102621_, float p_102622_, float p_102623_) {
-
-    }
 }

@@ -7,9 +7,10 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.world.entity.LivingEntity;
 
-public class GauntletModel extends HumanoidModel<LivingEntity>
+public class GauntletModel extends HumanoidModel<PlayerRenderState>
 {
     public GauntletModel(ModelPart part) {
         super(part);
@@ -28,18 +29,5 @@ public class GauntletModel extends HumanoidModel<LivingEntity>
                         .addBox(-1F, -2.0F, -2.0F, 4, 12, 4, deformation),
                 PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 5.0F, 2.0F, 0.0F));
         return LayerDefinition.create(mesh, 32, 16);
-    }
-
-    @Override
-    @Nonnull
-    protected Iterable<ModelPart> headParts() {
-        return ImmutableList.of();
-    }
-
-    @Override
-    @Nonnull
-    protected Iterable<ModelPart> bodyParts() {
-        return ImmutableList
-                .of(this.rightArm, this.leftArm);
     }
 }

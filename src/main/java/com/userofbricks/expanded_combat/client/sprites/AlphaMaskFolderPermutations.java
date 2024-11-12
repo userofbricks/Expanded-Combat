@@ -18,6 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceMetadata;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.FastColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -101,10 +102,10 @@ public class AlphaMaskFolderPermutations implements SpriteSource {
 
                 for (int chWidth = 0; chWidth < width; chWidth++) {
                     for (int chHeight = 0; chHeight < height; chHeight++) {
-                        if (FastColor.ABGR32.alpha(alphaMaskNative.getPixelRGBA(chWidth, chHeight)) != 0) {
-                            nativeimage.setPixelRGBA(chWidth, chHeight, baseNative.getPixelRGBA(chWidth, chHeight));
+                        if (ARGB.alpha(alphaMaskNative.getPixel(chWidth, chHeight)) != 0) {
+                            nativeimage.setPixel(chWidth, chHeight, baseNative.getPixel(chWidth, chHeight));
                         } else {
-                            nativeimage.setPixelRGBA(chWidth, chHeight, alphaMaskNative.getPixelRGBA(chWidth, chHeight));
+                            nativeimage.setPixel(chWidth, chHeight, alphaMaskNative.getPixel(chWidth, chHeight));
                         }
                     }
                 }

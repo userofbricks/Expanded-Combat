@@ -15,13 +15,12 @@ import net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceMetadata;
-import net.minecraft.util.FastColor;
+import net.minecraft.util.ARGB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
@@ -29,14 +28,13 @@ import org.slf4j.Logger;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.IntUnaryOperator;
 import java.util.function.Supplier;
-
-import static net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations.loadPaletteEntryFromImage;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -94,22 +92,45 @@ public class PalettedFolderPermutations implements SpriteSource {
 
             for(int i = 0; i < key.length; ++i) {
                 int j = key[i];
-                if (FastColor.ABGR32.alpha(j) != 0) {
-                    int2intmap.put(FastColor.ABGR32.transparent(j), permutation[i]);
+                if (ARGB.alpha(j) != 0) {
+                    int2intmap.put(ARGB.transparent(j), permutation[i]);
                 }
             }
 
             return (colorInt) -> {
-                int k = FastColor.ABGR32.alpha(colorInt);
+                int k = ARGB.alpha(colorInt);
                 if (k == 0) {
                     return colorInt;
                 } else {
-                    int l = FastColor.ABGR32.transparent(colorInt);
-                    int i1 = int2intmap.getOrDefault(l, FastColor.ABGR32.opaque(l));
-                    int j1 = FastColor.ABGR32.alpha(i1);
-                    return FastColor.ABGR32.color(k * j1 / 255, i1);
+                    int l = ARGB.transparent(colorInt);
+                    int i1 = int2intmap.getOrDefault(l, ARGB.opaque(l));
+                    int j1 = ARGB.alpha(i1);
+                    return ARGB.color(k * j1 / 255, i1);
                 }
             };
+        }
+    }
+
+    private static int[] loadPaletteEntryFromImage(ResourceManager pResourceMananger, ResourceLocation pPalette) {
+        Optional<Resource> optional = pResourceMananger.getResource(TEXTURE_ID_CONVERTER.idToFile(pPalette));
+        if (optional.isEmpty()) {
+            LOGGER.error("Failed to load palette image {}", pPalette);
+            throw new IllegalArgumentException();
+        } else {
+            try {
+                int[] aint;
+                try (
+                        InputStream inputstream = optional.get().open();
+                        NativeImage nativeimage = NativeImage.read(inputstream);
+                ) {
+                    aint = nativeimage.getPixels();
+                }
+
+                return aint;
+            } catch (Exception exception) {
+                LOGGER.error("Couldn't load texture {}", pPalette, exception);
+                throw new IllegalArgumentException();
+            }
         }
     }
 
