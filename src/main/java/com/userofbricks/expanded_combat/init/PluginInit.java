@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.init;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.registry.*;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.weapon_type.WeaponType;

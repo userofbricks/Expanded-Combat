@@ -35,7 +35,7 @@ public class VillagerTradeEvents {
                     int i = 5 + pRandom.nextInt(15);
                     return new MerchantOffer(
                             new ItemCost(Items.EMERALD, Math.min(Math.round(dmg + (block ? 2 : 0)) + i, 64)),
-                            EnchantmentHelper.enchantItem(pRandom, new ItemStack(weaponRegistryEntry.get()), i, event.getRegistryAccess(), Optional.empty()),
+                            EnchantmentHelper.enchantItem(pRandom, new ItemStack(weaponRegistryEntry.get()), i, pTrader.level().registryAccess(), Optional.empty()),
                             3, 4, 0.05f);
                 });
                 trades.get(2).add((pTrader, pRandom) -> {
@@ -54,7 +54,7 @@ public class VillagerTradeEvents {
                     int i = 12 + pRandom.nextInt(15);
                     return new MerchantOffer(
                             new ItemCost(Items.EMERALD, Math.min(Math.round(dmg + (block ? 12 : 4)) + i, 64)),
-                            EnchantmentHelper.enchantItem(pRandom, new ItemStack(weaponRegistryEntry.get()), i, event.getRegistryAccess(), Optional.empty()),
+                            EnchantmentHelper.enchantItem(pRandom, new ItemStack(weaponRegistryEntry.get()), i, pTrader.level().registryAccess(), Optional.empty()),
                             3, 30, 0.05f);
                 });
                 trades.get(5).add((pTrader, pRandom) -> {

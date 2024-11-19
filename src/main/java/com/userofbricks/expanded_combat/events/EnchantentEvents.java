@@ -50,14 +50,16 @@ public class EnchantentEvents {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void agilityMovementEvent(ItemAttributeModifierEvent event) {
+    public static void agilityAttributesEvent(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
         assert Minecraft.getInstance().level != null;
         Registry<Enchantment> enchantmentRegistry = Minecraft.getInstance().level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
         if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0 && stack.getItem() instanceof ArmorItem armorItem) {
             int level = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY));
-            if (armorItem.getEquipmentSlot() == EquipmentSlot.FEET) event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(modLoc("movement_speed"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.FEET);
-            if (armorItem.getEquipmentSlot() == EquipmentSlot.LEGS) event.addModifier(NeoForgeMod.SWIM_SPEED, new AttributeModifier(modLoc("jump_strength"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.LEGS);
+            if (armorItem.getEquipmentSlot() == EquipmentSlot.FEET)
+                event.addModifier(Attributes.MOVEMENT_SPEED, new AttributeModifier(modLoc("movement_speed"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.FEET);
+            if (armorItem.getEquipmentSlot() == EquipmentSlot.LEGS)
+                event.addModifier(NeoForgeMod.SWIM_SPEED, new AttributeModifier(modLoc("jump_strength"), (level * 0.2), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.LEGS);
         }
     }
 
