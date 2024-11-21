@@ -69,57 +69,44 @@ public class DataGenerators {
                         new RegistrySetBuilder().add(Registries.ENCHANTMENT, bootstrap -> {
                             HolderGetter<Enchantment> enchGetter = bootstrap.lookup(Registries.ENCHANTMENT);
                             bootstrap.register(ECEnchantments.KNOCKBACK_RESISTANCE,
-                                    new Enchantment(
-                                            Component.translatable(LangStrings.KNOCK_RESIST_ENCH),
-                                            Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GAUNTLET_ENCHANTABLE),
-                                                    3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
-                                                    Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
-                                                    2, MAINHAND, OFFHAND
-                                            ),
-                                            HolderSet.direct(enchGetter.getOrThrow(Enchantments.KNOCKBACK)),
-                                            DataComponentMap.EMPTY
-                                    )
+                                    Enchantment.enchantment(Enchantment.definition(
+                                            BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GAUNTLET_ENCHANTABLE),
+                                            3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
+                                            Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
+                                            2, MAINHAND, OFFHAND
+                                    ))
+                                            .exclusiveWith(HolderSet.direct(enchGetter.getOrThrow(Enchantments.KNOCKBACK)))
+                                            .build(LangStrings.KNOCK_RESIST_ENCH)
                             );
                             bootstrap.register(ECEnchantments.BLOCKING,
-                                    new Enchantment(
-                                            Component.translatable(LangStrings.BLOCKING_ENCH),
-                                            Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.BLOCKING_ENCHANTABLE),
-                                                    2, CONFIG.enchantmentLevels.maxBlockingLevel,
-                                                    Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25),
-                                                    4, MAINHAND, OFFHAND
-                                            ),
-                                            HolderSet.empty(),
-                                            DataComponentMap.EMPTY
-                                    )
+                                    Enchantment.enchantment(Enchantment.definition(
+                                            BuiltInRegistries.ITEM.getOrCreateTag(ECTags.BLOCKING_ENCHANTABLE),
+                                            2, CONFIG.enchantmentLevels.maxBlockingLevel,
+                                            Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25),
+                                            4, MAINHAND, OFFHAND
+                                    ))
+                                            .build(LangStrings.BLOCKING_ENCH)
                             );
                             bootstrap.register(ECEnchantments.AGILITY,
-                                    new Enchantment(
-                                            Component.translatable(LangStrings.AGILITY_ENCH),
-                                            Enchantment.definition(
+                                    Enchantment.enchantment(Enchantment.definition(
                                                     BuiltInRegistries.ITEM.getOrCreateTag(ECTags.AGILITY_ENCHANTABLE),
                                                     3, CONFIG.enchantmentLevels.maxAgilityLevel,
                                                     Enchantment.dynamicCost(15, 15), Enchantment.dynamicCost(45, 15),
                                                     3, CHEST, LEGS, FEET
-                                            ),
-                                            HolderSet.direct(enchGetter.getOrThrow(Enchantments.KNOCKBACK)),
-                                            DataComponentMap.EMPTY
-                                    )
+                                            ))
+                                            .exclusiveWith(HolderSet.direct(enchGetter.getOrThrow(Enchantments.KNOCKBACK)))
+                                            .build(LangStrings.AGILITY_ENCH)
                             );
+                            //TODO incompatible with shockwave
                             bootstrap.register(ECEnchantments.GROUND_SLAM,
-                                    new Enchantment(
-                                            Component.translatable(LangStrings.GROUND_SLAM_ENCH),
-                                            Enchantment.definition(
-                                                    BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GROUND_SLAM),
-                                                    3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
-                                                    Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
-                                                    2, MAINHAND, OFFHAND
-                                            ),
-                                            //TODO incompatible with shockwave
-                                            HolderSet.direct(enchGetter.getOrThrow(Enchantments.SWEEPING_EDGE)),
-                                            DataComponentMap.EMPTY
-                                    )
+                                    Enchantment.enchantment(Enchantment.definition(
+                                            BuiltInRegistries.ITEM.getOrCreateTag(ECTags.GROUND_SLAM),
+                                            3, CONFIG.enchantmentLevels.maxGroundSlamLevel,
+                                            Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(30, 11),
+                                            2, MAINHAND, OFFHAND
+                                    ))
+                                            .exclusiveWith(HolderSet.direct(enchGetter.getOrThrow(Enchantments.SWEEPING_EDGE)))
+                                            .build(LangStrings.GROUND_SLAM_ENCH)
                             );
                         }),
                         Set.of(MODID)

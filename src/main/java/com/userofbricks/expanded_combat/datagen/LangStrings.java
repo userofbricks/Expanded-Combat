@@ -11,13 +11,16 @@ import com.userofbricks.expanded_combat.init.PluginInit;
 import com.userofbricks.expanded_combat.item.ECShieldItem;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -84,10 +87,10 @@ public class LangStrings extends LanguageProvider {
     public static final String RESOURCE_LOCATION_NOT_WITHIN_AVAILABLE_VALUES = createLangEntry("text.ce-cloth-config.error.not_within_available_values", "This Resource Location is Not a Recognised Value");
 
     //Enchantments
-    public static final String KNOCK_RESIST_ENCH = createLangEntry("enchantment." + ECEnchantments.KNOCKBACK_RESISTANCE.location().getNamespace() + "." + ECEnchantments.KNOCKBACK_RESISTANCE.location().getPath().replace('/', '.'), "Knockback Resistance");
-    public static final String BLOCKING_ENCH = createLangEntry("enchantment." + ECEnchantments.BLOCKING.location().getNamespace() + "." + ECEnchantments.BLOCKING.location().getPath().replace('/', '.'), "Blocking");
-    public static final String AGILITY_ENCH = createLangEntry("enchantment." + ECEnchantments.AGILITY.location().getNamespace() + "." + ECEnchantments.AGILITY.location().getPath().replace('/', '.'), "Agility");
-    public static final String GROUND_SLAM_ENCH = createLangEntry("enchantment." + ECEnchantments.GROUND_SLAM.location().getNamespace() + "." + ECEnchantments.GROUND_SLAM.location().getPath().replace('/', '.'), "Ground Slam");
+    public static final ResourceLocation KNOCK_RESIST_ENCH = createEnchantmentDesc(ECEnchantments.KNOCKBACK_RESISTANCE, "Knockback Resistance");
+    public static final ResourceLocation BLOCKING_ENCH = createEnchantmentDesc(ECEnchantments.BLOCKING, "Blocking");
+    public static final ResourceLocation AGILITY_ENCH = createEnchantmentDesc(ECEnchantments.AGILITY, "Agility");
+    public static final ResourceLocation GROUND_SLAM_ENCH = createEnchantmentDesc(ECEnchantments.GROUND_SLAM, "Ground Slam");
 
     //Config
     private static final Supplier<String> configLangStartGetter = () -> "text.autoconfig." + ECConfig.class.getAnnotation(Config.class).name();
@@ -229,6 +232,12 @@ public class LangStrings extends LanguageProvider {
                 .append(tagResourceLocation.getPath().replace("/", ".").replace(":", "."));
 
         return createLangEntry(stringBuilder.toString(), englishLang);
+    }
+
+    public static ResourceLocation createEnchantmentDesc(ResourceKey<Enchantment> lang, String englishLang) {
+        ResourceLocation location = lang.location();
+        createLangEntry(Util.makeDescriptionId("enchantment", location), englishLang);
+        return location;
     }
 
     public static String createLangEntry(String lang, String englishLang) {

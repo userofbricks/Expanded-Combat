@@ -52,7 +52,7 @@ public class EnchantentEvents {
     @OnlyIn(Dist.CLIENT)
     public static void agilityAttributesEvent(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
-        assert Minecraft.getInstance().level != null;
+        if (Minecraft.getInstance().level == null) return;
         Registry<Enchantment> enchantmentRegistry = Minecraft.getInstance().level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
         if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0 && stack.getItem() instanceof ArmorItem armorItem) {
             int level = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY));

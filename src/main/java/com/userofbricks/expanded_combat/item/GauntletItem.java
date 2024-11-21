@@ -39,11 +39,14 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 
 public class GauntletItem extends Item implements ICurioItem, IMaterialItem
@@ -134,14 +137,14 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation uuid, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> atts = HashMultimap.create();
-        Registry<Enchantment> enchantmentRegistry = slotContext.entity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        @Nullable LivingEntity entity = slotContext.entity();
 
         double totalBaseDamage = Math.max(((GauntletItem)stack.getItem()).getAttackDamage(), 0.5);
         double totalExtraDamage = getAdditionalDamageAfterEnchantments(totalBaseDamage);
-        double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.PUNCH));
 
-        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, (totalBaseDamage + totalEnchantedDamage + totalExtraDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
-        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(uuid, ((totalBaseDamage + totalExtraDamage)/2.0d) + totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
+        AttributeModifier attackModifier = new AttributeModifier(uuid, (totalBaseDamage + totalExtraDamage) / 2.0d, AttributeModifier.Operation.ADD_VALUE);
+        atts.put(Attributes.ATTACK_DAMAGE, attackModifier);
+        atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, attackModifier);
 
         atts.put(Attributes.ARMOR, new AttributeModifier(uuid, ((GauntletItem)stack.getItem()).getArmorAmount(), AttributeModifier.Operation.ADD_VALUE));
 
@@ -149,12 +152,19 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, toughness, AttributeModifier.Operation.ADD_VALUE));
 
         double knockbackResistance = ((GauntletItem)stack.getItem()).getMaterial().defense().knockbackResistance();
-        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance + (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f), AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, knockbackResistance, AttributeModifier.Operation.ADD_VALUE));
 
-        atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
+        if (entity != null) {
+            Registry<Enchantment> enchantmentRegistry = entity.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+            double totalEnchantedDamage = stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.PUNCH));
 
-        if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0) {
-            atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
+            atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(modLoc("gauntlet_ench_atk_dmg"), (totalEnchantedDamage)/2.0d, AttributeModifier.Operation.ADD_VALUE));
+            atts.put(ECAttributes.GAUNTLET_DMG_WITHOUT_WEAPON, new AttributeModifier(modLoc("gauntlet_ench_dmg_no_weapon"), totalEnchantedDamage, AttributeModifier.Operation.ADD_VALUE));
+            atts.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(modLoc("gauntlet_ench_knock_resist"), stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.KNOCKBACK_RESISTANCE)) / 10f, AttributeModifier.Operation.ADD_VALUE));
+            atts.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(modLoc("gauntlet_ench_knock"), stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(Enchantments.KNOCKBACK)), AttributeModifier.Operation.ADD_VALUE));
+            if (stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) > 0) {
+                atts.put(Attributes.ATTACK_SPEED, new AttributeModifier(modLoc("gauntlet_ench_atk_speed"), stack.getEnchantmentLevel(enchantmentRegistry.getHolderOrThrow(ECEnchantments.AGILITY)) * 0.02, AttributeModifier.Operation.ADD_VALUE));
+            }
         }
         return atts;
     }
