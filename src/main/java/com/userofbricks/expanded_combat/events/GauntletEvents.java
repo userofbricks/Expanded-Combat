@@ -108,7 +108,6 @@ public class GauntletEvents
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    @SuppressWarnings("deprecation")
     public static void onRenderArm(RenderArmEvent event) {
         CuriosApi.getCuriosInventory(event.getPlayer()).ifPresent(handler -> {
             ICurioStacksHandler stacksHandler = handler.getCurios().get(SlotTypePreset.HANDS.getIdentifier());
