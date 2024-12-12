@@ -26,14 +26,12 @@ import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
@@ -241,30 +239,22 @@ public class ECQuiverItem extends Item implements ICurioItem {
             }
 
             ListTag listtag = compoundtag.getList("Items", 10);
-            for (int slot = 0; slot < listtag.size(); slot++) {
+            int toRemove = stackToRemove.getCount();
+            for (int slot = 0; slot < listtag.size() && toRemove > 0; slot++) {
                 CompoundTag arrowTag = listtag.getCompound(slot);
-                if (ItemStack.isSameItemSameTags(ItemStack.of(arrowTag), stackToRemove)) {
-                    ItemStack itemstack = ItemStack.of(arrowTag);
-                    itemstack.shrink(stackToRemove.getCount());
-                    itemstack.save(arrowTag);
+                ItemStack itemstack = ItemStack.of(arrowTag);
+                if (ItemStack.isSameItemSameTags(itemstack, stackToRemove)) {
+                    int canRemove = Math.min(toRemove, itemstack.getCount());
+                    itemstack.shrink(canRemove);
+                    toRemove -= canRemove;
+                    if (itemstack.isEmpty())
+                        listtag.remove(slot);
+                    else
+                        itemstack.save(arrowTag);
+                    break;
                 }
             }
         }
-    }
-
-    private static Optional<CompoundTag> getMatchingItem(ItemStack stack, ListTag p_150758_) {
-        Optional<CompoundTag> var10000;
-        if (stack.is(Items.BUNDLE)) {
-            var10000 = Optional.empty();
-        } else {
-            Stream<Tag> var2 = p_150758_.stream();
-            Objects.requireNonNull(CompoundTag.class);
-            var2 = var2.filter(CompoundTag.class::isInstance);
-            Objects.requireNonNull(CompoundTag.class);
-            var10000 = var2.map(CompoundTag.class::cast).filter((p_186350_) -> ItemStack.isSameItemSameTags(ItemStack.of(p_186350_), stack)).findFirst();
-        }
-
-        return var10000;
     }
 
     private static int getWeight(ItemStack stack) {
