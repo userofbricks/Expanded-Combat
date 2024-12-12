@@ -168,7 +168,7 @@ public class ECItems
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
                     .save(recipeProvider, new ResourceLocation(MODID, "gold_arrow_fletching2"));
 
-            FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(VanillaECPlugin.DIAMOND.getTippedArrowEntry().get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, VanillaECPlugin.NETHERITE.getTippedArrowEntry().get(), 32)
+            FletchingRecipeBuilder.fletchingVarableResult(Ingredient.of(VanillaECPlugin.DIAMOND.getTippedArrowEntry().get()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, VanillaECPlugin.NETHERITE.getTippedArrowEntry().get(), 16)
                     .unlocks("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(FLETCHED_STICKS.get()))
                     .save(recipeProvider, new ResourceLocation(MODID, "netherite_arrow_fletching2"));
 

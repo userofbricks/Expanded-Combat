@@ -6,7 +6,7 @@
   "base": {
     "item": "expanded_combat:tipped_diamond_arrow"
   },
-  "max_output_repeat": 32,
+  "max_output_repeat": 16,
   "result": {
     "item": "expanded_combat:tipped_netherite_arrow"
   }

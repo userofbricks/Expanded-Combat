@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed quiver bug not distributing arrows across all valid non-full stacks when inserted">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed quiver bugs on removing arrows from quiver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="" />
@@ -688,7 +689,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -721,7 +722,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="more of the same modifications" />
     <MESSAGE value="bumped to 3.0.7, updated custom weapons plugin to remove recipes from gauntlets" />
     <MESSAGE value="re-added doge movement see if works later" />
     <MESSAGE value="fixed kb resist maxes" />
@@ -746,7 +746,8 @@
     <MESSAGE value="misc" />
     <MESSAGE value="changed folder name for resources needed for datagen only" />
     <MESSAGE value="fixed quiver bug not distributing arrows across all valid non-full stacks when inserted" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed quiver bug not distributing arrows across all valid non-full stacks when inserted" />
+    <MESSAGE value="fixed quiver bugs on removing arrows from quiver" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed quiver bugs on removing arrows from quiver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
