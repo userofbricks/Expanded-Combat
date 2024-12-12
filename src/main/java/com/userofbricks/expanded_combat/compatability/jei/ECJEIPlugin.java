@@ -29,7 +29,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.common.util.ErrorUtil;
-import mezz.jei.library.plugins.vanilla.brewing.PotionSubtypeInterpreter;
+import mezz.jei.library.plugins.vanilla.ingredients.subtypes.PotionSubtypeInterpreter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

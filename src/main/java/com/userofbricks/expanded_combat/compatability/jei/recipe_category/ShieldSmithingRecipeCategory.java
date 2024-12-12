@@ -8,8 +8,6 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.library.util.RecipeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +18,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class ShieldSmithingRecipeCategory implements IRecipeCategory<IShieldSmithingRecipe> {
+public class ShieldSmithingRecipeCategory implements AbstractRecipeCategory<IShieldSmithingRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -75,6 +73,6 @@ public class ShieldSmithingRecipeCategory implements IRecipeCategory<IShieldSmit
                 .addIngredients(recipe.getDRAddition());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 108, 19)
-                .addItemStack(RecipeUtil.getResultItem(recipe));
+                .addItemStack(getResultItem(recipe));
     }
 }

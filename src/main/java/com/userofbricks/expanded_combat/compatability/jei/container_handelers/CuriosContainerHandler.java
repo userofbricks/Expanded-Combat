@@ -1,12 +1,10 @@
 package com.userofbricks.expanded_combat.compatability.jei.container_handelers;
 
-import com.userofbricks.expanded_combat.item.ECQuiverItem;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.common.platform.IPlatformScreenHelper;
 import mezz.jei.common.platform.Services;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
@@ -17,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
-import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
 import static com.userofbricks.expanded_combat.events.QuiverEvents.roundToNearest8;
 
 public class CuriosContainerHandler implements IGuiContainerHandler<CuriosScreenV2> {

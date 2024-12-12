@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.compatability.jei.recipe_category;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.userofbricks.expanded_combat.item.recipes.FletchingRecipe;
 import com.userofbricks.expanded_combat.item.recipes.IFletchingRecipe;
 import mezz.jei.api.gui.ITickTimer;
@@ -11,10 +10,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.library.util.RecipeUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +23,7 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe> {
+public class FletchingRecipeCategory implements AbstractRecipeCategory<IFletchingRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -106,7 +102,7 @@ public class FletchingRecipeCategory implements IRecipeCategory<IFletchingRecipe
                 .addIngredients(recipe.getAddition());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 108, 1)
-                .addItemStack(RecipeUtil.getResultItem(recipe));
+                .addItemStack(getResultItem(recipe));
     }
 
     @Override
