@@ -188,6 +188,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         return Mth.color(0.4F, 0.4F, 1.0F);
     }
 
+    //returns the quantity actually inserted into the quiver.
     public static int add(ItemStack quiver, ItemStack stackToAdd) {
         if (!stackToAdd.isEmpty() && stackToAdd.getItem().canFitInsideContainerItems() && stackToAdd.is(ItemTags.ARROWS)) {
             CompoundTag compoundtag = quiver.getOrCreateTag();
@@ -195,38 +196,37 @@ public class ECQuiverItem extends Item implements ICurioItem {
                 compoundtag.put("Items", new ListTag());
             }
 
-            int i = getContentWeight(quiver);
-            int j = getWeight(stackToAdd);
-            int k = Math.min(stackToAdd.getCount(), (((ECQuiverItem) quiver.getItem()).maxFullness() - i) / j);
-            if (k == 0) {
+            int contentWeight = getContentWeight(quiver);
+            //this weight is the individual item not the whole stack
+            int itemWeight = getWeight(stackToAdd);
+            int quantityToAdd = Math.min(stackToAdd.getCount(), (((ECQuiverItem) quiver.getItem()).maxFullness() - contentWeight) / itemWeight);
+            if (quantityToAdd == 0) {
                 return 0;
             } else {
                 ListTag listtag = compoundtag.getList("Items", 10);
-                Optional<CompoundTag> optional = getMatchingItem(stackToAdd, listtag);
-                if (optional.isPresent()) {
-                    CompoundTag compoundtag1 = optional.get();
-                    ItemStack itemstack = ItemStack.of(compoundtag1);
-
-                    int l = Math.min(itemstack.getMaxStackSize() - itemstack.getCount(), k);
-                    itemstack.grow(l);
-                    itemstack.save(compoundtag1);
-                    listtag.remove(compoundtag1);
-                    listtag.add(0, compoundtag1);
-                    int m = k - l;
-                    if (m > 0) {
-                        ItemStack itemstack1 = stackToAdd.copyWithCount(m);
-                        CompoundTag compoundtag2 = new CompoundTag();
-                        itemstack1.save(compoundtag2);
-                        listtag.add(0, compoundtag2);
+                int leftToAdd = quantityToAdd;
+                for (int i = 0; i < listtag.size() && leftToAdd > 0; i++) {
+                    CompoundTag compoundTag1 = listtag.getCompound(i);
+                    ItemStack StackInQuiver = ItemStack.of(compoundTag1);
+                    if (ItemStack.isSameItemSameTags(StackInQuiver, stackToAdd)) {
+                        if (StackInQuiver.getCount() < StackInQuiver.getMaxStackSize()) {
+                            int l = Math.min(StackInQuiver.getMaxStackSize() - StackInQuiver.getCount(), quantityToAdd);
+                            leftToAdd -= l;
+                            StackInQuiver.grow(l);
+                            StackInQuiver.save(compoundTag1);
+                        }
+                        listtag.remove(i);
+                        listtag.add(0, compoundTag1);
                     }
-                } else {
-                    ItemStack itemstack1 = stackToAdd.copyWithCount(k);
+                }
+                if (leftToAdd > 0) {
+                    ItemStack itemstack1 = stackToAdd.copyWithCount(quantityToAdd);
                     CompoundTag compoundtag2 = new CompoundTag();
                     itemstack1.save(compoundtag2);
                     listtag.add(0, compoundtag2);
                 }
 
-                return k;
+                return quantityToAdd;
             }
         } else {
             return 0;
@@ -286,6 +286,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         } else {
             ListTag listtag = compoundtag.getList("Items", 10);
             if (listtag.isEmpty()) {
+                quiver.removeTagKey("Items");
                 return Optional.empty();
             } else {
                 CompoundTag firstInList = listtag.getCompound(0);
@@ -338,5 +339,10 @@ public class ECQuiverItem extends Item implements ICurioItem {
 
     public void playInsertSound(Entity p_186352_) {
         p_186352_.playSound(SoundEvents.BUNDLE_INSERT, 0.8F, 0.8F + p_186352_.level().getRandom().nextFloat() * 0.4F);
+    }
+
+    @Override
+    public boolean canFitInsideContainerItems() {
+        return false;
     }
 }
