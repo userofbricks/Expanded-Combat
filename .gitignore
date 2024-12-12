@@ -34,3 +34,4 @@ forge*changelog.txt
 /src/main/resources/assets/expanded_combat/models/item/01_temp/
 /src/main/java/com/userofbricks/expandedcombat/todo.java
 /src/generated/
+/run_server/*
