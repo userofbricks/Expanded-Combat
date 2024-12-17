@@ -31,6 +31,7 @@ public class ECShieldSmithingRecipeMaker {
 
             //create a map of items that can be used to put materials on shields
             Material possibleMaterial = itemReference.getData(DataMaps.SHIELD_INGREDIENT_MAP);
+            //TODO: invert this so shield bases can be found after
             if (possibleMaterial == null) continue;
             Material materialReference = PluginInit.materials.get(possibleMaterial.id());
             if (materialIngredientMap.containsKey(materialReference)) {
