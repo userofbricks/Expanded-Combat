@@ -44,14 +44,14 @@ public class GauntletEvents
         Player player = event.getEntity();
         if (player.isCreative()) return;
         Optional<ICuriosItemHandler> handlerOptional = CuriosApi.getCuriosInventory(event.getEntity());
-        if (handlerOptional.isPresent()) {
+        if (handlerOptional.isPresent() && player.level() instanceof ServerLevel serverLevel) {
             List<SlotResult> slotResults = handlerOptional.get().findCurios(itemStack -> itemStack.getItem() instanceof GauntletItem);
             if (slotResults.isEmpty()) return;
             for (SlotResult slotResult : slotResults) {
                 ItemStack stack = slotResult.stack();
                 SlotContext slotContext = slotResult.slotContext();
                 if (stack.getItem() instanceof GauntletItem) {
-                    stack.hurtAndBreak(1, (ServerLevel) player.level(), player, (item) -> CuriosApi.broadcastCurioBreakEvent(slotContext));
+                    stack.hurtAndBreak(1, serverLevel, player, (item) -> CuriosApi.broadcastCurioBreakEvent(slotContext));
                 }
             }
         }
