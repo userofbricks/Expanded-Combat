@@ -31,7 +31,7 @@ public class GoldMending
          Player player = event.getEntity();
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = player.getItemBySlot(slot);
-            if (!stack.isEmpty() || stack.getEnchantmentLevel(event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.MENDING)) > 0 || stack.isDamaged() || doesGoldMendingContainItem(stack)) {
+            if (!stack.isEmpty() && stack.getEnchantmentLevel(event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.MENDING)) > 0 && stack.isDamaged() && doesGoldMendingContainItem(stack)) {
                 event.setCanceled(true);
                 ExperienceOrb orb = event.getOrb();
                 player.takeXpDelay = 2;
