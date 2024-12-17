@@ -1,3 +1,11 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
 # idea
 out
 *.ipr
@@ -5,6 +13,10 @@ out
 *.iml
 *.xml
 .idea
+
+# gradle
+build
+.gradle
 
 # Compiled class file
 *.class
@@ -19,19 +31,18 @@ out
 .mtj.tmp/# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# Files from Forge MDK
+forge*changelog.txt
+/src/generated/
+/src/test/
+
 # other
-.gradle
 logs
-build
 run
+runs
 run_data
 run_server
 run_test
 */.DS_Store
 .DS_Store
 repo
-
-# Files from Forge MDK
-forge*changelog.txt
-/src/generated/
-/src/test/
