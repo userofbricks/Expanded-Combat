@@ -43,26 +43,16 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     public ECWeaponItem(Material material, WeaponType weapon, Properties properties, int addedDmg) {
-        super(properties.stacksTo(1).component(DataComponents.DAMAGE, 0).component(DataComponents.TOOL, createToolProperties()));
+        super( material.defense().fireResistant() ?
+                properties.durability(Math.round(material.durability().toolBaseDurability() * (float)weapon.config().durabilityMultiplier()))
+                        .component(DataComponents.TOOL, createToolProperties())
+                        .component(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers(material, weapon, addedDmg)).fireResistant() :
+                properties.durability(Math.round(material.durability().toolBaseDurability() * (float)weapon.config().durabilityMultiplier()))
+                        .component(DataComponents.TOOL, createToolProperties())
+                        .component(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers(material, weapon, addedDmg)));
         this.material = material;
         this.weapon = weapon;
         this.addedDmg = addedDmg;
-    }
-
-    //TODO: see if works in constructor, if not move to the event implementation
-    //sadly can't put this in the constructors due to materials technically being loaded after items. although with cloth config this might not be true anymore.
-    protected DataComponentMap.Builder componentBuilder() {
-        DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
-
-        components.set(DataComponents.MAX_DAMAGE, (int)(getMaterial().durability().toolBaseDurability() * getWeapon().config().durabilityMultiplier()))
-                .set(DataComponents.MAX_STACK_SIZE, 1);
-        components.set(DataComponents.ATTRIBUTE_MODIFIERS, getAttributeModifiers());
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
-
-        return components;
-    }
-    public DataComponentMap components() {
-        return Item.Properties.validateComponents(componentBuilder().build());
     }
 
     //copy the tool properties from the sword item class
@@ -79,19 +69,23 @@ public class ECWeaponItem extends Item implements IMaterialItem {
     }
 
     //TODO: make offhand get checked for action when main hand is in cool down if dual wield and make dmg get lowered if holding something in offhand it two handed
-    public ItemAttributeModifiers getAttributeModifiers() {
-        EquipmentSlotGroup slotGroup = getWeapon().config().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
+    public static ItemAttributeModifiers getAttributeModifiers(Material material, WeaponType weapon, int addedDmg) {
+        EquipmentSlotGroup slotGroup = weapon.config().gripType() == GripType.DUALWIELD ? EquipmentSlotGroup.HAND : EquipmentSlotGroup.MAINHAND;
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-        builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, getWeapon().config().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, getWeapon().config().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
-        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, getWeapon().config().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(material, weapon, addedDmg), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, weapon.config().attackSpeed(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER, weapon.config().knockback(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
+        builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ATTACK_REACH_MODIFIER, weapon.config().attackRange(), AttributeModifier.Operation.ADD_VALUE), slotGroup);
         return builder.build();
     }
 
+    public static double getDamage(Material material, WeaponType weapon, int addedDmg) {
+        return 3 + material.offense().addedAttackDamage() + weapon.config().baseAttackDamage() + addedDmg;
+    }
+
     public double getDamage() {
-        return 3 + getMaterial().offense().addedAttackDamage() + getWeapon().config().baseAttackDamage() + addedDmg;
+        return getDamage(material, weapon, addedDmg);
     }
 
     public float getMendingBonus() {

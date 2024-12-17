@@ -20,17 +20,10 @@ public class ECBowItem extends BowItem implements IMaterialItem {
     public final Material material;
 
     public ECBowItem(Item.Properties builder, Material material) {
-        super(builder);
+        super(material.defense().fireResistant() ?
+                builder.durability(material.durability().bowCrossbowDurability()).fireResistant() :
+                builder.durability(material.durability().bowCrossbowDurability()));
         this.material = material;
-    }
-    public DataComponentMap components() {
-        DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
-
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durability().bowCrossbowDurability())
-                .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
-
-        return Item.Properties.validateComponents(components.build());
     }
 
     private float getVelocitiMultiplier() {

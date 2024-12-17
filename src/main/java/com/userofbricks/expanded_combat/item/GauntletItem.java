@@ -95,19 +95,12 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     }
 
     public GauntletItem(Properties properties, Material materialIn, Layer... layers) {
-        super(properties);
+        super(materialIn.defense().fireResistant() ?
+                properties.durability(materialIn.durability().gauntletDurability()).fireResistant() :
+                properties.durability(materialIn.durability().gauntletDurability()));
         this.material = materialIn;
         this.GAUNTLET_TEXTURE_LAYERS = layers;
         DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
-    }
-    public @NotNull DataComponentMap components() {
-        DataComponentMap.Builder components = DataComponentMap.builder().addAll(super.components());
-
-        components.set(DataComponents.MAX_DAMAGE, getMaterial().durability().gauntletDurability())
-                .set(DataComponents.MAX_STACK_SIZE, 1);
-        if (getMaterial().defense().fireResistant()) components.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
-
-        return Item.Properties.validateComponents(components.build());
     }
 
     public Material getMaterial() {
