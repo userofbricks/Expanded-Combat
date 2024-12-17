@@ -42,7 +42,7 @@ public class ECRecipes {
     }
 
     public List<IShieldSmithingRecipe> getShieldSmithingRecipes(IRecipeCategory<IShieldSmithingRecipe> shieldSmithingCategory) {
-        CategoryRecipeValidator<IShieldSmithingRecipe> validator = new CategoryRecipeValidator<>(shieldSmithingCategory, ingredientManager, 2);
+        CategoryRecipeValidator<IShieldSmithingRecipe> validator = new CategoryRecipeValidator<>(shieldSmithingCategory, ingredientManager, 6);
         return getValidHandledRecipes(recipeManager, ECRecipeSerializerInit.SHIELD_TYPE.get(), validator);
     }
 }

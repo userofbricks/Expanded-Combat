@@ -17,7 +17,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.userofbricks.expanded_combat.init.MaterialInit.shieldToMaterialsList;
 
@@ -25,6 +27,12 @@ public class ECShieldSmithingRecipeMaker {
     public static List<IShieldSmithingRecipe> createShieldSmithingRecipes(IStackHelper stackHelper) {
         List<IShieldSmithingRecipe> recipes = new ArrayList<>();
         List<ItemStack> bases = new ArrayList<>();
+
+        /*List<Material> nonSingleAdditions = new ArrayList<>();
+        Map<Material, List<ItemStack>> singleAddonBasses = new HashMap<>();
+        //This is a map to know which single add to put the base under for the map above
+        Map<Material, Material> craftedFroms = new HashMap<>();*/
+
         bases.add(new ItemStack(Items.SHIELD));
         for (ShieldToMaterials shieldToMaterials : shieldToMaterialsList) {
             bases.add(new ItemStack(shieldToMaterials.itemLikeSupplier().get()));
@@ -38,7 +46,25 @@ public class ECShieldSmithingRecipeMaker {
             shield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
             shield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.shieldUse == Material.ShieldUse.NOT_TRIM ? VanillaECPlugin.IRON.getName() : material.getName());
             bases.add(shield);
+
+            /*/seperate single addons
+            if (material.getConfig().crafting.isSingleAddition) {
+                craftedFroms.put(material.craftedFrom, material);
+                singleAddonBasses.put(material, new ArrayList<>());
+            } else nonSingleAdditions.add(material);*/
         }
+
+        /*for (Material ul_m_dr : nonSingleAdditions) {
+        for (Material ur_dl : nonSingleAdditions) {
+            ItemStack resultShield = new ItemStack((ul_m_dr.getConfig().fireResistant || ur_dl.getConfig().fireResistant) ? ECItems.SHIELD_TIER_3.get() : ECItems.SHIELD_TIER_1.get());
+            resultShield.getOrCreateTag().putString(ECShieldItem.ULMaterialTagName, ul_m_dr.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, ur_dl.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, ur_dl.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, ul_m_dr.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, ul_m_dr.shieldUse == Material.ShieldUse.ALL ? ul_m_dr.getName() : VanillaECPlugin.IRON.getName());
+        }
+        }*/
+
 
         for (Material material :
                 MaterialInit.shieldMaterials) {
@@ -50,8 +76,7 @@ public class ECShieldSmithingRecipeMaker {
             resultShield.getOrCreateTag().putString(ECShieldItem.URMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.DLMaterialTagName, material.getName());
             resultShield.getOrCreateTag().putString(ECShieldItem.DRMaterialTagName, material.getName());
-            if (material.shieldUse == Material.ShieldUse.ALL) resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.getName());
-            else resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, VanillaECPlugin.IRON.getName());
+            resultShield.getOrCreateTag().putString(ECShieldItem.MMaterialTagName, material.shieldUse == Material.ShieldUse.ALL ? material.getName() : VanillaECPlugin.IRON.getName());
 
             ResourceLocation id = new ResourceLocation(ExpandedCombat.MODID, "jei.shield.smithing." + resultShield.getDescriptionId());
 

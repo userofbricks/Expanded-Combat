@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="fixed quiver bugs on removing arrows from quiver">
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="updated netherite arrow fletching recipe to output up to 16 instead of 32">
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/init/ECItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/ECRecipes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldSmithingRecipeMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/compatability/jei/recipes/ECShieldSmithingRecipeMaker.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="" />
@@ -133,31 +135,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.runClient.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor": "Run",
-    "Gradle.Expanded-Combat [:prepareRunClientCompile].executor": "Run",
-    "Gradle.Expanded-Combat [build].executor": "Run",
-    "Gradle.Expanded-Combat [createMcpToSrg].executor": "Run",
-    "Gradle.Expanded-Combat [genIntellijRuns].executor": "Run",
-    "Gradle.Expanded-Combat [publishToMavenLocal].executor": "Run",
-    "Gradle.Expanded-Combat [runClient].executor": "Debug",
-    "Gradle.Expanded-Combat [runData].executor": "Run",
-    "JavaClassFindUsagesOptions.isMethodsUsages": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "forge-1.20.1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/main/resources/data/expanded_combat/damage_type",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3143969",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.runClient.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunClient :prepareRunClientCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunClientCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [createMcpToSrg].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [genIntellijRuns].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publish].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [runClient].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [runData].executor&quot;: &quot;Run&quot;,
+    &quot;JavaClassFindUsagesOptions.isMethodsUsages&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;forge-1.20.1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/Expanded-Combat&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3143969&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.item" />
@@ -167,11 +172,11 @@
       <recent name="com.userofbricks.expanded_combat.compatability.epicfight" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/expanded_combat/damage_type" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/trims" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/item_large" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/sentry" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/expanded_combat/textures/model/shields/empty" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../EC-Ice-and-Fire/src/main/resources/assets/ec_iaf_plugin/textures/item/crossbow" />
@@ -226,6 +231,28 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Expanded-Combat [publishMavenJavaPublicationToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishMavenJavaPublicationToMavenLocal" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Expanded-Combat [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -248,12 +275,34 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Expanded-Combat [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publish" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Expanded-Combat [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -270,68 +319,24 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Expanded-Combat [runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="runData" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="reimagined_quiver [genIntellijRuns]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="genIntellijRuns" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.runClient" />
       <item itemvalue="Application.runData" />
       <item itemvalue="Application.runGameTestServer" />
       <item itemvalue="Application.runServer" />
-      <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
-      <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
-      <item itemvalue="Gradle.Expanded-Combat [runData]" />
-      <item itemvalue="Gradle.Expanded-Combat [build]" />
       <item itemvalue="Gradle.Expanded-Combat [runClient]" />
+      <item itemvalue="Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal]" />
+      <item itemvalue="Gradle.Expanded-Combat [publish]" />
+      <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
+      <item itemvalue="Gradle.Expanded-Combat [build]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Expanded-Combat [runClient]" />
-        <item itemvalue="Gradle.Expanded-Combat [runData]" />
         <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
         <item itemvalue="Gradle.Expanded-Combat [build]" />
-        <item itemvalue="Gradle.reimagined_quiver [genIntellijRuns]" />
+        <item itemvalue="Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal]" />
+        <item itemvalue="Gradle.Expanded-Combat [publish]" />
       </list>
     </recent_temporary>
   </component>
@@ -689,7 +694,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -722,7 +727,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="bumped to 3.0.7, updated custom weapons plugin to remove recipes from gauntlets" />
     <MESSAGE value="re-added doge movement see if works later" />
     <MESSAGE value="fixed kb resist maxes" />
     <MESSAGE value="fixed speed amounts" />
@@ -747,7 +751,8 @@
     <MESSAGE value="changed folder name for resources needed for datagen only" />
     <MESSAGE value="fixed quiver bug not distributing arrows across all valid non-full stacks when inserted" />
     <MESSAGE value="fixed quiver bugs on removing arrows from quiver" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed quiver bugs on removing arrows from quiver" />
+    <MESSAGE value="updated netherite arrow fletching recipe to output up to 16 instead of 32" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated netherite arrow fletching recipe to output up to 16 instead of 32" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,28 +1,31 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
         maven {
             url = 'https://repo.spongepowered.org/repository/maven-public/'
             content { includeGroup "org.spongepowered" }
         }
-        mavenCentral()
 
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradle_version}", changing: true
         classpath group: 'org.spongepowered', name: 'mixingradle', version: "${mixingradle_version}"
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
+plugins {
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'maven-publish'
 apply from: '../minecraft_gradle_tools/src/mc1201/ECDependencies.gradle'
 
 jarJar.enable()
 
-version = "${mod_version}"
+version = "${minecraft_version}-${mod_version}"
 group = "com.userofbricks.${modid}"
-archivesBaseName = "${modid}-${minecraft_version}"
+
+base {
+    archivesName = "${modid}"
+}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -81,3 +84,17 @@ reobf {
 }
 
 tasks.jarJar.finalizedBy('reobfJarJar')
+
+// Example configuration to allow publishing using the maven-publish plugin
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
