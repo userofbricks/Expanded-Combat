@@ -46,3 +46,5 @@ run_test
 */.DS_Store
 .DS_Store
 repo
+/run-server/
+/run-data/
