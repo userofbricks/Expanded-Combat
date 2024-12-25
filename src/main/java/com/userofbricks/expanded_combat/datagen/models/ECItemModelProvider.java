@@ -20,6 +20,10 @@ public class ECItemModelProvider extends ItemModelProviderBase {
     public ECItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, MODID, existingFileHelper);
     }
+
+    public ECItemModelProvider(PackOutput output, String mod_id, ExistingFileHelper existingFileHelper) {
+        super(output, mod_id, existingFileHelper);
+    }
     @Override
     protected void registerModels() {
         for (DeferredHolder<Item, ? extends Item> item : ECItems.ITEMS.getEntries()) {
@@ -42,7 +46,7 @@ public class ECItemModelProvider extends ItemModelProviderBase {
         basicItem(ECItems.FLETCHED_STICKS.asItem());
     }
 
-    private void dynamicallyGenerateModels(DeferredHolder<Item, ? extends Item> item) {
+    protected void dynamicallyGenerateModels(DeferredHolder<Item, ? extends Item> item) {
         if (item.get() instanceof GauntletItem gauntletItem) {
             boolean dyeable = false;
             for (GauntletItem.Layer layer : gauntletItem.GAUNTLET_TEXTURE_LAYERS) {

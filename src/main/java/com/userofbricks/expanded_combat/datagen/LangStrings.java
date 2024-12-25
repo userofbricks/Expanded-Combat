@@ -102,6 +102,11 @@ public class LangStrings extends LanguageProvider {
         this.modId = MODID;
     }
 
+    public LangStrings(PackOutput output, String modId) {
+        super(output, modId, "en_us");
+        this.modId = modId;
+    }
+
 
     @Override
     protected void addTranslations() {
