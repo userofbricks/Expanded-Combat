@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 
 /**
@@ -57,12 +58,13 @@ public class AncientCity {
     @SubscribeEvent
     public static void addNewBuilding(final ServerAboutToStartEvent event) {
 
-
         Registry<StructureTemplatePool> templatePoolRegistry = event.getServer().registryAccess().registry(Registries.TEMPLATE_POOL).orElseThrow();
         Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
 
-        addBuildingToPool(templatePoolRegistry, processorListRegistry,
-                new ResourceLocation("minecraft:ancient_city/structures"),
-                MODID+":ancient_city/structures/weaponry_barracks", 1);
+        if(CONFIG.enableWeapons) {
+            addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                    new ResourceLocation("minecraft:ancient_city/structures"),
+                    MODID + ":ancient_city/structures/weaponry_barracks", 1);
+        }
     }
 }

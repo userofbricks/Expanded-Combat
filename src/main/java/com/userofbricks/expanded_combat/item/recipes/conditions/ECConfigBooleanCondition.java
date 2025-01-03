@@ -1,6 +1,8 @@
 package com.userofbricks.expanded_combat.item.recipes.conditions;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.userofbricks.expanded_combat.ExpandedCombat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -11,6 +13,10 @@ import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 
 public class ECConfigBooleanCondition implements ICondition {
     private static final ResourceLocation NAME = new ResourceLocation(ExpandedCombat.MODID, "config_boolean");
+    public static final Codec<ECConfigBooleanCondition> CODEC = RecordCodecBuilder.create(
+            instance -> instance.group(Codec.STRING.fieldOf(NAME.getPath()).forGetter(m -> m.configBooleanName))
+                    .apply(instance, ECConfigBooleanCondition::new)
+            );
     private final String configBooleanName;
 
     public ECConfigBooleanCondition(String configBooleanName)

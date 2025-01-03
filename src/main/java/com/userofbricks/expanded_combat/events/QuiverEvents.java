@@ -30,7 +30,7 @@ public class QuiverEvents {
         Player player = evt.getEntity();
         ItemStack stackToPickup = evt.getItem().getItem();
         LazyOptional<ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(player);
-        if(optionalCuriosInventory.resolve().isEmpty()) return;
+        if(optionalCuriosInventory.resolve().isEmpty() || !CONFIG.enableQuivers) return;
         ICuriosItemHandler playerCuriosInventory = optionalCuriosInventory.resolve().get();
         SlotResult slotResult = playerCuriosInventory.findFirstCurio( item -> item.getItem() instanceof ECQuiverItem).orElse(null);
         if(stackToPickup.is(ItemTags.ARROWS) && slotResult != null && slotResult.stack().getItem() instanceof ECQuiverItem quiverItem) {
@@ -50,7 +50,7 @@ public class QuiverEvents {
     @Deprecated
     public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
         AbstractContainerScreen<?> screen = evt.getContainerScreen();
-        if (screen instanceof CuriosScreenV2 curiosScreen) {
+        if (screen instanceof CuriosScreenV2 curiosScreen && CONFIG.enableQuivers) {
             ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/gui/container/quiver.png");
             int left = curiosScreen.getGuiLeft();
             int top = curiosScreen.getGuiTop();
@@ -94,7 +94,7 @@ public class QuiverEvents {
         Screen screen = event.getScreen();
 
         name:
-        if (screen instanceof CuriosScreenV2 curiosScreen) {
+        if (screen instanceof CuriosScreenV2 curiosScreen && CONFIG.enableQuivers) {
             LazyOptional <ICuriosItemHandler> optionalCuriosInventory = CuriosApi.getCuriosInventory(curiosScreen.getMenu().player);
             if (optionalCuriosInventory.resolve().isEmpty()) break name;
 

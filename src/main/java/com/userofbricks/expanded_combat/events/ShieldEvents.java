@@ -76,7 +76,7 @@ public class ShieldEvents {
     @SubscribeEvent
     public static void onInventoryGuiInit(ScreenEvent.Init.Post evt) {
         Screen screen = evt.getScreen();
-        if (screen instanceof SmithingScreen) {
+        if (screen instanceof SmithingScreen && CONFIG.enableShields) {
             AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
             int sizeX = 20;
             int sizeY = 20;
@@ -100,7 +100,7 @@ public class ShieldEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void drawTabs(ContainerScreenEvent.Render.Background e) {
-        if (e.getContainerScreen() instanceof SmithingScreen) {
+        if (e.getContainerScreen() instanceof SmithingScreen && CONFIG.enableShields) {
             AbstractContainerScreen<?> smithingTableScreen = e.getContainerScreen();
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();

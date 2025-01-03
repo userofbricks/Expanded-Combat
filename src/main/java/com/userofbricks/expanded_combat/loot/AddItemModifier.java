@@ -3,6 +3,8 @@ package com.userofbricks.expanded_combat.loot;
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECMaterialBooleanCondition;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,17 +26,22 @@ import java.util.function.Supplier;
 public class AddItemModifier extends LootModifier {
     public static final Supplier<Codec<AddItemModifier>> CODEC = Suppliers.memoize(() ->
                     RecordCodecBuilder.create(inst -> codecStart(inst)
-                            .and(ForgeRegistries.ITEMS.getCodec().fieldOf("loot_item").forGetter(m -> m.lootItem)).apply(inst, AddItemModifier::new))
+                            .and(ForgeRegistries.ITEMS.getCodec().fieldOf("loot_item").forGetter(m -> m.lootItem))
+                            .and(ECConfigBooleanCondition.CODEC.fieldOf("config_condition").forGetter(m -> m.config))
+                            .apply(inst, AddItemModifier::new))
             );
 
     protected final Item lootItem;
-    public AddItemModifier(LootItemCondition[] conditionsIn, Item lootItem) {
+    protected final ECConfigBooleanCondition config;
+    public AddItemModifier(LootItemCondition[] conditionsIn, Item lootItem, ECConfigBooleanCondition config) {
         super(conditionsIn);
         this.lootItem = lootItem;
+        this.config = config;
     }
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+        if (!config.test(ICondition.IContext.EMPTY)) return generatedLoot;
         for (LootItemCondition condition: conditions) {
             if (!condition.test(context)) return generatedLoot;
         }

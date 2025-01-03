@@ -20,8 +20,7 @@ import top.theillusivec4.curios.common.inventory.container.CuriosContainerV2;
 
 import javax.annotation.Nonnull;
 
-import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
-import static com.userofbricks.expanded_combat.ExpandedCombat.QUIVER_CURIOS_IDENTIFIER;
+import static com.userofbricks.expanded_combat.ExpandedCombat.*;
 
 @Mixin({CuriosContainerV2.class})
 public class CuriosMenuMixin {
@@ -36,25 +35,27 @@ public class CuriosMenuMixin {
 
     @Unique
     protected void expanded_Combat$createQuiver() {
-        CuriosApi.getCuriosInventory(this.player).ifPresent(curios -> {
-            ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
-            IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-            ((CuriosContainerV2)(Object)this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));
-            ICurioStacksHandler arrowStacksHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER);
-            IDynamicStackHandler arrowStackHandler = arrowStacksHandler.getStacks();
-            int x = 176 + 2;
-            int y = 12;
-            int row = 1;
-            for (int i = 0; i < arrowStackHandler.getSlots(); i++, row++) {
-                int finalI = i;
-                ((CuriosContainerV2)(Object)this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y));
-                y += 18;
-                if (row == 8) {
-                    row = 0;
-                    y = 12;
-                    x += 18;
+        if(CONFIG.enableQuivers) {
+            CuriosApi.getCuriosInventory(this.player).ifPresent(curios -> {
+                ICurioStacksHandler stacksHandler = curios.getCurios().get(QUIVER_CURIOS_IDENTIFIER);
+                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                ((CuriosContainerV2) (Object) this).addSlot(new CurioSlot(this.player, stackHandler, 0, QUIVER_CURIOS_IDENTIFIER, 77, 44, stacksHandler.getRenders(), true));
+                ICurioStacksHandler arrowStacksHandler = curios.getCurios().get(ARROWS_CURIOS_IDENTIFIER);
+                IDynamicStackHandler arrowStackHandler = arrowStacksHandler.getStacks();
+                int x = 176 + 2;
+                int y = 12;
+                int row = 1;
+                for (int i = 0; i < arrowStackHandler.getSlots(); i++, row++) {
+                    int finalI = i;
+                    ((CuriosContainerV2) (Object) this).addSlot(new ArrowSlot(this.player, arrowStackHandler, finalI, ARROWS_CURIOS_IDENTIFIER, x, y));
+                    y += 18;
+                    if (row == 8) {
+                        row = 0;
+                        y = 12;
+                        x += 18;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

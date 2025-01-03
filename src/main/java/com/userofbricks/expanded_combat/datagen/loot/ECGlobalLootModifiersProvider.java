@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.datagen.loot;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import com.userofbricks.expanded_combat.loot.AddItemFromGauntletModifier;
 import com.userofbricks.expanded_combat.loot.AddItemModifier;
 import com.userofbricks.expanded_combat.loot.AddItemWithoutGauntletModifier;
@@ -38,7 +39,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
             add("end_city_treasure_void_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
                     new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "end_city_treasure")).build(),
                     LootItemRandomChanceCondition.randomChance(0.05f).build()
-            }, entry.getValue().get()));
+            }, entry.getValue().get(), new ECConfigBooleanCondition("weapon")));
         }
 
         for (String chestLoot : Arrays.asList("shipwreck_treasure", "underwater_ruin_big", "woodland_mansion", "buried_treasure")) {
@@ -46,7 +47,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_cold_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.getValue().get(), new ECConfigBooleanCondition("weapon")));
             }
         }
 
@@ -55,7 +56,7 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_heat_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.getValue().get(), new ECConfigBooleanCondition("weapon")));
             }
         }
 
@@ -64,26 +65,26 @@ public class ECGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 add(chestLoot + "_soul_" + entry.getKey().toLowerCase().replace(" ", "_"), new AddItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/" + chestLoot)).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()
-                }, entry.getValue().get()));
+                }, entry.getValue().get(), new ECConfigBooleanCondition("weapon")));
             }
         }
 
         add("bastion_treasure" + "_fighters_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "bastion_treasure")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get()));
+        }, CustomWeaponsPlugin.FIGHTER.getGauntletEntry().get(), new ECConfigBooleanCondition("gauntlet")));
         add("woodland_mansion" + "_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "woodland_mansion")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.GAUNTLET.getGauntletEntry().get()));
+        }, CustomWeaponsPlugin.GAUNTLET.getGauntletEntry().get(), new ECConfigBooleanCondition("gauntlet")));
         add("pillager_outpost" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "pillager_outpost")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get()));
+        }, CustomWeaponsPlugin.MAULERS.getGauntletEntry().get(), new ECConfigBooleanCondition("gauntlet")));
         add("ancient_city" + "_soul_gauntlet", new AddItemModifier(new LootItemCondition[]{
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/" + "ancient_city")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()
-        }, CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get()));
+        }, CustomWeaponsPlugin.SOUL_MATERIAL.getGauntletEntry().get(), new ECConfigBooleanCondition("gauntlet")));
     }
 
     private void generateSoulLootModifiers() {

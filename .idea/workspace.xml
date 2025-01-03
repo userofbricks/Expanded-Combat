@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="updated netherite arrow fletching recipe to output up to 16 instead of 32">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/TestingPlugin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/config/PluginConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/plugins/TestPlugin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/util/PluginLangStrings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/META-INF/mods.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/pack.mcmeta" afterDir="false" />
+    <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="starting adding a test compat mod in the testing section for future convenience">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/MaterialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/config/MaterialConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/datagen/loot/ECGlobalLootModifiersProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/QuiverEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/ShieldEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/VillagerTradeEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/events/VillagerTradeEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/conditions/ECConfigBooleanCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/recipes/conditions/ECConfigBooleanCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/loot/AddItemModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/loot/AddItemModifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/world/structure_modification/AncientCity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/world/structure_modification/AncientCity.java" afterDir="false" />
     </list>
     <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
     <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="" />
@@ -691,7 +693,7 @@
       <option name="project" value="LOCAL" />
       <updated>1691719704092</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <option name="localTasksCounter" value="233" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -724,7 +726,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed kb resist maxes" />
     <MESSAGE value="fixed speed amounts" />
     <MESSAGE value="tweaked katana blocking" />
     <MESSAGE value="bumped to 3.1.0 due to scythes potion ability being altered" />
@@ -749,7 +750,8 @@
     <MESSAGE value="fixed quiver bugs on removing arrows from quiver" />
     <MESSAGE value="updated netherite arrow fletching recipe to output up to 16 instead of 32" />
     <MESSAGE value="3.3.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.3.2" />
+    <MESSAGE value="starting adding a test compat mod in the testing section for future convenience" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting adding a test compat mod in the testing section for future convenience" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

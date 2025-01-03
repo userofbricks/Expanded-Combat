@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
+import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
 import static com.userofbricks.expanded_combat.ExpandedCombat.MODID;
 import static net.minecraft.world.entity.npc.VillagerProfession.*;
 
@@ -22,7 +23,7 @@ public class VillagerTradeEvents {
 
     @SubscribeEvent
     public static void villagerTrades(VillagerTradesEvent event) {
-        if (event.getType() == WEAPONSMITH) {
+        if (event.getType() == WEAPONSMITH && CONFIG.enableWeapons) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
             VanillaECPlugin.IRON.getWeapons().forEach((weaponString, weaponRegistryEntry) -> {
