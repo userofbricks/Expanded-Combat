@@ -1,0 +1,60 @@
+
+modLoader="javafml" #mandatory
+
+loaderVersion="${loader_version_range}" #mandatory
+
+license="${mod_license}"
+
+#issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[mods]] #mandatory
+modId="${modid}_test" #mandatory
+version="1.0-TESTING" #mandatory
+displayName="${mod_name} Testing" #mandatory
+#displayURL="http://example.com/" #optional
+#logoFile="examplemod.png" #optional
+authors="${mod_authors}" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''Testing ${mod_name}'s plugin features'''
+
+[[dependencies.${modid}_test]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="${forge_version_range}" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}_test]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}_test]]
+    modId="curios"
+    mandatory=true
+    versionRange="[${curios_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}_test]]
+    modId="cloth_config"
+    mandatory=true
+    versionRange="[${cloth_config_api_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${modid}_test]]
+    modId="${modid}"
+    mandatory=true
+    versionRange="[${mod_version},)"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.${modid}_test]]
+    modId="bettercombat"
+    mandatory=false
+    versionRange="[${better_combat_version},)"
+    ordering="NONE"
+    side="BOTH"

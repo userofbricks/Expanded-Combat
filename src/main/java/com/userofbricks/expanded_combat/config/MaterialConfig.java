@@ -5,10 +5,7 @@ import com.userofbricks.expanded_combat.util.IngredientUtil;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -215,18 +212,20 @@ public class MaterialConfig {
         private int quiverSlots = 0;
 
 
+        //only use for vanilla tiers. Loading order stuff often makes this infeasible to use
         public Builder fromTier(Tier tier) {
             return this.toolDurability(tier.getUses())
                     .offenseEnchantability(tier.getEnchantmentValue())
                     .repairItem(tier.getRepairIngredient())
                     .gauntletAttackDamage(tier.getAttackDamageBonus());
         }
+        //only use for vanilla tiers. Loading order stuff often makes this infeasible to use
         public Builder fromTierNoIngredient(Tier tier) {
             return this.toolDurability(tier.getUses())
                     .offenseEnchantability(tier.getEnchantmentValue())
                     .gauntletAttackDamage(tier.getAttackDamageBonus());
         }
-
+        //only use for vanilla Armor Materials. Loading order stuff often makes this infeasible to use
         public Builder fromArmorMaterial(ArmorMaterial armorMaterial) {
             return this.defenseEnchantability(armorMaterial.getEnchantmentValue())
                     .equipSound(armorMaterial.getEquipSound())
@@ -235,7 +234,7 @@ public class MaterialConfig {
                     .armorToughness(armorMaterial.getToughness())
                     .knockbackResistance(armorMaterial.getKnockbackResistance());
         }
-
+        //only use for vanilla Armor Materials. Loading order stuff often makes this infeasible to use
         public Builder fromArmorMaterialNoIngredient(ArmorMaterial armorMaterial) {
             return this.defenseEnchantability(armorMaterial.getEnchantmentValue())
                     .equipSound(armorMaterial.getEquipSound())
@@ -247,6 +246,11 @@ public class MaterialConfig {
         public Builder toolDurability(int durability) {
             this.toolDurability = durability;
             return this;
+        }
+
+        //this is based off of Netherite tool durability and netherite armor durability mul
+        public Builder toolDurabilityMul(int durabilityMul) {
+            return toolDurability(Math.round(2031f/37f) * durabilityMul);
         }
 
         public Builder bowDurability(int durability) {
@@ -275,13 +279,11 @@ public class MaterialConfig {
         }
 
         public Builder equipSound(ResourceLocation equipSound) {
-            this.equipSound = equipSound.toString();
-            return this;
+            return equipSound(equipSound.toString());
         }
 
         public Builder equipSound(SoundEvent equipSound) {
-            this.equipSound = equipSound.getLocation().toString();
-            return this;
+            return equipSound(equipSound.getLocation());
         }
 
         public Builder craftingItem(String item) {
@@ -290,8 +292,12 @@ public class MaterialConfig {
         }
 
         public Builder craftingItem(ResourceLocation item) {
-            this.craftingItem = item.toString();
-            return this;
+            return craftingItem(item.toString());
+        }
+
+        public Builder craftingItem(Item item) {
+            ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
+            return location != null ? craftingItem(location) : craftingItem("");
         }
 
         public Builder repairItem(String... items) {
@@ -317,6 +323,24 @@ public class MaterialConfig {
         public Builder repairItem(Ingredient ingredient) {
             this.repairItem = IngredientUtil.getItemStringFromIngrediant(ingredient);
             return this;
+        }
+
+        public Builder repairItem(Item... items) {
+            List<ResourceLocation> locations = new ArrayList<>();
+            for (Item item : items) {
+                ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
+                if (location != null) locations.add(location);
+            }
+            return repairItem(locations.toArray(new ResourceLocation[0]));
+        }
+
+        public Builder repairAddItem(Item... items) {
+            List<ResourceLocation> locations = new ArrayList<>();
+            for (Item item : items) {
+                ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
+                if (location != null) locations.add(location);
+            }
+            return repairAddItem(locations.toArray(new ResourceLocation[0]));
         }
 
         public Builder mendingBonus(float mendingBonus) {
