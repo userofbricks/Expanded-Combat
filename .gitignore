@@ -35,3 +35,5 @@ forge*changelog.txt
 /src/main/java/com/userofbricks/expandedcombat/todo.java
 /src/generated/
 /run_server/*
+/run-data/
+/runs/

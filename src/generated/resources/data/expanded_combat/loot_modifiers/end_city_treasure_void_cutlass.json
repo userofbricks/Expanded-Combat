@@ -10,5 +10,8 @@
       "condition": "minecraft:random_chance"
     }
   ],
+  "config_condition": {
+    "config_boolean": "weapon"
+  },
   "loot_item": "expanded_combat:void_touched_cutlass"
 }
