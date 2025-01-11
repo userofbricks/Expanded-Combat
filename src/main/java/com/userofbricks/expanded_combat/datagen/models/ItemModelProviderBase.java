@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.datagen.models;
 
+import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.material.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.ItemModelGenerators;
@@ -94,7 +95,7 @@ public abstract class ItemModelProviderBase extends ItemModelProvider {
         else mainModel = generated(item, main_texture, overlay_texture);
 
         for (TrimModelData trimModelData : GENERATED_TRIM_MODELS) {
-            ResourceLocation trim_texture = modLoc("trims/items/gauntlet_trim_" + trimModelData.name() + (
+            ResourceLocation trim_texture = ExpandedCombat.modLoc("trims/items/gauntlet_trim_" + trimModelData.name() + (
                     (item.getPath().contains("gold") && trimModelData.name.equals("gold"))
                             || (item.getPath().contains("iron") && trimModelData.name.equals("iron"))
                             || (item.getPath().contains("diamond") && trimModelData.name.equals("diamond"))
