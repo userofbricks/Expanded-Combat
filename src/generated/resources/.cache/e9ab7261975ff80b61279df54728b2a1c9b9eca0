@@ -1,4 +1,0 @@
-// 1.20.1	2024-03-24T15:00:25.884226	Tags for minecraft:damage_type mod id expanded_combat
-767e22dc957c7c8f497b09a8ba3ff37456480039 data/minecraft/tags/damage_type/bypasses_cooldown.json
-f22ff6adb93f35135a63422d1404a23708ddfed2 data/minecraft/tags/damage_type/is_fire.json
-cca865f8f02a85ad79092c45a25e6b2da79a35b1 data/minecraft/tags/damage_type/is_freezing.json

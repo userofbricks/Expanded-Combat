@@ -1,9 +1,0 @@
-{
-  "values": [
-    "expanded_combat:dmg_no_weapon",
-    "expanded_combat:heat_dmg",
-    "expanded_combat:cold_dmg",
-    "expanded_combat:soul_dmg",
-    "expanded_combat:void_dmg"
-  ]
-}
