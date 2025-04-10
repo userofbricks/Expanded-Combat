@@ -35,21 +35,30 @@ public class ECItemTagsProvider extends ItemTagsProvider {
             }
             if (deferredItem.get() instanceof ECBowItem item) {
                 tag(Tags.Items.TOOLS_BOW).add(item);
+                tag(ItemTags.BOW_ENCHANTABLE).add(item);
+                tag(ItemTags.DURABILITY_ENCHANTABLE).add(item);
             }
             if (deferredItem.get() instanceof ECCrossBowItem item) {
                 tag(Tags.Items.TOOLS_CROSSBOW).add(item);
+                tag(ItemTags.CROSSBOW_ENCHANTABLE).add(item);
+                tag(ItemTags.DURABILITY_ENCHANTABLE).add(item);
             }
             if (deferredItem.get() instanceof GauntletItem item) {
                 tag(ECTags.GAUNTLETS).add(item);
                 tag(ItemTags.TRIMMABLE_ARMOR).add(item);
                 tag(ECTags.GAUNTLET_ENCHANTABLE).add(item);
                 tag(ECTags.AGILITY_ENCHANTABLE).add(item);
+                tag(ItemTags.DURABILITY_ENCHANTABLE).add(item);
             }
             if (deferredItem.get() instanceof QuiverItem item) {
                 tag(ECTags.QUIVERS).add(item);
             }
             if (deferredItem.get() instanceof PotionWeaponItem item) {
                 tag(ECTags.POTION_WEAPONS).add(item);
+            }
+            if (deferredItem.get() instanceof ECWeaponItem item) {
+                tag(ItemTags.SWORDS).add(item);
+                tag(ItemTags.DURABILITY_ENCHANTABLE).add(item);
             }
             if (deferredItem.get() instanceof ECWeaponItem item && (
                     item.weapon.id() == BATTLE_STAFF.id()
