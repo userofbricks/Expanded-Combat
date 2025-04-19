@@ -204,6 +204,11 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
             this.dyeable = pDyeable;
             this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/model/gauntlet/" + relativeTexture.getPath() + ".png");
         }
+        public Layer(Function<ResourceLocation, ResourceLocation> relativeTexture, boolean pDyeable){
+            this.suffix = "";
+            this.dyeable = pDyeable;
+            this.texture = relativeTexture;
+        }
 
         private Function<ResourceLocation, ResourceLocation> resolveTexture() {
             return assetName -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + (!suffix.isEmpty() ? ("_" + suffix) : "") + ".png");
