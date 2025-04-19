@@ -52,7 +52,7 @@ public class GauntletRenderer implements IGauntletRenderer {
 
             ResourceLocation material = gauntletItem.material.id();
             for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
-                VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.armorCutoutNoCull(layer.texture(gauntletItem.material.id())));
+                VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.armorCutoutNoCull(layer.texture(gauntletItem.material.id(), stack)));
                 if (layer.dyeable()) {
                     int i = FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, DyedItemColor.LEATHER_COLOR));
                     model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, i);
@@ -87,7 +87,7 @@ public class GauntletRenderer implements IGauntletRenderer {
             if (stack.getItem() instanceof GauntletItem gauntletItem) {
                 ResourceLocation material = gauntletItem.material.id();
                 for (GauntletItem.Layer layer: gauntletItem.GAUNTLET_TEXTURE_LAYERS) {
-                    VertexConsumer builder = multiBufferSource.getBuffer(RenderType.armorCutoutNoCull(layer.texture(gauntletItem.material.id())));
+                    VertexConsumer builder = multiBufferSource.getBuffer(RenderType.armorCutoutNoCull(layer.texture(gauntletItem.material.id(), stack)));
 
                     if (layer.dyeable()) {
                         int i = FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, DyedItemColor.LEATHER_COLOR));

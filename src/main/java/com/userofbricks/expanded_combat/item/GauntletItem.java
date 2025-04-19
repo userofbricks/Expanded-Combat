@@ -10,15 +10,12 @@ import com.userofbricks.expanded_combat.init.ECEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -43,6 +40,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -182,7 +180,7 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
     public static final class Layer {
         private final String suffix;
         private final boolean dyeable;
-        private final Function<ResourceLocation, ResourceLocation> texture;
+        private final BiFunction<ResourceLocation, ItemStack, ResourceLocation> texture;
 
         public Layer(String suffix, boolean pDyeable) {
             this.suffix = suffix;
@@ -202,20 +200,20 @@ public class GauntletItem extends Item implements ICurioItem, IMaterialItem
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
-            this.texture = assetName -> relativeTexture.withPath(p_324187_ -> "textures/model/gauntlet/" + relativeTexture.getPath() + ".png");
+            this.texture = (assetName, stack) -> relativeTexture.withPath(p_324187_ -> "textures/model/gauntlet/" + relativeTexture.getPath() + ".png");
         }
-        public Layer(Function<ResourceLocation, ResourceLocation> relativeTexture, boolean pDyeable){
+        public Layer(BiFunction<ResourceLocation, ItemStack, ResourceLocation> relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
             this.texture = relativeTexture;
         }
 
-        private Function<ResourceLocation, ResourceLocation> resolveTexture() {
-            return assetName -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + (!suffix.isEmpty() ? ("_" + suffix) : "") + ".png");
+        private BiFunction<ResourceLocation, ItemStack, ResourceLocation> resolveTexture() {
+            return (assetName, stack) -> assetName.withPath(p_324187_ -> "textures/model/gauntlet/" + assetName.getPath() + (!suffix.isEmpty() ? ("_" + suffix) : "") + ".png");
         }
 
-        public ResourceLocation texture(ResourceLocation material) {
-            return texture.apply(material);
+        public ResourceLocation texture(ResourceLocation material, ItemStack stack) {
+            return texture.apply(material, stack);
         }
 
         public boolean dyeable() {
