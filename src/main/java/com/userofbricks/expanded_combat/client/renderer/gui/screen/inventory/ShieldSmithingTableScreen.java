@@ -2,6 +2,7 @@ package com.userofbricks.expanded_combat.client.renderer.gui.screen.inventory;
 
 import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.inventory.container.ShieldSmithingMenu;
+import com.userofbricks.expanded_combat.util.ModIDs;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
@@ -10,6 +11,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerListener;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoader;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -73,7 +76,7 @@ public class ShieldSmithingTableScreen extends ItemCombinerScreen<ShieldSmithing
             }
         }
 
-        optional.ifPresent(p_280863_ -> pGuiGraphics.renderTooltip(this.font, this.font.split(p_280863_, 115), pMouseX, pMouseY));
+        optional.ifPresent(p_280863_ -> pGuiGraphics.renderTooltip(this.font, this.font.split(p_280863_, 115), pMouseX, ModList.get().isLoaded(ModIDs.jei) ? 16 + pMouseY : pMouseY));
     }
 
     private boolean hasRecipeError() {

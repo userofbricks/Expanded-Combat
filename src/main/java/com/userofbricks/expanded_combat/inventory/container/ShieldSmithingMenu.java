@@ -41,7 +41,7 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
     @Override
     protected @NotNull ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
         return ItemCombinerMenuSlotDefinition.create()
-                .withSlot(0, 27, 47, stack -> stack.get(ItemDataComponents.SHIELD_MATERIALS) != null)
+                .withSlot(0, 27, 47, stack -> (stack.get(ItemDataComponents.SHIELD_MATERIALS) != null || stack.getItemHolder().getData(DataMaps.SHIELD_MATERIALS) != null))
                 .withSlot(1, 67, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
                 .withSlot(2, 85, 29, stack -> stack.getItemHolder().getData(DataMaps.SHIELD_INGREDIENT_MAP) != null)
                 .withSlot(3, 76, 47, stack -> {
@@ -108,7 +108,7 @@ public class ShieldSmithingMenu extends ItemCombinerMenu {
         if (list.isEmpty()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
         } else {
-            RecipeHolder<IShieldSmithingRecipe> recipe = list.get(0);
+            RecipeHolder<IShieldSmithingRecipe> recipe = list.getFirst();
             ItemStack itemstack = recipe.value().assemble(
                     new ShieldSmithingRecipeInput(
                             inputSlots.getItem(0), inputSlots.getItem(1), inputSlots.getItem(2), inputSlots.getItem(3), inputSlots.getItem(4), inputSlots.getItem(5)

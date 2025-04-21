@@ -97,22 +97,32 @@ public record ShieldMaterials(Material ULMaterial, Material URMaterial, Material
 
     public boolean canReplaceUL(Material replacement) {
         List<ResourceLocation> canReplace = replacement.crafting().onlyReplaceResource();
+        if (canReplace.isEmpty())
+            return true;
         return canReplace.contains(ULMaterial.id());
     }
     public boolean canReplaceUR(Material replacement) {
         List<ResourceLocation> canReplace = replacement.crafting().onlyReplaceResource();
+        if (canReplace.isEmpty())
+            return true;
         return canReplace.contains(URMaterial.id());
     }
     public boolean canReplaceDL(Material replacement) {
         List<ResourceLocation> canReplace = replacement.crafting().onlyReplaceResource();
+        if (canReplace.isEmpty())
+            return true;
         return canReplace.contains(DLMaterial.id());
     }
     public boolean canReplaceDR(Material replacement) {
         List<ResourceLocation> canReplace = replacement.crafting().onlyReplaceResource();
+        if (canReplace.isEmpty())
+            return true;
         return canReplace.contains(DRMaterial.id());
     }
     public boolean canReplaceM(Material replacement) {
         List<ResourceLocation> canReplace = replacement.crafting().onlyReplaceResource();
+        if (canReplace.isEmpty())
+            return true;
         return canReplace.contains(MMaterial.id());
     }
 }
