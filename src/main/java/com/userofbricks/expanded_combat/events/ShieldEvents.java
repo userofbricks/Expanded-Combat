@@ -22,6 +22,7 @@ import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.CONFIG;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 @SuppressWarnings("unused")
 public class ShieldEvents {
@@ -107,12 +108,14 @@ public class ShieldEvents {
             int top = smithingTableScreen.getGuiTop();
             e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 194, 32, 28);
             e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 32, 0, 166, 32, 28);
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 8, 204, 0, 20, 20);
+            //e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 8, 204, 0, 20, 20);
+            e.getGuiGraphics().blitSprite(modLoc("smithing_tab"), left -23, top + 8, 20, 20);
         } else if (e.getContainerScreen() instanceof ShieldSmithingTableScreen smithingTableScreen) {
             int left = smithingTableScreen.getGuiLeft();
             int top = smithingTableScreen.getGuiTop();
             e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -28, top + 4, 0, 166, 32, 56);
-            e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 36, 224, 0, 20, 20);
+            //e.getGuiGraphics().blit(ShieldSmithingTableScreen.SHIELD_SMITHING_LOCATION, left -23, top + 36, 224, 0, 20, 20);
+            e.getGuiGraphics().blitSprite(modLoc("shield_smithing_tab"), left -23, top + 36, 20, 20);
         }
     }
 }
