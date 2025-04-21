@@ -1,7 +1,7 @@
 {
 	"credit": "Made by Userofbricks",
 	"textures": {
-		"particle": "#layer1",
+		"particle": "expanded_combat:item/great_hammer/acacia_plank",
 		"layer1": "expanded_combat:item/great_hammer/acacia_plank",
 		"layer0": "expanded_combat:item/great_hammer_handle"
 	},
@@ -168,8 +168,8 @@
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_lefthand": {
-			"rotation": [90, 90, -55],
-			"translation": [2, 2, -0.5],
+			"rotation": [0, -90, -35],
+			"translation": [2, 2, 0.5],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"ground": {

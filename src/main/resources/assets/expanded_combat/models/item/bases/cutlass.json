@@ -2,8 +2,7 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "#layer0",
-		"layer0": "expanded_combat:item/cutlass_wood"
+		"1": "ec_iaf_plugin:item/cutlass/dragon_bone"
 	},
 	"gui_light": "front",
 	"display": {
@@ -23,8 +22,8 @@
 			"scale": [2, 2, 0.68]
 		},
 		"firstperson_lefthand": {
-			"rotation": [90, 90, -35],
-			"translation": [1, 1.5, 0],
+			"rotation": [0, -90, -55],
+			"translation": [3, 1.5, 0],
 			"scale": [2, 2, 0.68]
 		},
 		"ground": {

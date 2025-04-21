@@ -2,8 +2,8 @@
 	"credit": "Made by Userofbricks",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "#layer0",
-		"layer0": "expanded_combat:item/sickle/diamond"
+		"particle": "expanded_combat:item/sickle",
+		"layer0": "expanded_combat:item/sickle"
 	},
 	"gui_light": "front",
 	"display": {
@@ -20,7 +20,7 @@
 			"translation": [0, 3.5, 0]
 		},
 		"firstperson_lefthand": {
-			"rotation": [90, 90, -45],
+			"rotation": [0, -90, -45],
 			"translation": [0, 3.5, 0]
 		},
 		"ground": {
