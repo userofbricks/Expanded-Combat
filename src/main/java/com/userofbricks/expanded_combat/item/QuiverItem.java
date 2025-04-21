@@ -260,13 +260,15 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             if (!pStack.isStackable()) {
                 return -1;
             } else {
+                int ret = -1;
                 for (int i = 0; i < items.size(); i++) {
-                    if (ItemStack.isSameItemSameComponents(items.get(i), pStack)) {
-                        return i;
+                    ItemStack itemStack = items.get(i);
+                    if (ItemStack.isSameItemSameComponents(itemStack, pStack)) {
+                        ret = i;
                     }
                 }
 
-                return -1;
+                return ret;
             }
         }
 
@@ -285,9 +287,14 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
                     int j = findStackIndex(pStack);
                     if (j != -1) {
                         ItemStack itemstack = items.remove(j);
-                        ItemStack itemstack1 = itemstack.copyWithCount(itemstack.getCount() + i);
-                        pStack.shrink(i);
-                        items.add(0, itemstack1);
+                        int available_space = itemstack.getMaxStackSize() - itemstack.getCount();
+                        int add = Math.min(available_space, i);
+                        ItemStack itemstack1 = itemstack.copyWithCount(itemstack.getCount() + add);
+                        pStack.shrink(add);
+                        i -= add;
+                        items.add(j, itemstack1);
+                        if (i > 0)
+                            items.add(j+1, pStack.split(i));
                     } else {
                         items.add(0, pStack.split(i));
                     }
