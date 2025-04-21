@@ -17,7 +17,7 @@ import java.util.Optional;
 import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
 
 public class ShieldSmithingTableScreen extends ItemCombinerScreen<ShieldSmithingMenu> implements ContainerListener {
-    private static final ResourceLocation ERROR_SPRITE = ResourceLocation.parse("shield_smithing_error");
+    private static final ResourceLocation ERROR_SPRITE = modLoc("shield_smithing_error");
     public static final ResourceLocation SHIELD_SMITHING_LOCATION = modLoc("textures/gui/container/shield_smithing.png");
     public static final Component MISSING_SHIELD_TOOLTIP = Component.translatable(LangStrings.MISSING_SHIELD_TOOLTIP);
     private static final Component ERROR_TOOLTIP = Component.translatable("container.upgrade.error_tooltip");
