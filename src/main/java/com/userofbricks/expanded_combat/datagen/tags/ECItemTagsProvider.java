@@ -49,6 +49,8 @@ public class ECItemTagsProvider extends ItemTagsProvider {
                 tag(ECTags.GAUNTLET_ENCHANTABLE).add(item);
                 tag(ECTags.AGILITY_ENCHANTABLE).add(item);
                 tag(ItemTags.DURABILITY_ENCHANTABLE).add(item);
+                tag(Tags.Items.ARMORS).add(item);
+                tag(ItemTags.ARMOR_ENCHANTABLE).add(item);
             }
             if (deferredItem.get() instanceof QuiverItem item) {
                 tag(ECTags.QUIVERS).add(item);
