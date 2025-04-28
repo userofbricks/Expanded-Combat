@@ -5,191 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="3.2.4 - went through everything and updated config requirements on things">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-data/config/expanded_combat.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-data/config/jei/jei-client.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-data/config/jei/jei-colors.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-data/config/jei/jei-debug.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-data/config/jei/jei-mod-id-format.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/expanded_combat.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/fml.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/jei/jei-client.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/jei/jei-colors.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/jei/jei-debug.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_data/config/jei/jei-mod-id-format.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/banned-ips.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/banned-players.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/config/expanded_combat.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/config/fml.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-06-25_14.30.49-fml.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-09-11_21.45.31-fml.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-11-23_12.35.38-fml.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-12-02_11.46.16-fml.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/crash-reports/crash-2023-12-02_11.53.07-fml.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/eula.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/ops.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/server.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/usercache.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/usernamecache.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/whitelist.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/capabilities.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM-1/data/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/capabilities.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/DIM1/data/raids_end.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/capabilities.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/data/random_sequences.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/entities/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/level.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/poi/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/region/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/serverconfig/forge-server.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/serverconfig/jei-server.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_server/world/session.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/.cache/3d309a5597a253a453012605e76906bf1c036a6c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/ancient_city_soul_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_blaze_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_blaze_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_blaze_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_blaze_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_cave_spider_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_cave_spider_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_cave_spider_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_cave_spider_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_creeper_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_creeper_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_creeper_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_creeper_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_elder_guardian_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ender_dragon_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ender_dragon_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ender_dragon_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ender_dragon_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_endermite_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_endermite_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_endermite_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_endermite_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_evoker_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_evoker_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_evoker_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_evoker_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_guardian_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_guardian_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_guardian_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_guardian_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_hoglin_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_hoglin_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_hoglin_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_hoglin_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_illusioner_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_illusioner_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_illusioner_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_illusioner_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_magma_cube_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_magma_cube_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_magma_cube_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_magma_cube_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_brute_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_brute_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_brute_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_brute_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_piglin_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_pillager_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_pillager_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_pillager_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_pillager_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ravager_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ravager_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ravager_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_ravager_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_silverfish_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_silverfish_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_silverfish_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_silverfish_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_slime_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_slime_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_slime_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_slime_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_spider_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_spider_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_spider_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_spider_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_vindicator_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_vindicator_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_vindicator_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_vindicator_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_warden_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_witch_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_witch_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_witch_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_witch_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_skeleton_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_skeleton_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_skeleton_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_skeleton_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bad_soul_from_wither_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_fighters_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_fighters_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_glaive.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_glaive.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_mace.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_mace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_heat_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/bastion_treasure_soul_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_cold_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_glaive.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_glaive.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_mace.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_mace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/buried_treasure_heat_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_glaive.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_glaive.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_mace.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_mace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/desert_pyramid_heat_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_cutlass.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_cutlass.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_great_hammer.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/end_city_treasure_void_great_hammer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_drowned_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_drowned_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_drowned_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_drowned_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_enderman_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_enderman_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_enderman_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_enderman_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_ghast_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_ghast_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_ghast_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_ghast_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_giant_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_giant_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_giant_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_giant_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_husk_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_husk_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_husk_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_husk_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_phantom_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_phantom_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_phantom_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_phantom_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_shulker_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_shulker_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_shulker_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_shulker_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_horse_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_horse_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_horse_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_horse_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_skeleton_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_stray_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_stray_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_stray_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_stray_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_vex_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_vex_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_vex_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_vex_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_warden_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_wither_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zoglin_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zoglin_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zoglin_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zoglin_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_horse_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_horse_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_horse_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_horse_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_villager_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_villager_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_villager_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_villager_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombie_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombified_piglin_with_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombified_piglin_with_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombified_piglin_without_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/good_soul_from_zombified_piglin_without_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/pillager_outpost_soul_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/pillager_outpost_soul_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/shipwreck_treasure_cold_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/underwater_ruin_big_cold_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_claymore.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_claymore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_cold_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_gauntlet.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_gauntlet.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_glaive.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_glaive.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_mace.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_mace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_heat_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_dagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_dagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_katana.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_katana.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_scythe.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/resources/data/expanded_combat/loot_modifiers/woodland_mansion_soul_scythe.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/ExpandedCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/mixin/CuriosMenuMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
-    <list id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="allay update" />
-    <list id="d50e64d7-bfbc-4afb-b743-9d10a0f05945" name="don't git" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,6 +49,12 @@
                 <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="forgegradle runs" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -327,7 +152,7 @@
     "Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal].executor": "Run",
     "Gradle.Expanded-Combat [publishToMavenLocal].executor": "Run",
     "Gradle.Expanded-Combat [publish].executor": "Run",
-    "Gradle.Expanded-Combat [runClient].executor": "Debug",
+    "Gradle.Expanded-Combat [runClient].executor": "Run",
     "Gradle.Expanded-Combat [runData].executor": "Run",
     "JavaClassFindUsagesOptions.isMethodsUsages": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -336,6 +161,7 @@
     "git-widget-placeholder": "forge-1.20.1",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/test/java/com/userofbricks/testing_ec",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3143969",
@@ -387,7 +213,7 @@
       <recent name="com.userofbricks.expanded_combat.client.sprites" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Expanded-Combat [runClient]">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -511,20 +337,28 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [build]" />
+        <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
-        <item itemvalue="Gradle.Expanded-Combat [genIntellijRuns]" />
         <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
+        <item itemvalue="Gradle.Expanded-Combat [genIntellijRuns]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="ShelveChangesManager" show_recycled="true" />
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="" />
-      <changelist id="43f28e32-74d4-4caf-a6df-b80e5bed858b" name="allay update" comment="" />
+      <changelist id="" name="allay update" comment="" />
       <created>1611115581263</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -875,6 +709,9 @@
     </task>
     <option name="localTasksCounter" value="234" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
