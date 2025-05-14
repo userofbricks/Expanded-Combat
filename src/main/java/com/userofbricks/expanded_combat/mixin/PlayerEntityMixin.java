@@ -36,10 +36,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (quiverStack.isPresent()) {
             BundleContents bundlecontents = quiverStack.get().stack().getOrDefault(BUNDLE_CONTENTS, BundleContents.EMPTY);
             int providedSlots = bundlecontents.size();
-            int selectedSlot = Math.max(Math.min(this.getData(DataAttachments.ARROW_SLOT), providedSlots - 1), 0);
-
-            //TODO may need to create methods of removal after shot or mimic Spartan weaponry and put the arrow stack in offhand instead of using a mixin
-            cir.setReturnValue(bundlecontents.getItemUnsafe(selectedSlot));
+            if (providedSlots > 0) {
+                int selectedSlot = Math.max(Math.min(this.getData(DataAttachments.ARROW_SLOT), providedSlots - 1), 0);
+                cir.setReturnValue(bundlecontents.getItemUnsafe(selectedSlot));
+            }
         }
     }
 }
