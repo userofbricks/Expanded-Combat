@@ -5,7 +5,9 @@ import com.userofbricks.expanded_combat.datagen.LangStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.api.distmarker.Dist;
@@ -45,7 +47,7 @@ public interface IMaterialItem extends IMendingBonusItem, IItemExtension {
 
 
     @OnlyIn(Dist.CLIENT)
-    default void appendHoverText(ItemStack stack, List<Component> list) {
+    default void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (getMendingBonus() != 0.0f && stack.getItem().isDamageable(stack)) {
             if (getMendingBonus() > 0.0f) {
                 list.add(1, Component.translatable(LangStrings.GOLD_MENDING_TOOLTIP).withStyle(ChatFormatting.BLUE).append(Component.literal(ChatFormatting.BLUE + " " + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(getMendingBonus()))));

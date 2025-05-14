@@ -44,22 +44,9 @@ public class QuiverSlotOverlay {
 
         BundleContents contents = quiverSlotResult.get().stack().getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
 
-        int providedSlots = contents.size();
-
-        int currentIndex = player.getData(ARROW_SLOT);
-        if (currentIndex >= providedSlots) {
-            currentIndex = providedSlots - 1;
-            player.setData(ARROW_SLOT, providedSlots - 1);
-        }
-
-        int beforeIndex = currentIndex - 1 < 0 ? providedSlots - 1 : currentIndex - 1;
-        int nextIndex = currentIndex + 1 >= providedSlots ? 0 : currentIndex + 1;
-
-        ItemStack currentArrow = contents.isEmpty() ? ItemStack.EMPTY : contents.getItemUnsafe(currentIndex);
-        ItemStack nextArrow = nextIndex == currentIndex ? ItemStack.EMPTY : contents.getItemUnsafe(nextIndex);
-        ItemStack beforeArrow = beforeIndex == currentIndex || beforeIndex == nextIndex ? ItemStack.EMPTY : contents.getItemUnsafe(beforeIndex);
 
 
+        //calculate positioning for rendering slots
         int offsetX = CONFIG.quiverHudAnchor.xAxisRatio.apply(w) + CONFIG.quiverHudXAdjustment;
         int offsetY = CONFIG.quiverHudAnchor.yAxisRatio.apply(h) + CONFIG.quiverHudYAdjustment;
         if (!player.getItemBySlot(EquipmentSlot.OFFHAND).isEmpty()) {
@@ -79,9 +66,27 @@ public class QuiverSlotOverlay {
         guiGraphics.pose().popPose();
         RenderSystem.disableBlend();
 
-        renderSlot(guiGraphics, offsetX + 3, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, currentArrow);
-        renderSlot(guiGraphics, offsetX -17, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, beforeArrow);
-        renderSlot(guiGraphics, offsetX + 21, offsetY+3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, nextArrow);
+        int providedSlots = contents.size();
+
+        if (providedSlots > 0) {
+            int currentIndex = player.getData(ARROW_SLOT);
+            if (currentIndex >= providedSlots) {
+                currentIndex = providedSlots - 1;
+                player.setData(ARROW_SLOT, providedSlots - 1);
+            }
+
+            int beforeIndex = currentIndex - 1 < 0 ? providedSlots - 1 : currentIndex - 1;
+            int nextIndex = currentIndex + 1 >= providedSlots ? 0 : currentIndex + 1;
+
+            ItemStack currentArrow = contents.isEmpty() ? ItemStack.EMPTY : contents.getItemUnsafe(currentIndex);
+            ItemStack nextArrow = nextIndex == currentIndex ? ItemStack.EMPTY : contents.getItemUnsafe(nextIndex);
+            ItemStack beforeArrow = beforeIndex == currentIndex || beforeIndex == nextIndex ? ItemStack.EMPTY : contents.getItemUnsafe(beforeIndex);
+
+            //render arrows
+            renderSlot(guiGraphics, offsetX + 3, offsetY + 3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, currentArrow);
+            renderSlot(guiGraphics, offsetX - 17, offsetY + 3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, beforeArrow);
+            renderSlot(guiGraphics, offsetX + 21, offsetY + 3, event.getPartialTick().getGameTimeDeltaPartialTick(true), player, nextArrow);
+        }
     }
 
     //near identical to the one in Gui.class
