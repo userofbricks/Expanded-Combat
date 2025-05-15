@@ -7,7 +7,6 @@
   "mixins": [
     "AbstractArrowEntityMixin",
     "BottleItemMixin",
-    "CuriosMenuMixin",
     "EntityAttachmentMixin",
     "FletchingTableBlockMixin",
     "PlayerEntityMixin"

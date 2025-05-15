@@ -47,17 +47,4 @@ public class QuiverEvents {
             }
         }
     }
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    @SuppressWarnings("unused")
-    public static void onInventoryGuiInit(ContainerScreenEvent.Render.Background evt) {
-        AbstractContainerScreen<?> screen = evt.getContainerScreen();
-        if (screen instanceof CuriosScreen curiosScreen && CONFIG.enableQuivers) {
-            ResourceLocation textureLocation = modLoc("textures/gui/container/quiver.png");
-            int left = curiosScreen.getGuiLeft();
-            int top = curiosScreen.getGuiTop();
-            evt.getGuiGraphics().blit(textureLocation, left + 76, top + 43, 45, 18, 18, 18);
-        }
-    }
 }

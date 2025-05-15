@@ -21,8 +21,7 @@ public class CuriosSlotProvider extends CuriosDataProvider {
         createSlot(QUIVER_CURIOS_IDENTIFIER)
                 .size(1)
                 .icon(modLoc("slot/empty_" + QUIVER_CURIOS_IDENTIFIER + "_slot"))
-                .addCosmetic(true)
-                .useNativeGui(false);
+                .addCosmetic(true);
 
         createEntities("gauntlet")
                 .addPlayer()
