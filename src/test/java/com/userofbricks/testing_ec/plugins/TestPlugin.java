@@ -19,7 +19,7 @@ public class TestPlugin implements IExpandedCombatPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(MODID, "create");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "create");
     }
 
     @Override
