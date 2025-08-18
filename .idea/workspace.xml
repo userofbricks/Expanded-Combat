@@ -7,7 +7,7 @@
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="3.2.4 - went through everything and updated config requirements on things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/userofbricks/expanded_combat/item/ECQuiverItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +126,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Security Analysis" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -137,37 +140,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.runClient.executor": "Run",
-    "Application.runData.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor": "Run",
-    "Gradle.Expanded-Combat [:prepareRunClient :prepareRunClientCompile].executor": "Run",
-    "Gradle.Expanded-Combat [:prepareRunClientCompile].executor": "Run",
-    "Gradle.Expanded-Combat [:prepareRunData :prepareRunDataCompile].executor": "Run",
-    "Gradle.Expanded-Combat [build].executor": "Run",
-    "Gradle.Expanded-Combat [createMcpToSrg].executor": "Run",
-    "Gradle.Expanded-Combat [genIntellijRuns].executor": "Run",
-    "Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal].executor": "Run",
-    "Gradle.Expanded-Combat [publishToMavenLocal].executor": "Run",
-    "Gradle.Expanded-Combat [publish].executor": "Run",
-    "Gradle.Expanded-Combat [runClient].executor": "Run",
-    "Gradle.Expanded-Combat [runData].executor": "Run",
-    "JavaClassFindUsagesOptions.isMethodsUsages": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "forge-1.20.1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/src/test/java/com/userofbricks/testing_ec",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3143969",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.runClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.runData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:createMcpToSrg :createMcpToSrg :createMcpToSrg].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunClient :prepareRunClientCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunClientCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [:prepareRunData :prepareRunDataCompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [createMcpToSrg].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [genIntellijRuns].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publishMavenJavaPublicationToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [publish].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [runClient].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Expanded-Combat [runData].executor&quot;: &quot;Run&quot;,
+    &quot;JavaClassFindUsagesOptions.isMethodsUsages&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;forge-1.20.1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jonathan/Documents/GitHub/Expanded-Combat/src/test/java/com/userofbricks/testing_ec&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3143969&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.userofbricks.expanded_combat.item" />
@@ -213,7 +216,7 @@
       <recent name="com.userofbricks.expanded_combat.client.sprites" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [runClient]">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -337,9 +340,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Expanded-Combat [build]" />
         <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
+        <item itemvalue="Gradle.Expanded-Combat [build]" />
         <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
         <item itemvalue="Gradle.Expanded-Combat [genIntellijRuns]" />
       </list>

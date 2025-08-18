@@ -1,6 +1,5 @@
 package com.userofbricks.expanded_combat.item;
 
-import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.init.ECKeyRegistry;
@@ -43,6 +42,8 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.userofbricks.expanded_combat.ExpandedCombat.ARROWS_CURIOS_IDENTIFIER;
+import static com.userofbricks.expanded_combat.ExpandedCombat.modLoc;
+
 @ParametersAreNonnullByDefault
 public class ECQuiverItem extends Item implements ICurioItem {
     private final ResourceLocation QUIVER_TEXTURE;
@@ -50,7 +51,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
     public final Material material;
     public ECQuiverItem(Properties properties, Material material) {
         super(properties);
-        this.QUIVER_TEXTURE = new ResourceLocation(ExpandedCombat.MODID, "textures/entity/quiver/" + material.getLocationName().getPath() + ".png");
+        this.QUIVER_TEXTURE = modLoc("textures/entity/quiver/" + material.getLocationName().getPath() + ".png");
         this.providedSlots = material.getConfig().quiverSlots;
         this.material = material;
     }
@@ -138,7 +139,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
                     add(quiver, slot.safeInsert(p_150740_));
                 });
             } else if (itemstack.getItem().canFitInsideContainerItems() && itemstack.is(ItemTags.ARROWS)) {
-                int i = (maxFullness() - getContentWeight(quiver)) / getWeight(itemstack);
+                int i = Mth.floor((maxFullness() - getContentWeight(quiver)) / getWeight(itemstack));
                 int j = add(quiver, slot.safeTake(itemstack.getCount(), i, player));
                 if (j > 0) {
                     playInsertSound(player);
@@ -179,7 +180,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
     }
 
     public int getBarWidth(ItemStack quiver) {
-        return Math.min(1 + 12 * getContentWeight(quiver) / maxFullness(), 13);
+        return Math.min(1 + Mth.ceil(12 * getContentWeight(quiver)) / maxFullness(), 13);
     }
 
     public int getBarColor(ItemStack quiver) {
@@ -194,10 +195,10 @@ public class ECQuiverItem extends Item implements ICurioItem {
                 compoundtag.put("Items", new ListTag());
             }
 
-            int contentWeight = getContentWeight(quiver);
+            double contentWeight = getContentWeight(quiver);
             //this weight is the individual item not the whole stack
-            int itemWeight = getWeight(stackToAdd);
-            int quantityToAdd = Math.min(stackToAdd.getCount(), (((ECQuiverItem) quiver.getItem()).maxFullness() - contentWeight) / itemWeight);
+            double itemWeight = getWeight(stackToAdd);
+            int quantityToAdd = Math.min(stackToAdd.getCount(), Mth.floor((((ECQuiverItem) quiver.getItem()).maxFullness() - contentWeight) / itemWeight));
             if (quantityToAdd == 0) {
                 return 0;
             } else {
@@ -257,16 +258,16 @@ public class ECQuiverItem extends Item implements ICurioItem {
         }
     }
 
-    private static int getWeight(ItemStack stack) {
+    private static double getWeight(ItemStack stack) {
         if (stack.is(ItemTags.ARROWS)) {
-            return 64 / stack.getMaxStackSize();
+            return 64.0 / stack.getMaxStackSize();
         } else {
-            return 1000000;
+            return 100000000000.0;
         }
     }
 
-    private static int getContentWeight(ItemStack quiver) {
-        return getContents(quiver).mapToInt((stack) -> getWeight(stack) * stack.getCount()).sum();
+    private static double getContentWeight(ItemStack quiver) {
+        return getContents(quiver).mapToDouble((stack) -> getWeight(stack) * stack.getCount()).sum();
     }
 
     public static Optional<ItemStack> removeOne(ItemStack quiver) {
@@ -312,7 +313,7 @@ public class ECQuiverItem extends Item implements ICurioItem {
         Stream<ItemStack> var10000 = getContents(p_150775_);
         Objects.requireNonNull(nonnulllist);
         var10000.forEach(nonnulllist::add);
-        return Optional.of(new BundleTooltip(nonnulllist, getContentWeight(p_150775_)));
+        return Optional.of(new BundleTooltip(nonnulllist, Mth.floor(getContentWeight(p_150775_))));
     }
 
     public void appendHoverText(ItemStack p_150749_, @Nullable Level p_150750_, List<Component> p_150751_, TooltipFlag p_150752_) {

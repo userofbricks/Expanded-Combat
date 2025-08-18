@@ -43,6 +43,17 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories{
     repos()
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    flatDir { dir 'libs' }
 }
 
 dependencies {
@@ -54,6 +65,8 @@ dependencies {
     if (better_combat_test == 'true') {
         better_combat()
     }
+    runtimeOnly fg.deobf("testing:lootr-forge:1.20-0.7.35.91")
+    runtimeOnly fg.deobf("testing:biggerstacks:1.20.1-1.0.4-all")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
