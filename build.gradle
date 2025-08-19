@@ -26,6 +26,7 @@ base {
 
 repositories {
     repos()
+    flatDir { dir 'libs' }
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -55,6 +56,8 @@ dependencies {
     }
 
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_api_version}"
+
+    //runtimeOnly "testing:lootr-neoforge:1.21-1.10.35.91"
 }
 
 tasks.withType(ProcessResources).configureEach {

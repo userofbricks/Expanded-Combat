@@ -18,7 +18,9 @@ import java.util.function.Supplier;
 public class AddItemModifier extends LootModifier {
     public static final Supplier<MapCodec<AddItemModifier>> CODEC = Suppliers.memoize(() ->
                     RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
-                            .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("loot_item").forGetter(m -> m.lootItem)).apply(inst, AddItemModifier::new))
+                            .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("loot_item").forGetter(m -> m.lootItem))
+                            .apply(inst, AddItemModifier::new)
+                    )
             );
 
     protected final Item lootItem;
@@ -29,9 +31,9 @@ public class AddItemModifier extends LootModifier {
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, @NotNull LootContext context) {
-        for (LootItemCondition condition: conditions) {
-            if (!condition.test(context)) return generatedLoot;
-        }
+        //for (LootItemCondition condition: conditions) {
+        //    if (!condition.test(context)) return generatedLoot;
+        //}
 
         generatedLoot.add(new ItemStack(lootItem));
 

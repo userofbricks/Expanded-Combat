@@ -1,6 +1,7 @@
 package com.userofbricks.expanded_combat.datagen;
 
 import com.userofbricks.expanded_combat.datagen.loot.ECGlobalLootModifiersProvider;
+import com.userofbricks.expanded_combat.datagen.loot.LootTableProvider;
 import com.userofbricks.expanded_combat.datagen.models.ECItemModelProvider;
 import com.userofbricks.expanded_combat.datagen.recipes.ECRecipeProvider;
 import com.userofbricks.expanded_combat.datagen.tags.ECBlockTagsProvider;
@@ -50,6 +51,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ECAdvancementProvider(output, provider, helper));
         generator.addProvider(event.includeServer(), new ECRecipeProvider(output, provider));
         //generator.addProvider(event.includeServer(), new ECBetterCombatWeaponAttributesProvider(output, provider, helper));
+        generator.addProvider(event.includeServer(), new LootTableProvider(output, provider));
         generator.addProvider(event.includeServer(), new ECGlobalLootModifiersProvider(output, provider));
         ECBlockTagsProvider blockTagsProvider = new ECBlockTagsProvider(output, provider, helper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
