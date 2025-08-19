@@ -261,7 +261,11 @@ public class LangStrings extends LanguageProvider {
         StringBuilder ret = new StringBuilder();
         for (String part: parts) {
             if (part.equals("'s")) ret.append(part);
-            else ret.append(" ").append(part);
+            else {
+                if (!ret.isEmpty())
+                    ret.append(" ");
+                ret.append(part);
+            }
         }
         return ret.toString();
     }
