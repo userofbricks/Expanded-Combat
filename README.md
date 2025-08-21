@@ -14,8 +14,8 @@
     <a href="https://modrinth.com/mod/cloth-config" rel="noopener nofollow ugc">
         <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3.1.2/assets/cozy/requires/cloth-config-api_64h.png" alt="Requires Cloth Config API">
     </a>
-    <a href="https://www.curseforge.com/minecraft/mc-mods/expanded-combat" rel="noopener nofollow ugc">
-        <img src="https://cdn.discordapp.com/attachments/844397409698185227/1152401406247047188/curios_api_64h.png" alt="Requires Cloth Config API">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/curios" rel="noopener nofollow ugc">
+        <img src="https://cdn.discordapp.com/attachments/844397409698185227/1152401406247047188/curios_api_64h.png" alt="Requires Curios API">
     </a>
 </p></center>
 
