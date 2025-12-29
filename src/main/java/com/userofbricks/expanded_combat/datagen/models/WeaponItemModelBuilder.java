@@ -25,16 +25,16 @@ public class WeaponItemModelBuilder {
     public final WeaponType weapon;
     public final ItemModelProvider modelProvider;
 
-    private boolean dyeableOrPotionDippable = false;
-    private boolean singleTexture = false;
-    private boolean hasCustomTransformsOrModel = false;
-    private boolean hasLargeModel = false;
-    private boolean hasArrowBlockingWeaponOverrides = false;
-    private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> mainTextureFunction =
+    protected boolean dyeableOrPotionDippable = false;
+    protected boolean singleTexture = false;
+    protected boolean hasCustomTransformsOrModel = false;
+    protected boolean hasLargeModel = false;
+    protected boolean hasArrowBlockingWeaponOverrides = false;
+    protected Function3<ResourceLocation, Material, WeaponType, ResourceLocation> mainTextureFunction =
             (resourceLocation, materialReference, weaponReference) ->
                     ResourceLocation.fromNamespaceAndPath(materialReference.id().getNamespace(), weaponReference.id().getPath() + "/" + materialReference.id().getPath());
-    private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> handleTextureFunction = DEFAULT_HANDLE_LOC;
-    private Function3<ResourceLocation, Material, WeaponType, ResourceLocation> dyeTextureFunction = DEFAULT_DYE_LOC;
+    protected Function3<ResourceLocation, Material, WeaponType, ResourceLocation> handleTextureFunction = DEFAULT_HANDLE_LOC;
+    protected Function3<ResourceLocation, Material, WeaponType, ResourceLocation> dyeTextureFunction = DEFAULT_DYE_LOC;
 
 
     public WeaponItemModelBuilder(ResourceLocation itemLocation, Material material, WeaponType weapon, ItemModelProvider modelProvider) {
