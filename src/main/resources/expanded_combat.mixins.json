@@ -9,7 +9,8 @@
     "BottleItemMixin",
     "EntityAttachmentMixin",
     "FletchingTableBlockMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ProjectileWeaponItemMixin"
   ],
   "client": [],
   "server": [],

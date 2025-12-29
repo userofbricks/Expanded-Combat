@@ -327,7 +327,12 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             return weight;
         }
 
+        public void assureNoEmpties() {
+            items.removeIf(ItemStack::isEmpty);
+        }
+
         public BundleContents toImmutable() {
+            assureNoEmpties();
             return new BundleContents(List.copyOf(items));
         }
     }
