@@ -28,5 +28,8 @@ public abstract class EntityAttachmentMixin {
         if (type == DataAttachments.STOLEN_HEALTH.get() && level() instanceof ServerLevel && ((Entity)(Object)this) instanceof ServerPlayer player) {
             PacketDistributor.sendToPlayer(player, new PacketIntAttachment(id, DataAttachments.STOLEN_HEALTH.get(), (Integer) data));
         }
+        else if (type == DataAttachments.ARROW_SLOT.get() && level() instanceof ServerLevel && ((Entity)(Object)this) instanceof ServerPlayer player) {
+            PacketDistributor.sendToPlayer(player, new PacketIntAttachment(id, DataAttachments.ARROW_SLOT.get(), (Integer) data));
+        }
     }
 }

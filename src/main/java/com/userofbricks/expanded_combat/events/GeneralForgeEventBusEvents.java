@@ -96,7 +96,7 @@ public class GeneralForgeEventBusEvents {
     @SubscribeEvent
     public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
         if (!event.getEntity().level().isClientSide()) {
-            event.getEntity().setData(DataAttachments.STOLEN_HEALTH, Math.max(event.getEntity().getData(DataAttachments.STOLEN_HEALTH) - 10, 0));
+            event.getEntity().setData(DataAttachments.STOLEN_HEALTH, Math.max(event.getEntity().getData(DataAttachments.STOLEN_HEALTH) - 1, 0));
         }
     }
 }

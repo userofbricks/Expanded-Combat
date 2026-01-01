@@ -24,6 +24,7 @@ import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 @SuppressWarnings("unused")
@@ -88,7 +89,7 @@ public class ClientEvents {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new IClientItemExtensions() {
             @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+            public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return ECShieldBlockEntityWithoutLevelRenderer.getInstance();
             }
         }, ECItems.SHIELD, ECItems.SHIELD_FIRE_RESISTANT);

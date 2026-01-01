@@ -1,5 +1,6 @@
 package com.userofbricks.expanded_combat.item;
 
+import com.mojang.datafixers.util.Pair;
 import com.userofbricks.expanded_combat.client.renderer.QuiverRenderer;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.init.DataAttachments;
@@ -12,7 +13,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -28,7 +28,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.commons.lang3.math.Fraction;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -214,12 +213,14 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             this.texture = resolveTexture();
         }
 
+        @SuppressWarnings("unused")
         public Layer(String suffix) {
             this(suffix, false);
         }
         public Layer() {
             this("", false);
         }
+        @SuppressWarnings("unused")
         public Layer(ResourceLocation relativeTexture, boolean pDyeable){
             this.suffix = "";
             this.dyeable = pDyeable;
@@ -250,21 +251,25 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             this.stacks = stacks;
         }
 
+        @SuppressWarnings("unused")
         public MutableQuiverContents clearItems() {
             items.clear();
             weight = Fraction.ZERO;
             return this;
         }
 
-        private int findStackIndex(ItemStack pStack) {
+        private Pair<Integer, Integer> findStackIndex(ItemStack pStack) {
             if (!pStack.isStackable()) {
-                return -1;
+                return Pair.of(-1,-1);
             } else {
-                int ret = -1;
+                Pair<Integer, Integer> ret = Pair.of(-1,-1);
                 for (int i = 0; i < items.size(); i++) {
                     ItemStack itemStack = items.get(i);
                     if (ItemStack.isSameItemSameComponents(itemStack, pStack)) {
-                        ret = i;
+                        if (ret.getFirst() == -1)
+                            ret = Pair.of(i, ret.getSecond());
+                        else
+                            ret = Pair.of(ret.getFirst(), i);
                     }
                 }
 
@@ -284,19 +289,23 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
                     return 0;
                 } else {
                     weight = weight.add(BundleContents.getWeight(pStack).multiplyBy(Fraction.getFraction(i, 1)));
-                    int j = findStackIndex(pStack);
-                    if (j != -1) {
-                        ItemStack itemstack = items.remove(j);
-                        int available_space = itemstack.getMaxStackSize() - itemstack.getCount();
-                        int add = Math.min(available_space, i);
-                        ItemStack itemstack1 = itemstack.copyWithCount(itemstack.getCount() + add);
-                        pStack.shrink(add);
-                        i -= add;
-                        items.add(j, itemstack1);
+                    Pair<Integer, Integer> j = findStackIndex(pStack);
+                    if (!j.equals(Pair.of(-1, -1))) {
+                        for (int k = j.getFirst(); k <= j.getSecond(); k++) {
+                            ItemStack itemstack = items.remove(k);
+                            int available_space = itemstack.getMaxStackSize() - itemstack.getCount();
+                            int add = Math.min(available_space, i);
+                            ItemStack itemstack1 = itemstack.copyWithCount(itemstack.getCount() + add);
+                            pStack.shrink(add);
+                            i -= add;
+                            items.add(k, itemstack1);
+                            if (i <= 0)
+                                break;
+                        }
                         if (i > 0)
-                            items.add(j+1, pStack.split(i));
+                            items.add(j.getSecond()+1, pStack.split(i));
                     } else {
-                        items.add(0, pStack.split(i));
+                        items.addFirst(pStack.split(i));
                     }
 
                     return i;
@@ -317,12 +326,13 @@ public class QuiverItem extends BundleItem implements ICurioItem, IMaterialItem 
             if (items.isEmpty()) {
                 return null;
             } else {
-                ItemStack itemstack = items.remove(0).copy();
+                ItemStack itemstack = items.removeFirst().copy();
                 weight = weight.subtract(BundleContents.getWeight(itemstack).multiplyBy(Fraction.getFraction(itemstack.getCount(), 1)));
                 return itemstack;
             }
         }
 
+        @SuppressWarnings("unused")
         public Fraction weight() {
             return weight;
         }
