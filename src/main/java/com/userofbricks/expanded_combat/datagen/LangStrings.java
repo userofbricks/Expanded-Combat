@@ -36,6 +36,7 @@ public class LangStrings extends LanguageProvider {
     private static final List<LangEntry> langEntriesToAdd = new ArrayList<>();
     protected final String modId;
 
+    public static final String EXPANDED_COMBAT_TAB = createLangEntry("creative_tab.expanded_combat.title", "Expanded Combat");
     public static final String GOLD_MENDING_TOOLTIP = createLangEntry("tooltip.expanded_combat.mending_bonus", "Mending Bonus");
     public static final String FLETCHING_TABLE_SCREEN_TITLE = createLangEntry("container.expanded_combat.fletching", "Fletching Table");
     //Shield lang

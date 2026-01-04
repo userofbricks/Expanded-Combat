@@ -4,10 +4,12 @@ import com.userofbricks.expanded_combat.ExpandedCombat;
 import com.userofbricks.expanded_combat.api.material.Material;
 import com.userofbricks.expanded_combat.api.material.PlacementInShield;
 import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.datagen.LangStrings;
 import com.userofbricks.expanded_combat.item.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
@@ -30,8 +32,10 @@ import static com.userofbricks.expanded_combat.init.ECItems.*;
 @EventBusSubscriber(modid = ExpandedCombat.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ECCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB, MODID);
+    @SuppressWarnings("unused")
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EC_GROUP = CREATIVE_TABS.register("expanded_combat", () -> CreativeModeTab.builder()
             .icon(() -> new ItemStack(getIcon()))
+            .title(Component.translatable(LangStrings.EXPANDED_COMBAT_TAB))
             .displayItems((displayParameters, output) -> {
                 output.accept(LEATHER_STICK);
                 output.accept(GOLD_STICK);
