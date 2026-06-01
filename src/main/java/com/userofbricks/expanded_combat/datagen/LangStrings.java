@@ -140,7 +140,7 @@ public class LangStrings extends LanguageProvider {
             String potionName = Potion.getName(optionalPotionReference,"");
             if (alreadyAddedPotions.contains(potionName)) continue;
             alreadyAddedPotions.add(potionName);
-            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), "of" + locationToName(potionName));
+            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), "of " + locationToName(potionName));
         }
 
         List<String> alreadyAddedStrings = new ArrayList<>();
