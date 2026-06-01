@@ -140,7 +140,7 @@ public class LangStrings extends LanguageProvider {
             String potionName = Potion.getName(optionalPotionReference,"");
             if (alreadyAddedPotions.contains(potionName)) continue;
             alreadyAddedPotions.add(potionName);
-            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), "of " + locationToName(potionName));
+            add(Potion.getName(optionalPotionReference, TIPPED_ARROW_POTION_ENDING), locationToName(potionName));
         }
 
         List<String> alreadyAddedStrings = new ArrayList<>();
@@ -259,6 +259,11 @@ public class LangStrings extends LanguageProvider {
             String theRest = part.substring(1);
             return firstLetter + theRest;
         }).toList();
+
+        //add the tipped ending
+        if (location.contains("tipped")) {
+            parts.addLast("of ");
+        }
         StringBuilder ret = new StringBuilder();
         for (String part: parts) {
             if (part.equals("'s")) ret.append(part);
