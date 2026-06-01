@@ -224,6 +224,8 @@ public class LangStrings extends LanguageProvider {
 
         return createLangEntry(lang, englishLang);
     }
+
+    /* TODO: implement usages of this. dynamic if possible
     public static String createTagLangEntry(TagKey<?> tagKey, String englishLang) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("tag.");
@@ -238,7 +240,7 @@ public class LangStrings extends LanguageProvider {
                 .append(tagResourceLocation.getPath().replace("/", ".").replace(":", "."));
 
         return createLangEntry(stringBuilder.toString(), englishLang);
-    }
+    }*/
 
     public static ResourceLocation createEnchantmentDesc(ResourceKey<Enchantment> lang, String englishLang) {
         ResourceLocation location = lang.location();
