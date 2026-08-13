@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2743207d-40d1-4e9c-bc14-3b319443f515" name="Default Changelist" comment="3.2.6 - fixed divide by zero issue with stack extending mods and quivers.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/plugins/TestPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/userofbricks/testing_ec/plugins/TestPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.cursor/rules/run-datagen-before-game.mdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +48,6 @@
                 <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="forgegradle runs" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Expanded-Combat" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -164,8 +157,10 @@
     "git-widget-placeholder": "forge-1.20.1",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/jonathan/Documents/GitHub/Expanded-Combat/libs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3143969",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -216,7 +211,7 @@
       <recent name="com.userofbricks.expanded_combat.client.sprites" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Expanded-Combat [build]">
+  <component name="RunManager" selected="Gradle.Expanded-Combat [runClient]">
     <configuration name="Expanded-Combat [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -340,9 +335,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Expanded-Combat [build]" />
         <item itemvalue="Gradle.Expanded-Combat [runClient]" />
         <item itemvalue="Gradle.Expanded-Combat [runData]" />
+        <item itemvalue="Gradle.Expanded-Combat [build]" />
         <item itemvalue="Gradle.Expanded-Combat [publishToMavenLocal]" />
         <item itemvalue="Gradle.Expanded-Combat [genIntellijRuns]" />
       </list>

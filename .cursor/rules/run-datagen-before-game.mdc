@@ -1,0 +1,17 @@
+---
+description: Always run Forge data generation before client or server launches
+alwaysApply: true
+---
+
+# Run data gen before client/server
+
+`src/generated/` is gitignored. Datapack output (Curios slot/entity JSON, item tags, recipes, loot) only exists after `runData`. Switching branches (for example onto Forge 1.20.1) leaves that folder missing or stale; Curios then rejects quivers and other slotted items.
+
+## Required order
+
+1. `./gradlew runData` (Gradle must run on **Java 17**)
+2. Then `runClient` or `runServer` (Gradle or IDE)
+
+Do not launch or ask the user to launch client/server until `runData` has succeeded on the current branch. Gradle `prepareRunClient` / `prepareRunServer` already depend on `runData`; still run `runData` explicitly after a branch switch or a clean checkout.
+
+Output: `src/generated/resources/` (already on the main resource source set).

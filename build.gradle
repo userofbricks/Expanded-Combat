@@ -33,6 +33,17 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 runs(modid)
 
+// Generated datapack output is gitignored. Regenerate before client/server so
+// Curios tags/slots and other data match this branch (e.g. after a switch to 1.20.1).
+afterEvaluate {
+    def runData = tasks.findByName('runData')
+    if (runData == null) return
+    ['prepareRunClient', 'prepareRunServer'].each { taskName ->
+        def prepare = tasks.findByName(taskName)
+        if (prepare != null) prepare.dependsOn runData
+    }
+}
+
 mixin {
     add sourceSets.main, "${modid}.refmap.json"
     config "${modid}.mixins.json"
