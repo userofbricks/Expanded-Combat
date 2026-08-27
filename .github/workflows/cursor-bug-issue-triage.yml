@@ -1,16 +1,34 @@
-# Fires Cursor's "Bug issue triage" automation when the `bug` label is added.
-# GitHub issue templates that set `labels: bug` also emit this labeled event.
-# Requires repo secrets CURSOR_WEBHOOK_URL and CURSOR_WEBHOOK_KEY from the
-# saved Cursor automation (available only after the webhook trigger is saved).
+# Fires Cursor's "Expanded Combat Bug issue triage" automation when:
+# - the `bug` label is added
+# - a bug issue's title or body is edited
+# - someone comments on a bug issue
+#
+# Comments that contain the marker expanded-combat-bug-triage are skipped so the
+# automation's own replies do not loop. Add that marker to every Cursor comment.
+#
+# Requires repo secrets CURSOR_WEBHOOK_URL and CURSOR_WEBHOOK_KEY.
 name: Cursor bug issue triage
 
 on:
   issues:
-    types: [labeled]
+    types: [labeled, edited]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
   notify-cursor:
-    if: github.event.label.name == 'bug' && github.event.issue.pull_request == null
+    if: |
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.labels.*.name, 'bug') &&
+      (
+        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'bug') ||
+        (github.event_name == 'issues' && github.event.action == 'edited') ||
+        (
+          github.event_name == 'issue_comment' &&
+          github.event.comment.user.type != 'Bot' &&
+          !contains(github.event.comment.body, 'expanded-combat-bug-triage')
+        )
+      )
     runs-on: ubuntu-latest
     permissions:
       contents: none
@@ -33,7 +51,9 @@ jobs:
             }
 
             const issue = context.payload.issue;
+            const comment = context.payload.comment;
             const payload = {
+              event_name: context.eventName,
               issue_number: issue.number,
               issue_title: issue.title,
               issue_body: issue.body || '',
@@ -43,6 +63,9 @@ jobs:
               action: context.payload.action,
               owner: context.repo.owner,
               repo: context.repo.repo,
+              comment_id: comment ? comment.id : null,
+              comment_author: comment && comment.user ? comment.user.login : null,
+              comment_body: comment ? comment.body : null,
             };
 
             const response = await fetch(url, {
@@ -60,4 +83,4 @@ jobs:
               return;
             }
 
-            core.info(`Notified Cursor for issue #${issue.number}`);
+            core.info(`Notified Cursor for issue #${issue.number} (${context.eventName}.${context.payload.action})`);
