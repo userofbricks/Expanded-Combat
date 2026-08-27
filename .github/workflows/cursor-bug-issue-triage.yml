@@ -19,7 +19,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: POST issue to Cursor webhook
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           WEBHOOK_URL: ${{ secrets.CURSOR_WEBHOOK_URL }}
           WEBHOOK_KEY: ${{ secrets.CURSOR_WEBHOOK_KEY }}
