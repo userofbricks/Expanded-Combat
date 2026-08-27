@@ -1,5 +1,5 @@
 ---
-description: Version branches, supported Minecraft/loader targets, and how to pick a branch for bugs
+description: Version branches, supported Minecraft/loader targets, and keeping AI rules in sync
 alwaysApply: true
 ---
 
@@ -29,3 +29,11 @@ Older or experimental branches exist from port attempts that are **not published
 1. Read the reported Minecraft version, loader, and loader version.
 2. Map that to the matching version branch above (or report that the version is unsupported).
 3. Work on that branch. Do not mix fixes across version branches unless the same change is being backported/forward-ported on purpose.
+
+## Keep AI rules in sync
+
+Files under `.cursor/rules/` are shared policy, not version-specific code. After you add, change, or delete a rule on one currently supported main-like branch, apply the same change to the other supported main-like branches (`forge-1.20.1` and `neoforge-1.21.1`) in the same task, then commit on each of those branches.
+
+- Do not leave a rule only on the branch you happened to be on.
+- Do not copy rules onto unpublished or unsupported branches unless asked.
+- Do not use this to mix gameplay/mod code across version branches. Only `.cursor/rules/` (and other explicit AI-policy files, if the user names them).
