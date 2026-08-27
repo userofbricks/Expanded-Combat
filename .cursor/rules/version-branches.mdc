@@ -1,0 +1,31 @@
+---
+description: Version branches, supported Minecraft/loader targets, and how to pick a branch for bugs
+alwaysApply: true
+---
+
+# Version branches
+
+Each supported Minecraft / mod-loader version has its own git branch that acts as **that version's main**. Do not treat a single default branch as the only source of truth. Game version (and loader) determine which branch to inspect, reproduce on, and fix in.
+
+## Currently published / supported
+
+| Minecraft | Loader | Branch |
+|-----------|--------|--------|
+| 1.20.1 | Forge | `forge-1.20.1` (repo default) |
+| 1.21.1 | NeoForge | `neoforge-1.21.1` |
+
+Bugs, features, and PRs for a supported version belong on that version's branch.
+
+## Other branches
+
+Older or experimental branches exist from port attempts that are **not published** or **no longer supported** (one-person project, limited time). Examples include `forge-1.19.x`, `neoforge-1.20.6`, `neoforge-1.21.3`, `1.17.1`, `1.16`, and `1.15.2-for-forge-31.2.45`.
+
+- Do not assume these versions are supported unless the user explicitly says so.
+- Do not spend significant time porting or fixing unpublished/unsupported versions unless asked.
+- If a bug is reported for an unsupported game version, say so and point the reporter at a supported version when appropriate.
+
+## When investigating a bug
+
+1. Read the reported Minecraft version, loader, and loader version.
+2. Map that to the matching version branch above (or report that the version is unsupported).
+3. Work on that branch. Do not mix fixes across version branches unless the same change is being backported/forward-ported on purpose.
