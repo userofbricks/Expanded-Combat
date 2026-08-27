@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -34,6 +35,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
     private final Map<Material, ItemLike> materialBlocks = new HashMap<>();
     private final Map<WeaponType, ItemLike> diamondWeapons = new HashMap<>();
     private final Map<Material, Ingredient> materialIngredients = new HashMap<>();
+
     public ECRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
         materialSwords.put(ECBasePlugin.WOOD_PLANK, Items.WOODEN_SWORD);
@@ -63,7 +65,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    protected void buildRecipes(RecipeOutput recipeOutput, HolderLookup.Provider registries) {
         for (DeferredHolder<Item, ? extends Item> deferredItem : ITEMS.getEntries()) {
             if (deferredItem.get() instanceof ECWeaponItem weaponItem && !(
                     weaponItem.material == ECBasePlugin.HEAT_MATERIAL || weaponItem.material == ECBasePlugin.FROST || weaponItem.material == ECBasePlugin.VOID_TOUCHED || weaponItem.material == ECBasePlugin.SOUL_MATERIAL
@@ -71,8 +73,12 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
             )) {
                 buildWeaponRecipe(recipeOutput, weaponItem);
             } else if (deferredItem.get() instanceof ECArrowItem arrowItem) {
-                if (arrowItem instanceof ECTippedArrowItem) {
-                    tippedArrow(recipeOutput, arrowItem, ((ECTippedArrowItem) arrowItem).getNotTipped());
+                if (arrowItem instanceof ECTippedArrowItem tippedArrowItem) {
+                    ItemLike notTipped = tippedArrowItem.getNotTipped();
+                    tippedArrow(recipeOutput, arrowItem, notTipped);
+                    if (arrowItem.material != ECBasePlugin.NETHERITE) {
+                        overgearedFletching(registries, notTipped, tippedArrowItem, materialIngredients.get(arrowItem.material));
+                    }
                 } else if (arrowItem.material == ECBasePlugin.NETHERITE) {
                     variableFletching(recipeOutput, arrowItem, Items.NETHERITE_INGOT, DIAMOND_ARROW, 16);
                 } else {
@@ -201,6 +207,19 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
         fletching(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")), Items.ARROW, Items.FLINT, FLETCHED_STICKS, 6);
 
         recipeOutput.accept(modLoc("tipped_arrow_fletching"), new TippedArrowFletchingRecipe(Ingredient.of(Items.ARROW), new ItemStack(Items.TIPPED_ARROW)), null);
+
+        //overgeared fletching
+        OvergearedFletchingRecipeBuilder.fletching(
+                        Ingredient.of(Items.IRON_NUGGET),
+                        Ingredient.of(Items.STICK),
+                        Ingredient.of(Items.FEATHER),
+                        IRON_ARROW,
+                        1)
+                .withTippedResult(IRON_TIPPED_ARROW)
+                .withCondition(new ECConfigBooleanCondition("arrow"))
+                .withCondition(new ModLoadedCondition("overgeared"))
+                .save(registries, this::saveOvergearedRecipe, modLoc("iron_arrow_fletching2").withPrefix("overgeared/"));
+        overgearedFletching(registries, Items.ARROW, Items.TIPPED_ARROW, Ingredient.of(Items.FLINT));
 
         SpecialRecipeBuilder.special(category -> new ShieldSmithingRecipie())
                 .save(recipeOutput, modLoc("shield_smithing"));

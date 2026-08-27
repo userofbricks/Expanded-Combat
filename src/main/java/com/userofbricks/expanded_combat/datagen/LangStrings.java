@@ -260,7 +260,7 @@ public class LangStrings extends LanguageProvider {
             String firstLetter = String.valueOf(part.charAt(0)).toUpperCase(Locale.ROOT);
             String theRest = part.substring(1);
             return firstLetter + theRest;
-        }).toList();
+        }).collect(Collectors.toCollection(ArrayList::new));
 
         //add the tipped ending
         if (location.contains("tipped")) {

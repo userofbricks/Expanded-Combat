@@ -1,24 +1,48 @@
 package com.userofbricks.expanded_combat.datagen.recipes;
 
+import com.google.gson.JsonObject;
 import com.userofbricks.expanded_combat.init.ECItems;
 import com.userofbricks.expanded_combat.item.recipes.builders.FletchingRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.builders.TippedArrowRecipeBuilder;
 import com.userofbricks.expanded_combat.item.recipes.conditions.ECConfigBooleanCondition;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class MaterialRecipeProvider extends RecipeProvider {
+    private final List<CompletableFuture<?>> overgearedRecipeSaves = new ArrayList<>();
+    private CachedOutput cache;
+
     public MaterialRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
         super(pOutput, pRegistries);
+    }
+
+    @Override
+    protected CompletableFuture<?> run(CachedOutput cache, HolderLookup.Provider registries) {
+        this.cache = cache;
+        this.overgearedRecipeSaves.clear();
+        List<CompletableFuture<?>> saves = new ArrayList<>();
+        saves.add(super.run(cache, registries));
+        saves.addAll(this.overgearedRecipeSaves);
+        return CompletableFuture.allOf(saves.toArray(CompletableFuture[]::new));
+    }
+
+    protected void saveOvergearedRecipe(ResourceLocation recipeId, JsonObject json) {
+        this.overgearedRecipeSaves.add(DataProvider.saveStable(this.cache, json, this.recipePathProvider.json(recipeId)));
     }
 
     public static void battleStaff(RecipeOutput recipeOutput, ItemLike staff, Ingredient material) {
@@ -256,6 +280,26 @@ public abstract class MaterialRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_material", has(addition))
                 .save(recipeOutput.withConditions(new ECConfigBooleanCondition("arrow")),
                         RecipeBuilder.getDefaultRecipeId(result).withSuffix("_variable_fletching"));
+    }
+
+    public void overgearedFletching(HolderLookup.Provider registries, ItemLike result, ItemLike tippedResult, Ingredient material) {
+        overgearedFletching(registries, result, tippedResult, 6, Items.STICK, Items.FEATHER, material);
+    }
+    public void overgearedFletching(HolderLookup.Provider registries, ItemLike result, ItemLike tippedResult, int resultCount, Ingredient material) {
+        overgearedFletching(registries, result, tippedResult, resultCount, Items.STICK, Items.FEATHER, material);
+    }
+
+    public void overgearedFletching(HolderLookup.Provider registries, ItemLike result, ItemLike tippedResult, int resultCount, ItemLike stick, ItemLike feather, Ingredient material) {
+        OvergearedFletchingRecipeBuilder.fletching(
+                        material,
+                        Ingredient.of(stick),
+                        Ingredient.of(feather),
+                        result,
+                        resultCount)
+                .withTippedResult(tippedResult)
+                .withCondition(new ECConfigBooleanCondition("arrow"))
+                .withCondition(new ModLoadedCondition("overgeared"))
+                .save(registries, this::saveOvergearedRecipe);
     }
 
     public static void bow(RecipeOutput recipeOutput, ItemLike bow, Ingredient material) {
