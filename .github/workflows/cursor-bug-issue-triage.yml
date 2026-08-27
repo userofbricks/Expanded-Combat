@@ -1,0 +1,63 @@
+# Fires Cursor's "Bug issue triage" automation when the `bug` label is added.
+# GitHub issue templates that set `labels: bug` also emit this labeled event.
+# Requires repo secrets CURSOR_WEBHOOK_URL and CURSOR_WEBHOOK_KEY from the
+# saved Cursor automation (available only after the webhook trigger is saved).
+name: Cursor bug issue triage
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  notify-cursor:
+    if: github.event.label.name == 'bug' && github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    permissions:
+      contents: none
+    concurrency:
+      group: cursor-bug-triage-${{ github.repository }}-${{ github.event.issue.number }}
+      cancel-in-progress: true
+    steps:
+      - name: POST issue to Cursor webhook
+        uses: actions/github-script@v7
+        env:
+          WEBHOOK_URL: ${{ secrets.CURSOR_WEBHOOK_URL }}
+          WEBHOOK_KEY: ${{ secrets.CURSOR_WEBHOOK_KEY }}
+        with:
+          script: |
+            const url = process.env.WEBHOOK_URL;
+            const key = process.env.WEBHOOK_KEY;
+            if (!url || !key) {
+              core.setFailed('Set repository secrets CURSOR_WEBHOOK_URL and CURSOR_WEBHOOK_KEY from the Cursor automation webhook.');
+              return;
+            }
+
+            const issue = context.payload.issue;
+            const payload = {
+              issue_number: issue.number,
+              issue_title: issue.title,
+              issue_body: issue.body || '',
+              issue_url: issue.html_url,
+              issue_author: issue.user && issue.user.login,
+              labels: (issue.labels || []).map((label) => label.name),
+              action: context.payload.action,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            };
+
+            const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${key}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+
+            const text = await response.text();
+            if (!response.ok) {
+              core.setFailed(`Cursor webhook returned ${response.status}: ${text}`);
+              return;
+            }
+
+            core.info(`Notified Cursor for issue #${issue.number}`);
