@@ -220,6 +220,7 @@ public class ECRecipeProvider extends MaterialRecipeProvider {
                 .withCondition(new ModLoadedCondition("overgeared"))
                 .save(registries, this::saveOvergearedRecipe, modLoc("iron_arrow_fletching2").withPrefix("overgeared/"));
         overgearedFletching(registries, Items.ARROW, Items.TIPPED_ARROW, Ingredient.of(Items.FLINT));
+        overgearedFletching(registries, NETHERITE_ARROW, NETHERITE_TIPPED_ARROW, 1, DIAMOND_ARROW, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Ingredient.of(Items.NETHERITE_INGOT));
 
         SpecialRecipeBuilder.special(category -> new ShieldSmithingRecipie())
                 .save(recipeOutput, modLoc("shield_smithing"));
